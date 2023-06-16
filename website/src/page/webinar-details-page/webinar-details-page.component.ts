@@ -25,15 +25,15 @@ export class WebinarDetailsPageComponent implements OnInit {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
-                const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug"));
+                const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug") && !x.comingSoon);
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
                     this._title.setTitle(`${this.webinar.title} - TypeDB Webinars`);
                     this._analytics.hubspot.trackPageView();
                     if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {
-                        this._formService.embedHubspotForm(this.webinar.hubspotFormID, "hubspot-form-holder", (formEl) => {
+                        this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", (formEl) => {
                             this._webinarService.register({
-                                airmeetID: this.webinar!.airmeetID,
+                                airmeetID: this.webinar!.airmeetID!,
                                 firstName: formEl["firstname"].value,
                                 lastName: formEl["lastname"].value,
                                 email: formEl["email"].value,

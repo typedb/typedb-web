@@ -11,6 +11,7 @@ export class ButtonComponent {
     @Input() buttonWidth?: string;
     @Input() size: "medium" | "small" = "medium";
     @Input() noComingSoonTooltip = false;
+    @Input() containerHovered = false;
 
     comingSoonPopupVisible: boolean = false;
 
@@ -22,6 +23,7 @@ export class ButtonComponent {
         return {
             "bt-size-s": this.size === "small",
             "bt-disabled": this.button.comingSoon,
+            "container-hover": this.containerHovered,
         };
     }
 

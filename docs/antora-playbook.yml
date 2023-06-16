@@ -10,6 +10,8 @@ content:
       start_path: docs/content/clients-src
       branches: HEAD
 asciidoc:
+  attributes:
+    source-highlighter: ~
   extensions:
     - "@asciidoctor/tabs"
 ui:
