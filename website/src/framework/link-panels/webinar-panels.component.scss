@@ -17,6 +17,10 @@ $card-content-width: 320px;
     padding: 20px;
     position: relative;
 
+    &:not(.hoverable) {
+        cursor: initial;
+    }
+
     img {
         width: $card-content-width - 2px;
         height: 166px;

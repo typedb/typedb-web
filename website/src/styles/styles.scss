@@ -97,7 +97,7 @@ a.link-tertiary, a.link-tertiary:visited {
     font-weight: $font-weight-bold;
 
     &:hover, &:focus {
-        color: $color-vaticle-white;
+        color: $color-vaticle-green;
         text-decoration: underline;
     }
 }
@@ -247,6 +247,11 @@ hr {
 
     &.hoverable:hover {
         border-color: $color-vaticle-green;
+
+        a.link-tertiary {
+            color: $color-vaticle-green;
+            text-decoration: underline;
+        }
     }
 }
 

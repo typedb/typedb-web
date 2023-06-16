@@ -20,6 +20,7 @@ a {
     transition-property: background-color, border, box-shadow, opacity;
     transition-duration: 100ms;
     transition-timing-function: ease;
+    text-decoration: none !important; // overrides various styles that set an underline on anchors
 
     &.bt-disabled {
         opacity: 50%;
@@ -31,7 +32,7 @@ a {
         background: $color-vaticle-green;
         color: $color-vaticle-purple;
 
-        &:hover:not(.bt-disabled) {
+        &:hover:not(.bt-disabled), &.container-hover:not(.bt-disabled) {
             box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, .4);
         }
 
@@ -45,7 +46,7 @@ a {
         background: transparent;
         color: $color-vaticle-green;
 
-        &:hover:not(.bt-disabled) {
+        &:hover:not(.bt-disabled), &.container-hover:not(.bt-disabled) {
             background-color: $color-vaticle-green;
             color: $color-vaticle-purple;
         }
