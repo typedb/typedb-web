@@ -4,8 +4,8 @@ import { ReplaySubject } from "rxjs";
 import { WebinarRegistrationForm } from "typedb-web-schema";
 
 const apiURLs = {
-    primary: `https://development.dev.typedb.com/api/webinars/primary`,
-    register: `https://development.dev.typedb.com/api/webinars/register`,
+    primary: `/api/webinars/primary`,
+    register: `/api/webinars/register`,
 };
 
 @Injectable({
