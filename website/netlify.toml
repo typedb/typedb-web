@@ -15,12 +15,7 @@ publish = "dist/dynamic"
 
 [[redirects]]
 from = "https://dev.typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat"
-status = 200
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/*"
-to = "https://master.dev.typedb.com/:splat"
+to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
@@ -54,11 +49,6 @@ force = true
 [[redirects]]
 from = "https://dev.typedb.com/*"
 to = "https://dev.typedb.com/index.html"
-status = 200
-
-[[redirects]]
-from = "https://staging.dev.typedb.com/*"
-to = "https://master.dev.typedb.com/index.html"
 status = 200
 
 [[redirects]]
