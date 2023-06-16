@@ -35,12 +35,15 @@ pre[class*="language-"] {
 }
 
 .token.class-name,
+.token.number {
+    color: $color-prism-blue;
+}
+
 .token.function {
     color: $color-prism-light-green;
 }
 
 .token.constant,
-.token.number,
 .token.string {
     color: $color-prism-yellow;
 }
