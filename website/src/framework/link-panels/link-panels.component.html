@@ -10,7 +10,7 @@
                 </ng-container>
             </a>
             <ng-template #panelWithoutIcon>
-                <a class="card lc-card lc-card-cols-3 lc-card-compact" [class]="panel.button.comingSoon ? '' : 'hoverable'" (mouseenter)="setPanelHovered(panel, true)" (mouseleave)="setPanelHovered(panel, false)">
+                <a class="card lc-card lc-card-cols-3 lc-card-compact" [class]="panel.button.comingSoon ? '' : 'hoverable'" [tdLink]="panel.button.comingSoon ? undefined : panel.button.link" (mouseenter)="setPanelHovered(panel, true)" (mouseleave)="setPanelHovered(panel, false)">
                     <div *ngIf="panel.button.comingSoon" class="text-xxs lp-coming-soon">coming soon</div>
                     <h2 class="text-m">{{ panel.title }}</h2>
                     <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
