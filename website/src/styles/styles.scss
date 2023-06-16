@@ -338,6 +338,11 @@ hr {
     text-align: start;
 }
 
+// TODO: embedded hubspot forms malfunction in production - this hack patches out the bug
+body > .hs-form {
+    display: none;
+}
+
 body .hs-form fieldset {
     max-width: unset;
 }
