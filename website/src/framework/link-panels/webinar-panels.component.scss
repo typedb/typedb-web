@@ -1,7 +1,7 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-$card-width: 320px;
+$card-content-width: 320px;
 
 .wp-root {
     display: flex;
@@ -14,18 +14,18 @@ $card-width: 320px;
     display: flex;
     flex-direction: column;
     text-align: start;
-    padding: 30px 32px;
+    padding: 20px;
     position: relative;
 
     img {
-        width: $card-width;
+        width: $card-content-width - 2px;
         height: 166px;
         border: 1px solid $color-vaticle-light-purple;
         border-radius: $border-radius;
     }
 
     h2, p {
-        max-width: $card-width;
+        max-width: $card-content-width;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
