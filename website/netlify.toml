@@ -67,7 +67,7 @@ force = true
 
 [[redirects]]
 from = "https://staging.typedb.com/typedb/2.x/overview.html"
-to = "https://staging.typedb.com/docs/typedb/2.x/overview.html"
+to = "https://master.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
 
@@ -94,7 +94,7 @@ status = 200
 
 [[redirects]]
 from = "https://staging.typedb.com/*"
-to = "https://staging.typedb.com/index.html"
+to = "https://master.typedb.com/index.html"
 status = 200
 
 [[redirects]]
