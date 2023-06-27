@@ -9,6 +9,9 @@ content:
     - url: ..
       start_path: docs/content/clients-src
       branches: HEAD
+    - url: ..
+      start_path: docs/content/typeql-src
+      branches: HEAD
 asciidoc:
   attributes:
     source-highlighter: ~
