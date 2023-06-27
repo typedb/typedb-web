@@ -417,6 +417,10 @@ input[type='submit'].hs-button {
     margin-top: 32px;
 }
 
+.mat-button-focus-overlay {
+    opacity: 0 !important;
+}
+
 // TODO: these styles should only apply to a "success" popup
 .mat-snack-bar-container {
     background: rgb(1, 52, 50);
