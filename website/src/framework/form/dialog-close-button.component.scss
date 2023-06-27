@@ -1,0 +1,30 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+button {
+    svg {
+        border-radius: $border-radius;
+        transition: background 100ms ease;
+
+        path {
+            fill: $color-vaticle-secondary-grey;
+            transition: fill 100ms ease;
+        }
+
+        &:hover path, &:active path {
+            fill: $color-vaticle-white;
+        }
+
+        &:active {
+            background: $color-vaticle-light-purple;
+        }
+    }
+
+    &:focus svg {
+        background: $color-vaticle-light-purple;
+
+        path {
+            fill: $color-vaticle-white;
+        }
+    }
+}

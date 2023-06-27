@@ -339,8 +339,8 @@ hr {
 }
 
 // TODO: embedded hubspot forms malfunction in production - this hack patches out the bug
-body > .hs-form, body > .hbspt-form {
-    display: none;
+body > .hs-form, body > .hbspt-form, form + form {
+    display: none !important;
 }
 
 body .hs-form fieldset {
@@ -355,7 +355,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     width: 100%;
 }
 
-.hs-form fieldset + fieldset {
+.hs-form fieldset + fieldset, .hs-form > .hs-form-field + .hs-form-field {
     margin-top: 16px;
 }
 
@@ -415,6 +415,10 @@ input[type='submit'].hs-button {
     width: 202px;
     float: right;
     margin-top: 32px;
+}
+
+.mat-button-focus-overlay {
+    opacity: 0 !important;
 }
 
 // TODO: these styles should only apply to a "success" popup

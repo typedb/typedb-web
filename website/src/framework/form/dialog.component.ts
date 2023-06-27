@@ -88,3 +88,11 @@ interface ContactForm extends NameEmailForm {
     topics: { [topic in ContactFormTopic]: boolean };
     body: string;
 }
+
+@Component({
+    selector: "td-dialog-close-button",
+    templateUrl: "dialog-close-button.component.html",
+    styleUrls: ["./dialog-close-button.component.scss"]
+})
+export class DialogCloseButtonComponent {
+}
