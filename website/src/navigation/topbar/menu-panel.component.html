@@ -3,7 +3,7 @@
         <h3 class="text-xxs"><strong>{{ column.title }}</strong></h3>
         <ul *ngIf="isListColumn(column)">
             <li *ngFor="let item of column.items">
-                <a [tdLink]="item.comingSoon ? undefined : item.link" [class]="item.comingSoon ? 'mp-coming-soon' : ''" (mouseenter)="onMouseEnter(item)" (mouseleave)="onMouseLeave(item)">
+                <a [tdLink]="item.comingSoon ? undefined : item.link" [class]="item.comingSoon ? 'mp-coming-soon' : ''" (mouseenter)="onMouseEnter(item)" (mouseleave)="onMouseLeave(item)" (click)="onClick(item)">
                     <h4 class="text-s">
                         <td-tooltip *ngIf="item.comingSoon" text="Coming soon!" [visible]="comingSoonPopupVisible.get(item) || false"></td-tooltip>
                         <span>{{ item.title }}</span>

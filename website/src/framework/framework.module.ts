@@ -15,7 +15,7 @@ import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-gr
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
-import { CloudWaitlistDialogComponent, ContactDialogComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./form/dialog.component";
+import { CloudWaitlistDialogComponent, ContactDialogComponent, DialogCloseButtonComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./form/dialog.component";
 import { OptionDirective } from "./form/option.directive";
 import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
@@ -48,6 +48,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         ContentPanelComponent,
         ContentPanelGridComponent,
         ContentTabsComponent,
+        DialogCloseButtonComponent,
         FeatureTableComponent,
         FeatureTableCellComponent,
         GraphVisualisationComponent,

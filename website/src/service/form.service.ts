@@ -33,9 +33,10 @@ export class FormService {
             let retries = 0;
             const formElementPoller = setInterval(() => {
                 const formEl = document.getElementById(`hsForm_${hubspotFormID}`) as HTMLFormElement | null;
-                if (formEl) {
+                const formContainerEl = formEl?.parentElement;
+                if (formEl && formContainerEl?.id.startsWith("hbspt-form")) {
                     clearInterval(formElementPoller);
-                    document.getElementById(placeholderElementID)!.appendChild(formEl);
+                    document.getElementById(placeholderElementID)!.appendChild(formContainerEl);
                     if (onSubmit) {
                         this.attachOnSubmitAction(formEl, onSubmit);
                     }
