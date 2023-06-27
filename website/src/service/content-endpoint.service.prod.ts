@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 import { TransferStateService } from "@scullyio/ng-lib";
+import { first } from "rxjs/operators";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_STRING = "*[!(_id in path('drafts.**')) %26%26 !(_type match 'system.**')]";
@@ -20,6 +21,8 @@ export class ContentEndpointService {
         return this.transferState.useScullyTransferState(
             "content",
             this.http.get<{ result: SanityDocument[] }>(SANITY_QUERY_URL)
+        ).pipe(
+            first()
         );
     }
 }

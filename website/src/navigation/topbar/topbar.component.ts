@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, NgZone, OnInit } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, NgZone, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
@@ -94,6 +94,14 @@ export class TopbarComponent implements OnInit {
         this.focusedMenuPanel = undefined;
     }
 
+    onMenuItemClick(item: TopbarListColumnItem) {
+        this.hoveredMenuPanel = undefined;
+        this.hoveredMenuItem = undefined;
+        this.focusedMenuPanel = undefined;
+        this.focusedMenuItem = undefined;
+        this.clearFocus();
+    }
+
     @HostListener("window:keyup.escape", ["$event"])
     onEscKeyPressed(_event: KeyboardEvent) {
         this.clearFocus();
@@ -108,6 +116,7 @@ export class TopbarComponent implements OnInit {
 })
 export class TopbarMenuPanelComponent {
     @Input() menuPanel!: TopbarMenuPanel;
+    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
 
     comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<TopbarListColumnItem, boolean>();
 
@@ -133,5 +142,9 @@ export class TopbarMenuPanelComponent {
 
     onMouseLeave(item: TopbarListColumnItem) {
         if (item.comingSoon) this.comingSoonPopupVisible.set(item, false);
+    }
+
+    onClick(item: TopbarListColumnItem) {
+        this.itemclick.emit(item);
     }
 }

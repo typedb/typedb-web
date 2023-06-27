@@ -38,6 +38,11 @@ to = "https://master--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
+from = "https://staging.typedb.com/docs/*"
+to = "https://master--typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
@@ -61,10 +66,26 @@ status = 301
 force = true
 
 [[redirects]]
+from = "https://staging.typedb.com/typedb/2.x/overview.html"
+to = "https://master.typedb.com/docs/typedb/2.x/overview.html"
+status = 301
+force = true
+
+[[redirects]]
 from = "https://development.typedb.com/typedb/2.x/overview.html"
 to = "https://development.typedb.com/docs/typedb/2.x/overview.html"
 status = 301
 force = true
+
+[[redirects]]
+from = "https://live-temp.typedb.com/*/data.json"
+to = "https://live-temp.typedb.com/data.json"
+status = 200
+
+[[redirects]]
+from = "https://typedb.com/*/data.json"
+to = "https://typedb.com/data.json"
+status = 200
 
 [[redirects]]
 from = "https://typedb.com/*"
@@ -78,6 +99,11 @@ status = 200
 
 [[redirects]]
 from = "https://master.typedb.com/*"
+to = "https://master.typedb.com/index.html"
+status = 200
+
+[[redirects]]
+from = "https://staging.typedb.com/*"
 to = "https://master.typedb.com/index.html"
 status = 200
 
