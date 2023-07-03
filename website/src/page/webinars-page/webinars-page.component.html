@@ -2,7 +2,7 @@
     <div *ngIf="page">
         <div class="section">
             <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
-            <div class="subsection-margin wp-primary-webinar card">
+            <div class="subsection-margin wp-primary-webinar card card-padding">
                 <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
                 <ng-container *ngIf="primaryWebinar">
                     <div>

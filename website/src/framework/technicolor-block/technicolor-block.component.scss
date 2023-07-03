@@ -1,6 +1,8 @@
 @import "../../styles/colors";
+@import "../../styles/sizes";
 
 $block-gap: 144px;
+$block-gap-mobile: 64px;
 
 .tb-root {
     background-repeat: no-repeat;
@@ -11,11 +13,19 @@ $block-gap: 144px;
     height: $block-gap;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: $block-gap-mobile;
+    }
 }
 
 .tb-core {
     display: flex;
     gap: 38px;
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 0;
+    }
 }
 
 .tb-graphic {
@@ -24,12 +34,23 @@ $block-gap: 144px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 48px;
+        padding: 0;
+        margin-left: -12px;
+    }
 }
 
 .tb-graphic-icon-area {
     width: 72px;
     height: 72px;
     position: relative;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 .tb-graphic-icon-bg {
@@ -62,10 +83,19 @@ $block-gap: 144px;
     width: 40px;
     height: 40px;
     z-index: 1;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .tb-graphic-line {
     width: 3px;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 2px;
+    }
 }
 
 @mixin graphic-line-gradient($base-color) {
@@ -106,4 +136,8 @@ $block-gap: 144px;
 
 .tb-body-margin-bottom {
     margin-bottom: 72px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-bottom: 24px;
+    }
 }

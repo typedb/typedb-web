@@ -6,10 +6,10 @@ import { DialogService } from "../../service/dialog.service";
 
 @Component({
     selector: "td-topbar",
-    templateUrl: "./topbar.component.html",
-    styleUrls: ["./topbar.component.scss"],
+    templateUrl: "./topbar-menu.component.html",
+    styleUrls: ["./topbar-menu.component.scss"],
 })
-export class TopbarComponent implements OnInit {
+export class TopbarMenuComponent implements OnInit {
     topbar?: Topbar;
     githubURL?: string;
     hoveredMenuItem?: TopbarMenuPanel;
@@ -111,8 +111,8 @@ export class TopbarComponent implements OnInit {
 
 @Component({
     selector: "td-topbar-menu-panel",
-    templateUrl: "./menu-panel.component.html",
-    styleUrls: ["./menu-panel.component.scss"],
+    templateUrl: "./topbar-menu-panel.component.html",
+    styleUrls: ["./topbar-menu-panel.component.scss"],
 })
 export class TopbarMenuPanelComponent {
     @Input() menuPanel!: TopbarMenuPanel;

@@ -22,7 +22,11 @@ html, body {
     font-family: 'Titillium Web', sans-serif;
 
     margin: 0;
-    scroll-padding-top: 80px;
+    scroll-padding-top: $topbar-height;
+
+    @media (max-width: $media-max-width-mobile) {
+        scroll-padding-top: $topbar-height-mobile;
+    }
 
     * {
         box-sizing: border-box;
@@ -48,9 +52,20 @@ typedb-website {
 
     section, .section {
         width: 1160px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 375px;
+        }
+    }
+
+    section, .section {
         max-width: calc(100vw - 40px);
         margin-left: auto;
         margin-right: auto;
+
+        @media (max-width: $media-max-width-mobile) {
+            max-width: calc(100vw - 24px);
+        }
     }
 }
 
@@ -171,40 +186,167 @@ hr {
 .text-xxl {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xxl-tablet;
+        line-height: $line-height-xxl-tablet;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 34px;
+        line-height: 48px;
+    }
 }
+
 .text-xl {
     font-size: $font-size-xl;
     line-height: $line-height-xl;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-l;
+        line-height: $line-height-l;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-m;
+        line-height: $line-height-m;
+    }
 }
+
 .text-l {
     font-size: $font-size-l;
     line-height: $line-height-l;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-ml;
+        line-height: $line-height-ml;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
 }
+
 .text-ml {
     font-size: $font-size-ml;
     line-height: $line-height-ml;
+
     &.text-sparse {
         line-height: $line-height-ml-sparse;
     }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-m;
+        line-height: $line-height-m;
+
+        &.text-sparse {
+            line-height: $line-height-m;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+
+        &.text-sparse {
+            line-height: $line-height-s;
+        }
+    }
 }
+
 .text-m {
     font-size: $font-size-m;
     line-height: $line-height-m;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
 }
+
 .text-s {
     font-size: $font-size-s;
     line-height: $line-height-s;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+    }
 }
+
 .text-xs {
     font-size: $font-size-xs;
     line-height: $line-height-xs;
+
     &.text-sparse {
         line-height: $line-height-xs-sparse;
     }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+
+        &.text-sparse {
+            line-height: $line-height-xxs;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+
+        &.text-sparse {
+            line-height: $line-height-tiny;
+        }
+    }
 }
+
 .text-xxs {
     font-size: $font-size-xxs;
     line-height: $line-height-xxs;
+
+    @media (max-width: $media-max-width-tablet) {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-micro;
+        line-height: $line-height-micro;
+    }
+}
+
+@media (max-width: $media-max-width-mobile) {
+    body .text-s-mobile {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+
+    body .text-xs-mobile {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
+
+    body .text-xxs-mobile {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+    }
+
+    body .text-tiny-mobile {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+    }
 }
 
 .text-weight-light {
@@ -217,6 +359,14 @@ hr {
 
 .text-margin-l {
     margin-top: $text-margin-l;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        margin-top: $text-margin-m;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-s;
+    }
 }
 
 .text-margin-m {
@@ -252,6 +402,14 @@ hr {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
+    }
+}
+
+.card-padding {
+    padding: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
     }
 }
 

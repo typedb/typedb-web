@@ -15,6 +15,15 @@
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     background: $color-vaticle-deep-purple;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 48px;
+
+        p {
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
 }
 
 .ft-tab {
@@ -22,6 +31,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 12px;
 
     &:not(:first-child) {
         border-left: 1px solid $color-vaticle-light-purple;
@@ -36,14 +47,6 @@
 .ft-tab-selected, .ft-tab-selected p {
     color: $color-vaticle-green;
     background: $color-vaticle-purple;
-}
-
-.ft-tab-content {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
 }
 
 .ft-graphic {

@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { Component, Input, OnInit } from "@angular/core";
 import { ContentTextPanel } from "typedb-web-schema";
 
 @Component({
@@ -6,16 +7,19 @@ import { ContentTextPanel } from "typedb-web-schema";
     templateUrl: "content-panel.component.html",
     styleUrls: ["content-panel.component.scss"],
 })
-export class ContentPanelComponent {
+export class ContentPanelComponent implements OnInit {
     @Input() hidden?: boolean;
     @Input() panel!: ContentTextPanel;
     @Input() orientation: "landscape" | "portrait" = "landscape";
     @Input() textFirst?: boolean;
     @Input() size: "m" | "l" = "l";
     @Input() position: "embedded" | "standalone" = "embedded";
+    isMobile = false;
 
-    public ngDoCheck() {
-        console.log('doCheck', Zone.currentTask!.source);
+    constructor(private _breakpointObserver: BreakpointObserver) {}
+
+    public ngOnInit() {
+        this._breakpointObserver.observe(["(max-width:767px)"]).subscribe((state) => { this.isMobile = state.matches; });
     }
 
     get contentTextPanel(): ContentTextPanel | undefined {
@@ -26,6 +30,7 @@ export class ContentPanelComponent {
         return {
             "section": true,
             "card": true,
+            "card-padding": true,
             "cp-root": true,
             [this.orientation]: true,
             "content-first": !this.textFirst,

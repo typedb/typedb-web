@@ -6,6 +6,10 @@
     height: 304px;
     perspective: 1400px;
     transform-style: preserve-3d;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 210px;
+    }
 }
 
 $card-offset-base: 26%;
@@ -26,6 +30,12 @@ $card-offset-base: 26%;
     transition-property: transform, opacity;
     transition-duration: 750ms;
     transition-timing-function: ease;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 311px;
+        height: 210px;
+        transition-duration: 400ms;
+    }
 
     &.tc-card-0 {
         transform: translate3d(calc($card-offset-base * -3), 0, -380px);
@@ -57,10 +67,13 @@ $card-offset-base: 26%;
     height: 100%;
     width: 100%;
     background: $color-vaticle-purple;
-    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 20px;
+    }
 }
 
 .tc-details {
@@ -69,6 +82,10 @@ $card-offset-base: 26%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding-top: 16px;
+    }
 }
 
 .tc-person {
@@ -80,6 +97,11 @@ $card-offset-base: 26%;
         width: 48px;
         height: 48px;
         border-radius: 3px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 40px;
+            height: 40px;
+        }
     }
 }
 
@@ -89,6 +111,10 @@ $card-offset-base: 26%;
 
 .tc-logo {
     height: 48px;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 28px;
+    }
 }
 
 .tc-control-panel {

@@ -9,6 +9,7 @@ import FontFaceObserver from "fontfaceobserver";
 import { arrowhead, diamondIncomingLineIntersect, Ellipse, ellipseIncomingLineIntersect, midpoint, Point, Rect, rectIncomingLineIntersect } from "./geometry";
 import { defaultGraphVisualisationTheme, defaultStyles, GraphVisualisationTheme } from "./theme";
 import VertexEncoding = GraphVisualisation.VertexEncoding;
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
     selector: "td-graph-visualisation",
@@ -20,16 +21,13 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("graphContainer") graphContainerEl!: ElementRef<HTMLElement>;
     onDestroy?: () => any;
 
-    constructor(private _ngZone: NgZone) {}
+    constructor(private _ngZone: NgZone, private _breakpointObserver: BreakpointObserver) {}
 
     ngAfterViewInit() {
-        const testGraph = new GraphVisualisation({
-            id: "123",
-            vertices: [{ label: "test", x: 100, y: 100, encoding: "entity", id: 1 }],
-            edges: [],
-        });
-        this.onDestroy = this._ngZone.runOutsideAngular(() => {
-            return renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme).destroy;
+        this._breakpointObserver.observe(["(max-width:767px)"]).subscribe((state) => {
+            this.onDestroy = this._ngZone.runOutsideAngular(() => {
+                return renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme, state.matches).destroy;
+            });
         });
     }
 
@@ -56,7 +54,7 @@ const edgeLabelStyle: Partial<PIXI.ITextStyle> = {
     fontFamily: defaultStyles.fontFamily,
 };
 
-export function renderVertex(vertex: Renderer.Vertex, useFallbackFont: boolean, theme: GraphVisualisationTheme) {
+export function renderVertex(vertex: Renderer.Vertex, useFallbackFont: boolean, theme: GraphVisualisationTheme, isMobile: boolean) {
     vertex.gfx = new PIXI.Graphics();
     vertex.gfx.lineStyle(0);
     const colors = theme.colors.numeric;
@@ -94,13 +92,13 @@ export function renderVertex(vertex: Renderer.Vertex, useFallbackFont: boolean, 
     }
     vertex.gfx.endFill();
 
-    renderVertexLabel(vertex, useFallbackFont, theme);
+    renderVertexLabel(vertex, useFallbackFont, theme, isMobile);
 }
 
-export function renderVertexLabel(vertex: Renderer.Vertex, useFallbackFont: boolean, theme: GraphVisualisationTheme) {
+export function renderVertexLabel(vertex: Renderer.Vertex, useFallbackFont: boolean, theme: GraphVisualisationTheme, isMobile: boolean) {
     const colors = theme.colors.numeric;
     const text1 = new PIXI.Text(vertex.label, {
-        fontSize: defaultStyles.vertexLabel.fontSize,
+        fontSize: defaultStyles.vertexLabel.fontSize * (isMobile ? .54 : 1),
         fontFamily: useFallbackFont ? defaultStyles.fontFamilyFallback : defaultStyles.fontFamily,
         fill: colors[vertex.encoding],
     });
@@ -155,11 +153,11 @@ export function computeEdgeLabelMetrics(edge: Renderer.Edge) {
     }
 }
 
-export function renderEdgeLabel(edge: Renderer.Edge, useFallbackFont: boolean, theme: GraphVisualisationTheme) {
+export function renderEdgeLabel(edge: Renderer.Edge, useFallbackFont: boolean, theme: GraphVisualisationTheme, isMobile: boolean) {
     const fontFamily = useFallbackFont ? defaultStyles.fontFamilyFallback : defaultStyles.fontFamily;
 
     const text1 = new PIXI.Text(edge.label, {
-        fontSize: defaultStyles.edgeLabel.fontSize,
+        fontSize: defaultStyles.edgeLabel.fontSize * (isMobile ? .54 : 1),
         fontFamily,
         fill: edge.highlight ? theme.colors.numeric[edge.highlight] : theme.colors.numeric.edge,
     });
@@ -190,7 +188,7 @@ export function edgeEndpoint(source: Renderer.Vertex, target: Renderer.Vertex): 
     }
 }
 
-function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Edge[], width: number, height: number) {
+function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Edge[], width: number, height: number, isMobile: boolean) {
     const vertexTargetPositions = vertices.map(x => ({ x: x.x, y: x.y }));
     const simulation = d3.forceSimulation(vertices)
         .force("link", d3.forceLink(edges) // This force provides links between nodes
@@ -208,7 +206,7 @@ function createD3ForceSimulation(vertices: Renderer.Vertex[], edges: Renderer.Ed
                 return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
             })
         )
-        .force("collide", d3.forceCollide(65))
+        .force("collide", d3.forceCollide(isMobile ? 40 : 65))
         .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
         .force("x1", d3.forceX().x((d: any) => width * d.x / 100).strength(1)).force("x2", d3.forceX().x((d: any) => width * d.x / 100).strength(1))
         .force("y1", d3.forceY().y((d: any) => height * d.y / 100).strength(1)).force("y2", d3.forceY().y((d: any) => height * d.y / 100).strength(1))
@@ -229,10 +227,11 @@ const vertexSize: { [encoding in VertexEncoding]: { width: number, height: numbe
     attribute: { width: 125, height: 40 },
 }
 
-export function renderGraph(container: HTMLElement, graphData: GraphVisualisation, theme: GraphVisualisationTheme) {
+export function renderGraph(container: HTMLElement, graphData: GraphVisualisation, theme: GraphVisualisationTheme, isMobile: boolean) {
     const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
-    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, vertexSize[d.encoding])) as any;
+    const sizeModifier = isMobile ? .54 : 1;
+    const vertices: Renderer.Vertex[] = graphData.vertices.map((d) => Object.assign({}, d, { width: vertexSize[d.encoding].width * sizeModifier, height: vertexSize[d.encoding].height * sizeModifier })) as any;
     let dragged = false;
 
     PIXI.settings.ROUND_PIXELS = true;
@@ -240,7 +239,7 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
     container.innerHTML = "";
     container.appendChild(app.view as any);
 
-    const simulation = createD3ForceSimulation(vertices, edges, width, height);
+    const simulation = createD3ForceSimulation(vertices, edges, width, height, isMobile);
     const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
 
     function onDragStart(this: any, evt: any) {
@@ -286,14 +285,14 @@ export function renderGraph(container: HTMLElement, graphData: GraphVisualisatio
 
         edges.forEach((edge) => {
             computeEdgeLabelMetrics(edge);
-            renderEdgeLabel(edge, useFallbackFont, theme);
+            renderEdgeLabel(edge, useFallbackFont, theme, isMobile);
             app.stage.addChild(edge.labelGFX! as any);
         });
 
         vertices.forEach((vertex) => {
             const boundDragMove = onDragMove.bind(vertex);
             const boundDragEnd = onDragEnd.bind(vertex);
-            renderVertex(vertex, useFallbackFont, theme);
+            renderVertex(vertex, useFallbackFont, theme, isMobile);
 
             vertex.gfx!
                 .on('click', (e: Event) => {

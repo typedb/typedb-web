@@ -5,7 +5,6 @@ header, td-topbar-menu-panel {
     left: auto;
     right: 0;
     position: fixed;
-    width: 100%;
     z-index: 700;
     background-color: transparent;
     border-bottom: 1px solid transparent;
@@ -21,27 +20,22 @@ header {
     }
 }
 
-td-topbar-menu-panel {
-    top: 80px;
-    border-bottom: 1px solid $color-vaticle-secondary-purple;
-    background-color: rgba($color-vaticle-purple, .8);
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        backdrop-filter: blur(20px);
-    }
-}
-
 nav {
-    height: 80px;
+    height: $topbar-height;
     background-color: transparent;
     padding: 0 30px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        padding: 0 12px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        height: $topbar-height-mobile;
+        padding: 0;
+    }
 
     .tb-logo-container, .tb-desktop-items li > div[tabindex], .tb-desktop-items li > a {
         padding: 0 20px;
@@ -60,6 +54,16 @@ nav {
         display: flex;
         flex-direction: row;
         align-items: center;
+
+        img {
+            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+                height: 32px;
+            }
+
+            @media (max-width: $media-max-width-mobile) {
+                height: 24px;
+            }
+        }
     }
 
     ::ng-deep td-button a {
@@ -71,6 +75,10 @@ nav {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        @media (max-width: $media-max-width-tablet) {
+            display: none;
+        }
 
         .tb-top-level-items {
             display: flex;
@@ -92,6 +100,25 @@ nav {
                 }
             }
         }
+    }
+
+    .tb-hamburger-button {
+        appearance: none;
+    }
+}
+
+td-topbar-menu-panel {
+    top: $topbar-height;
+    border-bottom: 1px solid $color-vaticle-secondary-purple;
+    background-color: rgba($color-vaticle-purple, .8);
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        backdrop-filter: blur(20px);
     }
 }
 

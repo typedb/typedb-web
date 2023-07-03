@@ -23,7 +23,20 @@ a:hover p, a:focus p {
 
 .ft-section {
     width: $section-width;
+    max-width: $section-max-width;
     padding: 40px 0;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        width: $section-width-tablet;
+        max-width: $section-max-width-tablet;
+        padding: 32px 0;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: $section-width-mobile;
+        max-width: $section-max-width-mobile;
+        padding: 24px 0;
+    }
 
     &:not(:first-child) {
         border-top: 1px solid $color-vaticle-light-purple;
@@ -34,6 +47,15 @@ a:hover p, a:focus p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 24px;
+
+        ::ng-deep td-button a {
+            width: 100%;
+        }
+    }
 }
 
 .ft-social-links {
@@ -42,9 +64,20 @@ a:hover p, a:focus p {
     gap: 24px;
     height: 48px;
 
+    @media (max-width: $media-max-width-mobile) {
+        align-self: stretch;
+        justify-content: center;
+        height: 32px;
+    }
+
     img {
         width: 48px;
         height: 48px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 32px;
+            height: 32px;
+        }
     }
 }
 
@@ -52,6 +85,11 @@ a:hover p, a:focus p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 32px;
+    }
 
     ul, li {
         list-style: none;
@@ -86,8 +124,19 @@ a:hover p, a:focus p {
     justify-content: space-between;
     gap: 104px;
 
+    @media (max-width: $media-max-width-mobile) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 32px 24px;
+    }
+
     ul {
         margin-top: 34px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 16px;
+            width: 144px;
+        }
     }
 
     li:not(:first-child) {
