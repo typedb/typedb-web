@@ -148,3 +148,74 @@ export class TopbarMenuPanelComponent {
         this.itemclick.emit(item);
     }
 }
+
+@Component({
+    selector: "td-topbar-menu-mobile",
+    templateUrl: "./topbar-menu-mobile.component.html",
+    styleUrls: ["./topbar-menu-mobile.component.scss"],
+})
+export class TopbarMenuMobileComponent {
+    @Input() topbar!: Topbar;
+    @Input() githubURL?: string;
+    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+
+    visibleMenuPanels = new Set<TopbarMenuPanel>();
+
+    isMenuPanel(obj: any): obj is TopbarMenuPanel {
+        return obj instanceof TopbarMenuPanel;
+    }
+
+    isTextLink(obj: any): obj is TextLink {
+        return obj instanceof TextLink;
+    }
+
+    isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
+        return this.visibleMenuPanels.has(menuPanel);
+    }
+
+    toggleMenuPanelVisible(menuPanel: TopbarMenuPanel) {
+        if (this.visibleMenuPanels.has(menuPanel)) {
+            this.visibleMenuPanels.delete(menuPanel);
+        } else {
+            this.visibleMenuPanels.add(menuPanel);
+        }
+    }
+
+    clearFocus() {
+        (document.activeElement as HTMLElement)?.blur();
+    }
+
+    onMenuItemClick(item: TopbarListColumnItem) {
+        this.clearFocus();
+    }
+}
+
+@Component({
+    selector: "td-topbar-menu-panel-mobile",
+    templateUrl: "./topbar-menu-panel-mobile.component.html",
+    styleUrls: ["./topbar-menu-panel-mobile.component.scss"],
+})
+export class TopbarMenuPanelMobileComponent {
+    @Input() menuPanel!: TopbarMenuPanel;
+    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+
+    get columns() {
+        return this.menuPanel.columns;
+    }
+
+    get title() {
+        return this.menuPanel.title;
+    }
+
+    isListColumn(obj: any): obj is TopbarListColumn {
+        return obj instanceof TopbarListColumn;
+    }
+
+    isVideoColumn(obj: any): obj is TopbarVideoColumn {
+        return obj instanceof TopbarVideoColumn;
+    }
+
+    onClick(item: TopbarListColumnItem) {
+        this.itemclick.emit(item);
+    }
+}

@@ -1,0 +1,82 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+:host {
+    position: fixed;
+    top: $topbar-height-mobile;
+    min-height: calc(100vh - $topbar-height-mobile);
+    width: 100vw;
+    z-index: 500;
+    border-bottom: 1px solid $color-vaticle-secondary-purple;
+    background-color: $color-vaticle-purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tm-top-level-items {
+    display: flex;
+
+    li {
+        list-style: none;
+
+        > a {
+            padding: 16px 20px;
+            display: block;
+        }
+
+        > * {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.tm-primary-area {
+    flex-direction: column;
+
+    li {
+        list-style: none;
+
+        > a {
+            padding: 16px 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        > * {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.tm-secondary-area {
+    flex-direction: row;
+}
+
+.tm-chevron {
+    width: 20px;
+    height: 20px;
+}
+
+a, a:visited {
+    color: $color-vaticle-white;
+}
+
+a .tm-external-link-icon {
+    margin-left: 4px;
+    margin-right: -24px;
+    width: 20px;
+    height: 20px;
+    visibility: hidden;
+
+    path {
+        fill: $color-vaticle-green;
+    }
+}
+
+a:hover .tm-external-link-icon {
+    visibility: visible;
+}
