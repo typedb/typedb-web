@@ -8,6 +8,10 @@
 
     &:not(.il-dynamic-height) {
         height: 464px;
+
+        @media (max-width: $media-max-width-mobile) {
+            height: 214px;
+        }
     }
 
     &:not(.sp-pane) {

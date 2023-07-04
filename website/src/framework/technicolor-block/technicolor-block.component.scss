@@ -117,9 +117,18 @@ $block-gap-mobile: 64px;
 .tb-graphic-line-top {
     height: $block-gap;
 
+    @media (max-width: $media-max-width-mobile) {
+        height: $block-gap-mobile;
+    }
+
     &.tb-long-upper-chain {
         height: $block-gap + 100px;
         margin-top: -100px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: -61px;
+            height: $block-gap-mobile + 61px;
+        }
     }
 }
 

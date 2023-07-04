@@ -5,6 +5,10 @@
     height: 160px;
     display: flex;
     flex-direction: row;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 70px;
+    }
 }
 
 .sm-panel {
@@ -22,5 +26,10 @@
     img {
         width: 48px;
         height: 48px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 32px;
+            height: 32px;
+        }
     }
 }

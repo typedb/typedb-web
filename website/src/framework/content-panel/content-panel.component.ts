@@ -1,6 +1,6 @@
-import { BreakpointObserver } from "@angular/cdk/layout";
 import { Component, Input, OnInit } from "@angular/core";
 import { ContentTextPanel } from "typedb-web-schema";
+import { MediaQueryService } from "../../service/media-query.service";
 
 @Component({
     selector: "td-content-panel",
@@ -16,10 +16,10 @@ export class ContentPanelComponent implements OnInit {
     @Input() position: "embedded" | "standalone" = "embedded";
     isMobile = false;
 
-    constructor(private _breakpointObserver: BreakpointObserver) {}
+    constructor(private _mediaQuery: MediaQueryService) {}
 
     public ngOnInit() {
-        this._breakpointObserver.observe(["(max-width:767px)"]).subscribe((state) => { this.isMobile = state.matches; });
+        this._mediaQuery.isMobile.subscribe((isMobile) => { this.isMobile = isMobile; });
     }
 
     get contentTextPanel(): ContentTextPanel | undefined {

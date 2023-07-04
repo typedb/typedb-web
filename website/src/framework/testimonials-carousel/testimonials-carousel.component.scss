@@ -1,6 +1,11 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
+:host {
+    display: block;
+    overflow: hidden;
+}
+
 .tc-carousel {
     position: relative;
     height: 304px;
@@ -122,6 +127,11 @@ $card-offset-base: 26%;
     display: flex;
     justify-content: center;
     gap: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 24px;
+        gap: 24px;
+    }
 }
 
 .tc-controls-btn {
@@ -134,6 +144,16 @@ $card-offset-base: 26%;
     align-items: center;
     background: transparent;
     cursor: pointer;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 30px;
+        height: 30px;
+
+        img {
+            width: 10px;
+            height: 10px;
+        }
+    }
 }
 
 .tc-beads {

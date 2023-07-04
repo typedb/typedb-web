@@ -54,7 +54,7 @@ export class TechnicolorBlockComponent {
     get bodyClass(): string {
         switch (this.size) {
             case "large": return "text-margin-l text-l";
-            case "medium": return "text-margin-l text-m";
+            case "medium": return "text-margin-l text-m text-xxs-mobile";
             case "small": return "text-margin-l text-s";
         }
     }

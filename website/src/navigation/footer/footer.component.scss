@@ -6,6 +6,7 @@ footer {
     flex-direction: column;
     align-items: center;
     border-top: 1px solid $color-vaticle-light-purple;
+    background: $color-vaticle-purple;
 }
 
 a, a:visited, a p {
@@ -148,6 +149,13 @@ a:hover p, a:focus p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: $media-max-width-mobile) {
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 16px;
+    }
 }
 
 .ft-credits {

@@ -48,6 +48,10 @@ typedb-website {
         display: flex;
         flex-direction: column;
         padding-bottom: 558px;
+
+        @media (max-width: $media-max-width-mobile) {
+            padding-bottom: 260px;
+        }
     }
 
     section, .section {
@@ -131,6 +135,24 @@ address {
 
 [hidden] {
     display: none !important;
+}
+
+.hide-mobile {
+    @media (max-width: $media-max-width-mobile) {
+        display: none !important;
+    }
+}
+
+.hide-gt-mobile {
+    @media (min-width: $media-min-width-tablet) {
+        display: none !important;
+    }
+}
+
+.hide-desktop {
+    @media (min-width: $media-min-width-desktop) {
+        display: none !important;
+    }
 }
 
 .flex {
@@ -375,6 +397,10 @@ hr {
 
 .text-margin-s {
     margin-top: $text-margin-s;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-xs;
+    }
 }
 
 .text-margin-xs {

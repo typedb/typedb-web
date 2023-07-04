@@ -2,7 +2,7 @@
 @import "../../styles/sizes";
 
 header, td-topbar-menu-panel {
-    left: auto;
+    left: 0;
     right: 0;
     position: fixed;
     z-index: 700;
@@ -104,11 +104,14 @@ nav {
 
     .tb-hamburger-button {
         appearance: none;
+        margin-right: 8px;
+        margin-top: 2px;
     }
 }
 
 td-topbar-menu-panel {
     top: $topbar-height;
+    left: auto;
     border-bottom: 1px solid $color-vaticle-secondary-purple;
     background-color: rgba($color-vaticle-purple, .8);
 

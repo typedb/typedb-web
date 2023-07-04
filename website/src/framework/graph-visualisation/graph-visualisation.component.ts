@@ -6,10 +6,10 @@ import * as d3 from "d3-force";
 import * as PIXI from "pixi.js-legacy";
 // @ts-ignore
 import FontFaceObserver from "fontfaceobserver";
+import { MediaQueryService } from "../../service/media-query.service";
 import { arrowhead, diamondIncomingLineIntersect, Ellipse, ellipseIncomingLineIntersect, midpoint, Point, Rect, rectIncomingLineIntersect } from "./geometry";
 import { defaultGraphVisualisationTheme, defaultStyles, GraphVisualisationTheme } from "./theme";
 import VertexEncoding = GraphVisualisation.VertexEncoding;
-import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
     selector: "td-graph-visualisation",
@@ -21,12 +21,12 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("graphContainer") graphContainerEl!: ElementRef<HTMLElement>;
     onDestroy?: () => any;
 
-    constructor(private _ngZone: NgZone, private _breakpointObserver: BreakpointObserver) {}
+    constructor(private _ngZone: NgZone, private _mediaQuery: MediaQueryService) {}
 
     ngAfterViewInit() {
-        this._breakpointObserver.observe(["(max-width:767px)"]).subscribe((state) => {
+        this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.onDestroy = this._ngZone.runOutsideAngular(() => {
-                return renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme, state.matches).destroy;
+                return renderGraph(this.graphContainerEl.nativeElement, this.graph, defaultGraphVisualisationTheme, isMobile).destroy;
             });
         });
     }

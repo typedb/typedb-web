@@ -2,7 +2,7 @@
     <div class="tc-carousel">
         <div *ngFor="let testimonial of testimonials; index as idx" [class]="'tc-card ' + cardClass(idx)">
             <div class="tc-card-content">
-                <p class="text-s"><em>{{ testimonial.body }}</em></p>
+                <p class="text-s text-tiny-mobile"><em>{{ testimonial.body }}</em></p>
                 <div class="tc-details">
                     <div class="tc-person">
                         <img [src]="testimonial.headshotURL" alt=""/>
