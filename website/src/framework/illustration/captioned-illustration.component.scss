@@ -6,9 +6,29 @@
     gap: 64px;
 }
 
+.ci-illustration-header, .ci-illustration-footer {
+    background: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-light-purple;
+    height: 14px;
+}
+
+.ci-illustration-header {
+    border-radius: $border-radius $border-radius 0 0;
+    border-bottom-style: none;
+    padding: 4px;
+
+    img {
+        display: block;
+    }
+}
+
+.ci-illustration-footer {
+    border-radius: 0 0 $border-radius $border-radius;
+    border-top-style: none;
+}
+
 .ci-illustration {
-    flex: 0 0 700px;
-    padding: 16px;
+    flex: 0 0 600px;
 }
 
 td-illustration {

@@ -6,6 +6,10 @@
     border-radius: $border-radius;
     position: relative;
 
+    &.il-image-illustration {
+        border-radius: 0;
+    }
+
     &:not(.il-dynamic-height) {
         height: 464px;
 
@@ -22,5 +26,4 @@
 .il-image {
     display: block;
     width: 100%;
-    border-radius: $border-radius;
 }
