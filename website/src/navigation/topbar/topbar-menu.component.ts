@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
+import { TopbarMobileService } from "../../service/topbar-mobile.service";
 
 @Component({
     selector: "td-topbar",
@@ -17,7 +18,7 @@ export class TopbarMenuComponent implements OnInit {
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
 
-    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService, private _ngZone: NgZone) {
+    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService, private _topbarMobileService: TopbarMobileService, private _ngZone: NgZone) {
         this._ngZone.runOutsideAngular(() => {
             window.addEventListener("scroll", () => {
                 const headerEl = document.getElementById("siteHeader");
@@ -45,8 +46,12 @@ export class TopbarMenuComponent implements OnInit {
         return { "tb-solid": this.shouldForceOpaque };
     }
 
+    get mobileMenuIsOpen(): boolean {
+        return this._topbarMobileService.openState.getValue();
+    }
+
     private get shouldForceOpaque(): boolean {
-        return !!this.hoveredMenuPanel || !!this.dialogService.current;
+        return !!this.hoveredMenuPanel || !!this.dialogService.current || this.mobileMenuIsOpen;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
@@ -107,6 +112,10 @@ export class TopbarMenuComponent implements OnInit {
         this.clearFocus();
         this.focusedMenuPanel = undefined;
     }
+
+    toggleMobileMenu() {
+        this._topbarMobileService.toggleOpenState();
+    }
 }
 
 @Component({
@@ -157,7 +166,8 @@ export class TopbarMenuPanelComponent {
 export class TopbarMenuMobileComponent {
     @Input() topbar!: Topbar;
     @Input() githubURL?: string;
-    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+
+    constructor(private _topbarMobileService: TopbarMobileService) {}
 
     visibleMenuPanels = new Set<TopbarMenuPanel>();
 
@@ -185,8 +195,9 @@ export class TopbarMenuMobileComponent {
         (document.activeElement as HTMLElement)?.blur();
     }
 
-    onMenuItemClick(item: TopbarListColumnItem) {
+    onMenuItemClick() {
         this.clearFocus();
+        this._topbarMobileService.setClosedState();
     }
 }
 

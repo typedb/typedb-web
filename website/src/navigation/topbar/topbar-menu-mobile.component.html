@@ -1,4 +1,4 @@
-<ul class="tm-top-level-items tm-primary-area text-s">
+<ul class="tm-top-level-items tm-primary-area text-s text-xs-mobile">
     <li *ngFor="let item of topbar.mainArea">
         <a *ngIf="isMenuPanel(item)" tabindex="0" (click)="toggleMenuPanelVisible(item)">
             {{ item.title }}
@@ -10,13 +10,13 @@
                 <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" fill="white"/>
             </svg>
         </a>
-        <td-topbar-menu-panel-mobile *ngIf="isMenuPanel(item)" [menuPanel]="item" [hidden]="!isMenuPanelVisible(item)" (itemclick)="onMenuItemClick($event)"></td-topbar-menu-panel-mobile>
+        <td-topbar-menu-panel-mobile *ngIf="isMenuPanel(item)" [menuPanel]="item" [hidden]="!isMenuPanelVisible(item)" (itemclick)="onMenuItemClick()"></td-topbar-menu-panel-mobile>
     </li>
 </ul>
-<ul class="tm-top-level-items tm-secondary-area text-s">
-    <li><td-button [button]="topbar.secondaryArea.button" size="small"></td-button></li>
-    <li *ngFor="let link of topbar.secondaryArea.links">
-        <a [tdLink]="link">{{ link.text }}</a>
+<ul class="tm-top-level-items tm-secondary-area text-s text-xs-mobile">
+    <li class="flex"><td-button [button]="topbar.secondaryArea.button" size="small" buttonWidth="100%" (click)="onMenuItemClick()"></td-button></li>
+    <li class="tm-secondary-link" *ngFor="let link of topbar.secondaryArea.links">
+        <a [tdLink]="link" (click)="onMenuItemClick()">{{ link.text }}</a>
     </li>
-    <li><a [href]="githubURL" target="_blank"><img src="/assets/icon/social/github.svg" alt="GitHub"/></a></li>
+    <li><a [href]="githubURL" target="_blank" (click)="onMenuItemClick()"><img src="/assets/icon/social/github.svg" alt="GitHub"/></a></li>
 </ul>

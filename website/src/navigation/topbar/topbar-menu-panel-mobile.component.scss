@@ -1,20 +1,20 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-.mp-root {
+.mm-root {
     width: 100%;
-    border-top: 1px solid $color-vaticle-secondary-purple;
-    box-shadow: 0 8px 30px rgba($color-vaticle-black-purple, 0.58);
-    padding: 32px 0 32px 194px;
-    display: flex;
-    flex-direction: row;
+    border-left: 1px solid $color-vaticle-light-purple;
+    margin-left: 16px;
 }
 
-.mp-column {
-    padding: 0 32px;
+.mm-column {
+    margin-left: 16px;
+    margin-right: 20px;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-vaticle-light-purple;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 
     a {
@@ -34,9 +34,6 @@
     }
 
     li {
-        height: 72px;
-        width: 280px;
-
         h4 {
             position: relative;
             width: fit-content;
@@ -62,7 +59,7 @@
     }
 }
 
-.mp-list-column-description {
+.mm-list-column-description {
     color: $color-vaticle-secondary-light-grey;
     margin-top: 4px;
 }

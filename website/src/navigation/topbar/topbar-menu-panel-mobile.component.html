@@ -1,5 +1,5 @@
-<div class="mp-root">
-    <div *ngFor="let column of columns" class="mp-column">
+<div class="mm-root">
+    <div *ngFor="let column of columns" class="mm-column">
         <h3 class="text-xxs"><strong>{{ column.title }}</strong></h3>
         <ul *ngIf="isListColumn(column)">
             <li *ngFor="let item of column.items">
@@ -10,7 +10,7 @@
                             <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" fill="white"/>
                         </svg>
                     </h4>
-                    <p class="text-xxs mp-list-column-description">{{ item.description }}</p>
+                    <p class="text-xxs mm-list-column-description">{{ item.description }}</p>
                 </a>
             </li>
         </ul>
