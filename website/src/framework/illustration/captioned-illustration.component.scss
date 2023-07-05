@@ -4,6 +4,11 @@
 .ci-root {
     display: flex;
     gap: 64px;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 24px;
+    }
 }
 
 .ci-illustration-header, .ci-illustration-footer {
@@ -28,7 +33,11 @@
 }
 
 .ci-illustration {
-    flex: 0 0 600px;
+    max-width: calc(100vw - 24px);
+
+    @media (min-width: $media-min-width-tablet) {
+        flex: 0 0 600px;
+    }
 }
 
 td-illustration {

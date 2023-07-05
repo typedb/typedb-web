@@ -189,12 +189,24 @@ hr {
     align-items: center;
     text-align: center;
 
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $section-margin-mobile;
+    }
+
     &.page-intro-section {
         margin-top: 280px;
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: 120px;
         }
+    }
+}
+
+.section-margin {
+    margin-top: $section-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $section-margin-mobile;
     }
 }
 
