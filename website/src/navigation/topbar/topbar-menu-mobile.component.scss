@@ -1,0 +1,100 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+:host {
+    position: fixed;
+    top: $topbar-height-mobile;
+    min-height: calc(100vh - $topbar-height-mobile);
+    width: 100vw;
+    z-index: 500;
+    border-bottom: 1px solid $color-vaticle-secondary-purple;
+    background-color: $color-vaticle-purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: calc(100% - $topbar-height-mobile);
+    overflow-y: scroll;
+}
+
+.tm-top-level-items {
+    li {
+        list-style: none;
+
+        > * {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.tm-primary-area li > a {
+    padding: 16px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &[href] {
+        justify-content: flex-start;
+    }
+}
+
+.tm-secondary-area {
+    margin: 0 16px;
+    border-top: 1px solid $color-vaticle-light-purple;
+    display: flex;
+    flex-direction: row;
+
+    > * {
+        padding: 16px 10px;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    a img {
+        width: 32px;
+        height: 32px;
+    }
+
+    td-button {
+        max-width: 140px;
+
+        ::ng-deep a {
+            font-size: $font-size-tiny !important;
+        }
+    }
+
+    .tm-secondary-link {
+        display: flex;
+    }
+}
+
+.tm-chevron {
+    width: 20px;
+    height: 20px;
+}
+
+a, a:visited {
+    color: $color-vaticle-white;
+}
+
+a .tm-external-link-icon {
+    margin-left: 4px;
+    margin-right: -24px;
+    width: 20px;
+    height: 20px;
+    visibility: hidden;
+
+    path {
+        fill: $color-vaticle-green;
+    }
+}
+
+a:hover .tm-external-link-icon {
+    visibility: visible;
+}

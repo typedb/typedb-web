@@ -5,7 +5,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { FrameworkModule } from "../framework/framework.module";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from "@angular/forms";
-import { TopbarMenuComponent, TopbarMenuPanelComponent } from "./topbar/topbar-menu.component";
+import { TopbarMenuComponent, TopbarMenuPanelComponent, TopbarMenuMobileComponent, TopbarMenuPanelMobileComponent } from "./topbar/topbar-menu.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
@@ -13,7 +13,9 @@ import { RouterModule } from "@angular/router";
     declarations: [
         FooterComponent,
         TopbarMenuComponent,
+        TopbarMenuMobileComponent,
         TopbarMenuPanelComponent,
+        TopbarMenuPanelMobileComponent,
     ],
     imports: [
         BrowserModule,

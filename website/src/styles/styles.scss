@@ -38,8 +38,6 @@ pre, code {
 }
 
 typedb-website {
-    height: 100%;
-
     article {
         min-height: 1080px;
     }
@@ -342,11 +340,6 @@ hr {
         font-size: $font-size-tiny;
         line-height: $line-height-tiny;
     }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-micro;
-        line-height: $line-height-micro;
-    }
 }
 
 @media (max-width: $media-max-width-mobile) {
@@ -368,6 +361,11 @@ hr {
     body .text-tiny-mobile {
         font-size: $font-size-tiny;
         line-height: $line-height-tiny;
+    }
+
+    body .text-micro-mobile {
+        font-size: $font-size-micro;
+        line-height: $line-height-micro;
     }
 }
 

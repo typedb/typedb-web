@@ -4,6 +4,7 @@ import { ActivatedRoute, Event as RouterEvent, Router, Scroll } from "@angular/r
 import { filter } from "rxjs";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
+import { TopbarMobileService } from "./service/topbar-mobile.service";
 
 @Component({
     selector: "typedb-website",
@@ -14,7 +15,7 @@ export class WebsiteComponent {
     private _componentBeforeNavigation: any = null;
 
     // TODO: (html) cookie consent
-    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService) {
+    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(e => {
             contentService.data.subscribe(_data => {
@@ -36,6 +37,9 @@ export class WebsiteComponent {
                 }
                 this._componentBeforeNavigation = currentRoute.component;
             });
+        });
+        _topbarMobileService.openState.subscribe((isOpen) => {
+            document.body.style.overflowY = isOpen ? "hidden" : "unset";
         });
     }
 }

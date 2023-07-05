@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
+import { TopbarMobileService } from "../../service/topbar-mobile.service";
 
 @Component({
     selector: "td-topbar",
@@ -17,7 +18,7 @@ export class TopbarMenuComponent implements OnInit {
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
 
-    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService, private _ngZone: NgZone) {
+    constructor(private router: Router, private contentService: ContentService, private dialogService: DialogService, private _topbarMobileService: TopbarMobileService, private _ngZone: NgZone) {
         this._ngZone.runOutsideAngular(() => {
             window.addEventListener("scroll", () => {
                 const headerEl = document.getElementById("siteHeader");
@@ -45,8 +46,12 @@ export class TopbarMenuComponent implements OnInit {
         return { "tb-solid": this.shouldForceOpaque };
     }
 
+    get mobileMenuIsOpen(): boolean {
+        return this._topbarMobileService.openState.getValue();
+    }
+
     private get shouldForceOpaque(): boolean {
-        return !!this.hoveredMenuPanel || !!this.dialogService.current;
+        return !!this.hoveredMenuPanel || !!this.dialogService.current || this.mobileMenuIsOpen;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
@@ -107,6 +112,10 @@ export class TopbarMenuComponent implements OnInit {
         this.clearFocus();
         this.focusedMenuPanel = undefined;
     }
+
+    toggleMobileMenu() {
+        this._topbarMobileService.toggleOpenState();
+    }
 }
 
 @Component({
@@ -142,6 +151,79 @@ export class TopbarMenuPanelComponent {
 
     onMouseLeave(item: TopbarListColumnItem) {
         if (item.comingSoon) this.comingSoonPopupVisible.set(item, false);
+    }
+
+    onClick(item: TopbarListColumnItem) {
+        this.itemclick.emit(item);
+    }
+}
+
+@Component({
+    selector: "td-topbar-menu-mobile",
+    templateUrl: "./topbar-menu-mobile.component.html",
+    styleUrls: ["./topbar-menu-mobile.component.scss"],
+})
+export class TopbarMenuMobileComponent {
+    @Input() topbar!: Topbar;
+    @Input() githubURL?: string;
+
+    constructor(private _topbarMobileService: TopbarMobileService) {}
+
+    visibleMenuPanels = new Set<TopbarMenuPanel>();
+
+    isMenuPanel(obj: any): obj is TopbarMenuPanel {
+        return obj instanceof TopbarMenuPanel;
+    }
+
+    isTextLink(obj: any): obj is TextLink {
+        return obj instanceof TextLink;
+    }
+
+    isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
+        return this.visibleMenuPanels.has(menuPanel);
+    }
+
+    toggleMenuPanelVisible(menuPanel: TopbarMenuPanel) {
+        if (this.visibleMenuPanels.has(menuPanel)) {
+            this.visibleMenuPanels.delete(menuPanel);
+        } else {
+            this.visibleMenuPanels.add(menuPanel);
+        }
+    }
+
+    clearFocus() {
+        (document.activeElement as HTMLElement)?.blur();
+    }
+
+    onMenuItemClick() {
+        this.clearFocus();
+        this._topbarMobileService.setClosedState();
+    }
+}
+
+@Component({
+    selector: "td-topbar-menu-panel-mobile",
+    templateUrl: "./topbar-menu-panel-mobile.component.html",
+    styleUrls: ["./topbar-menu-panel-mobile.component.scss"],
+})
+export class TopbarMenuPanelMobileComponent {
+    @Input() menuPanel!: TopbarMenuPanel;
+    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+
+    get columns() {
+        return this.menuPanel.columns;
+    }
+
+    get title() {
+        return this.menuPanel.title;
+    }
+
+    isListColumn(obj: any): obj is TopbarListColumn {
+        return obj instanceof TopbarListColumn;
+    }
+
+    isVideoColumn(obj: any): obj is TopbarVideoColumn {
+        return obj instanceof TopbarVideoColumn;
     }
 
     onClick(item: TopbarListColumnItem) {
