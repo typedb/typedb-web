@@ -22,7 +22,10 @@ export class TopbarMenuComponent implements OnInit {
         this._ngZone.runOutsideAngular(() => {
             window.addEventListener("scroll", () => {
                 const headerEl = document.getElementById("siteHeader");
-                if (headerEl) headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 300})`; // vaticle purple
+                if (headerEl) {
+                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 300})`; // vaticle purple
+                    headerEl.style.borderBottomColor = window.pageYOffset >= 300 ? "#232135" : "transparent"; // vaticle secondary purple
+                }
             });
         });
     }
