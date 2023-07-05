@@ -10,8 +10,8 @@
                     </div>
                     <div class="wp-primary-webinar-summary text-margin-l">
                         <div class="wp-primary-webinar-text">
-                            <p class="text-m"><span class="wp-webinar-title">{{ primaryWebinar.title }}</span> | <span>{{ primaryWebinar.datetime | ordinalDate }}</span></p>
-                            <td-rich-text class="wp-webinar-description text-margin-s" [value]="primaryWebinar.description"></td-rich-text>
+                            <p class="text-m text-s-mobile"><span class="wp-webinar-title">{{ primaryWebinar.title }}</span> | <span>{{ primaryWebinar.datetime | ordinalDate }}</span></p>
+                            <td-rich-text class="wp-webinar-description text-xs text-xxs-mobile text-margin-s" [value]="primaryWebinar.description"></td-rich-text>
                         </div>
                         <div class="wp-primary-webinar-actions">
                             <td-button [button]="primaryWebinar.registrationButton()"></td-button>
@@ -29,12 +29,13 @@
             <section class="card">
                 <ul class="wp-webinar-list">
                     <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
-                        <div>
+                        <div class="wp-img-tertiary-container">
                             <img [src]="webinar.imageURL" class="wp-img wp-img-tertiary" [alt]=""/>
+                            <p class="text-m text-s-mobile wp-webinar-title hide-gt-mobile">{{ webinar.title }}</p>
                         </div>
                         <div class="wp-webinar-text">
-                            <p class="text-m wp-webinar-title">{{ webinar.title }}</p>
-                            <p class="wp-speaker"><span *ngFor="let speaker of webinar.speakers"><strong>{{ speaker.name }}, </strong>{{ speaker.jobDescription() }}</span></p>
+                            <p class="text-m wp-webinar-title hide-mobile">{{ webinar.title }}</p>
+                            <p class="wp-speaker"><span *ngFor="let speaker of webinar.speakers"><span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}</span></p>
                             <p class="wp-timing">
                                 <span class="wp-webinar-datetime" *ngIf="!webinar.isFinished()"><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"HH:mm z" }} </span>
                                 <span><img src="/assets/icon/time.svg" alt="Duration:"/> {{ webinar.durationMins | eventDuration }}</span>

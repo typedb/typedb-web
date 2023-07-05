@@ -25,7 +25,7 @@ export class TitleBodyActionsSectionComponent {
 
     get bodyClasses(): string {
         switch (this.size) {
-            case "l": return "narrow-section subtitle-l text-l";
+            case "l": return "narrow-section subtitle-l text-l text-xs-mobile";
             case "m": return "narrow-section subtitle text-m";
         }
     }

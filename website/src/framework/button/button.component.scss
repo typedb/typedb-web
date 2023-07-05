@@ -61,9 +61,5 @@ a {
 
     &.bt-size-s {
         height: 40px;
-
-        @media (max-width: $media-max-width-mobile) {
-            height: 32px;
-        }
     }
 }

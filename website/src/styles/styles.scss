@@ -26,6 +26,7 @@ html, body {
 
     @media (max-width: $media-max-width-mobile) {
         scroll-padding-top: $topbar-height-mobile;
+        font-size: 14px;
     }
 
     * {
@@ -72,7 +73,9 @@ typedb-website {
 }
 
 .narrow-section {
-    width: 870px;
+    @media (min-width: $media-min-width-tablet) {
+        width: 870px;
+    }
 }
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
@@ -188,19 +191,35 @@ hr {
 
     &.page-intro-section {
         margin-top: 280px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 120px;
+        }
     }
 }
 
 .subsection-margin {
     margin-top: $subsection-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subsection-margin-mobile;
+    }
 }
 
 .subtitle-l {
     margin-top: $subtitle-margin-l;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subtitle-margin-mobile;
+    }
 }
 
 .subtitle {
     margin-top: $subtitle-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subtitle-margin-mobile;
+    }
 }
 
 .text-xxl {
@@ -391,6 +410,10 @@ hr {
 
 .text-margin-m {
     margin-top: $text-margin-m;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-m-mobile;
+    }
 }
 
 .text-margin-s {
@@ -407,6 +430,11 @@ hr {
 
 .text-margin-xxs {
     margin-top: $text-margin-xxs;
+}
+
+.text-important {
+    color: $color-vaticle-white;
+    font-weight: 600;
 }
 
 .text-quiet {
@@ -450,7 +478,7 @@ hr {
 }
 
 .hs-form input[type='text'], input[type='email'], select {
-    width: 100%;
+    width: 100% !important; // overrides media query from Hubspot
     padding: 0 8px;
     background-color: $color-vaticle-purple;
     color: $default-text-color;
@@ -490,13 +518,11 @@ hr {
     }
 }
 
-.hs-form input[type=checkbox]:focus
-{
+.hs-form input[type=checkbox]:focus {
     outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.hs-form input[type=checkbox]
-{
+.hs-form input[type=checkbox] {
     background-color: transparent;
     border-radius: 4px;
     border: 2px solid $color-vaticle-grey;
@@ -511,8 +537,7 @@ hr {
     margin-right: 12px;
 }
 
-.hs-form input[type=checkbox]:checked
-{
+.hs-form input[type=checkbox]:checked {
     background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 1px 1px no-repeat;
 }
 
@@ -525,7 +550,9 @@ body .hs-form fieldset {
 }
 
 body .hs-form fieldset.form-columns-2 > div:first-of-type .input {
-    margin-right: 32px;
+    @media (min-width: $media-min-width-tablet) {
+        margin-right: 32px;
+    }
 }
 
 body .hs-form fieldset.form-columns-1 .hs-input {
@@ -534,6 +561,12 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
 .hs-form fieldset + fieldset, .hs-form > .hs-form-field + .hs-form-field {
     margin-top: 16px;
+}
+
+.hs-form fieldset.form-columns-2 .hs-form-field + .hs-form-field {
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+    }
 }
 
 .hs_support_request__multi_check_box_ {

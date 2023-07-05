@@ -18,11 +18,14 @@ article {
 
 .wp-img-primary {
     width: 1080px;
+    max-width: calc(100vw - 48px);
 }
 
 .wp-primary-webinar-summary {
-    display: flex;
-    justify-content: space-between;
+    @media (min-width: $media-min-width-tablet) {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .wp-webinar-title {
@@ -33,15 +36,26 @@ article {
 .wp-webinar-description {
     height: $line-height-xs * 2;
     width: 840px;
+    max-width: calc(100vw - 48px);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: $line-height-xxs * 3;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
 }
 
 .wp-primary-webinar-actions {
     align-self: flex-end;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 24px;
+    }
 }
 
 .wp-webinar-list {
@@ -49,12 +63,22 @@ article {
 }
 
 .wp-webinar-list-item {
-    height: 146px;
-    padding: 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 24px;
+
+    @media (min-width: $media-min-width-tablet) {
+        height: 146px;
+        padding: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
 
     &:not(:first-child) {
         border-top: 1px solid $color-vaticle-light-purple;
@@ -77,8 +101,19 @@ article {
     }
 }
 
+.wp-img-tertiary-container {
+    @media (max-width: $media-max-width-mobile) {
+        display: flex;
+        gap: 12px;
+    }
+}
+
 .wp-img-tertiary {
     width: 150px;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 100px;
+    }
 }
 
 .wp-webinar-text {
