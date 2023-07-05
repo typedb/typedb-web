@@ -1,5 +1,3 @@
 <div class="section ol-root" [ngClass]="{ 'ol-root-panel': appearance === 'panel' }">
-    <div *ngFor="let organisation of organisations">
-        <img class="ol-image" [src]="organisation.logoURL" [alt]="organisation.name"/>
-    </div>
+    <img *ngFor="let organisation of organisations" class="ol-image" [src]="organisation.logoURL" [alt]="organisation.name"/>
 </div>

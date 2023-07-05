@@ -6,8 +6,16 @@
     border-radius: $border-radius;
     position: relative;
 
+    &.il-image-illustration {
+        border-radius: 0;
+    }
+
     &:not(.il-dynamic-height) {
         height: 464px;
+
+        @media (max-width: $media-max-width-mobile) {
+            height: 214px;
+        }
     }
 
     &:not(.sp-pane) {
@@ -18,5 +26,4 @@
 .il-image {
     display: block;
     width: 100%;
-    border-radius: $border-radius;
 }

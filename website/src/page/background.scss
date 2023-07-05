@@ -1,7 +1,17 @@
+@import "../styles/sizes";
+
 @mixin page-background($nebula, $planet) {
     background: no-repeat center bottom url("/assets/image/#{$planet}"),
-                no-repeat center top / 1920px url("/assets/image/#{$nebula}"),
+                no-repeat center top/1920px url("/assets/image/#{$nebula}"),
                 no-repeat,repeat center 140px url("/assets/image/deep-space1.jpg"),
                 no-repeat,repeat center 2140px url("/assets/image/deep-space2.jpg"),
                 repeat center 4140px url("/assets/image/deep-space3.jpg");
+
+    @media (max-width: $media-max-width-mobile) {
+        background: no-repeat center bottom/800px url("/assets/image/#{$planet}"),
+                    no-repeat center 14px/500px url("/assets/image/#{$nebula}"),
+                    no-repeat,repeat center 140px url("/assets/image/deep-space1.jpg"),
+                    no-repeat,repeat center 2140px url("/assets/image/deep-space2.jpg"),
+                    repeat center 4140px url("/assets/image/deep-space3.jpg");
+    }
 }

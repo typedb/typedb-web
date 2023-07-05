@@ -2,9 +2,12 @@
 @import "../../styles/sizes";
 
 .cp-root {
-    padding: 40px;
     display: flex;
     gap: 38px;
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 16px;
+    }
 
     &.landscape {
         &.size-l {
@@ -17,10 +20,18 @@
 
         &.content-first {
             flex-direction: row;
+
+            @media (max-width: $media-max-width-mobile) {
+                flex-direction: column;
+            }
         }
 
         &.text-first {
             flex-direction: row-reverse;
+
+            @media (max-width: $media-max-width-mobile) {
+                flex-direction: column-reverse;
+            }
         }
     }
 
@@ -45,6 +56,10 @@
 
 td-illustration {
     width: 674px;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 327px;
+    }
 }
 
 .cp-text-area {
@@ -55,7 +70,12 @@ td-illustration {
 }
 
 .cp-learn-more {
+    margin-top: 16px;
     align-self: flex-start;
+
+    @media (max-width: $media-max-width-mobile) {
+        line-height: 32px;
+    }
 }
 
 .title-standalone {

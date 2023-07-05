@@ -22,7 +22,12 @@ html, body {
     font-family: 'Titillium Web', sans-serif;
 
     margin: 0;
-    scroll-padding-top: 80px;
+    scroll-padding-top: $topbar-height;
+
+    @media (max-width: $media-max-width-mobile) {
+        scroll-padding-top: $topbar-height-mobile;
+        font-size: 14px;
+    }
 
     * {
         box-sizing: border-box;
@@ -34,8 +39,6 @@ pre, code {
 }
 
 typedb-website {
-    height: 100%;
-
     article {
         min-height: 1080px;
     }
@@ -44,18 +47,35 @@ typedb-website {
         display: flex;
         flex-direction: column;
         padding-bottom: 558px;
+
+        @media (max-width: $media-max-width-mobile) {
+            padding-bottom: 260px;
+        }
     }
 
     section, .section {
         width: 1160px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 375px;
+        }
+    }
+
+    section, .section {
         max-width: calc(100vw - 40px);
         margin-left: auto;
         margin-right: auto;
+
+        @media (max-width: $media-max-width-mobile) {
+            max-width: calc(100vw - 24px);
+        }
     }
 }
 
 .narrow-section {
-    width: 870px;
+    @media (min-width: $media-min-width-tablet) {
+        width: 870px;
+    }
 }
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
@@ -118,6 +138,24 @@ address {
     display: none !important;
 }
 
+.hide-mobile {
+    @media (max-width: $media-max-width-mobile) {
+        display: none !important;
+    }
+}
+
+.hide-gt-mobile {
+    @media (min-width: $media-min-width-tablet) {
+        display: none !important;
+    }
+}
+
+.hide-desktop {
+    @media (min-width: $media-min-width-desktop) {
+        display: none !important;
+    }
+}
+
 .flex {
     flex: 1;
 }
@@ -151,60 +189,215 @@ hr {
     align-items: center;
     text-align: center;
 
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $section-margin-mobile;
+    }
+
     &.page-intro-section {
         margin-top: 280px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 120px;
+        }
+    }
+}
+
+.section-margin {
+    margin-top: $section-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $section-margin-mobile;
     }
 }
 
 .subsection-margin {
     margin-top: $subsection-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subsection-margin-mobile;
+    }
 }
 
 .subtitle-l {
     margin-top: $subtitle-margin-l;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subtitle-margin-mobile;
+    }
 }
 
 .subtitle {
     margin-top: $subtitle-margin;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $subtitle-margin-mobile;
+    }
 }
 
 .text-xxl {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xxl-tablet;
+        line-height: $line-height-xxl-tablet;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 34px;
+        line-height: 48px;
+    }
 }
+
 .text-xl {
     font-size: $font-size-xl;
     line-height: $line-height-xl;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-l;
+        line-height: $line-height-l;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-m;
+        line-height: $line-height-m;
+    }
 }
+
 .text-l {
     font-size: $font-size-l;
     line-height: $line-height-l;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-ml;
+        line-height: $line-height-ml;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
 }
+
 .text-ml {
     font-size: $font-size-ml;
     line-height: $line-height-ml;
+
     &.text-sparse {
         line-height: $line-height-ml-sparse;
     }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-m;
+        line-height: $line-height-m;
+
+        &.text-sparse {
+            line-height: $line-height-m;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+
+        &.text-sparse {
+            line-height: $line-height-s;
+        }
+    }
 }
+
 .text-m {
     font-size: $font-size-m;
     line-height: $line-height-m;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
 }
+
 .text-s {
     font-size: $font-size-s;
     line-height: $line-height-s;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+    }
 }
+
 .text-xs {
     font-size: $font-size-xs;
     line-height: $line-height-xs;
+
     &.text-sparse {
         line-height: $line-height-xs-sparse;
     }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+
+        &.text-sparse {
+            line-height: $line-height-xxs;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+
+        &.text-sparse {
+            line-height: $line-height-tiny;
+        }
+    }
 }
+
 .text-xxs {
     font-size: $font-size-xxs;
     line-height: $line-height-xxs;
+
+    @media (max-width: $media-max-width-tablet) {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+    }
+}
+
+@media (max-width: $media-max-width-mobile) {
+    body .text-s-mobile {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+
+    body .text-xs-mobile {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+    }
+
+    body .text-xxs-mobile {
+        font-size: $font-size-xxs;
+        line-height: $line-height-xxs;
+    }
+
+    body .text-tiny-mobile {
+        font-size: $font-size-tiny;
+        line-height: $line-height-tiny;
+    }
+
+    body .text-micro-mobile {
+        font-size: $font-size-micro;
+        line-height: $line-height-micro;
+    }
 }
 
 .text-weight-light {
@@ -217,14 +410,30 @@ hr {
 
 .text-margin-l {
     margin-top: $text-margin-l;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        margin-top: $text-margin-m;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-s;
+    }
 }
 
 .text-margin-m {
     margin-top: $text-margin-m;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-m-mobile;
+    }
 }
 
 .text-margin-s {
     margin-top: $text-margin-s;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-xs;
+    }
 }
 
 .text-margin-xs {
@@ -233,6 +442,11 @@ hr {
 
 .text-margin-xxs {
     margin-top: $text-margin-xxs;
+}
+
+.text-important {
+    color: $color-vaticle-white;
+    font-weight: 600;
 }
 
 .text-quiet {
@@ -255,6 +469,14 @@ hr {
     }
 }
 
+.card-padding {
+    padding: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+    }
+}
+
 .hs-form label {
     color: $color-vaticle-white;
 }
@@ -268,7 +490,7 @@ hr {
 }
 
 .hs-form input[type='text'], input[type='email'], select {
-    width: 100%;
+    width: 100% !important; // overrides media query from Hubspot
     padding: 0 8px;
     background-color: $color-vaticle-purple;
     color: $default-text-color;
@@ -279,7 +501,9 @@ hr {
     line-height: 46px;
     height: 48px;
     font-family: 'Titillium Web', sans-serif;
+}
 
+.hs-form input, select, textarea {
     &::placeholder {
         color: $color-vaticle-secondary-grey;
         font-style: italic;
@@ -308,13 +532,11 @@ hr {
     }
 }
 
-.hs-form input[type=checkbox]:focus
-{
+.hs-form input[type=checkbox]:focus {
     outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.hs-form input[type=checkbox]
-{
+.hs-form input[type=checkbox] {
     background-color: transparent;
     border-radius: 4px;
     border: 2px solid $color-vaticle-grey;
@@ -329,8 +551,7 @@ hr {
     margin-right: 12px;
 }
 
-.hs-form input[type=checkbox]:checked
-{
+.hs-form input[type=checkbox]:checked {
     background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 1px 1px no-repeat;
 }
 
@@ -343,7 +564,9 @@ body .hs-form fieldset {
 }
 
 body .hs-form fieldset.form-columns-2 > div:first-of-type .input {
-    margin-right: 32px;
+    @media (min-width: $media-min-width-tablet) {
+        margin-right: 32px;
+    }
 }
 
 body .hs-form fieldset.form-columns-1 .hs-input {
@@ -354,9 +577,19 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     margin-top: 16px;
 }
 
+.hs-form fieldset.form-columns-2 .hs-form-field + .hs-form-field {
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+    }
+}
+
 .hs_support_request__multi_check_box_ {
     width: 50%;
     float: left;
+
+    > label {
+        display: none;
+    }
 
     ul {
         height: 160px;
@@ -409,7 +642,6 @@ input[type='submit'].hs-button {
 #hubspot-form-holder-contact input[type='submit'].hs-button {
     width: 202px;
     float: right;
-    margin-top: 32px;
 }
 
 .mat-button-focus-overlay {

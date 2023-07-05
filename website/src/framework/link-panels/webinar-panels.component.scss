@@ -7,6 +7,11 @@ $card-content-width: 320px;
     display: flex;
     justify-content: space-between;
     gap: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 16px;
+    }
 }
 
 .wp-card {

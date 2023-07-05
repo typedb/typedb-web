@@ -1,21 +1,34 @@
 $border-radius: 5px;
 
 $section-width: 1160px;
+$section-max-width: calc(100vw - 40px);
+$section-width-tablet: 1024px;
+$section-max-width-tablet: calc(100vw - 32px);
+$section-width-mobile: 375px;
+$section-max-width-mobile: calc(100vw - 24px);
 
 $section-margin: 144px;
+$section-margin-mobile: 64px;
 $subsection-margin: 64px;
+$subsection-margin-mobile: 24px;
 
 $subtitle-margin-l: 32px;
 $subtitle-margin: 24px;
+$subtitle-margin-mobile: 16px;
 
 $text-margin-l: 32px;
 $text-margin-m: 24px;
+$text-margin-m-mobile: 12px;
 $text-margin-s: 16px;
 $text-margin-xs: 8px;
 $text-margin-xxs: 4px;
 
 $font-size-xxl: 56px;
 $line-height-xxl: 64px;
+$font-size-xxl-tablet: 48px;
+$line-height-xxl-tablet: 60px;
+$font-size-xxl-mobile: 40px;
+$line-height-xxl-mobile: 54px;
 $font-size-xl: 40px;
 $line-height-xl: 54px;
 $font-size-l: 32px;
@@ -32,8 +45,20 @@ $line-height-xs: 24px;
 $line-height-xs-sparse: 28px;
 $font-size-xxs: 14px;
 $line-height-xxs: 21px;
+$font-size-tiny: 12px;
+$line-height-tiny: 18px;
+$font-size-micro: 10px;
+$line-height-micro: 16px;
 
 $font-weight-bold: 700;
 $font-weight-semi-bold: 600;
 $font-weight-regular: 400;
 $font-weight-light: 300;
+
+$topbar-height: 80px;
+$topbar-height-mobile: 48px;
+
+$media-max-width-mobile: 767px;
+$media-min-width-tablet: 768px;
+$media-max-width-tablet: 1199px;
+$media-min-width-desktop: 1200px;
