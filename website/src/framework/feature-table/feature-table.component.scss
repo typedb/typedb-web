@@ -1,8 +1,22 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
+table {
+    @media (max-width: $media-max-width-mobile) {
+        table-layout: fixed;
+    }
+}
+
 col:not(:first-child) {
-    width: 266px;
+    @media (min-width: $media-min-width-tablet) {
+        width: 266px;
+    }
+}
+
+col:first-child {
+    @media (max-width: $media-max-width-mobile) {
+        width: 114px;
+    }
 }
 
 thead {
@@ -40,4 +54,8 @@ th, td {
 th {
     padding: 0 24px;
     color: $color-vaticle-white;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 0 6px;
+    }
 }
