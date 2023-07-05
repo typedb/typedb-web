@@ -6,5 +6,7 @@ article {
 }
 
 .ip-long-text {
-    columns: 2;
+    @media (min-width: $media-min-width-tablet) {
+        columns: 2;
+    }
 }
