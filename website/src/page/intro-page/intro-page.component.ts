@@ -32,7 +32,7 @@ export class IntroPageComponent implements OnInit {
 
 @Component({
     selector: "td-intro-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" size='medium' [noLeadingLine]='index === 0'></td-technicolor-block>",
+    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" [noLeadingLine]='index === 0'></td-technicolor-block>",
 })
 export class IntroPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: IntroPageCoreSection | ConclusionSection;
