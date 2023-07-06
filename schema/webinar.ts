@@ -84,7 +84,7 @@ export class Webinar {
             text: this.comingSoon ? "Coming soon!" : this.isFinished() ? "Watch now" : "Register",
             link: this.comingSoon ? undefined : new Link({
                 type: "route",
-                destination: `/webinar/${this.slug}`,
+                destination: `/webinars/${this.slug}`,
                 opensNewTab: false,
             }),
             comingSoon: this.comingSoon,

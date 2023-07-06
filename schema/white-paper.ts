@@ -58,7 +58,7 @@ export class WhitePaper {
     detailsPageLink(): Link {
         return new Link({
             type: "route",
-            destination: `white-paper/${this.slug}`,
+            destination: `white-papers/${this.slug}`,
             opensNewTab: false,
         });
     }
