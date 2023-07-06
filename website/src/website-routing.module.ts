@@ -19,10 +19,10 @@ const routes: Routes = [
     { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" } },
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
     { path: "deploy", component: DeploymentPageComponent },
-    { path: "solution/:route", component: SolutionPageComponent },
-    { path: "webinar/:slug", component: WebinarDetailsPageComponent },
+    { path: "solutions/:route", component: SolutionPageComponent },
+    { path: "webinars/:slug", component: WebinarDetailsPageComponent },
     { path: "webinars", component: WebinarsPageComponent },
-    { path: "white-paper/:slug", component: WhitePaperDetailsPageComponent },
+    { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];

@@ -8,11 +8,25 @@ article {
 
 .wd-description {
     text-align: start;
-    columns: 2;
+
+    @media (min-width: $media-min-width-tablet) {
+        columns: 2;
+    }
 }
 
 .wd-landscape-img-card {
     padding: 32px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+    }
+
+    img {
+        width: 100%;
+        display: block;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+    }
 }
 
 .wd-form-card {
@@ -23,8 +37,26 @@ article {
     gap: 32px;
     text-align: start;
 
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    img {
+        display: block;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 100%;
+        }
+    }
+
     > * {
-        flex: 1;
+        @media (min-width: $media-min-width-tablet) {
+            flex: 1;
+        }
     }
 
     form {

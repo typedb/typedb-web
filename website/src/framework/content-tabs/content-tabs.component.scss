@@ -20,8 +20,8 @@
         height: 48px;
 
         p {
-            font-size: 14px;
-            line-height: 18px;
+            font-size: 12px;
+            line-height: 16px;
         }
     }
 }
@@ -33,6 +33,10 @@
     align-items: center;
     text-align: center;
     padding: 12px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 4px;
+    }
 
     &:not(:first-child) {
         border-left: 1px solid $color-vaticle-light-purple;

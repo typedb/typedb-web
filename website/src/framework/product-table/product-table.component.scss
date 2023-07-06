@@ -2,8 +2,8 @@
 @import "../../styles/sizes";
 
 table {
-    text-align: center;
     table-layout: fixed;
+    text-align: center;
 }
 
 td {
@@ -15,7 +15,13 @@ td-rich-text {
 }
 
 .pp-body-text {
-    height: 120px;
+    @media (min-width: $media-min-width-tablet) {
+        height: 120px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        text-align: start;
+    }
 }
 
 .pp-button-row {

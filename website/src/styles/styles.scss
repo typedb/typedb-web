@@ -321,6 +321,13 @@ hr {
     }
 }
 
+h1.text-m, h2.text-m, h3.text-m, h4.text-m {
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+}
+
 .text-s {
     font-size: $font-size-s;
     line-height: $line-height-s;
@@ -404,6 +411,12 @@ hr {
     font-weight: $font-weight-light;
 }
 
+.text-weight-light-mobile {
+    @media (max-width: $media-max-width-mobile) {
+        font-weight: $font-weight-light;
+    }
+}
+
 .header-margin-s {
     margin-top: 14px;
 }
@@ -438,6 +451,10 @@ hr {
 
 .text-margin-xs {
     margin-top: $text-margin-xs;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: $text-margin-xxs;
+    }
 }
 
 .text-margin-xxs {
@@ -636,6 +653,10 @@ input[type='submit'].hs-button {
 
     &:hover {
         background-color: #0B939F;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 40px;
     }
 }
 

@@ -23,7 +23,7 @@
     </div>
     <div class="section lc-root-cols-4" *ngSwitchCase="4">
         <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="hoverable card lc-card lc-card-cols-4">
-            <h2 class="text-m text-s-mobile">{{ panel.title }}</h2>
+            <h2 class="text-m">{{ panel.title }}</h2>
             <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
             <div class="flex"></div>
             <a class="text-xs text-xxs-mobile link-tertiary">{{ panel.button.text }}</a>

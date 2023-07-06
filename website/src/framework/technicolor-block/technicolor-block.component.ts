@@ -9,7 +9,7 @@ import { TechnicolorBlock } from "typedb-web-schema";
 export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
-    @Input() size: "small" | "medium" | "large" = "small";
+    @Input() size: "small" | "medium" | "large" = "medium";
     @Input() contentWidth: "narrow" | "wide" = "wide";
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;

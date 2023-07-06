@@ -10,11 +10,22 @@ article {
     display: flex;
     gap: 32px;
     flex-direction: row;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 12px;
+    }
 }
 
 .wp-primary-whitepaper-summary {
     display: flex;
     flex-direction: column;
+
+    td-button {
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 12px;
+        }
+    }
 }
 
 .wp-whitepaper-title {
@@ -26,42 +37,85 @@ article {
     border-radius: $border-radius;
 }
 
+.wp-img-primary {
+    max-width: calc(100vw - 48px);
+}
+
 .wp-grid {
     display: grid;
     grid-template-columns: 50% 50%;
+
+    @media (max-width: $media-max-width-mobile) {
+        display: block;
+    }
 }
 
 .wp-grid-item {
-    padding: 32px;
-
-    &:nth-child(even) {
-        border-left: 1px solid $color-vaticle-light-purple;
-    }
-
-    &:nth-child(n+3) {
-        border-top: 1px solid $color-vaticle-light-purple;
-    }
-
-    .wp-grid-item-title {
-        margin-top: 20px;
-    }
-
     .wp-img {
         width: 100%;
         aspect-ratio: 2 / 1;
     }
 
-    .wp-grid-item-description {
-        height: $line-height-xs * 2;
-        width: 100%;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
     td-button {
         display: block;
+        margin-top: 16px;
+    }
+
+    @media (min-width: $media-min-width-tablet) {
+        padding: 32px;
+
+        .wp-grid-item-title {
+            margin-top: 20px;
+        }
+
+        &:nth-child(even) {
+            border-left: 1px solid $color-vaticle-light-purple;
+        }
+
+        &:nth-child(n+3) {
+            border-top: 1px solid $color-vaticle-light-purple;
+        }
+
+        .wp-grid-item-description {
+            height: $line-height-xs * 2;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+
+        &:not(:first-child) {
+            border-top: 1px solid $color-vaticle-light-purple;
+        }
+
+        .wp-img-and-text {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+
+            .wp-img-secondary-container {
+                flex: 0 0 100px;
+            }
+        }
+
+        .wp-grid-item-description {
+            height: $line-height-xxs * 3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        td-button {
+            margin-top: 12px;
+        }
     }
 }
