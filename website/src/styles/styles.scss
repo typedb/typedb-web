@@ -321,6 +321,13 @@ hr {
     }
 }
 
+h1.text-m, h2.text-m, h3.text-m, h4.text-m {
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-s;
+        line-height: $line-height-s;
+    }
+}
+
 .text-s {
     font-size: $font-size-s;
     line-height: $line-height-s;

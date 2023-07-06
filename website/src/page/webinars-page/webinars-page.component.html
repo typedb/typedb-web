@@ -10,7 +10,7 @@
                     </div>
                     <div class="wp-primary-webinar-summary text-margin-l">
                         <div class="wp-primary-webinar-text">
-                            <p class="text-m text-s-mobile"><span class="wp-webinar-title">{{ primaryWebinar.title }}</span> | <span>{{ primaryWebinar.datetime | ordinalDate }}</span></p>
+                            <h3 class="text-m"><span class="wp-webinar-title">{{ primaryWebinar.title }}</span> | <span>{{ primaryWebinar.datetime | ordinalDate }}</span></h3>
                             <td-rich-text class="wp-webinar-description text-xs text-xxs-mobile text-margin-s" [value]="primaryWebinar.description"></td-rich-text>
                         </div>
                         <div class="wp-primary-webinar-actions">
@@ -31,7 +31,7 @@
                     <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
                         <div class="wp-img-tertiary-container">
                             <img [src]="webinar.imageURL" class="wp-img wp-img-tertiary" [alt]=""/>
-                            <p class="text-m text-s-mobile wp-webinar-title hide-gt-mobile">{{ webinar.title }}</p>
+                            <h3 class="text-m wp-webinar-title hide-gt-mobile">{{ webinar.title }}</h3>
                         </div>
                         <div class="wp-webinar-text">
                             <p class="text-m wp-webinar-title hide-mobile">{{ webinar.title }}</p>

@@ -5,6 +5,12 @@
     display: grid;
     grid-template-columns: repeat(2, 560px);
     gap: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 .kpp-panel {
@@ -13,6 +19,10 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 24px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 20px;
+    }
 }
 
 .kpp-image-block img {

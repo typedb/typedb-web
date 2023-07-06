@@ -2,7 +2,7 @@
     <a *ngFor="let webinar of webinars" class="card wp-card" [class]="webinar.comingSoon ? '' : 'hoverable'" [tdLink]="webinar.registrationButton().link" (mouseenter)="setPanelHovered(webinar, true)" (mouseleave)="setPanelHovered(webinar, false)">
         <div *ngIf="webinar.registrationButton().comingSoon" class="text-xxs lp-coming-soon">coming soon</div>
         <img [src]="webinar.imageURL" alt=""/>
-        <h2 class="text-m text-s-mobile text-margin-m">{{ webinar.title }}</h2>
+        <h2 class="text-m text-margin-m">{{ webinar.title }}</h2>
         <h3 class="text-margin-s"><strong>{{ webinar.listSpeakers() }}</strong></h3>
         <p class="text-margin-xxs text-quiet">{{ webinar.listSpeakerJobs() }}</p>
         <td-button [button]="webinar.registrationButton()" size="small" buttonWidth="100%" [noComingSoonTooltip]="true" [containerHovered]="isPanelHovered(webinar)"></td-button>
