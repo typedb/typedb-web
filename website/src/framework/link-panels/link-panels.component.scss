@@ -108,7 +108,10 @@
     }
 
     .lc-cta-weak {
-        margin-top: 14px;
+        @media (min-width: $media-min-width-tablet) {
+            display: block;
+            margin-top: 14px;
+        }
     }
 
     .lp-coming-soon {
