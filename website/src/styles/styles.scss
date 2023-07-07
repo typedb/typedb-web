@@ -601,8 +601,10 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 }
 
 .hs_support_request__multi_check_box_ {
-    width: 50%;
-    float: left;
+    @media (min-width: $media-min-width-tablet) {
+        width: 50%;
+        float: left;
+    }
 
     > label {
         display: none;
@@ -628,7 +630,12 @@ body .hs-form fieldset.form-columns-1 .hs-input {
         font-size: $font-size-xs;
         font-family: 'Titillium Web', sans-serif;
         padding: 8px;
+        margin-top: 200px;
     }
+}
+
+#hubspot-form-holder-contact .hs-submit {
+    margin-top: 240px;
 }
 
 input[type='submit'].hs-button {
@@ -661,8 +668,10 @@ input[type='submit'].hs-button {
 }
 
 #hubspot-form-holder-contact input[type='submit'].hs-button {
-    width: 202px;
-    float: right;
+    @media (min-width: $media-min-width-tablet) {
+        width: 202px;
+        float: right;
+    }
 }
 
 .mat-button-focus-overlay {
