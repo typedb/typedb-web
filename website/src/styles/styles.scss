@@ -630,12 +630,17 @@ body .hs-form fieldset.form-columns-1 .hs-input {
         font-size: $font-size-xs;
         font-family: 'Titillium Web', sans-serif;
         padding: 8px;
-        margin-top: 200px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 200px;
+        }
     }
 }
 
 #hubspot-form-holder-contact .hs-submit {
-    margin-top: 240px;
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 240px;
+    }
 }
 
 input[type='submit'].hs-button {
