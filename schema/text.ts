@@ -1,4 +1,4 @@
-import { defineType, PortableTextTextBlock } from "@sanity/types";
+import { defineType, PortableTextSpan, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
 import { bodyFieldRichText, isVisibleField, optionalActionsField, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "./common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
@@ -37,13 +37,16 @@ export class ParagraphWithHighlights {
     }
 }
 
+function isPortableTextSpan(block: SanityPortableText[0]["children"][0]): block is PortableTextSpan {
+    return block._type === "span";
+}
+
 export class RichText {
-    readonly paragraphs: { spans: { text: string, marks: string[] }[] }[];
+    readonly paragraphs: { spans: { text: string, marks: string[], level?: number }[] }[];
 
     constructor(data: SanityPortableText) {
         this.paragraphs = data.map(p => ({
-            spans: p.children.filter(block => block._type === "span")
-                .map(span => ({ text: span.text as string, marks: span.marks as string[] }))
+            spans: p.children.filter(block => isPortableTextSpan(block)).map(span => ({ text: span.text as string, marks: span.marks as string[], level: p.level }))
         }));
     }
 }
