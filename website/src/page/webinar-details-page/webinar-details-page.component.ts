@@ -57,4 +57,8 @@ export class WebinarDetailsPageComponent implements OnInit {
             this._popupNotificationService.success("You've been successfully signed up for the webinar. You'll receive a link in your email, which you can use to join the event.");
         }
     }
+
+    get localTimezoneAbbreviation(): string {
+        return this.webinar!.datetime.toLocaleDateString('en-US', { day: '2-digit', timeZoneName: 'short' }).slice(4);
+    }
 }
