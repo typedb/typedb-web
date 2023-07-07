@@ -45,4 +45,8 @@ export class WebinarsPageComponent implements OnInit {
     get secondaryWebinars(): Webinar[] | undefined {
         return this.page?.featuredWebinarsSection?.featuredWebinars;
     }
+
+    localTimezoneAbbreviation(webinar: Webinar): string {
+        return webinar.datetime.toLocaleDateString('en-US', { day: '2-digit', timeZoneName: 'short' }).slice(4);
+    }
 }
