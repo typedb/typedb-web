@@ -27,12 +27,6 @@ export class ButtonComponent {
         };
     }
 
-    onClick(event: Event) {
-        if (this.linkButton?.link?.type === "route") {
-            event.preventDefault();
-        }
-    }
-
     onMouseEnter(event: Event) {
         if (this.button.comingSoon) this.comingSoonPopupVisible = true;
     }
