@@ -679,6 +679,31 @@ input[type='submit'].hs-button {
     }
 }
 
+.cc-banner {
+    background: $color-vaticle-purple;
+    border-top: 1px solid $color-vaticle-light-purple;
+    font-family: inherit;
+    transition-duration: 150ms;
+
+    .cc-link {
+        text-decoration: none;
+        color: $color-vaticle-green;
+    }
+
+    .cc-btn {
+        background: $color-vaticle-green;
+        border: 1px solid transparent;
+        border-radius: $border-radius;
+        color: $color-vaticle-purple;
+        font-weight: 600;
+        transition: box-shadow 100ms ease;
+
+        &:hover {
+            box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, .4);
+        }
+    }
+}
+
 .mat-button-focus-overlay {
     opacity: 0 !important;
 }
