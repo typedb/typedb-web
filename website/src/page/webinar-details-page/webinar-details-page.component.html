@@ -4,7 +4,7 @@
             <h1 class="text-xxl">{{ webinar.title }}</h1>
             <ul class="wd-subtitle text-l text-margin-l">
                 <li>Webinar</li>
-                <li><img src="/assets/icon/calendar.svg" alt="Date/Time:"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"HH:mm" }} {{ localTimezoneAbbreviation }}</li>
+                <li><img src="/assets/icon/calendar.svg" alt="Date/Time:"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"shortTime" }} {{ localTimezoneAbbreviation }}</li>
                 <li><img src="/assets/icon/time.svg" alt="Duration:"/> {{ webinar.durationMins | eventDuration }}</li>
             </ul>
             <div class="subsection-margin wd-details-area">
@@ -24,7 +24,7 @@
                     <h2 class="text-m"><strong>{{ webinar.isFinished() ? 'Watch Webinar' : 'Register to Webinar' }}</strong></h2>
                     <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
                     <p *ngIf="webinar.isFinished() && !webinar.onDemandVideoURL">Sorry, this webinar is not available on-demand yet. Please try again later.</p>
-                    <p class="text-margin-l" *ngIf="!webinar.isFinished() || webinar.onDemandVideoURL">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+                    <p class="text-margin-l" *ngIf="!webinar.isFinished() || webinar.onDemandVideoURL">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
                 </div>
             </div>
         </section>

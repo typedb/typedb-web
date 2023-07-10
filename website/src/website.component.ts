@@ -1,6 +1,7 @@
 import { ViewportScroller } from "@angular/common";
 import { Component } from "@angular/core";
 import { ActivatedRoute, Event as RouterEvent, Router, Scroll } from "@angular/router";
+import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
@@ -15,7 +16,7 @@ export class WebsiteComponent {
     private _componentBeforeNavigation: any = null;
 
     // TODO: (html) cookie consent
-    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService) {
+    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService, private _cookieConsentService: NgcCookieConsentService) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(e => {
             contentService.data.subscribe(_data => {

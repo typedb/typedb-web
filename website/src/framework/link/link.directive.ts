@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit } from "@angular/core";
+import { Directive, ElementRef, Input, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { Link } from "typedb-web-schema";
 
@@ -6,20 +6,22 @@ import { Link } from "typedb-web-schema";
     selector: "[tdLink]",
 })
 export class LinkDirective implements OnInit {
-    @Input("tdLink") link?: Link;
+    @Input("tdLink") link?: Link | string;
     path!: string;
     query!: string;
+    resolvedLink!: Link;
 
     constructor(private el: ElementRef<HTMLAnchorElement>, private _router: Router) {}
 
     ngOnInit() {
         if (!this.link) return;
+        this.resolvedLink = typeof this.link === "string" ? Link.fromAddress(this.link) : this.link;
 
-        const [path, query] = this.link!.destination.split("?");
+        const [path, query] = this.resolvedLink.destination.split("?");
         this.path = path;
         this.query = query;
 
-        switch (this.link.type) {
+        switch (this.resolvedLink.type) {
             case "external":
                 this.constructHrefLink();
                 break;
@@ -44,7 +46,7 @@ export class LinkDirective implements OnInit {
             }
             e.preventDefault();
             if (!this.query) {
-                this._router.navigate([this.link!.destination]);
+                this._router.navigate([this.resolvedLink.destination]);
             } else {
                 const queryParams = Object.fromEntries(new URLSearchParams(this.query).entries());
                 if (!this.path) {
@@ -58,14 +60,14 @@ export class LinkDirective implements OnInit {
 
     updateHTMLElementHref() {
         if (this.path) {
-            this.el.nativeElement.href = this.link!.destination;
+            this.el.nativeElement.href = this.resolvedLink.destination;
         } else {
             this.el.nativeElement.href = `${this._router.url}?${this.query}`;
         }
     }
 
     constructHrefLink() {
-        this.el.nativeElement.href = this.link!.destination;
-        this.el.nativeElement.target = this.link!.opensNewTab ? "_blank" : "";
+        this.el.nativeElement.href = this.resolvedLink.destination;
+        this.el.nativeElement.target = this.resolvedLink.opensNewTab ? "_blank" : "";
     }
 }

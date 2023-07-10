@@ -10,8 +10,17 @@ import { WebsiteComponent } from "./website.component";
 import { FormsModule } from "@angular/forms";
 import { ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from "ngx-cookieconsent";
 
-// TODO: integrate tslint
+const cookieConfig: NgcCookieConsentConfig = {
+    cookie: {
+        domain: window.location.hostname,
+    },
+    theme: "block",
+    type: "info"
+};
+
+// TODO: integrate prettier
 @NgModule({
     declarations: [
         WebsiteComponent,
@@ -23,6 +32,7 @@ import { HttpClientModule } from "@angular/common/http";
         FrameworkModule,
         HttpClientModule,
         NavigationModule,
+        NgcCookieConsentModule.forRoot(cookieConfig),
         PageModule,
         ScullyLibModule,
         ServiceModule,

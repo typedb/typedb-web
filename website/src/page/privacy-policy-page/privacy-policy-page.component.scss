@@ -1,0 +1,33 @@
+@import "../../styles/colors";
+@import "../../styles/sizes";
+
+section {
+    margin-top: $text-margin-l;
+
+    &:first-of-type {
+        margin-top: 100px;
+    }
+}
+
+h1 {
+    font-size: $font-size-xl;
+    line-height: $line-height-xl;
+}
+
+h2 {
+    font-size: $font-size-m;
+    line-height: $line-height-m;
+    font-weight: $font-weight-semi-bold;
+}
+
+p, ul {
+    margin-top: $text-margin-s;
+}
+
+a {
+    color: $color-vaticle-green;
+}
+
+article > div {
+    padding-bottom: $subsection-margin;
+}
