@@ -37,7 +37,7 @@
                             <p class="text-m wp-webinar-title hide-mobile">{{ webinar.title }}</p>
                             <p class="wp-speaker"><span *ngFor="let speaker of webinar.speakers"><span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}</span></p>
                             <p class="wp-timing">
-                                <span class="wp-webinar-datetime" *ngIf="!webinar.isFinished()"><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"HH:mm" }} {{ localTimezoneAbbreviation(webinar) }}</span>
+                                <span class="wp-webinar-datetime" *ngIf="!webinar.isFinished()"><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"shortTime" }} {{ localTimezoneAbbreviation(webinar) }}</span>
                                 <span><img src="/assets/icon/time.svg" alt="Duration:"/> {{ webinar.durationMins | eventDuration }}</span>
                             </p>
                         </div>

@@ -4,7 +4,7 @@
             <h1 class="text-xxl">{{ webinar.title }}</h1>
             <ul class="wd-subtitle text-l text-margin-l">
                 <li>Webinar</li>
-                <li><img src="/assets/icon/calendar.svg" alt="Date/Time:"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"HH:mm" }} {{ localTimezoneAbbreviation }}</li>
+                <li><img src="/assets/icon/calendar.svg" alt="Date/Time:"/> {{ webinar.datetime | ordinalDate }}, {{ webinar.datetime | date:"shortTime" }} {{ localTimezoneAbbreviation }}</li>
                 <li><img src="/assets/icon/time.svg" alt="Duration:"/> {{ webinar.durationMins | eventDuration }}</li>
             </ul>
             <div class="subsection-margin wd-details-area">
