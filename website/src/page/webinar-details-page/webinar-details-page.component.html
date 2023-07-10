@@ -24,7 +24,7 @@
                     <h2 class="text-m"><strong>{{ webinar.isFinished() ? 'Watch Webinar' : 'Register to Webinar' }}</strong></h2>
                     <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
                     <p *ngIf="webinar.isFinished() && !webinar.onDemandVideoURL">Sorry, this webinar is not available on-demand yet. Please try again later.</p>
-                    <p class="text-margin-l" *ngIf="!webinar.isFinished() || webinar.onDemandVideoURL">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+                    <p class="text-margin-l" *ngIf="!webinar.isFinished() || webinar.onDemandVideoURL">By submitting your personal data, you consent to emails from Vaticle. See our <a tdLink="/privacy-policy">Privacy Policy</a>.</p>
                 </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
-import { comingSoonField, linkField, requiredRule, titleField, titleFieldName } from "./common-fields";
+import { comingSoonField, linkField, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "route" | "external";
@@ -29,7 +29,7 @@ export class Link {
         this.opensNewTab = props.opensNewTab;
     }
 
-    static fromSanityLink(data: SanityLink) {
+    static fromSanityLink(data: SanityLink): Link {
         let type: LinkType;
         if (data.type === "autoDetect") {
             try {
@@ -42,6 +42,17 @@ export class Link {
             type = data.type;
         }
         return new Link({ destination: data.destination.current, type: type, opensNewTab: data.opensNewTab });
+    }
+
+    static fromAddress(address: string): Link {
+        let type: LinkType;
+        try {
+            new URL(address);
+            type = "external";
+        } catch {
+            type = "route";
+        }
+        return new Link({ destination: address, type: type, opensNewTab: type === "external" });
     }
 
     static fromSanityLinkRef(ref: SanityReference<SanityLink>, db: SanityDataset) {
