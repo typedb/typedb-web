@@ -194,7 +194,7 @@ header .mp-column li:hover .mp-coming-soon h4, header .mp-column li:focus .mp-co
     margin-top: 4px;
 }
 
-td-button a {
+header td-button a, header td-button a:visited {
     display: flex;
     border-width: 1px;
     border-style: solid;
@@ -214,7 +214,7 @@ td-button a {
     height: 40px;
 }
 
-td-button a:hover {
+header td-button a:hover, header td-button a:hover:visited {
     background-color: var(--color-green);
     color: var(--color-purple);
 }
