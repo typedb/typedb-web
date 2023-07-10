@@ -193,3 +193,28 @@ header .mp-column li:hover .mp-coming-soon h4, header .mp-column li:focus .mp-co
     color: var(--color-secondary-light-grey);
     margin-top: 4px;
 }
+
+td-button a {
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--border-radius);
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semi-bold);
+    line-height: var(--line-height-xs);
+    transition-property: background-color, border, box-shadow, opacity;
+    transition-duration: 100ms;
+    transition-timing-function: ease;
+    text-decoration: none !important;
+    border-color: var(--color-green);
+    background: transparent;
+    color: var(--color-green);
+    height: 40px;
+}
+
+td-button a:hover {
+    background-color: var(--color-green);
+    color: var(--color-purple);
+}
