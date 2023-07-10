@@ -7,6 +7,7 @@ import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
+import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
 import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
 import { EventDurationPipe } from "./webinar-details-page/event-duration.pipe";
 import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
@@ -32,6 +33,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         IntroPageComponent,
         IntroPageTechnicolorBlockComponent,
         NotFoundPageComponent,
+        PrivacyPolicyPageComponent,
         SolutionPageComponent,
         SolutionPageTechnicolorBlockComponent,
         WebinarDetailsPageComponent,

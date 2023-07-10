@@ -6,6 +6,7 @@ import { FeaturesPageComponent } from "./page/features-page/features-page.compon
 import { HomePageComponent } from "./page/home-page/home-page.component";
 import { IntroPageComponent } from "./page/intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
+import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
 import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: "webinars", component: WebinarsPageComponent },
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
+    { path: "privacy-policy", component: PrivacyPolicyPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];
 
