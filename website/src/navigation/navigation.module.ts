@@ -5,6 +5,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { FrameworkModule } from "../framework/framework.module";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from "@angular/forms";
+import { SiteBannerComponent } from "./site-banner/site-banner.component";
 import { TopbarMenuComponent, TopbarMenuPanelComponent, TopbarMenuMobileComponent, TopbarMenuPanelMobileComponent } from "./topbar/topbar-menu.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -12,6 +13,7 @@ import { RouterModule } from "@angular/router";
 @NgModule({
     declarations: [
         FooterComponent,
+        SiteBannerComponent,
         TopbarMenuComponent,
         TopbarMenuMobileComponent,
         TopbarMenuPanelComponent,
