@@ -1,41 +1,43 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@sanity/icons': 2.2.2
-  '@sanity/types': 3.6.0
+  '@sanity/icons': 2.4.1
+  '@sanity/types': 3.14.1
   '@types/react': 18.0.28
   react: 18.2.0
   typescript: 4.7.4
 
 devDependencies:
-  '@sanity/icons': 2.2.2_react@18.2.0
-  '@sanity/types': 3.6.0
+  '@sanity/icons': 2.4.1_react@18.2.0
+  '@sanity/types': 3.14.1
   '@types/react': 18.0.28
   react: 18.2.0
   typescript: 4.7.4
 
 packages:
 
-  /@sanity/client/5.3.0:
-    resolution: {integrity: sha512-GUu33gDy5Lx9FNyRGeRNrn2ZYNNthn3Qj2y4GPtb3MkdUtdWHKXmCi3S7nqusTshwS0Uz/w+wX9/h5Nbq9iofg==}
+  /@sanity/client/6.1.7:
+    resolution: {integrity: sha512-crleZDBic3VpmBhIuiVZNkJMxAWE/fj5v+hHBXt+2psW1CJrvBdTLX14f4cqC40W1YDDE4ZGrDkYuph6Y6/YzQ==}
     engines: {node: '>=14.18'}
     dependencies:
-      '@sanity/eventsource': 4.0.0
-      get-it: 8.0.11
+      '@sanity/eventsource': 5.0.0
+      get-it: 8.3.0
       rxjs: 7.8.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@sanity/eventsource/4.0.0:
-    resolution: {integrity: sha512-W0AD141JILOySJ177j2+HTr5k4tWNyXjGsr0dDXJzpqlwZ09J/uPHI73hMe5XtoFumPa9Bj6jy8uu2qdZX84NQ==}
+  /@sanity/eventsource/5.0.0:
+    resolution: {integrity: sha512-0ewT+BDzfiamHwitUfRcwsl/RREHjWv6VNZvQ8Q4OnnNKXfEEGXbWmqzof0okOTkp4XELgyliht4Qj28o9AU2g==}
     dependencies:
-      event-source-polyfill: 1.0.25
+      '@types/event-source-polyfill': 1.0.1
+      '@types/eventsource': 1.1.11
+      event-source-polyfill: 1.0.31
       eventsource: 2.0.2
     dev: true
 
-  /@sanity/icons/2.2.2_react@18.2.0:
-    resolution: {integrity: sha512-+Ks6LeYe44kjZSfcWFWj0zQRP48N3JisrZ9ia44QwG11y6bO9Wk8bfhu5o23FkyYrREu9CzQ0U+slSV7YsvcuQ==}
+  /@sanity/icons/2.4.1_react@18.2.0:
+    resolution: {integrity: sha512-/yxcIT0k1RxStI/pP/oHM44fHI6Oxiygf0jPcdV06Ce0xfFo+51UEqJSfE8hQ3fh+uFkat8ZZObZjq5v1ceJzw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18
@@ -43,13 +45,21 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@sanity/types/3.6.0:
-    resolution: {integrity: sha512-oYZBKLdQK9mPonNq023FtbzeiQa3EqXs9X4nul5yH63hDF9qghAop9W9ODohr5V15Gf4oEEBcM9F7pp+vtawzg==}
+  /@sanity/types/3.14.1:
+    resolution: {integrity: sha512-13qj14LI69VsGE4+H+XrdFC7yUgHHtIHHqkqygBtvPAqfteVwDEG8KyWJ1+ZMXMUnz89fuTeP721DC3+AlrmPg==}
     dependencies:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 6.1.7
       '@types/react': 18.0.28
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@types/event-source-polyfill/1.0.1:
+    resolution: {integrity: sha512-dls8b0lUgJ/miRApF0efboQ9QZnAm7ofTO6P1ILu8bRPxUFKDxVwFf8+TeuuErmNui6blpltyr7+eV72dbQXlQ==}
+    dev: true
+
+  /@types/eventsource/1.1.11:
+    resolution: {integrity: sha512-L7wLDZlWm5mROzv87W0ofIYeQP5K2UhoFnnUyEWLKM6UBb0ZNRgAqp98qE5DkgfBXdWfc2kYmw9KZm4NLjRbsw==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -95,8 +105,8 @@ packages:
       mimic-response: 3.1.0
     dev: true
 
-  /event-source-polyfill/1.0.25:
-    resolution: {integrity: sha512-hQxu6sN1Eq4JjoI7ITdQeGGUN193A2ra83qC0Ltm9I2UJVAten3OFVN6k5RX4YWeCS0BoC8xg/5czOCIHVosQg==}
+  /event-source-polyfill/1.0.31:
+    resolution: {integrity: sha512-4IJSItgS/41IxN5UVAVuAyczwZF7ZIEsM1XAoUzIHA6A+xzusEZUutdXz2Nr+MQPLxfTiCvqE79/C8HT8fKFvA==}
     dev: true
 
   /eventsource/2.0.2:
@@ -123,8 +133,8 @@ packages:
       readable-stream: 2.3.8
     dev: true
 
-  /get-it/8.0.11:
-    resolution: {integrity: sha512-x7AlRWAWJKDve52Sk9Nkki1Ne9TwH2cZ4KknCswya88nM6IGoK/kDKv+FKAzBZ1QzhZGqTaqb+qzrectzYdTHw==}
+  /get-it/8.3.0:
+    resolution: {integrity: sha512-R8rM45CWEI1shdTegGCs/9yy/z6DgwS5XMVIVZtSVpu0XABxPp3PA3TCl6mzVQOcHecbqD+VUFg1poAtBtO19A==}
     engines: {node: '>=14.0.0'}
     dependencies:
       debug: 4.3.4

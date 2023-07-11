@@ -60,6 +60,14 @@ export const titleAndBodyFields = [
     bodyFieldRichText,
 ];
 
+export const plainTextFieldName = "text";
+
+export const plainTextField = defineField({
+    name: plainTextFieldName,
+    title: "Text",
+    type: "string",
+});
+
 export const slugFieldName = "slug";
 
 export const slugField = defineField({
