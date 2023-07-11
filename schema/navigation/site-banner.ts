@@ -1,18 +1,19 @@
 import { SparklesIcon } from "@sanity/icons";
 import { defineField, defineType, DocumentRule, SanityDocument } from "@sanity/types";
 import { Link, SanityLink } from "../link";
-import { linkField, plainTextField, requiredRule } from "../common-fields";
+import { linkField, requiredRule, textFieldWithHighlights } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
+import { ParagraphWithHighlights, SanityPortableText } from "../text";
 import { PropsOf } from "../util";
 
 export interface SanitySiteBanner extends SanityDocument {
     isEnabled: boolean;
-    text?: string;
+    text?: SanityPortableText;
     link?: SanityReference<SanityLink>;
 }
 
 export class SiteBanner {
-    readonly text: string;
+    readonly text: ParagraphWithHighlights;
     readonly link: Link;
 
     constructor(data: PropsOf<SiteBanner>) {
@@ -23,7 +24,7 @@ export class SiteBanner {
     static fromSanity(data: SanitySiteBanner, db: SanityDataset): SiteBanner | undefined {
         if (!data.isEnabled) return undefined;
         return new SiteBanner({
-            text: data.text!,
+            text: ParagraphWithHighlights.fromSanity(data.text!),
             link: Link.fromSanityLinkRef(data.link!, db),
         });
     }
@@ -44,7 +45,7 @@ export const siteBannerSchema = defineType({
             initialValue: false,
             validation: requiredRule,
         }),
-        plainTextField,
+        textFieldWithHighlights,
         linkField,
     ],
     validation: (rule: DocumentRule) => rule.custom((value) => {

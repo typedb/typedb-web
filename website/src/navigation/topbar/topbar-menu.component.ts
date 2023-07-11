@@ -1,6 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, NgZone, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { communityResourcesSchemaName, SanityCommunityResources, SanityTopbar, TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "typedb-web-schema";
+import {
+    communityResourcesSchemaName, SanityCommunityResources, SanitySiteBanner, SanityTopbar, SiteBanner, siteBannerSchemaName,
+    TextLink, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn
+} from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
 import { TopbarMobileService } from "../../service/topbar-mobile.service";
@@ -12,6 +15,7 @@ import { TopbarMobileService } from "../../service/topbar-mobile.service";
 })
 export class TopbarMenuComponent implements OnInit {
     topbar?: Topbar;
+    siteBanner?: SiteBanner;
     githubURL?: string;
     hoveredMenuItem?: TopbarMenuPanel;
     focusedMenuItem?: TopbarMenuPanel;
@@ -33,15 +37,11 @@ export class TopbarMenuComponent implements OnInit {
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityTopbar = data.getDocumentByID(topbarSchemaName) as SanityTopbar;
-            if (sanityTopbar) {
-                this.topbar = new Topbar(sanityTopbar, data);
-            } else {
-                this.topbar = undefined;
-            }
+            this.topbar = sanityTopbar ? new Topbar(sanityTopbar, data) : undefined;
             const communityResources = data.getDocumentByID(communityResourcesSchemaName) as SanityCommunityResources;
-            if (communityResources) {
-                this.githubURL = communityResources.githubURL;
-            }
+            this.githubURL = communityResources?.githubURL;
+            const sanitySiteBanner = data.getDocumentByID(siteBannerSchemaName) as SanitySiteBanner;
+            this.siteBanner = sanitySiteBanner?.isEnabled ? SiteBanner.fromSanity(sanitySiteBanner, data) : undefined;
         });
     }
 
@@ -118,6 +118,10 @@ export class TopbarMenuComponent implements OnInit {
 
     toggleMobileMenu() {
         this._topbarMobileService.toggleOpenState();
+    }
+
+    hideMobileMenu() {
+        this._topbarMobileService.setClosedState();
     }
 }
 

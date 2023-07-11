@@ -2,7 +2,7 @@
 @import "../../styles/sizes";
 
 :host {
-    position: fixed;
+    position: absolute;
     top: $topbar-height-mobile;
     min-height: calc(100vh - $topbar-height-mobile);
     width: 100vw;
@@ -19,11 +19,6 @@
 .tm-top-level-items {
     li {
         list-style: none;
-
-        > * {
-            display: flex;
-            align-items: center;
-        }
     }
 }
 
