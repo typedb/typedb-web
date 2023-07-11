@@ -19,6 +19,14 @@ export const nameField = defineField({
     validation: requiredRule,
 });
 
+export const textFieldName = "text";
+
+export const plainTextField = defineField({
+    name: textFieldName,
+    title: "Text",
+    type: "text",
+});
+
 export const titleFieldName = "title";
 
 export const titleField = defineField({
@@ -44,6 +52,17 @@ export const titleFieldWithHighlights = defineField({
 export function titleWithHighlightsPreview(value: any[]): string {
     return (value || [])[0]?.children.map((x: any) => x.text).join("") as string || "Untitled";
 }
+
+export const textFieldWithHighlights = defineField({
+    name: textFieldName,
+    title: "Text",
+    description: "Text marked as 'bold' will instead be rendered in the highlight color",
+    type: "array",
+    of: [{type: "block"}],
+    validation: (rule: ArrayRule<any>) => rule.custom((value, _context) => {
+        return !value || value.length <= 1 ? true : "Must contain exactly one paragraph";
+    }),
+});
 
 export const bodyFieldName = "body";
 

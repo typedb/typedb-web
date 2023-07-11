@@ -1,5 +1,6 @@
 <ng-container *ngIf="topbar">
     <header id="siteHeader" [ngClass]="rootNgClass">
+        <td-site-banner *ngIf="siteBanner" [banner]="siteBanner" (click)="hideMobileMenu()"></td-site-banner>
         <nav>
             <a [routerLink]="['/']" class="tb-logo-container"><img src="/assets/image/vaticle-typedb.svg" alt="Vaticle TypeDB"/></a>
             <div class="tb-desktop-items text-s">
@@ -34,7 +35,7 @@
                 </svg>
                 <img *ngIf="mobileMenuIsOpen" src="/assets/icon/close-large.svg" alt="X"/>
             </button>
+            <td-topbar-menu-mobile [hidden]="!mobileMenuIsOpen" [topbar]="topbar" [githubURL]="githubURL" [ngStyle]="{ 'min-height': siteBanner ? 'calc(100vh - 48px - 26px)' : 'calc(100vh - 48px)' }"></td-topbar-menu-mobile>
         </nav>
     </header>
-    <td-topbar-menu-mobile [hidden]="!mobileMenuIsOpen" [topbar]="topbar" [githubURL]="githubURL"></td-topbar-menu-mobile>
 </ng-container>

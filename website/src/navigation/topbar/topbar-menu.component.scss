@@ -4,13 +4,13 @@
 header, td-topbar-menu-panel {
     left: 0;
     right: 0;
-    position: fixed;
     z-index: 700;
     background-color: transparent;
     border-bottom: 1px solid transparent;
 }
 
 header {
+    position: fixed;
     top: 0;
 
     @media (hover: hover) {
@@ -35,6 +35,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
 
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         padding: 0 12px;

@@ -1,7 +1,7 @@
 @import "../../styles/colors";
 @import "../../styles/sizes";
 
-.mm-root {
+:host {
     width: 100%;
     border-left: 1px solid $color-vaticle-light-purple;
     margin-left: 16px;
