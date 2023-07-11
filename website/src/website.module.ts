@@ -18,6 +18,9 @@ const cookieConfig: NgcCookieConsentConfig = {
         domain: window.location.hostname,
     },
     theme: "block",
+    content: {
+        href: "/privacy-policy",
+    },
     type: "info"
 };
 
