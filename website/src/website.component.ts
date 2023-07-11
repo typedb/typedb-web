@@ -15,8 +15,7 @@ import { TopbarMobileService } from "./service/topbar-mobile.service";
 export class WebsiteComponent {
     private _componentBeforeNavigation: any = null;
 
-    // TODO: (html) cookie consent
-    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService, private _cookieConsentService: NgcCookieConsentService) {
+    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(e => {
             contentService.data.subscribe(_data => {
