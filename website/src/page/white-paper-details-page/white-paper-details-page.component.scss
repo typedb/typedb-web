@@ -39,7 +39,7 @@ article {
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 12px;
     }
 

@@ -24,7 +24,7 @@ export const textFieldName = "text";
 export const plainTextField = defineField({
     name: textFieldName,
     title: "Text",
-    type: "text",
+    type: "string",
 });
 
 export const titleFieldName = "title";
@@ -203,6 +203,16 @@ export const keyPointsWithIconsField = (count?: number) => defineField({
     type: "array",
     of: [{type: "keyPointWithIcon"}],
     validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
+});
+
+export const linkPanelsFieldName = "links";
+
+export const linkPanelsField = defineField({
+    name: linkPanelsFieldName,
+    title: "Links",
+    type: "array",
+    of: [{type: "linkPanel"}],
+    validation: (rule: ArrayRule<any>) => rule.length(3),
 });
 
 export interface SanityVisibleToggle {

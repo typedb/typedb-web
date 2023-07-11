@@ -2,6 +2,7 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
 import { LinkButton } from "./button";
 import { comingSoonField, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { Person, personSchemaName, SanityPerson } from "./person";
@@ -17,6 +18,7 @@ export interface SanityWebinar extends SanityDocument {
     durationMins: number;
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
+    furtherReading: SanityFurtherReadingSection;
     airmeetID?: string;
     hubspotFormID?: string;
     onDemandVideoURL?: string;
@@ -31,6 +33,7 @@ export class Webinar {
     readonly durationMins: number;
     readonly imageURL: string;
     readonly speakers: Person[];
+    readonly furtherReading?: FurtherReadingSection;
     readonly airmeetID?: string;
     readonly hubspotFormID?: string;
     readonly onDemandVideoURL?: string;
@@ -44,6 +47,7 @@ export class Webinar {
         this.durationMins = props.durationMins;
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
+        this.furtherReading = props.furtherReading;
         this.airmeetID = props.airmeetID;
         this.hubspotFormID = props.hubspotFormID;
         this.onDemandVideoURL = props.onDemandVideoURL;
@@ -59,6 +63,7 @@ export class Webinar {
             durationMins: data.durationMins,
             imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map(x => Person.fromSanity(db.resolveRef(x), db)),
+            furtherReading: data.furtherReading.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db) : undefined,
             airmeetID: data.airmeetID,
             hubspotFormID: data.hubspotFormID,
             onDemandVideoURL: data.onDemandVideoURL,
@@ -129,6 +134,12 @@ const webinarSchema = defineType({
             title: "Speakers",
             type: "array",
             of: [{type: "reference", to: [{type: personSchemaName}]}],
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "furtherReading",
+            title: "Further Reading",
+            type: furtherReadingSectionSchemaName,
             validation: requiredRule,
         }),
         defineField({

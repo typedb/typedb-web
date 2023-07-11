@@ -1,9 +1,10 @@
 import { DocumentIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
+import { FurtherReadingSection, SanityCoreSection, SanityFurtherReadingSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { Link, linkSchemaName, SanityLink } from "../link";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, keyPointsWithIconsField, learnMoreLinkField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, keyPointsWithIconsField, learnMoreLinkField, linkPanelsField, pageTitleField, routeField, SanityVisibleToggle, titleAndBodyFields, titleField, videoEmbedField } from "../common-fields";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, KeyPointWithIcon, SanityKeyPoint, SanityKeyPointWithIcon } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -34,8 +35,6 @@ export interface SanitySolutionPage extends SanityPage {
     [sections.furtherReading.id]: SanityFurtherReadingSection;
 }
 
-interface SanityCoreSection extends SanityBodyText, SanityOptionalActions, SanityVisibleToggle {}
-
 interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyText, SanityVisibleToggle {
     videoURL: string;
     links: SanityLinkPanel[];
@@ -57,10 +56,6 @@ interface SanityExampleTab extends SanityTitle, SanityBodyText {
 interface SanityExampleSection extends SanityCoreSection {
     exampleTabs: SanityExampleTab[];
     sampleProjectLink: SanityReference<SanityLink>;
-}
-
-interface SanityFurtherReadingSection extends SanityCoreSection {
-    links: SanityLinkPanel[];
 }
 
 export class SolutionPage extends Page {
@@ -191,25 +186,6 @@ class ExampleSection extends TechnicolorBlock {
     }
 }
 
-class FurtherReadingSection extends TechnicolorBlock {
-    readonly links: LinkPanel[];
-
-    constructor(props: PropsOf<FurtherReadingSection>) {
-        super(props);
-        this.links = props.links;
-    }
-
-    static fromSanityFurtherReadingSection(data: SanityFurtherReadingSection, db: SanityDataset) {
-        return new FurtherReadingSection({
-            title: new ParagraphWithHighlights({ spans: [{ text: "Further", highlight: false }, { text: " learning", highlight: true }] }),
-            body: new RichText(data.body),
-            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
-            iconURL: "/assets/icon/section/book-open.svg",
-            links: data.links.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
-        });
-    }
-}
-
 export const solutionPageSchemaName = "solutionPage";
 
 const sectionSchemaName = (key: SectionKey) => `${solutionPageSchemaName}_${sections[key].id}`;
@@ -219,14 +195,6 @@ const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
     title: `${sections[key].title} Section`,
     type: "object",
     fields: fields,
-});
-
-const linkPanelsField = defineField({
-    name: "links",
-    title: "Links",
-    type: "array",
-    of: [{type: linkPanelSchemaName}],
-    validation: (rule: ArrayRule<any>) => rule.length(3),
 });
 
 const exampleTabSchemaName = `${solutionPageSchemaName}_exampleTab`;
