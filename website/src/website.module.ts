@@ -8,11 +8,12 @@ import { ServiceModule } from "./service/service.module";
 import { WebsiteRoutingModule } from "./website-routing.module";
 import { WebsiteComponent } from "./website.component";
 import { FormsModule } from "@angular/forms";
-import { ScullyLibModule } from "@scullyio/ng-lib";
+import { isScullyRunning, ScullyLibModule } from "@scullyio/ng-lib";
 import { HttpClientModule } from "@angular/common/http";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from "ngx-cookieconsent";
 
 const cookieConfig: NgcCookieConsentConfig = {
+    enabled: !isScullyRunning(),
     cookie: {
         domain: window.location.hostname,
     },
