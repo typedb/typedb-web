@@ -194,10 +194,10 @@ hr {
     }
 
     &.page-intro-section {
-        margin-top: 280px;
+        margin-top: $intro-section-margin;
 
         @media (max-width: $media-max-width-mobile) {
-            margin-top: 120px;
+            margin-top: $intro-section-margin-mobile;
         }
     }
 }

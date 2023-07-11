@@ -2,11 +2,7 @@
     <div *ngIf="whitePaper">
         <section class="page-section page-intro-section">
             <h1 class="text-xxl narrow-section">{{ whitePaper.title }}</h1>
-            <div class="subsection-margin card wd-landscape-img-card">
-                <img [src]="whitePaper.landscapeImageURL" class="wd-img wd-img-landscape" [alt]=""/>
-            </div>
-            <td-rich-text class="text-m subsection-margin wd-description" [value]="whitePaper.description"></td-rich-text>
-            <div class="subsection-margin card wd-form-card">
+            <div class="section subsection-margin card wd-form-card">
                 <img [src]="whitePaper.portraitImageURL" class="wd-img wd-img-portrait" [alt]="whitePaper.title"/>
                 <div>
                     <h2 class="text-m"><strong>Get the white paper</strong></h2>
@@ -14,6 +10,11 @@
                     <p class="text-margin-l">By submitting your personal data, you consent to emails from Vaticle. See our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
                 </div>
             </div>
+            <td-rich-text class="text-m subsection-margin wd-description" [value]="whitePaper.description"></td-rich-text>
         </section>
+        <ng-container *ngIf="whitePaper.furtherReading">
+            <td-technicolor-block [block]="whitePaper.furtherReading" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
+            <td-link-panels [panels]="whitePaper.furtherReading.links" [cols]="3"></td-link-panels>
+        </ng-container>
     </div>
 </article>

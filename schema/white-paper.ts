@@ -1,6 +1,7 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
-import { bodyFieldRichText, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
@@ -15,6 +16,7 @@ export interface SanityWhitePaper extends SanityDocument {
     tags: string[];
     portraitImage: SanityImage;
     landscapeImage: SanityImage;
+    furtherReading: SanityFurtherReadingSection;
     hubspotFormID: string;
 }
 
@@ -27,6 +29,7 @@ export class WhitePaper {
     readonly tags: string[];
     readonly portraitImageURL: string;
     readonly landscapeImageURL: string;
+    readonly furtherReading?: FurtherReadingSection;
     readonly hubspotFormID: string;
 
     constructor(props: PropsOf<WhitePaper>) {
@@ -38,6 +41,7 @@ export class WhitePaper {
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
+        this.furtherReading = props.furtherReading;
         this.hubspotFormID = props.hubspotFormID;
     }
 
@@ -51,6 +55,7 @@ export class WhitePaper {
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
+            furtherReading: data.furtherReading.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db) : undefined,
             hubspotFormID: data.hubspotFormID,
         });
     }
@@ -91,6 +96,12 @@ export const whitePaperSchema = defineType({
             name: "landscapeImage",
             title: "Landscape Image",
             type: "image",
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "furtherReading",
+            title: "Further Reading",
+            type: furtherReadingSectionSchemaName,
             validation: requiredRule,
         }),
         hubspotFormIDField,

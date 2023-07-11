@@ -3,6 +3,10 @@
 
 :host {
     position: absolute;
+    top: 80px;
+}
+
+.mp-root {
     width: 100%;
     border-top: 1px solid $color-vaticle-secondary-purple;
     box-shadow: 0 8px 30px rgba($color-vaticle-black-purple, 0.58);

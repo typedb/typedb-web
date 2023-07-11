@@ -5,7 +5,11 @@ section {
     margin-top: $text-margin-l;
 
     &:first-of-type {
-        margin-top: 100px;
+        margin-top: 168px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 90px;
+        }
     }
 }
 
@@ -30,4 +34,12 @@ a {
 
 article > div {
     padding-bottom: $subsection-margin;
+}
+
+th, td {
+    padding: 8px 16px;
+}
+
+th, tr:nth-child(even) {
+    background: $color-vaticle-deep-purple;
 }

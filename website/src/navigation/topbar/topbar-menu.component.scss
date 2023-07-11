@@ -93,12 +93,12 @@ nav {
             display: flex;
             flex-direction: row;
 
-            li {
+            > li {
                 list-style: none;
                 display: flex;
                 flex-direction: row;
 
-                > * {
+                > a, > td-button {
                     display: flex;
                     align-items: center;
                 }
