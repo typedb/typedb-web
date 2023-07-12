@@ -36,7 +36,9 @@ export class FormService {
                 const formContainerEl = formEl?.parentElement;
                 if (formEl && formContainerEl?.id.startsWith("hbspt-form")) {
                     clearInterval(formElementPoller);
-                    document.getElementById(placeholderElementID)!.appendChild(formContainerEl);
+                    const placeholderEl = document.getElementById(placeholderElementID)!;
+                    placeholderEl.innerHTML = "";
+                    placeholderEl.appendChild(formContainerEl);
                     if (onSubmit) {
                         this.attachOnSubmitAction(formEl, onSubmit);
                     }
