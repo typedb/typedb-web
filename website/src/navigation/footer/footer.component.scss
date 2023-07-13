@@ -139,6 +139,10 @@ a:focus p {
     ul {
         margin-top: 34px;
 
+        @media (max-width: $media-max-width-tablet) {
+            margin-top: 32px;
+        }
+
         @media (max-width: $media-max-width-mobile) {
             margin-top: 16px;
             width: 144px;
@@ -148,7 +152,7 @@ a:focus p {
     li:not(:first-child) {
         margin-top: 20px;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: $media-max-width-mobile) {
             margin-top: 12px;
         }
     }
