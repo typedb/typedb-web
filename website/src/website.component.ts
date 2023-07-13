@@ -13,7 +13,8 @@ import { TopbarMobileService } from "./service/topbar-mobile.service";
     styleUrls: [],
 })
 export class WebsiteComponent {
-    private _componentBeforeNavigation: any = null;
+    private _originBeforeNavigation: string = window.location.origin;
+    private _pathnameBeforeNavigation: string = window.location.pathname;
 
     constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService, _cookieConsentService: NgcCookieConsentService) {
         viewportScroller.setOffset([0, 112]);
@@ -32,10 +33,11 @@ export class WebsiteComponent {
                     setTimeout(() => {
                         viewportScroller.scrollToAnchor(e.anchor!);
                     });
-                } else if (this._componentBeforeNavigation !== currentRoute.component) {
+                } else if (this._originBeforeNavigation !== window.location.origin || this._pathnameBeforeNavigation !== window.location.pathname) {
                     window.scrollTo(0, 0);
                 }
-                this._componentBeforeNavigation = currentRoute.component;
+                this._originBeforeNavigation = window.location.origin;
+                this._pathnameBeforeNavigation = window.location.pathname;
             });
         });
         _topbarMobileService.openState.subscribe((isOpen) => {
