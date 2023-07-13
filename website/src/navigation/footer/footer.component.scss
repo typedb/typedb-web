@@ -34,7 +34,7 @@ a:focus p {
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         width: $section-width-tablet;
         max-width: $section-max-width-tablet;
-        padding: 32px 0;
+        padding: 40px 0;
     }
 
     @media (max-width: $media-max-width-mobile) {
@@ -88,13 +88,9 @@ a:focus p {
 
 .ft-nav-section {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
-
-    @media (max-width: $media-max-width-mobile) {
-        flex-direction: column;
-        gap: 32px;
-    }
+    gap: 32px 104px;
 
     ul,
     li {
@@ -130,6 +126,10 @@ a:focus p {
     justify-content: space-between;
     gap: 104px;
 
+    @media (max-width: $media-max-width-tablet) {
+        gap: 72px;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -147,6 +147,10 @@ a:focus p {
 
     li:not(:first-child) {
         margin-top: 20px;
+
+        @media (max-width: $media-max-width-tablet) {
+            margin-top: 12px;
+        }
     }
 }
 
@@ -154,11 +158,12 @@ a:focus p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
 
     @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
         align-items: center;
         text-align: center;
-        flex-direction: column;
         gap: 16px;
     }
 }

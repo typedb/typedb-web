@@ -266,6 +266,36 @@ hr {
     }
 }
 
+$text-size-map: (
+    "l" 28px 43px,
+    "m" 22px 33px,
+    "s-sparse" 16px 28px,
+    "s" 16px 24px,
+    "xs" 14px 21px,
+    "xxs" 12px 18px
+);
+
+@each $name, $fontSize, $lineHeight in $text-size-map {
+    .___text-#{$name} {
+        font-size: $fontSize;
+        line-height: $lineHeight;
+    }
+
+    @media (max-width: $media-max-width-tablet) {
+        .___text-#{$name}-tablet {
+            font-size: $fontSize;
+            line-height: $lineHeight;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        .___text-#{$name}-mobile {
+            font-size: $fontSize;
+            line-height: $lineHeight;
+        }
+    }
+}
+
 .text-xxl {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;

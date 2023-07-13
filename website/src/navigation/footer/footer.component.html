@@ -4,7 +4,7 @@
         <div class="ft-social-links">
             <a
                 *ngFor="let socialMediaLink of socialMediaLinks"
-                class="sm-panel text-xs"
+                class="sm-panel"
                 [href]="socialMediaLink.link.destination"
             >
                 <img
@@ -16,11 +16,13 @@
     </div>
     <nav class="ft-section ft-nav-section">
         <div class="ft-contact-section">
-            <h3 class="text-ml">{{ footer.contactSectionTitle }}</h3>
+            <h3 class="___text-l ___text-m-tablet">
+                {{ footer.contactSectionTitle }}
+            </h3>
             <ul>
                 <li
                     *ngFor="let contactMediaLink of contactMediaLinks"
-                    class="text-xs"
+                    class="___text-s-sparse"
                 >
                     <a [tdLink]="contactMediaLink.link">
                         <img [src]="contactMediaLink.iconURL" alt="" />
@@ -31,9 +33,12 @@
         </div>
         <div class="ft-sitemap-section">
             <div *ngFor="let column of footer.columns">
-                <h3 class="text-ml">{{ column.title }}</h3>
+                <h3 class="___text-l ___text-m-tablet">{{ column.title }}</h3>
                 <ul>
-                    <li *ngFor="let item of column.items" class="text-xs">
+                    <li
+                        *ngFor="let item of column.items"
+                        class="___text-s-sparse"
+                    >
                         <a [tdLink]="item">{{ item.text }}</a>
                     </li>
                 </ul>
@@ -41,12 +46,12 @@
         </div>
     </nav>
     <div class="ft-section ft-copyright-section">
-        <aside class="text-xxs">
+        <aside class="___text-xs ___text-xxs-mobile">
             © {{ copyrightYear }} Vaticle Ltd
             <br />
             Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
         </aside>
-        <p class="text-xxs ft-credits">
+        <p class="___text-xs ft-credits">
             <img src="/assets/icon/code-brackets.svg" alt="Made" /> with
             <img src="/assets/icon/heart.svg" alt="love" /> by
             <img
