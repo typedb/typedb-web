@@ -9,16 +9,20 @@ footer {
     background: $color-vaticle-purple;
 }
 
-a, a:visited, a p {
+a,
+a:visited,
+a p {
     color: $color-vaticle-white;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: $color-vaticle-green;
         text-decoration: underline;
     }
 }
 
-a:hover p, a:focus p {
+a:hover p,
+a:focus p {
     color: $color-vaticle-green;
 }
 
@@ -92,7 +96,8 @@ a:hover p, a:focus p {
         gap: 32px;
     }
 
-    ul, li {
+    ul,
+    li {
         list-style: none;
     }
 }

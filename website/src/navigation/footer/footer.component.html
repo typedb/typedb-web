@@ -2,8 +2,15 @@
     <div class="ft-section ft-social-section">
         <td-button [button]="footer.button"></td-button>
         <div class="ft-social-links">
-            <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel text-xs" [href]="socialMediaLink.link.destination">
-                <img [src]="socialMediaLink.iconURL" [alt]="socialMediaLink.text"/>
+            <a
+                *ngFor="let socialMediaLink of socialMediaLinks"
+                class="sm-panel text-xs"
+                [href]="socialMediaLink.link.destination"
+            >
+                <img
+                    [src]="socialMediaLink.iconURL"
+                    [alt]="socialMediaLink.text"
+                />
             </a>
         </div>
     </div>
@@ -11,9 +18,12 @@
         <div class="ft-contact-section">
             <h3 class="text-ml">{{ footer.contactSectionTitle }}</h3>
             <ul>
-                <li *ngFor="let contactMediaLink of contactMediaLinks" class="text-xs">
+                <li
+                    *ngFor="let contactMediaLink of contactMediaLinks"
+                    class="text-xs"
+                >
                     <a [tdLink]="contactMediaLink.link">
-                        <img [src]="contactMediaLink.iconURL" alt=""/>
+                        <img [src]="contactMediaLink.iconURL" alt="" />
                         <p>{{ contactMediaLink.text }}</p>
                     </a>
                 </li>
@@ -33,11 +43,17 @@
     <div class="ft-section ft-copyright-section">
         <aside class="text-xxs">
             © {{ copyrightYear }} Vaticle Ltd
-            <br/>
+            <br />
             Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
         </aside>
         <p class="text-xxs ft-credits">
-            <img src="/assets/icon/code-brackets.svg" alt="Made"/> with <img src="/assets/icon/heart.svg" alt="love"/> by <img src="/assets/logo/vaticle-text-only.svg" alt="Vaticle" class="ft-logo-vaticle"/>
+            <img src="/assets/icon/code-brackets.svg" alt="Made" /> with
+            <img src="/assets/icon/heart.svg" alt="love" /> by
+            <img
+                src="/assets/logo/vaticle-text-only.svg"
+                alt="Vaticle"
+                class="ft-logo-vaticle"
+            />
         </p>
     </div>
 </footer>
