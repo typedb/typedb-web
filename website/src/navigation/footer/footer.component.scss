@@ -9,16 +9,20 @@ footer {
     background: $color-vaticle-purple;
 }
 
-a, a:visited, a p {
+a,
+a:visited,
+a p {
     color: $color-vaticle-white;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: $color-vaticle-green;
         text-decoration: underline;
     }
 }
 
-a:hover p, a:focus p {
+a:hover p,
+a:focus p {
     color: $color-vaticle-green;
 }
 
@@ -30,7 +34,7 @@ a:hover p, a:focus p {
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         width: $section-width-tablet;
         max-width: $section-max-width-tablet;
-        padding: 32px 0;
+        padding: 40px 0;
     }
 
     @media (max-width: $media-max-width-mobile) {
@@ -84,15 +88,12 @@ a:hover p, a:focus p {
 
 .ft-nav-section {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
+    gap: 32px 104px;
 
-    @media (max-width: $media-max-width-mobile) {
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    ul, li {
+    ul,
+    li {
         list-style: none;
     }
 }
@@ -125,6 +126,10 @@ a:hover p, a:focus p {
     justify-content: space-between;
     gap: 104px;
 
+    @media (max-width: $media-max-width-tablet) {
+        gap: 72px;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -134,6 +139,10 @@ a:hover p, a:focus p {
     ul {
         margin-top: 34px;
 
+        @media (max-width: $media-max-width-tablet) {
+            margin-top: 32px;
+        }
+
         @media (max-width: $media-max-width-mobile) {
             margin-top: 16px;
             width: 144px;
@@ -142,6 +151,10 @@ a:hover p, a:focus p {
 
     li:not(:first-child) {
         margin-top: 20px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 12px;
+        }
     }
 }
 
@@ -149,11 +162,12 @@ a:hover p, a:focus p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
 
     @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
         align-items: center;
         text-align: center;
-        flex-direction: column;
         gap: 16px;
     }
 }
