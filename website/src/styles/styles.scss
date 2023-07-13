@@ -266,32 +266,33 @@ hr {
     }
 }
 
-$text-size-map: (
-    "l" 28px 43px,
-    "m" 22px 33px,
-    "s-sparse" 16px 28px,
-    "s" 16px 24px,
-    "xs" 14px 21px,
-    "xxs" 12px 18px
+$text-sizes-map: (
+    // font-size line-height
+    28 43,
+    22 33,
+    16 28,
+    16 24,
+    14 21,
+    12 18
 );
 
-@each $name, $fontSize, $lineHeight in $text-size-map {
-    .___text-#{$name} {
-        font-size: $fontSize;
-        line-height: $lineHeight;
-    }
+@each $fontSize, $lineHeight in $text-sizes-map {
+    .text-#{$fontSize}-#{$lineHeight} {
+        font-size: $fontSize * 1px;
+        line-height: $lineHeight * 1px;
 
-    @media (max-width: $media-max-width-tablet) {
-        .___text-#{$name}-tablet {
-            font-size: $fontSize;
-            line-height: $lineHeight;
+        @media (max-width: $media-max-width-tablet) {
+            &-tablet {
+                font-size: $fontSize * 1px;
+                line-height: $lineHeight * 1px;
+            }
         }
-    }
 
-    @media (max-width: $media-max-width-mobile) {
-        .___text-#{$name}-mobile {
-            font-size: $fontSize;
-            line-height: $lineHeight;
+        @media (max-width: $media-max-width-mobile) {
+            &-mobile {
+                font-size: $fontSize * 1px;
+                line-height: $lineHeight * 1px;
+            }
         }
     }
 }
