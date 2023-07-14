@@ -84,7 +84,10 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     get rootNgClass(): { [clazz: string]: boolean } {
-        return { "tb-solid": this.shouldForceOpaque };
+        return {
+            "tb-solid": this.shouldForceOpaque,
+            "has-banner": !!this.siteBanner,
+        };
     }
 
     get mobileMenuIsOpen(): boolean {

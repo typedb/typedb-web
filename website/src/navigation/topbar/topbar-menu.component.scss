@@ -29,6 +29,25 @@ header {
     }
 }
 
+td-topbar-menu-mobile {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    top: $topbar-height;
+
+    @media (max-width: $media-max-width-mobile) {
+        top: $topbar-height-mobile;
+    }
+
+    header.has-banner & {
+        top: $topbar-height + $banner-height;
+
+        @media (max-width: $media-max-width-mobile) {
+            top: $topbar-height-mobile + $banner-height-mobile;
+        }
+    }
+}
+
 nav {
     height: $topbar-height;
     background-color: transparent;
@@ -38,7 +57,7 @@ nav {
     justify-content: space-between;
     position: relative;
 
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+    @media (max-width: $media-max-width-tablet) {
         padding: 0 12px;
     }
 
@@ -69,7 +88,7 @@ nav {
         align-items: center;
 
         img {
-            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+            @media (max-width: $media-max-width-tablet) {
                 height: 32px;
             }
 
@@ -115,11 +134,38 @@ nav {
             }
         }
     }
+}
 
-    .tb-hamburger-button {
-        appearance: none;
-        margin-right: 8px;
-        margin-top: 2px;
+.tb-hamburger-button {
+    margin-right: 16px;
+    align-self: center;
+    appearance: none;
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    img {
+        display: none;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-right: 12px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        &.tb-opened {
+            svg {
+                display: none;
+            }
+            img {
+                display: inline;
+            }
+        }
     }
 }
 

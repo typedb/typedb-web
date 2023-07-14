@@ -2,86 +2,72 @@
 @import "../../styles/sizes";
 
 :host {
-    width: 100%;
+    margin-top: 24px;
+    display: block;
+    padding-left: 16px;
     border-left: 1px solid $color-vaticle-light-purple;
-    margin-left: 16px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+    }
 }
 
 .mm-column {
-    margin-left: 16px;
-    margin-right: 20px;
+    padding: 16px 0;
+    border-top: 1px solid $color-vaticle-light-purple;
 
-    &:not(:first-child) {
-        margin-top: 16px;
-        padding-top: 16px;
-        border-top: 1px solid $color-vaticle-light-purple;
+    &:first-of-type {
+        padding-top: 0;
+        border-top: none;
     }
 
-    a {
-        color: $color-vaticle-white;
+    &:last-of-type {
+        padding-bottom: 0;
     }
+}
 
-    ul,
-    li {
-        list-style: none;
-    }
+ul,
+li {
+    list-style: none;
+}
 
-    ul {
-        margin-top: $text-margin-s;
-        display: flex;
-        flex-flow: column wrap;
-        gap: $text-margin-s 32px;
-        max-height: calc(72px * 4 + $text-margin-s * 3);
-    }
+ul {
+    margin-top: $text-margin-s;
+    display: flex;
+    flex-direction: column;
+    gap: $text-margin-s;
+}
 
-    li {
+h4 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: inherit;
+    color: $color-vaticle-white;
+}
+
+a.mp-coming-soon {
+    cursor: default;
+    opacity: 0.5;
+}
+
+a:not(.mp-coming-soon) {
+    &:hover,
+    &:focus {
         h4 {
-            position: relative;
-            width: fit-content;
-        }
-
-        &:hover h4,
-        &:focus h4 {
             color: $color-vaticle-green;
             text-decoration: underline;
-        }
-
-        .mp-coming-soon {
-            cursor: default;
-
-            h4 span,
-            p {
-                opacity: 0.5;
-            }
-        }
-
-        &:hover .mp-coming-soon h4,
-        &:focus .mp-coming-soon h4 {
-            color: $color-vaticle-white;
-            text-decoration: none;
         }
     }
 }
 
 .mm-list-column-description {
     color: $color-vaticle-secondary-light-grey;
-    margin-top: 4px;
+    margin-top: $text-margin-xxs;
+    text-decoration: none;
 }
 
-a .tb-external-link-icon {
-    margin-left: 4px;
-    margin-right: -24px;
-    margin-bottom: -4px;
+.tb-external-link-icon {
     width: 20px;
     height: 20px;
-    visibility: hidden;
-
-    path {
-        fill: $color-vaticle-green;
-    }
-}
-
-a:hover .tb-external-link-icon,
-a:focus .tb-external-link-icon {
-    visibility: visible;
 }

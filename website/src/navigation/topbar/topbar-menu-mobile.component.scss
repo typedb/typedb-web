@@ -2,18 +2,24 @@
 @import "../../styles/sizes";
 
 :host {
-    position: absolute;
-    top: $topbar-height-mobile;
-    min-height: calc(100vh - $topbar-height-mobile);
-    width: 100vw;
-    z-index: 500;
-    border-bottom: 1px solid $color-vaticle-secondary-purple;
-    background-color: $color-vaticle-purple;
+    width: 530px;
+    padding: 0 32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-height: calc(100% - $topbar-height-mobile);
-    overflow-y: scroll;
+    background-color: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-secondary-purple;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 100%;
+        padding: 0 20px;
+        overflow-y: auto;
+        border: none;
+    }
+
+    @media (min-width: $media-min-width-desktop) {
+        display: none;
+    }
 }
 
 .tm-top-level-items {
@@ -22,81 +28,109 @@
     }
 }
 
-.tm-primary-area li > a {
-    padding: 16px 20px;
-    width: 100%;
+.tm-primary-area {
+    margin: 0 -32px;
+    padding: 32px 32px 24px;
+    overflow-y: auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 24px;
 
-    &[href] {
-        justify-content: flex-start;
+    @media (max-width: $media-max-width-mobile) {
+        margin: 0 -20px;
+        padding: 16px 20px;
+        overflow-y: visible;
+        gap: 16px;
+    }
+
+    li > a {
+        margin: 0 -32px;
+        padding: 8px 32px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin: 0 -20px;
+            padding: 0 20px;
+            gap: 16px;
+        }
+
+        &.tm-expanded {
+            color: $color-vaticle-green;
+            text-decoration: underline;
+
+            @media (max-width: $media-max-width-mobile) {
+                text-decoration: initial;
+            }
+
+            .tm-chevron {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .tm-chevron {
+        color: $color-vaticle-white;
+        width: 20px;
+        height: 20px;
     }
 }
 
 .tm-secondary-area {
-    margin: 0 16px;
     border-top: 1px solid $color-vaticle-light-purple;
+    padding: 24px 0 32px;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    gap: 40px;
 
-    > * {
-        padding: 16px 10px;
+    @media (max-width: $media-max-width-mobile) {
+        padding: 16px 0;
+        gap: 20px;
 
-        &:first-child {
-            padding-left: 0;
-        }
-
-        &:last-child {
-            padding-right: 0;
-        }
-    }
-
-    a img {
-        width: 32px;
-        height: 32px;
-    }
-
-    td-button {
-        max-width: 140px;
-
-        ::ng-deep a {
-            font-size: $font-size-tiny !important;
-            height: 32px !important;
+        td-button {
+            ::ng-deep a {
+                font-size: 12px !important;
+                height: 32px !important;
+            }
         }
     }
 
-    .tm-secondary-link {
-        display: flex;
+    li {
+        &:first-of-type {
+            margin-right: 8px;
+
+            @media (max-width: $media-max-width-mobile) {
+                margin-right: -4px;
+            }
+        }
+
+        &:last-of-type {
+            margin-left: 8px;
+
+            @media (max-width: $media-max-width-mobile) {
+                margin-left: -4px;
+            }
+        }
+
+        &.tm-secondary-link {
+            display: flex;
+            text-decoration: underline;
+
+            @media (max-width: $media-max-width-mobile) {
+                text-decoration: initial;
+            }
+        }
     }
 
-    > li > a {
-        display: flex;
-        align-items: center;
+    img {
+        width: 40px;
+        height: 40px;
     }
 }
 
-.tm-chevron {
-    width: 20px;
-    height: 20px;
-}
-
-a,
-a:visited {
-    color: $color-vaticle-white;
-}
-
-a .tm-external-link-icon {
-    margin-left: 4px;
-    margin-right: -24px;
-    width: 20px;
-    height: 20px;
-    visibility: hidden;
-
-    path {
-        fill: $color-vaticle-green;
-    }
-}
-
-a:hover .tm-external-link-icon {
-    visibility: visible;
+.tm-external-link-icon {
+    width: 16px;
+    height: 16px;
 }

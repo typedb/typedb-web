@@ -11,7 +11,7 @@
                     src="/assets/image/vaticle-typedb.svg"
                     alt="Vaticle TypeDB"
             /></a>
-            <div class="tb-desktop-items text-s">
+            <div class="tb-desktop-items text-18-26">
                 <ul class="tb-top-level-items">
                     <li *ngFor="let item of topbar.mainArea">
                         <a
@@ -78,11 +78,11 @@
                 mat-icon-button
                 [disableRipple]="true"
                 class="tb-hamburger-button hide-desktop"
+                [class.tb-opened]="mobileMenuIsOpen"
                 aria-label="open links"
                 (click)="toggleMobileMenu()"
             >
                 <svg
-                    *ngIf="!mobileMenuIsOpen"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -94,21 +94,12 @@
                     <path d="M20 14.3077H4V13.3846H20V14.3077Z" fill="white" />
                     <path d="M4 18H20V17.0769H4V18Z" fill="white" />
                 </svg>
-                <img
-                    *ngIf="mobileMenuIsOpen"
-                    src="/assets/icon/close-large.svg"
-                    alt="X"
-                />
+                <img src="/assets/icon/close-large.svg" alt="X" />
             </button>
             <td-topbar-menu-mobile
                 [hidden]="!mobileMenuIsOpen"
                 [topbar]="topbar"
                 [githubURL]="githubURL"
-                [ngStyle]="{
-                    'min-height': siteBanner
-                        ? 'calc(100vh - 48px - 26px)'
-                        : 'calc(100vh - 48px)'
-                }"
             ></td-topbar-menu-mobile>
         </nav>
     </header>
