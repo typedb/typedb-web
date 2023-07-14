@@ -1,22 +1,64 @@
 <ul class="tm-top-level-items tm-primary-area text-s text-xs-mobile">
     <li *ngFor="let item of topbar.mainArea">
-        <a *ngIf="isMenuPanel(item)" tabindex="0" (click)="toggleMenuPanelVisible(item)">
+        <a
+            *ngIf="isMenuPanel(item)"
+            tabindex="0"
+            (click)="toggleMenuPanelVisible(item)"
+        >
             {{ item.title }}
-            <img class="tm-chevron" [src]="isMenuPanelVisible(item) ? '/assets/icon/chevron-up.svg' : '/assets/icon/chevron-down.svg'" alt=""/>
+            <img
+                class="tm-chevron"
+                [src]="
+                    isMenuPanelVisible(item)
+                        ? '/assets/icon/chevron-up.svg'
+                        : '/assets/icon/chevron-down.svg'
+                "
+                alt=""
+            />
         </a>
         <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
             {{ item.text }}
-            <svg *ngIf="item.type === 'external'" class="tm-external-link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" fill="white"/>
+            <svg
+                *ngIf="item.type === 'external'"
+                class="tm-external-link-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z"
+                    fill="white"
+                />
             </svg>
         </a>
-        <td-topbar-menu-panel-mobile *ngIf="isMenuPanel(item)" [menuPanel]="item" [hidden]="!isMenuPanelVisible(item)" (itemclick)="onMenuItemClick()"></td-topbar-menu-panel-mobile>
+        <td-topbar-menu-panel-mobile
+            *ngIf="isMenuPanel(item)"
+            [menuPanel]="item"
+            [hidden]="!isMenuPanelVisible(item)"
+            (itemclick)="onMenuItemClick()"
+        ></td-topbar-menu-panel-mobile>
     </li>
 </ul>
 <ul class="tm-top-level-items tm-secondary-area text-s text-xs-mobile">
-    <li class="flex"><td-button [button]="topbar.secondaryArea.button" size="small" buttonWidth="100%" (click)="onMenuItemClick()"></td-button></li>
-    <li class="tm-secondary-link" *ngFor="let link of topbar.secondaryArea.links">
+    <li class="flex">
+        <td-button
+            [button]="topbar.secondaryArea.button"
+            size="small"
+            buttonWidth="100%"
+            (click)="onMenuItemClick()"
+        ></td-button>
+    </li>
+    <li
+        class="tm-secondary-link"
+        *ngFor="let link of topbar.secondaryArea.links"
+    >
         <a [tdLink]="link" (click)="onMenuItemClick()">{{ link.text }}</a>
     </li>
-    <li><a [href]="githubURL" target="_blank" (click)="onMenuItemClick()"><img src="/assets/icon/social/github.svg" alt="GitHub"/></a></li>
+    <li>
+        <a [href]="githubURL" target="_blank" (click)="onMenuItemClick()"
+            ><img src="/assets/icon/social/github.svg" alt="GitHub"
+        /></a>
+    </li>
 </ul>

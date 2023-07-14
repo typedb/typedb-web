@@ -21,7 +21,8 @@
         color: $color-vaticle-white;
     }
 
-    ul, li {
+    ul,
+    li {
         list-style: none;
     }
 
@@ -39,7 +40,8 @@
             width: fit-content;
         }
 
-        &:hover h4, &:focus h4 {
+        &:hover h4,
+        &:focus h4 {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
@@ -47,12 +49,14 @@
         .mp-coming-soon {
             cursor: default;
 
-            h4 span, p {
-                opacity: .5;
+            h4 span,
+            p {
+                opacity: 0.5;
             }
         }
 
-        &:hover .mp-coming-soon h4, &:focus .mp-coming-soon h4 {
+        &:hover .mp-coming-soon h4,
+        &:focus .mp-coming-soon h4 {
             color: $color-vaticle-white;
             text-decoration: none;
         }
@@ -77,6 +81,7 @@ a .tb-external-link-icon {
     }
 }
 
-a:hover .tb-external-link-icon, a:focus .tb-external-link-icon {
+a:hover .tb-external-link-icon,
+a:focus .tb-external-link-icon {
     visibility: visible;
 }
