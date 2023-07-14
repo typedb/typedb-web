@@ -1,5 +1,5 @@
 [build]
-ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
+ignore = "/bin/false"
 
 [context.production]
 command = "pnpm run build-ci-prod"
