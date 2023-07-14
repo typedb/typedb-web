@@ -23,6 +23,16 @@ to = "https://discord.com/invite/typedb"
 status = 303
 
 [[redirects]]
+from = "/meetup"
+to = "https://www.meetup.com/pro/typedb"
+status = 303
+
+[[redirects]]
+from = "/github"
+to = "https://github.com/vaticle/typedb"
+status = 303
+
+[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
