@@ -2,8 +2,9 @@ $border-radius: 5px;
 
 $section-width: 1160px;
 $section-max-width: calc(100vw - 40px);
-$section-width-tablet: 1024px;
-$section-max-width-tablet: calc(100vw - 32px);
+$section-padding-tablet: 32px;
+$section-width-tablet: 1024px - $section-padding-tablet * 2;
+$section-max-width-tablet: calc(100vw - $section-padding-tablet * 2);
 $section-width-mobile: 375px;
 $section-max-width-mobile: calc(100vw - 24px);
 

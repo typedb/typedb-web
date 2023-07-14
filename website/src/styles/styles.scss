@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
 
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "prism";
 @import "colors";
 @import "sizes";
@@ -8,7 +8,8 @@
 $default-background: $color-vaticle-black-purple;
 $default-text-color: $color-vaticle-grey;
 
-html, body {
+html,
+body {
     height: 100%;
     background-color: $default-background;
     color: $default-text-color;
@@ -19,7 +20,7 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
 
     // TODO: import this from npm @fontsource/titillium-web
-    font-family: 'Titillium Web', sans-serif;
+    font-family: "Titillium Web", sans-serif;
 
     margin: 0;
     scroll-padding-top: $topbar-height;
@@ -34,8 +35,9 @@ html, body {
     }
 }
 
-pre, code {
-    font-family: 'Ubuntu Mono', monospace;
+pre,
+code {
+    font-family: "Ubuntu Mono", monospace;
 }
 
 typedb-website {
@@ -53,7 +55,8 @@ typedb-website {
         }
     }
 
-    section, .section {
+    section,
+    .section {
         width: 1160px;
 
         @media (max-width: $media-max-width-mobile) {
@@ -61,7 +64,8 @@ typedb-website {
         }
     }
 
-    section, .section {
+    section,
+    .section {
         max-width: calc(100vw - 40px);
         margin-left: auto;
         margin-right: auto;
@@ -78,13 +82,27 @@ typedb-website {
     }
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+pre {
     margin: 0;
     padding: 0;
     font-size: unset;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $color-vaticle-white;
 }
 
@@ -92,7 +110,11 @@ h1 {
     font-weight: $font-weight-bold;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 400;
 }
 
@@ -106,17 +128,21 @@ a {
     }
 }
 
-p, aside {
-    a, a:visited {
+p,
+aside {
+    a,
+    a:visited {
         color: $color-vaticle-green;
     }
 }
 
-a.link-tertiary, a.link-tertiary:visited {
+a.link-tertiary,
+a.link-tertiary:visited {
     color: $color-vaticle-white;
     font-weight: $font-weight-bold;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: $color-vaticle-green;
         text-decoration: underline;
     }
@@ -126,8 +152,12 @@ strong {
     font-weight: $font-weight-bold;
 }
 
-button, input[type="text"], input[type="email"], [class^='mat-'], [class*=' mat-'] {
-    font-family: 'Titillium Web', sans-serif;
+button,
+input[type="text"],
+input[type="email"],
+[class^="mat-"],
+[class*=" mat-"] {
+    font-family: "Titillium Web", sans-serif;
 }
 
 address {
@@ -166,11 +196,13 @@ table {
     border-collapse: collapse;
     box-shadow: 0 0 0 1px $color-vaticle-light-purple;
 
-    thead + tbody, tr:not(:first-child) {
+    thead + tbody,
+    tr:not(:first-child) {
         border-top: 1px solid $color-vaticle-light-purple;
     }
 
-    th, td {
+    th,
+    td {
         &:not(:first-child) {
             border-left: 1px solid $color-vaticle-light-purple;
         }
@@ -231,6 +263,37 @@ hr {
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: $subtitle-margin-mobile;
+    }
+}
+
+$text-sizes-map: (
+    // font-size line-height
+    28 43,
+    22 33,
+    16 28,
+    16 24,
+    14 21,
+    12 18
+);
+
+@each $fontSize, $lineHeight in $text-sizes-map {
+    .text-#{$fontSize}-#{$lineHeight} {
+        font-size: $fontSize * 1px;
+        line-height: $lineHeight * 1px;
+
+        @media (max-width: $media-max-width-tablet) {
+            &-tablet {
+                font-size: $fontSize * 1px;
+                line-height: $lineHeight * 1px;
+            }
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            &-mobile {
+                font-size: $fontSize * 1px;
+                line-height: $lineHeight * 1px;
+            }
+        }
     }
 }
 
@@ -321,7 +384,10 @@ hr {
     }
 }
 
-h1.text-m, h2.text-m, h3.text-m, h4.text-m {
+h1.text-m,
+h2.text-m,
+h3.text-m,
+h4.text-m {
     @media (max-width: $media-max-width-mobile) {
         font-size: $font-size-s;
         line-height: $line-height-s;
@@ -506,7 +572,9 @@ h1.text-m, h2.text-m, h3.text-m, h4.text-m {
     margin-top: 12px;
 }
 
-.hs-form input[type='text'], input[type='email'], select {
+.hs-form input[type="text"],
+input[type="email"],
+select {
     width: 100% !important; // overrides media query from Hubspot
     padding: 0 8px;
     background-color: $color-vaticle-purple;
@@ -517,10 +585,12 @@ h1.text-m, h2.text-m, h3.text-m, h4.text-m {
     font-size: $font-size-xs;
     line-height: 46px;
     height: 48px;
-    font-family: 'Titillium Web', sans-serif;
+    font-family: "Titillium Web", sans-serif;
 }
 
-.hs-form input, select, textarea {
+.hs-form input,
+select,
+textarea {
     &::placeholder {
         color: $color-vaticle-secondary-grey;
         font-style: italic;
@@ -536,7 +606,7 @@ h1.text-m, h2.text-m, h3.text-m, h4.text-m {
 
     &::after {
         position: absolute;
-        content: '';
+        content: "";
         width: 48px;
         height: 46px;
         border: none;
@@ -549,11 +619,11 @@ h1.text-m, h2.text-m, h3.text-m, h4.text-m {
     }
 }
 
-.hs-form input[type=checkbox]:focus {
+.hs-form input[type="checkbox"]:focus {
     outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.hs-form input[type=checkbox] {
+.hs-form input[type="checkbox"] {
     background-color: transparent;
     border-radius: 4px;
     border: 2px solid $color-vaticle-grey;
@@ -568,8 +638,9 @@ h1.text-m, h2.text-m, h3.text-m, h4.text-m {
     margin-right: 12px;
 }
 
-.hs-form input[type=checkbox]:checked {
-    background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 1px 1px no-repeat;
+.hs-form input[type="checkbox"]:checked {
+    background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==")
+        1px 1px no-repeat;
 }
 
 .hs-form-field {
@@ -590,7 +661,8 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     width: 100%;
 }
 
-.hs-form fieldset + fieldset, .hs-form > .hs-form-field + .hs-form-field {
+.hs-form fieldset + fieldset,
+.hs-form > .hs-form-field + .hs-form-field {
     margin-top: 16px;
 }
 
@@ -628,7 +700,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
         caret-color: $default-text-color;
         border-radius: $border-radius;
         font-size: $font-size-xs;
-        font-family: 'Titillium Web', sans-serif;
+        font-family: "Titillium Web", sans-serif;
         padding: 8px;
 
         @media (max-width: $media-max-width-mobile) {
@@ -643,7 +715,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     }
 }
 
-input[type='submit'].hs-button {
+input[type="submit"].hs-button {
     margin-top: 46px;
     display: flex;
     height: 48px;
@@ -661,10 +733,10 @@ input[type='submit'].hs-button {
     background: $color-vaticle-green;
     color: $color-vaticle-purple;
     cursor: pointer;
-    font-family: 'Titillium Web', sans-serif;
+    font-family: "Titillium Web", sans-serif;
 
     &:hover {
-        background-color: #0B939F;
+        background-color: #0b939f;
     }
 
     @media (max-width: $media-max-width-mobile) {
@@ -672,7 +744,7 @@ input[type='submit'].hs-button {
     }
 }
 
-#hubspot-form-holder-contact input[type='submit'].hs-button {
+#hubspot-form-holder-contact input[type="submit"].hs-button {
     @media (min-width: $media-min-width-tablet) {
         width: 202px;
         float: right;
@@ -699,7 +771,7 @@ input[type='submit'].hs-button {
         transition: box-shadow 100ms ease;
 
         &:hover {
-            box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, .4);
+            box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, 0.4);
         }
     }
 }
@@ -723,7 +795,7 @@ input[type='submit'].hs-button {
 }
 
 .mat-simple-snackbar::before {
-    content: '';
+    content: "";
     width: 20px;
     height: 20px;
     background-image: url("/assets/icon/check-circle.svg");
@@ -789,7 +861,8 @@ body .mat-focused .mat-form-field-label {
     font-style: normal;
 }
 .mat-form-field-appearance-outline.mat-focused {
-    .mat-form-field-outline, .mat-form-field-label {
+    .mat-form-field-outline,
+    .mat-form-field-label {
         color: $color-vaticle-green !important;
     }
 }
@@ -798,9 +871,13 @@ body .mat-form-field-appearance-outline .mat-form-field-outline-end,
 body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-color: $color-vaticle-secondary-deep-grey;
 }
-body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
+body
+    .mat-form-field-appearance-outline.mat-focused
+    .mat-form-field-outline-start,
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
-body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
+body
+    .mat-form-field-appearance-outline.mat-focused
+    .mat-form-field-outline-gap {
     border-color: $color-vaticle-green;
 }
 .mat-form-field-wrapper {
@@ -811,8 +888,9 @@ body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap 
     padding-top: 10px;
     overflow: visible !important;
 }
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-    transform: translateY(-21px) translateX(-4px) scale(.75);
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    transform: translateY(-21px) translateX(-4px) scale(0.75);
     width: 133.33333%;
     font-style: italic;
 }
@@ -844,11 +922,12 @@ body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
     border-left: 1px solid $color-vaticle-light-purple;
     background: no-repeat center url("/assets/icon/chevron-down.svg");
 }
-.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
+.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline
+    .mat-form-field-flex {
     padding: 0;
 }
 .mat-form-field-type-mat-native-select .mat-input-element {
-    padding: 1em .75em 9px;
+    padding: 1em 0.75em 9px;
     margin-bottom: -18px;
 }
 .mat-form-field-type-mat-native-select .mat-form-field-label {
@@ -860,8 +939,10 @@ body .mat-checkbox-inner-container {
 }
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
-.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
+    .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent
+    .mat-ripple-element {
     background-color: $color-vaticle-green;
 }
 
