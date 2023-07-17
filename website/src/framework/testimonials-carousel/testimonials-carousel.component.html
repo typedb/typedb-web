@@ -5,17 +5,19 @@
             [class]="'tc-card ' + cardClass(idx)"
         >
             <div class="tc-card-content">
-                <p class="text-s text-tiny-mobile">
+                <p class="text-18-28 text-12-20-mobile text-weight-light">
                     <em>{{ testimonial.body }}</em>
                 </p>
                 <div class="tc-details">
                     <div class="tc-person">
                         <img [src]="testimonial.headshotURL" alt="" />
                         <div>
-                            <h3 class="text-s">
+                            <h3 class="text-18-26 text-16-24-mobile">
                                 <strong>{{ testimonial.author }}</strong>
                             </h3>
-                            <p class="tc-person-job text-xxs">
+                            <p
+                                class="tc-person-job text-14-23 text-10-15-mobile"
+                            >
                                 {{ testimonial.jobTitle }},
                                 {{ testimonial.organisation.name }}
                             </p>

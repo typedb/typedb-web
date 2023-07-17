@@ -12,39 +12,53 @@
 }
 
 .cp-main-area {
-    display: flex;
-    flex-direction: column;
     background: $color-vaticle-purple;
     border-radius: $border-radius 0 0 $border-radius;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
-    @media (min-width: $media-min-width-tablet) {
-        width: 800px;
+    @media (max-width: $media-max-width-mobile) {
+        border-radius: $border-radius $border-radius 0 0;
+        padding: 16px;
+        gap: 8px;
+    }
+
+    ::ng-deep .ac-root {
+        margin-top: 16px;
     }
 }
 
 .cp-resources-area {
-    flex: 1;
+    width: 360px;
     background: $color-vaticle-deep-purple;
     border-radius: 0 $border-radius $border-radius 0;
+    border-left: 1px solid $color-vaticle-light-purple;
+    padding: 40px;
 
-    @media (min-width: $media-min-width-tablet) {
-        border-left: 1px solid $color-vaticle-light-purple;
+    @media (max-width: $media-max-width-tablet) {
+        width: 225px;
     }
 
     @media (max-width: $media-max-width-mobile) {
+        border-radius: 0 0 $border-radius $border-radius;
         border-top: 1px solid $color-vaticle-light-purple;
+        border-left: none;
+        width: auto;
+        padding: 16px;
     }
 
     ul {
+        margin-top: 26px;
         list-style: none;
-        font-size: $font-size-xs;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
         @media (max-width: $media-max-width-mobile) {
-            font-size: $font-size-xxs;
-        }
-
-        li:not(:first-child) {
-            margin-top: $text-margin-xs;
+            margin-top: 16px;
         }
 
         a {

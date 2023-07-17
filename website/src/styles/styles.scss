@@ -57,10 +57,14 @@ typedb-website {
 
     section,
     .section {
-        width: 1160px;
+        width: $section-width;
+
+        @media (max-width: $media-max-width-tablet) {
+            width: $section-width-tablet;
+        }
 
         @media (max-width: $media-max-width-mobile) {
-            width: 375px;
+            width: $section-width-mobile;
         }
     }
 
@@ -245,6 +249,10 @@ hr {
 .subsection-margin {
     margin-top: $subsection-margin;
 
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: $subsection-margin-tablet;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         margin-top: $subsection-margin-mobile;
     }
@@ -268,14 +276,26 @@ hr {
 
 $text-sizes-map: (
     // font-size line-height
+    56 64,
+    48 60,
+    40 54,
+    34 48,
+    32 44,
     28 43,
+    24 37,
+    24 32,
     22 33,
     18 26,
     16 28,
     16 24,
+    16 20,
+    14 24,
+    14 23,
     14 21,
+    12 20,
     12 18,
-    12 16
+    12 16,
+    10 15
 );
 
 @each $fontSize, $lineHeight in $text-sizes-map {
@@ -556,6 +576,10 @@ h4.text-m {
 
 .card-padding {
     padding: 40px;
+
+    @media (max-width: $media-max-width-tablet) {
+        padding: 32px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;

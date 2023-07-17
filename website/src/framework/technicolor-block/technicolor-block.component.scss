@@ -2,6 +2,7 @@
 @import "../../styles/sizes";
 
 $block-gap: 144px;
+$block-gap-tablet: 128px;
 $block-gap-mobile: 64px;
 
 .tb-root {
@@ -13,6 +14,10 @@ $block-gap-mobile: 64px;
     height: $block-gap;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: $media-max-width-tablet) {
+        height: $block-gap-tablet;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         height: $block-gap-mobile;
@@ -123,6 +128,10 @@ $block-gap-mobile: 64px;
 .tb-graphic-line-top {
     height: $block-gap;
 
+    @media (max-width: $media-max-width-tablet) {
+        height: $block-gap-tablet;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         height: $block-gap-mobile;
     }
@@ -130,6 +139,11 @@ $block-gap-mobile: 64px;
     &.tb-long-upper-chain {
         height: $block-gap + 100px;
         margin-top: -100px;
+
+        @media (max-width: $media-max-width-tablet) {
+            height: $block-gap-tablet + 100px;
+            margin-top: -100px;
+        }
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: -61px;
@@ -143,14 +157,38 @@ $block-gap-mobile: 64px;
 
     &.tb-body-wide {
         max-width: 660px;
+
+        @media (max-width: $media-max-width-tablet) {
+            max-width: 600px;
+        }
     }
     &.tb-body-narrow {
         max-width: 560px;
     }
 }
 
+.tb-text-l {
+    margin-top: 32px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 16px;
+    }
+}
+
+.tb-text-m {
+    margin-top: 24px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+    }
+}
+
 .tb-body-margin-bottom {
     margin-bottom: 72px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-bottom: 48px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         margin-bottom: 24px;

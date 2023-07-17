@@ -1,18 +1,20 @@
 <div class="section cp-root">
-    <div class="cp-main-area card-padding">
-        <h2 class="text-l">
-            <strong>{{ panel.title }}</strong>
+    <div class="cp-main-area">
+        <h2 class="text-32-44 text-28-43-tablet text-20-32-mobile">
+            {{ panel.title }}
         </h2>
         <td-rich-text
-            class="text-xs text-sparse text-margin-s"
+            class="text-16-28 text-12-18-mobile"
             [value]="panel.body"
         ></td-rich-text>
         <div class="flex"></div>
         <td-actions [actions]="panel.actions"></td-actions>
     </div>
-    <div class="cp-resources-area card-padding">
-        <h3 class="text-m">{{ panel.resourceListTitle }}</h3>
-        <ul class="text-margin-m">
+    <div class="cp-resources-area">
+        <h3 class="text-24-32 text-22-33-tablet text-16-24-mobile">
+            {{ panel.resourceListTitle }}
+        </h3>
+        <ul class="text-16-24 text-14-24-mobile">
             <li *ngFor="let resource of panel.resources">
                 <a [tdLink]="resource" class="link-tertiary">{{
                     resource.text

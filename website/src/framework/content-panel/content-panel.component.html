@@ -8,13 +8,13 @@
         <div>
             <h2
                 *ngIf="position === 'standalone' || isMobile"
-                class="text-m title-standalone"
+                class="text-18-26 title-standalone"
             >
                 <strong>{{ contentTextPanel.title }}</strong>
             </h2>
             <p
                 *ngFor="let paragraph of contentTextPanel.body.paragraphs"
-                class="text-m text-xxs-mobile text-weight-light"
+                class="text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
             >
                 <span
                     *ngFor="let span of paragraph.spans"
@@ -30,7 +30,7 @@
         <a
             *ngIf="contentTextPanel.learnMoreLink"
             [tdLink]="contentTextPanel.learnMoreLink"
-            class="text-s cp-learn-more link-tertiary"
+            class="text-16-24 text-14-24-mobile cp-learn-more link-tertiary"
             >Learn More</a
         >
     </div>

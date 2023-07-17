@@ -3,12 +3,16 @@
 
 .kpt-table {
     tr {
-        height: 132px;
+        height: 137px;
     }
 
     th,
     td {
         padding: 32px;
+
+        @media (max-width: $media-max-width-tablet) {
+            padding: 24px;
+        }
 
         @media (max-width: $media-max-width-mobile) {
             padding: 16px;
@@ -17,9 +21,12 @@
 
     th {
         background: $color-vaticle-deep-purple;
+        width: 140px;
 
-        @media (min-width: $media-min-width-tablet) {
-            width: 140px;
+        @media (max-width: $media-max-width-mobile) {
+            width: 72px;
+            vertical-align: top;
+            padding-top: 31px;
         }
 
         > div {
@@ -34,7 +41,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: $text-margin-xs;
+        gap: 8px;
     }
 
     img {
