@@ -1,41 +1,106 @@
 <ng-container *ngIf="topbar">
     <header id="siteHeader" [ngClass]="rootNgClass">
-        <td-site-banner *ngIf="siteBanner" [banner]="siteBanner" (click)="hideMobileMenu()"></td-site-banner>
+        <td-site-banner
+            *ngIf="siteBanner"
+            [banner]="siteBanner"
+            (click)="hideMobileMenu()"
+        ></td-site-banner>
         <nav>
-            <a [routerLink]="['/']" class="tb-logo-container"><img src="/assets/image/vaticle-typedb.svg" alt="Vaticle TypeDB"/></a>
-            <div class="tb-desktop-items text-s">
+            <a [routerLink]="['/']" class="tb-logo-container"
+                ><img
+                    src="/assets/image/vaticle-typedb.svg"
+                    alt="Vaticle TypeDB"
+            /></a>
+            <div class="tb-desktop-items text-18-26">
                 <ul class="tb-top-level-items">
                     <li *ngFor="let item of topbar.mainArea">
-                        <a *ngIf="isMenuPanel(item)" tabindex="0" (mouseenter)="onMenuItemMouseEnter(item)" (mouseleave)="onMenuItemMouseLeave(item)" (focus)="onMenuItemFocus(item)" (blur)="onMenuItemBlur(item)">
+                        <a
+                            *ngIf="isMenuPanel(item)"
+                            tabindex="0"
+                            (mouseenter)="onMenuItemMouseEnter(item)"
+                            (mouseleave)="onMenuItemMouseLeave(item)"
+                            (focus)="onMenuItemFocus(item)"
+                            (blur)="onMenuItemBlur(item)"
+                        >
                             {{ item.title }}
                         </a>
-                        <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
+                        <a
+                            *ngIf="isTextLink(item)"
+                            [tdLink]="item"
+                            (mouseenter)="clearFocus()"
+                        >
                             {{ item.text }}
-                            <svg *ngIf="item.type === 'external'" class="tb-external-link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" fill="white"/>
+                            <svg
+                                *ngIf="item.type === 'external'"
+                                class="tb-external-link-icon"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z"
+                                    fill="white"
+                                />
                             </svg>
                         </a>
-                        <td-topbar-menu-panel *ngIf="isMenuPanel(item)" [menuPanel]="item" [hidden]="!isMenuPanelVisible(item)" (mouseenter)="onMenuPanelMouseEnter(item)" (mouseleave)="onMenuPanelMouseLeave(item)" (itemclick)="onMenuItemClick($event)"></td-topbar-menu-panel>
+                        <td-topbar-menu-panel
+                            *ngIf="isMenuPanel(item)"
+                            [menuPanel]="item"
+                            [hidden]="!isMenuPanelVisible(item)"
+                            (mouseenter)="onMenuPanelMouseEnter(item)"
+                            (mouseleave)="onMenuPanelMouseLeave(item)"
+                            (itemclick)="onMenuItemClick($event)"
+                        ></td-topbar-menu-panel>
                     </li>
                 </ul>
                 <ul class="tb-top-level-items">
                     <li *ngFor="let link of topbar.secondaryArea.links">
                         <a [tdLink]="link">{{ link.text }}</a>
                     </li>
-                    <li><td-button [button]="topbar.secondaryArea.button" size="small"></td-button></li>
-                    <li><a [href]="githubURL" target="_blank"><img src="/assets/icon/social/github.svg" alt="GitHub"/></a></li>
+                    <li>
+                        <td-button
+                            [button]="topbar.secondaryArea.button"
+                            size="small"
+                        ></td-button>
+                    </li>
+                    <li>
+                        <a [href]="githubURL" target="_blank"
+                            ><img
+                                src="/assets/icon/social/github.svg"
+                                alt="GitHub"
+                        /></a>
+                    </li>
                 </ul>
             </div>
-            <button mat-icon-button [disableRipple]="true" class="tb-hamburger-button hide-desktop" aria-label="open links" (click)="toggleMobileMenu()">
-                <svg *ngIf="!mobileMenuIsOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6.92308H20V6H4V6.92308Z" fill="white"/>
-                    <path d="M4 10.6154H20V9.69231H4V10.6154Z" fill="white"/>
-                    <path d="M20 14.3077H4V13.3846H20V14.3077Z" fill="white"/>
-                    <path d="M4 18H20V17.0769H4V18Z" fill="white"/>
+            <button
+                mat-icon-button
+                [disableRipple]="true"
+                class="tb-hamburger-button hide-desktop"
+                [class.tb-opened]="mobileMenuIsOpen"
+                aria-label="open links"
+                (click)="toggleMobileMenu()"
+            >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M4 6.92308H20V6H4V6.92308Z" fill="white" />
+                    <path d="M4 10.6154H20V9.69231H4V10.6154Z" fill="white" />
+                    <path d="M20 14.3077H4V13.3846H20V14.3077Z" fill="white" />
+                    <path d="M4 18H20V17.0769H4V18Z" fill="white" />
                 </svg>
-                <img *ngIf="mobileMenuIsOpen" src="/assets/icon/close-large.svg" alt="X"/>
+                <img src="/assets/icon/close-large.svg" alt="X" />
             </button>
-            <td-topbar-menu-mobile [hidden]="!mobileMenuIsOpen" [topbar]="topbar" [githubURL]="githubURL" [ngStyle]="{ 'min-height': siteBanner ? 'calc(100vh - 48px - 26px)' : 'calc(100vh - 48px)' }"></td-topbar-menu-mobile>
+            <td-topbar-menu-mobile
+                [hidden]="!mobileMenuIsOpen"
+                [topbar]="topbar"
+                [githubURL]="githubURL"
+            ></td-topbar-menu-mobile>
         </nav>
     </header>
 </ng-container>

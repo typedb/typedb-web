@@ -270,10 +270,12 @@ $text-sizes-map: (
     // font-size line-height
     28 43,
     22 33,
+    18 26,
     16 28,
     16 24,
     14 21,
-    12 18
+    12 18,
+    12 16
 );
 
 @each $fontSize, $lineHeight in $text-sizes-map {
