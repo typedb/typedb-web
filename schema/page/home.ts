@@ -219,6 +219,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("features", [
         ...titleBodyIconFields,
+        optionalActionsField,
         defineField({
             name: "featureTabs",
             title: "Feature Tabs",
@@ -230,6 +231,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("solutions", [
         ...titleBodyIconFields,
+        optionalActionsField,
         defineField({
             name: "solutions",
             title: "Solutions",
@@ -244,6 +246,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
+        optionalActionsField,
         defineField({
             name: "panels",
             title: "Panels",
@@ -255,17 +258,19 @@ const sectionSchemas = [
     ]),
     sectionSchema("cloud", [
         ...titleBodyIconFields,
-        keyPointsWithIconsField(5),
         optionalActionsField,
+        keyPointsWithIconsField(5),
         isVisibleField,
     ]),
     sectionSchema("community", [
         ...titleBodyIconFields,
+        optionalActionsField,
         socialMediaLinksField,
         isVisibleField,
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
+        optionalActionsField,
         defineField({
             name: "testimonials",
             title: "Testimonials",
