@@ -38,7 +38,7 @@ const cookieConfig: NgcCookieConsentConfig = {
         NavigationModule,
         NgcCookieConsentModule.forRoot(cookieConfig),
         PageModule,
-        ScullyLibModule,
+        ScullyLibModule.forRoot({useTransferState: true, alwaysMonitor: false, manualIdle: true}),
         ServiceModule,
         WebsiteRoutingModule,
     ],

@@ -7,6 +7,7 @@ import { FormService } from "../../service/form.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { Title } from "@angular/platform-browser";
+import { IdleMonitorService } from "@scullyio/ng-lib";
 
 @Component({
     selector: "td-white-paper-details-page",
@@ -18,7 +19,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
     constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-                private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService) {}
+                private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -30,6 +31,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                     this._title.setTitle(`${this.whitePaper.title} - TypeDB White Papers`);
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
+                    setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
                 } else {
                     this.router.navigate(["404"]);
                 }

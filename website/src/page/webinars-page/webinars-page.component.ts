@@ -5,6 +5,7 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
+import { IdleMonitorService } from "@scullyio/ng-lib";
 
 @Component({
     selector: "td-webinars-page",
@@ -15,7 +16,7 @@ export class WebinarsPageComponent implements OnInit {
     page?: WebinarsPage;
     allWebinars?: Webinar[];
 
-    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService, private _title: Title, private _analytics: AnalyticsService) {}
+    constructor(private router: Router, private contentService: ContentService, private _webinarService: WebinarService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -24,6 +25,7 @@ export class WebinarsPageComponent implements OnInit {
                 this.page = new WebinarsPage(sanityWebinarsPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this._analytics.hubspot.trackPageView();
+                setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
             } else {
                 this.router.navigate(["404"]);
             }

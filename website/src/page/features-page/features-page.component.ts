@@ -5,6 +5,7 @@ import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
+import { IdleMonitorService } from "@scullyio/ng-lib";
 
 @Component({
     selector: "td-features-page",
@@ -14,7 +15,7 @@ import { AnalyticsService } from "../../service/analytics.service";
 export class FeaturesPageComponent implements OnInit {
     page?: FeaturesPage;
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
+    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -23,6 +24,7 @@ export class FeaturesPageComponent implements OnInit {
                 this.page = new FeaturesPage(sanityFeaturesPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this._analytics.hubspot.trackPageView();
+                setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
             } else {
                 this.router.navigate(["404"]);
             }
