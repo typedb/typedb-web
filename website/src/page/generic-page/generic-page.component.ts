@@ -4,6 +4,7 @@ import { GenericPage, SanityGenericPage, TechnicolorBlock, TitleBodyIllustration
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
+import { IdleMonitorService } from "@scullyio/ng-lib";
 
 @Component({
     selector: "td-generic-page",
@@ -13,7 +14,7 @@ import { AnalyticsService } from "../../service/analytics.service";
 export class GenericPageComponent implements OnInit {
     page?: GenericPage;
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService) {}
+    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -23,6 +24,7 @@ export class GenericPageComponent implements OnInit {
                     this.page = new GenericPage(sanityCloudPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB`);
                     this._analytics.hubspot.trackPageView();
+                    setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
                 } else {
                     this.router.navigate(["404"]);
                 }

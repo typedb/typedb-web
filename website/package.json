@@ -9,7 +9,7 @@
     "test": "ng test",
     "build-ci-dev": "cd ../schema && pnpm i && cd ../website && ng build -c development",
     "build-ci-staging": "cd ../schema && pnpm i && cd ../website && ng build -c staging",
-    "build-ci-prod": "cd ../schema && pnpm i && cd ../website && ng build -c production && OUT_DIR=./dist/static npx scully --scanRoutes --noPrompt"
+    "build-ci-prod": "cd ../schema && pnpm i && cd ../website && ng build -c production && node build-ci-prod.js"
   },
   "private": true,
   "dependencies": {

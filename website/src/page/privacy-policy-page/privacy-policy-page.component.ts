@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AnalyticsService } from "../../service/analytics.service";
+import { IdleMonitorService } from "@scullyio/ng-lib";
 
 @Component({
     selector: "td-privacy-policy-page",
@@ -37,10 +38,11 @@ export class PrivacyPolicyPageComponent implements OnInit {
         purpose: "Used to distinguish users.",
     }];
 
-    constructor(private _analytics: AnalyticsService) {}
+    constructor(private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
 
     ngOnInit() {
         this._analytics.hubspot.trackPageView();
+        setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
     }
 }
 
