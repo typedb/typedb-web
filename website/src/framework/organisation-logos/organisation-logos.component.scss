@@ -9,6 +9,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
+
+    @media (max-width: $media-max-width-tablet) {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         padding-left: 12px;
@@ -16,28 +22,29 @@
     }
 
     &.ol-root-panel {
-        height: 162px;
         padding-top: 48px;
         padding-bottom: 48px;
         border: 1px solid $color-vaticle-light-purple;
         background: $color-vaticle-purple;
 
+        @media (max-width: $media-max-width-tablet) {
+            padding: 32px;
+        }
+
         @media (max-width: $media-max-width-mobile) {
-            height: 58px;
-            padding-top: 12px;
-            padding-bottom: 12px;
+            padding: 12px;
         }
     }
 }
 
 .ol-image {
-    margin: auto;
-    height: 66px;
+    max-height: 66px;
+    min-width: 0;
 
     @media (max-width: $media-max-width-mobile) {
         height: 34px;
 
-        &:nth-child(n+4) {
+        &:nth-child(n + 4) {
             display: none;
         }
     }

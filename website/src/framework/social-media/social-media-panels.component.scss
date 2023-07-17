@@ -2,13 +2,8 @@
 @import "../../styles/sizes";
 
 .sm-root {
-    height: 160px;
     display: flex;
     flex-direction: row;
-
-    @media (max-width: $media-max-width-mobile) {
-        height: 70px;
-    }
 }
 
 .sm-panel {
@@ -17,17 +12,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    padding: 40px 0;
+    gap: 8px;
 
-    &:not(:first-child) {
+    & + & {
         border-left: 1px solid $color-vaticle-light-purple;
     }
 
     img {
         width: 48px;
         height: 48px;
+    }
 
-        @media (max-width: $media-max-width-mobile) {
+    @media (max-width: $media-max-width-mobile) {
+        padding: 18px 0;
+
+        img {
             width: 32px;
             height: 32px;
         }

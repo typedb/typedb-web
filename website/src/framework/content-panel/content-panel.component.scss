@@ -3,7 +3,11 @@
 
 .cp-root {
     display: flex;
-    gap: 38px;
+    gap: 40px;
+
+    @media (max-width: $media-max-width-tablet) {
+        gap: 32px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         gap: 16px;
@@ -11,7 +15,11 @@
 
     &.landscape {
         &.size-l {
-            height: 542px;
+            min-height: 542px;
+
+            @media (max-width: $media-max-width-tablet) {
+                min-height: 478px;
+            }
         }
 
         &.size-m {
@@ -55,15 +63,19 @@
 }
 
 td-illustration {
-    width: 674px;
+    flex: 2 0 142px;
+
+    @media (max-width: $media-max-width-tablet) {
+        flex-basis: 272px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
-        width: 327px;
+        flex: 0 0 auto;
     }
 }
 
 .cp-text-area {
-    flex: 1;
+    flex: 1 0 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -72,12 +84,9 @@ td-illustration {
 .cp-learn-more {
     margin-top: 16px;
     align-self: flex-start;
-
-    @media (max-width: $media-max-width-mobile) {
-        line-height: 32px;
-    }
+    line-height: 32px;
 }
 
 .title-standalone {
-    margin-bottom: $text-margin-s;
+    margin-bottom: 16px;
 }

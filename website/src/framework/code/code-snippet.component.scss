@@ -4,14 +4,12 @@
 :host {
     display: block;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .cs-root {
     width: 100%;
-    height: 100%;
     display: flex;
-    align-items: flex-start;
-    overflow-y: scroll;
 }
 
 .cs-line-numbers {
@@ -19,8 +17,8 @@
     min-width: 32px;
     padding-right: 4px;
     background-color: $color-vaticle-black-purple;
-    font-family: 'Ubuntu Mono', monospace;
-    color: #66637F;
+    font-family: "Ubuntu Mono", monospace;
+    color: #66637f;
     display: flex;
     flex-direction: column;
     align-items: center;

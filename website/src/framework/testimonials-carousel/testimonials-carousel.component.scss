@@ -13,7 +13,7 @@
     transform-style: preserve-3d;
 
     @media (max-width: $media-max-width-mobile) {
-        height: 210px;
+        height: 226px;
     }
 }
 
@@ -22,12 +22,11 @@ $card-offset-base: 26%;
 .tc-card {
     position: absolute;
     width: 560px;
-    height: 304px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
     top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
     border-radius: $border-radius;
     background: $color-vaticle-deep-purple;
     border: 1px solid $color-vaticle-light-purple;
@@ -39,7 +38,6 @@ $card-offset-base: 26%;
 
     @media (max-width: $media-max-width-mobile) {
         width: 311px;
-        height: 210px;
         transition-duration: 400ms;
     }
 
@@ -129,7 +127,11 @@ $card-offset-base: 26%;
     margin-top: 48px;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 61px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 40px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: 24px;

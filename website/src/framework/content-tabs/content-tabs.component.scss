@@ -18,11 +18,6 @@
 
     @media (max-width: $media-max-width-mobile) {
         height: 48px;
-
-        p {
-            font-size: 12px;
-            line-height: 16px;
-        }
     }
 }
 
@@ -32,10 +27,17 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
 
-    @media (max-width: $media-max-width-mobile) {
-        padding: 4px;
+    p {
+        @media (max-width: $media-max-width-tablet) {
+            line-height: 24px; // needed before vertical scroll is implemented
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            line-height: 16px; // needed before vertical scroll is implemented
+        }
     }
 
     &:not(:first-child) {
@@ -48,7 +50,8 @@
     }
 }
 
-.ft-tab-selected, .ft-tab-selected p {
+.ft-tab-selected,
+.ft-tab-selected p {
     color: $color-vaticle-green;
     background: $color-vaticle-purple;
 }

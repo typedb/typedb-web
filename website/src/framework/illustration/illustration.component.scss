@@ -5,13 +5,18 @@
     display: block;
     border-radius: $border-radius;
     position: relative;
+    overflow: hidden;
 
     &.il-image-illustration {
         border-radius: 0;
     }
 
     &:not(.il-dynamic-height) {
-        height: 464px;
+        height: 462px;
+
+        @media (max-width: $media-max-width-tablet) {
+            height: 412px;
+        }
 
         @media (max-width: $media-max-width-mobile) {
             height: 214px;
