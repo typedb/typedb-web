@@ -6,7 +6,8 @@
         height: 132px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 32px;
 
         @media (max-width: $media-max-width-mobile) {

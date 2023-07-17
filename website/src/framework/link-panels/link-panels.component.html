@@ -1,32 +1,76 @@
 <ng-container [ngSwitch]="cols">
     <div class="section lc-root-cols-3" *ngSwitchCase="3">
         <ng-container *ngFor="let panel of panels">
-            <a *ngIf="$any(panel).iconURL; else panelWithoutIcon" class="hoverable card lc-card lc-card-cols-3 lc-icon-card" [tdLink]="panel.button.link">
-                <div><img class="lc-icon" [src]="$any(panel).iconURL" alt=""/></div>
+            <a
+                *ngIf="$any(panel).iconURL; else panelWithoutIcon"
+                class="hoverable card lc-card lc-card-cols-3 lc-icon-card"
+                [tdLink]="panel.button.link"
+            >
+                <div>
+                    <img class="lc-icon" [src]="$any(panel).iconURL" alt="" />
+                </div>
                 <div>
                     <h2 class="text-m lc-title">{{ panel.title }}</h2>
-                    <td-rich-text [value]="panel.body" class="text-margin-xs text-xs text-sparse"></td-rich-text>
+                    <td-rich-text
+                        [value]="panel.body"
+                        class="text-margin-xs text-xs text-sparse"
+                    ></td-rich-text>
                     <ng-container [ngSwitch]="ctaStrength">
-                        <a *ngSwitchCase="'weak'" class="text-xs link-tertiary lc-cta-weak">{{ panel.button.text }}</a>
+                        <a
+                            *ngSwitchCase="'weak'"
+                            class="text-xs link-tertiary lc-cta-weak"
+                            >{{ panel.button.text }}</a
+                        >
                     </ng-container>
                 </div>
             </a>
             <ng-template #panelWithoutIcon>
-                <a class="card lc-card lc-card-cols-3 lc-card-compact" [class]="panel.button.comingSoon ? '' : 'hoverable'" [tdLink]="panel.button.comingSoon ? undefined : panel.button.link" (mouseenter)="setPanelHovered(panel, true)" (mouseleave)="setPanelHovered(panel, false)">
-                    <div *ngIf="panel.button.comingSoon" class="text-xxs lp-coming-soon">coming soon</div>
+                <a
+                    class="card lc-card lc-card-cols-3 lc-card-compact"
+                    [class]="panel.button.comingSoon ? '' : 'hoverable'"
+                    [tdLink]="
+                        panel.button.comingSoon ? undefined : panel.button.link
+                    "
+                    (mouseenter)="setPanelHovered(panel, true)"
+                    (mouseleave)="setPanelHovered(panel, false)"
+                >
+                    <div
+                        *ngIf="panel.button.comingSoon"
+                        class="text-xxs lp-coming-soon"
+                    >
+                        coming soon
+                    </div>
                     <h2 class="text-m">{{ panel.title }}</h2>
-                    <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
-                    <td-button [button]="panel.button" size="small" buttonWidth="100%" [noComingSoonTooltip]="true" [containerHovered]="isPanelHovered(panel)"></td-button>
+                    <td-rich-text
+                        [value]="panel.body"
+                        class="text-xs text-margin-s"
+                    ></td-rich-text>
+                    <td-button
+                        [button]="panel.button"
+                        size="small"
+                        buttonWidth="100%"
+                        [noComingSoonTooltip]="true"
+                        [containerHovered]="isPanelHovered(panel)"
+                    ></td-button>
                 </a>
             </ng-template>
         </ng-container>
     </div>
     <div class="section lc-root-cols-4" *ngSwitchCase="4">
-        <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="hoverable card lc-card lc-card-cols-4">
+        <a
+            *ngFor="let panel of panels"
+            [tdLink]="panel.button.link"
+            class="hoverable card lc-card lc-card-cols-4"
+        >
             <h2 class="text-m">{{ panel.title }}</h2>
-            <td-rich-text [value]="panel.body" class="text-xs text-margin-s"></td-rich-text>
+            <td-rich-text
+                [value]="panel.body"
+                class="text-xs text-margin-s"
+            ></td-rich-text>
             <div class="flex"></div>
-            <a class="text-xs text-xxs-mobile link-tertiary">{{ panel.button.text }}</a>
+            <a class="text-xs text-xxs-mobile link-tertiary">{{
+                panel.button.text
+            }}</a>
         </a>
     </div>
 </ng-container>

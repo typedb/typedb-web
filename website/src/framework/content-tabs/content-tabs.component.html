@@ -1,8 +1,19 @@
 <div class="section ft-root">
     <div class="ft-tabs">
-        <a *ngFor="let tab of tabs" class="ft-tab" [ngClass]="{'ft-tab-selected': selectedTab === tab}" [id]="tabID(tab)" [href]="'#' + tabID(tab)" (click)="onTabClick(tab, $event)">
+        <a
+            *ngFor="let tab of tabs"
+            class="ft-tab"
+            [ngClass]="{ 'ft-tab-selected': selectedTab === tab }"
+            [id]="tabID(tab)"
+            [href]="'#' + tabID(tab)"
+            (click)="onTabClick(tab, $event)"
+        >
             <p class="text-m">{{ tab.title }}</p>
         </a>
     </div>
-    <td-content-panel *ngFor="let tab of tabs" [panel]="tab" [hidden]="selectedTab !== tab"></td-content-panel>
+    <td-content-panel
+        *ngFor="let tab of tabs"
+        [panel]="tab"
+        [hidden]="selectedTab !== tab"
+    ></td-content-panel>
 </div>

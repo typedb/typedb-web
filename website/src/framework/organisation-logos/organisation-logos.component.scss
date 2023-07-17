@@ -37,7 +37,7 @@
     @media (max-width: $media-max-width-mobile) {
         height: 34px;
 
-        &:nth-child(n+4) {
+        &:nth-child(n + 4) {
             display: none;
         }
     }

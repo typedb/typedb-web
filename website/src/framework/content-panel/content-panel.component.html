@@ -1,12 +1,37 @@
 <div [ngClass]="rootNgClass" [hidden]="hidden">
-    <td-illustration [ngClass]="graphicNgClass" [illustration]="panel.illustration" [visible]="!hidden"></td-illustration>
+    <td-illustration
+        [ngClass]="graphicNgClass"
+        [illustration]="panel.illustration"
+        [visible]="!hidden"
+    ></td-illustration>
     <div *ngIf="contentTextPanel" class="cp-text-area">
         <div>
-            <h2 *ngIf="position === 'standalone' || isMobile" class="text-m title-standalone"><strong>{{ contentTextPanel.title }}</strong></h2>
-            <p *ngFor="let paragraph of contentTextPanel.body.paragraphs" class="text-m text-xxs-mobile text-weight-light" >
-                <span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined">{{ span.text }}</span>
+            <h2
+                *ngIf="position === 'standalone' || isMobile"
+                class="text-m title-standalone"
+            >
+                <strong>{{ contentTextPanel.title }}</strong>
+            </h2>
+            <p
+                *ngFor="let paragraph of contentTextPanel.body.paragraphs"
+                class="text-m text-xxs-mobile text-weight-light"
+            >
+                <span
+                    *ngFor="let span of paragraph.spans"
+                    [ngStyle]="
+                        span.marks.includes('strong')
+                            ? { 'font-weight': '700' }
+                            : undefined
+                    "
+                    >{{ span.text }}</span
+                >
             </p>
         </div>
-        <a *ngIf="contentTextPanel.learnMoreLink" [tdLink]="contentTextPanel.learnMoreLink" class="text-s cp-learn-more link-tertiary">Learn More</a>
+        <a
+            *ngIf="contentTextPanel.learnMoreLink"
+            [tdLink]="contentTextPanel.learnMoreLink"
+            class="text-s cp-learn-more link-tertiary"
+            >Learn More</a
+        >
     </div>
 </div>

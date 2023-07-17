@@ -99,7 +99,13 @@ $block-gap-mobile: 64px;
 }
 
 @mixin graphic-line-gradient($base-color) {
-    background: linear-gradient(transparent 0%, rgba($base-color, .08) 10%, $base-color 50%, rgba($base-color, .08) 90%, transparent 100%);
+    background: linear-gradient(
+        transparent 0%,
+        rgba($base-color, 0.08) 10%,
+        $base-color 50%,
+        rgba($base-color, 0.08) 90%,
+        transparent 100%
+    );
 }
 
 .tb-graphic-line-green {
