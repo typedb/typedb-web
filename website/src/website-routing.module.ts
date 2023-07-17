@@ -26,6 +26,12 @@ const routes: Routes = [
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },
+    { path: "r1", component: HomePageComponent },
+    { path: "r2", component: IntroPageComponent },
+    { path: "r3", component: FeaturesPageComponent },
+    { path: "r4", component: GenericPageComponent, data: { documentID: "cloudPage" } },
+    { path: "r5", component: GenericPageComponent, data: { documentID: "studioPage" } },
+    { path: "r6", component: DeploymentPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];
 
