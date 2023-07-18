@@ -10,25 +10,36 @@ article {
 }
 
 ul.wd-subtitle {
+    margin-top: 32px;
     list-style: none;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    gap: 8px 0;
+    gap: 24px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+        gap: 8px;
+    }
 
     li:not(:last-child):after {
         content: "|";
-        margin: 0 24px;
+        margin-left: 24px;
 
         @media (max-width: $media-max-width-mobile) {
-            margin: 0 8px;
+            margin-left: 8px;
         }
     }
 
     img {
-        margin-right: 8px;
+        margin-right: 16px;
 
         @media (max-width: $media-max-width-mobile) {
+            margin-right: 8px;
             width: 16px;
             height: 16px;
         }
@@ -37,15 +48,16 @@ ul.wd-subtitle {
 
 .wd-details-area {
     text-align: start;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    gap: 40px 32px;
 
-    @media (min-width: $media-min-width-tablet) {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 40px;
+    > * {
+        flex: 1 0 560px;
 
-        > * {
-            flex: 1;
+        @media (max-width: $media-max-width-tablet) {
+            flex-basis: 405px;
         }
     }
 }
@@ -63,6 +75,10 @@ ul.wd-speakers {
     align-items: center;
     gap: 16px;
 
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
     img {
         width: 88px;
         height: 88px;
@@ -77,32 +93,22 @@ ul.wd-speakers {
 
     h3 {
         font-weight: $font-weight-semi-bold;
-    }
-}
 
-.wd-speaker-job {
-    margin-top: 2px;
+        @media (max-width: $media-max-width-mobile) {
+            font-weight: $font-weight-bold;
+        }
+    }
 }
 
 .wd-form-card {
+    flex-grow: 0;
     padding: 32px;
-
-    form {
-        margin-top: 24px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    td-button {
-        margin-top: 32px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
     @media (max-width: $media-max-width-mobile) {
-        margin-top: 32px;
         padding: 12px;
+        gap: 12px;
     }
-}
-
-#hubspot-form-holder {
-    margin-top: $text-margin-m;
 }

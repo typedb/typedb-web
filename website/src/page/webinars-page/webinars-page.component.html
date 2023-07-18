@@ -19,23 +19,24 @@
                             [alt]=""
                         />
                     </div>
-                    <div class="wp-primary-webinar-summary text-margin-l">
-                        <div class="wp-primary-webinar-text">
-                            <h3 class="text-m">
-                                <span class="wp-webinar-title">{{
-                                    primaryWebinar.title
-                                }}</span>
-                                |
-                                <span>{{
-                                    primaryWebinar.datetime | ordinalDate
-                                }}</span>
-                            </h3>
+                    <div class="wp-primary-webinar-summary">
+                        <h3
+                            class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile"
+                        >
+                            <span class="wp-webinar-title">{{
+                                primaryWebinar.title
+                            }}</span
+                            ><span class="wp-title-separator">|</span
+                            ><span>{{
+                                primaryWebinar.datetime | ordinalDate
+                            }}</span>
+                        </h3>
+                        <div class="wp-webinar-text-container">
                             <td-rich-text
-                                class="wp-webinar-description text-xs text-xxs-mobile text-margin-s"
+                                class="wp-webinar-description text-16-24 text-14-21-mobile"
                                 [value]="primaryWebinar.description"
                             ></td-rich-text>
-                        </div>
-                        <div class="wp-primary-webinar-actions">
+
                             <td-button
                                 [button]="primaryWebinar.registrationButton()"
                             ></td-button>
@@ -77,22 +78,28 @@
                                 class="wp-img wp-img-tertiary"
                                 [alt]=""
                             />
-                            <h3 class="text-m wp-webinar-title hide-gt-mobile">
+                            <h3
+                                class="text-18-26 wp-webinar-title hide-gt-mobile"
+                            >
                                 {{ webinar.title }}
                             </h3>
                         </div>
                         <div class="wp-webinar-text">
-                            <p class="text-m wp-webinar-title hide-mobile">
+                            <p
+                                class="text-24-32 text-22-33-tablet wp-webinar-title hide-mobile"
+                            >
                                 {{ webinar.title }}
                             </p>
-                            <p class="wp-speaker">
+                            <p class="wp-speaker text-16-24 text-14-24-mobile">
                                 <span *ngFor="let speaker of webinar.speakers"
                                     ><span class="text-important"
                                         >{{ speaker.name }}, </span
                                     >{{ speaker.jobDescription() }}</span
                                 >
                             </p>
-                            <p class="wp-timing">
+                            <p
+                                class="wp-timing text-16-24 text-14-21-mobile text-weight-light"
+                            >
                                 <span
                                     class="wp-webinar-datetime"
                                     *ngIf="!webinar.isFinished()"
@@ -121,6 +128,8 @@
                         <div class="flex"></div>
                         <td-button
                             [button]="webinar.registrationButton()"
+                            buttonWidth="100%"
+                            size="small"
                         ></td-button>
                     </li>
                 </ul>

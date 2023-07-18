@@ -141,30 +141,24 @@ nav {
     align-self: center;
     appearance: none;
 
-    svg {
-        width: 32px;
-        height: 32px;
-    }
-
-    img {
+    .tb-hamburger-mobile,
+    .tb-x-icon {
         display: none;
     }
 
     @media (max-width: $media-max-width-mobile) {
         margin-right: 12px;
 
-        svg {
-            width: 24px;
-            height: 24px;
+        .tb-hamburger-tablet {
+            display: none;
         }
 
-        &.tb-opened {
-            svg {
-                display: none;
-            }
-            img {
-                display: inline;
-            }
+        &:not(.tb-opened) .tb-hamburger-mobile {
+            display: inline;
+        }
+
+        &.tb-opened .tb-x-icon {
+            display: inline;
         }
     }
 }

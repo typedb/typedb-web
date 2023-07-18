@@ -9,19 +9,24 @@
             <div
                 class="subsection-margin wp-primary-whitepaper card card-padding"
             >
-                <div class="hide-gt-mobile">
-                    <img
-                        [src]="page.featuredWhitePaper.landscapeImageURL"
-                        class="wp-img wp-img-primary"
-                        [alt]=""
-                    />
-                </div>
+                <img
+                    [src]="page.featuredWhitePaper.landscapeImageURL"
+                    class="wp-img wp-img-primary hide-gt-mobile"
+                    [alt]=""
+                />
+                <img
+                    [src]="page.featuredWhitePaper.portraitImageURL"
+                    class="wp-img wp-img-primary hide-mobile"
+                    [alt]=""
+                />
                 <div class="wp-primary-whitepaper-summary">
-                    <h2 class="text-m wp-whitepaper-title">
+                    <h2
+                        class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title"
+                    >
                         {{ page.featuredWhitePaper.title }}
                     </h2>
                     <td-rich-text
-                        class="wp-primary-whitepaper-description text-margin-s"
+                        class="wp-primary-whitepaper-description text-24-32 text-16-24-tablet text-14-21-mobile"
                         [value]="page.featuredWhitePaper.description"
                     ></td-rich-text>
                     <div class="flex"></div>
@@ -34,13 +39,6 @@
                             )
                         "
                     ></td-button>
-                </div>
-                <div class="hide-mobile">
-                    <img
-                        [src]="page.featuredWhitePaper.portraitImageURL"
-                        class="wp-img wp-img-primary"
-                        [alt]=""
-                    />
                 </div>
             </div>
             <div class="subsection-margin wp-grid card">
@@ -58,12 +56,12 @@
                         </div>
                         <div>
                             <h2
-                                class="text-m wp-whitepaper-title wp-grid-item-title"
+                                class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title wp-grid-item-title"
                             >
                                 {{ whitePaper.title }}
                             </h2>
                             <td-rich-text
-                                class="text-xs text-xxs-mobile wp-grid-item-description text-margin-xs"
+                                class="text-16-28 text-16-24-tablet text-14-21-mobile wp-grid-item-description"
                                 [value]="whitePaper.description"
                             ></td-rich-text>
                         </div>

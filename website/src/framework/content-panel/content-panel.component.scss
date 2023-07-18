@@ -6,6 +6,7 @@
     gap: 40px;
 
     @media (max-width: $media-max-width-tablet) {
+        padding: 32px;
         gap: 32px;
     }
 

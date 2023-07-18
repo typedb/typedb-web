@@ -10,8 +10,7 @@ article {
 }
 
 .wp-primary-placeholder {
-    width: 1080px;
-    height: 720px;
+    padding-bottom: calc(100% * 2 / 3);
 }
 
 .wp-img {
@@ -20,15 +19,30 @@ article {
 }
 
 .wp-img-primary {
-    width: 1080px;
-    max-width: calc(100vw - 48px);
+    width: 100%;
+    display: block;
+}
+
+.wp-primary-webinar {
+    @media (max-width: $media-max-width-tablet) {
+        padding: 40px;
+    }
 }
 
 .wp-primary-webinar-summary {
-    @media (min-width: $media-min-width-tablet) {
-        display: flex;
-        justify-content: space-between;
+    margin-top: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 20px;
     }
+}
+
+.wp-webinar-title-container {
+    color: $color-vaticle-grey;
+}
+
+.wp-title-separator {
+    margin: 0 8px;
 }
 
 .wp-webinar-title {
@@ -36,10 +50,19 @@ article {
     font-weight: $font-weight-semi-bold;
 }
 
+.wp-webinar-text-container {
+    margin-top: 16px;
+    display: flex;
+    gap: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 8px;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
 .wp-webinar-description {
-    height: $line-height-xs * 2;
-    width: 840px;
-    max-width: calc(100vw - 48px);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -47,7 +70,6 @@ article {
     overflow: hidden;
 
     @media (max-width: $media-max-width-mobile) {
-        height: $line-height-xxs * 3;
         -webkit-line-clamp: 3;
         line-clamp: 3;
     }
@@ -70,21 +92,17 @@ article {
     flex-direction: row;
     align-items: center;
     gap: 24px;
+    padding: 24px;
 
-    @media (min-width: $media-min-width-tablet) {
-        height: 146px;
-        padding: 24px;
+    & + & {
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 
     @media (max-width: $media-max-width-mobile) {
-        padding: 12px;
+        padding: 16px 12px;
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-    }
-
-    &:not(:first-child) {
-        border-top: 1px solid $color-vaticle-light-purple;
+        gap: 12px;
     }
 
     .wp-speaker {
@@ -94,25 +112,27 @@ article {
         -webkit-box-orient: vertical;
         overflow: hidden;
 
-        > span:not(:first-child) {
+        > span + span {
             margin-left: 16px;
         }
     }
 
-    .wp-webinar-datetime {
-        margin-right: 24px;
+    td-button {
+        width: 126px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: auto;
+        }
     }
 }
 
 .wp-img-tertiary-container {
-    @media (max-width: $media-max-width-mobile) {
-        display: flex;
-        gap: 12px;
-    }
+    display: flex;
+    gap: 12px;
 }
 
 .wp-img-tertiary {
-    width: 150px;
+    width: 148px;
 
     @media (max-width: $media-max-width-mobile) {
         width: 100px;
@@ -126,15 +146,18 @@ article {
 }
 
 .wp-timing {
+    display: flex;
+    gap: 24px;
+
     > span {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
+        gap: 8px;
     }
 
     img {
         width: 16px;
         height: 16px;
-        margin-right: 8px;
     }
 }

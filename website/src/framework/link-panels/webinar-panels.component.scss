@@ -5,7 +5,6 @@ $card-content-width: 320px;
 
 .wp-root {
     display: flex;
-    justify-content: space-between;
     gap: 40px;
 
     @media (max-width: $media-max-width-mobile) {
@@ -16,47 +15,58 @@ $card-content-width: 320px;
 
 .wp-card {
     flex: 1;
+    min-width: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    text-align: start;
-    padding: 20px;
-    position: relative;
+    gap: 24px;
 
-    &:not(.hoverable) {
-        cursor: initial;
+    @media (max-width: $media-max-width-tablet) {
+        gap: 20px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+        gap: 12px;
     }
 
     img {
-        width: $card-content-width - 2px;
-        height: 166px;
+        width: 100%;
         border: 1px solid $color-vaticle-light-purple;
         border-radius: $border-radius;
     }
 
     h2,
     p {
-        max-width: $card-content-width;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    .lp-coming-soon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 98px;
-        height: 32px;
-        background-color: $color-vaticle-secondary-purple;
-        border-left: 1px solid $color-vaticle-light-purple;
-        border-bottom: 1px solid $color-vaticle-light-purple;
-        border-bottom-left-radius: $border-radius;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    h3 {
+        margin-top: 16px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 8px;
+        }
+    }
+
+    p {
+        margin-top: 4px;
     }
 }
 
-td-button {
-    margin-top: 24px;
+.lp-coming-soon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 98px;
+    height: 32px;
+    background-color: $color-vaticle-secondary-purple;
+    border-left: 1px solid $color-vaticle-light-purple;
+    border-bottom: 1px solid $color-vaticle-light-purple;
+    border-bottom-left-radius: $border-radius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

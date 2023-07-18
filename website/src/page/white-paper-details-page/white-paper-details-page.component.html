@@ -1,7 +1,11 @@
 <article>
     <div *ngIf="whitePaper">
         <section class="page-section page-intro-section">
-            <h1 class="text-xxl narrow-section">{{ whitePaper.title }}</h1>
+            <h1
+                class="text-56-64 text-48-60-tablet text-28-36-mobile narrow-section"
+            >
+                {{ whitePaper.title }}
+            </h1>
             <div class="section subsection-margin card wd-form-card">
                 <img
                     [src]="whitePaper.portraitImageURL"
@@ -9,9 +13,11 @@
                     [alt]="whitePaper.title"
                 />
                 <div>
-                    <h2 class="text-m"><strong>Get the white paper</strong></h2>
+                    <h2 class="text-24-32 text-22-33-mobile">
+                        <strong>Get the white paper</strong>
+                    </h2>
                     <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
-                    <p class="text-margin-l">
+                    <p>
                         By submitting your personal data, you consent to emails
                         from Vaticle. See our
                         <a href="/privacy-policy" target="_blank"
@@ -21,7 +27,7 @@
                 </div>
             </div>
             <td-rich-text
-                class="text-m subsection-margin wd-description"
+                class="text-24-32 text-14-21-mobile subsection-margin wd-description"
                 [value]="whitePaper.description"
             ></td-rich-text>
         </section>

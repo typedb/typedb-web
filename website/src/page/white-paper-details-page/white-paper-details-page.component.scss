@@ -9,75 +9,46 @@ article {
     );
 }
 
-.wd-description {
-    text-align: start;
-
-    @media (min-width: $media-min-width-tablet) {
-        columns: 2;
-    }
-}
-
-.wd-landscape-img-card {
-    padding: 32px;
-
-    @media (max-width: $media-max-width-mobile) {
-        padding: 12px;
-    }
-
-    img {
-        width: 100%;
-        display: block;
-        border: 1px solid $color-vaticle-light-purple;
-        border-radius: $border-radius;
-    }
-}
-
 .wd-form-card {
     padding: 32px;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: center;
-    gap: 32px;
+    gap: 12px 32px;
     text-align: start;
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;
-        flex-direction: column-reverse;
-        gap: 12px;
-    }
-
-    img {
-        display: block;
-        border: 1px solid $color-vaticle-light-purple;
-        border-radius: $border-radius;
-
-        @media (max-width: $media-max-width-mobile) {
-            width: 100%;
-        }
     }
 
     > * {
-        @media (min-width: $media-min-width-tablet) {
-            flex: 1;
+        flex: 1;
+        min-width: 0;
+
+        @media (max-width: $media-max-width-mobile) {
+            flex-basis: 100%;
         }
-    }
-
-    form {
-        text-align: start;
-        margin-top: 24px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    td-button {
-        margin-top: 32px;
-    }
-
-    h2 {
-        text-align: start;
     }
 }
 
+.wd-description {
+    text-align: start;
+    columns: 2;
+
+    @media (max-width: $media-max-width-mobile) {
+        columns: 1;
+    }
+}
+
+.wd-img {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+}
+
 #hubspot-form-holder {
-    margin-top: $text-margin-m;
+    margin: 24px 0;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin: 20px 0;
+    }
 }

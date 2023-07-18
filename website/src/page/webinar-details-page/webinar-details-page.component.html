@@ -1,8 +1,12 @@
 <article>
     <div *ngIf="webinar">
         <section class="page-section page-intro-section">
-            <h1 class="text-xxl">{{ webinar.title }}</h1>
-            <ul class="wd-subtitle text-l text-margin-l">
+            <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">
+                {{ webinar.title }}
+            </h1>
+            <ul
+                class="wd-subtitle text-32-44 text-24-37-tablet text-16-24-mobile"
+            >
                 <li>Webinar</li>
                 <li>
                     <img src="/assets/icon/calendar.svg" alt="Date/Time:" />
@@ -18,7 +22,7 @@
             <div class="subsection-margin wd-details-area">
                 <div>
                     <td-rich-text
-                        class="text-m"
+                        class="text-24-32 text-20-32-tablet text-14-21-mobile"
                         [value]="webinar.description"
                     ></td-rich-text>
                     <ul class="wd-speakers subsection-margin">
@@ -28,8 +32,12 @@
                         >
                             <img [src]="speaker.headshotURL" alt="" />
                             <div>
-                                <h3 class="text-s">{{ speaker.name }}</h3>
-                                <p class="text-xxs text-quiet">
+                                <h3 class="text-18-26 text-12-18-mobile">
+                                    {{ speaker.name }}
+                                </h3>
+                                <p
+                                    class="text-14-21 text-10-12-mobile text-quiet"
+                                >
                                     {{ speaker.jobTitle }},<br />{{
                                         speaker.organisation.name
                                     }}
@@ -39,7 +47,7 @@
                     </ul>
                 </div>
                 <div class="card wd-form-card">
-                    <h2 class="text-m">
+                    <h2 class="text-24-32 text-20-30-mobile">
                         <strong>{{
                             webinar.isFinished()
                                 ? "Watch Webinar"
@@ -51,15 +59,16 @@
                         *ngIf="
                             webinar.isFinished() && !webinar.onDemandVideoURL
                         "
+                        class="text-16-24 text-14-21-mobile text-weight-light"
                     >
                         Sorry, this webinar is not available on-demand yet.
                         Please try again later.
                     </p>
                     <p
-                        class="text-margin-l"
                         *ngIf="
                             !webinar.isFinished() || webinar.onDemandVideoURL
                         "
+                        class="text-16-24 text-14-21-mobile text-weight-light"
                     >
                         By submitting your personal data, you consent to emails
                         from Vaticle. See our
