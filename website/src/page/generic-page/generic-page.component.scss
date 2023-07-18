@@ -3,9 +3,17 @@
 
 article {
     &.planet-blue-pink {
-        @include page-background("cloud_02june (2) 1.png", "planet-blue-pink.png");
+        @include page-background(
+            // prettier-ignore
+            "cloud_02june (2) 1.png",
+            "planet-blue-pink.png"
+        );
     }
     &.planet-pink {
-        @include page-background("studio_02june (5) 1.png", "planet-pink.png");
+        @include page-background(
+            // prettier-ignore
+            "studio_02june (5) 1.png",
+            "planet-pink.png"
+        );
     }
 }

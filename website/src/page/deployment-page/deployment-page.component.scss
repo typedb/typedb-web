@@ -1,7 +1,11 @@
 @import "../background";
 
 article {
-    @include page-background("deploy_02june (2) 1.png", "planet-yellow-green.png");
+    @include page-background(
+        // prettier-ignore
+        "deploy_02june (2) 1.png",
+        "planet-yellow-green.png"
+    );
 }
 
 .dp-intro-block {
