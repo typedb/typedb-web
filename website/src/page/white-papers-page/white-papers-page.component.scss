@@ -3,7 +3,10 @@
 @import "../background";
 
 article {
-    @include page-background("studio_02june (5) 1.png", "planet-yellow-green.png");
+    @include page-background(
+        "studio_02june( 5) 1.png",
+        "planet-yellow-green.png"
+    );
 }
 
 .wp-primary-whitepaper {
@@ -72,7 +75,7 @@ article {
             border-left: 1px solid $color-vaticle-light-purple;
         }
 
-        &:nth-child(n+3) {
+        &:nth-child(n + 3) {
             border-top: 1px solid $color-vaticle-light-purple;
         }
 

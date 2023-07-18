@@ -33,7 +33,8 @@ $card-content-width: 320px;
         border-radius: $border-radius;
     }
 
-    h2, p {
+    h2,
+    p {
         max-width: $card-content-width;
         white-space: nowrap;
         overflow: hidden;

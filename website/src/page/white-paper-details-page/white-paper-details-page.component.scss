@@ -3,7 +3,10 @@
 @import "../background";
 
 article {
-    @include page-background("studio_02june (5) 1.png", "planet-yellow-green.png");
+    @include page-background(
+        "studio_02june( 5) 1.png",
+        "planet-yellow-green.png"
+    );
 }
 
 .wd-description {
