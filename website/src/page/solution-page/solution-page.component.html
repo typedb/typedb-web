@@ -3,9 +3,12 @@
         <section class="page-section page-intro-section" *ngIf="page.introSection">
             <td-h1-with-highlights
                 [value]="page.introSection.title"
-                class="text-xxl narrow-section"
+                class="text-56-64 text-48-60-tablet text-28-36-mobile narrow-section"
             ></td-h1-with-highlights>
-            <td-rich-text [value]="page.introSection.body" class="text-m text-margin-l"></td-rich-text>
+            <td-rich-text
+                [value]="page.introSection.body"
+                class="text-24-32 text-24-37-tablet text-16-24-mobile"
+            ></td-rich-text>
             <td-link-panels class="subsection-margin" [panels]="page.introSection.links" [cols]="3"></td-link-panels>
         </section>
         <ng-container *ngIf="page.useCasesSection">

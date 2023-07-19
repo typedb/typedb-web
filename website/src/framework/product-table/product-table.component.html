@@ -1,10 +1,13 @@
 <table class="section hide-mobile">
-    <tr class="pp-text-row">
+    <tr>
         <td *ngFor="let panel of panels">
-            <h2 class="text-ml text-sparse">{{ panel.title }}</h2>
-            <td-rich-text [value]="panel.body" class="text-xs text-margin-m pp-body-text"></td-rich-text>
-            <hr class="text-margin-s" />
-            <td-rich-text [value]="panel.secondaryBody" class="text-xs text-margin-s"></td-rich-text>
+            <div class="pp-cell-content">
+                <h2 class="text-28-43 text-24-32-tablet">{{ panel.title }}</h2>
+                <td-rich-text [value]="panel.body" class="text-16-24 pp-body-text"></td-rich-text>
+                <div class="flex"></div>
+                <hr />
+                <td-rich-text [value]="panel.secondaryBody" class="text-16-24"></td-rich-text>
+            </div>
         </td>
     </tr>
     <tr class="pp-button-row">
@@ -15,15 +18,15 @@
 </table>
 <table role="presentation" class="section hide-gt-mobile">
     <ng-container *ngFor="let panel of panels">
-        <tr class="pp-text-row">
+        <tr>
             <td>
-                <h2 class="text-ml text-sparse pp-title-text">{{ panel.title }}</h2>
-                <td-rich-text [value]="panel.body" class="text-xs text-margin-m pp-body-text"></td-rich-text>
-                <hr class="text-margin-s" />
-                <td-rich-text
-                    [value]="panel.secondaryBody"
-                    class="text-xs text-margin-s pp-secondary-text"
-                ></td-rich-text>
+                <div class="pp-cell-content">
+                    <h2 class="text-20-32">{{ panel.title }}</h2>
+                    <td-rich-text [value]="panel.body" class="text-12-18 pp-body-text"></td-rich-text>
+                    <div class="flex"></div>
+                    <hr />
+                    <td-rich-text [value]="panel.secondaryBody" class="text-12-18"></td-rich-text>
+                </div>
             </td>
         </tr>
         <tr class="pp-button-row">

@@ -1,27 +1,28 @@
-:host,
-.ib-root {
+@import "src/styles/colors";
+
+:host {
     display: inline-flex;
     align-items: center;
     position: relative;
-}
+    color: $color-vaticle-secondary-grey;
+    font-size: 24px;
 
-.ib-root {
     &:hover,
     &:focus {
-        svg path {
-            fill: #fff;
-        }
+        color: $color-vaticle-white;
 
         [class^="ib-tooltip"] {
             opacity: 1;
         }
     }
+
+    ::ng-deep .ib-tooltip-text-box {
+        transform: translateX(-50%) translateX(9px); // centre inside parent container, then offset half the info button width
+    }
 }
 
 svg {
     cursor: pointer;
-}
-
-::ng-deep .ib-root .ib-tooltip-text-box {
-    transform: translateX(-50%) translateX(9px); // centre inside parent container, then offset half the info button width
+    width: 1em;
+    height: 1em;
 }

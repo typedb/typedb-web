@@ -3,44 +3,44 @@
 
 .ci-root {
     display: flex;
-    gap: 64px;
+    flex-flow: row wrap;
+    gap: 24px 64px;
 
-    @media (max-width: $media-max-width-mobile) {
-        flex-direction: column;
-        gap: 24px;
+    @media (max-width: $media-max-width-tablet) {
+        column-gap: 56px;
     }
-}
-
-.ci-illustration-header,
-.ci-illustration-footer {
-    background: $color-vaticle-purple;
-    border: 1px solid $color-vaticle-light-purple;
-    height: 14px;
-}
-
-.ci-illustration-header {
-    border-radius: $border-radius $border-radius 0 0;
-    border-bottom-style: none;
-    padding: 4px;
-
-    img {
-        display: block;
-    }
-}
-
-.ci-illustration-footer {
-    border-radius: 0 0 $border-radius $border-radius;
-    border-top-style: none;
 }
 
 .ci-illustration {
-    max-width: calc(100vw - 24px);
+    flex: 0 0 700px;
 
-    @media (min-width: $media-min-width-tablet) {
-        flex: 0 0 600px;
+    @media (max-width: $media-max-width-tablet) {
+        flex: 1 1 600px;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        background: $color-vaticle-purple;
+        border: 1px solid $color-vaticle-light-purple;
+        height: 13px;
+    }
+
+    &::before {
+        border-bottom: none;
+        border-radius: $border-radius $border-radius 0 0;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="5" viewBox="0 0 22 5"><circle cx="19.0577" cy="2.29383" r="2.09754" fill="%2344A461"/><circle cx="10.6737" cy="2.29383" r="2.09754" fill="%23C0A851"/><circle cx="2.28968" cy="2.29383" r="2.09754" fill="%23F66B65"/></svg>');
+        background-position: 4px center;
+        background-repeat: no-repeat;
+    }
+
+    &::after {
+        border-top: none;
+        border-radius: 0 0 $border-radius $border-radius;
     }
 }
 
-td-illustration {
-    width: 100%;
+td-rich-text {
+    flex: 999 0 250px;
 }

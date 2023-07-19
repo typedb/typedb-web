@@ -1,5 +1,9 @@
 <div class="ftc-root" [ngClass]="{ 'ftc-unchecked': booleanValue === false }">
-    <img *ngIf="booleanValue === true" src="/assets/icon/check.svg" alt="✅" />
+    <svg *ngIf="booleanValue === true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+            d="M20.7071 6.70711L9.70711 17.7071C9.31658 18.0976 8.68342 18.0976 8.29289 17.7071L3.29289 12.7071L4.70711 11.2929L9 15.5858L19.2929 5.29289L20.7071 6.70711Z"
+        />
+    </svg>
     <span *ngIf="stringValue">{{ stringValue }}</span>
-    <td-button *ngIf="buttonValue" [button]="buttonValue"></td-button>
+    <td-button *ngIf="buttonValue" [button]="buttonValue" buttonWidth="100%"></td-button>
 </div>

@@ -1,6 +1,6 @@
 <div class="mp-root">
     <div *ngFor="let column of columns" class="mp-column">
-        <h3 class="text-xxs">
+        <h3 class="text-14-21">
             <strong>{{ column.title }}</strong>
         </h3>
         <ul *ngIf="isListColumn(column)">
@@ -12,7 +12,7 @@
                     (mouseleave)="onMouseLeave(item)"
                     (click)="onClick(item)"
                 >
-                    <h4 class="text-s">
+                    <h4 class="text-18-26">
                         <td-tooltip
                             *ngIf="item.comingSoon"
                             text="Coming soon!"
@@ -34,7 +34,7 @@
                             />
                         </svg>
                     </h4>
-                    <p class="text-xxs mp-list-column-description">{{ item.description }}</p>
+                    <p class="text-14-21 mp-list-column-description">{{ item.description }}</p>
                 </a>
             </li>
         </ul>
