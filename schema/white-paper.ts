@@ -1,15 +1,15 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { descriptionFieldRichText, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
 import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
-import { RichText, SanityPortableText } from "./text";
+import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
 
 export interface SanityWhitePaper extends SanityDocument {
-    title: string;
+    title: SanityPortableText;
     slug: Slug;
     description: SanityPortableText;
     file: SanityFile;
@@ -21,7 +21,7 @@ export interface SanityWhitePaper extends SanityDocument {
 }
 
 export class WhitePaper {
-    readonly title: string;
+    readonly title: ParagraphWithHighlights;
     readonly slug: string;
     readonly description: RichText;
     readonly fileURL: string;
@@ -47,7 +47,7 @@ export class WhitePaper {
 
     static fromSanity(data: SanityWhitePaper, db: SanityDataset): WhitePaper {
         return new WhitePaper({
-            title: data.title,
+            title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
             description: new RichText(data.description),
             fileURL: db.resolveRef(data.file.asset).url,
@@ -77,7 +77,7 @@ export const whitePaperSchema = defineType({
     icon: DocumentPdfIcon,
     type: "document",
     fields: [
-        titleField,
+        titleFieldWithHighlights,
         slugField,
         descriptionFieldRichText,
         defineField({

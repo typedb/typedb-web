@@ -23,7 +23,7 @@
                     <h2
                         class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title"
                     >
-                        {{ page.featuredWhitePaper.title }}
+                        {{ page.featuredWhitePaper.title | plainText }}
                     </h2>
                     <td-rich-text
                         class="wp-primary-whitepaper-description text-24-32 text-16-24-tablet text-14-21-mobile"
@@ -58,7 +58,7 @@
                             <h2
                                 class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title wp-grid-item-title"
                             >
-                                {{ whitePaper.title }}
+                                {{ whitePaper.title | plainText }}
                             </h2>
                             <td-rich-text
                                 class="text-16-28 text-16-24-tablet text-14-21-mobile wp-grid-item-description"

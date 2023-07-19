@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
 import { ResourceAccessForm } from "../../framework/form/form";
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
 import { AnalyticsService } from "../../service/analytics.service";
@@ -19,8 +20,10 @@ export class WebinarDetailsPageComponent implements OnInit {
     webinar?: Webinar;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-                private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
+    constructor(
+        private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
+        private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService, private _plainTextPipe: PlainTextPipe) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -29,7 +32,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                 const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug") && !x.comingSoon);
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
-                    this._title.setTitle(`${this.webinar.title} - TypeDB Webinars`);
+                    this._title.setTitle(`${this._plainTextPipe.transform(this.webinar.title)} - TypeDB Webinars`);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
                     if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {

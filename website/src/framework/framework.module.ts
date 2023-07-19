@@ -30,6 +30,7 @@ import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-s
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
+import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
@@ -65,6 +66,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
+        PlainTextPipe,
         ProductTableComponent,
         RichTextComponent,
         SocialMediaPanelsComponent,
@@ -105,6 +107,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         OrdinalDatePipe,
         OrganisationLogosComponent,
         ParagraphWithHighlightsComponent,
+        PlainTextPipe,
         ProductTableComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
@@ -114,6 +117,8 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         TooltipComponent,
         WebinarPanelsComponent,
     ],
-    providers: [],
+    providers: [
+        PlainTextPipe,
+    ],
 })
 export class FrameworkModule { }

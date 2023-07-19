@@ -1,20 +1,20 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'ordinalDate'
+    name: "ordinalDate"
 })
 export class OrdinalDatePipe implements PipeTransform {
     transform(value: Date): string {
         if (!value) {
-            return '';
+            return "";
         }
-        let months= ["January","February","March","April","May","June","July",
-            "August","September","October","November","December"]
+        const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
         return `${months[value.getMonth()]} ${value.getDate()}${this.nth(value.getDate())}`;
     }
 
     nth(d: number) {
-        if (d > 3 && d < 21) return 'th';
+        if (d > 3 && d < 21) return "th";
         switch (d % 10) {
             case 1:  return "st";
             case 2:  return "nd";

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
 import { ResourceAccessForm } from "../../framework/form/form";
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
 import { AnalyticsService } from "../../service/analytics.service";
@@ -18,8 +19,11 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-                private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
+    constructor(
+        private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService,
+        private _plainTextPipe: PlainTextPipe
+    ) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -28,7 +32,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 const sanityWhitePaper = sanityWhitePapers.find(x => x.slug.current === params.get("slug"));
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
-                    this._title.setTitle(`${this.whitePaper.title} - TypeDB White Papers`);
+                    this._title.setTitle(`${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`);
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
                     setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);

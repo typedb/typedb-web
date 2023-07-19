@@ -1,17 +1,17 @@
 import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
 import { LinkButton } from "./button";
-import { comingSoonField, descriptionFieldRichText, requiredRule, slugField, titleField } from "./common-fields";
+import { comingSoonField, descriptionFieldRichText, requiredRule, slugField, titleField, titleFieldWithHighlights } from "./common-fields";
 import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
-import { RichText, SanityPortableText } from "./text";
+import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
 
 export interface SanityWebinar extends SanityDocument {
-    title: string;
+    title: SanityPortableText;
     slug: Slug;
     description: SanityPortableText;
     datetime: string;
@@ -26,7 +26,7 @@ export interface SanityWebinar extends SanityDocument {
 }
 
 export class Webinar {
-    readonly title: string;
+    readonly title: ParagraphWithHighlights;
     readonly slug: string;
     readonly description: RichText;
     readonly datetime: Date;
@@ -56,7 +56,7 @@ export class Webinar {
 
     static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
         return new Webinar({
-            title: data.title,
+            title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
             description: new RichText(data.description),
             datetime: new Date(data.datetime),
@@ -105,7 +105,7 @@ const webinarSchema = defineType({
     icon: PresentationIcon,
     type: "document",
     fields: [
-        titleField,
+        titleFieldWithHighlights,
         slugField,
         descriptionFieldRichText,
         defineField({

@@ -23,13 +23,9 @@
                         <h3
                             class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile"
                         >
-                            <span class="wp-webinar-title">{{
-                                primaryWebinar.title
-                            }}</span
-                            ><span class="wp-title-separator">|</span
-                            ><span>{{
-                                primaryWebinar.datetime | ordinalDate
-                            }}</span>
+                            <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
+                            <span class="wp-title-separator">|</span>
+                            <span>{{ primaryWebinar.datetime | ordinalDate }}</span>
                         </h3>
                         <div class="wp-webinar-text-container">
                             <td-rich-text
@@ -81,14 +77,14 @@
                             <h3
                                 class="text-18-26 wp-webinar-title hide-gt-mobile"
                             >
-                                {{ webinar.title }}
+                                {{ webinar.title | plainText }}
                             </h3>
                         </div>
                         <div class="wp-webinar-text">
                             <p
                                 class="text-24-32 text-22-33-tablet wp-webinar-title hide-mobile"
                             >
-                                {{ webinar.title }}
+                                {{ webinar.title | plainText }}
                             </p>
                             <p class="wp-speaker text-16-24 text-14-24-mobile">
                                 <span *ngFor="let speaker of webinar.speakers"
