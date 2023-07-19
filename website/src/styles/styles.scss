@@ -74,6 +74,10 @@ typedb-website {
         margin-left: auto;
         margin-right: auto;
 
+        @media (max-width: $media-max-width-tablet) {
+            max-width: calc(100vw - $section-padding-tablet * 2);
+        }
+
         @media (max-width: $media-max-width-mobile) {
             max-width: calc(100vw - 24px);
         }
@@ -81,9 +85,7 @@ typedb-website {
 }
 
 .narrow-section {
-    @media (min-width: $media-min-width-tablet) {
-        width: 870px;
-    }
+    max-width: 870px;
 }
 
 h1,
@@ -232,6 +234,10 @@ hr {
     &.page-intro-section {
         margin-top: $intro-section-margin;
 
+        @media (max-width: $media-max-width-tablet) {
+            margin-top: $intro-section-margin-tablet;
+        }
+
         @media (max-width: $media-max-width-mobile) {
             margin-top: $intro-section-margin-mobile;
         }
@@ -282,10 +288,13 @@ $text-sizes-map: (
     34 48,
     32 44,
     28 43,
+    28 36,
     24 37,
     24 32,
     22 33,
     20 32,
+    20 30,
+    18 32,
     18 28,
     18 26,
     16 28,
@@ -297,7 +306,8 @@ $text-sizes-map: (
     12 20,
     12 18,
     12 16,
-    10 15
+    10 15,
+    10 12
 );
 
 @each $fontSize, $lineHeight in $text-sizes-map {

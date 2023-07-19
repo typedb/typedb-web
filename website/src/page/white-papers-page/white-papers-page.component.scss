@@ -1,27 +1,49 @@
-@import "../../styles/sizes";
-@import "../../styles/colors";
+@import "src/styles/colors";
+@import "src/styles/mixins";
+@import "src/styles/sizes";
 @import "../background";
 
 article {
-    @include page-background("studio_02june (5) 1.png", "planet-yellow-green.png");
+    @include page-background(
+        // prettier-ignore
+        "studio_02june (5) 1.png",
+        "planet-yellow-green.png"
+    );
 }
 
 .wp-primary-whitepaper {
     display: flex;
-    gap: 32px;
-    flex-direction: row;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 40px;
+
+    @media (max-width: $media-max-width-tablet) {
+        gap: 32px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         flex-direction: column;
         gap: 12px;
     }
+
+    img {
+        max-width: 50%;
+
+        @media (max-width: $media-max-width-mobile) {
+            max-width: 100%;
+        }
+    }
 }
 
 .wp-primary-whitepaper-summary {
-    display: flex;
-    flex-direction: column;
-
     td-button {
+        display: block;
+        margin-top: 40px;
+
+        @media (max-width: $media-max-width-tablet) {
+            margin-top: 32px;
+        }
+
         @media (max-width: $media-max-width-mobile) {
             margin-top: 12px;
         }
@@ -32,90 +54,80 @@ article {
     font-weight: $font-weight-semi-bold;
 }
 
-.wp-img {
+.wp-primary-whitepaper-description {
+    margin-top: 16px;
+    font-weight: $font-weight-light;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 8px;
+    }
+}
+
+.wp-img-primary {
     border: 1px solid $color-vaticle-light-purple;
     border-radius: $border-radius;
 }
 
-.wp-img-primary {
-    max-width: calc(100vw - 48px);
-}
-
 .wp-grid {
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-    @media (max-width: $media-max-width-mobile) {
-        display: block;
-    }
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .wp-grid-item {
-    .wp-img {
-        width: 100%;
-        aspect-ratio: 2 / 1;
-    }
-
-    td-button {
-        display: block;
-        margin-top: 16px;
-    }
-
-    @media (min-width: $media-min-width-tablet) {
-        padding: 32px;
-
-        .wp-grid-item-title {
-            margin-top: 20px;
-        }
-
-        &:nth-child(even) {
-            border-left: 1px solid $color-vaticle-light-purple;
-        }
-
-        &:nth-child(n+3) {
-            border-top: 1px solid $color-vaticle-light-purple;
-        }
-
-        .wp-grid-item-description {
-            height: $line-height-xs * 2;
-            width: 100%;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    }
+    flex: 1 1 400px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: solid $color-vaticle-light-purple;
+    border-width: 1px 0 0 1px;
+    margin: -1px 0 0 -1px;
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;
+        gap: 12px;
+    }
+}
 
-        &:not(:first-child) {
-            border-top: 1px solid $color-vaticle-light-purple;
-        }
+.wp-img-and-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: auto;
 
-        .wp-img-and-text {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 8px;
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: row;
+        gap: 12px;
+    }
+}
 
-            .wp-img-secondary-container {
-                flex: 0 0 100px;
-            }
-        }
+.wp-img-secondary-container {
+    height: 279px;
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    background: $color-vaticle-deep-purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .wp-grid-item-description {
-            height: $line-height-xxs * 3;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    @media (max-width: $media-max-width-mobile) {
+        height: auto;
+        width: 100px;
+        flex-shrink: 0;
+    }
+}
 
-        td-button {
-            margin-top: 12px;
-        }
+.wp-img-secondary {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.wp-grid-item-description {
+    margin-top: 8px;
+    @include line-clamp(2);
+
+    @media (max-width: $media-max-width-mobile) {
+        @include line-clamp(3);
     }
 }

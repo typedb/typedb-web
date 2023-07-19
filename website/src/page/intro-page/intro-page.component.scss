@@ -2,7 +2,11 @@
 @import "../background";
 
 article {
-    @include page-background("typedp_02june_1 (2) 1.png", "planet-magenta.png");
+    @include page-background(
+        // prettier-ignore
+        "typedp_02june_1 (2) 1.png",
+        "planet-magenta.png"
+    );
 }
 
 .ip-long-text {

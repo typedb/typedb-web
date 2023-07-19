@@ -1,10 +1,38 @@
 <div class="section wp-root">
-    <a *ngFor="let webinar of webinars" class="card wp-card" [class]="webinar.comingSoon ? '' : 'hoverable'" [tdLink]="webinar.registrationButton().link" (mouseenter)="setPanelHovered(webinar, true)" (mouseleave)="setPanelHovered(webinar, false)">
-        <div *ngIf="webinar.registrationButton().comingSoon" class="text-xxs lp-coming-soon">coming soon</div>
-        <img [src]="webinar.imageURL" alt=""/>
-        <h2 class="text-m text-margin-m">{{ webinar.title }}</h2>
-        <h3 class="text-margin-s"><strong>{{ webinar.listSpeakers() }}</strong></h3>
-        <p class="text-margin-xxs text-quiet">{{ webinar.listSpeakerJobs() }}</p>
-        <td-button [button]="webinar.registrationButton()" size="small" buttonWidth="100%" [noComingSoonTooltip]="true" [containerHovered]="isPanelHovered(webinar)"></td-button>
+    <a
+        *ngFor="let webinar of webinars"
+        class="card wp-card"
+        [class]="webinar.comingSoon ? '' : 'hoverable'"
+        [tdLink]="webinar.registrationButton().link"
+        (mouseenter)="setPanelHovered(webinar, true)"
+        (mouseleave)="setPanelHovered(webinar, false)"
+    >
+        <div
+            *ngIf="webinar.registrationButton().comingSoon"
+            class="text-14-21 lp-coming-soon"
+        >
+            coming soon
+        </div>
+        <img [src]="webinar.imageURL" alt="" />
+        <div>
+            <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
+                {{ webinar.title }}
+            </h2>
+            <h3>
+                <strong class="text-important">{{
+                    webinar.listSpeakers()
+                }}</strong>
+            </h3>
+            <p class="text-quiet text-weight-light">
+                {{ webinar.listSpeakerJobs() }}
+            </p>
+        </div>
+        <td-button
+            [button]="webinar.registrationButton()"
+            size="small"
+            buttonWidth="100%"
+            [noComingSoonTooltip]="true"
+            [containerHovered]="isPanelHovered(webinar)"
+        ></td-button>
     </a>
 </div>

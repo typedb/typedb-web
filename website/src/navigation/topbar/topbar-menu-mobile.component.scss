@@ -116,11 +116,6 @@
 
         &.tm-secondary-link {
             display: flex;
-            text-decoration: underline;
-
-            @media (max-width: $media-max-width-mobile) {
-                text-decoration: initial;
-            }
         }
     }
 
