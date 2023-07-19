@@ -48,18 +48,6 @@ ul.wd-subtitle {
 
 .wd-details-area {
     text-align: start;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    gap: 40px 32px;
-
-    > * {
-        flex: 1 0 560px;
-
-        @media (max-width: $media-max-width-tablet) {
-            flex-basis: 405px;
-        }
-    }
 }
 
 ul.wd-speakers {
@@ -101,11 +89,18 @@ ul.wd-speakers {
 }
 
 .wd-form-card {
-    flex-grow: 0;
+    margin-bottom: 32px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @media (min-width: $media-min-width-tablet) {
+        width: 560px;
+        max-width: 50%;
+        float: right;
+        margin-left: 32px;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;

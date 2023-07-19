@@ -2,9 +2,7 @@
     <div *ngIf="webinar">
         <section class="page-section page-intro-section">
             <td-h1-with-highlights class="text-56-64 text-48-60-tablet text-28-36-mobile" [value]="webinar.title"></td-h1-with-highlights>
-            <ul
-                class="wd-subtitle text-32-44 text-24-37-tablet text-16-24-mobile"
-            >
+            <ul class="wd-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
                 <li>Webinar</li>
                 <li>
                     <img src="/assets/icon/calendar.svg" alt="Date/Time:" />
@@ -13,67 +11,37 @@
                     {{ localTimezoneAbbreviation }}
                 </li>
                 <li>
-                    <img src="/assets/icon/time.svg" alt="Duration:" />
-                    {{ webinar.durationMins | eventDuration }}
+                    <img src="/assets/icon/time.svg" alt="Duration:" /> {{ webinar.durationMins | eventDuration }}
                 </li>
             </ul>
             <div class="subsection-margin wd-details-area">
+                <div class="card wd-form-card">
+                    <h2 class="text-24-32 text-20-30-mobile">
+                        <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register to Webinar" }}</strong>
+                    </h2>
+                    <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
+                    <p *ngIf="webinar.isFinished() && !webinar.onDemandVideoURL" class="text-16-24 text-14-21-mobile text-weight-light">
+                        Sorry, this webinar is not available on-demand yet.
+                        Please try again later.
+                    </p>
+                    <p *ngIf="!webinar.isFinished() || webinar.onDemandVideoURL" class="text-16-24 text-14-21-mobile text-weight-light">
+                        By submitting your personal data, you consent to emails from Vaticle. See our
+                        <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+                    </p>
+                </div>
                 <div>
-                    <td-rich-text
-                        class="text-24-32 text-20-32-tablet text-14-21-mobile"
-                        [value]="webinar.description"
-                    ></td-rich-text>
+                    <td-rich-text class="text-24-32 text-20-32-tablet text-14-21-mobile" [value]="webinar.description"></td-rich-text>
                     <ul class="wd-speakers subsection-margin">
-                        <li
-                            *ngFor="let speaker of webinar.speakers"
-                            class="wd-speaker"
-                        >
+                        <li *ngFor="let speaker of webinar.speakers" class="wd-speaker">
                             <img [src]="speaker.headshotURL" alt="" />
                             <div>
-                                <h3 class="text-18-26 text-12-18-mobile">
-                                    {{ speaker.name }}
-                                </h3>
-                                <p
-                                    class="text-14-21 text-10-12-mobile text-quiet"
-                                >
-                                    {{ speaker.jobTitle }},<br />{{
-                                        speaker.organisation.name
-                                    }}
+                                <h3 class="text-18-26 text-12-18-mobile">{{ speaker.name }}</h3>
+                                <p class="text-14-21 text-10-12-mobile text-quiet">
+                                    {{ speaker.jobTitle }},<br />{{ speaker.organisation.name }}
                                 </p>
                             </div>
                         </li>
                     </ul>
-                </div>
-                <div class="card wd-form-card">
-                    <h2 class="text-24-32 text-20-30-mobile">
-                        <strong>{{
-                            webinar.isFinished()
-                                ? "Watch Webinar"
-                                : "Register to Webinar"
-                        }}</strong>
-                    </h2>
-                    <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
-                    <p
-                        *ngIf="
-                            webinar.isFinished() && !webinar.onDemandVideoURL
-                        "
-                        class="text-16-24 text-14-21-mobile text-weight-light"
-                    >
-                        Sorry, this webinar is not available on-demand yet.
-                        Please try again later.
-                    </p>
-                    <p
-                        *ngIf="
-                            !webinar.isFinished() || webinar.onDemandVideoURL
-                        "
-                        class="text-16-24 text-14-21-mobile text-weight-light"
-                    >
-                        By submitting your personal data, you consent to emails
-                        from Vaticle. See our
-                        <a href="/privacy-policy" target="_blank"
-                            >Privacy Policy</a
-                        >.
-                    </p>
                 </div>
             </div>
         </section>
