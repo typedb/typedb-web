@@ -1,16 +1,18 @@
-:host, .ib-root {
+:host,
+.ib-root {
     display: inline-flex;
     align-items: center;
     position: relative;
 }
 
 .ib-root {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         svg path {
-            fill: #FFF;
+            fill: #fff;
         }
 
-        [class^='ib-tooltip'] {
+        [class^="ib-tooltip"] {
             opacity: 1;
         }
     }

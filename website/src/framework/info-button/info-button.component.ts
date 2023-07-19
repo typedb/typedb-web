@@ -9,6 +9,4 @@ export class InfoButtonComponent {
     @Input() tooltipText!: string;
 
     tooltipVisible: boolean = false;
-
-
 }

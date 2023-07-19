@@ -1,13 +1,28 @@
 <article>
     <div *ngIf="page">
-        <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"></td-title-body-actions-section>
+        <td-title-body-actions-section
+            [isIntroSection]="true"
+            [title]="page.introSection.title"
+            [body]="page.introSection.body"
+        ></td-title-body-actions-section>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
-            <td-intro-page-technicolor-block [section]="section" [page]="page" [index]="idx"></td-intro-page-technicolor-block>
+            <td-intro-page-technicolor-block
+                [section]="section"
+                [page]="page"
+                [index]="idx"
+            ></td-intro-page-technicolor-block>
             <td-content-tabs [id]="'section' + idx" [tabs]="section.contentTabs"></td-content-tabs>
-            <td-rich-text [value]="section.longText" class="section subsection-margin text-m text-xxs-mobile ip-long-text"></td-rich-text>
+            <td-rich-text
+                [value]="section.longText"
+                class="section subsection-margin text-m text-xxs-mobile ip-long-text"
+            ></td-rich-text>
         </ng-container>
         <ng-container *ngIf="page.finalSection">
-            <td-intro-page-technicolor-block [section]="page.finalSection" [page]="page" [index]="page.coreSections.length"></td-intro-page-technicolor-block>
+            <td-intro-page-technicolor-block
+                [section]="page.finalSection"
+                [page]="page"
+                [index]="page.coreSections.length"
+            ></td-intro-page-technicolor-block>
             <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
         </ng-container>
     </div>

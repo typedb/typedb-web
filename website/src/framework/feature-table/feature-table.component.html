@@ -1,12 +1,14 @@
 <table class="section">
     <colgroup>
-        <col>
-        <col>
-        <col>
-        <col>
+        <col />
+        <col />
+        <col />
+        <col />
     </colgroup>
     <thead class="text-m text-xxs-mobile">
-        <tr><th *ngFor="let header of table.headerRow">{{ header }}</th></tr>
+        <tr>
+            <th *ngFor="let header of table.headerRow">{{ header }}</th>
+        </tr>
     </thead>
     <tbody class="text-s">
         <tr *ngFor="let row of table.bodyRows">

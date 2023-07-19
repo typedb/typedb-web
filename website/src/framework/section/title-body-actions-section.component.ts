@@ -1,9 +1,5 @@
 import { Component, Input } from "@angular/core";
-import {
-    LinkButton,
-    ParagraphWithHighlights,
-    RichText,
-} from "typedb-web-schema";
+import { LinkButton, ParagraphWithHighlights, RichText } from "typedb-web-schema";
 
 @Component({
     selector: "td-title-body-actions-section",
@@ -17,9 +13,7 @@ export class TitleBodyActionsSectionComponent {
     @Input() isIntroSection = false;
 
     get sectionClasses(): string {
-        return this.isIntroSection
-            ? "page-section page-intro-section"
-            : "page-section";
+        return this.isIntroSection ? "page-section page-intro-section" : "page-section";
     }
 
     get titleClass(): string {

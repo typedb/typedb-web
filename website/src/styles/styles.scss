@@ -909,13 +909,9 @@ body .mat-form-field-appearance-outline .mat-form-field-outline-end,
 body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-color: $color-vaticle-secondary-deep-grey;
 }
-body
-    .mat-form-field-appearance-outline.mat-focused
-    .mat-form-field-outline-start,
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
-body
-    .mat-form-field-appearance-outline.mat-focused
-    .mat-form-field-outline-gap {
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
     border-color: $color-vaticle-green;
 }
 .mat-form-field-wrapper {
@@ -926,8 +922,7 @@ body
     padding-top: 10px;
     overflow: visible !important;
 }
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
-    .mat-form-field-label {
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-21px) translateX(-4px) scale(0.75);
     width: 133.33333%;
     font-style: italic;
@@ -960,8 +955,7 @@ body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
     border-left: 1px solid $color-vaticle-light-purple;
     background: no-repeat center url("/assets/icon/chevron-down.svg");
 }
-.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline
-    .mat-form-field-flex {
+.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
     padding: 0;
 }
 .mat-form-field-type-mat-native-select .mat-input-element {
@@ -977,10 +971,8 @@ body .mat-checkbox-inner-container {
 }
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
-    .mat-ripple-element,
-.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent
-    .mat-ripple-element {
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
     background-color: $color-vaticle-green;
 }
 

@@ -1,5 +1,5 @@
 <div class="ftc-root" [ngClass]="{ 'ftc-unchecked': booleanValue === false }">
-    <img *ngIf="booleanValue === true" src="/assets/icon/check.svg" alt="✅"/>
+    <img *ngIf="booleanValue === true" src="/assets/icon/check.svg" alt="✅" />
     <span *ngIf="stringValue">{{ stringValue }}</span>
     <td-button *ngIf="buttonValue" [button]="buttonValue"></td-button>
 </div>

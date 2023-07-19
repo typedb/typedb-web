@@ -3,7 +3,7 @@
         <td *ngFor="let panel of panels">
             <h2 class="text-ml text-sparse">{{ panel.title }}</h2>
             <td-rich-text [value]="panel.body" class="text-xs text-margin-m pp-body-text"></td-rich-text>
-            <hr class="text-margin-s"/>
+            <hr class="text-margin-s" />
             <td-rich-text [value]="panel.secondaryBody" class="text-xs text-margin-s"></td-rich-text>
         </td>
     </tr>
@@ -19,8 +19,11 @@
             <td>
                 <h2 class="text-ml text-sparse pp-title-text">{{ panel.title }}</h2>
                 <td-rich-text [value]="panel.body" class="text-xs text-margin-m pp-body-text"></td-rich-text>
-                <hr class="text-margin-s"/>
-                <td-rich-text [value]="panel.secondaryBody" class="text-xs text-margin-s pp-secondary-text"></td-rich-text>
+                <hr class="text-margin-s" />
+                <td-rich-text
+                    [value]="panel.secondaryBody"
+                    class="text-xs text-margin-s pp-secondary-text"
+                ></td-rich-text>
             </td>
         </tr>
         <tr class="pp-button-row">

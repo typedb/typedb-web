@@ -16,11 +16,11 @@
     @media (max-width: $media-max-width-mobile) {
         padding: 0 4px;
 
-        ::ng-deep td-button, ::ng-deep td-button a {
+        ::ng-deep td-button,
+        ::ng-deep td-button a {
             height: 32px;
             font-size: $font-size-tiny !important;
             width: 100% !important;
         }
     }
 }
-

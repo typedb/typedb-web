@@ -24,7 +24,8 @@ h2 {
     font-weight: $font-weight-semi-bold;
 }
 
-p, ul {
+p,
+ul {
     margin-top: $text-margin-s;
 }
 
@@ -36,10 +37,12 @@ article > div {
     padding-bottom: $subsection-margin;
 }
 
-th, td {
+th,
+td {
     padding: 8px 16px;
 }
 
-th, tr:nth-child(even) {
+th,
+tr:nth-child(even) {
     background: $color-vaticle-deep-purple;
 }
