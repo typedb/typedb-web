@@ -1,10 +1,6 @@
 @import "../background";
 @import "../../styles/sizes";
 
-article {
-    @include page-background("MainNebula31mai 1.png", "planet-blue.png");
-}
-
 .hp-intro-block {
     display: inline-block;
     margin-top: 288px;
