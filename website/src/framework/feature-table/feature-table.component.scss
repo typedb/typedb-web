@@ -2,18 +2,17 @@
 @import "../../styles/sizes";
 
 table {
-    @media (max-width: $media-max-width-mobile) {
-        table-layout: fixed;
-    }
+    overflow: hidden;
+    table-layout: fixed;
 }
 
-col:not(:first-child) {
-    @media (min-width: $media-min-width-tablet) {
-        width: 266px;
-    }
-}
+col:first-of-type {
+    width: 359px;
 
-col:first-child {
+    @media (max-width: $media-max-width-tablet) {
+        width: 261px;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         width: 114px;
     }
@@ -21,41 +20,53 @@ col:first-child {
 
 thead {
     background: $color-vaticle-deep-purple;
-}
-
-th:first-of-type {
-    text-align: start;
-}
-
-tr:last-of-type {
-    background: $color-vaticle-deep-purple;
-}
-
-thead th {
     font-weight: $font-weight-semi-bold;
 }
 
-tbody th {
-    font-weight: $font-weight-regular;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-
+th,
 td {
-    text-align: center;
-}
-
-th, td {
     height: 80px;
+
+    @media (max-width: $media-max-width-mobile) {
+        tr:last-of-type & {
+            height: 48px;
+        }
+    }
 }
 
 th {
-    padding: 0 24px;
     color: $color-vaticle-white;
+    font-weight: inherit;
+    padding: 0 24px;
 
     @media (max-width: $media-max-width-mobile) {
-        padding: 0 6px;
+        padding: 0 4px;
+    }
+
+    &:first-of-type {
+        text-align: start;
+
+        @media (max-width: $media-max-width-mobile) {
+            padding: 0 8px;
+        }
+    }
+}
+
+.ft-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 4px;
+    }
+}
+
+td-info-button {
+    font-size: 20px;
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 16px;
     }
 }

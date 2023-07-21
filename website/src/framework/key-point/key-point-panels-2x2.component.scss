@@ -2,34 +2,28 @@
 @import "../../styles/sizes";
 
 .kpp-root {
-    display: grid;
-    grid-template-columns: repeat(2, 560px);
+    display: flex;
+    flex-flow: row wrap;
     gap: 40px;
 
+    @media (max-width: $media-max-width-tablet) {
+        gap: 32px;
+    }
+
     @media (max-width: $media-max-width-mobile) {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        gap: 12px;
     }
 }
 
 .kpp-panel {
     padding: 32px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 24px;
+    flex: 1 1 400px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: $media-max-width-tablet) {
         padding: 20px;
     }
 }
 
-.kpp-image-block img {
-    width: 48px;
-    height: 48px;
-}
-
-.kpp-text-block td-rich-text {
-    display: block;
+td-rich-text {
+    margin-top: 6px;
 }
