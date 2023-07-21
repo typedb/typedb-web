@@ -9,18 +9,36 @@
     align-items: center;
     padding: 0 24px;
 
+    @media (max-width: $media-max-width-mobile) {
+        padding: 0 4px;
+    }
+
     &.ftc-unchecked {
         background: $color-vaticle-deep-purple;
     }
+}
+
+svg {
+    width: 32px;
+    height: 32px;
+    color: $color-vaticle-green;
 
     @media (max-width: $media-max-width-mobile) {
-        padding: 0 4px;
-
-        ::ng-deep td-button, ::ng-deep td-button a {
-            height: 32px;
-            font-size: $font-size-tiny !important;
-            width: 100% !important;
-        }
+        width: 24px;
+        height: 24px;
     }
 }
 
+td-button {
+    flex-grow: 1;
+
+    @media (max-width: $media-max-width-mobile) {
+        ::ng-deep a {
+            height: 32px;
+            font-size: 12px;
+
+            line-height: 14px;
+            text-align: center;
+        }
+    }
+}

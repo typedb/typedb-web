@@ -314,196 +314,24 @@ $text-sizes-map: (
     .text-#{$fontSize}-#{$lineHeight} {
         font-size: $fontSize * 1px;
         line-height: $lineHeight * 1px;
+    }
+}
 
+@each $fontSize, $lineHeight in $text-sizes-map {
+    .text-#{$fontSize}-#{$lineHeight}-tablet {
         @media (max-width: $media-max-width-tablet) {
-            &-tablet {
-                font-size: $fontSize * 1px;
-                line-height: $lineHeight * 1px;
-            }
+            font-size: $fontSize * 1px;
+            line-height: $lineHeight * 1px;
         }
+    }
+}
 
+@each $fontSize, $lineHeight in $text-sizes-map {
+    .text-#{$fontSize}-#{$lineHeight}-mobile {
         @media (max-width: $media-max-width-mobile) {
-            &-mobile {
-                font-size: $fontSize * 1px;
-                line-height: $lineHeight * 1px;
-            }
+            font-size: $fontSize * 1px;
+            line-height: $lineHeight * 1px;
         }
-    }
-}
-
-.text-xxl {
-    font-size: $font-size-xxl;
-    line-height: $line-height-xxl;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-xxl-tablet;
-        line-height: $line-height-xxl-tablet;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: 34px;
-        line-height: 48px;
-    }
-}
-
-.text-xl {
-    font-size: $font-size-xl;
-    line-height: $line-height-xl;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-l;
-        line-height: $line-height-l;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-m;
-        line-height: $line-height-m;
-    }
-}
-
-.text-l {
-    font-size: $font-size-l;
-    line-height: $line-height-l;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-ml;
-        line-height: $line-height-ml;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-s;
-        line-height: $line-height-s;
-    }
-}
-
-.text-ml {
-    font-size: $font-size-ml;
-    line-height: $line-height-ml;
-
-    &.text-sparse {
-        line-height: $line-height-ml-sparse;
-    }
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-m;
-        line-height: $line-height-m;
-
-        &.text-sparse {
-            line-height: $line-height-m;
-        }
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-s;
-        line-height: $line-height-s;
-
-        &.text-sparse {
-            line-height: $line-height-s;
-        }
-    }
-}
-
-.text-m {
-    font-size: $font-size-m;
-    line-height: $line-height-m;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-s;
-        line-height: $line-height-s;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-xs;
-        line-height: $line-height-xs;
-    }
-}
-
-h1.text-m,
-h2.text-m,
-h3.text-m,
-h4.text-m {
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-s;
-        line-height: $line-height-s;
-    }
-}
-
-.text-s {
-    font-size: $font-size-s;
-    line-height: $line-height-s;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-xs;
-        line-height: $line-height-xs;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-xxs;
-        line-height: $line-height-xxs;
-    }
-}
-
-.text-xs {
-    font-size: $font-size-xs;
-    line-height: $line-height-xs;
-
-    &.text-sparse {
-        line-height: $line-height-xs-sparse;
-    }
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        font-size: $font-size-xxs;
-        line-height: $line-height-xxs;
-
-        &.text-sparse {
-            line-height: $line-height-xxs;
-        }
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: $font-size-tiny;
-        line-height: $line-height-tiny;
-
-        &.text-sparse {
-            line-height: $line-height-tiny;
-        }
-    }
-}
-
-.text-xxs {
-    font-size: $font-size-xxs;
-    line-height: $line-height-xxs;
-
-    @media (max-width: $media-max-width-tablet) {
-        font-size: $font-size-tiny;
-        line-height: $line-height-tiny;
-    }
-}
-
-@media (max-width: $media-max-width-mobile) {
-    body .text-s-mobile {
-        font-size: $font-size-s;
-        line-height: $line-height-s;
-    }
-
-    body .text-xs-mobile {
-        font-size: $font-size-xs;
-        line-height: $line-height-xs;
-    }
-
-    body .text-xxs-mobile {
-        font-size: $font-size-xxs;
-        line-height: $line-height-xxs;
-    }
-
-    body .text-tiny-mobile {
-        font-size: $font-size-tiny;
-        line-height: $line-height-tiny;
-    }
-
-    body .text-micro-mobile {
-        font-size: $font-size-micro;
-        line-height: $line-height-micro;
     }
 }
 
@@ -515,50 +343,6 @@ h4.text-m {
     @media (max-width: $media-max-width-mobile) {
         font-weight: $font-weight-light;
     }
-}
-
-.header-margin-s {
-    margin-top: 14px;
-}
-
-.text-margin-l {
-    margin-top: $text-margin-l;
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        margin-top: $text-margin-m;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: $text-margin-s;
-    }
-}
-
-.text-margin-m {
-    margin-top: $text-margin-m;
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: $text-margin-m-mobile;
-    }
-}
-
-.text-margin-s {
-    margin-top: $text-margin-s;
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: $text-margin-xs;
-    }
-}
-
-.text-margin-xs {
-    margin-top: $text-margin-xs;
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: $text-margin-xxs;
-    }
-}
-
-.text-margin-xxs {
-    margin-top: $text-margin-xxs;
 }
 
 .text-important {
@@ -620,7 +404,7 @@ select {
     border: 1px solid $color-vaticle-light-purple;
     caret-color: $default-text-color;
     border-radius: $border-radius;
-    font-size: $font-size-xs;
+    font-size: 16px;
     line-height: 46px;
     height: 48px;
     font-family: "Titillium Web", sans-serif;
@@ -737,7 +521,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
         border: 1px solid $color-vaticle-light-purple;
         caret-color: $default-text-color;
         border-radius: $border-radius;
-        font-size: $font-size-xs;
+        font-size: 16px;
         font-family: "Titillium Web", sans-serif;
         padding: 8px;
 
@@ -762,9 +546,9 @@ input[type="submit"].hs-button {
     border-radius: $border-radius;
     justify-content: center;
     align-items: center;
-    font-size: $font-size-xs;
+    font-size: 16px;
     font-weight: $font-weight-semi-bold;
-    line-height: $line-height-xs;
+    line-height: 24px;
     transition-property: background-color, border;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -828,8 +612,8 @@ input[type="submit"].hs-button {
 
 .mat-simple-snackbar {
     gap: 12px;
-    font-size: $font-size-xs;
-    line-height: $line-height-xs;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .mat-simple-snackbar::before {
@@ -857,8 +641,8 @@ input[type="submit"].hs-button {
     align-items: center;
 
     h1 {
-        font-size: $font-size-m;
-        line-height: $line-height-m;
+        font-size: 24px;
+        line-height: 32px;
         font-weight: $font-weight-bold;
     }
 
@@ -909,13 +693,9 @@ body .mat-form-field-appearance-outline .mat-form-field-outline-end,
 body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
     border-color: $color-vaticle-secondary-deep-grey;
 }
-body
-    .mat-form-field-appearance-outline.mat-focused
-    .mat-form-field-outline-start,
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
 body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
-body
-    .mat-form-field-appearance-outline.mat-focused
-    .mat-form-field-outline-gap {
+body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
     border-color: $color-vaticle-green;
 }
 .mat-form-field-wrapper {
@@ -926,8 +706,7 @@ body
     padding-top: 10px;
     overflow: visible !important;
 }
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
-    .mat-form-field-label {
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-21px) translateX(-4px) scale(0.75);
     width: 133.33333%;
     font-style: italic;
@@ -938,7 +717,7 @@ body .mat-input-element {
     caret-color: $color-vaticle-green;
 }
 body textarea.mat-input-element {
-    line-height: $line-height-xs;
+    line-height: 24px;
     margin-bottom: 8px;
 }
 body select.mat-input-element {
@@ -960,8 +739,7 @@ body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
     border-left: 1px solid $color-vaticle-light-purple;
     background: no-repeat center url("/assets/icon/chevron-down.svg");
 }
-.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline
-    .mat-form-field-flex {
+.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
     padding: 0;
 }
 .mat-form-field-type-mat-native-select .mat-input-element {
@@ -977,10 +755,8 @@ body .mat-checkbox-inner-container {
 }
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
-    .mat-ripple-element,
-.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent
-    .mat-ripple-element {
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
     background-color: $color-vaticle-green;
 }
 

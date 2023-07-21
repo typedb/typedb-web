@@ -10,7 +10,9 @@ article {
 }
 
 .ip-long-text {
-    @media (min-width: $media-min-width-tablet) {
-        columns: 2;
+    columns: 2;
+
+    @media (orientation: portrait) or (max-width: $media-max-width-mobile) {
+        columns: 1;
     }
 }

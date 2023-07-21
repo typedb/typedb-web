@@ -91,7 +91,7 @@
         padding: 32px;
 
         h2 {
-            height: calc($line-height-m * 2);
+            height: calc(32px * 2);
         }
 
         td-rich-text {
@@ -104,6 +104,10 @@
 
         @media (max-width: $media-max-width-tablet) {
             padding: 24px;
+
+            h2 {
+                height: calc(33px * 2);
+            }
 
             td-rich-text {
                 display: -webkit-box;

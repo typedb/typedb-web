@@ -3,3 +3,11 @@
 article {
     @include page-background("solutions_02june 1.png", "planet-magenta.png");
 }
+
+td-rich-text {
+    margin-top: 32px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 16px;
+    }
+}
