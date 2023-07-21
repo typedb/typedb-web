@@ -80,12 +80,6 @@ angular_cli_bin.ng(
     visibility = ["//visibility:public"],
 )
 
-sh_test(
-    name = "check-format",
-    srcs = [":check-format.sh"],
-    data = [":content"],
-)
-
 #load("@npm//website:@angular/compiler-cli/package_json.bzl", compiler_cli = "bin")
 #compiler_cli.ngc_binary(name = "ngc")
 #

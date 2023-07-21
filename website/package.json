@@ -7,9 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-ci-dev": "cd ../schema && pnpm i && cd ../website && ng build -c development",
-    "build-ci-staging": "cd ../schema && pnpm i && cd ../website && ng build -c staging",
-    "build-ci-prod": "cd ../schema && pnpm i && cd ../website && ng build -c production && node build-ci-prod.js"
+    "format": "prettier --check src",
+    "prebuild": "pnpm run format",
+    "prebuild-ci": "pnpm run prebuild && cd ../schema && pnpm i && cd ../website",
+    "build-ci-dev": "pnpm run prebuild-ci && ng build -c development",
+    "build-ci-staging": "pnpm run prebuild-ci && ng build -c staging",
+    "build-ci-prod": "pnpm run prebuild-ci && ng build -c production && node build-ci-prod.js"
   },
   "private": true,
   "dependencies": {
