@@ -1,5 +1,13 @@
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
-import { Directive, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit } from "@angular/core";
+import {
+    Directive,
+    ElementRef,
+    HostBinding,
+    Input,
+    NgZone,
+    OnDestroy,
+    OnInit,
+} from "@angular/core";
 import { Subscription, map } from "rxjs";
 
 type BackgroundSize = "mobile" | "tablet" | "desktop";
@@ -10,9 +18,12 @@ type BackgroundSize = "mobile" | "tablet" | "desktop";
 export class PageBackgroundDirective implements OnDestroy, OnInit {
     @Input("nebula") nebula?: string;
     @Input("planet") planet?: string;
-    @HostBinding("style.background-attachment") backgroundAttachement = "local, fixed, fixed";
-    @HostBinding("style.background-position") backgroundPosition = "center bottom, center top, center top";
-    @HostBinding("style.background-repeat") backgroundRepeat = "no-repeat, no-repeat, repeat";
+    @HostBinding("style.background-attachment") backgroundAttachement =
+        "local, fixed, fixed";
+    @HostBinding("style.background-position") backgroundPosition =
+        "center bottom, center top, center top";
+    @HostBinding("style.background-repeat") backgroundRepeat =
+        "no-repeat, no-repeat, repeat";
 
     private breakpointSub = Subscription.EMPTY;
     private removeListener = () => {};
@@ -21,13 +32,13 @@ export class PageBackgroundDirective implements OnDestroy, OnInit {
         tablet: "(max-width:1024px)",
         mobile: "(max-width:375px)",
     };
-    private readonly nebulaSpeed = 0.3;
+    private readonly nebulaSpeed = 1;
     private readonly spaceSpeed = 0.2;
 
     constructor(
         private breakpointObserver: BreakpointObserver,
         private elementRef: ElementRef<HTMLElement>,
-        private ngZone: NgZone
+        private ngZone: NgZone,
     ) {}
 
     ngOnInit(): void {
@@ -36,17 +47,20 @@ export class PageBackgroundDirective implements OnDestroy, OnInit {
                 .observe(Object.values(this.breakpoints))
                 .pipe(map((value) => this.getActiveScreen(value)))
                 .subscribe((size) => {
-                    this.elementRef.nativeElement.style.backgroundImage = this.getBackgroundImage(size);
-                    this.elementRef.nativeElement.style.backgroundSize = this.getBackgroundSize(size);
+                    this.elementRef.nativeElement.style.backgroundImage =
+                        this.getBackgroundImage(size);
+                    this.elementRef.nativeElement.style.backgroundSize =
+                        this.getBackgroundSize(size);
                 });
 
             const handleScroll = () => {
                 this.elementRef.nativeElement.style.backgroundPositionY = `bottom, ${
-                    -window.scrollY * this.nebulaSpeed + 30
+                    -window.scrollY * this.nebulaSpeed
                 }px, ${-window.scrollY * this.spaceSpeed}px`;
             };
 
-            this.removeListener = () => window.removeEventListener("scroll", handleScroll);
+            this.removeListener = () =>
+                window.removeEventListener("scroll", handleScroll);
 
             window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -71,8 +85,12 @@ export class PageBackgroundDirective implements OnDestroy, OnInit {
     }
 
     private getBackgroundImage(size: BackgroundSize): string {
-        const nebulaUrl = this.nebula ? `url("/assets/background/nebula-${this.nebula}.png")` : "none";
-        const planetUrl = this.planet ? `url("/assets/background/${size}/planet-${this.planet}.png")` : "none";
+        const nebulaUrl = this.nebula
+            ? `url("/assets/background/nebula-${this.nebula}.png")`
+            : "none";
+        const planetUrl = this.planet
+            ? `url("/assets/background/${size}/planet-${this.planet}.png")`
+            : "none";
         const spaceUrl = `url("/assets/background/deep-space.png")`;
         return `${planetUrl}, ${nebulaUrl}, ${spaceUrl}`;
     }
