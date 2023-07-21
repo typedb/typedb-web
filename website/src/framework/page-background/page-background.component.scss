@@ -1,0 +1,57 @@
+@import "src/styles/sizes";
+
+:host {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: repeat;
+}
+
+.pb-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pb-nebula {
+    margin-top: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: $section-width * 1.5;
+    flex-grow: 1;
+
+    @media (max-width: $media-max-width-tablet) {
+        width: $section-width-tablet * 1.5;
+        max-width: calc((100vw - $section-padding-tablet * 2) * 1.5);
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: $section-width-mobile * 2;
+        max-width: calc((100vw - 24px) * 2);
+        margin-right: -15%;
+    }
+}
+
+.pb-planet {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: $section-width * 1.5;
+    flex-grow: 1;
+
+    @media (max-width: $media-max-width-tablet) {
+        width: $section-width-tablet * 1.5;
+        max-width: calc((100vw - $section-padding-tablet * 2) * 1.5);
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: $section-width-mobile * 2;
+        max-width: calc((100vw - 24px) * 2);
+    }
+}

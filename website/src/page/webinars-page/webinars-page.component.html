@@ -1,5 +1,5 @@
 <article>
-    <div *ngIf="page">
+    <div *ngIf="page" class="article-content">
         <div class="section">
             <td-title-body-actions-section
                 [isIntroSection]="true"
@@ -23,9 +23,13 @@
                         <h3
                             class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile"
                         >
-                            <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
+                            <span class="wp-webinar-title">{{
+                                primaryWebinar.title | plainText
+                            }}</span>
                             <span class="wp-title-separator">|</span>
-                            <span>{{ primaryWebinar.datetime | ordinalDate }}</span>
+                            <span>{{
+                                primaryWebinar.datetime | ordinalDate
+                            }}</span>
                         </h3>
                         <div class="wp-webinar-text-container">
                             <td-rich-text
@@ -105,7 +109,7 @@
                                         class="wp-img-calendar"
                                     />
                                     {{ webinar.datetime | ordinalDate }},
-                                    {{ webinar.datetime | date : "shortTime" }}
+                                    {{ webinar.datetime | date: "shortTime" }}
                                     {{
                                         localTimezoneAbbreviation(webinar)
                                     }}</span
