@@ -16,15 +16,15 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     lines!: number;
     lineNumbers!: number[];
 
-    private subscription = Subscription.EMPTY;
+    private mediaQuerySubscription = Subscription.EMPTY;
 
     constructor(private _mediaQuery: MediaQueryService) {}
 
     ngOnInit() {
-        this.subscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
+        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.lines = Math.max(
                 (this.snippet.code.match(/\n/g) || []).length + 2,
-                MIN_LINES[isMobile ? "mobile" : "desktop"]
+                MIN_LINES[isMobile ? "mobile" : "desktop"],
             );
             this.lineNumbers = [...Array(this.lines).keys()].map((n) => n + 1);
         });
@@ -35,6 +35,6 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.mediaQuerySubscription.unsubscribe();
     }
 }

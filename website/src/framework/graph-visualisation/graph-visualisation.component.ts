@@ -31,12 +31,12 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("graphContainer") graphContainerEl!: ElementRef<HTMLElement>;
 
     private onDestroy = () => {};
-    private subscription = Subscription.EMPTY;
+    private breakpointSubscription = Subscription.EMPTY;
 
     constructor(private _ngZone: NgZone, private breakpointObserver: BreakpointObserver) {}
 
     ngAfterViewInit() {
-        this.subscription = this.breakpointObserver.observe("(max-width:960px)").subscribe(({ matches }) => {
+        this.breakpointSubscription = this.breakpointObserver.observe("(max-width:960px)").subscribe(({ matches }) => {
             this.onDestroy();
             this.onDestroy = this._ngZone.runOutsideAngular(
                 () =>
@@ -51,7 +51,7 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        this.breakpointSubscription.unsubscribe();
         this.onDestroy();
     }
 }

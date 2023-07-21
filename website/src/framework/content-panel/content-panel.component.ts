@@ -17,18 +17,18 @@ export class ContentPanelComponent implements OnInit, OnDestroy {
     @Input() position: "embedded" | "standalone" = "embedded";
     isMobile = false;
 
-    private subscription = Subscription.EMPTY;
+    private mediaQuerySubscription = Subscription.EMPTY;
 
     constructor(private _mediaQuery: MediaQueryService) {}
 
     ngOnInit() {
-        this.subscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
+        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.isMobile = isMobile;
         });
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.mediaQuerySubscription.unsubscribe();
     }
 
     get contentTextPanel(): ContentTextPanel | undefined {

@@ -60,12 +60,12 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
     resizablePaneID = "";
     isMobile = false;
 
-    private subscription = Subscription.EMPTY;
+    private mediaQuerySubscription = Subscription.EMPTY;
 
     constructor(private _ngZone: NgZone, private _mediaQuery: MediaQueryService) {}
 
     ngOnInit() {
-        this.subscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
+        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
             this.isMobile = isMobile;
             this._ngZone.runOutsideAngular(() => {
@@ -94,7 +94,7 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.mediaQuerySubscription.unsubscribe();
     }
 
     get sliderImageSrc(): string {
