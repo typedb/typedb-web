@@ -2,7 +2,11 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { CloudWaitlistDialogComponent, ContactDialogComponent, NewsletterDialogComponent } from "../framework/form/dialog.component";
+import {
+    CloudWaitlistDialogComponent,
+    ContactDialogComponent,
+    NewsletterDialogComponent,
+} from "../framework/form/dialog.component";
 import { MediaQueryService } from "./media-query.service";
 
 @Injectable({
@@ -11,8 +15,8 @@ import { MediaQueryService } from "./media-query.service";
 export class DialogService {
     current?: MatDialogRef<any>;
 
-    constructor(private _router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog, private _mediaQueryService: MediaQueryService) {
-        this._router.events.subscribe(e => {
+    constructor(private _router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
+        this._router.events.subscribe((e) => {
             if (e instanceof NavigationEnd) {
                 const searchParams = new URLSearchParams(window.location.search);
                 const dialogParam = searchParams.get("dialog");

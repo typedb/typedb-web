@@ -21,6 +21,7 @@
 svg {
     width: 32px;
     height: 32px;
+    color: $color-vaticle-green;
 
     @media (max-width: $media-max-width-mobile) {
         width: 24px;

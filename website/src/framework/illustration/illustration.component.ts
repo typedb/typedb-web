@@ -1,6 +1,16 @@
-import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import interact from "interactjs";
-import { CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, RichText, SplitPaneIllustration, VideoEmbed } from "typedb-web-schema";
+import { Subscription } from "rxjs";
+import {
+    CodeSnippet,
+    GraphVisualisation,
+    Illustration,
+    ImageIllustration,
+    PolyglotSnippet,
+    RichText,
+    SplitPaneIllustration,
+    VideoEmbed,
+} from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 
 @Component({
@@ -43,17 +53,19 @@ export class IllustrationComponent {
     templateUrl: "split-pane-illustration.component.html",
     styleUrls: ["split-pane-illustration.component.scss"],
 })
-export class SplitPaneIllustrationComponent implements OnInit {
+export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
     @Input() panes!: SplitPaneIllustration;
     @Input() visible = false;
     @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
     resizablePaneID = "";
     isMobile = false;
 
+    private subscription = Subscription.EMPTY;
+
     constructor(private _ngZone: NgZone, private _mediaQuery: MediaQueryService) {}
 
     ngOnInit() {
-        this._mediaQuery.isMobile.subscribe((isMobile) => {
+        this.subscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
             this.isMobile = isMobile;
             this._ngZone.runOutsideAngular(() => {
@@ -68,8 +80,8 @@ export class SplitPaneIllustrationComponent implements OnInit {
                                 if (width > 600) width = 600;
                                 event.target.style.width = `${width}px`;
                                 this.sliderEl.nativeElement.style.left = `${width - 28}px`;
-                            }
-                        }
+                            },
+                        },
                     })
                     .on("resizestart", (event: any) => {
                         event.target!.style["user-select"] = "none";
@@ -79,6 +91,10 @@ export class SplitPaneIllustrationComponent implements OnInit {
                     });
             });
         });
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     get sliderImageSrc(): string {
