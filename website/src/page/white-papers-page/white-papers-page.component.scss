@@ -126,8 +126,14 @@ article {
 .wp-grid-item-description {
     margin-top: 8px;
     @include line-clamp(2);
+    max-height: 28px * 2;
+
+    @media (max-width: $media-max-width-tablet) {
+        max-height: 24px * 2;
+    }
 
     @media (max-width: $media-max-width-mobile) {
         @include line-clamp(3);
+        max-height: 21px * 3;
     }
 }
