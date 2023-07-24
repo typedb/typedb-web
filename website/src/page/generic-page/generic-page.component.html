@@ -1,11 +1,22 @@
 <article [class]="articleClass">
-    <div *ngIf="page">
-        <td-title-body-actions-section [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"></td-title-body-actions-section>
+    <div *ngIf="page" class="article-content">
+        <td-title-body-actions-section
+            [isIntroSection]="true"
+            [title]="page.introSection.title"
+            [body]="page.introSection.body"
+            [actions]="page.introSection.actions"
+        ></td-title-body-actions-section>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
             <td-generic-page-technicolor-block [section]="section" [index]="idx"></td-generic-page-technicolor-block>
-            <td-captioned-illustration [illustration]="section.illustration" [caption]="section.body"></td-captioned-illustration>
+            <td-captioned-illustration
+                [illustration]="section.illustration"
+                [caption]="section.body"
+            ></td-captioned-illustration>
         </ng-container>
-        <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.coreSections.length"></td-features-page-technicolor-block>
+        <td-features-page-technicolor-block
+            [section]="page.finalSection"
+            [index]="page.coreSections.length"
+        ></td-features-page-technicolor-block>
         <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
     </div>
 </article>
