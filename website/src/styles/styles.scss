@@ -621,6 +621,7 @@ input[type="submit"].hs-button {
     width: 20px;
     height: 20px;
     background-image: url("/assets/icon/check-circle.svg");
+    flex-shrink: 0;
 }
 
 .mat-simple-snackbar-action {
