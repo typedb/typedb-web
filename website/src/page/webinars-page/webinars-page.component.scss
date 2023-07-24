@@ -3,10 +3,7 @@
 @import "../background";
 
 article {
-    @include page-background(
-        "features_02june 1.png",
-        "planet-yellow-green.png"
-    );
+    @include page-background("features_02june 1.png", "planet-yellow-green.png");
 }
 
 .wp-primary-placeholder {
@@ -68,10 +65,12 @@ article {
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    max-height: 24px * 2;
 
     @media (max-width: $media-max-width-mobile) {
         -webkit-line-clamp: 3;
         line-clamp: 3;
+        max-height: 21px * 3;
     }
 }
 

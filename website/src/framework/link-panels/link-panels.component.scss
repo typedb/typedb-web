@@ -115,6 +115,7 @@
                 line-clamp: 7;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                max-height: 24px * 7;
             }
         }
 
@@ -129,6 +130,7 @@
                 margin-top: 8px;
                 -webkit-line-clamp: 3;
                 line-clamp: 3;
+                max-height: 18px * 3;
             }
         }
     }
