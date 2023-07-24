@@ -62,11 +62,19 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
         this.removeListener();
     }
 
-    getNebulaSrc(): string {
-        return `/assets/background/nebula-${this.nebula}.webp`;
+    getNebulaSrc(
+        size: "desktop" | "tablet" | "mobile",
+        density2x?: boolean
+    ): string {
+        const densityPart = density2x ? `-2x` : "";
+        return `/assets/background/${size}/nebula-${this.nebula}${densityPart}.webp`;
     }
 
-    getPlanetSrc(): string {
-        return `/assets/background/planet-${this.planet}.webp`;
+    getPlanetSrc(
+        size: "desktop" | "tablet" | "mobile",
+        density2x?: boolean
+    ): string {
+        const densityPart = density2x ? `-2x` : "";
+        return `/assets/background/${size}/planet-${this.planet}${densityPart}.webp`;
     }
 }

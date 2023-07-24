@@ -6,14 +6,12 @@
     background-attachment: fixed;
     background-position: center top;
     background-repeat: repeat;
+    background-size: 100% auto;
 }
 
 .pb-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,20 +19,17 @@
     pointer-events: none;
 }
 
-.pb-nebula {
-    margin-top: 30px;
-    width: $section-width * 1.5;
+.pb-nebula,
+.pb-planet {
+    width: 1920px;
     flex-grow: 1;
 
     @media (max-width: $media-max-width-tablet) {
-        width: $section-width-tablet * 1.5;
-        max-width: calc((100vw - $section-padding-tablet * 2) * 1.5);
+        width: 1024px;
     }
 
     @media (max-width: $media-max-width-mobile) {
-        width: $section-width-mobile * 2;
-        max-width: calc((100vw - 24px) * 2);
-        margin-right: -15%;
+        width: 768px;
     }
 
     img {
@@ -42,26 +37,21 @@
     }
 }
 
-.pb-planet {
-    width: $section-width * 1.5;
-    flex-grow: 1;
-    position: relative;
-
-    @media (max-width: $media-max-width-tablet) {
-        width: $section-width-tablet * 1.5;
-        max-width: calc((100vw - $section-padding-tablet * 2) * 1.5);
-    }
+.pb-nebula {
+    margin-top: 30px;
 
     @media (max-width: $media-max-width-mobile) {
-        width: $section-width-mobile * 2;
-        max-width: calc((100vw - 24px) * 2);
+        margin-right: -150px;
     }
+}
+
+.pb-planet {
+    position: relative;
 
     img {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        width: 100%;
     }
 }

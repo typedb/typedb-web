@@ -47,11 +47,15 @@ typedb-website {
         > .article-content {
             display: flex;
             flex-direction: column;
-            padding-bottom: 558px;
+            padding-bottom: 584px;
             position: relative;
 
+            @media (max-width: $media-max-width-tablet) {
+                padding-bottom: 315px;
+            }
+
             @media (max-width: $media-max-width-mobile) {
-                padding-bottom: 260px;
+                padding-bottom: 250px;
             }
         }
     }
