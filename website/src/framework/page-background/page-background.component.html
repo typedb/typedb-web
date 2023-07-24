@@ -1,11 +1,15 @@
 <div class="pb-container">
-    <div
-        #nebulaRef
-        class="pb-nebula"
-        [style.background-image]="getNebulaImage()"
-    ></div>
+    <div #nebulaRef class="pb-nebula">
+        <picture>
+            <img [src]="getNebulaSrc()" alt="" />
+        </picture>
+    </div>
 </div>
 <div class="pb-container">
-    <div #planetRef class="pb-planet"></div>
+    <div #planetRef class="pb-planet">
+        <picture>
+            <img [src]="getPlanetSrc()" alt="" />
+        </picture>
+    </div>
 </div>
 <ng-content></ng-content>

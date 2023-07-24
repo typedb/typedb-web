@@ -2,6 +2,7 @@
 
 :host {
     position: relative;
+    background-image: url("/assets/background/deep-space.webp");
     background-attachment: fixed;
     background-position: center top;
     background-repeat: repeat;
@@ -17,12 +18,11 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .pb-nebula {
     margin-top: 30px;
-    background-repeat: no-repeat;
-    background-size: contain;
     width: $section-width * 1.5;
     flex-grow: 1;
 
@@ -36,14 +36,16 @@
         max-width: calc((100vw - 24px) * 2);
         margin-right: -15%;
     }
+
+    img {
+        width: 100%;
+    }
 }
 
 .pb-planet {
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: contain;
     width: $section-width * 1.5;
     flex-grow: 1;
+    position: relative;
 
     @media (max-width: $media-max-width-tablet) {
         width: $section-width-tablet * 1.5;
@@ -53,5 +55,13 @@
     @media (max-width: $media-max-width-mobile) {
         width: $section-width-mobile * 2;
         max-width: calc((100vw - 24px) * 2);
+    }
+
+    img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
 }
