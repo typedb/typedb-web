@@ -17,7 +17,7 @@
             <div class="subsection-margin wd-details-area">
                 <div class="card wd-form-card">
                     <h2 class="text-24-32 text-20-30-mobile">
-                        <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register to Webinar" }}</strong>
+                        <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register for Webinar" }}</strong>
                     </h2>
                     <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
                     <p *ngIf="webinar.isFinished() && !webinar.onDemandVideoURL" class="text-16-24 text-14-21-mobile text-weight-light">
