@@ -15,14 +15,33 @@ import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-gr
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
-import { CloudWaitlistDialogComponent, ContactDialogComponent, DialogCloseButtonComponent, NameEmailDialogComponent, NewsletterDialogComponent } from "./form/dialog.component";
+import {
+    CloudWaitlistDialogComponent,
+    ContactDialogComponent,
+    DialogCloseButtonComponent,
+    NameEmailDialogComponent,
+    NewsletterDialogComponent,
+} from "./form/dialog.component";
 import { OptionDirective } from "./form/option.directive";
-import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
+import {
+    FeatureTableCellComponent,
+    FeatureTableComponent,
+} from "./feature-table/feature-table.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
-import { CaptionedIllustrationComponent, IllustrationComponent, SplitPaneIllustrationComponent } from "./illustration/illustration.component";
+import {
+    CaptionedIllustrationComponent,
+    IllustrationComponent,
+    SplitPaneIllustrationComponent,
+} from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
-import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
+import {
+    KeyPointPanels2x2Component,
+    KeyPointTableComponent,
+} from "./key-point/key-point.component";
+import {
+    LinkPanelsComponent,
+    WebinarPanelsComponent,
+} from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { ProductTableComponent } from "./product-table/product-table.component";
@@ -32,10 +51,14 @@ import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
 import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
-import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
+import {
+    H1WithHighlightsComponent,
+    ParagraphWithHighlightsComponent,
+} from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TooltipComponent } from "./tooltip/tooltip.component";
+import { PageBackgroundComponent } from "./page-background/page-background.component";
 
 @NgModule({
     declarations: [
@@ -65,6 +88,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         OptionDirective,
         OrdinalDatePipe,
         OrganisationLogosComponent,
+        PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
@@ -106,6 +130,7 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         LinkPanelsComponent,
         OrdinalDatePipe,
         OrganisationLogosComponent,
+        PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
@@ -117,8 +142,6 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
         TooltipComponent,
         WebinarPanelsComponent,
     ],
-    providers: [
-        PlainTextPipe,
-    ],
+    providers: [PlainTextPipe],
 })
-export class FrameworkModule { }
+export class FrameworkModule {}

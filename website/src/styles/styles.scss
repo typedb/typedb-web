@@ -43,15 +43,20 @@ code {
 typedb-website {
     article {
         min-height: 1080px;
-    }
 
-    article > div {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 558px;
+        > .article-content {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 584px;
+            position: relative;
 
-        @media (max-width: $media-max-width-mobile) {
-            padding-bottom: 260px;
+            @media (max-width: $media-max-width-tablet) {
+                padding-bottom: 315px;
+            }
+
+            @media (max-width: $media-max-width-mobile) {
+                padding-bottom: 250px;
+            }
         }
     }
 
