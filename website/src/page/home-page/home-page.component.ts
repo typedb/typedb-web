@@ -12,13 +12,19 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 @Component({
     selector: "td-home-page",
     templateUrl: "./home-page.component.html",
-    styleUrls: ["./home-page.component.scss"]
+    styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent implements OnInit {
     page?: HomePage;
     socialMediaLinks?: SocialMediaLink[];
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
+    constructor(
+        private router: Router,
+        private contentService: ContentService,
+        private _title: Title,
+        private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService
+    ) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -26,11 +32,15 @@ export class HomePageComponent implements OnInit {
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
-                this.socialMediaLinks = this.page.communitySection?.socialMedias.map(x => new SocialMediaLink(x, data));
+                this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
+                    (x) => new SocialMediaLink(x, data)
+                );
                 this._analytics.hubspot.trackPageView();
-                setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 10000);
             } else {
-                this.router.navigate(["404"]);
+                this.router.navigate(["404"], { skipLocationChange: true });
             }
         });
     }
@@ -38,7 +48,8 @@ export class HomePageComponent implements OnInit {
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template: "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
+    template:
+        "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -47,9 +58,15 @@ export class HomePageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.introSection, this.page!.featuresSection, this.page!.solutionsSection, this.page!.toolingSection,
-            this.page!.cloudSection, this.page!.communitySection, this.page!.testimonialsSection, this.page!.conclusionSection
-        ].filter(x => !!x) as TechnicolorBlock[];
+            this.page!.introSection,
+            this.page!.featuresSection,
+            this.page!.solutionsSection,
+            this.page!.toolingSection,
+            this.page!.cloudSection,
+            this.page!.communitySection,
+            this.page!.testimonialsSection,
+            this.page!.conclusionSection,
+        ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
     get size(): TechnicolorBlockComponent["size"] {
