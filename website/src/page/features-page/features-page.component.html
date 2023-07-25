@@ -1,4 +1,4 @@
-<article>
+<article tdPageBackground nebula="features" planet="yellow_green">
     <div *ngIf="page" class="article-content">
         <td-title-body-actions-section
             [isIntroSection]="true"
@@ -11,21 +11,13 @@
             class="section-margin"
         ></td-organisation-logos>
         <ng-container *ngFor="let section of page.coreSections; index as idx">
-            <td-features-page-technicolor-block
-                [section]="section"
-                [index]="idx"
-            ></td-features-page-technicolor-block>
-            <td-content-tabs
-                [id]="'section' + idx"
-                [tabs]="section.panels"
-            ></td-content-tabs>
+            <td-features-page-technicolor-block [section]="section" [index]="idx"></td-features-page-technicolor-block>
+            <td-content-tabs [id]="'section' + idx" [tabs]="section.panels"></td-content-tabs>
         </ng-container>
         <td-features-page-technicolor-block
             [section]="page.finalSection"
             [index]="page.coreSections.length"
         ></td-features-page-technicolor-block>
-        <td-conclusion-panel
-            [panel]="page.finalSection.panel"
-        ></td-conclusion-panel>
+        <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
     </div>
 </article>

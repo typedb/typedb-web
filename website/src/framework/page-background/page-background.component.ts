@@ -6,8 +6,8 @@ import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy } from "
     styleUrls: ["page-background.component.scss"],
 })
 export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
-    @Input("nebula") nebula?: "home";
-    @Input("planet") planet?: "green";
+    @Input("nebula") nebula?: "cloud" | "deploy" | "features" | "home" | "intro" | "solutions" | "studio";
+    @Input("planet") planet?: "blue_pink" | "green" | "pink_green" | "pink" | "yellow_green";
 
     private removeListener = () => {};
 
@@ -20,7 +20,11 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular(() => {
             const handleScroll = () => {
-                const topScrolled = Math.min(this.topOffset, window.scrollY);
+                const topScrolled = Math.min(
+                    this.topOffset,
+                    window.scrollY,
+                    this.elementRef.nativeElement.clientHeight - window.innerHeight - this.bottomOffset
+                );
                 const bottomScrolled = Math.max(
                     0,
                     this.bottomOffset + window.innerHeight + window.scrollY - this.elementRef.nativeElement.clientHeight
@@ -31,9 +35,13 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
                 this.elementRef.nativeElement.style.backgroundPositionY = `${-distance}px`;
             };
 
-            this.removeListener = () => window.removeEventListener("scroll", handleScroll);
+            this.removeListener = () => {
+                window.removeEventListener("scroll", handleScroll);
+                window.removeEventListener("resize", handleScroll);
+            };
 
             window.addEventListener("scroll", handleScroll, { passive: true });
+            window.addEventListener("resize", handleScroll, { passive: true });
 
             handleScroll();
         });
@@ -41,6 +49,10 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
 
     ngOnDestroy(): void {
         this.removeListener();
+    }
+
+    getNebulaClass(): string {
+        return `pb-nebula-${this.nebula}`;
     }
 
     getNebulaSrc(size: "desktop" | "tablet" | "mobile", density2x?: boolean): string {

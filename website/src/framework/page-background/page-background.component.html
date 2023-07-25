@@ -1,5 +1,5 @@
-<div class="pb-container">
-    <div class="pb-nebula">
+<div *ngIf="nebula" class="pb-container">
+    <div class="pb-nebula" [ngClass]="getNebulaClass()">
         <picture>
             <source
                 media="(max-width: 767px)"
@@ -13,7 +13,7 @@
         </picture>
     </div>
 </div>
-<div class="pb-container">
+<div *ngIf="planet" class="pb-container">
     <div class="pb-planet">
         <picture>
             <source

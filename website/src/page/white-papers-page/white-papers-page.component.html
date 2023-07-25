@@ -1,4 +1,4 @@
-<article>
+<article tdPageBackground nebula="studio" planet="pink">
     <div *ngIf="page" class="article-content">
         <div class="section">
             <td-title-body-actions-section
@@ -6,9 +6,7 @@
                 [title]="page.introSection.title"
                 [body]="page.introSection.body"
             ></td-title-body-actions-section>
-            <div
-                class="subsection-margin wp-primary-whitepaper card card-padding"
-            >
+            <div class="subsection-margin wp-primary-whitepaper card card-padding">
                 <img
                     [src]="page.featuredWhitePaper.landscapeImageURL"
                     class="wp-img wp-img-primary hide-gt-mobile"
@@ -20,9 +18,7 @@
                     [alt]=""
                 />
                 <div class="wp-primary-whitepaper-summary">
-                    <h2
-                        class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title"
-                    >
+                    <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title">
                         {{ page.featuredWhitePaper.title | plainText }}
                     </h2>
                     <td-rich-text
@@ -31,28 +27,15 @@
                     ></td-rich-text>
                     <div class="flex"></div>
                     <td-button
-                        [button]="
-                            accessResourceButton(
-                                page.featuredWhitePaper,
-                                'primary',
-                                'Read Now'
-                            )
-                        "
+                        [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"
                     ></td-button>
                 </div>
             </div>
             <div class="subsection-margin wp-grid card">
-                <div
-                    *ngFor="let whitePaper of page.whitePapersList"
-                    class="wp-grid-item"
-                >
+                <div *ngFor="let whitePaper of page.whitePapersList" class="wp-grid-item">
                     <div class="wp-img-and-text">
                         <div class="wp-img-secondary-container">
-                            <img
-                                [src]="whitePaper.landscapeImageURL"
-                                class="wp-img wp-img-secondary"
-                                [alt]=""
-                            />
+                            <img [src]="whitePaper.landscapeImageURL" class="wp-img wp-img-secondary" [alt]="" />
                         </div>
                         <div>
                             <h2
@@ -67,13 +50,7 @@
                         </div>
                     </div>
                     <td-button
-                        [button]="
-                            accessResourceButton(
-                                whitePaper,
-                                'secondary',
-                                'Read'
-                            )
-                        "
+                        [button]="accessResourceButton(whitePaper, 'secondary', 'Read')"
                         size="small"
                         buttonWidth="100%"
                     ></td-button>

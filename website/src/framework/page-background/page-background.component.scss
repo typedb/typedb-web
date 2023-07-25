@@ -41,7 +41,24 @@
     margin-top: 30px;
 
     @media (max-width: $media-max-width-mobile) {
-        margin-right: -150px;
+        &-cloud {
+            margin-right: -140px;
+        }
+        &-features {
+            margin-right: -340px;
+        }
+        &-home {
+            margin-right: -140px;
+        }
+        &-intro {
+            margin-right: -440px;
+        }
+        &-solutions {
+            margin-right: -140px;
+        }
+        &-studio {
+            margin-right: -240px;
+        }
     }
 }
 
