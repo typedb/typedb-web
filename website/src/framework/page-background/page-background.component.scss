@@ -1,0 +1,57 @@
+@import "src/styles/sizes";
+
+:host {
+    position: relative;
+    background-image: url("/assets/background/deep-space.webp");
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: repeat;
+    background-size: 100% auto;
+}
+
+.pb-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.pb-nebula,
+.pb-planet {
+    width: 1920px;
+    flex-grow: 1;
+
+    @media (max-width: $media-max-width-tablet) {
+        width: 1024px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 768px;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+.pb-nebula {
+    margin-top: 30px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-right: -150px;
+    }
+}
+
+.pb-planet {
+    position: relative;
+
+    img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}

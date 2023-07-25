@@ -1,36 +1,82 @@
-<article>
-    <div *ngIf="page">
+<article tdPageBackground planet="green" nebula="home">
+    <div *ngIf="page" class="article-content">
         <ng-container *ngIf="page.introSection">
-            <td-home-page-technicolor-block [block]="page.introSection" [page]="page" class="hp-intro-block"></td-home-page-technicolor-block>
-            <td-organisation-logos [organisations]="page.introSection.userLogos" appearance="panel"></td-organisation-logos>
+            <td-home-page-technicolor-block
+                [block]="page.introSection"
+                [page]="page"
+                class="hp-intro-block"
+            ></td-home-page-technicolor-block>
+            <td-organisation-logos
+                [organisations]="page.introSection.userLogos"
+                appearance="panel"
+            ></td-organisation-logos>
         </ng-container>
         <ng-container *ngIf="page.featuresSection">
-            <td-home-page-technicolor-block [block]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>
-            <td-content-tabs id="features" [tabs]="page.featuresSection.featureTabs"></td-content-tabs>
+            <td-home-page-technicolor-block
+                [block]="page.featuresSection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-content-tabs
+                id="features"
+                [tabs]="page.featuresSection.featureTabs"
+            ></td-content-tabs>
         </ng-container>
         <ng-container *ngIf="page.solutionsSection">
-            <td-home-page-technicolor-block [block]="page.solutionsSection" [page]="page"></td-home-page-technicolor-block>
-            <td-link-panels [panels]="page.solutionsSection.solutions" [cols]="4"></td-link-panels>
+            <td-home-page-technicolor-block
+                [block]="page.solutionsSection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-link-panels
+                [panels]="page.solutionsSection.solutions"
+                [cols]="4"
+            ></td-link-panels>
         </ng-container>
         <ng-container *ngIf="page.toolingSection">
-            <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page"></td-home-page-technicolor-block>
-            <td-link-panels [panels]="page.toolingSection.panels" [cols]="3"></td-link-panels>
+            <td-home-page-technicolor-block
+                [block]="page.toolingSection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-link-panels
+                [panels]="page.toolingSection.panels"
+                [cols]="3"
+            ></td-link-panels>
         </ng-container>
         <ng-container *ngIf="page.cloudSection">
-            <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page"></td-home-page-technicolor-block>
-            <td-key-point-table [keyPoints]="page.cloudSection.keyPoints"></td-key-point-table>
+            <td-home-page-technicolor-block
+                [block]="page.cloudSection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-key-point-table
+                [keyPoints]="page.cloudSection.keyPoints"
+            ></td-key-point-table>
         </ng-container>
         <ng-container *ngIf="page.communitySection">
-            <td-home-page-technicolor-block [block]="page.communitySection" [page]="page"></td-home-page-technicolor-block>
-            <td-social-media-panels [socialMediaLinks]="socialMediaLinks!"></td-social-media-panels>
+            <td-home-page-technicolor-block
+                [block]="page.communitySection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-social-media-panels
+                [socialMediaLinks]="socialMediaLinks!"
+            ></td-social-media-panels>
         </ng-container>
         <ng-container *ngIf="page.testimonialsSection">
-            <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page"></td-home-page-technicolor-block>
-            <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials"></td-testimonials-carousel>
+            <td-home-page-technicolor-block
+                [block]="page.testimonialsSection"
+                [page]="page"
+            ></td-home-page-technicolor-block>
+            <td-testimonials-carousel
+                [testimonials]="page.testimonialsSection.testimonials"
+            ></td-testimonials-carousel>
         </ng-container>
         <ng-container *ngIf="page.conclusionSection">
-            <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion"></td-home-page-technicolor-block>
-            <td-conclusion-panel [panel]="page.conclusionSection.panel"></td-conclusion-panel>
+            <td-home-page-technicolor-block
+                [block]="page.conclusionSection"
+                [page]="page"
+                variant="conclusion"
+            ></td-home-page-technicolor-block>
+            <td-conclusion-panel
+                [panel]="page.conclusionSection.panel"
+            ></td-conclusion-panel>
         </ng-container>
     </div>
 </article>

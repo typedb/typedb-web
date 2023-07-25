@@ -1,0 +1,31 @@
+<div class="pb-container">
+    <div class="pb-nebula">
+        <picture>
+            <source
+                media="(max-width: 767px)"
+                [srcset]="getNebulaSrc('mobile') + ', ' + getNebulaSrc('mobile', true) + ' 2x'"
+            />
+            <source
+                media="(max-width: 1199px)"
+                [srcset]="getNebulaSrc('tablet') + ', ' + getNebulaSrc('tablet', true) + ' 2x'"
+            />
+            <img [src]="getNebulaSrc('desktop')" [srcset]="getNebulaSrc('desktop', true) + ' 2x'" alt="" />
+        </picture>
+    </div>
+</div>
+<div class="pb-container">
+    <div class="pb-planet">
+        <picture>
+            <source
+                media="(max-width: 767px)"
+                [srcset]="getPlanetSrc('mobile') + ', ' + getPlanetSrc('mobile', true) + ' 2x'"
+            />
+            <source
+                media="(max-width: 1199px)"
+                [srcset]="getPlanetSrc('tablet') + ', ' + getPlanetSrc('tablet', true) + ' 2x'"
+            />
+            <img [src]="getPlanetSrc('desktop')" [srcset]="getPlanetSrc('desktop', true) + ' 2x'" alt="" />
+        </picture>
+    </div>
+</div>
+<ng-content></ng-content>
