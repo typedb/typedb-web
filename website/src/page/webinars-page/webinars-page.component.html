@@ -16,7 +16,8 @@
                         <h3 class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile">
                             <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
                             <span class="wp-title-separator">|</span>
-                            <span>{{ primaryWebinar.datetime | ordinalDate }}</span>
+                            <span *ngIf="primaryWebinar.isFinished()">On-Demand</span>
+                            <span *ngIf="!primaryWebinar.isFinished()">{{ primaryWebinar.datetime | ordinalDate }}</span>
                         </h3>
                         <div class="wp-webinar-text-container">
                             <td-rich-text
@@ -60,16 +61,19 @@
                                 >
                             </p>
                             <p class="wp-timing text-16-24 text-14-21-mobile text-weight-light">
-                                <span class="wp-webinar-datetime" *ngIf="!webinar.isFinished()"
+                                <span class="wp-webinar-datetime"
                                     ><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar" />
-                                    {{ webinar.datetime | ordinalDate }},
-                                    {{ webinar.datetime | date : "shortTime" }}
-                                    {{ localTimezoneAbbreviation(webinar) }}</span
-                                >
-                                <span
-                                    ><img src="/assets/icon/time.svg" alt="Duration:" />
-                                    {{ webinar.durationMins | eventDuration }}</span
-                                >
+                                    <ng-container *ngIf="webinar.isFinished()">On-Demand</ng-container>
+                                    <ng-container *ngIf="!webinar.isFinished()">
+                                        {{ webinar.datetime | ordinalDate }},
+                                        {{ webinar.datetime | date : "shortTime" }}
+                                        {{ localTimezoneAbbreviation(webinar) }}
+                                    </ng-container>
+                                </span>
+                                <span>
+                                    <img src="/assets/icon/time.svg" alt="Duration:" />
+                                    {{ webinar.durationMins | eventDuration }}
+                                </span>
                             </p>
                         </div>
                         <div class="flex"></div>
