@@ -11,7 +11,6 @@ import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
 import { CodeSnippetComponent } from "./code/code-snippet.component";
 import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.component";
-import { ContentPanelGridComponent } from "./content-panel-grid/content-panel-grid.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
@@ -47,6 +46,7 @@ import { RouterModule } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
+import { RatioContainerComponent } from "./ratio-container/ratio-container.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
 
 @NgModule({
@@ -59,7 +59,6 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ConclusionPanelComponent,
         ContactDialogComponent,
         ContentPanelComponent,
-        ContentPanelGridComponent,
         ContentTabsComponent,
         DialogCloseButtonComponent,
         FeatureTableComponent,
@@ -81,6 +80,7 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
+        RatioContainerComponent,
         RichTextComponent,
         ScrollShadowComponent,
         SocialMediaPanelsComponent,
@@ -109,7 +109,6 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         CaptionedIllustrationComponent,
         ConclusionPanelComponent,
         ContentPanelComponent,
-        ContentPanelGridComponent,
         ContentTabsComponent,
         FeatureTableComponent,
         H1WithHighlightsComponent,
@@ -124,6 +123,7 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
+        RatioContainerComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
         TechnicolorBlockComponent,

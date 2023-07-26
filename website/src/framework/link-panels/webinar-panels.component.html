@@ -7,21 +7,16 @@
         (mouseenter)="setPanelHovered(webinar, true)"
         (mouseleave)="setPanelHovered(webinar, false)"
     >
-        <div
-            *ngIf="webinar.registrationButton().comingSoon"
-            class="text-14-21 lp-coming-soon"
-        >
-            coming soon
-        </div>
-        <img [src]="webinar.imageURL" alt="" />
+        <div *ngIf="webinar.registrationButton().comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
+        <td-ratio-container ratio="16:9">
+            <img [src]="webinar.imageURL" alt="" />
+        </td-ratio-container>
         <div>
             <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
                 {{ webinar.title | plainText }}
             </h2>
             <h3>
-                <strong class="text-important">{{
-                    webinar.listSpeakers()
-                }}</strong>
+                <strong class="text-important">{{ webinar.listSpeakers() }}</strong>
             </h3>
             <p class="text-quiet text-weight-light">
                 {{ webinar.listSpeakerJobs() }}

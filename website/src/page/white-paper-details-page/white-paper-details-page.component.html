@@ -6,7 +6,9 @@
                 [value]="whitePaper.title"
             ></td-h1-with-highlights>
             <div class="section subsection-margin card wd-form-card">
-                <img [src]="whitePaper.portraitImageURL" class="wd-img wd-img-portrait" [alt]="whitePaper.title" />
+                <td-ratio-container ratio="A4">
+                    <img [src]="whitePaper.portraitImageURL" class="wd-img" [alt]="whitePaper.title" />
+                </td-ratio-container>
                 <div>
                     <h2 class="text-24-32 text-22-33-mobile">
                         <strong>Get the white paper</strong>
