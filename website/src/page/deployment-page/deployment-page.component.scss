@@ -1,12 +1,4 @@
-@import "../background";
-
-article {
-    @include page-background(
-        // prettier-ignore
-        "deploy_02june (2) 1.png",
-        "planet-yellow-green.png"
-    );
-}
+@import "src/styles/sizes";
 
 .dp-intro-block {
     display: inline-block;

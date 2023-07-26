@@ -1,8 +1,4 @@
-@import "../background";
-
-article {
-    @include page-background("solutions_02june 1.png", "planet-magenta.png");
-}
+@import "src/styles/sizes";
 
 td-rich-text {
     margin-top: 32px;
