@@ -96,13 +96,13 @@
 
 .wp-img-secondary-container {
     @media (max-width: $media-max-width-mobile) {
-        width: 120px;
+        width: 100px;
         flex-shrink: 0;
     }
 }
 
 .wp-grid-item-description {
-    margin-top: 8px;
+    margin-top: -8px;
     @include line-clamp(2);
     max-height: 28px * 2;
 
@@ -111,6 +111,7 @@
     }
 
     @media (max-width: $media-max-width-mobile) {
+        margin-top: 0;
         @include line-clamp(3);
         max-height: 21px * 3;
     }
