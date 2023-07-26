@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy } from "@angular/core";
+import { Subject, Subscription, distinct, distinctUntilChanged, endWith, takeUntil } from "rxjs";
+import { MediaQueryService } from "src/service/media-query.service";
 
 @Component({
     selector: "[tdPageBackground]",
@@ -9,13 +11,17 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     @Input("nebula") nebula?: "cloud" | "deploy" | "features" | "home" | "intro" | "solutions" | "studio";
     @Input("planet") planet?: "blue_pink" | "green" | "pink_green" | "pink" | "yellow_green";
 
-    private removeListener = () => {};
+    private readonly destroyNotifier = new Subject<void>();
 
     private readonly topOffset = 300;
     private readonly bottomOffset = 300;
     private readonly spaceSpeed = 0.2;
 
-    constructor(private elementRef: ElementRef<HTMLElement>, private ngZone: NgZone) {}
+    constructor(
+        private elementRef: ElementRef<HTMLElement>,
+        private mediaQuery: MediaQueryService,
+        private ngZone: NgZone
+    ) {}
 
     ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular(() => {
@@ -35,20 +41,26 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
                 this.elementRef.nativeElement.style.backgroundPositionY = `${-distance}px`;
             };
 
-            this.removeListener = () => {
+            const addListeners = () => {
+                window.addEventListener("scroll", handleScroll, { passive: true });
+                window.addEventListener("resize", handleScroll, { passive: true });
+                handleScroll();
+            };
+            const removeListeners = () => {
                 window.removeEventListener("scroll", handleScroll);
                 window.removeEventListener("resize", handleScroll);
             };
 
-            window.addEventListener("scroll", handleScroll, { passive: true });
-            window.addEventListener("resize", handleScroll, { passive: true });
-
-            handleScroll();
+            this.mediaQuery.isMobile.pipe(takeUntil(this.destroyNotifier), distinctUntilChanged()).subscribe({
+                next: (isMobile) => (isMobile ? removeListeners() : addListeners()),
+                complete: removeListeners,
+            });
         });
     }
 
     ngOnDestroy(): void {
-        this.removeListener();
+        this.destroyNotifier.next();
+        this.destroyNotifier.complete();
     }
 
     getNebulaClass(): string {
