@@ -35,18 +35,16 @@ export class WebinarDetailsPageComponent implements OnInit {
                     this._title.setTitle(`${this._plainTextPipe.transform(this.webinar.title)} - TypeDB Webinars`);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
-                    if (!this.webinar.isFinished() || this.webinar.onDemandVideoURL) {
-                        this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", (formEl) => {
-                            this._webinarService.register({
-                                airmeetID: this.webinar!.airmeetID!,
-                                firstName: formEl["firstname"].value,
-                                lastName: formEl["lastname"].value,
-                                email: formEl["email"].value,
-                                companyName: formEl["company"].value,
-                                jobTitle: formEl["job_function"].value,
-                            });
+                    this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", (formEl) => {
+                        this._webinarService.register({
+                            airmeetID: this.webinar!.airmeetID!,
+                            firstName: formEl["firstname"].value,
+                            lastName: formEl["lastname"].value,
+                            email: formEl["email"].value,
+                            companyName: formEl["company"].value,
+                            jobTitle: formEl["job_function"].value,
                         });
-                    }
+                    });
                 } else {
                     this.router.navigate(["404"]);
                 }
@@ -55,12 +53,10 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     onSubmit() {
-        const webinar = this.webinar!;
-        if (webinar.isFinished()) {
-            window.open(webinar.onDemandVideoURL);
-        } else {
-            this._popupNotificationService.success("You've been successfully signed up for the webinar. You'll receive a link in your email, which you can use to join the event.");
-        }
+        const successMsg = this.webinar!.isFinished()
+            ? "A link to watch the webinar has been sent to your email inbox."
+            : "A link to join the webinar has been sent to your email inbox.";
+        this._popupNotificationService.success(successMsg);
     }
 
     get localTimezoneAbbreviation(): string {
