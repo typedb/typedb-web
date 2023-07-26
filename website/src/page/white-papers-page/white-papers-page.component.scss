@@ -1,15 +1,6 @@
 @import "src/styles/colors";
 @import "src/styles/mixins";
 @import "src/styles/sizes";
-@import "../background";
-
-article {
-    @include page-background(
-        // prettier-ignore
-        "studio_02june (5) 1.png",
-        "planet-yellow-green.png"
-    );
-}
 
 .wp-primary-whitepaper {
     display: flex;

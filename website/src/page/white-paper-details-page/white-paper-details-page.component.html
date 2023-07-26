@@ -1,4 +1,4 @@
-<article>
+<article tdPageBackground nebula="studio" planet="pink">
     <div *ngIf="whitePaper" class="article-content">
         <section class="page-section page-intro-section">
             <td-h1-with-highlights
@@ -6,22 +6,15 @@
                 [value]="whitePaper.title"
             ></td-h1-with-highlights>
             <div class="section subsection-margin card wd-form-card">
-                <img
-                    [src]="whitePaper.portraitImageURL"
-                    class="wd-img wd-img-portrait"
-                    [alt]="whitePaper.title"
-                />
+                <img [src]="whitePaper.portraitImageURL" class="wd-img wd-img-portrait" [alt]="whitePaper.title" />
                 <div>
                     <h2 class="text-24-32 text-22-33-mobile">
                         <strong>Get the white paper</strong>
                     </h2>
                     <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
                     <p>
-                        By submitting your personal data, you consent to emails
-                        from Vaticle. See our
-                        <a href="/privacy-policy" target="_blank"
-                            >Privacy Policy</a
-                        >.
+                        By submitting your personal data, you consent to emails from Vaticle. See our
+                        <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
                     </p>
                 </div>
             </div>
@@ -36,10 +29,7 @@
                 [index]="1"
                 [noLeadingLine]="true"
             ></td-technicolor-block>
-            <td-link-panels
-                [panels]="whitePaper.furtherReading.links"
-                [cols]="3"
-            ></td-link-panels>
+            <td-link-panels [panels]="whitePaper.furtherReading.links" [cols]="3"></td-link-panels>
         </ng-container>
     </div>
 </article>

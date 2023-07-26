@@ -1,13 +1,5 @@
 @import "../../styles/sizes";
 @import "../../styles/colors";
-@import "../background";
-
-article {
-    @include page-background(
-        "features_02june 1.png",
-        "planet-yellow-green.png"
-    );
-}
 
 ul.wd-subtitle {
     margin-top: 32px;

@@ -41,8 +41,8 @@ export class GenericPageComponent implements OnInit {
         });
     }
 
-    get articleClass(): string {
-        return this.router.url.includes("cloud") ? "planet-blue-pink" : "planet-pink";
+    get isCloudPage(): boolean {
+        return this.router.url.includes("cloud");
     }
 }
 
