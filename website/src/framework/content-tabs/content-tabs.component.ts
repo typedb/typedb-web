@@ -16,7 +16,7 @@ export class ContentTabsComponent implements OnInit {
     selectedTabID: string | undefined;
 
     constructor(private router: Router, private _el: ElementRef) {
-        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(_e => {
+        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((_e) => {
             this.setSelectedTabFromWindowHash();
         });
     }
@@ -33,7 +33,7 @@ export class ContentTabsComponent implements OnInit {
     }
 
     get selectedTab(): ContentTextPanel {
-        const selectedTab = this.tabs.find(x => this.tabID(x) === this.selectedTabID);
+        const selectedTab = this.tabs.find((x) => this.tabID(x) === this.selectedTabID);
         if (selectedTab) return selectedTab;
         else throw "Unreachable code";
     }
@@ -43,12 +43,15 @@ export class ContentTabsComponent implements OnInit {
     }
 
     setSelectedTabFromWindowHash() {
-        const targetedTab = this.tabs.find(x => this.tabID(x) === window.location.hash.slice(1));
+        const targetedTab = this.tabs.find((x) => this.tabID(x) === window.location.hash.slice(1));
         if (targetedTab) this.setSelectedTab(targetedTab);
     }
 
     onTabClick(tab: ContentTextPanel, event: Event) {
         event.preventDefault();
+        if (event.currentTarget instanceof HTMLElement) {
+            event.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
         this.setSelectedTab(tab);
     }
 
@@ -57,7 +60,7 @@ export class ContentTabsComponent implements OnInit {
         if (this.setWindowHashOnTabClick) {
             this.router.navigate([], {
                 fragment: this.tabID(tab),
-                state: { preventScrollToAnchor: true }
+                state: { preventScrollToAnchor: true },
             });
         }
     }
