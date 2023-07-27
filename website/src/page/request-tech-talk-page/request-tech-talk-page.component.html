@@ -1,0 +1,33 @@
+<article tdPageBackground planet="blue_pink">
+    <div *ngIf="page" class="article-content">
+        <section class="page-section page-intro-section">
+            <td-h1-with-highlights
+                class="text-56-64 text-48-60-tablet text-28-36-mobile"
+                [value]="page.introTitle"
+            ></td-h1-with-highlights>
+
+            <div class="rt-details subsection-margin">
+                <div class="rt-form-card card">
+                    <h2 class="text-24-32 text-22-33-mobile">
+                        <strong>Submit Company Info</strong>
+                    </h2>
+                    <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
+                    <p>
+                        By submitting your personal data, you consent to emails from Vaticle. See our
+                        <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+                    </p>
+                </div>
+                <div class="rt-details-text">
+                    <td-p-with-highlights
+                        [value]="page.details.title"
+                        class="rt-details-title text-40-54 text-34-48-tablet text-22-33-mobile"
+                    ></td-p-with-highlights>
+                    <td-rich-text
+                        class="text-24-32 text-20-32-tablet text-14-21-mobile"
+                        [value]="page.details.body"
+                    ></td-rich-text>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

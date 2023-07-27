@@ -7,8 +7,17 @@ import { introPageSchemas } from "./intro";
 import { solutionPageSchemas } from "./solution";
 import { webinarsPageSchemas } from "./webinars";
 import { whitePapersPageSchema } from "./white-papers";
+import { requestTechTalkPageSchema } from "./request-tech-talk";
 
 export const pageSchemas = [
-    ...basePageSchemas, ...deploymentPageSchemas, ...genericPageSchemas, ...featuresPageSchemas, ...homePageSchemas,
-    ...introPageSchemas, ...solutionPageSchemas, ...webinarsPageSchemas, whitePapersPageSchema,
+    ...basePageSchemas,
+    ...deploymentPageSchemas,
+    ...genericPageSchemas,
+    ...featuresPageSchemas,
+    ...homePageSchemas,
+    ...introPageSchemas,
+    ...solutionPageSchemas,
+    ...webinarsPageSchemas,
+    requestTechTalkPageSchema,
+    whitePapersPageSchema,
 ];
