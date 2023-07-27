@@ -87,23 +87,8 @@ to = "https://typedb.com/data.json"
 status = 200
 
 [[redirects]]
-from = "https://typedb.com/*"
-to = "https://typedb.com/index.html"
-status = 200
-
-[[redirects]]
-from = "https://live-temp.typedb.com/*"
-to = "https://live-temp.typedb.com/index.html"
-status = 200
-
-[[redirects]]
-from = "https://master.typedb.com/*"
-to = "https://master.typedb.com/index.html"
-status = 200
-
-[[redirects]]
-from = "https://development.typedb.com/*"
-to = "https://development.typedb.com/index.html"
+from = "/*"
+to = "/index.html"
 status = 200
 
 [[edge_functions]]
