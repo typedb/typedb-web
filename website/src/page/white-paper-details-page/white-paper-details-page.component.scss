@@ -11,6 +11,7 @@
 
     @media (max-width: $media-max-width-mobile) {
         padding: 12px;
+        flex-flow: column-reverse nowrap;
     }
 
     > * {
@@ -35,6 +36,10 @@
 .wd-img {
     border: 1px solid $color-vaticle-light-purple;
     border-radius: $border-radius;
+
+    @media (max-width: $media-max-width-mobile) {
+        max-width: 100%;
+    }
 }
 
 #hubspot-form-holder {
