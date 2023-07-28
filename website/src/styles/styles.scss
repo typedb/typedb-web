@@ -536,6 +536,17 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     }
 }
 
+.hs-form {
+    .hs-error-msgs,
+    .hs_error_rollup {
+        display: none;
+    }
+
+    .hs-input.error {
+        border-color: $color-vaticle-red;
+    }
+}
+
 #hubspot-form-holder-contact .hs-submit {
     @media (max-width: $media-max-width-mobile) {
         margin-top: 240px;
