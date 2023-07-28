@@ -86,6 +86,9 @@ dependencies:
   '@pixi/utils':
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9)
+  '@sanity/image-url':
+    specifier: 1.0.2
+    version: 1.0.2
   '@scullyio/ng-lib':
     specifier: 2.1.41
     version: 2.1.41(@angular/common@14.2.12)(@angular/core@14.2.12)(@angular/platform-browser-dynamic@14.2.12)(@angular/router@14.2.12)
@@ -2964,6 +2967,11 @@ packages:
     dependencies:
       react: 18.2.0
     dev: true
+
+  /@sanity/image-url@1.0.2:
+    resolution: {integrity: sha512-C4+jb2ny3ZbMgEkLd7Z3C75DsxcTEoE+axXQJsQ75ou0AKWGdVsP351hqK6mJUUxn5HCSlu3vznoh7Yljye4cQ==}
+    engines: {node: '>=10.0.0'}
+    dev: false
 
   /@sanity/types@3.6.0:
     resolution: {integrity: sha512-oYZBKLdQK9mPonNq023FtbzeiQa3EqXs9X4nul5yH63hDF9qghAop9W9ODohr5V15Gf4oEEBcM9F7pp+vtawzg==}
@@ -6895,6 +6903,7 @@ packages:
 
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -6917,6 +6926,7 @@ packages:
   /node-gyp-build@4.6.0:
     resolution: {integrity: sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==}
     hasBin: true
+    requiresBuild: true
     dev: true
     optional: true
 
