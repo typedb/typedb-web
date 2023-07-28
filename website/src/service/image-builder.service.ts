@@ -14,6 +14,6 @@ export class ImageBuilder {
     });
 
     image(source: string) {
-        return this.imageBuilder.image(source).auto("format").fit("max").dpr(3);
+        return this.imageBuilder.image(source).auto("format").fit("max").dpr(window.devicePixelRatio);
     }
 }
