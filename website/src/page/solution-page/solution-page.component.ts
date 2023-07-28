@@ -10,25 +10,34 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 @Component({
     selector: "td-solution-page",
     templateUrl: "./solution-page.component.html",
-    styleUrls: ["./solution-page.component.scss"]
+    styleUrls: ["./solution-page.component.scss"],
 })
 export class SolutionPageComponent implements OnInit {
     page?: SolutionPage;
 
-    constructor(private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
+    constructor(
+        private router: Router,
+        private _activatedRoute: ActivatedRoute,
+        private contentService: ContentService,
+        private _title: Title,
+        private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService
+    ) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanitySolutionPages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
-                const sanitySolutionPage = sanitySolutionPages.find(x => x.route.current === params.get("route"));
+                const sanitySolutionPage = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
                 if (sanitySolutionPage) {
                     this.page = new SolutionPage(sanitySolutionPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
                     this._analytics.hubspot.trackPageView();
-                    setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
+                    setTimeout(() => {
+                        this._idleMonitor.fireManualMyAppReadyEvent();
+                    }, 10000);
                 } else {
-                    this.router.navigate(["404"]);
+                    this.router.navigate(["404"], { skipLocationChange: true });
                 }
             });
         });
@@ -37,7 +46,8 @@ export class SolutionPageComponent implements OnInit {
 
 @Component({
     selector: "td-solution-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" [noLeadingLine]='index === 0' [noTrailingLine]=\"noTrailingLine\"></td-technicolor-block>",
+    template:
+        '<td-technicolor-block [block]="block" [index]="index + 1" [noLeadingLine]=\'index === 0\' [noTrailingLine]="noTrailingLine"></td-technicolor-block>',
 })
 export class SolutionPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -45,9 +55,11 @@ export class SolutionPageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.useCasesSection, this.page!.challengesSection, this.page!.solutionSection,
-            this.page!.furtherReadingSection
-        ].filter(x => !!x) as TechnicolorBlock[];
+            this.page!.useCasesSection,
+            this.page!.challengesSection,
+            this.page!.solutionSection,
+            this.page!.furtherReadingSection,
+        ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
     get index() {

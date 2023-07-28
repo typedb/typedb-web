@@ -14,27 +14,39 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 @Component({
     selector: "td-webinar-details-page",
     templateUrl: "./webinar-details-page.component.html",
-    styleUrls: ["./webinar-details-page.component.scss"]
+    styleUrls: ["./webinar-details-page.component.scss"],
 })
 export class WebinarDetailsPageComponent implements OnInit {
     webinar?: Webinar;
     form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
 
     constructor(
-        private router: Router, private _activatedRoute: ActivatedRoute, private contentService: ContentService, private _formService: FormService,
-        private _webinarService: WebinarService, private _popupNotificationService: PopupNotificationService, private _title: Title, private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService, private _plainTextPipe: PlainTextPipe) {}
+        private router: Router,
+        private _activatedRoute: ActivatedRoute,
+        private contentService: ContentService,
+        private _formService: FormService,
+        private _webinarService: WebinarService,
+        private _popupNotificationService: PopupNotificationService,
+        private _title: Title,
+        private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService,
+        private _plainTextPipe: PlainTextPipe
+    ) {}
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
-                const sanityWebinar = sanityWebinars.find(x => x.slug.current === params.get("slug") && !x.comingSoon);
+                const sanityWebinar = sanityWebinars.find(
+                    (x) => x.slug.current === params.get("slug") && !x.comingSoon
+                );
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
                     this._title.setTitle(`${this._plainTextPipe.transform(this.webinar.title)} - TypeDB Webinars`);
                     this._analytics.hubspot.trackPageView();
-                    setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
+                    setTimeout(() => {
+                        this._idleMonitor.fireManualMyAppReadyEvent();
+                    }, 10000);
                     this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", (formEl) => {
                         this._webinarService.register({
                             airmeetID: this.webinar!.airmeetID!,
@@ -46,7 +58,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                         });
                     });
                 } else {
-                    this.router.navigate(["404"]);
+                    this.router.navigate(["404"], { skipLocationChange: true });
                 }
             });
         });
@@ -60,6 +72,6 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     get localTimezoneAbbreviation(): string {
-        return this.webinar!.datetime.toLocaleDateString('en-US', { day: '2-digit', timeZoneName: 'short' }).slice(4);
+        return this.webinar!.datetime.toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" }).slice(4);
     }
 }
