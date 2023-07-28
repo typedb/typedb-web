@@ -35,7 +35,7 @@ export class GenericPageComponent implements OnInit {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 10000);
                 } else {
-                    this.router.navigate(["404"]);
+                    this.router.navigate(["404"], { skipLocationChange: true });
                 }
             });
         });

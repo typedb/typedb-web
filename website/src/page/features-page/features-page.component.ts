@@ -10,12 +10,18 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 @Component({
     selector: "td-features-page",
     templateUrl: "./features-page.component.html",
-    styleUrls: ["./features-page.component.scss"]
+    styleUrls: ["./features-page.component.scss"],
 })
 export class FeaturesPageComponent implements OnInit {
     page?: FeaturesPage;
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
+    constructor(
+        private router: Router,
+        private contentService: ContentService,
+        private _title: Title,
+        private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService
+    ) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -24,9 +30,11 @@ export class FeaturesPageComponent implements OnInit {
                 this.page = new FeaturesPage(sanityFeaturesPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this._analytics.hubspot.trackPageView();
-                setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 10000);
             } else {
-                this.router.navigate(["404"]);
+                this.router.navigate(["404"], { skipLocationChange: true });
             }
         });
     }
@@ -34,7 +42,8 @@ export class FeaturesPageComponent implements OnInit {
 
 @Component({
     selector: "td-features-page-technicolor-block",
-    template: "<td-technicolor-block [block]=\"section\" [index]=\"index + 1\" [noLeadingLine]='index === 0'></td-technicolor-block>",
+    template:
+        '<td-technicolor-block [block]="section" [index]="index + 1" [noLeadingLine]=\'index === 0\'></td-technicolor-block>',
 })
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;
