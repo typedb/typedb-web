@@ -65,7 +65,12 @@
                                     "with": "src/service/analytics.service.prod.ts"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "outputHashing": "all",
+                            "buildOptimizer": true,
+                            "optimization": true,
+                            "sourceMap": false,
+                            "aot": true,
+                            "extractLicenses": true
                         },
                         "staging": {
                             "budgets": [
