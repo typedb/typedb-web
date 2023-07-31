@@ -8,9 +8,9 @@
         (mouseleave)="setPanelHovered(webinar, false)"
     >
         <div *ngIf="webinar.registrationButton().comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
-        <td-ratio-container ratio="16:9">
+        <td-aspect-ratio ratio="16:9">
             <img [src]="webinar.imageURL" alt="" />
-        </td-ratio-container>
+        </td-aspect-ratio>
         <div>
             <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
                 {{ webinar.title | plainText }}

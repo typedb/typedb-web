@@ -4,12 +4,12 @@
     display: block;
 }
 
-.rc-container {
+.ar-container {
     position: relative;
     padding-bottom: 100%;
 }
 
-.rc-content {
+.ar-content {
     position: absolute;
     inset: 0;
 
@@ -21,18 +21,18 @@
     }
 }
 
-.rc-ratio-1-1 {
+.ar-ratio-1-1 {
     padding-bottom: 100%;
 }
 
-.rc-ratio-16-9 {
+.ar-ratio-16-9 {
     padding-bottom: calc(100% * 9 / 16);
 }
 
-.rc-ratio-3-2 {
+.ar-ratio-3-2 {
     padding-bottom: calc(100% * 2 / 3);
 }
 
-.rc-ratio-a4 {
+.ar-ratio-a4 {
     padding-bottom: calc(100% * 1.4142);
 }

@@ -7,12 +7,12 @@
                 [body]="page.introSection.body"
             ></td-title-body-actions-section>
             <div class="subsection-margin wp-primary-whitepaper card card-padding">
-                <td-ratio-container ratio="16:9" class="hide-gt-mobile">
+                <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
                     <img [src]="page.featuredWhitePaper.landscapeImageURL" class="wp-img" [alt]="" />
-                </td-ratio-container>
-                <td-ratio-container ratio="A4" class="hide-mobile">
+                </td-aspect-ratio>
+                <td-aspect-ratio ratio="A4" class="hide-mobile">
                     <img [src]="page.featuredWhitePaper.portraitImageURL" class="wp-img" [alt]="" />
-                </td-ratio-container>
+                </td-aspect-ratio>
                 <div class="wp-primary-whitepaper-summary">
                     <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title">
                         {{ page.featuredWhitePaper.title | plainText }}
@@ -30,9 +30,9 @@
             <div class="subsection-margin wp-grid card">
                 <div *ngFor="let whitePaper of page.whitePapersList" class="wp-grid-item">
                     <div class="wp-img-and-text">
-                        <td-ratio-container ratio="16:9" class="wp-img-secondary-container">
+                        <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
                             <img [src]="whitePaper.landscapeImageURL" class="wp-img" [alt]=""
-                        /></td-ratio-container>
+                        /></td-aspect-ratio>
                         <div>
                             <h2
                                 class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title wp-grid-item-title"

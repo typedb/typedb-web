@@ -46,12 +46,13 @@ import { RouterModule } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
-import { RatioContainerComponent } from "./ratio-container/ratio-container.component";
+import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
 
 @NgModule({
     declarations: [
         ActionsComponent,
+        AspectRatioComponent,
         ButtonComponent,
         CaptionedIllustrationComponent,
         CloudWaitlistDialogComponent,
@@ -80,7 +81,6 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
-        RatioContainerComponent,
         RichTextComponent,
         ScrollShadowComponent,
         SocialMediaPanelsComponent,
@@ -105,6 +105,7 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
     ],
     exports: [
         ActionsComponent,
+        AspectRatioComponent,
         ButtonComponent,
         CaptionedIllustrationComponent,
         ConclusionPanelComponent,
@@ -123,7 +124,6 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ParagraphWithHighlightsComponent,
         PlainTextPipe,
         ProductTableComponent,
-        RatioContainerComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
         TechnicolorBlockComponent,
