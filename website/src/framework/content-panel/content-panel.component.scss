@@ -3,6 +3,7 @@
 
 .cp-root {
     display: flex;
+    flex-flow: row wrap;
     gap: 40px;
 
     @media (max-width: $media-max-width-tablet) {
@@ -11,72 +12,26 @@
     }
 
     @media (max-width: $media-max-width-mobile) {
-        gap: 16px;
-    }
-
-    &.landscape {
-        &.size-l {
-            min-height: 542px;
-
-            @media (max-width: $media-max-width-tablet) {
-                min-height: 478px;
-            }
-        }
-
-        &.size-m {
-            height: 430px;
-        }
-
-        &.content-first {
-            flex-direction: row;
-
-            @media (max-width: $media-max-width-mobile) {
-                flex-direction: column;
-            }
-        }
-
-        &.text-first {
-            flex-direction: row-reverse;
-
-            @media (max-width: $media-max-width-mobile) {
-                flex-direction: column-reverse;
-            }
-        }
-    }
-
-    &.portrait {
-        width: 560px;
-        height: 870px;
-
-        &.content-first {
-            flex-direction: column;
-        }
-
-        &.text-first {
-            flex-direction: column-reverse;
-        }
-    }
-
-    &.embedded {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        padding: 12px;
+        gap: 20px;
     }
 }
 
-td-illustration {
-    flex: 2 0 142px;
+td-aspect-ratio {
+    flex: 2 0 424px;
+    max-width: 100%;
 
     @media (max-width: $media-max-width-tablet) {
-        flex-basis: 272px;
+        flex-basis: 476px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
-        flex: 0 0 auto;
+    td-illustration {
+        height: 100%;
     }
 }
 
 .cp-text-area {
-    flex: 1 0 100px;
+    flex: 1 0 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
