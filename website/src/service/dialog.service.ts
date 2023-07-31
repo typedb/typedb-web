@@ -1,13 +1,16 @@
 import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
-import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
+import {
+    MatLegacyDialog as MatDialog,
+    MatLegacyDialogConfig as MatDialogConfig,
+    MatLegacyDialogRef as MatDialogRef,
+} from "@angular/material/legacy-dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import {
     CloudWaitlistDialogComponent,
     ContactDialogComponent,
     NewsletterDialogComponent,
 } from "../framework/form/dialog.component";
-import { MediaQueryService } from "./media-query.service";
 
 @Injectable({
     providedIn: "root",
