@@ -60,10 +60,9 @@ ul.wd-speakers {
     }
 
     img {
+        display: block;
         width: 88px;
         height: 88px;
-        border: 1px solid $color-vaticle-light-purple;
-        border-radius: $border-radius;
 
         @media (max-width: $media-max-width-mobile) {
             width: 54px;
@@ -78,6 +77,54 @@ ul.wd-speakers {
             font-weight: $font-weight-bold;
         }
     }
+}
+
+@media (hover: hover) {
+    a.wd-speaker {
+        .wd-speaker-image-container {
+            position: relative;
+        }
+
+        .wd-speaker-image-cover {
+            display: block;
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            background: rgba($color-vaticle-black-purple, 0.4);
+            color: $color-vaticle-white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        &:hover {
+            color: $color-vaticle-green;
+
+            .wd-speaker-image-container {
+                border-color: $color-vaticle-green;
+            }
+
+            .wd-speaker-image-cover {
+                opacity: 1;
+            }
+
+            h3,
+            .text-quiet {
+                color: inherit;
+            }
+        }
+    }
+}
+
+.wd-speaker-image-container {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    overflow: hidden;
+}
+
+.wd-speaker-image-cover {
+    display: none;
 }
 
 .wd-form-card {
