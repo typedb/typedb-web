@@ -10,11 +10,6 @@
     border-radius: $border-radius;
 }
 
-.wp-img-primary {
-    width: 100%;
-    display: block;
-}
-
 .wp-primary-webinar {
     @media (max-width: $media-max-width-tablet) {
         padding: 40px;
@@ -126,7 +121,8 @@
 }
 
 .wp-img-tertiary {
-    width: 148px;
+    width: 150px;
+    flex-shrink: 0;
 
     @media (max-width: $media-max-width-mobile) {
         width: 100px;
