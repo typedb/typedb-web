@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { NameEmailForm } from "./form";
@@ -16,8 +16,7 @@ export class NameEmailDialogComponent {
     @ViewChild("formEl") formEl!: ElementRef<HTMLFormElement>;
     form: NameEmailForm = { firstName: "", lastName: "", email: "" };
 
-    constructor(private dialogRef: MatDialogRef<NameEmailDialogComponent>) {
-    }
+    constructor(private dialogRef: MatDialogRef<NameEmailDialogComponent>) {}
 
     onSubmit() {
         if (!this.formEl.nativeElement.reportValidity()) return;
@@ -28,10 +27,15 @@ export class NameEmailDialogComponent {
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template: "<td-name-email-dialog titleProp='Join TypeDB Cloud Waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
+    template:
+        "<td-name-email-dialog titleProp='Join TypeDB Cloud Waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
 })
 export class CloudWaitlistDialogComponent {
-    constructor(private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {
+    constructor(
+        private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
+        private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService
+    ) {
         this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder");
     }
 
@@ -43,10 +47,15 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template: "<td-name-email-dialog titleProp='Subscribe to TypeDB Newsletter' submitButtonText='Subscribe' (submit)='onSubmit()'></td-name-email-dialog>",
+    template:
+        "<td-name-email-dialog titleProp='Subscribe to TypeDB Newsletter' submitButtonText='Subscribe' (submit)='onSubmit()'></td-name-email-dialog>",
 })
 export class NewsletterDialogComponent {
-    constructor(private dialogRef: MatDialogRef<NewsletterDialogComponent>, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {
+    constructor(
+        private dialogRef: MatDialogRef<NewsletterDialogComponent>,
+        private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService
+    ) {
         this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder");
     }
 
@@ -59,20 +68,48 @@ export class NewsletterDialogComponent {
     }
 }
 
-const CONTACT_FORM_TOPICS = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
+const CONTACT_FORM_TOPICS = [
+    "Products & Services",
+    "Support",
+    "Consulting",
+    "Sales",
+    "Training",
+    "Careers",
+    "PR & Analyst Relations",
+] as const;
 
-type ContactFormTopic = typeof CONTACT_FORM_TOPICS[number];
+type ContactFormTopic = (typeof CONTACT_FORM_TOPICS)[number];
 
 @Component({
     selector: "td-contact-dialog",
     templateUrl: "contact-dialog.component.html",
-    styleUrls: ["./contact-dialog.component.scss"]
+    styleUrls: ["./contact-dialog.component.scss"],
 })
 export class ContactDialogComponent {
-    allTopics = ["Products & Services", "Support", "Consulting", "Sales", "Training", "Careers", "PR & Analyst Relations"] as const;
-    form: ContactForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "", topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, {[x]: false}), {}) as any, body: "" };
+    allTopics = [
+        "Products & Services",
+        "Support",
+        "Consulting",
+        "Sales",
+        "Training",
+        "Careers",
+        "PR & Analyst Relations",
+    ] as const;
+    form: ContactForm = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        companyName: "",
+        jobFunction: "",
+        topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, { [x]: false }), {}) as any,
+        body: "",
+    };
 
-    constructor(private dialogRef: MatDialogRef<ContactDialogComponent>, private _formService: FormService, private _popupNotificationService: PopupNotificationService) {
+    constructor(
+        private dialogRef: MatDialogRef<ContactDialogComponent>,
+        private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService
+    ) {
         this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact");
     }
 
@@ -92,7 +129,6 @@ interface ContactForm extends NameEmailForm {
 @Component({
     selector: "td-dialog-close-button",
     templateUrl: "dialog-close-button.component.html",
-    styleUrls: ["./dialog-close-button.component.scss"]
+    styleUrls: ["./dialog-close-button.component.scss"],
 })
-export class DialogCloseButtonComponent {
-}
+export class DialogCloseButtonComponent {}

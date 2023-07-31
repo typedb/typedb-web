@@ -35,12 +35,12 @@
         background-clip: padding-box;
         background-color: $scrollbar-color;
         border: solid transparent;
-        border-width: #{($scrollbar-breadth-html - $scrollbar-thumb-breadth-html) / 2};
+        border-width: calc(($scrollbar-breadth-html - $scrollbar-thumb-breadth-html) / 2);
         border-radius: $scrollbar-breadth-html;
     }
 
     body ::-webkit-scrollbar-thumb {
-        border-width: #{($scrollbar-breadth - $scrollbar-thumb-breadth) / 2};
+        border-width: calc(($scrollbar-breadth - $scrollbar-thumb-breadth) / 2);
         border-radius: $scrollbar-breadth;
     }
 
