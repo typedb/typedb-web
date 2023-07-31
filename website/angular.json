@@ -2,7 +2,6 @@
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
     "newProjectRoot": "projects",
-    "defaultProject": "typedb-web",
     "projects": {
         "typedb-web": {
             "projectType": "application",
@@ -13,7 +12,7 @@
             },
             "root": "",
             "sourceRoot": "src",
-            "prefix": "app",
+            "prefix": "td",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -24,17 +23,22 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": [
-                            "src/favicon.png",
-                            "src/assets"
-                        ],
+                        "assets": ["src/favicon.png", "src/assets"],
                         "styles": [
-                            "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+                            "./node_modules/@angular/material/legacy-prebuilt-themes/legacy-purple-green.css",
                             "./node_modules/cookieconsent/build/cookieconsent.min.css",
                             "src/styles/styles.scss"
                         ],
-                        "scripts": [
-                            "./node_modules/cookieconsent/build/cookieconsent.min.js"
+                        "scripts": ["./node_modules/cookieconsent/build/cookieconsent.min.js"],
+                        "allowedCommonJsDependencies": [
+                            "@sanity/image-url",
+                            "earcut",
+                            "eventemitter3",
+                            "fontfaceobserver",
+                            "interactjs",
+                            "object-assign",
+                            "prismjs",
+                            "url"
                         ]
                     },
                     "configurations": {
@@ -131,12 +135,9 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
-                        "assets": [
-                            "src/favicon.png",
-                            "src/assets"
-                        ],
+                        "assets": ["src/favicon.png", "src/assets"],
                         "styles": [
-                            "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+                            "./node_modules/@angular/material/legacy-prebuilt-themes/legacy-purple-green.css",
                             "src/styles/styles.scss"
                         ],
                         "scripts": []

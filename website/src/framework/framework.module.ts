@@ -2,11 +2,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatLegacyCheckboxModule as MatCheckboxModule } from "@angular/material/legacy-checkbox";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
 import { CodeSnippetComponent } from "./code/code-snippet.component";
@@ -23,10 +23,7 @@ import {
     NewsletterDialogComponent,
 } from "./form/dialog.component";
 import { OptionDirective } from "./form/option.directive";
-import {
-    FeatureTableCellComponent,
-    FeatureTableComponent,
-} from "./feature-table/feature-table.component";
+import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
 import {
     CaptionedIllustrationComponent,
@@ -34,14 +31,8 @@ import {
     SplitPaneIllustrationComponent,
 } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
-import {
-    KeyPointPanels2x2Component,
-    KeyPointTableComponent,
-} from "./key-point/key-point.component";
-import {
-    LinkPanelsComponent,
-    WebinarPanelsComponent,
-} from "./link-panels/link-panels.component";
+import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
+import { LinkPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { ProductTableComponent } from "./product-table/product-table.component";
@@ -51,12 +42,9 @@ import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
 import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
-import {
-    H1WithHighlightsComponent,
-    ParagraphWithHighlightsComponent,
-} from "./text/text-with-highlights.component";
+import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
 import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 

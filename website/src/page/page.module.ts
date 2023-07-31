@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FrameworkModule } from "../framework/framework.module";
-import { DeploymentPageComponent, DeploymentPageTechnicolorBlockComponent } from "./deployment-page/deployment-page.component";
+import {
+    DeploymentPageComponent,
+    DeploymentPageTechnicolorBlockComponent,
+} from "./deployment-page/deployment-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
@@ -13,9 +16,9 @@ import { EventDurationPipe } from "./webinar-details-page/event-duration.pipe";
 import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
 import { CommonModule } from "@angular/common";
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
 import { FormsModule } from "@angular/forms";
-import { MatInputModule } from "@angular/material/input";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { WhitePaperDetailsPageComponent } from "./white-paper-details-page/white-paper-details-page.component";
 import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
 
@@ -41,14 +44,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         WhitePaperDetailsPageComponent,
         WhitePapersPageComponent,
     ],
-    imports: [
-        BrowserModule,
-        CommonModule,
-        FormsModule,
-        FrameworkModule,
-        MatFormFieldModule,
-        MatInputModule,
-    ],
+    imports: [BrowserModule, CommonModule, FormsModule, FrameworkModule, MatFormFieldModule, MatInputModule],
     providers: [],
 })
-export class PageModule { }
+export class PageModule {}
