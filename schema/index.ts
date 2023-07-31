@@ -54,7 +54,7 @@ export { referenceMaterialSchemaName } from "./reference-material";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial } from "./testimonial";
-export { ParagraphWithHighlights, RichText, type SanityPortableText, TitleAndBody, TitleBodyIllustrationSection } from "./text";
+export { ParagraphWithHighlights, RichText, type RichTextSpan, type SanityPortableText, TitleAndBody, TitleBodyIllustrationSection } from "./text";
 export { groupBy, associateBy } from "./util";
 export { Webinar, type SanityWebinar, webinarSchemaName } from "./webinar";
 export { WhitePaper, type SanityWhitePaper, whitePaperSchemaName } from "./white-paper";
