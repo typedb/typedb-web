@@ -11,3 +11,15 @@ p + p {
 ul {
     margin-left: 1em;
 }
+
+.rt-em {
+    font-style: italic;
+}
+
+.rt-strong {
+    font-weight: $font-weight-bold;
+}
+
+.rt-underline {
+    text-decoration: underline;
+}
