@@ -11,18 +11,6 @@
         border-radius: 0;
     }
 
-    &:not(.il-dynamic-height) {
-        height: 462px;
-
-        @media (max-width: $media-max-width-tablet) {
-            height: 412px;
-        }
-
-        @media (max-width: $media-max-width-mobile) {
-            height: 214px;
-        }
-    }
-
     &:not(.sp-pane) {
         border: 1px solid $color-vaticle-light-purple;
     }
@@ -31,4 +19,6 @@
 .il-image {
     display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
