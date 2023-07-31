@@ -1,12 +1,17 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { MatButtonModule } from "@angular/material/button";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { FrameworkModule } from "../framework/framework.module";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from "@angular/forms";
 import { SiteBannerComponent } from "./site-banner/site-banner.component";
-import { TopbarMenuComponent, TopbarMenuPanelComponent, TopbarMenuMobileComponent, TopbarMenuPanelMobileComponent } from "./topbar/topbar-menu.component";
+import {
+    TopbarMenuComponent,
+    TopbarMenuPanelComponent,
+    TopbarMenuMobileComponent,
+    TopbarMenuPanelMobileComponent,
+} from "./topbar/topbar-menu.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
@@ -29,9 +34,6 @@ import { RouterModule } from "@angular/router";
         RouterModule,
     ],
     providers: [],
-    exports: [
-        FooterComponent,
-        TopbarMenuComponent
-    ]
+    exports: [FooterComponent, TopbarMenuComponent],
 })
-export class NavigationModule { }
+export class NavigationModule {}
