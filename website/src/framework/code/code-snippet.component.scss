@@ -4,40 +4,30 @@
 :host {
     display: block;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    background-color: $color-vaticle-black-purple;
 }
 
 .cs-root {
+    min-height: 100%;
     width: 100%;
     display: flex;
+    gap: 4px;
 }
 
 .cs-line-numbers {
-    width: 32px;
-    min-width: 32px;
-    padding-right: 4px;
-    background-color: $color-vaticle-black-purple;
+    flex-shrink: 0;
+    padding: 0 7px;
     font-family: "Ubuntu Mono", monospace;
     color: #66637f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: $border-radius 0 0 $border-radius;
+    overflow: hidden;
 }
 
 .cs-code-area {
     flex: 1;
-    min-height: calc(100% - 2px);
-    display: flex;
-    flex-direction: column;
 }
 
 ol {
     list-style: none;
-}
-
-pre {
-    background-color: $color-vaticle-black-purple;
-    width: 100%;
-    flex: 1;
+    height: 0;
 }
