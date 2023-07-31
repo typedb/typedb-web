@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { WhitePaperDetailsPageComponent } from "./white-paper-details-page/white-paper-details-page.component";
 import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
+import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         IntroPageTechnicolorBlockComponent,
         NotFoundPageComponent,
         PrivacyPolicyPageComponent,
+        RequestTechTalkPageComponent,
         SolutionPageComponent,
         SolutionPageTechnicolorBlockComponent,
         WebinarDetailsPageComponent,
@@ -43,14 +45,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         WhitePaperDetailsPageComponent,
         WhitePapersPageComponent,
     ],
-    imports: [
-        BrowserModule,
-        CommonModule,
-        FormsModule,
-        FrameworkModule,
-        MatFormFieldModule,
-        MatInputModule,
-    ],
+    imports: [BrowserModule, CommonModule, FormsModule, FrameworkModule, MatFormFieldModule, MatInputModule],
     providers: [],
 })
-export class PageModule { }
+export class PageModule {}

@@ -5,14 +5,13 @@ export const forms = {
     contact: "Contact",
     newsletter: "Newsletter",
     typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
-    requestTechTalk: "Request Tech Talk",
 } as const;
 
 export const formList = Object.entries(forms).map(([id, title]) => ({ value: id, title: title }));
 
 export type FormID = keyof typeof forms;
 
-export type SanityHubspotForms = SanityDocument & { [key in FormID]: string; };
+export type SanityHubspotForms = SanityDocument & { [key in FormID]: string };
 
 export interface WebinarRegistrationForm {
     airmeetID: string;
@@ -32,12 +31,14 @@ export const formsSchema = defineType({
     title: "HubSpot Forms",
     type: "document",
     fields: [
-        ...Object.entries(forms).map(([id, title]) => defineField({
-            name: id,
-            title: `${title} Form ID`,
-            type: "string",
-            validation: requiredRule,
-        })),
+        ...Object.entries(forms).map(([id, title]) =>
+            defineField({
+                name: id,
+                title: `${title} Form ID`,
+                type: "string",
+                validation: requiredRule,
+            })
+        ),
     ],
     preview: { prepare: (_selection) => ({ title: "HubSpot Forms" }) },
 });
