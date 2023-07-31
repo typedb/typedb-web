@@ -41,8 +41,14 @@ function isPortableTextSpan(block: SanityPortableText[0]["children"][0]): block 
     return block._type === "span";
 }
 
+export interface RichTextSpan {
+    text: string;
+    marks: string[];
+    level?: number;
+}
+
 export class RichText {
-    readonly paragraphs: { spans: { text: string, marks: string[], level?: number }[] }[];
+    readonly paragraphs: { spans: RichTextSpan[] }[];
 
     constructor(data: SanityPortableText) {
         this.paragraphs = data.map(p => ({
