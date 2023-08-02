@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 
-exec("OUT_DIR=./dist/static npx scully --scanRoutes --noPrompt", (err, stdout, stderr) => {
+exec("OUT_DIR=./dist/static npx scully --project typedb-web --scanRoutes --noPrompt", (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     if (err) {
