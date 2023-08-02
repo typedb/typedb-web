@@ -43,6 +43,7 @@ website/src/service/credentials/**/*
 !website/src/service/credentials/.gitkeep
 
 # Website - Scully
+website/src/assets/scully-routes.json
 website/scully.log
 website/scully/**/*.js
 website/scully/**/*.js.map
