@@ -33,6 +33,26 @@ to = "https://github.com/vaticle/typedb"
 status = 303
 
 [[redirects]]
+from = "/typedb/2.x/*"
+to = "/docs/typedb/2.x/:splat"
+status = 301
+
+[[redirects]]
+from = "/clients/2.x/*"
+to = "/docs/clients/2.x/:splat"
+status = 301
+
+[[redirects]]
+from = "/cloud/alpha/*"
+to = "/docs/cloud/alpha/:splat"
+status = 301
+
+[[redirects]]
+from = "/typeql/2.x/*"
+to = "/docs/typeql/2.x/:splat"
+status = 301
+
+[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
