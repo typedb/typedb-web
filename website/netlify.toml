@@ -32,25 +32,25 @@ from = "/github"
 to = "https://github.com/vaticle/typedb"
 status = 303
 
-[[redirects]]
-from = "/typedb/2.x/*"
-to = "/docs/typedb/2.x/:splat"
-status = 301
-
-[[redirects]]
-from = "/clients/2.x/*"
-to = "/docs/clients/2.x/:splat"
-status = 301
-
-[[redirects]]
-from = "/cloud/alpha/*"
-to = "/docs/cloud/alpha/:splat"
-status = 301
-
-[[redirects]]
-from = "/typeql/2.x/*"
-to = "/docs/typeql/2.x/:splat"
-status = 301
+#[[redirects]]
+#from = "/typedb/2.x/*"
+#to = "/docs/typedb/2.x/:splat"
+#status = 301
+#
+#[[redirects]]
+#from = "/clients/2.x/*"
+#to = "/docs/clients/2.x/:splat"
+#status = 301
+#
+#[[redirects]]
+#from = "/cloud/alpha/*"
+#to = "/docs/cloud/alpha/:splat"
+#status = 301
+#
+#[[redirects]]
+#from = "/typeql/2.x/*"
+#to = "/docs/typeql/2.x/:splat"
+#status = 301
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
@@ -72,29 +72,29 @@ from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
-[[redirects]]
-from = "https://typedb.com/typedb/2.x/overview.html"
-to = "https://typedb.com/docs/typedb/2.x/overview.html"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://live-temp.typedb.com/typedb/2.x/overview.html"
-to = "https://live-temp.typedb.com/docs/typedb/2.x/overview.html"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://master.typedb.com/typedb/2.x/overview.html"
-to = "https://master.typedb.com/docs/typedb/2.x/overview.html"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://development.typedb.com/typedb/2.x/overview.html"
-to = "https://development.typedb.com/docs/typedb/2.x/overview.html"
-status = 301
-force = true
+#[[redirects]]
+#from = "https://typedb.com/typedb/2.x/overview.html"
+#to = "https://typedb.com/docs/typedb/2.x/overview.html"
+#status = 301
+#force = true
+#
+#[[redirects]]
+#from = "https://live-temp.typedb.com/typedb/2.x/overview.html"
+#to = "https://live-temp.typedb.com/docs/typedb/2.x/overview.html"
+#status = 301
+#force = true
+#
+#[[redirects]]
+#from = "https://master.typedb.com/typedb/2.x/overview.html"
+#to = "https://master.typedb.com/docs/typedb/2.x/overview.html"
+#status = 301
+#force = true
+#
+#[[redirects]]
+#from = "https://development.typedb.com/typedb/2.x/overview.html"
+#to = "https://development.typedb.com/docs/typedb/2.x/overview.html"
+#status = 301
+#force = true
 
 [[redirects]]
 from = "https://live-temp.typedb.com/*/data.json"
