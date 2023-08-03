@@ -1,18 +1,19 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
-import { GenericPageComponent } from "./page/generic-page/generic-page.component";
+import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
+import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
 import { IntroPageComponent } from "./page/intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
+import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
 import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
 import { WhitePaperDetailsPageComponent } from "./page/white-paper-details-page/white-paper-details-page.component";
 import { WhitePapersPageComponent } from "./page/white-papers-page/white-papers-page.component";
-import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: "webinars", component: WebinarsPageComponent },
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
+    { path: "events/:slug", component: EventDetailsPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },

@@ -1,0 +1,47 @@
+import { SanityDocument, Slug } from "@sanity/types";
+import { Person, SanityPerson } from "./person";
+import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
+import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
+import { PropsOf } from "./util";
+
+export interface SanityEventBase extends SanityDocument {
+    title: SanityPortableText;
+    slug: Slug;
+    durationMins: number;
+    description: SanityPortableText;
+    image: SanityImage;
+    speakers: SanityReference<SanityPerson>[];
+    hubspotFormID: string;
+}
+
+export abstract class EventBase {
+    readonly title: ParagraphWithHighlights;
+    readonly slug: string;
+    readonly durationMins: number;
+    readonly description: RichText;
+    readonly imageURL: string;
+    readonly speakers: Person[];
+    readonly hubspotFormID: string;
+
+    constructor(props: PropsOf<EventBase>) {
+        this.title = props.title;
+        this.slug = props.slug;
+        this.durationMins = props.durationMins;
+        this.description = props.description;
+        this.imageURL = props.imageURL;
+        this.speakers = props.speakers;
+        this.hubspotFormID = props.hubspotFormID;
+    }
+
+    static fromSanity(data: SanityEventBase, db: SanityDataset): PropsOf<EventBase> {
+        return {
+            title: ParagraphWithHighlights.fromSanity(data.title),
+            slug: data.slug.current,
+            durationMins: data.durationMins,
+            description: RichText.fromSanity(data.description),
+            imageURL: db.resolveRef(data.image.asset).url,
+            speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),
+            hubspotFormID: data.hubspotFormID,
+        };
+    }
+}

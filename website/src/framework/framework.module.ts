@@ -50,6 +50,10 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
+import { EventPanelsComponent } from "./event-panels/event-panels.component";
+import { PersonInfoComponent } from "./person-info/person-info.component";
+import { EventDurationPipe } from "./date/event-duration.pipe";
+import { DateRangePipe } from "./date/date-range.pipe";
 
 @NgModule({
     declarations: [
@@ -63,7 +67,10 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ContactDialogComponent,
         ContentPanelComponent,
         ContentTabsComponent,
+        DateRangePipe,
         DialogCloseButtonComponent,
+        EventDurationPipe,
+        EventPanelsComponent,
         FeatureTableComponent,
         FeatureTableCellComponent,
         GraphVisualisationComponent,
@@ -82,6 +89,7 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         ParagraphWithHighlightsPipe,
+        PersonInfoComponent,
         PlainTextPipe,
         ProductTableComponent,
         RichTextComponent,
@@ -115,6 +123,9 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         ConclusionPanelComponent,
         ContentPanelComponent,
         ContentTabsComponent,
+        DateRangePipe,
+        EventDurationPipe,
+        EventPanelsComponent,
         FeatureTableComponent,
         H1WithHighlightsComponent,
         IllustrationComponent,
@@ -127,6 +138,7 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         ParagraphWithHighlightsPipe,
+        PersonInfoComponent,
         PlainTextPipe,
         ProductTableComponent,
         SocialMediaPanelsComponent,

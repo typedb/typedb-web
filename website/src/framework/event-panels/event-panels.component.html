@@ -1,0 +1,14 @@
+<div class="section ep-root">
+    <a *ngFor="let event of events" [tdLink]="event.registrationButton().link" class="card ep-card td-button-container">
+        <td-aspect-ratio ratio="16:9">
+            <img [src]="getEventImageUrl(event)" alt="" />
+        </td-aspect-ratio>
+        <div>
+            <h2 class="text-20-32 text-22-33-tablet text-18-26-mobile">
+                {{ event.title | plainText }}
+            </h2>
+            <p class="text-quiet text-weight-light">{{ event.dateOptions | dateRange }} | {{ event.venue }}</p>
+        </div>
+        <td-button [button]="event.registrationButton()" size="small" buttonWidth="100%"></td-button>
+    </a>
+</div>

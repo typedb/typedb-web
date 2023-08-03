@@ -40,7 +40,8 @@ a {
         color: $color-vaticle-purple;
 
         &:hover:not(.bt-disabled),
-        &.container-hover:not(.bt-disabled) {
+        &.container-hover:not(.bt-disabled),
+        :host-context(.td-button-container:hover) &:not(.bt-disabled) {
             box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, 0.4);
         }
 
@@ -55,7 +56,8 @@ a {
         color: $color-vaticle-green;
 
         &:hover:not(.bt-disabled),
-        &.container-hover:not(.bt-disabled) {
+        &.container-hover:not(.bt-disabled),
+        :host-context(.td-button-container:hover) &:not(.bt-disabled) {
             background-color: $color-vaticle-green;
             color: $color-vaticle-purple;
         }
