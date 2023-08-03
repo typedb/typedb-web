@@ -7,7 +7,6 @@ import { LinkPanel, ProductPanel, Webinar } from "typedb-web-schema";
     styleUrls: ["link-panels.component.scss"],
 })
 export class LinkPanelsComponent {
-    // TODO: when hovering the panel, also highlight the button
     @Input() panels!: LinkPanel[];
     @Input() cols!: 3 | 4;
     @Input() ctaStrength: "weak" | "strong" = "weak";
