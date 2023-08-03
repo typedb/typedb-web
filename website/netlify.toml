@@ -118,3 +118,9 @@ path = "/api/webinars/primary"
 [[edge_functions]]
 function = "webinars-register"
 path = "/api/webinars/register"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+  [plugins.inputs.settings]
+    preset = "desktop"
