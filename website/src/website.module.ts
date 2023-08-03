@@ -24,7 +24,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     type: "info"
 };
 
-// TODO: integrate prettier
 @NgModule({
     declarations: [
         WebsiteComponent,
