@@ -84,8 +84,14 @@ path = "/api/webinars/primary"
 function = "webinars-register"
 path = "/api/webinars/register"
 
-[[plugins]]
+[[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
-  [plugins.inputs.settings]
-    preset = "desktop"
+  [context.production.plugins.inputs]
+    # This option runs the plugin on a locally served version instead of a deploy permalink,
+    # fixing an issue where a Netlify header would impact SEO score (https://github.com/netlify/netlify-plugin-lighthouse/issues/593).
+    # Despite the name, it doesn't actually fail deploys, unless the 'threshold' option is also set.
+    fail_deploy_on_score_thresholds = "true"
+
+    [context.production.plugins.inputs.settings]
+      preset = "desktop"
