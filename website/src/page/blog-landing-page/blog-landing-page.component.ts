@@ -1,41 +1,24 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonStyle, LinkButton, SanityWhitePapersPage, WhitePaper, WhitePapersPage, whitePapersPageSchemaName } from "typedb-web-schema";
+import { ButtonStyle, LinkButton, SanityWhitePapersPage, WhitePaper, WhitePapersPage, whitePapersPageSchemaName, WordpressPost, WordpressPosts, WordpressSite } from "typedb-web-schema";
+import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { map, Observable, Subscription } from "rxjs";
 
 @Component({
     selector: "td-blog-landing-page",
     templateUrl: "./blog-landing-page.component.html",
     styleUrls: ["./blog-landing-page.component.scss"]
 })
-export class BlogLandingPageComponent implements OnInit {
-    page?: WhitePapersPage;
+export class BlogLandingPageComponent {
+    site$?: Observable<WordpressSite>;
+    posts$?: Observable<WordpressPost[]>;
 
-    constructor(private router: Router, private contentService: ContentService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityWhitePapersPage = data.getDocumentByID(whitePapersPageSchemaName) as SanityWhitePapersPage;
-            if (sanityWhitePapersPage) {
-                this.page = new WhitePapersPage(sanityWhitePapersPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => { this._idleMonitor.fireManualMyAppReadyEvent() }, 10000);
-            } else {
-                this.router.navigate(["404"]);
-            }
-        });
-    }
-
-    accessResourceButton(whitePaper: WhitePaper, style: ButtonStyle, text: string): LinkButton {
-        return new LinkButton({
-            style: style,
-            text: text,
-            link: whitePaper.detailsPageLink(),
-            comingSoon: false,
-        });
+    constructor(private router: Router, private contentService: ContentService, private blogService: BlogService, private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService) {
+        this.site$ = this.blogService.site$;
+        this.posts$ = this.blogService.posts$.pipe(map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)));
     }
 }

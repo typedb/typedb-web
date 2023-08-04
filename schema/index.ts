@@ -21,6 +21,7 @@ export const schemaTypes = [
     ...organisationSchemas, ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema, ...webinarSchemas, whitePaperSchema,
 ];
 
+export { type WordpressPosts, type WordpressPost, type WordpressSite } from "./blog";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel } from "./component/content-text-panel";
