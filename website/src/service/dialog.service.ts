@@ -18,7 +18,11 @@ import {
 export class DialogService {
     current?: MatDialogRef<any>;
 
-    constructor(private _router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
+    constructor(
+        private _router: Router,
+        private activatedRoute: ActivatedRoute,
+        private dialog: MatDialog,
+    ) {
         this._router.events.subscribe((e) => {
             if (e instanceof NavigationEnd) {
                 const searchParams = new URLSearchParams(window.location.search);

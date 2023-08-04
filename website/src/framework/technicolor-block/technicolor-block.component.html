@@ -1,22 +1,42 @@
 <section class="tb-root">
-    <div class="tb-core">
-        <div class="tb-graphic">
-            <div *ngIf="!noLeadingLine" [class]="'tb-graphic-line tb-graphic-line-top ' + graphicLineColorClass + (longUpperChain ? ' tb-long-upper-chain' : '')"></div>
-            <div *ngIf="noLeadingLine" class="tb-margin-top"></div>
-            <div class="tb-graphic-icon-area">
-                <div [class]="'tb-graphic-icon-bg ' + graphicIconBgColorClass"></div>
-                <img class="tb-graphic-icon" [src]="block.iconURL" alt=""/>
-            </div>
-            <div [ngStyle]="{'visibility': noTrailingLine ? 'hidden' : 'visible'}" [class]="'tb-graphic-line flex ' + graphicLineColorClass"></div>
-        </div>
-        <div [class]="'tb-body tb-body-' + contentWidth">
-            <div class="tb-margin-top"></div>
-            <td-h1-with-highlights [value]="block.title" [themeColorHex]="themeColorHex" [class]="titleClass"></td-h1-with-highlights>
-            <ng-container *ngIf="!noBody">
-                <p *ngFor="let paragraph of block.body.paragraphs" [class]="bodyClass"><span *ngFor="let span of paragraph.spans" [ngStyle]="span.marks.includes('strong') ? { 'color': themeColorHex } : undefined">{{ span.text }}</span></p>
-            </ng-container>
-            <td-actions *ngIf="block.actions" [actions]="block.actions"></td-actions>
-            <div class="tb-body-margin-bottom"></div>
-        </div>
+  <div class="tb-core">
+    <div class="tb-graphic">
+      <div
+        *ngIf="!noLeadingLine"
+        [class]="
+          'tb-graphic-line tb-graphic-line-top ' +
+          graphicLineColorClass +
+          (longUpperChain ? ' tb-long-upper-chain' : '')
+        "
+      ></div>
+      <div *ngIf="noLeadingLine" class="tb-margin-top"></div>
+      <div class="tb-graphic-icon-area">
+        <div [class]="'tb-graphic-icon-bg ' + graphicIconBgColorClass"></div>
+        <img class="tb-graphic-icon" [src]="block.iconURL" alt="" />
+      </div>
+      <div
+        [ngStyle]="{ visibility: noTrailingLine ? 'hidden' : 'visible' }"
+        [class]="'tb-graphic-line flex ' + graphicLineColorClass"
+      ></div>
     </div>
+    <div [class]="'tb-body tb-body-' + contentWidth">
+      <div class="tb-margin-top"></div>
+      <td-h1-with-highlights
+        [value]="block.title"
+        [themeColorHex]="themeColorHex"
+        [class]="titleClass"
+      ></td-h1-with-highlights>
+      <ng-container *ngIf="!noBody">
+        <p *ngFor="let paragraph of block.body.paragraphs" [class]="bodyClass">
+          <span
+            *ngFor="let span of paragraph.spans"
+            [ngStyle]="span.marks.includes('strong') ? { color: themeColorHex } : undefined"
+            >{{ span.text }}</span
+          >
+        </p>
+      </ng-container>
+      <td-actions *ngIf="block.actions" [actions]="block.actions"></td-actions>
+      <div class="tb-body-margin-bottom"></div>
+    </div>
+  </div>
 </section>

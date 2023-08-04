@@ -4,12 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-ci-dev": "cd ../schema && pnpm i && cd ../website && ng build -c development",
-    "build-ci-staging": "cd ../schema && pnpm i && cd ../website && ng build -c staging",
-    "build-ci-prod": "cd ../schema && pnpm i && cd ../website && ng build -c production && node build-ci-prod.js"
+    "format-check": "prettier --check src",
+    "format-write": "prettier --write src",
+    "prerender": "node prerender.js"
   },
   "private": true,
   "dependencies": {
@@ -79,6 +79,7 @@
     "karma-coverage": "2.2.1",
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
+    "prettier": "3.0.1",
     "react": "18.2.0",
     "ts-proto": "1.156.2",
     "tslib": "2.6.1",

@@ -15,14 +15,14 @@ const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production?query=
     providedIn: "root",
 })
 export class ContentEndpointService {
-    constructor(private http: HttpClient, private transferState: TransferStateService) {}
+    constructor(
+        private http: HttpClient,
+        private transferState: TransferStateService,
+    ) {}
 
     getContent() {
-        return this.transferState.useScullyTransferState(
-            "content",
-            this.http.get<{ result: SanityDocument[] }>(SANITY_QUERY_URL)
-        ).pipe(
-            first()
-        );
+        return this.transferState
+            .useScullyTransferState("content", this.http.get<{ result: SanityDocument[] }>(SANITY_QUERY_URL))
+            .pipe(first());
     }
 }

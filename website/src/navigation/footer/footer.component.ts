@@ -1,6 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ContactMediaID, contactMedias, Footer, footerSchemaName, Link, SanityCommunityResources, SanityDataset, SanityFooter, SocialMediaID, socialMedias } from "typedb-web-schema";
+import {
+    ContactMediaID,
+    contactMedias,
+    Footer,
+    footerSchemaName,
+    Link,
+    SanityCommunityResources,
+    SanityDataset,
+    SanityFooter,
+    SocialMediaID,
+    socialMedias,
+} from "typedb-web-schema";
 import { SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 
@@ -14,15 +25,18 @@ export class FooterComponent implements OnInit {
     socialMediaLinks?: SocialMediaLink[];
     contactMediaLinks?: ContactMediaLink[];
 
-    constructor(private router: Router, private contentService: ContentService) {}
+    constructor(
+        private router: Router,
+        private contentService: ContentService,
+    ) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityFooter = data.getDocumentByID(footerSchemaName) as SanityFooter;
             if (sanityFooter) this.footer = new Footer(sanityFooter, data);
             if (this.footer) {
-                this.socialMediaLinks = this.footer.socialMediaLinks.map(x => new SocialMediaLink(x, data));
-                this.contactMediaLinks = this.footer.contactMediaLinks.map(x => new ContactMediaLink(x, data));
+                this.socialMediaLinks = this.footer.socialMediaLinks.map((x) => new SocialMediaLink(x, data));
+                this.contactMediaLinks = this.footer.contactMediaLinks.map((x) => new ContactMediaLink(x, data));
             }
         });
     }
@@ -35,8 +49,8 @@ export class FooterComponent implements OnInit {
 const contactMediaIcons: { [key in ContactMediaID]: string } = {
     forum: "/assets/icon/social/discourse-rectangle.svg",
     discord: "/assets/icon/social/discord-rectangle.svg",
-    contactForm: "/assets/icon/mail.svg"
-}
+    contactForm: "/assets/icon/mail.svg",
+};
 
 class ContactMediaLink {
     readonly id: ContactMediaID;
@@ -54,9 +68,20 @@ class ContactMediaLink {
 
     private getLink(id: ContactMediaID, communityResources: SanityCommunityResources): Link {
         switch (id) {
-            case "contactForm": return new Link({ destination: "?dialog=contact", type: "route", opensNewTab: false });
-            case "discord": return new Link({ destination: communityResources.discordURL || "", type: "external", opensNewTab: true });
-            case "forum": return new Link({ destination: communityResources.discussionForumURL || "", type: "external", opensNewTab: true });
+            case "contactForm":
+                return new Link({ destination: "?dialog=contact", type: "route", opensNewTab: false });
+            case "discord":
+                return new Link({
+                    destination: communityResources.discordURL || "",
+                    type: "external",
+                    opensNewTab: true,
+                });
+            case "forum":
+                return new Link({
+                    destination: communityResources.discussionForumURL || "",
+                    type: "external",
+                    opensNewTab: true,
+                });
         }
     }
 }

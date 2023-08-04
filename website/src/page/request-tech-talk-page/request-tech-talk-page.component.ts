@@ -24,13 +24,13 @@ export class RequestTechTalkPageComponent implements OnInit {
         private idleMonitor: IdleMonitorService,
         private popupNotificationService: PopupNotificationService,
         private router: Router,
-        private title: Title
+        private title: Title,
     ) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
             const sanityRequestTechTalkPage = data.getDocumentByID(
-                requestTechTalkPageSchemaName
+                requestTechTalkPageSchemaName,
             ) as SanityRequestTechTalkPage;
             if (sanityRequestTechTalkPage) {
                 this.page = new RequestTechTalkPage(sanityRequestTechTalkPage);

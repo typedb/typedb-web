@@ -1,67 +1,60 @@
 <ul class="tm-top-level-items tm-primary-area text-18-26 text-16-24-mobile">
-    <li *ngFor="let item of topbar.mainArea">
-        <a
-            *ngIf="isMenuPanel(item)"
-            tabindex="0"
-            [class.tm-expanded]="isMenuPanelVisible(item)"
-            (click)="toggleMenuPanelVisible(item)"
-        >
-            {{ item.title }}
-            <svg
-                class="tm-chevron"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-            >
-                <path
-                    d="M12 12.9821L16.6669 8.39999L18 9.70892L12 15.6L6 9.70892L7.33312 8.39999L12 12.9821Z"
-                />
-            </svg>
-        </a>
-        <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
-            {{ item.text }}
-            <svg
-                *ngIf="item.type === 'external'"
-                class="tm-external-link-icon"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z"
-                />
-            </svg>
-        </a>
-        <td-topbar-menu-panel-mobile
-            *ngIf="isMenuPanel(item)"
-            [menuPanel]="item"
-            [hidden]="!isMenuPanelVisible(item)"
-            (itemclick)="onMenuItemClick()"
-        ></td-topbar-menu-panel-mobile>
-    </li>
+  <li *ngFor="let item of topbar.mainArea">
+    <a
+      *ngIf="isMenuPanel(item)"
+      tabindex="0"
+      [class.tm-expanded]="isMenuPanelVisible(item)"
+      (click)="toggleMenuPanelVisible(item)"
+    >
+      {{ item.title }}
+      <svg
+        class="tm-chevron"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M12 12.9821L16.6669 8.39999L18 9.70892L12 15.6L6 9.70892L7.33312 8.39999L12 12.9821Z" />
+      </svg>
+    </a>
+    <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
+      {{ item.text }}
+      <svg
+        *ngIf="item.type === 'external'"
+        class="tm-external-link-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" />
+      </svg>
+    </a>
+    <td-topbar-menu-panel-mobile
+      *ngIf="isMenuPanel(item)"
+      [menuPanel]="item"
+      [hidden]="!isMenuPanelVisible(item)"
+      (itemclick)="onMenuItemClick()"
+    ></td-topbar-menu-panel-mobile>
+  </li>
 </ul>
 <ul class="tm-top-level-items tm-secondary-area text-18-26 text-16-24-mobile">
-    <li class="flex">
-        <td-button
-            [button]="topbar.secondaryArea.button"
-            size="small"
-            buttonWidth="100%"
-            (click)="onMenuItemClick()"
-        ></td-button>
-    </li>
-    <li
-        class="tm-secondary-link"
-        *ngFor="let link of topbar.secondaryArea.links"
-    >
-        <a [tdLink]="link" (click)="onMenuItemClick()">{{ link.text }}</a>
-    </li>
-    <li>
-        <a [href]="githubURL" target="_blank" (click)="onMenuItemClick()"
-            ><img src="/assets/icon/social/github.svg" alt="GitHub"
-        /></a>
-    </li>
+  <li class="flex">
+    <td-button
+      [button]="topbar.secondaryArea.button"
+      size="small"
+      buttonWidth="100%"
+      (click)="onMenuItemClick()"
+    ></td-button>
+  </li>
+  <li class="tm-secondary-link" *ngFor="let link of topbar.secondaryArea.links">
+    <a [tdLink]="link" (click)="onMenuItemClick()">{{ link.text }}</a>
+  </li>
+  <li>
+    <a [href]="githubURL" target="_blank" (click)="onMenuItemClick()"
+      ><img src="/assets/icon/social/github.svg" alt="GitHub"
+    /></a>
+  </li>
 </ul>

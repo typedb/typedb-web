@@ -26,7 +26,7 @@ export class WhitePapersPageComponent implements OnInit {
         private contentService: ContentService,
         private _title: Title,
         private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService
+        private _idleMonitor: IdleMonitorService,
     ) {}
 
     ngOnInit() {

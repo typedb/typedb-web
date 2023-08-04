@@ -62,7 +62,10 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
 
     private mediaQuerySubscription = Subscription.EMPTY;
 
-    constructor(private _ngZone: NgZone, private _mediaQuery: MediaQueryService) {}
+    constructor(
+        private _ngZone: NgZone,
+        private _mediaQuery: MediaQueryService,
+    ) {}
 
     ngOnInit() {
         this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {

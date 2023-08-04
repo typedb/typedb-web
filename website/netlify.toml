@@ -2,19 +2,23 @@
 ignore = "/bin/false"
 
 [context.production]
-command = "pnpm run build-ci-prod"
+command = "pnpm run format-check && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.live-temp]
-command = "pnpm run build-ci-prod"
+command = "pnpm run format-check && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run build-ci-staging"
+command = "pnpm run format-check && ENV=staging pnpm run build"
 publish = "dist/dynamic"
 
 [context.development]
-command = "pnpm run build-ci-dev"
+command = "pnpm run format-check && ENV=development pnpm run build"
+publish = "dist/dynamic"
+
+[context.deploy-preview]
+command = "pnpm run format-check && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [[redirects]]

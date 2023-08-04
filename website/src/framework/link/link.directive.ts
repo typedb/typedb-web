@@ -11,7 +11,10 @@ export class LinkDirective implements OnInit {
     query!: string;
     resolvedLink!: Link;
 
-    constructor(private el: ElementRef<HTMLAnchorElement>, private _router: Router) {}
+    constructor(
+        private el: ElementRef<HTMLAnchorElement>,
+        private _router: Router,
+    ) {}
 
     ngOnInit() {
         if (!this.link) return;

@@ -1,8 +1,8 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from "@angular/core";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { WebsiteModule } from './website.module';
-import { environment } from './environment/environment';
+import { WebsiteModule } from "./website.module";
+import { environment } from "./environment/environment";
 
 import { installPrismTypeQL } from "./prism-typeql";
 import "prismjs/components/prism-java";
@@ -17,5 +17,6 @@ if (environment.production) {
 
 installPrismTypeQL();
 
-platformBrowserDynamic().bootstrapModule(WebsiteModule)
-    .catch(err => console.error(err));
+platformBrowserDynamic()
+    .bootstrapModule(WebsiteModule)
+    .catch((err) => console.error(err));

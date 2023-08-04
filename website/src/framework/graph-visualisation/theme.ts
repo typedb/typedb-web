@@ -17,12 +17,12 @@ type ColorKey = "background" | "entity" | "relation" | "attribute" | "edge" | "i
 
 export interface GraphVisualisationTheme {
     colors: {
-        numeric: {[key in ColorKey]: number};
-        hex: {[key in ColorKey]: string};
-    }
+        numeric: { [key in ColorKey]: number };
+        hex: { [key in ColorKey]: string };
+    };
 }
 
-type ColorMapping = {[key in ColorKey]: string};
+type ColorMapping = { [key in ColorKey]: string };
 
 const defaultColorMapping: ColorMapping = {
     background: palette.deepPurple,
@@ -33,21 +33,27 @@ const defaultColorMapping: ColorMapping = {
     inferred: palette.green,
     error: palette.red,
     vertexBackground: palette.deepGrey,
-}
+};
 
 const defaultTheme: GraphVisualisationTheme = {
     colors: {
-        numeric: Object.entries(defaultColorMapping).reduce((current, [nextKey, nextValue]) => {
-            current[nextKey as ColorKey] = Number(`0x${nextValue.slice(1)}`);
-            return current;
-        }, {} as {[key in ColorKey]: number}),
+        numeric: Object.entries(defaultColorMapping).reduce(
+            (current, [nextKey, nextValue]) => {
+                current[nextKey as ColorKey] = Number(`0x${nextValue.slice(1)}`);
+                return current;
+            },
+            {} as { [key in ColorKey]: number },
+        ),
 
-        hex: Object.entries(defaultColorMapping).reduce((current, [nextKey, nextValue]) => {
-            current[nextKey as ColorKey] = nextValue;
-            return current;
-        }, {} as {[key in ColorKey]: string}),
-    }
-}
+        hex: Object.entries(defaultColorMapping).reduce(
+            (current, [nextKey, nextValue]) => {
+                current[nextKey as ColorKey] = nextValue;
+                return current;
+            },
+            {} as { [key in ColorKey]: string },
+        ),
+    },
+};
 
 export const defaultGraphVisualisationTheme = defaultTheme;
 

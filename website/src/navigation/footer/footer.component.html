@@ -1,61 +1,46 @@
 <footer *ngIf="footer">
-    <div class="ft-section ft-social-section">
-        <td-button [button]="footer.button"></td-button>
-        <div class="ft-social-links">
-            <a
-                *ngFor="let socialMediaLink of socialMediaLinks"
-                class="sm-panel"
-                [href]="socialMediaLink.link.destination"
-            >
-                <img
-                    [src]="socialMediaLink.iconURL"
-                    [alt]="socialMediaLink.text"
-                />
-            </a>
-        </div>
+  <div class="ft-section ft-social-section">
+    <td-button [button]="footer.button"></td-button>
+    <div class="ft-social-links">
+      <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" [href]="socialMediaLink.link.destination">
+        <img [src]="socialMediaLink.iconURL" [alt]="socialMediaLink.text" />
+      </a>
     </div>
-    <nav class="ft-section ft-nav-section">
-        <div class="ft-contact-section">
-            <h3 class="text-28-43 text-22-33-tablet">
-                {{ footer.contactSectionTitle }}
-            </h3>
-            <ul>
-                <li
-                    *ngFor="let contactMediaLink of contactMediaLinks"
-                    class="text-16-28"
-                >
-                    <a [tdLink]="contactMediaLink.link">
-                        <img [src]="contactMediaLink.iconURL" alt="" />
-                        <p>{{ contactMediaLink.text }}</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="ft-sitemap-section">
-            <div *ngFor="let column of footer.columns">
-                <h3 class="text-28-43 text-22-33-tablet">{{ column.title }}</h3>
-                <ul>
-                    <li *ngFor="let item of column.items" class="text-16-28">
-                        <a [tdLink]="item">{{ item.text }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="ft-section ft-copyright-section">
-        <aside class="text-14-21 text-12-18-mobile">
-            © {{ copyrightYear }} Vaticle Ltd
-            <br />
-            Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
-        </aside>
-        <p class="text-14-21 ft-credits">
-            <img src="/assets/icon/code-brackets.svg" alt="Made" /> with
-            <img src="/assets/icon/heart.svg" alt="love" /> by
-            <img
-                src="/assets/logo/vaticle-text-only.svg"
-                alt="Vaticle"
-                class="ft-logo-vaticle"
-            />
-        </p>
+  </div>
+  <nav class="ft-section ft-nav-section">
+    <div class="ft-contact-section">
+      <h3 class="text-28-43 text-22-33-tablet">
+        {{ footer.contactSectionTitle }}
+      </h3>
+      <ul>
+        <li *ngFor="let contactMediaLink of contactMediaLinks" class="text-16-28">
+          <a [tdLink]="contactMediaLink.link">
+            <img [src]="contactMediaLink.iconURL" alt="" />
+            <p>{{ contactMediaLink.text }}</p>
+          </a>
+        </li>
+      </ul>
     </div>
+    <div class="ft-sitemap-section">
+      <div *ngFor="let column of footer.columns">
+        <h3 class="text-28-43 text-22-33-tablet">{{ column.title }}</h3>
+        <ul>
+          <li *ngFor="let item of column.items" class="text-16-28">
+            <a [tdLink]="item">{{ item.text }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="ft-section ft-copyright-section">
+    <aside class="text-14-21 text-12-18-mobile">
+      © {{ copyrightYear }} Vaticle Ltd
+      <br />
+      Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
+    </aside>
+    <p class="text-14-21 ft-credits">
+      <img src="/assets/icon/code-brackets.svg" alt="Made" /> with <img src="/assets/icon/heart.svg" alt="love" /> by
+      <img src="/assets/logo/vaticle-text-only.svg" alt="Vaticle" class="ft-logo-vaticle" />
+    </p>
+  </div>
 </footer>

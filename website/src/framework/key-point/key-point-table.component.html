@@ -1,18 +1,15 @@
 <table class="section kpt-table">
-    <tr *ngFor="let keyPoint of keyPoints">
-        <th>
-            <div><img [src]="keyPoint.iconURL" alt="" /></div>
-        </th>
-        <td>
-            <div>
-                <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
-                    {{ keyPoint.title }}
-                </h2>
-                <td-rich-text
-                    [value]="keyPoint.body"
-                    class="text-16-24 text-12-18-mobile"
-                ></td-rich-text>
-            </div>
-        </td>
-    </tr>
+  <tr *ngFor="let keyPoint of keyPoints">
+    <th>
+      <div><img [src]="keyPoint.iconURL" alt="" /></div>
+    </th>
+    <td>
+      <div>
+        <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
+          {{ keyPoint.title }}
+        </h2>
+        <td-rich-text [value]="keyPoint.body" class="text-16-24 text-12-18-mobile"></td-rich-text>
+      </div>
+    </td>
+  </tr>
 </table>

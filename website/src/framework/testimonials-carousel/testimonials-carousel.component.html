@@ -1,41 +1,41 @@
 <div class="section tc-root">
-    <div class="tc-carousel">
-        <div *ngFor="let testimonial of testimonials; index as idx" [class]="'tc-card ' + cardClass(idx)">
-            <div class="tc-card-content">
-                <p class="text-18-28 text-12-20-mobile text-weight-light">
-                    <em>{{ testimonial.body }}</em>
-                </p>
-                <div class="tc-details">
-                    <div class="tc-person">
-                        <img [src]="getHeadshotUrl(testimonial)" alt="" />
-                        <div>
-                            <h3 class="text-18-26 text-16-24-mobile">
-                                <strong>{{ testimonial.author }}</strong>
-                            </h3>
-                            <p class="tc-person-job text-14-23 text-10-15-mobile">
-                                {{ testimonial.jobTitle }},
-                                {{ testimonial.organisation.name }}
-                            </p>
-                        </div>
-                    </div>
-                    <img class="tc-logo" [src]="getLogoUrl(testimonial)" alt="" />
-                </div>
+  <div class="tc-carousel">
+    <div *ngFor="let testimonial of testimonials; index as idx" [class]="'tc-card ' + cardClass(idx)">
+      <div class="tc-card-content">
+        <p class="text-18-28 text-12-20-mobile text-weight-light">
+          <em>{{ testimonial.body }}</em>
+        </p>
+        <div class="tc-details">
+          <div class="tc-person">
+            <img [src]="getHeadshotUrl(testimonial)" alt="" />
+            <div>
+              <h3 class="text-18-26 text-16-24-mobile">
+                <strong>{{ testimonial.author }}</strong>
+              </h3>
+              <p class="tc-person-job text-14-23 text-10-15-mobile">
+                {{ testimonial.jobTitle }},
+                {{ testimonial.organisation.name }}
+              </p>
             </div>
+          </div>
+          <img class="tc-logo" [src]="getLogoUrl(testimonial)" alt="" />
         </div>
+      </div>
     </div>
-    <div class="tc-control-panel">
-        <button class="tc-controls-btn" (click)="previous()">
-            <img src="/assets/image/chevron-left.svg" alt="<" />
-        </button>
-        <div class="tc-beads">
-            <div
-                *ngFor="let _ of testimonials; index as idx"
-                class="tc-bead"
-                [ngClass]="{ 'tc-bead-focused': idx === focusedIndex }"
-            ></div>
-        </div>
-        <button class="tc-controls-btn" (click)="next()">
-            <img src="/assets/image/chevron-right.svg" alt=">" />
-        </button>
+  </div>
+  <div class="tc-control-panel">
+    <button class="tc-controls-btn" (click)="previous()">
+      <img src="/assets/image/chevron-left.svg" alt="<" />
+    </button>
+    <div class="tc-beads">
+      <div
+        *ngFor="let _ of testimonials; index as idx"
+        class="tc-bead"
+        [ngClass]="{ 'tc-bead-focused': idx === focusedIndex }"
+      ></div>
     </div>
+    <button class="tc-controls-btn" (click)="next()">
+      <img src="/assets/image/chevron-right.svg" alt=">" />
+    </button>
+  </div>
 </div>

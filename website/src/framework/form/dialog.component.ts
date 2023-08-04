@@ -34,7 +34,7 @@ export class CloudWaitlistDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
         private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService
+        private _popupNotificationService: PopupNotificationService,
     ) {
         this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder");
     }
@@ -54,7 +54,7 @@ export class NewsletterDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
         private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService
+        private _popupNotificationService: PopupNotificationService,
     ) {
         this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder");
     }
@@ -108,7 +108,7 @@ export class ContactDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<ContactDialogComponent>,
         private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService
+        private _popupNotificationService: PopupNotificationService,
     ) {
         this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact");
     }
