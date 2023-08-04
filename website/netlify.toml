@@ -90,7 +90,7 @@ path = "/api/webinars/register"
   [context.production.plugins.inputs]
     # this fixes issue of deploy permalink header impacting SEO score (https://github.com/netlify/netlify-plugin-lighthouse/issues/593)
     # this option runs plugin on a locally served version instead of deploy permalink
-    # deploy will not fail unless threshold is specified
+    # despite the name, it doesn't actually cause deploys to fail, unless the 'threshold' option is also set
     fail_deploy_on_score_thresholds = "true"
 
     [context.production.plugins.inputs.settings]
