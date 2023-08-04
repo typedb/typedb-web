@@ -84,11 +84,11 @@ path = "/api/webinars/primary"
 function = "webinars-register"
 path = "/api/webinars/register"
 
-[[context.deploy-preview.plugins]]
+[[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
-  [context.deploy-preview.plugins.inputs]
+  [context.production.plugins.inputs]
     fail_deploy_on_score_thresholds = "true"
 
-  [context.deploy-preview.plugins.inputs.settings]
-    preset = "desktop"
+    [context.production.plugins.inputs.settings]
+      preset = "desktop"
