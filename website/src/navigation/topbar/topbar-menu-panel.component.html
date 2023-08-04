@@ -1,8 +1,6 @@
 <div class="mp-root">
   <div *ngFor="let column of columns" class="mp-column">
-    <h3 class="text-14-21">
-      <strong>{{ column.title }}</strong>
-    </h3>
+    <h3 class="text-18-26 mp-column-title">{{ column.title }}</h3>
     <ul *ngIf="isListColumn(column)">
       <li *ngFor="let item of column.items">
         <a
@@ -12,7 +10,7 @@
           (mouseleave)="onMouseLeave(item)"
           (click)="onClick(item)"
         >
-          <h4 class="text-18-26">
+          <h4 class="text-14-24">
             <td-tooltip
               *ngIf="item.comingSoon"
               text="Coming soon!"
