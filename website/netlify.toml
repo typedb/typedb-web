@@ -17,6 +17,10 @@ publish = "dist/dynamic"
 command = "ENV=development pnpm run build"
 publish = "dist/dynamic"
 
+[context.deploy-preview]
+command = "ENV=development pnpm run build"
+publish = "dist/dynamic"
+
 [[redirects]]
 from = "/discord"
 to = "https://discord.com/invite/typedb"
