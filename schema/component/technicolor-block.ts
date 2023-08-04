@@ -25,7 +25,7 @@ export class TechnicolorBlock {
     static fromSanityTechnicolorBlock(data: SanityTechnicolorBlock, db: SanityDataset) {
         return new TechnicolorBlock({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
         });

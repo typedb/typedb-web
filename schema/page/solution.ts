@@ -122,7 +122,7 @@ class KeyPointsSection extends TechnicolorBlock {
         const { data, db, title, iconURL } = props;
         return new KeyPointsSection({
             title: title,
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: iconURL,
             keyPoints: data.keyPoints.map(x => new KeyPoint(x)),
@@ -142,7 +142,7 @@ class SolutionSection extends TechnicolorBlock {
         const { data, db } = props;
         return new SolutionSection({
             title: new ParagraphWithHighlights({ spans: [{ text: "TypeDB", highlight: true }, { text: " Solution", highlight: false }] }),
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/app-window-wrench.svg",
             keyPoints: data.keyPoints.map(x => new KeyPointWithIcon(x, db)),
@@ -159,7 +159,7 @@ class ExampleTab {
     constructor(data: SanityExampleTab, db: SanityDataset) {
         this.title = data.title;
         this.videoURL = data.videoURL;
-        this.body = new RichText(data.body);
+        this.body = RichText.fromSanity(data.body);
         this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
     }
 }
@@ -177,7 +177,7 @@ class ExampleSection extends TechnicolorBlock {
     static fromSanityExampleSection(data: SanityExampleSection, db: SanityDataset) {
         return new ExampleSection({
             title: new ParagraphWithHighlights({ spans: [] }),
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/globe-code.svg",
             exampleTabs: data.exampleTabs.map(x => new ExampleTab(x, db)),

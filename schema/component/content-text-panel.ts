@@ -18,7 +18,7 @@ export class ContentTextPanel {
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
         this.title = data.title;
         this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
-        this.body = new RichText(data.body);
+        this.body = RichText.fromSanity(data.body);
         this.learnMoreLink = data.learnMoreLink ? Link.fromSanityLinkRef(data.learnMoreLink, db) : undefined;
     }
 }

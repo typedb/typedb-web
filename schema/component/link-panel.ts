@@ -34,7 +34,7 @@ export class LinkPanel {
     static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset) {
         return new LinkPanel({
             title: data.title,
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             button: LinkButton.fromSanity(data.button, db),
         });
     }
@@ -62,7 +62,7 @@ export class ProductPanel extends LinkPanel {
     }
 
     static fromSanityProductPanel(data: SanityProductPanel, db: SanityDataset): ProductPanel {
-        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: new RichText(data.secondaryBody) }))
+        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: RichText.fromSanity(data.secondaryBody) }))
     }
 }
 

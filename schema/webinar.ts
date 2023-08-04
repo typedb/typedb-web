@@ -58,7 +58,7 @@ export class Webinar {
         return new Webinar({
             title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
-            description: new RichText(data.description),
+            description: RichText.fromSanity(data.description),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
             imageURL: db.resolveRef(data.image.asset).url,
