@@ -22,6 +22,7 @@ import { EventBase, SanityEventBase } from "./event-base";
 
 export interface SanityWebinar extends SanityEventBase {
     datetime: string;
+    durationMins: number;
     furtherReading: SanityFurtherReadingSection;
     airmeetID?: string;
     onDemandVideoURL?: string;
@@ -30,6 +31,7 @@ export interface SanityWebinar extends SanityEventBase {
 
 export class Webinar extends EventBase {
     readonly datetime: Date;
+    readonly durationMins: number;
     readonly furtherReading?: FurtherReadingSection;
     readonly airmeetID?: string;
     readonly onDemandVideoURL?: string;
@@ -38,6 +40,7 @@ export class Webinar extends EventBase {
     constructor(props: PropsOf<Webinar>) {
         super(props);
         this.datetime = props.datetime;
+        this.durationMins = props.durationMins;
         this.furtherReading = props.furtherReading;
         this.airmeetID = props.airmeetID;
         this.onDemandVideoURL = props.onDemandVideoURL;
@@ -48,6 +51,7 @@ export class Webinar extends EventBase {
         return new Webinar({
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
+            durationMins: data.durationMins,
             furtherReading: data.furtherReading.isVisible
                 ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db)
                 : undefined,

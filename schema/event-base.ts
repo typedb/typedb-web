@@ -7,7 +7,6 @@ import { PropsOf } from "./util";
 export interface SanityEventBase extends SanityDocument {
     title: SanityPortableText;
     slug: Slug;
-    durationMins: number;
     description: SanityPortableText;
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
@@ -17,7 +16,6 @@ export interface SanityEventBase extends SanityDocument {
 export abstract class EventBase {
     readonly title: ParagraphWithHighlights;
     readonly slug: string;
-    readonly durationMins: number;
     readonly description: RichText;
     readonly imageURL: string;
     readonly speakers: Person[];
@@ -26,7 +24,6 @@ export abstract class EventBase {
     constructor(props: PropsOf<EventBase>) {
         this.title = props.title;
         this.slug = props.slug;
-        this.durationMins = props.durationMins;
         this.description = props.description;
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
@@ -37,7 +34,6 @@ export abstract class EventBase {
         return {
             title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
-            durationMins: data.durationMins,
             description: RichText.fromSanity(data.description),
             imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),

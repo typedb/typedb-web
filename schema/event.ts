@@ -2,50 +2,13 @@ import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 
 import { LinkButton, SanityButton } from "./button";
-import {
-    collapsibleOptions,
-    descriptionFieldRichText,
-    isVisibleField,
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    slugField,
-    titleAndBodyFields,
-    titleFieldWithHighlights,
-} from "./common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
+import { descriptionFieldRichText, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
 import { EventBase, SanityEventBase } from "./event-base";
 import { EventDate, eventDate, SanityEventDate } from "./event-date";
 import { Link } from "./link";
 import { personSchemaName } from "./person";
-import { SanityDataset, SanityReference } from "./sanity-core";
+import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
-
-export interface SanityFeaturedEventsSection extends SanityTechnicolorBlock, SanityVisibleToggle {
-    events?: SanityReference<SanityEvent>[];
-}
-
-export class FeaturedEventsSection extends TechnicolorBlock {
-    events: Event[];
-
-    constructor(props: PropsOf<FeaturedEventsSection>) {
-        super(props);
-        this.events = props.events;
-    }
-
-    static fromSanity(data: SanityFeaturedEventsSection, db: SanityDataset) {
-        return new FeaturedEventsSection({
-            ...TechnicolorBlock.fromSanityTechnicolorBlock(data, db),
-            events: (data.events || []).map((ref) =>
-                Event.fromSanity(
-                    db.resolveRef(ref),
-                    db,
-                    false // to avoid circular dependency
-                )
-            ),
-        });
-    }
-}
 
 enum SignupMethod {
     externalURL = "externalURL",
@@ -57,7 +20,6 @@ export interface SanityEvent extends SanityEventBase {
     dateOptions: SanityEventDate;
     signupMethod: SignupMethod;
     externalUrlButton?: SanityButton;
-    featuredEventsSection: SanityFeaturedEventsSection;
 }
 
 export class Event extends EventBase {
@@ -66,7 +28,6 @@ export class Event extends EventBase {
     readonly dateOptions: EventDate;
     readonly signupMethod: SignupMethod;
     readonly externalUrlButton?: LinkButton;
-    readonly featuredEventsSection?: FeaturedEventsSection;
 
     constructor(props: PropsOf<Event>) {
         super(props);
@@ -75,14 +36,9 @@ export class Event extends EventBase {
         this.dateOptions = props.dateOptions;
         this.signupMethod = props.signupMethod;
         this.externalUrlButton = props.externalUrlButton;
-        this.featuredEventsSection = props.featuredEventsSection;
     }
 
-    static override fromSanity(
-        data: SanityEvent,
-        db: SanityDataset,
-        fillFeaturedEventsSection = data.featuredEventsSection.isVisible
-    ): Event {
+    static override fromSanity(data: SanityEvent, db: SanityDataset): Event {
         return new Event({
             ...super.fromSanity(data, db),
             tag: data.tag,
@@ -93,9 +49,6 @@ export class Event extends EventBase {
                 data.signupMethod === SignupMethod.externalURL && data.externalUrlButton
                     ? LinkButton.fromSanity(data.externalUrlButton, db)
                     : undefined,
-            featuredEventsSection: fillFeaturedEventsSection
-                ? FeaturedEventsSection.fromSanity(data.featuredEventsSection, db)
-                : undefined,
         });
     }
 
@@ -114,29 +67,6 @@ export class Event extends EventBase {
 }
 
 export const eventSchemaName = "event";
-
-const featuredEventsSection = defineField({
-    name: "featuredEventsSection",
-    title: "Featured Events Section",
-    type: "object",
-    options: collapsibleOptions,
-    fields: [
-        isVisibleField,
-        ...titleAndBodyFields,
-        sectionIconField,
-        defineField({
-            name: "events",
-            type: "array",
-            validation: (rule) =>
-                rule.custom((value, { parent }) =>
-                    (parent as SanityFeaturedEventsSection)?.isVisible && value?.length != 3
-                        ? "Must have exactly 3 items"
-                        : true
-                ),
-            of: [{ type: "reference", to: [{ type: eventSchemaName }] }],
-        }),
-    ],
-});
 
 export const eventSchema = defineType({
     name: eventSchemaName,
@@ -158,12 +88,6 @@ export const eventSchema = defineType({
             title: "Venue",
             type: "string",
             validation: requiredRule,
-        }),
-        defineField({
-            name: "durationMins",
-            title: "Duration (minutes)",
-            type: "number",
-            validation: (rule) => rule.required().positive(),
         }),
         defineField({ ...descriptionFieldRichText, validation: requiredRule }),
         defineField({
@@ -193,6 +117,5 @@ export const eventSchema = defineType({
             type: "button",
             hidden: ({ parent }) => (parent as SanityEvent)?.signupMethod !== SignupMethod.externalURL,
         }),
-        featuredEventsSection,
     ],
 });

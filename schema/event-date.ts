@@ -5,7 +5,7 @@ import { PropsOf } from "./util";
 export interface SanityEventDate {
     dateTBC: boolean;
     endDate?: string;
-    showTime?: boolean;
+    displayTime?: boolean;
     startDate?: string;
     timezone?: string;
 }
@@ -13,14 +13,14 @@ export interface SanityEventDate {
 export class EventDate {
     readonly dateTBC: boolean;
     readonly endDate?: Date;
-    readonly showTime?: boolean;
+    readonly displayTime?: boolean;
     readonly startDate?: Date;
     readonly timezone?: string;
 
     constructor(props: PropsOf<EventDate>) {
         this.dateTBC = props.dateTBC;
         this.endDate = props.endDate;
-        this.showTime = props.showTime;
+        this.displayTime = props.displayTime;
         this.startDate = props.startDate;
         this.timezone = props.timezone;
     }
@@ -30,7 +30,7 @@ export class EventDate {
             dateTBC: data.dateTBC,
             ...(!data.dateTBC && {
                 endDate: data.endDate ? new Date(data.endDate) : undefined,
-                showTime: data.showTime,
+                displayTime: data.displayTime,
                 startDate: data.startDate ? new Date(data.startDate) : undefined,
                 timezone: data.timezone,
             }),
@@ -53,6 +53,7 @@ export const eventDate = defineField({
         defineField({
             name: "startDate",
             title: "Start Date",
+            description: "Local time at venue",
             type: "datetime",
             hidden: ({ parent }) => (parent as SanityEventDate)?.dateTBC,
             validation: (rule) =>
@@ -63,15 +64,16 @@ export const eventDate = defineField({
         defineField({
             name: "endDate",
             title: "End Date",
+            description: "Local time at venue",
             type: "datetime",
             hidden: ({ parent }) => (parent as SanityEventDate)?.dateTBC,
         }),
         defineField({
-            name: "showTime",
-            title: "Show Time",
+            name: "displayTime",
+            title: "Display Time?",
             type: "boolean",
             initialValue: true,
-            description: "If unset, the time components of the start/end dates will be hidden",
+            description: "Whether to display the time(s) (hours, minutes) on our website",
             hidden: ({ parent }) => (parent as SanityEventDate)?.dateTBC,
         }),
         defineField({

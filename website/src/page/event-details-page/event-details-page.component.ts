@@ -27,7 +27,7 @@ export class EventDetailsPageComponent implements OnInit {
         private imageBuilder: ImageBuilder,
         private plainTextPipe: PlainTextPipe,
         private router: Router,
-        private title: Title
+        private title: Title,
     ) {}
 
     ngOnInit() {
@@ -47,7 +47,7 @@ export class EventDetailsPageComponent implements OnInit {
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
-            })
+            }),
         );
     }
 

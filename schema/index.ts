@@ -28,14 +28,7 @@ export { ContentTextPanel } from "./component/content-text-panel";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export {
-    Event,
-    type SanityEvent,
-    eventSchema,
-    eventSchemaName,
-    FeaturedEventsSection,
-    type SanityFeaturedEventsSection,
-} from "./event";
+export { Event, type SanityEvent, eventSchema, eventSchemaName } from "./event";
 export { EventDate, type SanityEventDate } from "./event-date";
 export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
 export {

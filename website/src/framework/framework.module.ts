@@ -50,7 +50,6 @@ import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
-import { EventPanelsComponent } from "./event-panels/event-panels.component";
 import { PersonInfoComponent } from "./person-info/person-info.component";
 import { EventDurationPipe } from "./date/event-duration.pipe";
 import { DateRangePipe } from "./date/date-range.pipe";
@@ -70,7 +69,6 @@ import { DateRangePipe } from "./date/date-range.pipe";
         DateRangePipe,
         DialogCloseButtonComponent,
         EventDurationPipe,
-        EventPanelsComponent,
         FeatureTableComponent,
         FeatureTableCellComponent,
         GraphVisualisationComponent,
@@ -125,7 +123,6 @@ import { DateRangePipe } from "./date/date-range.pipe";
         ContentTabsComponent,
         DateRangePipe,
         EventDurationPipe,
-        EventPanelsComponent,
         FeatureTableComponent,
         H1WithHighlightsComponent,
         IllustrationComponent,
