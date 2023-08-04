@@ -533,6 +533,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: 200px;
+            height: 124px;
         }
     }
 }
@@ -550,7 +551,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
 #hubspot-form-holder-contact .hs-submit {
     @media (max-width: $media-max-width-mobile) {
-        margin-top: 240px;
+        margin-top: 100px;
     }
 }
 
