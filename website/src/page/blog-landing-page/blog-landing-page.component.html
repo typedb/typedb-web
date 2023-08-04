@@ -1,8 +1,54 @@
 <article tdPageBackground nebula="features" planet="yellow_green">
   <div *ngIf="site$ | async as site" class="article-content">
-    <td-title-body-actions-section [isIntroSection]="true" [title]="site.name | paragraphWithHighlights" [body]="site.description | richText"/>
-    <div class="subsection-margin">
-      <h1 *ngFor="let post of posts$ | async">{{ post.title }}</h1>
-    </div>
+    <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="site.name | paragraphWithHighlights"
+        [body]="site.description | richText"
+    ></td-title-body-actions-section>
+
+    <ng-container *ngIf="posts$ | async as posts">
+      <section class="subsection-margin">
+        <div class="bp-primary-post card card-padding">
+          <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
+          <div class="bp-primary-post-summary">
+            <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile bp-post-title">{{ posts[0].title }}</h2>
+            <div class="bp-primary-post-description text-24-32 text-16-24-tablet text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
+            <div class="flex"></div>
+            <td-button [button]="readPostButton(posts[0])"></td-button>
+          </div>
+        </div>
+
+        <div class="bp-secondary-posts">
+          <div class="bp-secondary-post card card-padding" *ngFor="let post of [posts[1], posts[2]]">
+            <td-aspect-ratio ratio="16:9"><img [src]="post.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
+            <div class="bp-secondary-post-summary">
+              <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile bp-post-title">{{ post.title }}</h2>
+              <div class="bp-secondary-post-description text-16-28 text-16-24-tablet text-14-21-mobile" [innerHtml]="post.excerpt"></div>
+              <div class="flex"></div>
+              <td-button [button]="readPostButton(post)"></td-button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bp-posts-list-section">
+        <ul class="bp-posts-list">
+          <li *ngFor="let post of posts.slice(3)" class="bp-post-list-item card">
+            <div class="bp-img-tertiary-container">
+              <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
+                <img [src]="post.featured_image" class="bp-img" [alt]="" />
+              </td-aspect-ratio>
+              <h3 class="text-18-26 bp-post-title hide-gt-mobile">{{ post.title }}</h3>
+            </div>
+            <div class="bp-post-text">
+              <h2 class="text-24-32 text-22-33-tablet bp-post-title hide-mobile">{{ post.title }}</h2>
+              <div class="text-16-24 text-14-24-mobile" [innerHtml]="post.excerpt"></div>
+            </div>
+            <div class="flex"></div>
+            <td-button [button]="readPostButton(post)" buttonWidth="100%" size="small"></td-button>
+          </li>
+        </ul>
+      </section>
+    </ng-container>
   </div>
 </article>

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BlogLandingPageComponent } from "./page/blog-landing-page/blog-landing-page.component";
+import { BlogPostPageComponent } from "./page/blog-post-page/blog-post-page.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: "white-papers", component: WhitePapersPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
     { path: "blog", component: BlogLandingPageComponent },
+    { path: "blog/:slug", component: BlogPostPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];

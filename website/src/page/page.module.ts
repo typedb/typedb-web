@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FrameworkModule } from "../framework/framework.module";
 import { BlogLandingPageComponent } from "./blog-landing-page/blog-landing-page.component";
+import { BlogPostPageComponent } from "./blog-post-page/blog-post-page.component";
 import {
     DeploymentPageComponent,
     DeploymentPageTechnicolorBlockComponent,
@@ -27,6 +28,7 @@ import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-t
 @NgModule({
     declarations: [
         BlogLandingPageComponent,
+        BlogPostPageComponent,
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,
         EventDurationPipe,

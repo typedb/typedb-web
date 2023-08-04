@@ -1,0 +1,11 @@
+<article tdPageBackground nebula="features" planet="yellow_green">
+  <div *ngIf="post$ | async as post" class="article-content">
+    <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="post.title | paragraphWithHighlights"
+        [body]="'' | richText"
+    ></td-title-body-actions-section>
+
+    <section class="subsection-margin bpp-post-content" [innerHtml]="post.content"></section>
+  </div>
+</article>

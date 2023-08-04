@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { WordpressPosts, WordpressSite } from "typedb-web-schema";
+import { WordpressPost, WordpressPosts, WordpressSite } from "typedb-web-schema";
 
 const siteApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
 const postsApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts";
@@ -16,5 +16,9 @@ export class BlogService {
     constructor(private _http: HttpClient) {
         this.site$ = this._http.get<WordpressSite>(siteApiUrl);
         this.posts$ = this._http.get<WordpressPosts>(postsApiUrl);
+    }
+
+    getPostBySlug(slug: string): Observable<WordpressPost> {
+        return this._http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`);
     }
 }

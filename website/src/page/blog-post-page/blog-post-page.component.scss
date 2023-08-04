@@ -1,0 +1,69 @@
+@import "src/styles/colors";
+@import "src/styles/mixins";
+@import "src/styles/sizes";
+
+.bpp-post-content ::ng-deep {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: $font-weight-light;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    h2, h3, h4 {
+        font-weight: $font-weight-bold;
+        margin-block-start: 2em;
+        margin-block-end: 1em;
+    }
+
+    p {
+        margin-block-start: 1.25em;
+        margin-block-end: 1.25em;
+    }
+
+    ul, ol {
+        padding-inline-start: 40px;
+    }
+
+    li {
+        margin-top: .625em;
+    }
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        img {
+            display: block;
+            border-radius: $border-radius;
+            border: 1px solid $color-vaticle-light-purple;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 20px;
+
+            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+                font-size: 14px;
+            }
+
+            @media (max-width: $media-max-width-mobile) {
+                font-size: 12px;
+            }
+        }
+    }
+
+    strong {
+        color: #FFF;
+    }
+}
