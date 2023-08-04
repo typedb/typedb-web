@@ -9,7 +9,7 @@ import { Event, SanityEvent, eventSchemaName } from "typedb-web-schema";
 import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
-import { FormService } from "src/service/form.service";
+import { ImageBuilder } from "src/service/image-builder.service";
 
 @Component({
     selector: "td-event-details-page",
@@ -24,7 +24,7 @@ export class EventDetailsPageComponent implements OnInit {
         private analytics: AnalyticsService,
         private contentService: ContentService,
         private idleMonitor: IdleMonitorService,
-        private formService: FormService,
+        private imageBuilder: ImageBuilder,
         private plainTextPipe: PlainTextPipe,
         private router: Router,
         private title: Title
@@ -44,11 +44,14 @@ export class EventDetailsPageComponent implements OnInit {
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
                     }, 10000);
-                    this.formService.embedHubspotForm(event.hubspotFormID, "hubspot-form-holder");
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
             })
         );
+    }
+
+    getEventImageUrl(event: Event) {
+        return this.imageBuilder.image(event.imageURL).width(494).url();
     }
 }

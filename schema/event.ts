@@ -1,7 +1,7 @@
 import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 
-import { LinkButton } from "./button";
+import { LinkButton, SanityButton } from "./button";
 import {
     collapsibleOptions,
     descriptionFieldRichText,
@@ -16,7 +16,6 @@ import {
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
 import { EventBase, SanityEventBase } from "./event-base";
 import { EventDate, eventDate, SanityEventDate } from "./event-date";
-import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { personSchemaName } from "./person";
 import { SanityDataset, SanityReference } from "./sanity-core";
@@ -48,10 +47,16 @@ export class FeaturedEventsSection extends TechnicolorBlock {
     }
 }
 
+enum SignupMethod {
+    externalURL = "externalURL",
+}
+
 export interface SanityEvent extends SanityEventBase {
     tag: string;
     venue: string;
     dateOptions: SanityEventDate;
+    signupMethod: SignupMethod;
+    externalUrlButton?: SanityButton;
     featuredEventsSection: SanityFeaturedEventsSection;
 }
 
@@ -59,6 +64,8 @@ export class Event extends EventBase {
     readonly tag: string;
     readonly venue: string;
     readonly dateOptions: EventDate;
+    readonly signupMethod: SignupMethod;
+    readonly externalUrlButton?: LinkButton;
     readonly featuredEventsSection?: FeaturedEventsSection;
 
     constructor(props: PropsOf<Event>) {
@@ -66,6 +73,8 @@ export class Event extends EventBase {
         this.tag = props.tag;
         this.venue = props.venue;
         this.dateOptions = props.dateOptions;
+        this.signupMethod = props.signupMethod;
+        this.externalUrlButton = props.externalUrlButton;
         this.featuredEventsSection = props.featuredEventsSection;
     }
 
@@ -79,6 +88,11 @@ export class Event extends EventBase {
             tag: data.tag,
             venue: data.venue,
             dateOptions: EventDate.fromSanity(data.dateOptions),
+            signupMethod: data.signupMethod,
+            externalUrlButton:
+                data.signupMethod === SignupMethod.externalURL && data.externalUrlButton
+                    ? LinkButton.fromSanity(data.externalUrlButton, db)
+                    : undefined,
             featuredEventsSection: fillFeaturedEventsSection
                 ? FeaturedEventsSection.fromSanity(data.featuredEventsSection, db)
                 : undefined,
@@ -165,7 +179,20 @@ export const eventSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        hubspotFormIDField,
+        defineField({
+            name: "signupMethod",
+            title: "Signup Method",
+            type: "string",
+            initialValue: SignupMethod.externalURL,
+            options: { list: [{ title: "External URL", value: SignupMethod.externalURL }] },
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "externalUrlButton",
+            title: "External URL Button",
+            type: "button",
+            hidden: ({ parent }) => (parent as SanityEvent)?.signupMethod !== SignupMethod.externalURL,
+        }),
         featuredEventsSection,
     ],
 });

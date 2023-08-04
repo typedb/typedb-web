@@ -18,11 +18,10 @@
                     <h2 class="text-24-32 text-20-30-mobile">
                         <strong>Register to {{ event.tag }}</strong>
                     </h2>
-                    <div id="hubspot-form-holder"></div>
-                    <p class="text-16-24 text-14-21-mobile text-weight-light">
-                        By submitting your personal data, you consent to emails from Vaticle. See our
-                        <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
-                    </p>
+                    <td-aspect-ratio ratio="16:9">
+                        <img [src]="getEventImageUrl(event)" alt="" />
+                    </td-aspect-ratio>
+                    <td-button *ngIf="event.externalUrlButton" [button]="event.externalUrlButton" buttonWidth="100%" />
                 </div>
                 <div class="ed-description-container">
                     <td-rich-text [value]="event.description" class="text-24-32 text-20-32-tablet text-14-21-mobile" />

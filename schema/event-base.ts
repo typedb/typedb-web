@@ -11,7 +11,7 @@ export interface SanityEventBase extends SanityDocument {
     description: SanityPortableText;
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
-    hubspotFormID: string;
+    hubspotFormID?: string;
 }
 
 export abstract class EventBase {
@@ -21,7 +21,7 @@ export abstract class EventBase {
     readonly description: RichText;
     readonly imageURL: string;
     readonly speakers: Person[];
-    readonly hubspotFormID: string;
+    readonly hubspotFormID?: string;
 
     constructor(props: PropsOf<EventBase>) {
         this.title = props.title;
