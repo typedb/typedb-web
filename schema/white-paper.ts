@@ -49,7 +49,7 @@ export class WhitePaper {
         return new WhitePaper({
             title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
-            description: new RichText(data.description),
+            description: RichText.fromSanity(data.description),
             fileURL: db.resolveRef(data.file.asset).url,
             fileName: db.resolveRef(data.file.asset).originalFilename,
             tags: data.tags,

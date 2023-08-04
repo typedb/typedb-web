@@ -45,7 +45,7 @@ export class IntroPageCoreSection extends TechnicolorBlock {
     static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
         return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
             contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
-            longText: new RichText(data.longText),
+            longText: RichText.fromSanity(data.longText),
         }));
     }
 }

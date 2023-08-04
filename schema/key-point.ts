@@ -19,7 +19,7 @@ export class KeyPoint {
 
     constructor(data: SanityKeyPoint) {
         this.title = data.title;
-        this.body = new RichText(data.body);
+        this.body = RichText.fromSanity(data.body);
     }
 }
 

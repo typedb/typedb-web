@@ -50,10 +50,18 @@ export interface RichTextSpan {
 export class RichText {
     readonly paragraphs: { spans: RichTextSpan[] }[];
 
-    constructor(data: SanityPortableText) {
-        this.paragraphs = data.map(p => ({
-            spans: p.children.filter(block => isPortableTextSpan(block)).map(span => ({ text: span.text as string, marks: span.marks as string[], level: p.level }))
-        }));
+    constructor(data: PropsOf<RichText>) {
+        this.paragraphs = data.paragraphs;
+    }
+
+    static fromSanity(data: SanityPortableText): RichText {
+        return new RichText({
+            paragraphs: data.map(p => ({
+                spans: p.children.filter(block => isPortableTextSpan(block)).map(span => (
+                    { text: span.text as string, marks: span.marks as string[], level: p.level }
+                ))
+            }))
+        });
     }
 }
 
@@ -73,7 +81,7 @@ export class TitleAndBody implements TitleWithHighlights, BodyText {
     static fromSanityTitleAndBody(data: SanityTitleAndBody) {
         return new TitleAndBody({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
         });
     }
 }

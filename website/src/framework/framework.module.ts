@@ -39,8 +39,10 @@ import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-s
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
+import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pipe";
 import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
+import { RichTextPipe } from "./text/rich-text.pipe";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
 import { RouterModule } from "@angular/router";
 import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
@@ -79,9 +81,11 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         OrganisationLogosComponent,
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
+        ParagraphWithHighlightsPipe,
         PlainTextPipe,
         ProductTableComponent,
         RichTextComponent,
+        RichTextPipe,
         ScrollShadowComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
@@ -122,10 +126,12 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
         OrganisationLogosComponent,
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
+        ParagraphWithHighlightsPipe,
         PlainTextPipe,
         ProductTableComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
+        RichTextPipe,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,

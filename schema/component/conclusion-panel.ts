@@ -34,7 +34,7 @@ export class ConclusionPanel {
     static fromSanity(data: SanityConclusionPanel, db: SanityDataset): ConclusionPanel {
         return new ConclusionPanel({
             title: data.title,
-            body: new RichText(data.body),
+            body: RichText.fromSanity(data.body),
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
             resources: data.resources.map(x => TextLink.fromSanityTextLink(x, db)),
