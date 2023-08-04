@@ -88,6 +88,9 @@ path = "/api/webinars/register"
   package = "@netlify/plugin-lighthouse"
 
   [context.production.plugins.inputs]
+    # this option makes plugin run before the deploy is live
+    # it WILL NOT fail unless threshold is specified
+    # (workaround for https://github.com/netlify/netlify-plugin-lighthouse/issues/593)
     fail_deploy_on_score_thresholds = "true"
 
     [context.production.plugins.inputs.settings]
