@@ -20,7 +20,7 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     constructor(
         private elementRef: ElementRef<HTMLElement>,
         private mediaQuery: MediaQueryService,
-        private ngZone: NgZone
+        private ngZone: NgZone,
     ) {}
 
     ngAfterViewInit(): void {
@@ -29,11 +29,14 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
                 const topScrolled = Math.min(
                     this.topOffset,
                     window.scrollY,
-                    this.elementRef.nativeElement.clientHeight - window.innerHeight - this.bottomOffset
+                    this.elementRef.nativeElement.clientHeight - window.innerHeight - this.bottomOffset,
                 );
                 const bottomScrolled = Math.max(
                     0,
-                    this.bottomOffset + window.innerHeight + window.scrollY - this.elementRef.nativeElement.clientHeight
+                    this.bottomOffset +
+                        window.innerHeight +
+                        window.scrollY -
+                        this.elementRef.nativeElement.clientHeight,
                 );
                 const distance =
                     this.spaceSpeed * window.scrollY + (1 - this.spaceSpeed) * (topScrolled + bottomScrolled);

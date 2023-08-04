@@ -1,90 +1,89 @@
 <article tdPageBackground nebula="features" planet="yellow_green">
-    <div *ngIf="page" class="article-content">
-        <div class="section">
-            <td-title-body-actions-section
-                [isIntroSection]="true"
-                [title]="page.introSection.title"
-                [body]="page.introSection.body"
-            ></td-title-body-actions-section>
-            <div class="subsection-margin wp-primary-webinar card card-padding">
-                <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
-                <ng-container *ngIf="primaryWebinar">
-                    <td-aspect-ratio ratio="16:9">
-                        <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" [alt]="" />
-                    </td-aspect-ratio>
-                    <div class="wp-primary-webinar-summary">
-                        <h3 class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile">
-                            <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
-                            <span class="wp-title-separator">|</span>
-                            <span *ngIf="primaryWebinar.isFinished()">On-Demand</span>
-                            <span *ngIf="!primaryWebinar.isFinished()">
-                                {{ primaryWebinar.datetime | ordinalDate }}
-                            </span>
-                        </h3>
-                        <div class="wp-webinar-text-container">
-                            <td-rich-text
-                                class="wp-webinar-description text-16-24 text-14-21-mobile"
-                                [value]="primaryWebinar.description"
-                            ></td-rich-text>
+  <div *ngIf="page" class="article-content">
+    <div class="section">
+      <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="page.introSection.title"
+        [body]="page.introSection.body"
+      ></td-title-body-actions-section>
+      <div class="subsection-margin wp-primary-webinar card card-padding">
+        <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
+        <ng-container *ngIf="primaryWebinar">
+          <td-aspect-ratio ratio="16:9">
+            <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" [alt]="" />
+          </td-aspect-ratio>
+          <div class="wp-primary-webinar-summary">
+            <h3 class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile">
+              <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
+              <span class="wp-title-separator">|</span>
+              <span *ngIf="primaryWebinar.isFinished()">On-Demand</span>
+              <span *ngIf="!primaryWebinar.isFinished()">
+                {{ primaryWebinar.datetime | ordinalDate }}
+              </span>
+            </h3>
+            <div class="wp-webinar-text-container">
+              <td-rich-text
+                class="wp-webinar-description text-16-24 text-14-21-mobile"
+                [value]="primaryWebinar.description"
+              ></td-rich-text>
 
-                            <td-button [button]="primaryWebinar.registrationButton()"></td-button>
-                        </div>
-                    </div>
-                </ng-container>
+              <td-button [button]="primaryWebinar.registrationButton()"></td-button>
             </div>
-        </div>
-        <ng-container *ngIf="page.featuredWebinarsSection && secondaryWebinars && secondaryWebinars.length">
-            <td-technicolor-block
-                [block]="page.featuredWebinarsSection"
-                [index]="1"
-                [noLeadingLine]="true"
-            ></td-technicolor-block>
-            <td-webinar-panels [webinars]="secondaryWebinars"></td-webinar-panels>
+          </div>
         </ng-container>
-        <ng-container *ngIf="page.exploreWebinarsSection">
-            <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>
-            <section class="card">
-                <ul class="wp-webinar-list">
-                    <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
-                        <div class="wp-img-tertiary-container">
-                            <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
-                                <img [src]="webinar.imageURL" class="wp-img" [alt]="" />
-                            </td-aspect-ratio>
-                            <h3 class="text-18-26 wp-webinar-title hide-gt-mobile">
-                                {{ webinar.title | plainText }}
-                            </h3>
-                        </div>
-                        <div class="wp-webinar-text">
-                            <p class="text-24-32 text-22-33-tablet wp-webinar-title hide-mobile">
-                                {{ webinar.title | plainText }}
-                            </p>
-                            <p class="wp-speaker text-16-24 text-14-24-mobile">
-                                <span *ngFor="let speaker of webinar.speakers"
-                                    ><span class="text-important">{{ speaker.name }}, </span
-                                    >{{ speaker.jobDescription() }}</span
-                                >
-                            </p>
-                            <p class="wp-timing text-16-24 text-14-21-mobile text-weight-light">
-                                <span class="wp-webinar-datetime"
-                                    ><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar" />
-                                    <ng-container *ngIf="webinar.isFinished()">On-Demand</ng-container>
-                                    <ng-container *ngIf="!webinar.isFinished()">
-                                        {{ webinar.datetime | ordinalDate }},
-                                        {{ webinar.datetime | date : "shortTime" }}
-                                        {{ localTimezoneAbbreviation(webinar) }}
-                                    </ng-container>
-                                </span>
-                                <span>
-                                    <img src="/assets/icon/time.svg" alt="Duration:" />
-                                    {{ webinar.durationMins | eventDuration }}
-                                </span>
-                            </p>
-                        </div>
-                        <div class="flex"></div>
-                        <td-button [button]="webinar.registrationButton()" buttonWidth="100%" size="small"></td-button>
-                    </li>
-                </ul>
-            </section>
-        </ng-container>
+      </div>
     </div>
+    <ng-container *ngIf="page.featuredWebinarsSection && secondaryWebinars && secondaryWebinars.length">
+      <td-technicolor-block
+        [block]="page.featuredWebinarsSection"
+        [index]="1"
+        [noLeadingLine]="true"
+      ></td-technicolor-block>
+      <td-webinar-panels [webinars]="secondaryWebinars"></td-webinar-panels>
+    </ng-container>
+    <ng-container *ngIf="page.exploreWebinarsSection">
+      <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>
+      <section class="card">
+        <ul class="wp-webinar-list">
+          <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
+            <div class="wp-img-tertiary-container">
+              <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
+                <img [src]="webinar.imageURL" class="wp-img" [alt]="" />
+              </td-aspect-ratio>
+              <h3 class="text-18-26 wp-webinar-title hide-gt-mobile">
+                {{ webinar.title | plainText }}
+              </h3>
+            </div>
+            <div class="wp-webinar-text">
+              <p class="text-24-32 text-22-33-tablet wp-webinar-title hide-mobile">
+                {{ webinar.title | plainText }}
+              </p>
+              <p class="wp-speaker text-16-24 text-14-24-mobile">
+                <span *ngFor="let speaker of webinar.speakers"
+                  ><span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}</span
+                >
+              </p>
+              <p class="wp-timing text-16-24 text-14-21-mobile text-weight-light">
+                <span class="wp-webinar-datetime"
+                  ><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar" />
+                  <ng-container *ngIf="webinar.isFinished()">On-Demand</ng-container>
+                  <ng-container *ngIf="!webinar.isFinished()">
+                    {{ webinar.datetime | ordinalDate }},
+                    {{ webinar.datetime | date: "shortTime" }}
+                    {{ localTimezoneAbbreviation(webinar) }}
+                  </ng-container>
+                </span>
+                <span>
+                  <img src="/assets/icon/time.svg" alt="Duration:" />
+                  {{ webinar.durationMins | eventDuration }}
+                </span>
+              </p>
+            </div>
+            <div class="flex"></div>
+            <td-button [button]="webinar.registrationButton()" buttonWidth="100%" size="small"></td-button>
+          </li>
+        </ul>
+      </section>
+    </ng-container>
+  </div>
 </article>

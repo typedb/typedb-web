@@ -24,7 +24,7 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
         this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
             this.lines = Math.max(
                 (this.snippet.code.match(/\n/g) || []).length + 2,
-                MIN_LINES[isMobile ? "mobile" : "desktop"]
+                MIN_LINES[isMobile ? "mobile" : "desktop"],
             );
             this.lineNumbers = [...Array(this.lines).keys()].map((n) => n + 1);
         });

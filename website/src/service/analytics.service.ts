@@ -17,6 +17,8 @@ export const HUBSPOT_REGION = "na1";
 })
 export class AnalyticsService {
     hubspot = {
-        trackPageView: () => { /* Page views are only tracked in production. */ }
-    }
+        trackPageView: () => {
+            /* Page views are only tracked in production. */
+        },
+    };
 }

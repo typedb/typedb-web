@@ -1,17 +1,17 @@
 <div class="section ft-root">
-    <td-scroll-shadow class="ft-tabs-container">
-        <div class="ft-tabs">
-            <a
-                *ngFor="let tab of tabs"
-                class="ft-tab"
-                [ngClass]="{ 'ft-tab-selected': selectedTab === tab }"
-                [id]="tabID(tab)"
-                [href]="'#' + tabID(tab)"
-                (click)="onTabClick(tab, $event)"
-            >
-                <p class="text-24-32 text-14-24-mobile">{{ tab.title }}</p>
-            </a>
-        </div>
-    </td-scroll-shadow>
-    <td-content-panel *ngFor="let tab of tabs" [panel]="tab" [hidden]="selectedTab !== tab"></td-content-panel>
+  <td-scroll-shadow class="ft-tabs-container">
+    <div class="ft-tabs">
+      <a
+        *ngFor="let tab of tabs"
+        class="ft-tab"
+        [ngClass]="{ 'ft-tab-selected': selectedTab === tab }"
+        [id]="tabID(tab)"
+        [href]="'#' + tabID(tab)"
+        (click)="onTabClick(tab, $event)"
+      >
+        <p class="text-24-32 text-14-24-mobile">{{ tab.title }}</p>
+      </a>
+    </div>
+  </td-scroll-shadow>
+  <td-content-panel *ngFor="let tab of tabs" [panel]="tab" [hidden]="selectedTab !== tab"></td-content-panel>
 </div>

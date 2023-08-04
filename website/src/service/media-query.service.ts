@@ -6,8 +6,7 @@ import { map } from "rxjs/operators";
     providedIn: "root",
 })
 export class MediaQueryService {
-
-    isMobile = this._breakpointObserver.observe(["(max-width:767px)"]).pipe(map(value => value.matches));
+    isMobile = this._breakpointObserver.observe(["(max-width:767px)"]).pipe(map((value) => value.matches));
 
     constructor(private _breakpointObserver: BreakpointObserver) {}
 }

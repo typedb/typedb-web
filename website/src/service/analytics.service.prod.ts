@@ -18,23 +18,21 @@ export class AnalyticsService {
     hubspot = {
         trackPageView: () => {
             // HubSpot tracking code
-            const _hsq = window._hsq = window._hsq || [];
-            _hsq.push(['setPath', this._router.url]);
+            const _hsq = (window._hsq = window._hsq || []);
+            _hsq.push(["setPath", this._router.url]);
             if (this._hubspotTrackingCodeLoaded) {
-                _hsq.push(['trackPageView']);
+                _hsq.push(["trackPageView"]);
             } else {
                 const scriptEl = document.createElement("script");
                 scriptEl.src = `//js.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`;
                 document.head.appendChild(scriptEl);
                 this._hubspotTrackingCodeLoaded = true;
             }
-        }
-    }
+        },
+    };
     googleAnalytics = {
-        loadScriptTag: () => {
-
-        }
-    }
+        loadScriptTag: () => {},
+    };
 
     constructor(private _router: Router) {}
 }

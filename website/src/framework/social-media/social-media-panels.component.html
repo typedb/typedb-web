@@ -1,10 +1,6 @@
 <section class="sm-root card">
-    <a
-        *ngFor="let link of socialMediaLinks"
-        class="sm-panel text-16-20"
-        [tdLink]="link.link"
-    >
-        <img [src]="link.iconURL" alt="" />
-        <p class="hide-mobile">{{ link.text }}</p>
-    </a>
+  <a *ngFor="let link of socialMediaLinks" class="sm-panel text-16-20" [tdLink]="link.link">
+    <img [src]="link.iconURL" alt="" />
+    <p class="hide-mobile">{{ link.text }}</p>
+  </a>
 </section>

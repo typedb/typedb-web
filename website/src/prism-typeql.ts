@@ -3,40 +3,41 @@ import Prism from "prismjs";
 export function installPrismTypeQL() {
     Prism.languages["typeql"] = {
         comment: {
-            pattern: /#.*/
+            pattern: /#.*/,
         },
         error: {
-            pattern: /ERROR:.*/
+            pattern: /ERROR:.*/,
         },
         string: {
-            pattern: /(".*?")|('.*?')/
+            pattern: /(".*?")|('.*?')/,
         },
         keyword: {
-            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|commit|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
-            lookbehind: true
+            pattern:
+                /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|@key|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|commit|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
+            lookbehind: true,
         },
         type: {
             pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(entity|relation|attribute|thing)(?![-a-zA-Z_0-9])/,
-            lookbehind: true
+            lookbehind: true,
         },
         modifier: {
             pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
-            lookbehind: true
+            lookbehind: true,
         },
         special: {
-            pattern: /typeql>>|answers>>|\.\.\./
+            pattern: /typeql>>|answers>>|\.\.\./,
         },
         variable: {
             pattern: /\$[-a-zA-Z_0-9]+/,
-            alias: 'variable'
+            alias: "variable",
         },
         number: {
             pattern: /[0-9]+(\.[0-9][0-9]*)?/,
-            alias: 'number'
+            alias: "number",
         },
         operator: {
             pattern: /=|;|\.|\+|\*|,|\(|\)|:|{|}|!=|>|<|>=|<=/,
-            alias: 'operator'
-        }
+            alias: "operator",
+        },
     };
 }

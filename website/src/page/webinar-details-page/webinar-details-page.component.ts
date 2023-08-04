@@ -30,7 +30,7 @@ export class WebinarDetailsPageComponent implements OnInit {
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
-        private _plainTextPipe: PlainTextPipe
+        private _plainTextPipe: PlainTextPipe,
     ) {}
 
     ngOnInit() {
@@ -38,7 +38,7 @@ export class WebinarDetailsPageComponent implements OnInit {
             this.contentService.data.subscribe((data) => {
                 const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
                 const sanityWebinar = sanityWebinars.find(
-                    (x) => x.slug.current === params.get("slug") && !x.comingSoon
+                    (x) => x.slug.current === params.get("slug") && !x.comingSoon,
                 );
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);

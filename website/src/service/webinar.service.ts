@@ -18,13 +18,13 @@ export class WebinarService {
         // this.http.post("https://api-gateway-prod.us.airmeet.com/prod/auth", {}, { headers: { } }).subscribe(data => {
         //     this.data.next(data);
         // })
-        this.http.get<{ result: any }>(apiURLs.primary).subscribe(data => {
+        this.http.get<{ result: any }>(apiURLs.primary).subscribe((data) => {
             this.data.next(data);
         });
     }
 
     register(props: WebinarRegistrationForm) {
-        this.http.post(apiURLs.register, props).subscribe(resp => {
+        this.http.post(apiURLs.register, props).subscribe((resp) => {
             console.log(resp);
         });
     }

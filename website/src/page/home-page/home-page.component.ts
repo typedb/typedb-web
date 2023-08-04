@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit {
         private contentService: ContentService,
         private _title: Title,
         private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService
+        private _idleMonitor: IdleMonitorService,
     ) {}
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class HomePageComponent implements OnInit {
                 this.page = new HomePage(sanityHomePage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
-                    (x) => new SocialMediaLink(x, data)
+                    (x) => new SocialMediaLink(x, data),
                 );
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
