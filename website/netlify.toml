@@ -87,8 +87,8 @@ path = "/api/webinars/register"
 [[context.deploy-preview.plugins]]
   package = "@netlify/plugin-lighthouse"
 
+  [context.deploy-preview.plugins.inputs]
+    fail_deploy_on_score_thresholds = "true"
+
   [context.deploy-preview.plugins.inputs.settings]
     preset = "desktop"
-
-  [context.deploy-preview.plugins.inputs.audits]
-    url = "https://typedb.com"
