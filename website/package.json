@@ -9,7 +9,6 @@
     "test": "ng test",
     "format-check": "prettier --check src",
     "format-write": "prettier --write src",
-    "prebuild": "pnpm run format-check",
     "prerender": "node prerender.js"
   },
   "private": true,
