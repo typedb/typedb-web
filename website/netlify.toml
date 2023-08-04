@@ -84,8 +84,11 @@ path = "/api/webinars/primary"
 function = "webinars-register"
 path = "/api/webinars/register"
 
-[[plugins]]
+[[context.deploy-preview.plugins]]
   package = "@netlify/plugin-lighthouse"
 
-  [plugins.inputs.settings]
+  [context.deploy-preview.plugins.inputs.settings]
     preset = "desktop"
+
+  [context.deploy-preview.plugins.inputs.audits]
+    url = "https://typedb.com"
