@@ -73,7 +73,7 @@ export const eventDate = defineField({
             title: "Display Time?",
             type: "boolean",
             initialValue: true,
-            description: "Whether to display the time(s) (hours, minutes) on our website",
+            description: "Whether to display the time components (hours, minutes) on the website",
             hidden: ({ parent }) => (parent as SanityEventDate)?.dateTBC,
         }),
         defineField({
