@@ -138,7 +138,6 @@ $block-gap-mobile: 64px;
     top: 0;
     opacity: 0;
     left: -3px;
-    transition: 200ms;
     pointer-events: none;
 
     @media (max-width: $media-max-width-mobile) {
