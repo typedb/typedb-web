@@ -1,10 +1,21 @@
 @import "../../styles/sizes";
 
+:host {
+    position: relative;
+}
+
+.mat-dialog-content {
+    max-height: none;
+    min-height: 506px;
+}
+
 p {
-    align-self: flex-start;
-    margin-top: -36px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
     @media (max-width: $media-max-width-mobile) {
+        position: static;
         margin-top: 12px;
     }
 }
