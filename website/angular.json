@@ -29,6 +29,9 @@
                             "./node_modules/cookieconsent/build/cookieconsent.min.css",
                             "src/styles/styles.scss"
                         ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/styles"]
+                        },
                         "scripts": ["./node_modules/cookieconsent/build/cookieconsent.min.js"],
                         "allowedCommonJsDependencies": [
                             "@sanity/image-url",

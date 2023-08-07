@@ -1,13 +1,12 @@
 import { File, FileAsset, Image, ImageAsset, Reference, SanityDocument } from "@sanity/types";
 import { SanityImageRef } from "./image";
 import { associateBy } from "./util";
-import { SanityWebinar, webinarSchemaName } from "./webinar";
 
 export class SanityDataset {
     private readonly _byType: { [key: string]: SanityDocument[] };
     private readonly _byId: { [id: string]: SanityDocument };
 
-    constructor(props: { byType: { [key: string]: SanityDocument[] }, byId: { [id: string]: SanityDocument } }) {
+    constructor(props: { byType: { [key: string]: SanityDocument[] }; byId: { [id: string]: SanityDocument } }) {
         this._byType = props.byType;
         this._byId = props.byId;
     }
@@ -17,14 +16,14 @@ export class SanityDataset {
     }
 
     getDocumentsByType(key: string): SanityDocument[] {
-        const documentsByID = associateBy((this._byType[key] || []), x => x._id);
+        const documentsByID = associateBy(this._byType[key] || [], (x) => x._id);
         return Object.entries(documentsByID)
             .filter(([id, _document]) => id.startsWith("drafts.") || !documentsByID[`drafts.${id}`])
             .map(([_id, document]) => document);
     }
 
     resolveRef<T extends SanityDocument>(ref: SanityReference<T>): T {
-        const referencedObject = this._byId[ref._ref];
+        const referencedObject = this._byId[`drafts.${ref._ref}`] || this._byId[ref._ref];
         if (referencedObject != null) return referencedObject as T;
         throw `Failed to resolve reference with ID '${ref._ref}'`;
     }

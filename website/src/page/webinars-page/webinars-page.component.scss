@@ -11,8 +11,10 @@
 }
 
 .wp-primary-webinar {
-    @media (max-width: $media-max-width-tablet) {
-        padding: 40px;
+    padding: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
     }
 }
 
