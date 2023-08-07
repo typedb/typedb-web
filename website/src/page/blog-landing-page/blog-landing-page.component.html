@@ -1,54 +1,87 @@
-<article tdPageBackground nebula="features" planet="yellow_green">
-  <div *ngIf="site$ | async as site" class="article-content">
+<article>
+  <div *ngIf="site$ | async as site" class="subsection-margin">
     <td-title-body-actions-section
-        [isIntroSection]="true"
         [title]="site.name | paragraphWithHighlights"
         [body]="site.description | richText"
     ></td-title-body-actions-section>
 
-    <ng-container *ngIf="posts$ | async as posts">
-      <section class="subsection-margin">
-        <div class="bp-primary-post card card-padding">
-          <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
-          <div class="bp-primary-post-summary">
-            <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile bp-post-title">{{ posts[0].title }}</h2>
-            <div class="bp-primary-post-description text-24-32 text-16-24-tablet text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
-            <div class="flex"></div>
-            <td-button [button]="readPostButton(posts[0])"></td-button>
-          </div>
-        </div>
+    <section *ngIf="posts$ | async as posts" class="subsection-margin">
+      <hr/>
 
-        <div class="bp-secondary-posts">
-          <div class="bp-secondary-post card card-padding" *ngFor="let post of [posts[1], posts[2]]">
-            <td-aspect-ratio ratio="16:9"><img [src]="post.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
-            <div class="bp-secondary-post-summary">
-              <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile bp-post-title">{{ post.title }}</h2>
-              <div class="bp-secondary-post-description text-16-28 text-16-24-tablet text-14-21-mobile" [innerHtml]="post.excerpt"></div>
-              <div class="flex"></div>
-              <td-button [button]="readPostButton(post)"></td-button>
+      <div class="bp-primary-post">
+        <a class="bp-primary-img-link" [tdLink]="readPostLink(posts[0])">
+          <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" alt="" class="bp-img"/></td-aspect-ratio>
+        </a>
+        <div class="bp-primary-post-summary">
+          <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(posts[0]) }}</p>
+          <h2 class="bp-post-title text-40-48 text-32-44-tablet text-24-32-mobile">
+            <a [tdLink]="readPostLink(posts[0])">{{ posts[0].title }}</a>
+          </h2>
+          <div class="bp-primary-post-description text-16-24 text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
+          <div class="bp-author">
+            <img class="bp-avatar" [src]="posts[0].author.avatar_URL" alt="" />
+            <div class="bp-author-text">
+              <h3 class="text-18-26 text-12-18-mobile">{{ posts[0].author.name }}</h3>
+              <p class="text-14-21 text-10-12-mobile text-quiet">{{ posts[0].date | date:"longDate" }}</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="bp-posts-list-section">
+      <hr/>
+
+      <div class="bp-secondary-posts">
+        <div class="bp-secondary-post" *ngFor="let post of [posts[1], posts[2]]">
+          <a [tdLink]="readPostLink(post)">
+            <td-aspect-ratio ratio="16:9"><img [src]="post.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
+          </a>
+          <div class="bp-secondary-post-summary">
+            <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(post) }}</p>
+            <h2 class="text-32-44 text-24-37-tablet text-16-24-mobile bp-post-title">
+              <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
+            </h2>
+            <div class="bp-secondary-post-description text-16-24 text-14-21-mobile" [innerHtml]="post.excerpt"></div>
+            <div class="bp-author">
+              <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
+              <div class="bp-author-text">
+                <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
+                <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date:"longDate" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="bp-posts-list-section">
         <ul class="bp-posts-list">
-          <li *ngFor="let post of posts.slice(3)" class="bp-post-list-item card">
+          <li *ngFor="let post of posts.slice(3)" class="bp-post-list-item">
             <div class="bp-img-tertiary-container">
-              <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
-                <img [src]="post.featured_image" class="bp-img" [alt]="" />
-              </td-aspect-ratio>
+              <a class="bp-tertiary-img-link" [tdLink]="readPostLink(post)">
+                <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
+                  <img [src]="post.featured_image" class="bp-img" [alt]="" />
+                </td-aspect-ratio>
+              </a>
               <h3 class="text-18-26 bp-post-title hide-gt-mobile">{{ post.title }}</h3>
             </div>
-            <div class="bp-post-text">
-              <h2 class="text-24-32 text-22-33-tablet bp-post-title hide-mobile">{{ post.title }}</h2>
-              <div class="text-16-24 text-14-24-mobile" [innerHtml]="post.excerpt"></div>
+            <div class="bp-post-text-tertiary">
+              <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(post) }}</p>
+              <h2 class="text-24-32 text-22-33-tablet bp-post-title hide-mobile">
+                <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
+              </h2>
+              <div class="text-16-24 text-14-24-mobile bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
+              <div class="bp-author">
+                <img class="bp-avatar bp-avatar-small" [src]="post.author.avatar_URL" alt="" />
+                <div class="bp-author-text">
+                  <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
+                  <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date:"longDate" }}</p>
+                </div>
+              </div>
             </div>
-            <div class="flex"></div>
-            <td-button [button]="readPostButton(post)" buttonWidth="100%" size="small"></td-button>
           </li>
         </ul>
-      </section>
-    </ng-container>
+      </div>
+    </section>
   </div>
 </article>

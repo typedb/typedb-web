@@ -25,7 +25,7 @@ export interface WordpressPost {
     attachment_count: number;
     attachments: { [id: number]: WordpressAttachment; };
     author: WordpressAuthor;
-    categories: any;
+    categories: { [name: string]: WordpressCategory; };
     content: string;
     date: string;
     discussion: any;
@@ -76,4 +76,14 @@ export interface WordpressAuthor {
     last_name: string;
     name: string;
     profile_URL: string;
+}
+
+export interface WordpressCategory {
+    ID: number;
+    description: string;
+    meta: any;
+    name: string;
+    parent: number;
+    post_count: number;
+    slug: string;
 }

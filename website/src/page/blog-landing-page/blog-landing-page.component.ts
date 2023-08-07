@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { ButtonStyle, Link, LinkButton, WordpressPost, WordpressSite } from "typedb-web-schema";
+import { Link, WordpressPost, WordpressSite } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
@@ -22,12 +22,11 @@ export class BlogLandingPageComponent {
         this.posts$ = this.blogService.posts$.pipe(map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)));
     }
 
-    readPostButton(post: WordpressPost): LinkButton {
-        return new LinkButton({
-            style: "primary",
-            text: "Continue Reading",
-            link: new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false }),
-            comingSoon: false,
-        });
+    readPostLink(post: WordpressPost): Link {
+        return new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false });
+    }
+
+    postCategoriesString(post: WordpressPost): string {
+        return Object.keys(post.categories).join(", ");
     }
 }
