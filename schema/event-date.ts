@@ -89,6 +89,11 @@ export const eventDate = defineField({
                     })`,
                 })),
             },
+            initialValue: "Europe/London",
+            validation: (rule) =>
+                rule.custom((value, { parent }) =>
+                    (parent as SanityEventDate)?.dateTBC || value ? true : "Value is required"
+                ),
             hidden: ({ parent }) => (parent as SanityEventDate)?.dateTBC,
         }),
     ],
