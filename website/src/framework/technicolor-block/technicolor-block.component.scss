@@ -149,8 +149,8 @@ $block-gap-mobile: 64px;
 
     .tb-graphic-dot-blur {
         position: absolute;
-        top: -7px;
-        left: -7px;
+        top: -8px;
+        left: -8px;
         width: 25px;
         height: 25px;
         background: currentColor;
@@ -158,11 +158,15 @@ $block-gap-mobile: 64px;
         filter: blur(15px);
 
         @media (max-width: $media-max-width-tablet) {
+            top: -7px;
+            left: -7px;
             width: 23px;
             height: 23px;
         }
 
         @media (max-width: $media-max-width-mobile) {
+            top: -5px;
+            left: -5px;
             width: 16px;
             height: 16px;
         }
