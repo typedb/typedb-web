@@ -44,14 +44,21 @@
     ul {
         margin-top: 16px;
         display: grid;
-        grid-auto-flow: column;
-        grid-template-rows: repeat(4, 72px);
+        grid-auto-flow: dense;
         grid-auto-columns: 280px;
+        grid-auto-rows: 72px;
         gap: 16px 32px;
     }
 
     li {
+        @for $i from 1 through 3 {
+            &:nth-of-type(n + #{1 + 4 * ($i - 1)}) {
+                grid-column: $i;
+            }
+        }
+
         h4 {
+            font-weight: $font-weight-semi-bold;
             position: relative;
             width: fit-content;
         }
