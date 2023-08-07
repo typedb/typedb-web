@@ -63,28 +63,20 @@ typedb-website {
 
     section,
     .section {
+        position: relative;
+        z-index: 1;
         width: $section-width;
-
-        @media (max-width: $media-max-width-tablet) {
-            width: $section-width-tablet;
-        }
-
-        @media (max-width: $media-max-width-mobile) {
-            width: $section-width-mobile;
-        }
-    }
-
-    section,
-    .section {
         max-width: calc(100vw - 40px);
         margin-left: auto;
         margin-right: auto;
 
         @media (max-width: $media-max-width-tablet) {
+            width: $section-width-tablet;
             max-width: calc(100vw - $section-padding-tablet * 2);
         }
 
         @media (max-width: $media-max-width-mobile) {
+            width: $section-width-mobile;
             max-width: calc(100vw - 24px);
         }
     }

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { AfterViewInit, Component, DestroyRef, ElementRef, Input } from "@angular/core";
 import { TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
@@ -6,7 +6,7 @@ import { TechnicolorBlock } from "typedb-web-schema";
     templateUrl: "technicolor-block.component.html",
     styleUrls: ["./technicolor-block.component.scss"],
 })
-export class TechnicolorBlockComponent {
+export class TechnicolorBlockComponent implements AfterViewInit {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
     @Input() size: "medium" | "large" = "medium";
@@ -16,27 +16,43 @@ export class TechnicolorBlockComponent {
     @Input() noBody?: boolean;
     @Input() longUpperChain?: boolean;
 
-    get graphicLineColorClass(): string {
-        switch (this.index % 3) {
-            case 0:
-                return "tb-graphic-line-green";
-            case 1:
-                return "tb-graphic-line-pink";
-            case 2:
-                return "tb-graphic-line-yellow";
-            default:
-                throw "Unreachable code";
-        }
+    constructor(
+        private destroyRef: DestroyRef,
+        private elementRef: ElementRef<HTMLElement>,
+    ) {}
+
+    ngAfterViewInit(): void {
+        const dotEls = this.elementRef.nativeElement.querySelectorAll<HTMLElement>(".tb-graphic-dot");
+        const handleScroll = () =>
+            dotEls.forEach((dotEl) => {
+                if (dotEl.parentElement) {
+                    const parentRect = dotEl.parentElement.getBoundingClientRect();
+                    const offsetTop = window.innerHeight / 2 - parentRect.top;
+                    const opacity = Math.max(
+                        Math.min((parentRect.height / 2 + 20 - Math.abs(parentRect.height / 2 - offsetTop)) / 20, 1),
+                        0,
+                    );
+                    dotEl.style.top = `${offsetTop}px`;
+                    dotEl.style.opacity = `${opacity}`;
+                }
+            });
+        this.destroyRef.onDestroy(() => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleScroll);
+        });
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", handleScroll, { passive: true });
+        handleScroll();
     }
 
-    get graphicIconBgColorClass(): string {
+    get graphicColorClass(): string {
         switch (this.index % 3) {
             case 0:
-                return "tb-graphic-icon-bg-green";
+                return "tb-graphic-green";
             case 1:
-                return "tb-graphic-icon-bg-pink";
+                return "tb-graphic-pink";
             case 2:
-                return "tb-graphic-icon-bg-yellow";
+                return "tb-graphic-yellow";
             default:
                 throw "Unreachable code";
         }

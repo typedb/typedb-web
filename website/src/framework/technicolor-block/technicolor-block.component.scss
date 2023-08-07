@@ -8,6 +8,7 @@ $block-gap-mobile: 64px;
 .tb-root {
     background-repeat: no-repeat;
     background-position-y: 72px;
+    z-index: 0;
 }
 
 .tb-margin-top {
@@ -47,6 +48,40 @@ $block-gap-mobile: 64px;
     }
 }
 
+@mixin graphic-line-gradient($base-color) {
+    background: linear-gradient(
+        transparent 0%,
+        rgba($base-color, 0.08) 10%,
+        $base-color 50%,
+        rgba($base-color, 0.08) 90%,
+        transparent 100%
+    );
+}
+
+.tb-graphic-green {
+    color: $color-vaticle-green;
+
+    .tb-graphic-line {
+        @include graphic-line-gradient($color-vaticle-green);
+    }
+}
+
+.tb-graphic-pink {
+    color: $color-vaticle-secondary-pink;
+
+    .tb-graphic-line {
+        @include graphic-line-gradient($color-vaticle-secondary-pink);
+    }
+}
+
+.tb-graphic-yellow {
+    color: $color-vaticle-secondary-yellow;
+
+    .tb-graphic-line {
+        @include graphic-line-gradient($color-vaticle-secondary-yellow);
+    }
+}
+
 .tb-graphic-icon-area {
     width: 72px;
     height: 72px;
@@ -64,18 +99,8 @@ $block-gap-mobile: 64px;
     height: 100%;
     filter: blur(15px);
     border-radius: 50%;
-}
-
-.tb-graphic-icon-bg-green {
-    background: rgba(2, 218, 201, 0.15);
-}
-
-.tb-graphic-icon-bg-pink {
-    background: rgba(255, 133, 219, 0.15);
-}
-
-.tb-graphic-icon-bg-yellow {
-    background: rgba(254, 170, 116, 0.15);
+    opacity: 0.15;
+    background: currentColor;
 }
 
 .tb-graphic-icon {
@@ -97,32 +122,51 @@ $block-gap-mobile: 64px;
 
 .tb-graphic-line {
     width: 3px;
+    position: relative;
 
     @media (max-width: $media-max-width-mobile) {
         width: 2px;
     }
 }
 
-@mixin graphic-line-gradient($base-color) {
-    background: linear-gradient(
-        transparent 0%,
-        rgba($base-color, 0.08) 10%,
-        $base-color 50%,
-        rgba($base-color, 0.08) 90%,
-        transparent 100%
-    );
-}
+.tb-graphic-dot {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: currentColor;
+    border-radius: 50%;
+    top: 0;
+    opacity: 0;
+    left: -3px;
+    transition: 200ms;
+    pointer-events: none;
 
-.tb-graphic-line-green {
-    @include graphic-line-gradient($color-vaticle-green);
-}
+    @media (max-width: $media-max-width-mobile) {
+        left: -2px;
+        width: 6px;
+        height: 6px;
+    }
 
-.tb-graphic-line-pink {
-    @include graphic-line-gradient($color-vaticle-secondary-pink);
-}
+    .tb-graphic-dot-blur {
+        position: absolute;
+        top: -7px;
+        left: -7px;
+        width: 25px;
+        height: 25px;
+        background: currentColor;
+        border-radius: 50%;
+        filter: blur(15px);
 
-.tb-graphic-line-yellow {
-    @include graphic-line-gradient($color-vaticle-secondary-yellow);
+        @media (max-width: $media-max-width-tablet) {
+            width: 23px;
+            height: 23px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 16px;
+            height: 16px;
+        }
+    }
 }
 
 .tb-graphic-line-top {
