@@ -1,16 +1,16 @@
 <article>
   <div *ngIf="site$ | async as site" class="subsection-margin">
     <td-title-body-actions-section
-        [title]="site.name | paragraphWithHighlights"
-        [body]="site.description | richText"
+      [title]="site.name | paragraphWithHighlights"
+      [body]="site.description | richText"
     ></td-title-body-actions-section>
 
     <section *ngIf="posts$ | async as posts" class="subsection-margin">
-      <hr/>
+      <hr />
 
       <div class="bp-primary-post">
         <a class="bp-primary-img-link" [tdLink]="readPostLink(posts[0])">
-          <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" alt="" class="bp-img"/></td-aspect-ratio>
+          <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" alt="" class="bp-img" /></td-aspect-ratio>
         </a>
         <div class="bp-primary-post-summary">
           <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(posts[0]) }}</p>
@@ -22,13 +22,13 @@
             <img class="bp-avatar" [src]="posts[0].author.avatar_URL" alt="" />
             <div class="bp-author-text">
               <h3 class="text-18-26 text-12-18-mobile">{{ posts[0].author.name }}</h3>
-              <p class="text-14-21 text-10-12-mobile text-quiet">{{ posts[0].date | date:"longDate" }}</p>
+              <p class="text-14-21 text-10-12-mobile text-quiet">{{ posts[0].date | date: "longDate" }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <hr/>
+      <hr />
 
       <div class="bp-secondary-posts">
         <div class="bp-secondary-post" *ngFor="let post of [posts[1], posts[2]]">
@@ -45,14 +45,14 @@
               <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
               <div class="bp-author-text">
                 <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
-                <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date:"longDate" }}</p>
+                <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <hr/>
+      <hr />
 
       <div class="bp-posts-list-section">
         <ul class="bp-posts-list">
@@ -75,7 +75,7 @@
                 <img class="bp-avatar bp-avatar-small" [src]="post.author.avatar_URL" alt="" />
                 <div class="bp-author-text">
                   <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
-                  <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date:"longDate" }}</p>
+                  <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
                 </div>
               </div>
             </div>

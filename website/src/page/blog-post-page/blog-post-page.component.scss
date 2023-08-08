@@ -17,7 +17,9 @@
         line-height: 21px;
     }
 
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         font-weight: $font-weight-bold;
         margin-block-start: 2em;
         margin-block-end: 1em;
@@ -28,12 +30,13 @@
         margin-block-end: 1.25em;
     }
 
-    ul, ol {
+    ul,
+    ol {
         padding-inline-start: 40px;
     }
 
     li {
-        margin-top: .625em;
+        margin-top: 0.625em;
     }
 
     figure {
@@ -64,6 +67,6 @@
     }
 
     strong {
-        color: #FFF;
+        color: #fff;
     }
 }
