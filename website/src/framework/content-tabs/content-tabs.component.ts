@@ -15,7 +15,10 @@ export class ContentTabsComponent implements OnInit {
     private _elementID!: string;
     selectedTabID: string | undefined;
 
-    constructor(private router: Router, private _el: ElementRef) {
+    constructor(
+        private router: Router,
+        private _el: ElementRef,
+    ) {
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((_e) => {
             this.setSelectedTabFromWindowHash();
         });

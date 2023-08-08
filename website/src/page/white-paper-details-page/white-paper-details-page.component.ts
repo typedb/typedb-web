@@ -28,7 +28,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
-        private _plainTextPipe: PlainTextPipe
+        private _plainTextPipe: PlainTextPipe,
     ) {}
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
                     this._title.setTitle(
-                        `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`
+                        `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
                     );
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");

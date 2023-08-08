@@ -14,7 +14,6 @@ import { NotFoundPageComponent } from "./not-found-page/not-found-page.component
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
 import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
-import { EventDurationPipe } from "./webinar-details-page/event-duration.pipe";
 import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
 import { CommonModule } from "@angular/common";
@@ -24,6 +23,7 @@ import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy
 import { WhitePaperDetailsPageComponent } from "./white-paper-details-page/white-paper-details-page.component";
 import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
 import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
+import { EventDetailsPageComponent } from "./event-details-page/event-details-page.component";
 
 @NgModule({
     declarations: [
@@ -31,7 +31,7 @@ import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-t
         BlogPostPageComponent,
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,
-        EventDurationPipe,
+        EventDetailsPageComponent,
         GenericPageComponent,
         GenericPageTechnicolorBlockComponent,
         FeaturesPageComponent,

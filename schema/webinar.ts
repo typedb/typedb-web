@@ -1,71 +1,61 @@
 import { PresentationIcon } from "@sanity/icons";
-import { defineField, defineType, NumberRule, SanityDocument, Slug } from "@sanity/types";
+import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "./button";
-import { comingSoonField, descriptionFieldRichText, requiredRule, slugField, titleField, titleFieldWithHighlights } from "./common-fields";
-import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
+import {
+    comingSoonField,
+    descriptionFieldRichText,
+    requiredRule,
+    slugField,
+    titleFieldWithHighlights,
+} from "./common-fields";
+import {
+    FurtherReadingSection,
+    furtherReadingSectionSchemaName,
+    SanityFurtherReadingSection,
+} from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
-import { Person, personSchemaName, SanityPerson } from "./person";
-import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
-import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
+import { personSchemaName } from "./person";
+import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
+import { EventBase, SanityEventBase } from "./event-base";
 
-export interface SanityWebinar extends SanityDocument {
-    title: SanityPortableText;
-    slug: Slug;
-    description: SanityPortableText;
+export interface SanityWebinar extends SanityEventBase {
     datetime: string;
     durationMins: number;
-    image: SanityImage;
-    speakers: SanityReference<SanityPerson>[];
     furtherReading: SanityFurtherReadingSection;
     airmeetID?: string;
-    hubspotFormID?: string;
     onDemandVideoURL?: string;
     comingSoon: boolean;
 }
 
-export class Webinar {
-    readonly title: ParagraphWithHighlights;
-    readonly slug: string;
-    readonly description: RichText;
+export class Webinar extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
-    readonly imageURL: string;
-    readonly speakers: Person[];
     readonly furtherReading?: FurtherReadingSection;
     readonly airmeetID?: string;
-    readonly hubspotFormID?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
 
     constructor(props: PropsOf<Webinar>) {
-        this.title = props.title;
-        this.slug = props.slug;
-        this.description = props.description;
+        super(props);
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
-        this.imageURL = props.imageURL;
-        this.speakers = props.speakers;
         this.furtherReading = props.furtherReading;
         this.airmeetID = props.airmeetID;
-        this.hubspotFormID = props.hubspotFormID;
         this.onDemandVideoURL = props.onDemandVideoURL;
         this.comingSoon = props.comingSoon;
     }
 
-    static fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
+    static override fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
         return new Webinar({
-            title: ParagraphWithHighlights.fromSanity(data.title),
-            slug: data.slug.current,
-            description: RichText.fromSanity(data.description),
+            ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
-            imageURL: db.resolveRef(data.image.asset).url,
-            speakers: data.speakers.map(x => Person.fromSanity(db.resolveRef(x), db)),
-            furtherReading: data.furtherReading.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db) : undefined,
+            furtherReading: data.furtherReading.isVisible
+                ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db)
+                : undefined,
             airmeetID: data.airmeetID,
-            hubspotFormID: data.hubspotFormID,
             onDemandVideoURL: data.onDemandVideoURL,
             comingSoon: data.comingSoon,
         });
@@ -76,22 +66,24 @@ export class Webinar {
     }
 
     listSpeakers(): string {
-        return this.speakers.map(x => x.name).join(", ");
+        return this.speakers.map((x) => x.name).join(", ");
     }
 
     listSpeakerJobs(): string {
-        return this.speakers.map(x => x.jobDescription()).join(", ");
+        return this.speakers.map((x) => x.jobDescription()).join(", ");
     }
 
     registrationButton(): LinkButton {
         return new LinkButton({
             style: this.isFinished() || this.comingSoon ? "secondary" : "primary",
             text: this.comingSoon ? "Coming soon!" : this.isFinished() ? "Watch now" : "Register",
-            link: this.comingSoon ? undefined : new Link({
-                type: "route",
-                destination: `/webinars/${this.slug}`,
-                opensNewTab: false,
-            }),
+            link: this.comingSoon
+                ? undefined
+                : new Link({
+                      type: "route",
+                      destination: `/webinars/${this.slug}`,
+                      opensNewTab: false,
+                  }),
             comingSoon: this.comingSoon,
         });
     }
@@ -133,7 +125,7 @@ const webinarSchema = defineType({
             name: "speakers",
             title: "Speakers",
             type: "array",
-            of: [{type: "reference", to: [{type: personSchemaName}]}],
+            of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
         defineField({
@@ -154,7 +146,9 @@ const webinarSchema = defineType({
             title: "On-Demand Video URL",
             type: "url",
         }),
-        Object.assign({}, comingSoonField, { description: "If set, the Register button will be disabled and show 'Coming soon!'" }),
+        Object.assign({}, comingSoonField, {
+            description: "If set, the Register button will be disabled and show 'Coming soon!'",
+        }),
     ],
 });
 

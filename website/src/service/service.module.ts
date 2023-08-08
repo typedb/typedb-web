@@ -6,13 +6,7 @@ import { ContentService } from "./content.service";
 
 @NgModule({
     declarations: [],
-    imports: [
-        HttpClientModule,
-    ],
-    providers: [
-        ContentEndpointService,
-        ContentService,
-        WebinarService,
-    ],
+    imports: [HttpClientModule],
+    providers: [ContentEndpointService, ContentService, WebinarService],
 })
-export class ServiceModule { }
+export class ServiceModule {}

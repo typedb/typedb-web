@@ -1,12 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    HostListener,
-    Input,
-    NgZone,
-    OnInit,
-    Output,
-} from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, NgZone, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import {
     communityResourcesSchemaName,
@@ -46,17 +38,14 @@ export class TopbarMenuComponent implements OnInit {
         private contentService: ContentService,
         private dialogService: DialogService,
         private _topbarMobileService: TopbarMobileService,
-        private _ngZone: NgZone
+        private _ngZone: NgZone,
     ) {
         this._ngZone.runOutsideAngular(() => {
             window.addEventListener("scroll", () => {
                 const headerEl = document.getElementById("siteHeader");
                 if (headerEl) {
-                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${
-                        window.pageYOffset / 300
-                    })`; // vaticle purple
-                    headerEl.style.borderBottomColor =
-                        window.pageYOffset >= 300 ? "#232135" : "transparent"; // vaticle secondary purple
+                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 300})`; // vaticle purple
+                    headerEl.style.borderBottomColor = window.pageYOffset >= 300 ? "#232135" : "transparent"; // vaticle secondary purple
                 }
             });
         });
@@ -64,22 +53,12 @@ export class TopbarMenuComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityTopbar = data.getDocumentByID(
-                topbarSchemaName
-            ) as SanityTopbar;
-            this.topbar = sanityTopbar
-                ? new Topbar(sanityTopbar, data)
-                : undefined;
-            const communityResources = data.getDocumentByID(
-                communityResourcesSchemaName
-            ) as SanityCommunityResources;
+            const sanityTopbar = data.getDocumentByID(topbarSchemaName) as SanityTopbar;
+            this.topbar = sanityTopbar ? new Topbar(sanityTopbar, data) : undefined;
+            const communityResources = data.getDocumentByID(communityResourcesSchemaName) as SanityCommunityResources;
             this.githubURL = communityResources?.githubURL;
-            const sanitySiteBanner = data.getDocumentByID(
-                siteBannerSchemaName
-            ) as SanitySiteBanner;
-            this.siteBanner = sanitySiteBanner?.isEnabled
-                ? SiteBanner.fromSanity(sanitySiteBanner, data)
-                : undefined;
+            const sanitySiteBanner = data.getDocumentByID(siteBannerSchemaName) as SanitySiteBanner;
+            this.siteBanner = sanitySiteBanner?.isEnabled ? SiteBanner.fromSanity(sanitySiteBanner, data) : undefined;
         });
     }
 
@@ -95,11 +74,7 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     private get shouldForceOpaque(): boolean {
-        return (
-            !!this.hoveredMenuPanel ||
-            !!this.dialogService.current ||
-            this.mobileMenuIsOpen
-        );
+        return !!this.hoveredMenuPanel || !!this.dialogService.current || this.mobileMenuIsOpen;
     }
 
     isMenuPanel(obj: any): obj is TopbarMenuPanel {
@@ -111,12 +86,9 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
-        return [
-            this.hoveredMenuItem,
-            this.hoveredMenuPanel,
-            this.focusedMenuItem,
-            this.focusedMenuPanel,
-        ].includes(menuPanel);
+        return [this.hoveredMenuItem, this.hoveredMenuPanel, this.focusedMenuItem, this.focusedMenuPanel].includes(
+            menuPanel,
+        );
     }
 
     onMenuItemMouseEnter(menuPanel: TopbarMenuPanel) {
@@ -130,8 +102,7 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     onMenuItemMouseLeave(menuPanel: TopbarMenuPanel) {
-        if (this.hoveredMenuItem === menuPanel)
-            this.hoveredMenuItem = undefined;
+        if (this.hoveredMenuItem === menuPanel) this.hoveredMenuItem = undefined;
         this.focusedMenuPanel = undefined;
     }
 
@@ -140,8 +111,7 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     onMenuItemBlur(menuPanel: TopbarMenuPanel) {
-        if (this.focusedMenuItem === menuPanel)
-            this.focusedMenuItem = undefined;
+        if (this.focusedMenuItem === menuPanel) this.focusedMenuItem = undefined;
     }
 
     onMenuPanelMouseEnter(menuPanel: TopbarMenuPanel) {
@@ -150,8 +120,7 @@ export class TopbarMenuComponent implements OnInit {
     }
 
     onMenuPanelMouseLeave(menuPanel: TopbarMenuPanel) {
-        if (this.hoveredMenuPanel === menuPanel)
-            this.hoveredMenuPanel = undefined;
+        if (this.hoveredMenuPanel === menuPanel) this.hoveredMenuPanel = undefined;
         this.focusedMenuPanel = undefined;
     }
 
@@ -187,10 +156,7 @@ export class TopbarMenuPanelComponent {
     @Input() menuPanel!: TopbarMenuPanel;
     @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
 
-    comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<
-        TopbarListColumnItem,
-        boolean
-    >();
+    comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<TopbarListColumnItem, boolean>();
 
     get columns() {
         return this.menuPanel.columns;

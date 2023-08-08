@@ -33,7 +33,10 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     private onDestroy = () => {};
     private breakpointSubscription = Subscription.EMPTY;
 
-    constructor(private _ngZone: NgZone, private breakpointObserver: BreakpointObserver) {}
+    constructor(
+        private _ngZone: NgZone,
+        private breakpointObserver: BreakpointObserver,
+    ) {}
 
     ngAfterViewInit() {
         this.breakpointSubscription = this.breakpointObserver.observe("(max-width:960px)").subscribe(({ matches }) => {
@@ -44,8 +47,8 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
                         this.graphContainerEl.nativeElement,
                         this.graph,
                         defaultGraphVisualisationTheme,
-                        matches
-                    ).destroy
+                        matches,
+                    ).destroy,
             );
         });
     }
@@ -78,7 +81,7 @@ export function renderVertex(
     vertex: Renderer.Vertex,
     useFallbackFont: boolean,
     theme: GraphVisualisationTheme,
-    isMobile: boolean
+    isMobile: boolean,
 ) {
     vertex.gfx = new PIXI.Graphics();
     vertex.gfx.lineStyle(0);
@@ -94,7 +97,7 @@ export function renderVertex(
                 -vertex.height / 2,
                 vertex.width,
                 vertex.height,
-                3
+                3,
             );
             break;
         case "relation":
@@ -130,7 +133,7 @@ export function renderVertexLabel(
     vertex: Renderer.Vertex,
     useFallbackFont: boolean,
     theme: GraphVisualisationTheme,
-    isMobile: boolean
+    isMobile: boolean,
 ) {
     const colors = theme.colors.numeric;
     const text1 = new PIXI.Text(vertex.label, {
@@ -193,7 +196,7 @@ export function renderEdgeLabel(
     edge: Renderer.Edge,
     useFallbackFont: boolean,
     theme: GraphVisualisationTheme,
-    isMobile: boolean
+    isMobile: boolean,
 ) {
     const fontFamily = useFallbackFont ? defaultStyles.fontFamilyFallback : defaultStyles.fontFamily;
 
@@ -241,7 +244,7 @@ function createD3ForceSimulation(
     edges: Renderer.Edge[],
     width: number,
     height: number,
-    isMobile: boolean
+    isMobile: boolean,
 ) {
     const vertexTargetPositions = vertices.map((x) => ({ x: x.x, y: x.y }));
     const simulation = d3
@@ -262,7 +265,7 @@ function createD3ForceSimulation(
                         };
 
                     return Math.sqrt(Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2));
-                })
+                }),
         )
         .force("collide", d3.forceCollide(isMobile ? 40 : 65))
         .force("charge", d3.forceManyBody().strength(-100)) // This adds repulsion (if it's negative) between nodes.
@@ -271,42 +274,42 @@ function createD3ForceSimulation(
             d3
                 .forceX()
                 .x((d: any) => (width * d.x) / 100)
-                .strength(1)
+                .strength(1),
         )
         .force(
             "x2",
             d3
                 .forceX()
                 .x((d: any) => (width * d.x) / 100)
-                .strength(1)
+                .strength(1),
         )
         .force(
             "y1",
             d3
                 .forceY()
                 .y((d: any) => (height * d.y) / 100)
-                .strength(1)
+                .strength(1),
         )
         .force(
             "y2",
             d3
                 .forceY()
                 .y((d: any) => (height * d.y) / 100)
-                .strength(1)
+                .strength(1),
         )
         .force(
             "x3",
             d3
                 .forceX()
                 .x((d: any) => (width * d.x) / 100)
-                .strength(0.33)
+                .strength(0.33),
         )
         .force(
             "y3",
             d3
                 .forceY()
                 .y((d: any) => (height * d.y) / 100)
-                .strength(0.33)
+                .strength(0.33),
         )
         .velocityDecay(0.8);
 
@@ -327,7 +330,7 @@ export function renderGraph(
     container: HTMLElement,
     graphData: GraphVisualisation,
     theme: GraphVisualisationTheme,
-    isMobile: boolean
+    isMobile: boolean,
 ) {
     const [width, height] = [container.offsetWidth, container.offsetHeight];
     const edges: Renderer.Edge[] = graphData.edges.map((d) => Object.assign({}, d));
@@ -336,7 +339,7 @@ export function renderGraph(
         Object.assign({}, d, {
             width: vertexSize[d.encoding].width * sizeModifier,
             height: vertexSize[d.encoding].height * sizeModifier,
-        })
+        }),
     ) as any;
     let dragged = false;
 

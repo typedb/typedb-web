@@ -1,28 +1,28 @@
 <div [ngClass]="rootNgClass" [hidden]="hidden">
-    <td-aspect-ratio ratio="3:2">
-        <td-illustration [illustration]="panel.illustration" [visible]="!hidden"></td-illustration>
-    </td-aspect-ratio>
-    <div *ngIf="contentTextPanel" class="cp-text-area">
-        <div>
-            <h2 *ngIf="isMobile$ | async" class="text-18-26 title-standalone">
-                <strong>{{ contentTextPanel.title }}</strong>
-            </h2>
-            <p
-                *ngFor="let paragraph of contentTextPanel.body.paragraphs"
-                class="text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
-            >
-                <span
-                    *ngFor="let span of paragraph.spans"
-                    [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined"
-                    >{{ span.text }}</span
-                >
-            </p>
-        </div>
-        <a
-            *ngIf="contentTextPanel.learnMoreLink"
-            [tdLink]="contentTextPanel.learnMoreLink"
-            class="text-16-24 text-14-24-mobile cp-learn-more link-tertiary"
-            >Learn More</a
+  <td-aspect-ratio ratio="3:2">
+    <td-illustration [illustration]="panel.illustration" [visible]="!hidden"></td-illustration>
+  </td-aspect-ratio>
+  <div *ngIf="contentTextPanel" class="cp-text-area">
+    <div>
+      <h2 *ngIf="isMobile$ | async" class="text-18-26 title-standalone">
+        <strong>{{ contentTextPanel.title }}</strong>
+      </h2>
+      <p
+        *ngFor="let paragraph of contentTextPanel.body.paragraphs"
+        class="text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
+      >
+        <span
+          *ngFor="let span of paragraph.spans"
+          [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined"
+          >{{ span.text }}</span
         >
+      </p>
     </div>
+    <a
+      *ngIf="contentTextPanel.learnMoreLink"
+      [tdLink]="contentTextPanel.learnMoreLink"
+      class="text-16-24 text-14-24-mobile cp-learn-more link-tertiary"
+      >Learn More</a
+    >
+  </div>
 </div>

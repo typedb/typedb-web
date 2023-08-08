@@ -1,12 +1,12 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: "eventDuration"
+    name: "eventDuration",
 })
 export class EventDurationPipe implements PipeTransform {
     transform(durationMins: number): string {
         if (!durationMins) {
-            return '';
+            return "";
         }
         if (durationMins < 60) return `${durationMins} minutes`;
         else if (durationMins > 60) return `${durationMins / 60} hours`;

@@ -1,0 +1,98 @@
+@import "colors";
+@import "sizes";
+
+ul.ed-subtitle {
+    margin-top: 32px;
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 24px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 16px;
+        gap: 8px;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+    }
+
+    li:not(:last-child):after {
+        content: "|";
+        margin-left: 24px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-left: 8px;
+        }
+    }
+
+    img {
+        margin-right: 16px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.ed-details-area {
+    text-align: start;
+}
+
+.ed-form-card {
+    float: right;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    width: 560px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media (max-width: $media-max-width-tablet) {
+        width: 405px;
+        max-width: 50%;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        float: none;
+        margin-bottom: 24px;
+        margin-left: 0;
+        width: 100%;
+        max-width: none;
+        padding: 12px;
+    }
+}
+
+.ed-description-container {
+    @media (max-width: $media-max-width-mobile) {
+        padding: 0 12px;
+    }
+}
+
+ul.ed-speakers {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 582px;
+    max-width: 582px;
+    gap: 16px;
+
+    @media (max-width: $media-max-width-tablet) {
+        min-width: 500px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        min-width: auto;
+        max-width: none;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

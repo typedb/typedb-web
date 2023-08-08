@@ -11,7 +11,8 @@ button {
             transition: fill 100ms ease;
         }
 
-        &:hover path, &:active path {
+        &:hover path,
+        &:active path {
             fill: $color-vaticle-white;
         }
 

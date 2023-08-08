@@ -30,7 +30,7 @@ export class WebinarsPageComponent implements OnInit {
         private _webinarService: WebinarService,
         private _title: Title,
         private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService
+        private _idleMonitor: IdleMonitorService,
     ) {}
 
     ngOnInit() {

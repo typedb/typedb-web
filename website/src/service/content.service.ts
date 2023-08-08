@@ -10,12 +10,17 @@ import { ContentEndpointService } from "./content-endpoint.service";
 export class ContentService {
     public data = new ReplaySubject<SanityDataset>();
 
-    constructor(private http: HttpClient, private endpoint: ContentEndpointService) {
-        this.endpoint.getContent().subscribe(data => {
-            this.data.next(new SanityDataset({
-                byType: groupBy(data.result, x => x._type),
-                byId: associateBy(data.result, x => x._id),
-            }));
+    constructor(
+        private http: HttpClient,
+        private endpoint: ContentEndpointService,
+    ) {
+        this.endpoint.getContent().subscribe((data) => {
+            this.data.next(
+                new SanityDataset({
+                    byType: groupBy(data.result, (x) => x._type),
+                    byId: associateBy(data.result, (x) => x._id),
+                }),
+            );
         });
     }
 }

@@ -16,10 +16,18 @@ export class WebsiteComponent {
     private _originBeforeNavigation: string = window.location.origin;
     private _pathnameBeforeNavigation: string = window.location.pathname;
 
-    constructor(contentService: ContentService, router: Router, activatedRoute: ActivatedRoute, viewportScroller: ViewportScroller, _dialogService: DialogService, _topbarMobileService: TopbarMobileService, _cookieConsentService: NgcCookieConsentService) {
+    constructor(
+        contentService: ContentService,
+        router: Router,
+        activatedRoute: ActivatedRoute,
+        viewportScroller: ViewportScroller,
+        _dialogService: DialogService,
+        _topbarMobileService: TopbarMobileService,
+        _cookieConsentService: NgcCookieConsentService,
+    ) {
         viewportScroller.setOffset([0, 112]);
-        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe(e => {
-            contentService.data.subscribe(_data => {
+        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
+            contentService.data.subscribe((_data) => {
                 let currentRoute = activatedRoute;
                 while (currentRoute.firstChild) currentRoute = currentRoute.firstChild;
 
@@ -33,7 +41,10 @@ export class WebsiteComponent {
                     setTimeout(() => {
                         viewportScroller.scrollToAnchor(e.anchor!);
                     });
-                } else if (this._originBeforeNavigation !== window.location.origin || this._pathnameBeforeNavigation !== window.location.pathname) {
+                } else if (
+                    this._originBeforeNavigation !== window.location.origin ||
+                    this._pathnameBeforeNavigation !== window.location.pathname
+                ) {
                     window.scrollTo(0, 0);
                 }
                 this._originBeforeNavigation = window.location.origin;

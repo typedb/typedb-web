@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FrameworkModule } from "./framework/framework.module";
 import { NavigationModule } from "./navigation/navigation.module";
 import { PageModule } from "./page/page.module";
@@ -21,13 +21,11 @@ const cookieConfig: NgcCookieConsentConfig = {
     content: {
         href: "/privacy-policy",
     },
-    type: "info"
+    type: "info",
 };
 
 @NgModule({
-    declarations: [
-        WebsiteComponent,
-    ],
+    declarations: [WebsiteComponent],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
@@ -37,11 +35,11 @@ const cookieConfig: NgcCookieConsentConfig = {
         NavigationModule,
         NgcCookieConsentModule.forRoot(cookieConfig),
         PageModule,
-        ScullyLibModule.forRoot({useTransferState: true, alwaysMonitor: false, manualIdle: true}),
+        ScullyLibModule.forRoot({ useTransferState: true, alwaysMonitor: false, manualIdle: true }),
         ServiceModule,
         WebsiteRoutingModule,
     ],
     providers: [],
-    bootstrap: [WebsiteComponent]
+    bootstrap: [WebsiteComponent],
 })
-export class WebsiteModule { }
+export class WebsiteModule {}

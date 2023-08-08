@@ -18,7 +18,11 @@ import {
 export class DialogService {
     current?: MatDialogRef<any>;
 
-    constructor(private _router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog) {
+    constructor(
+        private _router: Router,
+        private activatedRoute: ActivatedRoute,
+        private dialog: MatDialog,
+    ) {
         this._router.events.subscribe((e) => {
             if (e instanceof NavigationEnd) {
                 const searchParams = new URLSearchParams(window.location.search);
@@ -67,6 +71,11 @@ export class DialogService {
     }
 
     openContactDialog() {
-        this.open(ContactDialogComponent, { width: "1088px", height: "568px", maxWidth: "100vw", autoFocus: "input" });
+        this.open(ContactDialogComponent, {
+            width: "1088px",
+            maxWidth: "100vw",
+            maxHeight: "100vh",
+            autoFocus: "input",
+        });
     }
 }
