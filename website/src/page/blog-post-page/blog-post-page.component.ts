@@ -30,4 +30,8 @@ export class BlogPostPageComponent {
             this.post$ = slug ? this.blogService.getPostBySlug(slug) : undefined;
         });
     }
+
+    postCategoriesString(post: WordpressPost): string {
+        return Object.keys(post.categories).join(", ");
+    }
 }

@@ -2,7 +2,76 @@
 @import "src/styles/mixins";
 @import "src/styles/sizes";
 
-.bpp-post-content ::ng-deep {
+.bp-intro-section {
+    width: 750px;
+    margin-top: 200px;
+
+    h1 {
+        margin-top: 8px;
+    }
+
+    ::ng-deep p {
+        margin-top: 1.25em;
+    }
+}
+
+.bp-author-section {
+    width: 1040px;
+
+    hr {
+        margin-top: 1em;
+        border-top: 1px solid $color-vaticle-green;
+    }
+}
+
+.bp-featured-image {
+    width: 100%;
+    display: block;
+    border-radius: $border-radius;
+    border: 1px solid $color-vaticle-light-purple;
+}
+
+.bp-categories {
+    font-weight: $font-weight-bold;
+    color: $color-vaticle-secondary-pink;
+}
+
+.bp-author-title {
+    margin-top: 16px;
+}
+
+.bp-authorship {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bp-author {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+    }
+}
+
+.bp-avatar {
+    display: block;
+    width: 54px;
+    height: 54px;
+    border-radius: $border-radius;
+    border: 1px solid $color-vaticle-light-purple;
+}
+
+.bp-authored-date {
+    padding: 4px 0 4px 32px;
+    border-left: 1px solid $color-vaticle-light-purple;
+}
+
+.bp-post-content ::ng-deep {
     font-size: 24px;
     line-height: 32px;
     font-weight: $font-weight-light;

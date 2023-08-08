@@ -1,11 +1,28 @@
-<article tdPageBackground nebula="features" planet="yellow_green">
+<article>
   <div *ngIf="post$ | async as post" class="article-content">
-    <td-title-body-actions-section
-      [isIntroSection]="true"
-      [title]="post.title | paragraphWithHighlights"
-      [body]="'' | richText"
-    ></td-title-body-actions-section>
+    <section>
+      <div class="bp-intro-section">
+        <p class="bp-categories text-16-24 text-14-21-mobile">{{ postCategoriesString(post) }}</p>
+        <h1 class="text-48-60 text-28-36-mobile">{{ post.title }}</h1>
+        <div class="bp-excerpt" [innerHtml]="post.excerpt"></div>
+      </div>
+    </section>
 
-    <section class="subsection-margin bpp-post-content" [innerHtml]="post.content"></section>
+    <section>
+      <div class="bp-author-section">
+        <img class="bp-featured-image subsection-margin" [src]="post.featured_image" alt="" />
+        <h4 class="bp-author-title text-quiet">Author</h4>
+        <div class="bp-authorship">
+          <div class="bp-author">
+            <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
+            <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
+          </div>
+          <p class="bp-authored-date text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
+        </div>
+        <hr />
+      </div>
+    </section>
+
+    <section class="subsection-margin bp-post-content" [innerHtml]="post.content"></section>
   </div>
 </article>
