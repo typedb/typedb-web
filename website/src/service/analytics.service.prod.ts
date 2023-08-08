@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { isScullyRunning } from "@scullyio/ng-lib";
 
 declare global {
     interface Window {
@@ -17,6 +18,7 @@ export class AnalyticsService {
     private _hubspotTrackingCodeLoaded = false;
     hubspot = {
         trackPageView: () => {
+            if (isScullyRunning()) return;
             // HubSpot tracking code
             const _hsq = (window._hsq = window._hsq || []);
             _hsq.push(["setPath", this._router.url]);

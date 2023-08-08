@@ -6,7 +6,7 @@ import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Observable } from "rxjs";
+import { combineLatest, mergeMap, Observable, of } from "rxjs";
 
 @Component({
     selector: "td-blog-post-page",
@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
     styleUrls: ["./blog-post-page.component.scss"],
 })
 export class BlogPostPageComponent {
-    post$?: Observable<WordpressPost>;
+    readonly post$: Observable<WordpressPost | null>;
 
     constructor(
         private router: Router,
@@ -25,9 +25,27 @@ export class BlogPostPageComponent {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
-        this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
-            const slug = params.get("slug");
-            this.post$ = slug ? this.blogService.getPostBySlug(slug) : undefined;
+        this.post$ = this._activatedRoute.paramMap.pipe(
+            mergeMap((params: ParamMap) => {
+                const slug = params.get("slug");
+                return slug ? this.blogService.getPostBySlug(slug) : of(null);
+            })
+        );
+    }
+
+    ngOnInit() {
+        combineLatest([this.post$, this.blogService.site$]).subscribe(([post, site]) => {
+            if (post) {
+                this._title.setTitle(`${post.title} - ${site.name}`);
+                this._analytics.hubspot.trackPageView();
+            } else {
+                this.router.navigate(["404"], { skipLocationChange: true });
+            }
+            setTimeout(() => {
+                this._idleMonitor.fireManualMyAppReadyEvent();
+            }, 10000);
+        }, (_err) => {
+            this.router.navigate(["404"], { skipLocationChange: true });
         });
     }
 

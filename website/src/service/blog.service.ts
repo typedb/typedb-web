@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { TransferStateService } from "@scullyio/ng-lib";
+import { first, Observable } from "rxjs";
 import { WordpressPost, WordpressPosts, WordpressSite } from "typedb-web-schema";
 
 const siteApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
@@ -13,9 +14,13 @@ export class BlogService {
     readonly site$: Observable<WordpressSite>;
     readonly posts$: Observable<WordpressPosts>;
 
-    constructor(private _http: HttpClient) {
-        this.site$ = this._http.get<WordpressSite>(siteApiUrl);
-        this.posts$ = this._http.get<WordpressPosts>(postsApiUrl);
+    constructor(private _http: HttpClient, private transferState: TransferStateService) {
+        this.site$ = this.transferState
+            .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
+            .pipe(first());
+        this.posts$ = this.transferState
+            .useScullyTransferState("blogPosts", this._http.get<WordpressPosts>(postsApiUrl))
+            .pipe(first());
     }
 
     getPostBySlug(slug: string): Observable<WordpressPost> {
