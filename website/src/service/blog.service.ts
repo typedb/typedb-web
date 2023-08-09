@@ -15,7 +15,10 @@ export class BlogService {
     readonly site$: Observable<WordpressSite>;
     readonly posts$: Observable<WordpressPosts>;
 
-    constructor(private _http: HttpClient, private transferState: TransferStateService) {
+    constructor(
+        private _http: HttpClient,
+        private transferState: TransferStateService,
+    ) {
         this.site$ = this.transferState
             .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
             .pipe(first());

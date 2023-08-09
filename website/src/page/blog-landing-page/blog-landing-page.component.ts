@@ -28,15 +28,18 @@ export class BlogLandingPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.site$.subscribe((site) => {
-            this._title.setTitle(site.name);
-            this._analytics.hubspot.trackPageView();
-            setTimeout(() => {
-                this._idleMonitor.fireManualMyAppReadyEvent();
-            }, 10000);
-        }, (_err) => {
-            this.router.navigate(["404"], { skipLocationChange: true });
-        });
+        this.site$.subscribe(
+            (site) => {
+                this._title.setTitle(site.name);
+                this._analytics.hubspot.trackPageView();
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 10000);
+            },
+            (_err) => {
+                this.router.navigate(["404"], { skipLocationChange: true });
+            },
+        );
     }
 
     readPostLink(post: WordpressPost): Link {

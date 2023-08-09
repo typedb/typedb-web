@@ -33,15 +33,22 @@
           <a><img src="/assets/icon/social/github-rectangle.svg" alt="TODO" /></a>
         </div>
         <aside *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
-          <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">More on {{ relatedPostGroup.tag.name }}</h2>
+          <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">
+            More on {{ relatedPostGroup.tag.name }}
+          </h2>
           <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
             <a [tdLink]="readPostLink(relatedPost)">
-              <td-aspect-ratio ratio="16:9"><img [src]="relatedPost.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
+              <td-aspect-ratio ratio="16:9">
+                <img [src]="relatedPost.featured_image" [alt]="" class="bp-img" />
+              </td-aspect-ratio>
             </a>
             <h2 class="text-20-28 text-18-26-tablet text-16-24-mobile bp-related-post-title">
               <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
             </h2>
-            <div class="bp-related-post-description text-16-24 text-14-21-mobile" [innerHtml]="relatedPost.excerpt"></div>
+            <div
+              class="bp-related-post-description text-16-24 text-14-21-mobile"
+              [innerHtml]="relatedPost.excerpt"
+            ></div>
             <div>
               <h3 class="text-14-21 text-12-18-mobile bp-related-post-author">{{ relatedPost.author.name }}</h3>
             </div>

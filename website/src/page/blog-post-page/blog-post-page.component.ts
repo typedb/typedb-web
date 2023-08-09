@@ -32,37 +32,40 @@ export class BlogPostPageComponent {
             switchMap((slug: string | null) => {
                 return slug ? this.blogService.getPostBySlug(slug) : of(null);
             }),
-            shareReplay()
+            shareReplay(),
         );
-        this.tags$ = this.post$.pipe(map((post) => post ? Object.values(post.tags) : null));
+        this.tags$ = this.post$.pipe(map((post) => (post ? Object.values(post.tags) : null)));
         this.relatedPostGroups$ = this.tags$.pipe(
             switchMap((tags) => {
                 if (!tags) return of(null);
                 return combineLatest(
                     tags.map((tag) => {
-                        return this.blogService.getPostsByTag(tag).pipe(
-                            map((result) => ({ tag: tag, posts: result.posts }))
-                        )
-                    })
+                        return this.blogService
+                            .getPostsByTag(tag)
+                            .pipe(map((result) => ({ tag: tag, posts: result.posts })));
+                    }),
                 );
-            })
+            }),
         );
     }
 
     ngOnInit() {
-        combineLatest([this.post$, this.blogService.site$]).subscribe(([post, site]) => {
-            if (post) {
-                this._title.setTitle(`${post.title} - ${site.name}`);
-                this._analytics.hubspot.trackPageView();
-            } else {
+        combineLatest([this.post$, this.blogService.site$]).subscribe(
+            ([post, site]) => {
+                if (post) {
+                    this._title.setTitle(`${post.title} - ${site.name}`);
+                    this._analytics.hubspot.trackPageView();
+                } else {
+                    this.router.navigate(["404"], { skipLocationChange: true });
+                }
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 10000);
+            },
+            (_err) => {
                 this.router.navigate(["404"], { skipLocationChange: true });
-            }
-            setTimeout(() => {
-                this._idleMonitor.fireManualMyAppReadyEvent();
-            }, 10000);
-        }, (_err) => {
-            this.router.navigate(["404"], { skipLocationChange: true });
-        });
+            },
+        );
     }
 
     postCategoriesString(post: WordpressPost): string {
