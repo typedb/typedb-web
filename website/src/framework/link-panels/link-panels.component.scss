@@ -1,5 +1,6 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "mixins";
+@import "sizes";
 
 .lc-root-cols-3 {
     display: flex;
@@ -110,11 +111,7 @@
             }
 
             td-rich-text {
-                display: -webkit-box;
-                -webkit-line-clamp: 7;
-                line-clamp: 7;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                @include line-clamp(7);
                 max-height: 24px * 7;
             }
         }
@@ -128,8 +125,7 @@
 
             td-rich-text {
                 margin-top: 8px;
-                -webkit-line-clamp: 3;
-                line-clamp: 3;
+                @include line-clamp(3);
                 max-height: 18px * 3;
             }
         }
