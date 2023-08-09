@@ -28,6 +28,10 @@
 }
 
 .wp-primary-whitepaper-summary {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+
     td-button {
         display: block;
         margin-top: 40px;

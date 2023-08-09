@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
+import { EventsPageComponent } from "./page/events-page/events-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent },
     { path: "events/:slug", component: EventDetailsPageComponent },
+    { path: "events", component: EventsPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
