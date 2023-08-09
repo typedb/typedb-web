@@ -71,10 +71,16 @@
     border-left: 1px solid $color-vaticle-light-purple;
 }
 
-.bp-post-content ::ng-deep {
-    font-size: 24px;
-    line-height: 32px;
-    font-weight: $font-weight-light;
+.bp-content-section {
+    margin-top: 40px;
+    display: flex;
+    gap: 48px;
+}
+
+.bp-content ::ng-deep {
+    flex: 1;
+    font-size: 18px;
+    line-height: 26px;
 
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         font-size: 16px;
@@ -86,17 +92,34 @@
         line-height: 21px;
     }
 
-    h2,
-    h3,
-    h4 {
-        font-weight: $font-weight-bold;
-        margin-block-start: 2em;
-        margin-block-end: 1em;
+    :first-child {
+        margin-top: 0;
     }
 
-    p {
-        margin-block-start: 1.25em;
-        margin-block-end: 1.25em;
+    /* prettier-ignore */
+    h1, h2, h3, h4 {
+        font-weight: $font-weight-bold;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 32px;
+        margin: 40px 0 20px;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: 26px;
+        margin: 32px 0 16px;
+    }
+
+    h4 {
+        margin: 24px 0 12px;
+    }
+
+    /* prettier-ignore */
+    p, ul, ol {
+        margin-bottom: 1.25em;
     }
 
     ul,
@@ -105,7 +128,19 @@
     }
 
     li {
-        margin-top: 0.625em;
+        margin-bottom: 8px;
+    }
+
+    /* prettier-ignore */
+    figure, pre, blockquote {
+        margin: 48px auto;
+    }
+
+    pre {
+        border-radius: $border-radius;
+        border: 1px solid $color-vaticle-light-purple;
+        background: $color-vaticle-purple;
+        padding: 8px;
     }
 
     figure {
@@ -135,7 +170,99 @@
         }
     }
 
+    blockquote {
+        padding-left: 40px;
+        border-left: 2px solid $color-vaticle-green;
+        font-size: 24px;
+        line-height: 32px;
+
+        &::before {
+            content: "“";
+            display: block;
+            font-weight: $font-weight-light;
+            font-size: 48px;
+            line-height: 52px;
+            letter-spacing: -0.03em;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        cite {
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+
     strong {
         color: #fff;
     }
+}
+
+.bp-sidebar {
+    flex: 0 0 320px;
+
+    > * {
+        margin-bottom: 64px;
+    }
+}
+
+.bp-sharing-links {
+    display: flex;
+    gap: 16px;
+
+    a img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.bp-related-post-group-heading {
+    font-weight: $font-weight-semi-bold;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $color-vaticle-light-purple;
+}
+
+.bp-related-post {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & + .bp-related-post {
+        border-top: 1px solid $color-vaticle-light-purple;
+    }
+}
+
+.bp-related-post-title {
+    margin-top: 2px;
+
+    a {
+        color: #FFF;
+        font-weight: $font-weight-bold;
+
+        &:hover {
+            color: $color-vaticle-green;
+            text-decoration: underline;
+        }
+    }
+}
+
+td-aspect-ratio {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    overflow: hidden;
+}
+
+.bp-img {
+    transition: transform 250ms ease;
+
+    &:hover {
+        transform: scale(1.015);
+    }
+}
+
+.bp-related-post-author {
+    font-weight: $font-weight-bold;
 }

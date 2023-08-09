@@ -11,18 +11,43 @@
     <section>
       <div class="bp-author-section">
         <img class="bp-featured-image subsection-margin" [src]="post.featured_image" alt="" />
-        <h4 class="bp-author-title text-quiet">Author</h4>
+        <h4 class="bp-author-title text-quiet text-14-21 text-12-18-mobile">Author</h4>
         <div class="bp-authorship">
           <div class="bp-author">
             <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
             <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
           </div>
-          <p class="bp-authored-date text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
+          <p class="bp-authored-date text-quiet text-14-21 text-12-18-mobile">{{ post.date | date: "longDate" }}</p>
         </div>
         <hr />
       </div>
     </section>
 
-    <section class="subsection-margin bp-post-content" [innerHtml]="post.content"></section>
+    <section class="bp-content-section">
+      <div class="bp-content" [innerHtml]="post.content"></div>
+      <div class="bp-sidebar">
+        <div class="bp-sharing-links">
+          <a><img src="/assets/icon/social/twitter-rectangle.svg" alt="Twitter" /></a>
+          <a><img src="/assets/icon/social/github-rectangle.svg" alt="TODO" /></a>
+          <a><img src="/assets/icon/social/linkedin-rectangle.svg" alt="LinkedIn" /></a>
+          <a><img src="/assets/icon/social/github-rectangle.svg" alt="TODO" /></a>
+        </div>
+        <aside *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
+          <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">More on {{ relatedPostGroup.tag.name }}</h2>
+          <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
+            <a [tdLink]="readPostLink(relatedPost)">
+              <td-aspect-ratio ratio="16:9"><img [src]="relatedPost.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
+            </a>
+            <h2 class="text-20-28 text-18-26-tablet text-16-24-mobile bp-related-post-title">
+              <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
+            </h2>
+            <div class="bp-related-post-description text-16-24 text-14-21-mobile" [innerHtml]="relatedPost.excerpt"></div>
+            <div>
+              <h3 class="text-14-21 text-12-18-mobile bp-related-post-author">{{ relatedPost.author.name }}</h3>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
   </div>
 </article>

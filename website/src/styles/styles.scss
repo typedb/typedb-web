@@ -94,39 +94,31 @@ typedb-website {
     max-width: 870px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-pre {
+/* prettier-ignore */
+h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     margin: 0;
     padding: 0;
     font-size: unset;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* prettier-ignore */
+h1, h2, h3, h4, h5, h6 {
     color: $color-vaticle-white;
+}
+
+aside {
+    /* prettier-ignore */
+    h1, h2, h3, h4, h5, h6 {
+        color: $color-vaticle-grey;
+    }
 }
 
 h1 {
     font-weight: $font-weight-bold;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* prettier-ignore */
+h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
@@ -301,6 +293,7 @@ $text-sizes-map: (
     22 33,
     20 32,
     20 30,
+    20 28,
     18 32,
     18 28,
     18 26,

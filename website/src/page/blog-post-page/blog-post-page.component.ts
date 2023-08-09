@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { WordpressPost } from "typedb-web-schema";
+import { Link, WordpressPost, WordpressPostClassifier, WordpressPosts, WordpressRelatedPosts } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { combineLatest, mergeMap, Observable, of } from "rxjs";
+import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, shareReplay, switchMap, tap } from "rxjs";
 
 @Component({
     selector: "td-blog-post-page",
@@ -15,6 +15,8 @@ import { combineLatest, mergeMap, Observable, of } from "rxjs";
 })
 export class BlogPostPageComponent {
     readonly post$: Observable<WordpressPost | null>;
+    readonly tags$: Observable<WordpressPostClassifier[] | null>;
+    relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
 
     constructor(
         private router: Router,
@@ -26,9 +28,23 @@ export class BlogPostPageComponent {
         private _idleMonitor: IdleMonitorService,
     ) {
         this.post$ = this._activatedRoute.paramMap.pipe(
-            mergeMap((params: ParamMap) => {
-                const slug = params.get("slug");
+            map((params: ParamMap) => params.get("slug")),
+            switchMap((slug: string | null) => {
                 return slug ? this.blogService.getPostBySlug(slug) : of(null);
+            }),
+            shareReplay()
+        );
+        this.tags$ = this.post$.pipe(map((post) => post ? Object.values(post.tags) : null));
+        this.relatedPostGroups$ = this.tags$.pipe(
+            switchMap((tags) => {
+                if (!tags) return of(null);
+                return combineLatest(
+                    tags.map((tag) => {
+                        return this.blogService.getPostsByTag(tag).pipe(
+                            map((result) => ({ tag: tag, posts: result.posts }))
+                        )
+                    })
+                );
             })
         );
     }
@@ -51,5 +67,9 @@ export class BlogPostPageComponent {
 
     postCategoriesString(post: WordpressPost): string {
         return Object.keys(post.categories).join(", ");
+    }
+
+    readPostLink(post: WordpressPost): Link {
+        return new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false });
     }
 }

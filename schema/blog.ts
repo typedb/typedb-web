@@ -25,7 +25,7 @@ export interface WordpressPost {
     attachment_count: number;
     attachments: { [id: number]: WordpressAttachment; };
     author: WordpressAuthor;
-    categories: { [name: string]: WordpressCategory; };
+    categories: { [name: string]: WordpressPostClassifier; };
     content: string;
     date: string;
     discussion: any;
@@ -48,7 +48,7 @@ export interface WordpressPost {
     slug: string;
     status: "publish";
     sticky: boolean;
-    tags: any;
+    tags: { [name: string]: WordpressPostClassifier };
     terms: any;
     title: string;
 }
@@ -78,7 +78,7 @@ export interface WordpressAuthor {
     profile_URL: string;
 }
 
-export interface WordpressCategory {
+export interface WordpressPostClassifier {
     ID: number;
     description: string;
     meta: any;
@@ -87,3 +87,8 @@ export interface WordpressCategory {
     post_count: number;
     slug: string;
 }
+
+export type WordpressRelatedPosts = {
+    tag: WordpressPostClassifier;
+    posts: WordpressPost[];
+}[];
