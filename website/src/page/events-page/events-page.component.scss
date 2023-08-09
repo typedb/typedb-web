@@ -69,7 +69,7 @@
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     border: solid $color-vaticle-light-purple;
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
@@ -105,8 +105,12 @@
 }
 
 .ep-grid-item-description {
-    margin-top: -8px;
+    margin-bottom: 8px;
     display: flex;
     flex-flow: row wrap;
     gap: 0 8px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-bottom: 0;
+    }
 }
