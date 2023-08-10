@@ -28,6 +28,10 @@
 }
 
 .wp-primary-whitepaper-summary {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+
     td-button {
         display: block;
         margin-top: 40px;
@@ -70,7 +74,7 @@
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     border: solid $color-vaticle-light-purple;
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
@@ -102,7 +106,7 @@
 }
 
 .wp-grid-item-description {
-    margin-top: -8px;
+    margin-bottom: 8px;
     @include line-clamp(2);
     max-height: 28px * 2;
 
@@ -111,7 +115,7 @@
     }
 
     @media (max-width: $media-max-width-mobile) {
-        margin-top: 0;
+        margin-bottom: 0;
         @include line-clamp(3);
         max-height: 21px * 3;
     }

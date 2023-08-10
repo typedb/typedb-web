@@ -1,0 +1,55 @@
+<article tdPageBackground nebula="cloud" planet="green">
+  <div *ngIf="page$ | async; let page" class="article-content">
+    <div class="section">
+      <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="page.introSection.title"
+        [body]="page.introSection.body"
+      />
+
+      <div *ngIf="page.featuredEvent" class="subsection-margin ep-primary-event card">
+        <td-aspect-ratio ratio="16:9">
+          <img [src]="page.featuredEvent.imageURL" class="ep-img" [alt]="" />
+        </td-aspect-ratio>
+        <div class="ep-primary-event-summary">
+          <h3 class="ep-event-title-container text-24-32 text-22-33-tablet text-18-32-mobile">
+            <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
+            <span class="ep-title-separator">|</span>
+            <span>{{ page.featuredEvent.dateOptions | dateRange }}</span>
+            <span class="ep-title-separator">|</span>
+            <span>{{ page.featuredEvent.venue }}</span>
+          </h3>
+          <div class="ep-event-text-container">
+            <td-rich-text
+              class="ep-event-description text-16-24 text-14-21-mobile"
+              [value]="page.featuredEvent.description"
+            />
+
+            <td-button [button]="page.featuredEvent.registrationButton()" />
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="page.eventsList" class="ep-grid subsection-margin card">
+        <div *ngFor="let event of page.eventsList" class="ep-grid-item">
+          <div class="ep-img-and-text">
+            <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">
+              <img [src]="getEventListImageUrl(event)" class="ep-img" [alt]="" />
+            </td-aspect-ratio>
+            <div>
+              <h2 class="ep-grid-item-title text-24-32 text-22-33-tablet text-18-26-mobile">
+                {{ event.title | plainText }}
+              </h2>
+            </div>
+          </div>
+          <div class="ep-grid-item-description text-16-28 text-16-24-tablet text-14-21-mobile text-weight-light">
+            <span>{{ event.dateOptions | dateRange }}</span>
+            <span>|</span>
+            <span>{{ event.venue }}</span>
+          </div>
+          <td-button [button]="event.registrationButton()" size="small" buttonWidth="100%"></td-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

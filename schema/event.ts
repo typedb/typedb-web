@@ -52,15 +52,19 @@ export class Event extends EventBase {
         });
     }
 
+    detailsPageLink(): Link {
+        return new Link({
+            type: "route",
+            destination: `/events/${this.slug}`,
+            opensNewTab: false,
+        });
+    }
+
     registrationButton(): LinkButton {
         return new LinkButton({
-            style: "secondary",
-            text: "Watch now",
-            link: new Link({
-                type: "route",
-                destination: `/events/${this.slug}`,
-                opensNewTab: false,
-            }),
+            style: "primary",
+            text: "Register Now",
+            link: this.detailsPageLink(),
             comingSoon: false,
         });
     }

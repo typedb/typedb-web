@@ -46,6 +46,7 @@ export { Organisation, organisationSchemaName, type SanityOrganisation } from ".
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { Page, type SanityPage } from "./page/common";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
+export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";

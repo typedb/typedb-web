@@ -24,6 +24,7 @@ import { WhitePaperDetailsPageComponent } from "./white-paper-details-page/white
 import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
 import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
 import { EventDetailsPageComponent } from "./event-details-page/event-details-page.component";
+import { EventsPageComponent } from "./events-page/events-page.component";
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { EventDetailsPageComponent } from "./event-details-page/event-details-pa
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,
         EventDetailsPageComponent,
+        EventsPageComponent,
         GenericPageComponent,
         GenericPageTechnicolorBlockComponent,
         FeaturesPageComponent,
