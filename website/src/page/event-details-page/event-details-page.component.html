@@ -19,7 +19,7 @@
             <strong>Register to {{ event.tag }}</strong>
           </h2>
           <td-aspect-ratio ratio="16:9">
-            <img [src]="getEventImageUrl(event)" alt="" />
+            <img [src]="getEventImageUrl(event)" class="ed-img" alt="" />
           </td-aspect-ratio>
           <td-button *ngIf="event.externalUrlButton" [button]="event.externalUrlButton" buttonWidth="100%" />
         </div>
