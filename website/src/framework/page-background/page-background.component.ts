@@ -26,6 +26,11 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular(() => {
             const handleScroll = () => {
+                const htmlEl = window.document.documentElement;
+                if (htmlEl.scrollHeight === htmlEl.clientHeight) {
+                    return;
+                }
+
                 const topScrolled = Math.min(
                     this.topOffset,
                     window.scrollY,

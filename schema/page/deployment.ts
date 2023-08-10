@@ -29,9 +29,9 @@ export class DeploymentPage extends Page {
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
         super(data);
-        this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featureTableSection = FeatureTableSection.fromSanityFeatureTableSection(data.featureTableSection, db);
-        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
+        this.introSection = IntroSection.fromSanity(data.introSection, db);
+        this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
+        this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
 
@@ -43,8 +43,8 @@ export class IntroSection extends TechnicolorBlock {
         this.productPanels = props.productPanels;
     }
 
-    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
+        return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             productPanels: data.productPanels.map(x => ProductPanel.fromSanityProductPanel(x, db))
         }));
     }
@@ -58,8 +58,8 @@ export class FeatureTableSection extends TechnicolorBlock {
         this.featureTable = props.featureTable;
     }
 
-    static fromSanityFeatureTableSection(data: SanityFeatureTableSection, db: SanityDataset) {
-        return new FeatureTableSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
+        return new FeatureTableSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             featureTable: FeatureTable.fromSanity(data.featureTable, db)
         }));
     }

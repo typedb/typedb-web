@@ -9,7 +9,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName, eventSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName, eventSchemaName, supportPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -45,6 +45,7 @@ export default defineConfig({
                     singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     singletonListItem(s, whitePapersPageSchemaName, { title: "White Papers", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Request Tech Talk", icon: DocumentIcon }),
+                    singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),
                     s.divider(),
                     s.documentTypeListItem(solutionPageSchemaName).title("Solutions").icon(DocumentsIcon),
                 ])),

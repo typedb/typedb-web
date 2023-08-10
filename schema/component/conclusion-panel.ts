@@ -50,8 +50,8 @@ export class ConclusionSection extends TechnicolorBlock {
         this.panel = props.panel;
     }
 
-    static fromSanityConclusionSection(data: SanityConclusionSection, db: SanityDataset) {
-        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityConclusionSection, db: SanityDataset) {
+        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             panel: ConclusionPanel.fromSanity(data.panel, db)
         }));
     }

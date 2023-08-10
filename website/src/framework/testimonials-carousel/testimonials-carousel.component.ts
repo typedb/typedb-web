@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Testimonial } from "typedb-web-schema";
 import { ImageBuilder } from "src/service/image-builder.service";
 
@@ -7,33 +7,33 @@ import { ImageBuilder } from "src/service/image-builder.service";
     templateUrl: "testimonials-carousel.component.html",
     styleUrls: ["./testimonials-carousel.component.scss"],
 })
-export class TestimonialsCarouselComponent {
+export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];
-    startIndex = 0;
-    fadeIndexes: number[] = [];
+    focusedIndex = 0;
 
     constructor(private imageBuilder: ImageBuilder) {}
 
-    get focusedIndex() {
-        return (10 - this.startIndex) % 7;
-    }
-
-    cardClass(idx: number) {
-        let clazz = `tc-card-${(idx + this.startIndex) % 7}`;
-        if (this.fadeIndexes.includes(idx)) {
-            clazz += ` tc-fade`;
-        }
-        return clazz;
+    ngOnInit(): void {
+        this.focusedIndex = this.getMiddleIndex();
     }
 
     previous() {
-        this.startIndex++;
-        if (this.startIndex > 6) this.startIndex = 0;
+        this.focusedIndex = (this.focusedIndex - 1 + this.testimonials.length) % this.testimonials.length;
     }
 
     next() {
-        this.startIndex--;
-        if (this.startIndex < 0) this.startIndex = 6;
+        this.focusedIndex = (this.focusedIndex + 1) % this.testimonials.length;
+    }
+
+    cardTransform(index: number): string {
+        const middleIndex = this.getMiddleIndex();
+        const indexDelta =
+            ((index - this.focusedIndex + this.testimonials.length + middleIndex) % this.testimonials.length) -
+            middleIndex;
+        const offsetBase = 26;
+        const x = offsetBase * indexDelta;
+        const z = (Math.abs(indexDelta) * 25 * (6 + Math.abs(indexDelta) + 1)) / -2;
+        return `translate3d(${x}%, 0, ${z}px)`;
     }
 
     getHeadshotUrl(testimonial: Testimonial) {
@@ -42,5 +42,9 @@ export class TestimonialsCarouselComponent {
 
     getLogoUrl(testimonial: Testimonial) {
         return this.imageBuilder.image(testimonial.organisation.logoURL).height(48).url();
+    }
+
+    private getMiddleIndex(): number {
+        return Math.floor((this.testimonials.length - 1) / 2);
     }
 }

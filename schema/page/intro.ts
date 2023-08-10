@@ -27,8 +27,8 @@ export class IntroPage extends Page {
     constructor(data: SanityIntroPage, db: SanityDataset) {
         super(data);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanityCoreSection(x, db));
-        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
+        this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanity(x, db));
+        this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
 
@@ -42,8 +42,8 @@ export class IntroPageCoreSection extends TechnicolorBlock {
         this.longText = props.longText;
     }
 
-    static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
-        return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityCoreSection, db: SanityDataset) {
+        return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
             longText: RichText.fromSanity(data.longText),
         }));

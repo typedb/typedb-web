@@ -1,0 +1,35 @@
+@import "sizes";
+
+.sp-intro-block {
+    display: inline-block;
+    margin-top: 288px;
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 216px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 100px;
+    }
+}
+
+.sp-contact-card {
+    padding: 32px;
+    position: relative;
+}
+
+.sp-contact-policy {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: calc(32px + 202px + 16px);
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $media-max-width-mobile) {
+        position: static;
+        height: auto;
+        margin-top: 12px;
+    }
+}

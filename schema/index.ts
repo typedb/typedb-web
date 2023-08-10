@@ -50,6 +50,7 @@ export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
+export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
 export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from "./page/webinars";
 export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName } from "./page/white-papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";

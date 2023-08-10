@@ -10,6 +10,7 @@ import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.comp
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
+import { SupportPageComponent } from "./page/support-page/support-page.component";
 import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
 import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
 import { WhitePaperDetailsPageComponent } from "./page/white-paper-details-page/white-paper-details-page.component";
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: "white-papers", component: WhitePapersPageComponent },
     { path: "events/:slug", component: EventDetailsPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
+    { path: "support", component: SupportPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
 ];
