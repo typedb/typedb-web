@@ -43,13 +43,16 @@
         gap: 16px;
     }
 
-    li > a {
+    li > a,
+    li > .tb-menu-panel-header {
         margin: 0 -32px;
         padding: 8px 32px;
         display: flex;
         justify-content: space-between;
         gap: 10px;
         align-items: center;
+        color: $color-vaticle-white;
+        cursor: pointer;
 
         @media (max-width: $media-max-width-mobile) {
             margin: 0 -20px;

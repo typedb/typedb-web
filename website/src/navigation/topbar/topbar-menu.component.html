@@ -8,16 +8,17 @@
       <div class="tb-desktop-items text-18-26">
         <ul class="tb-top-level-items">
           <li *ngFor="let item of topbar.mainArea">
-            <a
+            <div
               *ngIf="isMenuPanel(item)"
               tabindex="0"
+              class="tb-menu-panel-header"
               (mouseenter)="onMenuItemMouseEnter(item)"
               (mouseleave)="onMenuItemMouseLeave(item)"
               (focus)="onMenuItemFocus(item)"
               (blur)="onMenuItemBlur(item)"
             >
               {{ item.title }}
-            </a>
+            </div>
             <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
               {{ item.text }}
               <svg
