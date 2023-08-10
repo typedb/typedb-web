@@ -9,7 +9,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName, eventSchemaName, supportPageSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName, eventSchemaName, eventsPageSchemaName, supportPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -44,6 +44,7 @@ export default defineConfig({
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),
                     singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     singletonListItem(s, whitePapersPageSchemaName, { title: "White Papers", icon: DocumentIcon }),
+                    singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Request Tech Talk", icon: DocumentIcon }),
                     singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),
                     s.divider(),

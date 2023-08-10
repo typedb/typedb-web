@@ -1,0 +1,116 @@
+@import "colors";
+@import "mixins";
+@import "sizes";
+
+.ep-primary-event {
+    padding: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+    }
+}
+
+.ep-img {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+}
+
+.ep-primary-event-summary {
+    margin-top: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 20px;
+    }
+}
+
+.ep-event-title-container {
+    color: $color-vaticle-grey;
+}
+
+.ep-event-title {
+    color: $color-vaticle-white;
+    font-weight: $font-weight-semi-bold;
+}
+
+.ep-title-separator {
+    margin: 0 8px;
+}
+
+.ep-event-text-container {
+    margin-top: 16px;
+    display: flex;
+    gap: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 8px;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.ep-event-description {
+    @include line-clamp(2);
+    max-height: 24px * 2;
+
+    @media (max-width: $media-max-width-mobile) {
+        @include line-clamp(3);
+        max-height: 21px * 3;
+    }
+}
+
+.ep-grid {
+    overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.ep-grid-item {
+    flex: 1 1 400px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: solid $color-vaticle-light-purple;
+    border-width: 1px 0 0 1px;
+    margin: -1px 0 0 -1px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+        gap: 12px;
+    }
+}
+
+.ep-img-and-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: auto;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+.ep-img-secondary-container {
+    @media (max-width: $media-max-width-mobile) {
+        width: 100px;
+        flex-shrink: 0;
+    }
+}
+
+.ep-grid-item-title {
+    font-weight: $font-weight-semi-bold;
+}
+
+.ep-grid-item-description {
+    margin-bottom: 8px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0 8px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-bottom: 0;
+    }
+}

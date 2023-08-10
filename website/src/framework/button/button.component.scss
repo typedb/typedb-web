@@ -46,7 +46,7 @@ a {
         }
 
         &:active:not(.bt-disabled) {
-            background-color: rgb((2 + 26) / 2, (218 + 24) / 2, (201 + 42) / 2); // = lerp(green, purple, .5)
+            background-color: mix($color-vaticle-green, $color-vaticle-purple);
         }
     }
 

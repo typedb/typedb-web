@@ -1,5 +1,6 @@
 import { deploymentPageSchemas } from "./deployment";
 import { basePageSchemas } from "./common";
+import { eventsPageSchemas } from "./events";
 import { featuresPageSchemas } from "./features";
 import { genericPageSchemas } from "./generic";
 import { homePageSchemas } from "./home";
@@ -13,6 +14,7 @@ import { whitePapersPageSchema } from "./white-papers";
 export const pageSchemas = [
     ...basePageSchemas,
     ...deploymentPageSchemas,
+    ...eventsPageSchemas,
     ...genericPageSchemas,
     ...featuresPageSchemas,
     ...homePageSchemas,

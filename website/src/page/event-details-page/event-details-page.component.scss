@@ -96,3 +96,8 @@ ul.ed-speakers {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
+.ed-img {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+}
