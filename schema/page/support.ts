@@ -68,7 +68,7 @@ export class SupportPage extends Page {
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this[sections.contact.id] = data.contactSection.isVisible
-            ? TechnicolorBlock.fromSanity(data.contactSection, db)
+            ? CotnactSection.fromSanity(data.contactSection, db)
             : undefined;
     }
 }
@@ -104,6 +104,8 @@ class FeatureTableSection extends TechnicolorBlock {
         });
     }
 }
+
+class CotnactSection extends TechnicolorBlock {}
 
 class TestimonialsSection extends TechnicolorBlock {
     readonly testimonials: Testimonial[];
