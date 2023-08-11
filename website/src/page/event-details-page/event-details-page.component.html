@@ -5,11 +5,13 @@
       <ul class="ed-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
         <li>{{ event.tag }}</li>
         <li>
-          <img src="/assets/icon/calendar.svg" alt="Date/Time:" />
+          <mat-icon svgIcon="calendar" />
+          <span class="cdk-visually-hidden">Date/Time:</span>
           {{ event.dateOptions | dateRange }}
         </li>
         <li>
-          <img src="/assets/icon/location.svg" alt="Location:" />
+          <mat-icon svgIcon="location" />
+          <span class="cdk-visually-hidden">Location:</span>
           {{ event.venue }}
         </li>
       </ul>

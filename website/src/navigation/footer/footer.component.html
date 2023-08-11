@@ -3,7 +3,8 @@
     <td-button [button]="footer.button"></td-button>
     <div class="ft-social-links">
       <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" [href]="socialMediaLink.link.destination">
-        <img [src]="socialMediaLink.iconURL" [alt]="socialMediaLink.text" />
+        <span class="cdk-visually-hidden">{{ socialMediaLink.text }}</span>
+        <mat-icon [svgIcon]="socialMediaLink.svgIcon" />
       </a>
     </div>
   </div>
@@ -15,7 +16,7 @@
       <ul>
         <li *ngFor="let contactMediaLink of contactMediaLinks" class="text-16-28">
           <a [tdLink]="contactMediaLink.link">
-            <img [src]="contactMediaLink.iconURL" alt="" />
+            <mat-icon [svgIcon]="contactMediaLink.svgIcon" class="td-large" />
             <p>{{ contactMediaLink.text }}</p>
           </a>
         </li>
@@ -39,7 +40,12 @@
       Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
     </aside>
     <p class="text-14-21 ft-credits">
-      <img src="/assets/icon/code-brackets.svg" alt="Made" /> with <img src="/assets/icon/heart.svg" alt="love" /> by
+      <span class="cdk-visually-hidden"> Made </span>
+      <mat-icon svgIcon="code" class="ft-icon-code" />
+      with
+      <span class="cdk-visually-hidden"> love </span>
+      <mat-icon svgIcon="heart" class="ft-icon-heart" />
+      by
       <img src="/assets/logo/vaticle-text-only.svg" alt="Vaticle" class="ft-logo-vaticle" />
     </p>
   </div>

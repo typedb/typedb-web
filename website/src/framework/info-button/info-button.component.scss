@@ -1,11 +1,35 @@
-@import "src/styles/colors";
+@import "colors";
+@import "sizes";
 
 :host {
-    display: inline-flex;
-    align-items: center;
     position: relative;
+
+    ::ng-deep .ib-tooltip-text-box {
+        transform: translateX(-50%) translateX(12px); // centre inside parent container, then offset half the info button width
+
+        @media (max-width: $media-max-width-mobile) {
+            transform: translateX(-50%) translateX(8px);
+        }
+    }
+}
+
+.mdc-icon-button {
+    display: block;
+    margin: 0;
+    padding: 2px;
+    width: 24px;
+    height: 24px;
     color: $color-vaticle-secondary-grey;
-    font-size: 24px;
+    transition: 100ms ease;
+    border-radius: $border-radius;
+    font-size: 20px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 0;
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
 
     &:hover,
     &:focus {
@@ -16,13 +40,7 @@
         }
     }
 
-    ::ng-deep .ib-tooltip-text-box {
-        transform: translateX(-50%) translateX(9px); // centre inside parent container, then offset half the info button width
+    &:focus {
+        background: rgba($color-vaticle-secondary-blue, 0.15);
     }
-}
-
-svg {
-    cursor: pointer;
-    width: 1em;
-    height: 1em;
 }
