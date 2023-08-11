@@ -1,8 +1,11 @@
 import { ViewportScroller } from "@angular/common";
 import { Component } from "@angular/core";
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Event as RouterEvent, Router, Scroll } from "@angular/router";
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
+
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { TopbarMobileService } from "./service/topbar-mobile.service";
@@ -24,6 +27,8 @@ export class WebsiteComponent {
         _dialogService: DialogService,
         _topbarMobileService: TopbarMobileService,
         _cookieConsentService: NgcCookieConsentService,
+        domSanitizer: DomSanitizer,
+        matIconRegistry: MatIconRegistry,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
@@ -53,6 +58,18 @@ export class WebsiteComponent {
         });
         _topbarMobileService.openState.subscribe((isOpen) => {
             document.body.style.overflowY = isOpen ? "hidden" : "unset";
+        });
+        this.registerIcons(domSanitizer, matIconRegistry);
+    }
+
+    private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
+        const icons = ["burger_mobile", "burger_tablet", "checked", "close"];
+        icons.forEach((icon) => {
+            const fileName = icon.replace("_", "-");
+            matIconRegistry.addSvgIcon(
+                icon,
+                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${fileName}.svg`),
+            );
         });
     }
 }

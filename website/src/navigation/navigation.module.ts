@@ -1,10 +1,11 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { RouterModule } from "@angular/router";
+
 import { FrameworkModule } from "../framework/framework.module";
 import { FooterComponent } from "./footer/footer.component";
-import { FormsModule } from "@angular/forms";
 import { SiteBannerComponent } from "./site-banner/site-banner.component";
 import {
     TopbarMenuComponent,
@@ -12,8 +13,6 @@ import {
     TopbarMenuMobileComponent,
     TopbarMenuPanelMobileComponent,
 } from "./topbar/topbar-menu.component";
-import { HttpClientModule } from "@angular/common/http";
-import { RouterModule } from "@angular/router";
 
 @NgModule({
     declarations: [
@@ -24,15 +23,7 @@ import { RouterModule } from "@angular/router";
         TopbarMenuPanelComponent,
         TopbarMenuPanelMobileComponent,
     ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        FrameworkModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatDialogModule,
-        RouterModule,
-    ],
+    imports: [BrowserModule, FormsModule, FrameworkModule, HttpClientModule, RouterModule],
     providers: [],
     exports: [FooterComponent, TopbarMenuComponent],
 })

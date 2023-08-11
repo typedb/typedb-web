@@ -139,7 +139,7 @@ nav {
 .tb-hamburger-button {
     margin-right: 16px;
     align-self: center;
-    appearance: none;
+    color: $color-vaticle-white;
 
     .tb-hamburger-mobile,
     .tb-x-icon {
@@ -154,11 +154,11 @@ nav {
         }
 
         &:not(.tb-opened) .tb-hamburger-mobile {
-            display: inline;
+            display: inline-block;
         }
 
         &.tb-opened .tb-x-icon {
-            display: inline;
+            display: inline-block;
         }
     }
 }
