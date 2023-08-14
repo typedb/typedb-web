@@ -109,8 +109,8 @@ export class TitleBodyIllustrationSection extends TechnicolorBlock {
         this.illustration = props.illustration;
     }
 
-    static fromSanityTitleBodyIllustrationSection(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
-        return new TitleBodyIllustrationSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
+        return new TitleBodyIllustrationSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
         }));
     }

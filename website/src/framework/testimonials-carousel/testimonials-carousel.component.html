@@ -1,6 +1,6 @@
 <div class="section tc-root">
   <div class="tc-carousel">
-    <div *ngFor="let testimonial of testimonials; index as idx" [class]="'tc-card ' + cardClass(idx)">
+    <div *ngFor="let testimonial of testimonials; index as idx" class="tc-card" [style.transform]="cardTransform(idx)">
       <div class="tc-card-content">
         <p class="text-18-28 text-12-20-mobile text-weight-light">
           <em>{{ testimonial.body }}</em>
@@ -31,7 +31,7 @@
       <div
         *ngFor="let _ of testimonials; index as idx"
         class="tc-bead"
-        [ngClass]="{ 'tc-bead-focused': idx === focusedIndex }"
+        [class.tc-bead-focused]="idx === focusedIndex"
       ></div>
     </div>
     <button class="tc-controls-btn" (click)="next()">

@@ -1,0 +1,28 @@
+<article tdPageBackground nebula="deploy" planet="green">
+  <div *ngIf="page$ | async; let page" class="article-content">
+    <ng-container *ngIf="page.introSection">
+      <td-support-page-technicolor-block [block]="page.introSection" [page]="page" class="sp-intro-block" />
+      <td-link-panels [panels]="page.introSection.panels" [cols]="3" ctaStrength="strong" />
+    </ng-container>
+    <ng-container *ngIf="page.featureTableSection">
+      <td-support-page-technicolor-block [block]="page.featureTableSection" [page]="page" />
+      <td-feature-table [table]="page.featureTableSection.featureTable" />
+    </ng-container>
+    <ng-container *ngIf="page.testimonialsSection">
+      <td-support-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
+      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
+    </ng-container>
+    <ng-container *ngIf="page.contactSection">
+      <td-support-page-technicolor-block [block]="page.contactSection" [page]="page" />
+      <div class="sp-contact-card section card">
+        <div [id]="formHolderId"></div>
+        <div class="sp-contact-policy">
+          <p>
+            By submitting your personal data, you consent to emails from Vaticle. See our
+            <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</article>

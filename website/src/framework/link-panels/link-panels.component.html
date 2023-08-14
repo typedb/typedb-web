@@ -6,6 +6,7 @@
         class="hoverable card lc-card lc-card-cols-3 lc-icon-card"
         [tdLink]="panel.button.link"
       >
+        <div *ngIf="panel.button.comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
         <div>
           <img class="lc-icon" [src]="$any(panel).iconURL" alt="" />
         </div>

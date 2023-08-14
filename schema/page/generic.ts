@@ -19,8 +19,8 @@ export class GenericPage extends Page {
     constructor(data: SanityGenericPage, db: SanityDataset) {
         super(data);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanityTitleBodyIllustrationSection(x, db));
-        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
+        this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanity(x, db));
+        this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
 

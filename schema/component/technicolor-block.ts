@@ -1,6 +1,5 @@
 import { LinkButton } from "../button";
 import { SanityImageRef } from "../image";
-import { KeyPoint, SanityKeyPoint } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
@@ -22,11 +21,11 @@ export class TechnicolorBlock {
         this.actions = props.actions;
     }
 
-    static fromSanityTechnicolorBlock(data: SanityTechnicolorBlock, db: SanityDataset) {
+    static fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
         return new TechnicolorBlock({
             title: ParagraphWithHighlights.fromSanity(data.title),
             body: RichText.fromSanity(data.body),
-            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
         });
     }
