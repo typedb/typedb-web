@@ -31,8 +31,8 @@ export class WebinarsPage extends Page {
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible ? FeaturedWebinarsSection.fromSanityFeaturedWebinarsSection(data.featuredWebinarsSection, db) : undefined;
-        this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible ? ExploreWebinarsSection.fromSanityExploreWebinarsSection(data.exploreWebinarsSection, db) : undefined;
+        this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible ? FeaturedWebinarsSection.fromSanity(data.featuredWebinarsSection, db) : undefined;
+        this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible ? ExploreWebinarsSection.fromSanity(data.exploreWebinarsSection, db) : undefined;
     }
 }
 
@@ -59,8 +59,8 @@ export class FeaturedWebinarsSection extends TechnicolorBlock {
         this.featuredWebinars = props.featuredWebinars;
     }
 
-    static fromSanityFeaturedWebinarsSection(data: SanityFeaturedWebinarsSection, db: SanityDataset) {
-        return new FeaturedWebinarsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityFeaturedWebinarsSection, db: SanityDataset) {
+        return new FeaturedWebinarsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             featuredWebinars: data.featuredWebinars ? data.featuredWebinars.map(x => Webinar.fromSanity(db.resolveRef(x), db)) : undefined,
         }));
     }
@@ -71,8 +71,8 @@ export class ExploreWebinarsSection extends TechnicolorBlock {
         super(props);
     }
 
-    static fromSanityExploreWebinarsSection(data: SanityTechnicolorBlock, db: SanityDataset) {
-        return new ExploreWebinarsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {}));
+    static override fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
+        return new ExploreWebinarsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {}));
     }
 }
 

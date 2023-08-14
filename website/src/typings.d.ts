@@ -1,0 +1,39 @@
+interface Window {
+    hbspt: {
+        forms: {
+            create: (options: {
+                portalId: string | number;
+                formId: string;
+                region?: string;
+                target?: string;
+                redirectUrl?: string;
+                inlineMessage?: string;
+                pageId?: string | number;
+                cssRequired?: string;
+                cssClass?: string;
+                css?: string;
+                submitText?: string;
+                submitButtonClass?: string;
+                errorClass?: string;
+                errorMessageClass?: string;
+                locale?: string;
+                translations?: unknown;
+                manuallyBlockedEmailDomain?: string[];
+                formInstanceId?: string;
+                sfdcCampaignId?: string;
+                goToWebinarWebinarKey?: string;
+                onBeforeFormInit?: (ctx: string) => void;
+                onFormReady?: ($form: HTMLFormElement) => void;
+                onFormSubmit?: ($form: HTMLFormElement) => void;
+                onBeforeFormSubmit?: (
+                    $form: HTMLFormElement,
+                    submissionValues: { name: string; value: unknown }[],
+                ) => void;
+                onFormSubmitted?: (
+                    $form: HTMLFormElement,
+                    data: { redirectUrl?: string; submissionValues: Record<string, unknown> },
+                ) => void;
+            }) => void;
+        };
+    };
+}

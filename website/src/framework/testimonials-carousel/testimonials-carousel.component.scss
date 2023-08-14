@@ -17,8 +17,6 @@
     }
 }
 
-$card-offset-base: 26%;
-
 .tc-card {
     position: absolute;
     width: 560px;
@@ -39,31 +37,6 @@ $card-offset-base: 26%;
     @media (max-width: $media-max-width-mobile) {
         width: 311px;
         transition-duration: 400ms;
-    }
-
-    &.tc-card-0 {
-        transform: translate3d(calc($card-offset-base * -3), 0, -380px);
-    }
-    &.tc-card-1 {
-        transform: translate3d(calc($card-offset-base * -2), 0, -230px);
-    }
-    &.tc-card-2 {
-        transform: translate3d(calc($card-offset-base * -1), 0, -100px);
-    }
-    &.tc-card-3 {
-        transform: translate3d(0%, 0, 0);
-    }
-    &.tc-card-4 {
-        transform: translate3d(calc($card-offset-base * 1), 0, -100px);
-    }
-    &.tc-card-5 {
-        transform: translate3d(calc($card-offset-base * 2), 0, -230px);
-    }
-    &.tc-card-6 {
-        transform: translate3d(calc($card-offset-base * 3), 0, -380px);
-    }
-    &.tc-fade {
-        opacity: 0;
     }
 }
 

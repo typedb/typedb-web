@@ -83,14 +83,14 @@ export class HomePage extends Page {
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
-        this.introSection = data.introSection.isVisible ? IntroSection.fromSanityIntroSection(data.introSection, db) : undefined;
-        this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanityFeaturesSection(data.featuresSection, db) : undefined;
-        this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanitySolutionsSection(data.solutionsSection, db) : undefined;
-        this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanityToolingSection(data.toolingSection, db) : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanityKeyPointsSection(data.cloudSection, db) : undefined;
-        this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanityCommunitySection(data.communitySection, db) : undefined;
-        this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanityTestimonialsSection(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanityConclusionSection(data.conclusionSection, db) : undefined;
+        this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
+        this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanity(data.featuresSection, db) : undefined;
+        this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanity(data.solutionsSection, db) : undefined;
+        this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanity(data.toolingSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
+        this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanity(data.communitySection, db) : undefined;
+        this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanity(data.testimonialsSection, db) : undefined;
+        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanity(data.conclusionSection, db) : undefined;
     }
 }
 
@@ -102,8 +102,8 @@ class IntroSection extends TechnicolorBlock {
         this.userLogos = props.userLogos;
     }
 
-    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
+        return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             userLogos: data.userLogos.map(x => new Organisation(db.resolveRef(x), db)),
         }));
     }
@@ -117,8 +117,8 @@ class FeaturesSection extends TechnicolorBlock {
         this.featureTabs = props.featureTabs;
     }
 
-    static fromSanityFeaturesSection(data: SanityFeaturesSection, db: SanityDataset) {
-        return new FeaturesSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityFeaturesSection, db: SanityDataset) {
+        return new FeaturesSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             featureTabs: data.featureTabs.map(x => new ContentTextPanel(x, db)),
         }));
     }
@@ -132,8 +132,8 @@ class SolutionsSection extends TechnicolorBlock {
         this.solutions = props.solutions;
     }
 
-    static fromSanitySolutionsSection(data: SanitySolutionsSection, db: SanityDataset) {
-        return new SolutionsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanitySolutionsSection, db: SanityDataset) {
+        return new SolutionsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             solutions: data.solutions.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
         }));
     }
@@ -147,8 +147,8 @@ class ToolingSection extends TechnicolorBlock {
         this.panels = props.panels;
     }
 
-    static fromSanityToolingSection(data: SanityToolingSection, db: SanityDataset) {
-        return new ToolingSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityToolingSection, db: SanityDataset) {
+        return new ToolingSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             panels: data.panels.map(x => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
         }));
     }
@@ -162,8 +162,8 @@ class CloudSection extends TechnicolorBlock {
         this.keyPoints = props.keyPoints;
     }
 
-    static fromSanityKeyPointsSection(data: SanityKeyPointsSection, db: SanityDataset) {
-        return new CloudSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
+        return new CloudSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             keyPoints: data.keyPoints.map(x => new KeyPointWithIcon(x, db)),
         }));
     }
@@ -177,8 +177,8 @@ class CommunitySection extends TechnicolorBlock {
         this.socialMedias = props.socialMedias;
     }
 
-    static fromSanityCommunitySection(data: SanityCommunitySection, db: SanityDataset) {
-        return new CommunitySection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityCommunitySection, db: SanityDataset) {
+        return new CommunitySection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             socialMedias: data.socialMediaLinks,
         }));
     }
@@ -192,8 +192,8 @@ class TestimonialsSection extends TechnicolorBlock {
         this.testimonials = props.testimonials;
     }
 
-    static fromSanityTestimonialsSection(data: SanityTestimonialsSection, db: SanityDataset) {
-        return new TestimonialsSection(Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
+        return new TestimonialsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
             testimonials: data.testimonials.map(x => new Testimonial(x, db)),
         }));
     }

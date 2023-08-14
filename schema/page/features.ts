@@ -35,8 +35,8 @@ export class FeaturesPage extends Page {
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanityCoreSection(x, db));
-        this.finalSection = ConclusionSection.fromSanityConclusionSection(data.finalSection, db);
+        this.coreSections = data.coreSections.map(x => FeaturesPageCoreSection.fromSanity(x, db));
+        this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
 
@@ -63,8 +63,8 @@ export class FeaturesPageCoreSection extends TechnicolorBlock {
         this.panels = props.panels;
     }
 
-    static fromSanityCoreSection(data: SanityCoreSection, db: SanityDataset) {
-        return Object.assign(TechnicolorBlock.fromSanityTechnicolorBlock(data, db), {
+    static override fromSanity(data: SanityCoreSection, db: SanityDataset) {
+        return Object.assign(TechnicolorBlock.fromSanity(data, db), {
             panels: data.panels.map(x => new ContentTextPanel(x, db))
         });
     }

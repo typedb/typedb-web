@@ -543,9 +543,19 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     }
 }
 
-#hubspot-form-holder-contact .hs-submit {
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: 100px;
+#hubspot-form-holder-contact,
+#hubspot-form-holder-contact-section {
+    .hs-submit {
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 100px;
+        }
+    }
+
+    input[type="submit"].hs-button {
+        @media (min-width: $media-min-width-tablet) {
+            width: 202px;
+            float: right;
+        }
     }
 }
 
@@ -575,13 +585,6 @@ input[type="submit"].hs-button {
 
     @media (max-width: $media-max-width-mobile) {
         height: 40px;
-    }
-}
-
-#hubspot-form-holder-contact input[type="submit"].hs-button {
-    @media (min-width: $media-min-width-tablet) {
-        width: 202px;
-        float: right;
     }
 }
 
