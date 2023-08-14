@@ -47,4 +47,8 @@ export class TestimonialsCarouselComponent implements OnInit {
     private getMiddleIndex(): number {
         return Math.floor((this.testimonials.length - 1) / 2);
     }
+
+    private getMiddleIndex(): number {
+        return Math.floor((this.testimonials.length - 1) / 2);
+    }
 }
