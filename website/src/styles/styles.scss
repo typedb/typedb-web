@@ -515,21 +515,25 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     }
 }
 
+.hs-form textarea {
+    width: 100%;
+    background-color: $color-vaticle-purple;
+    color: $default-text-color;
+    border: 1px solid $color-vaticle-light-purple;
+    caret-color: $default-text-color;
+    border-radius: $border-radius;
+    font-size: 16px;
+    font-family: "Titillium Web", sans-serif;
+    padding: 8px;
+    height: 136px;
+}
+
 .hs_support_request__full_details_ div.input {
     position: relative;
 
     > textarea {
         position: absolute;
         height: 264px;
-        width: 100%;
-        background-color: $color-vaticle-purple;
-        color: $default-text-color;
-        border: 1px solid $color-vaticle-light-purple;
-        caret-color: $default-text-color;
-        border-radius: $border-radius;
-        font-size: 16px;
-        font-family: "Titillium Web", sans-serif;
-        padding: 8px;
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: 200px;
