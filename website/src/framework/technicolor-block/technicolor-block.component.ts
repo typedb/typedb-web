@@ -24,9 +24,9 @@ export class TechnicolorBlockComponent implements AfterViewInit {
     ) {}
 
     ngAfterViewInit(): void {
-        const cleanUpDotListeners = this.initDotListeners();
+        const { cleanupDotListeners } = this.initDotListeners();
         this.destroyRef.onDestroy(() => {
-            cleanUpDotListeners();
+            cleanupDotListeners();
         });
     }
 
@@ -74,16 +74,17 @@ export class TechnicolorBlockComponent implements AfterViewInit {
         }
     }
 
-    private initDotListeners(): () => void {
+    private initDotListeners() {
         const dotEls = this.elementRef.nativeElement.querySelectorAll<HTMLElement>(".tb-graphic-dot");
         const handleScroll = () => dotEls.forEach((dotEl) => this.updateDotPosition(dotEl));
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("resize", handleScroll);
         handleScroll();
-        return () => {
+        const cleanupDotListeners = () => {
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("resize", handleScroll);
         };
+        return { cleanupDotListeners };
     }
 
     private updateDotPosition(dotEl: HTMLElement): void {
