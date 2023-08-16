@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Link, WordpressPost, WordpressSite } from "typedb-web-schema";
+import { Link, WordpressPost, WordpressPostClassifier, WordpressSite } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
@@ -46,7 +46,7 @@ export class BlogLandingPageComponent implements OnInit {
         return new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false });
     }
 
-    postCategoriesString(post: WordpressPost): string {
-        return Object.keys(post.categories).join(", ");
+    postCategories(post: WordpressPost): WordpressPostClassifier[] {
+        return Object.values(post.categories);
     }
 }

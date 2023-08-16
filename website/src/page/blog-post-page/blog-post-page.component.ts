@@ -68,8 +68,8 @@ export class BlogPostPageComponent {
         );
     }
 
-    postCategoriesString(post: WordpressPost): string {
-        return Object.keys(post.categories).join(", ");
+    postCategories(post: WordpressPost): WordpressPostClassifier[] {
+        return Object.values(post.categories);
     }
 
     readPostLink(post: WordpressPost): Link {

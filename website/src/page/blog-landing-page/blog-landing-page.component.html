@@ -13,8 +13,10 @@
           <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" alt="" class="bp-img" /></td-aspect-ratio>
         </a>
         <div class="bp-primary-post-summary">
-          <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(posts[0]) }}</p>
-          <h2 class="bp-post-title text-40-48 text-32-44-tablet text-24-32-mobile">
+          <div class="bp-categories bp-primary-post-categories">
+            <p *ngFor="let category of postCategories(posts[0])">{{ category.name }}</p>
+          </div>
+          <h2 class="bp-post-title text-40-54 text-34-48-tablet text-22-33-mobile">
             <a [tdLink]="readPostLink(posts[0])">{{ posts[0].title }}</a>
           </h2>
           <div class="bp-primary-post-description text-16-24 text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
@@ -34,8 +36,10 @@
             <td-aspect-ratio ratio="16:9"><img [src]="post.featured_image" [alt]="" class="bp-img" /></td-aspect-ratio>
           </a>
           <div class="bp-secondary-post-summary">
-            <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(post) }}</p>
-            <h2 class="text-32-44 text-24-37-tablet text-16-24-mobile bp-post-title">
+            <div class="bp-categories">
+              <p *ngFor="let category of postCategories(post)">{{ category.name }}</p>
+            </div>
+            <h2 class="text-34-48 text-28-36-tablet text-24-32-mobile bp-post-title">
               <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
             </h2>
             <div class="bp-secondary-post-description text-16-24 text-14-21-mobile" [innerHtml]="post.excerpt"></div>
@@ -62,10 +66,12 @@
               <h3 class="text-18-26 bp-post-title hide-gt-mobile">{{ post.title }}</h3>
             </div>
             <div class="bp-post-text-tertiary">
-              <p class="bp-categories text-14-21 text-12-18-mobile">{{ postCategoriesString(post) }}</p>
-              <h2 class="text-24-32 text-22-33-tablet bp-post-title hide-mobile">
+              <div class="bp-categories">
+                <p *ngFor="let category of postCategories(post)">{{ category.name }}</p>
+              </div>
+              <h3 class="text-28-36 text-22-33-tablet bp-post-title hide-mobile">
                 <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
-              </h2>
+              </h3>
               <div class="text-16-24 text-14-24-mobile bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
               <div class="bp-author">
                 <h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ post.author.name }}</h3>

@@ -2,6 +2,10 @@
 @import "src/styles/mixins";
 @import "src/styles/sizes";
 
+.article-content {
+    padding-bottom: 64px;
+}
+
 .bp-intro-section {
     width: 750px;
     margin-top: 200px;
@@ -16,11 +20,9 @@
 }
 
 .bp-author-section {
-    width: 1040px;
-
     hr {
         margin-top: 1em;
-        border-top: 1px solid $color-vaticle-green;
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 }
 
@@ -32,8 +34,25 @@
 }
 
 .bp-categories {
-    font-weight: $font-weight-bold;
-    color: $color-vaticle-secondary-pink;
+    font-weight: $font-weight-semi-bold;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    p {
+        padding: 2px 8px;
+        background: $color-vaticle-purple;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+    }
 }
 
 .bp-author-title {
@@ -48,10 +67,26 @@
 }
 
 .bp-author {
-    flex: 1;
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 16px;
+    margin-top: 40px;
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
+    .bp-avatar {
+        display: block;
+        width: 48px;
+        height: 48px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 40px;
+            height: 40px;
+        }
+    }
 
     h3 {
         font-weight: $font-weight-semi-bold;
@@ -79,8 +114,9 @@
 
 .bp-content ::ng-deep {
     flex: 1;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: $font-weight-light;
 
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         font-size: 16px;
@@ -101,30 +137,36 @@
         font-weight: $font-weight-bold;
     }
 
+    h1 {
+        font-size: 32px;
+        line-height: 44px;
+        margin: 48px 0 32px;
+    }
+
     h2 {
         font-size: 24px;
         line-height: 32px;
-        margin: 40px 0 20px;
+        margin: 40px 0 24px;
     }
 
     h3 {
         font-size: 20px;
-        line-height: 26px;
+        line-height: 30px;
         margin: 32px 0 16px;
     }
 
     h4 {
-        margin: 24px 0 12px;
+        margin: 24px 0 16px;
     }
 
     /* prettier-ignore */
     p, ul, ol {
-        margin-bottom: 1.25em;
+        margin-bottom: 1em;
     }
 
     ul,
     ol {
-        padding-inline-start: 40px;
+        margin-left: 1em;
     }
 
     li {
@@ -133,14 +175,14 @@
 
     /* prettier-ignore */
     figure, pre, blockquote {
-        margin: 48px auto;
+        margin: 40px auto;
     }
 
     pre {
         border-radius: $border-radius;
         border: 1px solid $color-vaticle-light-purple;
-        background: $color-vaticle-purple;
-        padding: 8px;
+        background: $color-vaticle-deep-purple;
+        padding: 20px;
     }
 
     figure {
@@ -228,7 +270,7 @@
     padding: 24px 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 
     & + .bp-related-post {
         border-top: 1px solid $color-vaticle-light-purple;

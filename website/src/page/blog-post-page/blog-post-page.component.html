@@ -2,22 +2,24 @@
   <div *ngIf="post$ | async as post" class="article-content">
     <section>
       <div class="bp-intro-section">
-        <p class="bp-categories text-16-24 text-14-21-mobile">{{ postCategoriesString(post) }}</p>
-        <h1 class="text-48-60 text-28-36-mobile">{{ post.title }}</h1>
-        <div class="bp-excerpt" [innerHtml]="post.excerpt"></div>
+        <div class="bp-categories">
+          <p *ngFor="let category of postCategories(post)">{{ category.name }}</p>
+        </div>
+        <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">{{ post.title }}</h1>
+        <div
+          class="bp-excerpt text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
+          [innerHtml]="post.excerpt"
+        ></div>
       </div>
     </section>
 
     <section>
       <div class="bp-author-section">
         <img class="bp-featured-image subsection-margin" [src]="post.featured_image" alt="" />
-        <h4 class="bp-author-title text-quiet text-14-21 text-12-18-mobile">Author</h4>
-        <div class="bp-authorship">
-          <div class="bp-author">
-            <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
-            <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
-          </div>
-          <p class="bp-authored-date text-quiet text-14-21 text-12-18-mobile">{{ post.date | date: "longDate" }}</p>
+        <div class="bp-author">
+          <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
+          <h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ post.author.name }}</h3>
+          <p class="text-quiet text-16-24 text-12-18-mobile">{{ post.date | date: "longDate" }}</p>
         </div>
         <hr />
       </div>
@@ -42,7 +44,7 @@
                 <img [src]="relatedPost.featured_image" [alt]="" class="bp-img" />
               </td-aspect-ratio>
             </a>
-            <h2 class="text-20-28 text-18-26-tablet text-16-24-mobile bp-related-post-title">
+            <h2 class="text-24-32 text-22-33-tablet text-16-24-mobile bp-related-post-title">
               <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
             </h2>
             <div

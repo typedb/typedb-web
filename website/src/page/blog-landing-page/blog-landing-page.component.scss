@@ -36,8 +36,29 @@ hr {
 }
 
 .bp-categories {
-    font-weight: $font-weight-bold;
-    color: $color-vaticle-secondary-pink;
+    font-weight: $font-weight-semi-bold;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 4px;
+
+    &.bp-primary-post-categories {
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    p {
+        padding: 2px 8px;
+        background: $color-vaticle-purple;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+    }
 }
 
 .bp-post-title {
@@ -164,7 +185,7 @@ td-aspect-ratio {
 }
 
 .bp-img-tertiary-container {
-    flex: 2;
+    flex: 1;
     display: flex;
     gap: 12px;
 }
@@ -176,11 +197,11 @@ td-aspect-ratio {
 }
 
 .bp-post-text-tertiary {
-    flex: 5;
+    flex: 2;
     display: flex;
     flex-direction: column;
 
     .bp-tertiary-post-description {
-        margin-top: 8px;
+        margin-top: 12px;
     }
 }
