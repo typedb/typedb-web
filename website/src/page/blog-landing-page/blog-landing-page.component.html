@@ -20,10 +20,8 @@
           <div class="bp-primary-post-description text-16-24 text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
           <div class="bp-author">
             <img class="bp-avatar" [src]="posts[0].author.avatar_URL" alt="" />
-            <div class="bp-author-text">
-              <h3 class="text-18-26 text-12-18-mobile">{{ posts[0].author.name }}</h3>
-              <p class="text-14-21 text-10-12-mobile text-quiet">{{ posts[0].date | date: "longDate" }}</p>
-            </div>
+            <h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ posts[0].author.name }}</h3>
+            <p class="text-quiet text-16-24 text-12-18-mobile">{{ posts[0].date | date: "longDate" }}</p>
           </div>
         </div>
       </div>
@@ -43,10 +41,8 @@
             <div class="bp-secondary-post-description text-16-24 text-14-21-mobile" [innerHtml]="post.excerpt"></div>
             <div class="bp-author">
               <img class="bp-avatar" [src]="post.author.avatar_URL" alt="" />
-              <div class="bp-author-text">
-                <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
-                <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
-              </div>
+              <h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ post.author.name }}</h3>
+              <p class="text-quiet text-16-24 text-12-18-mobile">{{ post.date | date: "longDate" }}</p>
             </div>
           </div>
         </div>
@@ -72,11 +68,8 @@
               </h2>
               <div class="text-16-24 text-14-24-mobile bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
               <div class="bp-author">
-                <img class="bp-avatar bp-avatar-small" [src]="post.author.avatar_URL" alt="" />
-                <div class="bp-author-text">
-                  <h3 class="text-18-26 text-12-18-mobile">{{ post.author.name }}</h3>
-                  <p class="text-14-21 text-10-12-mobile text-quiet">{{ post.date | date: "longDate" }}</p>
-                </div>
+                <h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ post.author.name }}</h3>
+                <p class="text-quiet text-16-24 text-12-18-mobile">{{ post.date | date: "longDate" }}</p>
               </div>
             </div>
           </li>
