@@ -1,29 +1,20 @@
+import { BookIcon, HeartIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { headshotSchemaName, SanityImageRef } from "./image";
-import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
+import { Person, personSchemaName, SanityPerson } from "./person";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 
 export interface SanityTestimonial extends SanityDocument {
-    organisation: SanityReference<SanityOrganisation>;
-    author: string;
-    headshot: SanityReference<SanityImageRef>;
-    jobTitle: string;
+    author: SanityReference<SanityPerson>;
     body: string;
 }
 
 export class Testimonial extends Document {
-    readonly organisation: Organisation;
-    readonly author: string;
-    readonly headshotURL: string;
-    readonly jobTitle: string;
+    readonly author: Person;
     readonly body: string;
 
     constructor(data: SanityTestimonial, db: SanityDataset) {
         super(data);
-        this.organisation = new Organisation(db.resolveRef(data.organisation), db);
-        this.author = data.author;
-        this.headshotURL = db.resolveImageRef(data.headshot).url;
-        this.jobTitle = data.jobTitle;
+        this.author = Person.fromSanity(db.resolveRef(data.author), db);
         this.body = data.body;
     }
 }
@@ -34,28 +25,13 @@ export const testimonialSchema = defineType({
     name: testimonialSchemaName,
     title: "Testimonial",
     type: "document",
+    icon: HeartIcon,
     fields: [
-        defineField({
-            name: "organisation",
-            title: "Organisation",
-            type: "reference",
-            to: [{type: organisationSchemaName}],
-        }),
         defineField({
             name: "author",
             title: "Author",
-            type: "string",
-        }),
-        defineField({
-            name: "headshot",
-            title: "Headshot",
             type: "reference",
-            to: [{type: headshotSchemaName}],
-        }),
-        defineField({
-            name: "jobTitle",
-            title: "Job Title",
-            type: "string",
+            to: [{type: personSchemaName}],
         }),
         defineField({
             name: "body",
@@ -63,4 +39,12 @@ export const testimonialSchema = defineType({
             type: "text",
         }),
     ],
+    preview: {
+        select: { authorName: "author.name", authorJobTitle: "author.jobTitle", authorCompany: "author.organisation.name", authorHeadshot: "author.headshot" },
+        prepare: (selection) => ({
+            title: selection.authorName,
+            subtitle: `${selection.authorJobTitle}, ${selection.authorCompany}`,
+            media: selection.authorHeadshot,
+        }),
+    },
 });

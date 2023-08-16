@@ -37,11 +37,11 @@ export class TestimonialsCarouselComponent implements OnInit {
     }
 
     getHeadshotUrl(testimonial: Testimonial) {
-        return this.imageBuilder.image(testimonial.headshotURL).height(48).url();
+        return this.imageBuilder.image(testimonial.author.headshotURL).height(48).url();
     }
 
     getLogoUrl(testimonial: Testimonial) {
-        return this.imageBuilder.image(testimonial.organisation.logoURL).height(48).url();
+        return this.imageBuilder.image(testimonial.author.organisation.logoURL).height(48).url();
     }
 
     private getMiddleIndex(): number {
