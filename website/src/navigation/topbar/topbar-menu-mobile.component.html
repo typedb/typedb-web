@@ -1,8 +1,9 @@
 <ul class="tm-top-level-items tm-primary-area text-18-26 text-16-24-mobile">
   <li *ngFor="let item of topbar.mainArea">
-    <a
+    <button
       *ngIf="isMenuPanel(item)"
       tabindex="0"
+      class="tb-menu-panel-header"
       [class.tm-expanded]="isMenuPanelVisible(item)"
       (click)="toggleMenuPanelVisible(item)"
     >
@@ -17,7 +18,7 @@
       >
         <path d="M12 12.9821L16.6669 8.39999L18 9.70892L12 15.6L6 9.70892L7.33312 8.39999L12 12.9821Z" />
       </svg>
-    </a>
+    </button>
     <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
       {{ item.text }}
       <svg

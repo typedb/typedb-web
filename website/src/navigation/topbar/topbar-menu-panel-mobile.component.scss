@@ -46,18 +46,16 @@ h4 {
     color: $color-vaticle-white;
 }
 
-a.mp-coming-soon {
+.mp-coming-soon {
     cursor: default;
     opacity: 0.5;
 }
 
-a:not(.mp-coming-soon) {
-    &:hover,
-    &:focus {
-        h4 {
-            color: $color-vaticle-green;
-            text-decoration: underline;
-        }
+a:hover,
+a:focus {
+    h4 {
+        color: $color-vaticle-green;
+        text-decoration: underline;
     }
 }
 
