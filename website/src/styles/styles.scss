@@ -5,15 +5,33 @@
 @import "colors";
 @import "sizes";
 
+$default-typography: mat.define-typography-level(
+    $font-size: inherit,
+);
+
 $custom-typography: mat.define-typography-config(
     $font-family: (
         "Titillium Web",
         sans-serif,
     ),
+    $headline-1: $default-typography,
+    $headline-2: $default-typography,
+    $headline-3: $default-typography,
+    $headline-4: $default-typography,
+    $headline-5: $default-typography,
+    $headline-6: $default-typography,
+    $subtitle-1: $default-typography,
+    $subtitle-2: $default-typography,
+    $body-1: $default-typography,
+    $body-2: $default-typography,
+    $caption: $default-typography,
+    $button: $default-typography,
+    $overline: $default-typography,
 );
 
 @include mat.core();
 @include mat.dialog-typography($custom-typography);
+@include mat.snack-bar-typography($custom-typography);
 
 $default-background: $color-vaticle-black-purple;
 $default-text-color: $color-vaticle-grey;
