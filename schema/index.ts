@@ -59,7 +59,7 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
-export { type SanityTestimonial, Testimonial } from "./testimonial";
+export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, RichText, type RichTextSpan, type SanityPortableText, TitleAndBody, TitleBodyIllustrationSection } from "./text";
 export { groupBy, associateBy } from "./util";
 export { Webinar, type SanityWebinar, webinarSchemaName } from "./webinar";

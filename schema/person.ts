@@ -1,12 +1,13 @@
 import { UserIcon } from "@sanity/icons";
-import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { nameField, requiredRule } from "./common-fields";
+import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
+import { nameField, nameFieldName, requiredRule, titleFieldName } from "./common-fields";
 import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
 export interface SanityPerson extends SanityDocument {
     name: string;
+    internalName?: Slug;
     organisation: SanityReference<SanityOrganisation>;
     jobTitle: string;
     headshot: SanityImage;
@@ -55,6 +56,12 @@ const personSchema = defineType({
     fields: [
         nameField,
         defineField({
+            name: "internalName",
+            title: "Internal Name (optional)",
+            description: "In case we need to duplicate an actual person to override fields under certain conditions - e.g. they wrote a testimonial while holding a previous position",
+            type: "slug",
+        }),
+        defineField({
             name: "organisation",
             title: "Organisation",
             type: "reference",
@@ -79,6 +86,14 @@ const personSchema = defineType({
             type: "url",
         }),
     ],
+    preview: {
+        select: { name: nameFieldName, internalName: "internalName.current", organisationName: "organisation.name", jobTitle: "jobTitle", headshot: "headshot" },
+        prepare: (selection) => ({
+            title: selection.internalName || selection.name,
+            subtitle: `${selection.jobTitle}, ${selection.organisationName}`,
+            media: selection.headshot,
+        }),
+    },
 });
 
 export const personSchemas = [personSchema];

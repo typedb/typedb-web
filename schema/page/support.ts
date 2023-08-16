@@ -12,7 +12,7 @@ import {
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
 import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { SanityDataset } from "../sanity-core";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
@@ -47,7 +47,7 @@ interface SanityFeatureTableSection extends SanityCoreSection, SanityOptionalAct
 }
 
 interface SanityTestimonialsSection extends SanityCoreSection, SanityOptionalActions {
-    testimonials: SanityTestimonial[];
+    testimonials: SanityReference<SanityTestimonial>[];
 }
 
 export class SupportPage extends Page {
@@ -118,7 +118,7 @@ class TestimonialsSection extends TechnicolorBlock {
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                testimonials: data.testimonials.map((x) => new Testimonial(x, db)),
+                testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
             })
         );
     }
@@ -167,7 +167,7 @@ const sectionSchemas = [
             name: "testimonials",
             title: "Testimonials",
             type: "array",
-            of: [{ type: testimonialSchemaName }],
+            of: [{type: "reference", to: [{ type: testimonialSchemaName }]}],
         }),
         isVisibleField,
     ]),

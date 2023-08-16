@@ -10,11 +10,11 @@
             <img [src]="getHeadshotUrl(testimonial)" alt="" />
             <div>
               <h3 class="text-18-26 text-16-24-mobile">
-                <strong>{{ testimonial.author }}</strong>
+                <strong>{{ testimonial.author.name }}</strong>
               </h3>
               <p class="tc-person-job text-14-23 text-10-15-mobile">
-                {{ testimonial.jobTitle }},
-                {{ testimonial.organisation.name }}
+                {{ testimonial.author.jobTitle }},
+                {{ testimonial.author.organisation.name }}
               </p>
             </div>
           </div>
