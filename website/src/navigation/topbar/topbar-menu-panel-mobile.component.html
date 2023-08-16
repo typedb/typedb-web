@@ -3,31 +3,34 @@
     <strong>{{ column.title }}</strong>
   </h3>
   <ul *ngIf="isListColumn(column)">
-    <li *ngFor="let item of column.items">
-      <a
-        [tdLink]="item.comingSoon ? undefined : item.link"
-        [class]="item.comingSoon ? 'mp-coming-soon' : ''"
-        (click)="onClick(item)"
-      >
-        <h4 class="text-18-26 text-14-21-mobile">
-          <span>{{ item.title }}</span>
-          <svg
-            *ngIf="item.link?.isForExternalDomain()"
-            class="tb-external-link-icon"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" />
-          </svg>
-        </h4>
-        <p class="text-14-21 text-12-18-mobile mm-list-column-description">
-          {{ item.description }}
-        </p>
+    <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
+      <a *ngSwitchCase="true" [tdLink]="item.link" (click)="onClick(item)">
+        <ng-container *ngTemplateOutlet="linkContent; context: { item }" />
       </a>
+      <div *ngSwitchCase="false" class="mp-coming-soon" (click)="onClick(item)">
+        <ng-container *ngTemplateOutlet="linkContent; context: { item }" />
+      </div>
     </li>
   </ul>
   <div *ngIf="isVideoColumn(column)">TODO: Video</div>
 </div>
+
+<ng-template #linkContent let-item="item">
+  <h4 class="text-18-26 text-14-21-mobile">
+    <span>{{ item.title }}</span>
+    <svg
+      *ngIf="item.link?.isForExternalDomain()"
+      class="tb-external-link-icon"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M16.6707 8.97635L6.64706 19L5 17.353L15.0237 7.3293H6.1889V5H19V17.8111H16.6707V8.97635Z" />
+    </svg>
+  </h4>
+  <p class="text-14-21 text-12-18-mobile mm-list-column-description">
+    {{ item.description }}
+  </p>
+</ng-template>
