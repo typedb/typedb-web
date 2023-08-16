@@ -1,12 +1,14 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
-import { MatLegacyCheckboxModule as MatCheckboxModule } from "@angular/material/legacy-checkbox";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
-import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
-import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
+import { MatButtonModule } from "@angular/material/button";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule } from "@angular/router";
+
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
 import { CodeSnippetComponent } from "./code/code-snippet.component";
@@ -44,8 +46,6 @@ import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
 import { RichTextPipe } from "./text/rich-text.pipe";
 import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
-import { RouterModule } from "@angular/router";
-import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
 import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
@@ -53,6 +53,11 @@ import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
 import { PersonInfoComponent } from "./person-info/person-info.component";
 import { EventDurationPipe } from "./date/event-duration.pipe";
 import { DateRangePipe } from "./date/date-range.pipe";
+import { SnackbarComponent } from "./snackbar/snackbar.component";
+
+const globalRippleConfig: RippleGlobalOptions = {
+    disabled: true,
+};
 
 @NgModule({
     declarations: [
@@ -93,6 +98,7 @@ import { DateRangePipe } from "./date/date-range.pipe";
         RichTextComponent,
         RichTextPipe,
         ScrollShadowComponent,
+        SnackbarComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
         TechnicolorBlockComponent,
@@ -106,10 +112,8 @@ import { DateRangePipe } from "./date/date-range.pipe";
         FormsModule,
         HttpClientModule,
         MatButtonModule,
-        MatCheckboxModule,
         MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
+        MatIconModule,
         MatSnackBarModule,
         RouterModule,
     ],
@@ -130,6 +134,8 @@ import { DateRangePipe } from "./date/date-range.pipe";
         KeyPointTableComponent,
         LinkDirective,
         LinkPanelsComponent,
+        MatButtonModule,
+        MatIconModule,
         OrdinalDatePipe,
         OrganisationLogosComponent,
         PageBackgroundComponent,
@@ -147,6 +153,6 @@ import { DateRangePipe } from "./date/date-range.pipe";
         TooltipComponent,
         WebinarPanelsComponent,
     ],
-    providers: [PlainTextPipe],
+    providers: [PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
 })
 export class FrameworkModule {}

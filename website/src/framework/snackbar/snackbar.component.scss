@@ -1,0 +1,36 @@
+@import "colors";
+@import "sizes";
+
+:host {
+    margin: 16px;
+    width: 372px;
+    border-radius: $border-radius;
+    background: mix($color-vaticle-green, $color-vaticle-black-purple, 15%);
+    box-shadow: inset 0 0 0 1px $color-vaticle-green;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    :host-context(.mat-mdc-snack-bar-handset) {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.sb-text {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $color-vaticle-white;
+
+    .mat-icon {
+        flex-shrink: 0;
+        color: $color-vaticle-green;
+    }
+}
+
+.sb-button .mat-icon {
+    color: rgba($color-vaticle-white, 0.8);
+}
