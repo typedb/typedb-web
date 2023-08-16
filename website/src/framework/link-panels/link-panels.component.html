@@ -3,8 +3,9 @@
     <ng-container *ngFor="let panel of panels">
       <a
         *ngIf="$any(panel).iconURL; else panelWithoutIcon"
-        class="hoverable card lc-card lc-card-cols-3 lc-icon-card"
-        [tdLink]="panel.button.link"
+        class="card lc-card lc-card-cols-3 lc-icon-card"
+        [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
+        [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
       >
         <div *ngIf="panel.button.comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
         <div>
@@ -26,7 +27,7 @@
       <ng-template #panelWithoutIcon>
         <a
           class="card lc-card lc-card-cols-3 lc-card-compact"
-          [class]="panel.button.comingSoon ? '' : 'hoverable'"
+          [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
           [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
           (mouseenter)="setPanelHovered(panel, true)"
           (mouseleave)="setPanelHovered(panel, false)"
