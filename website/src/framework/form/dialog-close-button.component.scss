@@ -1,31 +1,29 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "sizes";
+
+:host {
+    display: flex;
+}
 
 button {
-    svg {
-        border-radius: $border-radius;
-        transition: background 100ms ease;
+    color: $color-vaticle-secondary-grey;
+    transition: color 100ms ease;
 
-        path {
-            fill: $color-vaticle-secondary-grey;
-            transition: fill 100ms ease;
-        }
+    &:hover,
+    &:active,
+    &:focus {
+        color: $color-vaticle-white;
+    }
 
-        &:hover path,
-        &:active path {
-            fill: $color-vaticle-white;
-        }
-
-        &:active {
+    &:active,
+    &:focus {
+        .mat-icon {
             background: $color-vaticle-light-purple;
         }
     }
+}
 
-    &:focus svg {
-        background: $color-vaticle-light-purple;
-
-        path {
-            fill: $color-vaticle-white;
-        }
-    }
+.mat-icon {
+    border-radius: $border-radius;
+    transition: background 100ms ease;
 }

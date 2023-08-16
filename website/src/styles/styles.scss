@@ -5,6 +5,34 @@
 @import "colors";
 @import "sizes";
 
+$default-typography: mat.define-typography-level(
+    $font-size: inherit,
+);
+
+$custom-typography: mat.define-typography-config(
+    $font-family: (
+        "Titillium Web",
+        sans-serif,
+    ),
+    $headline-1: $default-typography,
+    $headline-2: $default-typography,
+    $headline-3: $default-typography,
+    $headline-4: $default-typography,
+    $headline-5: $default-typography,
+    $headline-6: $default-typography,
+    $subtitle-1: $default-typography,
+    $subtitle-2: $default-typography,
+    $body-1: $default-typography,
+    $body-2: $default-typography,
+    $caption: $default-typography,
+    $button: $default-typography,
+    $overline: $default-typography,
+);
+
+@include mat.core();
+@include mat.dialog-typography($custom-typography);
+@include mat.snack-bar-typography($custom-typography);
+
 $default-background: $color-vaticle-black-purple;
 $default-text-color: $color-vaticle-grey;
 
@@ -166,9 +194,7 @@ strong {
 
 button,
 input[type="text"],
-input[type="email"],
-[class^="mat-"],
-[class*=" mat-"] {
+input[type="email"] {
     font-family: "Titillium Web", sans-serif;
 }
 
@@ -623,169 +649,93 @@ input[type="submit"].hs-button {
     }
 }
 
-.mat-button-focus-overlay {
-    opacity: 0 !important;
-}
-
-// TODO: once we have error popups, ensure these styles only apply to a "success" popup
-.mat-snack-bar-container {
-    background: rgb(1, 52, 50);
-    color: $color-vaticle-white;
-    border-radius: $border-radius;
-    border: 1px solid $color-vaticle-green;
-}
-
-.mat-simple-snackbar {
-    gap: 12px;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-.mat-simple-snackbar::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background-image: url("/assets/icon/check-circle.svg");
-    flex-shrink: 0;
-}
-
-.mat-simple-snackbar-action {
-    margin-left: 0 !important; // overrides inline style
-    color: transparent;
-    background: no-repeat center center url("/assets/icon/close-large.svg");
-}
-
-.mat-dialog-container {
-    padding: 32px;
-    background: $color-vaticle-purple;
-}
-
-.mat-dialog-title {
-    margin-bottom: 28px !important;
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-
-    h1 {
-        font-size: 24px;
-        line-height: 32px;
-        font-weight: $font-weight-bold;
-    }
-
-    img {
-        width: 40px;
-        height: 40px;
-        margin-top: -4px;
-    }
-}
-
-.mat-dialog-content {
-    display: flex !important;
-    flex-direction: column;
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-}
-body .mat-dialog-content {
-    overflow: visible;
-}
-
-.mat-form-field-infix {
-    padding: 0 !important;
-}
-.mat-form-field-appearance-outline .mat-form-field-label {
-    margin-top: -15px;
-}
-.mat-form-field-appearance-outline .mat-form-field-outline {
-    background: $color-vaticle-secondary-purple;
-}
-body .mat-form-field-label {
-    color: $color-vaticle-secondary-grey;
-    font-style: italic;
-}
-body .mat-focused .mat-form-field-label {
-    font-style: normal;
-}
-.mat-form-field-appearance-outline.mat-focused {
-    .mat-form-field-outline,
-    .mat-form-field-label {
-        color: $color-vaticle-green !important;
-    }
-}
-body .mat-form-field-appearance-outline .mat-form-field-outline-start,
-body .mat-form-field-appearance-outline .mat-form-field-outline-end,
-body .mat-form-field-appearance-outline .mat-form-field-outline-gap {
-    border-color: $color-vaticle-secondary-deep-grey;
-}
-body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start,
-body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-end,
-body .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-gap {
-    border-color: $color-vaticle-green;
-}
-.mat-form-field-wrapper {
-    padding-bottom: 14px;
-}
-.mat-form-field-label-wrapper {
-    top: -10px;
-    padding-top: 10px;
-    overflow: visible !important;
-}
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-    transform: translateY(-21px) translateX(-4px) scale(0.75);
-    width: 133.33333%;
-    font-style: italic;
-}
-body .mat-input-element {
-    line-height: 32px;
-    margin-bottom: 8px;
-    caret-color: $color-vaticle-green;
-}
-body textarea.mat-input-element {
-    line-height: 24px;
-    margin-bottom: 8px;
-}
-body select.mat-input-element {
-    margin-bottom: -9px;
-}
-body .mat-form-field.mat-warn .mat-input-element,
-body .mat-form-field-invalid .mat-input-element,
-body .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    caret-color: $color-vaticle-red;
-    color: $color-vaticle-red;
-}
-body .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
-    width: 48px;
-    height: 46px;
-    border: none;
-    top: -3px;
-    bottom: 1px;
-    right: 0;
-    border-left: 1px solid $color-vaticle-light-purple;
-    background: no-repeat center url("/assets/icon/chevron-down.svg");
-}
-.mat-form-field-type-mat-native-select.mat-form-field-appearance-outline .mat-form-field-flex {
-    padding: 0;
-}
-.mat-form-field-type-mat-native-select .mat-input-element {
-    padding: 1em 0.75em 9px;
-    margin-bottom: -18px;
-}
-.mat-form-field-type-mat-native-select .mat-form-field-label {
-    padding-left: 18px;
-}
-body .mat-checkbox-inner-container {
-    margin-left: 4px;
-    margin-right: 12px;
-}
-.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
-.mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
-.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
-    background-color: $color-vaticle-green;
-}
-
 .markdown pre {
     background: transparent;
+}
+
+// @angular/material styles
+body {
+    .mat-icon,
+    .mat-mdc-icon-button {
+        font-size: 24px;
+
+        &.td-small {
+            font-size: 20px;
+        }
+
+        &.td-large {
+            font-size: 32px;
+        }
+    }
+
+    .mat-icon {
+        width: 1em;
+        height: 1em;
+
+        svg {
+            display: block;
+        }
+    }
+
+    .mat-mdc-icon-button {
+        padding: 0.25em;
+        margin: -0.25em;
+        width: 1.5em;
+        height: 1.5em;
+
+        .mat-icon {
+            display: block;
+            font-size: inherit;
+        }
+
+        svg {
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .mdc-dialog {
+        --mdc-dialog-container-color: #{$color-vaticle-purple};
+        --mdc-dialog-supporting-text-color: #{$color-vaticle-white};
+
+        .mdc-dialog__surface {
+            padding: 24px;
+        }
+
+        .mdc-dialog__title {
+            padding: 0 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &::before {
+                display: none;
+            }
+
+            h1 {
+                font-size: 24px;
+                line-height: 32px;
+                font-weight: $font-weight-bold;
+            }
+        }
+
+        .mdc-dialog__content {
+            padding: 0;
+        }
+    }
+
+    .mat-mdc-snack-bar-container {
+        .mdc-snackbar__surface {
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+
+            &::before {
+                display: none;
+            }
+        }
+        .mdc-snackbar__label {
+            padding: 0;
+        }
+    }
 }
