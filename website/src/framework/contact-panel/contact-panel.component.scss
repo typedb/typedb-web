@@ -1,0 +1,23 @@
+@import "sizes";
+
+:host {
+    display: block;
+    padding: 32px;
+    position: relative;
+}
+
+.cp-contact-policy {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: calc(32px + 202px + 16px);
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $media-max-width-mobile) {
+        position: static;
+        height: auto;
+        margin-top: 12px;
+    }
+}

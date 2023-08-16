@@ -9,7 +9,9 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName, eventSchemaName, eventsPageSchemaName, supportPageSchemaName, testimonialSchemaName
+    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
+    deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
+    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicePageSchemaName, testimonialSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -47,6 +49,7 @@ export default defineConfig({
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Request Tech Talk", icon: DocumentIcon }),
                     singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),
+                    singletonListItem(s, servicePageSchemaName, { title: "Service", icon: DocumentIcon }),
                     s.divider(),
                     s.documentTypeListItem(solutionPageSchemaName).title("Solutions").icon(DocumentsIcon),
                 ])),

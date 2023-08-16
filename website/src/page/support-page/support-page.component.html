@@ -14,15 +14,7 @@
     </ng-container>
     <ng-container *ngIf="page.contactSection">
       <td-support-page-technicolor-block [block]="page.contactSection" [page]="page" />
-      <div class="sp-contact-card section card">
-        <div [id]="formHolderId"></div>
-        <div class="sp-contact-policy">
-          <p>
-            By submitting your personal data, you consent to emails from Vaticle. See our
-            <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
-          </p>
-        </div>
-      </div>
+      <td-contact-panel />
     </ng-container>
   </div>
 </article>

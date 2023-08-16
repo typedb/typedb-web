@@ -4,18 +4,18 @@ import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { Observable, map, tap } from "rxjs";
 
-import { SanitySupportPage, SupportPage, TechnicolorBlock, supportPageSchemaName } from "typedb-web-schema";
+import { SanityServicePage, ServicePage, TechnicolorBlock, servicePageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 
 @Component({
-    selector: "td-support-page",
-    templateUrl: "./support-page.component.html",
-    styleUrls: ["./support-page.component.scss"],
+    selector: "td-service-page",
+    templateUrl: "./service-page.component.html",
+    styleUrls: ["./service-page.component.scss"],
 })
-export class SupportPageComponent implements OnInit {
-    page$!: Observable<SupportPage | null>;
+export class ServicePageComponent implements OnInit {
+    page$!: Observable<ServicePage | null>;
 
     constructor(
         private analytics: AnalyticsService,
@@ -28,8 +28,8 @@ export class SupportPageComponent implements OnInit {
     ngOnInit() {
         this.page$ = this.contentService.data.pipe(
             map((data) => {
-                const sanitySupportPage = data.getDocumentByID(supportPageSchemaName) as SanitySupportPage | undefined;
-                return sanitySupportPage ? new SupportPage(sanitySupportPage, data) : null;
+                const sanityServicePage = data.getDocumentByID(servicePageSchemaName) as SanityServicePage | undefined;
+                return sanityServicePage ? new ServicePage(sanityServicePage, data) : null;
             }),
             tap((page) => {
                 if (page) {
@@ -47,7 +47,7 @@ export class SupportPageComponent implements OnInit {
 }
 
 @Component({
-    selector: "td-support-page-technicolor-block",
+    selector: "td-service-page-technicolor-block",
     template: `<td-technicolor-block
         [block]="block"
         [index]="index"
@@ -56,9 +56,9 @@ export class SupportPageComponent implements OnInit {
         [longUpperChain]="block === page.contactSection"
     />`,
 })
-export class SupportPageTechnicolorBlockComponent {
+export class ServicePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
-    @Input() page!: SupportPage;
+    @Input() page!: ServicePage;
 
     get index(): number {
         return this.allBlocks.indexOf(this.block);
@@ -71,7 +71,6 @@ export class SupportPageTechnicolorBlockComponent {
     private get allBlocks(): TechnicolorBlock[] {
         const blocks: (TechnicolorBlock | undefined)[] = [
             this.page.introSection,
-            this.page.featureTableSection,
             this.page.testimonialsSection,
             this.page.contactSection,
         ];

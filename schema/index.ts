@@ -36,7 +36,7 @@ export {
     ImageIllustration, VideoEmbed, CodeSnippet, PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
-export { KeyPoint, KeyPointWithIcon } from "./key-point";
+export { KeyPoint, KeyPointWithIcon, ServiceKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
@@ -50,6 +50,7 @@ export { FeaturesPage, FeaturesPageCoreSection, featuresPageSchemaName, type San
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";
+export { ServicePage, servicePageSchemaName, type SanityServicePage } from "./page/service";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
 export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from "./page/webinars";

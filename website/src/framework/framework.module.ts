@@ -54,6 +54,8 @@ import { PersonInfoComponent } from "./person-info/person-info.component";
 import { EventDurationPipe } from "./date/event-duration.pipe";
 import { DateRangePipe } from "./date/date-range.pipe";
 import { SnackbarComponent } from "./snackbar/snackbar.component";
+import { ServiceTableComponent } from "./service-table/service-table.component";
+import { ContactPanelComponent } from "./contact-panel/contact-panel.component";
 
 const globalRippleConfig: RippleGlobalOptions = {
     disabled: true,
@@ -69,6 +71,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         CodeSnippetComponent,
         ConclusionPanelComponent,
         ContactDialogComponent,
+        ContactPanelComponent,
         ContentPanelComponent,
         ContentTabsComponent,
         DateRangePipe,
@@ -98,6 +101,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         RichTextComponent,
         RichTextPipe,
         ScrollShadowComponent,
+        ServiceTableComponent,
         SnackbarComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
@@ -123,6 +127,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         ButtonComponent,
         CaptionedIllustrationComponent,
         ConclusionPanelComponent,
+        ContactPanelComponent,
         ContentPanelComponent,
         ContentTabsComponent,
         DateRangePipe,
@@ -144,6 +149,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PersonInfoComponent,
         PlainTextPipe,
         ProductTableComponent,
+        ServiceTableComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,
         RichTextPipe,

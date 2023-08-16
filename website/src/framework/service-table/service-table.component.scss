@@ -1,0 +1,105 @@
+@import "colors";
+@import "sizes";
+
+.st-table {
+    border-radius: $border-radius;
+    border: 1px solid $color-vaticle-light-purple;
+}
+
+.st-row {
+    display: flex;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+    }
+
+    & + & {
+        border-top: 1px solid $color-vaticle-light-purple;
+    }
+}
+
+.st-cell-icon {
+    flex: 0 0 268px;
+    border-right: 1px solid $color-vaticle-light-purple;
+    background: $color-vaticle-deep-purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-basis: 104px;
+    }
+
+    img {
+        height: 96px;
+        width: 96px;
+
+        @media (max-width: $media-max-width-tablet) {
+            height: 72px;
+            width: 72px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            height: 56px;
+            width: 56px;
+        }
+    }
+}
+
+.st-cell-text {
+    background: $color-vaticle-purple;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 16px;
+    }
+}
+
+.st-title-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (max-width: $media-max-width-mobile) {
+        align-items: center;
+    }
+}
+
+.st-check-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, fit-content(100%));
+    gap: 8px 32px;
+    color: $color-vaticle-white;
+
+    &.st-check-list-two-columns {
+        grid-template-columns: repeat(2, fit-content(100%));
+    }
+
+    @media (max-width: $media-max-width-tablet) {
+        grid-template-columns: repeat(2, fit-content(100%));
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        &,
+        &.st-check-list-two-columns {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.st-check-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    svg {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        color: $color-vaticle-green;
+    }
+}
