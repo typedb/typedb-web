@@ -91,7 +91,7 @@ export class WebsiteComponent {
             const fileName = icon.replace("_", "-");
             matIconRegistry.addSvgIcon(
                 icon,
-                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${fileName}.svg`),
+                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${fileName}.svg`),
             );
         });
     }
