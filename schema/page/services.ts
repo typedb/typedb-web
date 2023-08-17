@@ -14,7 +14,7 @@ import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testim
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
-import { SanityServiceKeyPoint, ServiceKeyPoint, serviceKeyPointSchemaName } from "../key-point";
+import { SanityServicesKeyPoint, ServicesKeyPoint, servicesKeyPointSchemaName } from "../key-point";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
@@ -24,7 +24,7 @@ const sections = {
 
 type SectionKey = keyof typeof sections;
 
-export interface SanityServicePage extends SanityPage {
+export interface SanityServicesPage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
     [sections.contact.id]: SanityCoreSection;
@@ -35,19 +35,19 @@ interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
 interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
-    keyPoints: SanityServiceKeyPoint[];
+    keyPoints: SanityServicesKeyPoint[];
 }
 
 interface SanityTestimonialsSection extends SanityCoreSection, SanityOptionalActions {
     testimonials: SanityReference<SanityTestimonial>[];
 }
 
-export class ServicePage extends Page {
+export class ServicesPage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly [sections.contact.id]?: TechnicolorBlock;
 
-    constructor(data: SanityServicePage, db: SanityDataset) {
+    constructor(data: SanityServicesPage, db: SanityDataset) {
         super(data);
         this[sections.intro.id] = data.introSection.isVisible
             ? IntroSection.fromSanity(data.introSection, db)
@@ -62,7 +62,7 @@ export class ServicePage extends Page {
 }
 
 class IntroSection extends TechnicolorBlock {
-    readonly keyPoints: ServiceKeyPoint[];
+    readonly keyPoints: ServicesKeyPoint[];
 
     constructor(props: PropsOf<IntroSection>) {
         super(props);
@@ -72,7 +72,7 @@ class IntroSection extends TechnicolorBlock {
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection({
             ...super.fromSanity(data, db),
-            keyPoints: data.keyPoints.map((x) => new ServiceKeyPoint(x, db)),
+            keyPoints: data.keyPoints.map((x) => new ServicesKeyPoint(x, db)),
         });
     }
 }
@@ -96,9 +96,9 @@ class TestimonialsSection extends TechnicolorBlock {
 
 class ContactSection extends TechnicolorBlock {}
 
-export const servicePageSchemaName = "servicePage";
+export const servicesPageSchemaName = "servicesPage";
 
-const sectionSchemaName = (key: SectionKey) => `${servicePageSchemaName}_${sections[key].id}`;
+const sectionSchemaName = (key: SectionKey) => `${servicesPageSchemaName}_${sections[key].id}`;
 
 const sectionSchema = (key: SectionKey, fields: any[]) =>
     defineType({
@@ -116,7 +116,7 @@ const sectionSchemas = [
             name: "keyPoints",
             title: "Key Points",
             type: "array",
-            of: [{ type: serviceKeyPointSchemaName }],
+            of: [{ type: servicesKeyPointSchemaName }],
         }),
         isVisibleField,
     ]),
@@ -143,12 +143,12 @@ const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
     })
 );
 
-const servicePageSchema = defineType({
-    name: servicePageSchemaName,
-    title: "Service Page",
+const servicesPageSchema = defineType({
+    name: servicesPageSchemaName,
+    title: "Services Page",
     type: "document",
     fields: [pageTitleField, ...sectionFields],
-    preview: { prepare: (_selection) => ({ title: "Service Page" }) },
+    preview: { prepare: (_selection) => ({ title: "Services Page" }) },
 });
 
-export const servicePageSchemas = [servicePageSchema, ...sectionSchemas];
+export const servicesPageSchemas = [servicesPageSchema, ...sectionSchemas];

@@ -17,7 +17,7 @@ import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
-import { ServicePageComponent, ServicePageTechnicolorBlockComponent } from "./service-page/service-page.component";
+import { ServicesPageComponent, ServicesPageTechnicolorBlockComponent } from "./services-page/services-page.component";
 import { SolutionPageComponent, SolutionPageTechnicolorBlockComponent } from "./solution-page/solution-page.component";
 import { SupportPageComponent, SupportPageTechnicolorBlockComponent } from "./support-page/support-page.component";
 import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
@@ -42,8 +42,8 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         NotFoundPageComponent,
         PrivacyPolicyPageComponent,
         RequestTechTalkPageComponent,
-        ServicePageComponent,
-        ServicePageTechnicolorBlockComponent,
+        ServicesPageComponent,
+        ServicesPageTechnicolorBlockComponent,
         SolutionPageComponent,
         SolutionPageTechnicolorBlockComponent,
         SupportPageComponent,

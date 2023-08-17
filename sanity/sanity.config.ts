@@ -11,7 +11,7 @@ import {
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicePageSchemaName, testimonialSchemaName
+    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -49,7 +49,7 @@ export default defineConfig({
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Request Tech Talk", icon: DocumentIcon }),
                     singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),
-                    singletonListItem(s, servicePageSchemaName, { title: "Service", icon: DocumentIcon }),
+                    singletonListItem(s, servicesPageSchemaName, { title: "Services", icon: DocumentIcon }),
                     s.divider(),
                     s.documentTypeListItem(solutionPageSchemaName).title("Solutions").icon(DocumentsIcon),
                 ])),

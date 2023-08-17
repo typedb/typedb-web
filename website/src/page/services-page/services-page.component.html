@@ -1,15 +1,15 @@
 <article tdPageBackground nebula="studio" planet="green">
   <div *ngIf="page$ | async; let page" class="article-content">
     <ng-container *ngIf="page.introSection">
-      <td-service-page-technicolor-block [block]="page.introSection" [page]="page" class="sp-intro-block" />
-      <td-service-table [keyPoints]="page.introSection.keyPoints" />
+      <td-services-page-technicolor-block [block]="page.introSection" [page]="page" class="sp-intro-block" />
+      <td-services-table [keyPoints]="page.introSection.keyPoints" />
     </ng-container>
     <ng-container *ngIf="page.testimonialsSection">
-      <td-service-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
+      <td-services-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
       <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
     </ng-container>
     <ng-container *ngIf="page.contactSection">
-      <td-service-page-technicolor-block [block]="page.contactSection" [page]="page" />
+      <td-services-page-technicolor-block [block]="page.contactSection" [page]="page" />
       <td-contact-panel />
     </ng-container>
   </div>

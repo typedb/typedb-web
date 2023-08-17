@@ -13,8 +13,8 @@ export interface SanityKeyPointWithIcon extends SanityKeyPoint {
     icon: SanityReference<SanityImageRef>;
 }
 
-export interface SanityServiceKeyPoint extends SanityKeyPointWithIcon {
-    checks: string[];
+export interface SanityServicesKeyPoint extends SanityKeyPointWithIcon {
+    checklist: string[];
 }
 
 export class KeyPoint {
@@ -36,12 +36,12 @@ export class KeyPointWithIcon extends KeyPoint {
     }
 }
 
-export class ServiceKeyPoint extends KeyPointWithIcon {
-    readonly checks: string[];
+export class ServicesKeyPoint extends KeyPointWithIcon {
+    readonly checklist: string[];
 
-    constructor(data: SanityServiceKeyPoint, db: SanityDataset) {
+    constructor(data: SanityServicesKeyPoint, db: SanityDataset) {
         super(data, db);
-        this.checks = data.checks;
+        this.checklist = data.checklist;
     }
 }
 
@@ -63,17 +63,17 @@ const keyPointWithIconSchema = defineType({
     fields: [titleField, bodyFieldRichText, sectionIconField],
 });
 
-export const serviceKeyPointSchemaName = "serviceKeyPoint";
+export const servicesKeyPointSchemaName = "servicesKeyPoint";
 
-const serviceKeyPointSchema = defineType({
-    name: serviceKeyPointSchemaName,
+const servicesKeyPointSchema = defineType({
+    name: servicesKeyPointSchemaName,
     title: "Key Point",
     type: "object",
     fields: [
         titleField,
         bodyFieldRichText,
         defineField({
-            name: "checks",
+            name: "checklist",
             title: "Check List",
             type: "array",
             of: [{ type: "string" }],
@@ -85,4 +85,4 @@ const serviceKeyPointSchema = defineType({
     ],
 });
 
-export const keyPointSchemas = [keyPointSchema, keyPointWithIconSchema, serviceKeyPointSchema];
+export const keyPointSchemas = [keyPointSchema, keyPointWithIconSchema, servicesKeyPointSchema];
