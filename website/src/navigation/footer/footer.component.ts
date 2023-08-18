@@ -9,8 +9,6 @@ import {
     SanityCommunityResources,
     SanityDataset,
     SanityFooter,
-    SocialMediaID,
-    socialMedias,
 } from "typedb-web-schema";
 import { SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
@@ -47,21 +45,21 @@ export class FooterComponent implements OnInit {
 }
 
 const contactMediaIcons: { [key in ContactMediaID]: string } = {
-    forum: "/assets/icon/social/discourse-rectangle.svg",
-    discord: "/assets/icon/social/discord-rectangle.svg",
-    contactForm: "/assets/icon/mail.svg",
+    forum: "discourse_rectangle",
+    discord: "discord_rectangle",
+    contactForm: "mail",
 };
 
 class ContactMediaLink {
     readonly id: ContactMediaID;
     readonly text: string;
-    readonly iconURL: string;
+    readonly svgIcon: string;
     readonly link: Link;
 
     constructor(id: ContactMediaID, db: SanityDataset) {
         this.id = id;
         this.text = contactMedias[id];
-        this.iconURL = contactMediaIcons[id];
+        this.svgIcon = contactMediaIcons[id];
         const communityResources = db.getDocumentByID("communityResources") as SanityCommunityResources;
         this.link = this.getLink(id, communityResources);
     }

@@ -75,13 +75,12 @@ a:focus p {
         height: 32px;
     }
 
-    img {
-        width: 48px;
-        height: 48px;
+    .mat-icon {
+        color: $color-vaticle-white;
+        font-size: 48px;
 
         @media (max-width: $media-max-width-mobile) {
-            width: 32px;
-            height: 32px;
+            font-size: 32px;
         }
     }
 }
@@ -112,11 +111,6 @@ a:focus p {
         flex-direction: row;
         align-items: center;
         gap: 32px;
-    }
-
-    img {
-        width: 32px;
-        height: 32px;
     }
 }
 
@@ -179,14 +173,21 @@ a:focus p {
     gap: 4px;
     line-height: 22px;
 
-    img {
-        width: 16px;
-        height: 16px;
+    .mat-icon {
+        font-size: 16px;
+    }
 
-        &.ft-logo-vaticle {
-            width: 52px;
-            height: unset;
-        }
+    .ft-icon-code {
+        color: $color-vaticle-green;
+    }
+
+    .ft-icon-heart {
+        color: $color-vaticle-red;
+    }
+
+    .ft-logo-vaticle {
+        width: 52px;
+        height: unset;
     }
 
     strong {

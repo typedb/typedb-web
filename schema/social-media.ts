@@ -29,13 +29,13 @@ export interface SanityCommunityResources extends SanityDocument {
 export class SocialMediaLink {
     readonly id: SocialMediaID;
     readonly text: string;
-    readonly iconURL: string;
+    readonly svgIcon: string;
     readonly link: Link;
 
     constructor(id: SocialMediaID, db: SanityDataset) {
         this.id = id;
         this.text = socialMedias[id];
-        this.iconURL = `/assets/icon/social/${id}-rectangle.svg`;
+        this.svgIcon = `${id}_rectangle`;
         const communityResources = db.getDocumentByID("communityResources") as SanityCommunityResources;
         this.link = new Link({ destination: communityResources[`${id}URL`] || "", type: "external", opensNewTab: true });
     }
