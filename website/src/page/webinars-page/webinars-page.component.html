@@ -64,8 +64,9 @@
                 >
               </p>
               <p class="wp-timing text-16-24 text-14-21-mobile text-weight-light">
-                <span class="wp-webinar-datetime"
-                  ><img src="/assets/icon/calendar.svg" alt="Date/Time:" class="wp-img-calendar" />
+                <span class="wp-webinar-datetime">
+                  <mat-icon svgIcon="calendar" />
+                  <span class="cdk-visually-hidden">Date/Time:</span>
                   <ng-container *ngIf="webinar.isFinished()">On-Demand</ng-container>
                   <ng-container *ngIf="!webinar.isFinished()">
                     {{ webinar.datetime | ordinalDate }},
@@ -74,7 +75,8 @@
                   </ng-container>
                 </span>
                 <span>
-                  <img src="/assets/icon/time.svg" alt="Duration:" />
+                  <mat-icon svgIcon="time" />
+                  <span class="cdk-visually-hidden">Duration:</span>
                   {{ webinar.durationMins | eventDuration }}
                 </span>
               </p>

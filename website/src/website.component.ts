@@ -63,12 +63,35 @@ export class WebsiteComponent {
     }
 
     private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
-        const icons = ["burger_mobile", "burger_tablet", "checked", "close"];
+        const icons = [
+            "arrow_down",
+            "burger_mobile",
+            "burger_tablet",
+            "calendar",
+            "check",
+            "checked",
+            "close",
+            "code",
+            "discord_rectangle",
+            "discourse_rectangle",
+            "github",
+            "heart",
+            "info",
+            "link",
+            "linkedin",
+            "linkedin_rectangle",
+            "location",
+            "mail",
+            "meetup_rectangle",
+            "time",
+            "twitter_rectangle",
+            "youtube_rectangle",
+        ];
         icons.forEach((icon) => {
             const fileName = icon.replace("_", "-");
             matIconRegistry.addSvgIcon(
                 icon,
-                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${fileName}.svg`),
+                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${fileName}.svg`),
             );
         });
     }

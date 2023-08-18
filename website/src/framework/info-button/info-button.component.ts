@@ -7,7 +7,7 @@ import { Component, HostBinding, Input } from "@angular/core";
 })
 export class InfoButtonComponent {
     @Input() tooltipText!: string;
-    @HostBinding("tabindex") readonly tabindex = 0;
 
-    tooltipVisible: boolean = false;
+    hovered: boolean = false;
+    focused: boolean = false;
 }

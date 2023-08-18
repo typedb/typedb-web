@@ -8,7 +8,8 @@
       <ul class="wd-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
         <li>Webinar</li>
         <li>
-          <img src="/assets/icon/calendar.svg" alt="Date/Time:" />
+          <mat-icon svgIcon="calendar" />
+          <span class="cdk-visually-hidden">Date/Time:</span>
           <span *ngIf="webinar.isFinished()">On-Demand</span>
           <span *ngIf="!webinar.isFinished()">
             {{ webinar.datetime | ordinalDate }},
@@ -17,7 +18,8 @@
           </span>
         </li>
         <li>
-          <img src="/assets/icon/time.svg" alt="Duration:" />
+          <mat-icon svgIcon="time" />
+          <span class="cdk-visually-hidden">Duration:</span>
           {{ webinar.durationMins | eventDuration }}
         </li>
       </ul>

@@ -27,13 +27,12 @@ ul.wd-subtitle {
         }
     }
 
-    img {
+    .mat-icon {
         margin-right: 16px;
 
         @media (max-width: $media-max-width-mobile) {
             margin-right: 8px;
-            width: 16px;
-            height: 16px;
+            font-size: 16px;
         }
     }
 }

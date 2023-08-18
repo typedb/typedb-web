@@ -128,14 +128,14 @@ nav {
                     display: flex;
                     align-items: center;
                 }
-
-                img {
-                    width: 40px;
-                    height: 40px;
-                }
             }
         }
     }
+}
+
+.tb-big-icon {
+    color: $color-vaticle-white;
+    font-size: 40px;
 }
 
 .tb-hamburger-button {
@@ -188,13 +188,8 @@ a:visited {
 a .tb-external-link-icon {
     margin-left: 4px;
     margin-right: -24px;
-    width: 20px;
-    height: 20px;
+    font-size: 20px;
     visibility: hidden;
-
-    path {
-        fill: $color-vaticle-green;
-    }
 }
 
 a:hover .tb-external-link-icon,
