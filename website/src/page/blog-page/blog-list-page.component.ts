@@ -1,30 +1,43 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Link, WordpressPost, WordpressPostClassifier, WordpressSite } from "typedb-web-schema";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { BlogFilter, Link, WordpressPost, WordpressPostClassifier, WordpressSite } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 
 @Component({
-    selector: "td-blog-landing-page",
-    templateUrl: "./blog-landing-page.component.html",
-    styleUrls: ["./blog-landing-page.component.scss"],
+    selector: "td-blog-list-page",
+    templateUrl: "./blog-list-page.component.html",
+    styleUrls: ["./blog-list-page.component.scss"],
 })
-export class BlogLandingPageComponent implements OnInit {
+export class BlogListPageComponent implements OnInit {
     site$: Observable<WordpressSite>;
     posts$: Observable<WordpressPost[]>;
+    filter$: Observable<BlogFilter | null>;
 
     constructor(
         private router: Router,
+        private _route: ActivatedRoute,
         private blogService: BlogService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
         this.site$ = this.blogService.site$;
-        this.posts$ = this.blogService.posts$.pipe(map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)));
+        this.filter$ = this._route.paramMap.pipe(
+            map((params) => {
+                const categorySlug = params.get("categorySlug");
+                if (categorySlug) return { categorySlug };
+                return null;
+            }),
+        );
+        this.posts$ = this.filter$.pipe(
+            switchMap((filter) => {
+                return this.blogService.posts$.pipe(map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)))
+            }),
+        );
     }
 
     ngOnInit() {

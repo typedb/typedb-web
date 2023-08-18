@@ -92,3 +92,7 @@ export type WordpressRelatedPosts = {
     tag: WordpressPostClassifier;
     posts: WordpressPost[];
 }[];
+
+export type BlogFilter = BlogCategoryFilter;
+
+export type BlogCategoryFilter = { categorySlug: string }

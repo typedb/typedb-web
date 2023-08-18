@@ -1,0 +1,9 @@
+<img class="bp-avatar" [class.bp-avatar-small]="isSmall" [src]="post.author.avatar_URL" alt="" />
+<h3 class="bp-author-name text-18-26 text-14-21-mobile">{{ post.author.name }}</h3>
+<p>·</p>
+<p class="text-quiet text-16-24 text-12-18-mobile bp-reading-time">
+  <img src="/assets/icon/time.svg" alt="Reading Time: " class="bp-reading-time-icon" />
+  <span>5 min</span>
+</p>
+<p>·</p>
+<p class="text-quiet text-16-24 text-12-18-mobile bp-post-date">{{ post.date | date: "longDate" }}</p>

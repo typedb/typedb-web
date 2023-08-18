@@ -1,13 +1,15 @@
-@import "src/styles/colors";
-@import "src/styles/mixins";
-@import "src/styles/sizes";
-
-article > div {
-    margin-bottom: 64px;
-}
+@import "../../styles/colors";
+@import "../../styles/mixins";
+@import "../../styles/sizes";
 
 hr {
     margin: 0;
+}
+
+::ng-deep .rt-reading-time {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 
 .bp-primary-post {
@@ -32,6 +34,10 @@ hr {
         @media (max-width: $media-max-width-mobile) {
             flex-basis: auto;
         }
+    }
+
+    .bp-post-title {
+        @include line-clamp(3);
     }
 }
 
@@ -58,6 +64,7 @@ hr {
         background: $color-vaticle-purple;
         border: 1px solid $color-vaticle-light-purple;
         border-radius: $border-radius;
+        color: $color-vaticle-secondary-pink;
     }
 }
 
@@ -74,6 +81,7 @@ hr {
 .bp-primary-post-description {
     font-weight: $font-weight-light;
     margin-top: 16px;
+    @include line-clamp(5);
 
     @media (max-width: $media-max-width-tablet) {
         margin-top: 8px;
@@ -91,19 +99,21 @@ hr {
         gap: 8px;
     }
 
-    .bp-avatar {
-        display: block;
-        width: 48px;
-        height: 48px;
-
-        @media (max-width: $media-max-width-mobile) {
-            width: 40px;
-            height: 40px;
-        }
-    }
-
     h3 {
         font-weight: $font-weight-semi-bold;
+    }
+}
+
+.bp-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -119,11 +129,6 @@ td-aspect-ratio {
     &:hover {
         transform: scale(1.015);
     }
-}
-
-.bp-avatar {
-    border: 1px solid $color-vaticle-light-purple;
-    border-radius: $border-radius;
 }
 
 .bp-secondary-posts {
@@ -144,6 +149,10 @@ td-aspect-ratio {
         align-items: flex-start;
         gap: 12px;
     }
+
+    .bp-post-title {
+        @include line-clamp(2);
+    }
 }
 
 .bp-secondary-post-summary {
@@ -154,6 +163,7 @@ td-aspect-ratio {
 
 .bp-secondary-post-description {
     margin-top: 16px;
+    @include line-clamp(4);
 }
 
 .bp-posts-list-section {
@@ -201,7 +211,12 @@ td-aspect-ratio {
     display: flex;
     flex-direction: column;
 
+    .bp-post-title {
+        @include line-clamp(1);
+    }
+
     .bp-tertiary-post-description {
         margin-top: 12px;
+        @include line-clamp(3);
     }
 }

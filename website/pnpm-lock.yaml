@@ -101,6 +101,9 @@ dependencies:
   cookieconsent:
     specifier: 3.1.1
     version: 3.1.1
+  countable:
+    specifier: 3.0.1
+    version: 3.0.1
   d3-force:
     specifier: 3.0.0
     version: 3.0.0
@@ -5050,6 +5053,10 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
     dev: true
+
+  /countable@3.0.1:
+    resolution: {integrity: sha512-dz/sdi+RFpHJKMen5RAB9EKpCKd/q5WMfxG3SbdbQ3Pak4+SEPmDhVWZF0GTTHwjqjR+7DmiZHzZiFJ4qeAzmg==}
+    dev: false
 
   /critters@0.0.19:
     resolution: {integrity: sha512-Fm4ZAXsG0VzWy1U30rP4qxbaWGSsqXDgSupJW1OUJGDAs0KWC+j37v7p5a2kZ9BPJvhRzWm3be+Hc9WvQOBUOw==}

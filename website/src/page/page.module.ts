@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-
 import { FrameworkModule } from "../framework/framework.module";
-import { BlogLandingPageComponent } from "./blog-landing-page/blog-landing-page.component";
-import { BlogPostPageComponent } from "./blog-post-page/blog-post-page.component";
+import { BlogAuthorshipBarComponent } from "./blog-page/blog-authorship-bar.component";
+import { BlogListPageComponent } from "./blog-page/blog-list-page.component";
+import { BlogPostPageComponent } from "./blog-page/blog-post-page.component";
 import {
     DeploymentPageComponent,
     DeploymentPageTechnicolorBlockComponent,
@@ -28,7 +28,8 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
 
 @NgModule({
     declarations: [
-        BlogLandingPageComponent,
+        BlogAuthorshipBarComponent,
+        BlogListPageComponent,
         BlogPostPageComponent,
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,

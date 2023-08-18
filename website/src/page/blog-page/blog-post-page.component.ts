@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { Link, WordpressPost, WordpressPostClassifier, WordpressPosts, WordpressRelatedPosts } from "typedb-web-schema";
+import { Link, WordpressPost, WordpressPostClassifier, WordpressPosts, WordpressRelatedPosts, WordpressSite } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
@@ -14,6 +14,7 @@ import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, sha
     styleUrls: ["./blog-post-page.component.scss"],
 })
 export class BlogPostPageComponent {
+    readonly site$: Observable<WordpressSite>;
     readonly post$: Observable<WordpressPost | null>;
     readonly tags$: Observable<WordpressPostClassifier[] | null>;
     relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
@@ -27,6 +28,7 @@ export class BlogPostPageComponent {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
+        this.site$ = this.blogService.site$;
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) => {
@@ -50,7 +52,7 @@ export class BlogPostPageComponent {
     }
 
     ngOnInit() {
-        combineLatest([this.post$, this.blogService.site$]).subscribe(
+        combineLatest([this.post$, this.site$]).subscribe(
             ([post, site]) => {
                 if (post) {
                     this._title.setTitle(`${post.title} - ${site.name}`);
