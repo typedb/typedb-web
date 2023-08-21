@@ -35,7 +35,9 @@ export class BlogListPageComponent implements OnInit {
         );
         this.posts$ = this.filter$.pipe(
             switchMap((filter) => {
-                return this.blogService.posts$.pipe(map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)))
+                return this.blogService.posts$.pipe(
+                    map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)),
+                );
             }),
         );
     }

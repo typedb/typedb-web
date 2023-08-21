@@ -1,6 +1,13 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { Link, WordpressPost, WordpressPostClassifier, WordpressPosts, WordpressRelatedPosts, WordpressSite } from "typedb-web-schema";
+import {
+    Link,
+    WordpressPost,
+    WordpressPostClassifier,
+    WordpressPosts,
+    WordpressRelatedPosts,
+    WordpressSite,
+} from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";

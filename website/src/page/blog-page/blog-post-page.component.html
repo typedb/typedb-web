@@ -3,8 +3,8 @@
     <section *ngIf="site$ | async as site" class="page-section">
       <a tdLink="/blog">
         <td-p-with-highlights
-            [value]="site.name | paragraphWithHighlights"
-            class="bp-site-title text-56-64 text-48-60-tablet text-28-36-mobile"
+          [value]="site.name | paragraphWithHighlights"
+          class="bp-site-title text-56-64 text-48-60-tablet text-28-36-mobile"
         />
       </a>
     </section>

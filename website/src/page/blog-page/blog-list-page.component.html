@@ -3,13 +3,13 @@
     <section *ngIf="site$ | async as site" class="page-section page-intro-section">
       <a tdLink="/blog">
         <td-h1-with-highlights
-            [value]="site.name | paragraphWithHighlights"
-            class="text-56-64 text-48-60-tablet text-28-36-mobile"
+          [value]="site.name | paragraphWithHighlights"
+          class="text-56-64 text-48-60-tablet text-28-36-mobile"
         />
       </a>
       <td-rich-text
-          [value]="site.description | richText"
-          class="narrow-section subtitle-l text-32-44 text-24-37-tablet text-16-24-mobile"
+        [value]="site.description | richText"
+        class="narrow-section subtitle-l text-32-44 text-24-37-tablet text-16-24-mobile"
       />
     </section>
 
@@ -19,7 +19,9 @@
       <section *ngIf="posts$ | async as posts">
         <div class="bp-primary-post">
           <a class="bp-primary-img-link" [tdLink]="readPostLink(posts[0])">
-            <td-aspect-ratio ratio="16:9"><img [src]="posts[0].featured_image" alt="" class="bp-img" /></td-aspect-ratio>
+            <td-aspect-ratio ratio="16:9">
+              <img [src]="posts[0].featured_image" alt="" class="bp-img" />
+            </td-aspect-ratio>
           </a>
           <div class="bp-primary-post-summary">
             <div class="bp-categories bp-primary-post-categories">
@@ -83,6 +85,5 @@
 
       <hr />
     </div>
-
   </div>
 </article>
