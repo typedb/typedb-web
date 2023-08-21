@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let item of items$ | async">
+    <a [tdLink]="item.link" [innerHtml]="item.text"></a>
+  </li>
+</ul>

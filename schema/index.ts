@@ -23,8 +23,8 @@ export const schemaTypes = [
 ];
 
 export {
-    type WordpressPosts, type WordpressPost, type WordpressSite, type WordpressPostClassifier,
-    type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter,
+    type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
+    type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
 } from "./blog";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";

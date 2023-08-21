@@ -25,7 +25,7 @@ export interface WordpressPost {
     attachment_count: number;
     attachments: { [id: number]: WordpressAttachment; };
     author: WordpressAuthor;
-    categories: { [name: string]: WordpressPostClassifier; };
+    categories: { [name: string]: WordpressTaxonomy; };
     content: string;
     date: string;
     discussion: any;
@@ -48,7 +48,7 @@ export interface WordpressPost {
     slug: string;
     status: "publish";
     sticky: boolean;
-    tags: { [name: string]: WordpressPostClassifier };
+    tags: { [name: string]: WordpressTaxonomy };
     terms: any;
     title: string;
 }
@@ -78,7 +78,12 @@ export interface WordpressAuthor {
     profile_URL: string;
 }
 
-export interface WordpressPostClassifier {
+export interface WordpressCategoriesResponse {
+    found: number;
+    categories: WordpressTaxonomy[];
+}
+
+export interface WordpressTaxonomy {
     ID: number;
     description: string;
     meta: any;
@@ -89,10 +94,12 @@ export interface WordpressPostClassifier {
 }
 
 export type WordpressRelatedPosts = {
-    tag: WordpressPostClassifier;
+    category: WordpressTaxonomy;
     posts: WordpressPost[];
 }[];
 
-export type BlogFilter = BlogCategoryFilter;
+export type BlogFilter = BlogNullFilter | BlogCategoryFilter;
+
+export type BlogNullFilter = {};
 
 export type BlogCategoryFilter = { categorySlug: string }

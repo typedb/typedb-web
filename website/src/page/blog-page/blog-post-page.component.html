@@ -12,10 +12,12 @@
     <div *ngIf="post$ | async as post" class="section-background-solid subsection-margin">
       <hr class="bp-intro-hr" />
 
+      <nav td-blog-navbar></nav>
+
       <section>
         <div class="bp-intro-section">
           <div class="bp-categories">
-            <p *ngFor="let category of postCategories(post)">{{ category.name }}</p>
+            <p *ngFor="let category of postCategories(post)" [innerHtml]="category.name"></p>
           </div>
           <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">{{ post.title }}</h1>
           <div
@@ -44,7 +46,7 @@
           </div>
           <aside *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
             <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">
-              More on {{ relatedPostGroup.tag.name }}
+              More on {{ relatedPostGroup.category.name }}
             </h2>
             <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
               <a [tdLink]="readPostLink(relatedPost)">

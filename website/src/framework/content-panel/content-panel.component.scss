@@ -5,6 +5,8 @@
     display: flex;
     flex-flow: row wrap;
     gap: 40px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 
     @media (max-width: $media-max-width-tablet) {
         padding: 32px;

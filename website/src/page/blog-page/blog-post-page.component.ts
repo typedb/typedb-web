@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import {
     Link,
     WordpressPost,
-    WordpressPostClassifier,
+    WordpressTaxonomy,
     WordpressPosts,
     WordpressRelatedPosts,
     WordpressSite,
@@ -23,7 +23,7 @@ import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, sha
 export class BlogPostPageComponent {
     readonly site$: Observable<WordpressSite>;
     readonly post$: Observable<WordpressPost | null>;
-    readonly tags$: Observable<WordpressPostClassifier[] | null>;
+    readonly categories$: Observable<WordpressTaxonomy[] | null>;
     relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
 
     constructor(
@@ -43,15 +43,15 @@ export class BlogPostPageComponent {
             }),
             shareReplay(),
         );
-        this.tags$ = this.post$.pipe(map((post) => (post ? Object.values(post.tags) : null)));
-        this.relatedPostGroups$ = this.tags$.pipe(
-            switchMap((tags) => {
-                if (!tags) return of(null);
+        this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
+        this.relatedPostGroups$ = this.categories$.pipe(
+            switchMap((categories) => {
+                if (!categories) return of(null);
                 return combineLatest(
-                    tags.map((tag) => {
+                    categories.map((category) => {
                         return this.blogService
-                            .getPostsByTag(tag)
-                            .pipe(map((result) => ({ tag: tag, posts: result.posts })));
+                            .getPostsByCategory(category)
+                            .pipe(map((result) => ({ category: category, posts: result.posts })));
                     }),
                 );
             }),
@@ -77,7 +77,7 @@ export class BlogPostPageComponent {
         );
     }
 
-    postCategories(post: WordpressPost): WordpressPostClassifier[] {
+    postCategories(post: WordpressPost): WordpressTaxonomy[] {
         return Object.values(post.categories);
     }
 

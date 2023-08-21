@@ -1,0 +1,24 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+@import "../../styles/sizes";
+
+ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+
+    &.bp-author-small {
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+    }
+}
