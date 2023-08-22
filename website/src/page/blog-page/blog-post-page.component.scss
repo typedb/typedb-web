@@ -42,11 +42,11 @@ $post-content-width: 800px;
 .bp-author-section {
     margin-top: 40px;
     width: $post-content-width;
+}
 
-    hr {
-        margin-top: 1em;
-        border-top: 1px solid $color-vaticle-light-purple;
-    }
+.bp-author-section-hr {
+    margin-top: 1em;
+    border-top: 1px solid $color-vaticle-light-purple;
 }
 
 .bp-featured-image {
