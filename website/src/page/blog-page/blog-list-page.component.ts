@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { BlogFilter, Link, WordpressPost, WordpressTaxonomy, WordpressSite } from "typedb-web-schema";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { ActivatedRoute, Router } from "@angular/router";
+import { BlogFilter, Link, WordpressPost, WordpressTaxonomy, blogNullFilter } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable, switchMap } from "rxjs";
+import { combineLatest, map, Observable } from "rxjs";
 
 @Component({
     selector: "td-blog-list-page",
@@ -13,10 +14,6 @@ import { map, Observable, switchMap } from "rxjs";
     styleUrls: ["./blog-list-page.component.scss"],
 })
 export class BlogListPageComponent implements OnInit {
-    site$: Observable<WordpressSite>;
-    posts$: Observable<WordpressPost[]>;
-    filter$: Observable<BlogFilter | null>;
-
     constructor(
         private router: Router,
         private _route: ActivatedRoute,
@@ -25,21 +22,18 @@ export class BlogListPageComponent implements OnInit {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
-        this.site$ = this.blogService.site$;
-        this.filter$ = this._route.paramMap.pipe(
-            map((params) => {
-                const categorySlug = params.get("categorySlug");
-                if (categorySlug) return { categorySlug };
-                return null;
-            }),
-        );
-        this.posts$ = this.filter$.pipe(
-            switchMap((filter) => {
-                return this.blogService.posts$.pipe(
-                    map((res) => res.posts.sort((a, b) => a.menu_order - b.menu_order)),
-                );
-            }),
-        );
+        this._route.paramMap
+            .pipe(
+                takeUntilDestroyed(),
+                map((params) => {
+                    const categorySlug = params.get("categorySlug");
+                    if (categorySlug) return { categorySlug };
+                    return blogNullFilter();
+                }),
+            )
+            .subscribe((filter) => {
+                this.blogService.filter$.next(filter);
+            });
     }
 
     ngOnInit() {
@@ -55,6 +49,18 @@ export class BlogListPageComponent implements OnInit {
                 this.router.navigate(["404"], { skipLocationChange: true });
             },
         );
+    }
+
+    get site$() {
+        return this.blogService.site$;
+    }
+
+    get posts$() {
+        return this.blogService.currentPosts$;
+    }
+
+    get filter$() {
+        return this.blogService.filter$;
     }
 
     readPostLink(post: WordpressPost): Link {

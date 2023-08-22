@@ -1,13 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TransferStateService } from "@scullyio/ng-lib";
-import { first, map, Observable } from "rxjs";
+import { BehaviorSubject, combineLatest, first, map, Observable, Subject, shareReplay } from "rxjs";
 import {
     WordpressPost,
     WordpressTaxonomy,
     WordpressPosts,
     WordpressSite,
     WordpressCategoriesResponse,
+    BlogFilter,
+    blogNullFilter,
 } from "typedb-web-schema";
 
 const siteApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
@@ -19,8 +21,10 @@ const categoriesApiUrl = `${siteApiUrl}/categories`;
 })
 export class BlogService {
     readonly site$: Observable<WordpressSite>;
-    readonly posts$: Observable<WordpressPosts>;
+    readonly allPosts$: Observable<WordpressPosts>;
+    currentPosts$: Observable<WordpressPost[]>;
     readonly categories$: Observable<WordpressTaxonomy[]>;
+    readonly filter$ = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
     constructor(
         private _http: HttpClient,
@@ -28,13 +32,26 @@ export class BlogService {
     ) {
         this.site$ = this.transferState
             .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
-            .pipe(first());
-        this.posts$ = this.transferState
-            .useScullyTransferState("blogPosts", this._http.get<WordpressPosts>(postsApiUrl))
-            .pipe(first());
+            .pipe(first(), shareReplay());
+        this.allPosts$ = this.transferState
+            .useScullyTransferState("blogAllPosts", this._http.get<WordpressPosts>(postsApiUrl))
+            .pipe(first(), shareReplay());
         this.categories$ = this.transferState
             .useScullyTransferState("blogCategories", this.getAllCategories())
-            .pipe(first());
+            .pipe(first(), shareReplay());
+        this.currentPosts$ = combineLatest([this.allPosts$.pipe(map((res) => res.posts)), this.filter$]).pipe(
+            map(([posts, filter]) => {
+                if ("categorySlug" in filter)
+                    return posts.filter((post) =>
+                        Object.values(post.categories)
+                            .map((cat) => cat.slug)
+                            .includes(filter.categorySlug),
+                    );
+                return posts;
+            }),
+            map((posts) => posts.sort((a, b) => a.menu_order - b.menu_order)),
+            shareReplay(),
+        );
     }
 
     private getAllCategories(): Observable<WordpressTaxonomy[]> {

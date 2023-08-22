@@ -102,4 +102,6 @@ export type BlogFilter = BlogNullFilter | BlogCategoryFilter;
 
 export type BlogNullFilter = {};
 
+export const blogNullFilter: () => BlogNullFilter = () => ({});
+
 export type BlogCategoryFilter = { categorySlug: string }

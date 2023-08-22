@@ -1,23 +1,25 @@
-<article tdPageBackground nebula="solutions" planet="pink">
-  <div class="article-content">
-    <section *ngIf="site$ | async as site" class="page-section">
+<article tdPageBackground nebula="solutions">
+  <div class="article-content article-content-no-planet">
+    <section *ngIf="site$ | async as site" class="page-section bp-nebula-section">
       <a tdLink="/blog">
         <td-p-with-highlights
           [value]="site.name | paragraphWithHighlights"
-          class="bp-site-title text-56-64 text-48-60-tablet text-28-36-mobile"
+          class="bp-site-title text-40-54 text-34-48-tablet text-22-33-mobile"
         />
       </a>
     </section>
 
-    <div *ngIf="post$ | async as post" class="section-background-solid subsection-margin">
+    <div *ngIf="post$ | async as post" class="section-background-solid bp-post-section">
       <hr class="bp-intro-hr" />
 
-      <nav td-blog-navbar></nav>
+      <nav td-blog-navbar variant="postPage"></nav>
 
       <section>
         <div class="bp-intro-section">
           <div class="bp-categories">
-            <p *ngFor="let category of postCategories(post)" [innerHtml]="category.name"></p>
+            <p *ngFor="let category of postCategories(post)">
+              <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
+            </p>
           </div>
           <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">{{ post.title }}</h1>
           <div
@@ -29,10 +31,10 @@
 
       <section>
         <div class="bp-author-section">
-          <img class="bp-featured-image subsection-margin" [src]="post.featured_image" alt="" />
+          <img class="bp-featured-image" [src]="post.featured_image" alt="" />
           <td-blog-authorship-bar [post]="post" size="medium" />
-          <hr />
         </div>
+        <hr />
       </section>
 
       <section class="bp-content-section">
@@ -46,7 +48,7 @@
           </div>
           <aside *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
             <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">
-              More on {{ relatedPostGroup.category.name }}
+              More on <span [innerHtml]="relatedPostGroup.category.name"></span>
             </h2>
             <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
               <a [tdLink]="readPostLink(relatedPost)">
@@ -69,7 +71,7 @@
         </div>
       </section>
 
-      <hr class="subsection-margin" />
+      <div class="subsection-margin"></div>
     </div>
   </div>
 </article>

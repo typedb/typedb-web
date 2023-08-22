@@ -7,7 +7,6 @@ hr {
 }
 
 ::ng-deep a:hover {
-    h1,
     h2,
     h3 {
         color: $color-vaticle-green;
@@ -68,7 +67,7 @@ hr {
         line-height: 18px;
     }
 
-    p {
+    a {
         padding: 2px 8px;
         background: $color-vaticle-purple;
         border: 1px solid $color-vaticle-light-purple;
@@ -147,7 +146,7 @@ td-aspect-ratio {
 }
 
 .bp-secondary-post {
-    flex: 1;
+    flex: 0 0 calc(50% - 20px);
     display: flex;
     flex-direction: column;
     gap: 24px;

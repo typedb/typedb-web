@@ -2,6 +2,12 @@
 @import "src/styles/mixins";
 @import "src/styles/sizes";
 
+$post-content-width: 800px;
+
+.bp-nebula-section {
+    margin-top: 120px;
+}
+
 ::ng-deep .bp-site-title p {
     color: $color-vaticle-white;
     font-weight: $font-weight-bold;
@@ -12,7 +18,7 @@
 }
 
 .bp-intro-section {
-    width: 750px;
+    width: $post-content-width;
 
     h1 {
         margin-top: 8px;
@@ -23,6 +29,10 @@
     }
 }
 
+.bp-post-section {
+    margin-top: 40px;
+}
+
 ::ng-deep .bp-excerpt .rt-reading-time {
     display: block;
     font-size: 16px;
@@ -30,6 +40,9 @@
 }
 
 .bp-author-section {
+    margin-top: 40px;
+    width: $post-content-width;
+
     hr {
         margin-top: 1em;
         border-top: 1px solid $color-vaticle-light-purple;
@@ -57,7 +70,7 @@
         line-height: 18px;
     }
 
-    p {
+    a {
         padding: 2px 8px;
         background: $color-vaticle-purple;
         border: 1px solid $color-vaticle-light-purple;
@@ -122,7 +135,7 @@
 }
 
 .bp-content ::ng-deep {
-    flex: 1;
+    width: $post-content-width;
     font-size: 16px;
     line-height: 24px;
     font-weight: $font-weight-light;

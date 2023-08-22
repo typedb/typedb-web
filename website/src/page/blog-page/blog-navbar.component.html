@@ -1,5 +1,5 @@
-<ul>
+<ul class="section" [class]="fontSizeClass">
   <li *ngFor="let item of items$ | async">
-    <a [tdLink]="item.link" [innerHtml]="item.text"></a>
+    <a [tdLink]="item.link" [innerHtml]="item.text" [class.bn-active]="isActive(item)"></a>
   </li>
 </ul>
