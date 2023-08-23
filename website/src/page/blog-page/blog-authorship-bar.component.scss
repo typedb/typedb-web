@@ -20,6 +20,13 @@
 
     h3 {
         font-weight: $font-weight-semi-bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        flex-shrink: 0;
     }
 }
 
