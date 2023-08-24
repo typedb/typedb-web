@@ -100,4 +100,20 @@ export class BlogPostPageComponent {
                 return "/assets/graphic/blog-placeholder-image-2.webp";
         }
     }
+
+    shareOnTwitterURL(post: WordpressPost): string {
+        return `https://twitter.com/intent/tweet?text=${post.title}&url=${encodeURIComponent(window.location.href)}`;
+    }
+
+    shareOnFacebookURL(post: WordpressPost): string {
+        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
+    }
+
+    shareOnLinkedInURL(post: WordpressPost): string {
+        return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+    }
+
+    shareOnRedditURL(post: WordpressPost): string {
+        return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title}`;
+    }
 }
