@@ -35,7 +35,7 @@ export class BlogPostPageComponent {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
-        this.site$ = this.blogService.site$;
+        this.site$ = this.blogService.site;
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) => {
@@ -44,14 +44,14 @@ export class BlogPostPageComponent {
             shareReplay(),
         );
         this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
-        this.relatedPostGroups$ = this.categories$.pipe(
-            switchMap((categories) => {
-                if (!categories) return of(null);
+        this.relatedPostGroups$ = combineLatest([this.post$, this.categories$]).pipe(
+            switchMap(([post, categories]) => {
+                if (!post || !categories) return of(null);
                 return combineLatest(
                     categories.map((category) => {
                         return this.blogService
                             .getPostsByCategory(category)
-                            .pipe(map((result) => ({ category: category, posts: result.posts })));
+                            .pipe(map((posts) => ({ category: category, posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3) })));
                     }),
                 );
             }),

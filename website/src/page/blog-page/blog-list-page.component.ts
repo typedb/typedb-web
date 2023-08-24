@@ -32,7 +32,7 @@ export class BlogListPageComponent implements OnInit {
                 }),
             )
             .subscribe((filter) => {
-                this.blogService.filter$.next(filter);
+                this.blogService.filter.next(filter);
             });
     }
 
@@ -52,15 +52,15 @@ export class BlogListPageComponent implements OnInit {
     }
 
     get site$() {
-        return this.blogService.site$;
+        return this.blogService.site;
     }
 
     get posts$() {
-        return this.blogService.currentPosts$;
+        return this.blogService.displayedPosts;
     }
 
     get filter$() {
-        return this.blogService.filter$;
+        return this.blogService.filter;
     }
 
     readPostLink(post: WordpressPost): Link {

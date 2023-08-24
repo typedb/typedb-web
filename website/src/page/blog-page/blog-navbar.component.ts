@@ -14,7 +14,7 @@ export class BlogNavbarComponent {
     activeFilter!: BlogFilter;
 
     constructor(private blogService: BlogService) {
-        this.items$ = this.blogService.categories$.pipe(
+        this.items$ = this.blogService.categories.pipe(
             startWith([]),
             map((categories) =>
                 categories.map((category) => ({
@@ -39,7 +39,7 @@ export class BlogNavbarComponent {
     }
 
     get filter$() {
-        return this.blogService.filter$;
+        return this.blogService.filter;
     }
 
     isActive(item: NavbarItem) {
