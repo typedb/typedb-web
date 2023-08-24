@@ -51,7 +51,12 @@ export class BlogPostPageComponent {
                     categories.map((category) => {
                         return this.blogService
                             .getPostsByCategory(category)
-                            .pipe(map((posts) => ({ category: category, posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3) })));
+                            .pipe(
+                                map((posts) => ({
+                                    category: category,
+                                    posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3),
+                                })),
+                            );
                     }),
                 );
             }),

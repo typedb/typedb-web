@@ -59,7 +59,8 @@ export class BlogService {
     }
 
     private listPosts(limit = 100, offset = 0): Observable<WordpressPost[]> {
-        return this._http.get<WordpressPosts>(`${postsApiUrl}?number=${limit}&offset=${offset}`)
+        return this._http
+            .get<WordpressPosts>(`${postsApiUrl}?number=${limit}&offset=${offset}`)
             .pipe(map((res) => res.posts));
     }
 
@@ -78,7 +79,13 @@ export class BlogService {
 
     getPostsByCategory(category: WordpressTaxonomy): Observable<WordpressPost[]> {
         return this.fetchedPosts.pipe(
-            map((posts) => posts.filter((post) => Object.values(post.categories).map((cat) => cat.slug).includes(category.slug)))
+            map((posts) =>
+                posts.filter((post) =>
+                    Object.values(post.categories)
+                        .map((cat) => cat.slug)
+                        .includes(category.slug),
+                ),
+            ),
         );
     }
 
