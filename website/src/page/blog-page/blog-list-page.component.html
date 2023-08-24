@@ -22,7 +22,7 @@
         <div class="bp-primary-post">
           <a class="bp-primary-img-link" [tdLink]="readPostLink(posts[0])">
             <td-aspect-ratio ratio="16:9">
-              <img [src]="posts[0].featured_image" alt="" class="bp-img" />
+              <img [src]="heroImageURL(posts[0])" alt="" class="bp-img" />
             </td-aspect-ratio>
           </a>
           <div class="bp-primary-post-summary">
@@ -46,7 +46,7 @@
             <div class="bp-secondary-post" *ngIf="post">
               <a [tdLink]="readPostLink(post)">
                 <td-aspect-ratio ratio="16:9"
-                  ><img [src]="post.featured_image" alt="" class="bp-img"
+                  ><img [src]="heroImageURL(post)" alt="" class="bp-img"
                 /></td-aspect-ratio>
               </a>
               <div class="bp-secondary-post-summary">
@@ -76,7 +76,7 @@
               <div class="bp-img-tertiary-container">
                 <a class="bp-tertiary-img-link" [tdLink]="readPostLink(post)">
                   <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
-                    <img [src]="post.featured_image" class="bp-img" [alt]="" />
+                    <img [src]="heroImageURL(post)" class="bp-img" [alt]="" />
                   </td-aspect-ratio>
                 </a>
                 <h3 class="text-18-26 bp-post-title hide-gt-mobile">{{ post.title }}</h3>

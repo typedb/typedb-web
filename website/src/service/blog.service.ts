@@ -60,7 +60,7 @@ export class BlogService {
 
     private listPosts(limit = 100, offset = 0): Observable<WordpressPost[]> {
         return this._http
-            .get<WordpressPosts>(`${postsApiUrl}?number=${limit}&offset=${offset}`)
+            .get<WordpressPosts>(`${postsApiUrl}?meta=sharing-buttons&number=${limit}&offset=${offset}`)
             .pipe(map((res) => res.posts));
     }
 

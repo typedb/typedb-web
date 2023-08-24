@@ -39,7 +39,7 @@
 
         <section class="bp-content-section">
           <div class="bp-content">
-            <figure><img class="bp-featured-image" [src]="post.featured_image" alt="" /></figure>
+            <figure><img class="bp-featured-image" [src]="heroImageURL(post)" alt="" /></figure>
             <div [innerHtml]="post.content"></div>
           </div>
           <div class="bp-sidebar">
@@ -57,7 +57,7 @@
                 <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
                   <a [tdLink]="readPostLink(relatedPost)">
                     <td-aspect-ratio ratio="16:9">
-                      <img [src]="relatedPost.featured_image" [alt]="" class="bp-img" />
+                      <img [src]="heroImageURL(relatedPost)" [alt]="" class="bp-img" />
                     </td-aspect-ratio>
                   </a>
                   <h2 class="text-24-32 text-22-33-tablet text-16-24-mobile bp-related-post-title">
