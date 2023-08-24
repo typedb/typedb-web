@@ -29,7 +29,7 @@ hr {
     flex-direction: row-reverse;
     align-items: flex-start;
     gap: 40px;
-    padding: 24px 0 24px 0;
+    padding: 40px 0;
 
     @media (max-width: $media-max-width-tablet) {
         gap: 32px;
@@ -146,7 +146,7 @@ td-aspect-ratio {
 .bp-secondary-posts {
     display: flex;
     gap: 40px;
-    padding: 24px 0 24px 0;
+    padding: 40px 0;
 }
 
 .bp-secondary-post {
@@ -179,7 +179,7 @@ td-aspect-ratio {
 }
 
 .bp-posts-list-section {
-    padding: 24px 0;
+    padding: 40px 0;
 }
 
 .bp-posts-list {
@@ -190,11 +190,11 @@ td-aspect-ratio {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 24px;
+    gap: 40px;
 
     & + & {
-        margin-top: 24px;
-        padding-top: 24px;
+        margin-top: 40px;
+        padding-top: 40px;
         border-top: 1px solid $color-vaticle-light-purple;
     }
 
