@@ -98,6 +98,15 @@ export type WordpressRelatedPosts = {
     posts: WordpressPost[];
 }[];
 
+export type WordpressACFResponse = {
+    id: number;
+    acf: WordpressACF;
+}[];
+
+export interface WordpressACF {
+    social_sharing_description: string | null;
+}
+
 export type BlogFilter = BlogNullFilter | BlogCategoryFilter;
 
 export type BlogNullFilter = {};

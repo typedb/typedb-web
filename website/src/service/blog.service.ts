@@ -10,11 +10,14 @@ import {
     WordpressCategoriesResponse,
     BlogFilter,
     blogNullFilter,
+    WordpressACF,
+    WordpressACFResponse,
 } from "typedb-web-schema";
 
 const siteApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
 const postsApiUrl = `${siteApiUrl}/posts`;
 const categoriesApiUrl = `${siteApiUrl}/categories`;
+const acfApiUrl = `https://typedb.wpcomstaging.com/wp-json/acf/v3/posts`;
 
 @Injectable({
     providedIn: "root",
@@ -24,6 +27,7 @@ export class BlogService {
     readonly fetchedPosts: Observable<WordpressPost[]>;
     readonly displayedPosts: Observable<WordpressPost[]>;
     readonly categories: Observable<WordpressTaxonomy[]>;
+    readonly acf: Observable<WordpressACFResponse>;
     readonly filter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
     constructor(
@@ -38,6 +42,9 @@ export class BlogService {
             .pipe(first(), shareReplay()); // TODO: currently this is only the first 100 posts - add ability to get more
         this.categories = this.transferState
             .useScullyTransferState("blogCategories", this.listCategories())
+            .pipe(first(), shareReplay());
+        this.acf = this.transferState
+            .useScullyTransferState("blogACF", this.listCustomFields())
             .pipe(first(), shareReplay());
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
             map(([posts, filter]) => {
@@ -86,6 +93,18 @@ export class BlogService {
                         .includes(category.slug),
                 ),
             ),
+        );
+    }
+
+    listCustomFields(): Observable<WordpressACFResponse> {
+        return this._http.get<WordpressACFResponse>(acfApiUrl).pipe(shareReplay());
+    }
+
+    getCustomFieldsForPost(post: WordpressPost) {
+        return this.acf.pipe(
+            map((acf) => {
+                return acf.find((entry) => entry.id === post.ID)!.acf;
+            }),
         );
     }
 

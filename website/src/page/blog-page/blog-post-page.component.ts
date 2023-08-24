@@ -7,10 +7,11 @@ import {
     WordpressPosts,
     WordpressRelatedPosts,
     WordpressSite,
+    WordpressACF,
 } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
-import { Title } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, shareReplay, switchMap, tap } from "rxjs";
@@ -23,6 +24,7 @@ import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, sha
 export class BlogPostPageComponent {
     readonly site$: Observable<WordpressSite>;
     readonly post$: Observable<WordpressPost | null>;
+    readonly customFields$: Observable<WordpressACF | null>;
     readonly categories$: Observable<WordpressTaxonomy[] | null>;
     relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
 
@@ -32,6 +34,7 @@ export class BlogPostPageComponent {
         private contentService: ContentService,
         private blogService: BlogService,
         private _title: Title,
+        private meta: Meta,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {
@@ -44,6 +47,9 @@ export class BlogPostPageComponent {
             shareReplay(),
         );
         this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
+        this.customFields$ = this.post$.pipe(
+            switchMap((post) => (post ? this.blogService.getCustomFieldsForPost(post) : of(null))),
+        );
         this.relatedPostGroups$ = combineLatest([this.post$, this.categories$]).pipe(
             switchMap(([post, categories]) => {
                 if (!post || !categories) return of(null);
@@ -62,10 +68,14 @@ export class BlogPostPageComponent {
     }
 
     ngOnInit() {
-        combineLatest([this.post$, this.site$]).subscribe(
-            ([post, site]) => {
-                if (post) {
+        combineLatest([this.post$, this.customFields$, this.site$]).subscribe(
+            ([post, customFields, site]) => {
+                if (post && customFields) {
                     this._title.setTitle(`${post.title} - ${site.name}`);
+                    this.meta.addTag({
+                        property: "og:description",
+                        content: customFields.social_sharing_description || "",
+                    });
                     this._analytics.hubspot.trackPageView();
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
