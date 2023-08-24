@@ -43,19 +43,22 @@
             <div [innerHtml]="post.content"></div>
           </div>
           <div class="bp-sidebar">
-            <div class="bp-sharing-links">
-              <a [href]="shareOnTwitterURL(post)" target="_blank"
-                ><img src="/assets/icon/social/twitter-rectangle.svg" alt="Twitter"
-              /></a>
-              <a [href]="shareOnFacebookURL(post)" target="_blank"
-                ><img src="/assets/icon/social/github-rectangle.svg" alt="Facebook"
-              /></a>
-              <a [href]="shareOnLinkedInURL(post)" target="_blank"
-                ><img src="/assets/icon/social/linkedin-rectangle.svg" alt="LinkedIn"
-              /></a>
-              <a [href]="shareOnRedditURL(post)" target="_blank"
-                ><img src="/assets/icon/social/github-rectangle.svg" alt="Reddit"
-              /></a>
+            <div class="bp-sharing-section">
+              <h4 class="text-18-26 text-12-18-mobile">Share this article</h4>
+              <div class="bp-sharing-links">
+                <a [href]="shareOnTwitterURL(post)" target="_blank">
+                  <img src="/assets/icon/social/twitter-rectangle.svg" alt="Twitter" />
+                </a>
+                <a [href]="shareOnFacebookURL(post)" target="_blank">
+                  <img src="/assets/icon/social/facebook-rectangle.svg" alt="Facebook" />
+                </a>
+                <a [href]="shareOnLinkedInURL(post)" target="_blank">
+                  <img src="/assets/icon/social/linkedin-rectangle.svg" alt="LinkedIn" />
+                </a>
+                <a [href]="shareOnRedditURL(post)" target="_blank">
+                  <img src="/assets/icon/social/reddit-rectangle.svg" alt="Reddit" />
+                </a>
+              </div>
             </div>
             <ng-container *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
               <aside *ngIf="relatedPostGroup.posts.length">
