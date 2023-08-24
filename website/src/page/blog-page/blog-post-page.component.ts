@@ -91,9 +91,13 @@ export class BlogPostPageComponent {
     heroImageURL(post: WordpressPost): string {
         if (post.featured_image) return post.featured_image;
         switch (post.slug.length % 3) {
-            case 0: return "/assets/graphic/blog-placeholder-image-0.svg";
-            case 1: return "/assets/graphic/blog-placeholder-image-1.svg";
-            case 2: default: return "/assets/graphic/blog-placeholder-image-2.webp";
+            case 0:
+                return "/assets/graphic/blog-placeholder-image-0.svg";
+            case 1:
+                return "/assets/graphic/blog-placeholder-image-1.svg";
+            case 2:
+            default:
+                return "/assets/graphic/blog-placeholder-image-2.webp";
         }
     }
 }

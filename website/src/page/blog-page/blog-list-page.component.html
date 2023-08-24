@@ -45,9 +45,7 @@
           <ng-container *ngFor="let post of [posts[1], posts[2]]">
             <div class="bp-secondary-post" *ngIf="post">
               <a [tdLink]="readPostLink(post)">
-                <td-aspect-ratio ratio="16:9"
-                  ><img [src]="heroImageURL(post)" alt="" class="bp-img"
-                /></td-aspect-ratio>
+                <td-aspect-ratio ratio="16:9"><img [src]="heroImageURL(post)" alt="" class="bp-img" /></td-aspect-ratio>
               </a>
               <div class="bp-secondary-post-summary">
                 <div class="bp-categories">
