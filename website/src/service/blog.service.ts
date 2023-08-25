@@ -43,9 +43,7 @@ export class BlogService {
         this.categories = this.transferState
             .useScullyTransferState("blogCategories", this.listCategories())
             .pipe(shareReplay());
-        this.acf = this.transferState
-            .useScullyTransferState("blogACF", this.listCustomFields())
-            .pipe(shareReplay());
+        this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
             map(([posts, filter]) => {
                 if ("categorySlug" in filter)
