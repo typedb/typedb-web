@@ -690,12 +690,16 @@ body {
     .mat-mdc-icon-button {
         font-size: 24px;
 
-        &.td-small {
+        &.td-icon-small {
             font-size: 20px;
         }
 
-        &.td-large {
+        &.td-icon-large {
             font-size: 32px;
+        }
+
+        &.td-icon-xl {
+            font-size: 40px;
         }
     }
 
