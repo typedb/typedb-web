@@ -4,6 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { FrameworkModule } from "../framework/framework.module";
+import { BlogAuthorshipBarComponent } from "./blog-page/blog-authorship-bar.component";
+import { BlogListPageComponent } from "./blog-page/blog-list-page.component";
+import { BlogNavbarComponent } from "./blog-page/blog-navbar.component";
+import { BlogPostPageComponent } from "./blog-page/blog-post-page.component";
 import {
     DeploymentPageComponent,
     DeploymentPageTechnicolorBlockComponent,
@@ -27,6 +31,10 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
 
 @NgModule({
     declarations: [
+        BlogAuthorshipBarComponent,
+        BlogListPageComponent,
+        BlogNavbarComponent,
+        BlogPostPageComponent,
         DeploymentPageComponent,
         DeploymentPageTechnicolorBlockComponent,
         EventDetailsPageComponent,

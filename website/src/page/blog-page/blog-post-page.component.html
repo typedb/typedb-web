@@ -1,0 +1,101 @@
+<article tdPageBackground nebula="solutions">
+  <div class="article-content article-content-no-planet">
+    <section *ngIf="site$ | async as site" class="page-section bp-nebula-section">
+      <a tdLink="/blog">
+        <td-p-with-highlights
+          [value]="site.name | paragraphWithHighlights"
+          class="bp-site-title text-40-54 text-34-48-tablet text-22-33-mobile"
+        />
+      </a>
+    </section>
+
+    <div class="section-background-solid bp-post-section">
+      <hr class="bp-intro-hr" />
+
+      <nav td-blog-navbar variant="postPage"></nav>
+
+      <ng-container *ngIf="post$ | async as post">
+        <section>
+          <div class="bp-intro-section">
+            <div class="bp-categories">
+              <p *ngFor="let category of postCategories(post)">
+                <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
+              </p>
+            </div>
+            <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">{{ post.title }}</h1>
+            <div
+              class="bp-excerpt text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
+              [innerHtml]="post.excerpt"
+            ></div>
+          </div>
+        </section>
+
+        <section>
+          <div class="bp-author-section">
+            <td-blog-authorship-bar [post]="post" size="medium" />
+          </div>
+          <hr class="bp-author-section-hr" />
+        </section>
+
+        <section class="bp-content-section">
+          <div class="bp-content">
+            <figure><img class="bp-featured-image" [src]="heroImageURL(post)" alt="" /></figure>
+            <div [innerHtml]="post.content"></div>
+          </div>
+          <div class="bp-sidebar">
+            <div class="bp-sharing-section">
+              <h4 class="text-18-26 text-12-18-mobile">Share this article</h4>
+              <div class="bp-sharing-links">
+                <a [href]="shareOnTwitterURL(post)" target="_blank">
+                  <img src="/assets/icon/social/twitter-rectangle.svg" alt="Twitter" />
+                </a>
+                <a [href]="shareOnFacebookURL(post)" target="_blank">
+                  <img src="/assets/icon/social/facebook-rectangle.svg" alt="Facebook" />
+                </a>
+                <a [href]="shareOnLinkedInURL(post)" target="_blank">
+                  <img src="/assets/icon/social/linkedin-rectangle.svg" alt="LinkedIn" />
+                </a>
+                <a [href]="shareOnRedditURL(post)" target="_blank">
+                  <img src="/assets/icon/social/reddit-rectangle.svg" alt="Reddit" />
+                </a>
+              </div>
+            </div>
+            <div class="bp-newsletter-section">
+              <h4 class="text-18-26 text-12-18-mobile">TypeDB Newsletter</h4>
+              <p class="text-16-24 text-14-21-mobile">
+                Stay up to date with the latest TypeDB announcements and events.
+              </p>
+              <td-button [button]="subscribeToNewsletterButton" />
+            </div>
+            <ng-container *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
+              <aside *ngIf="relatedPostGroup.posts.length">
+                <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">
+                  More on <span [innerHtml]="relatedPostGroup.category.name"></span>
+                </h2>
+                <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
+                  <a [tdLink]="readPostLink(relatedPost)">
+                    <td-aspect-ratio ratio="16:9">
+                      <img [src]="heroImageURL(relatedPost)" [alt]="" class="bp-img" />
+                    </td-aspect-ratio>
+                  </a>
+                  <h2 class="text-24-32 text-22-33-tablet text-16-24-mobile bp-related-post-title">
+                    <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
+                  </h2>
+                  <div
+                    class="bp-related-post-description text-16-24 text-14-21-mobile"
+                    [innerHtml]="relatedPost.excerpt"
+                  ></div>
+                  <div>
+                    <h3 class="text-14-21 text-12-18-mobile bp-related-post-author">{{ relatedPost.author.name }}</h3>
+                  </div>
+                </div>
+              </aside>
+            </ng-container>
+          </div>
+        </section>
+      </ng-container>
+
+      <div class="subsection-margin"></div>
+    </div>
+  </div>
+</article>

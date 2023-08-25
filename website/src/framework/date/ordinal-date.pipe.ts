@@ -4,7 +4,8 @@ import { Pipe, PipeTransform } from "@angular/core";
     name: "ordinalDate",
 })
 export class OrdinalDatePipe implements PipeTransform {
-    transform(value: Date): string {
+    transform(value: Date | string): string {
+        if (typeof value === "string") value = new Date(value);
         if (!value) {
             return "";
         }

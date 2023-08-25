@@ -1,0 +1,234 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+@import "../../styles/sizes";
+
+hr {
+    margin: 0;
+}
+
+::ng-deep a:hover {
+    h2,
+    h3 {
+        color: $color-vaticle-green;
+        text-decoration: underline;
+    }
+}
+
+.bp-title-section {
+    margin-top: 160px;
+}
+
+::ng-deep .rt-reading-time {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.bp-primary-post {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px 0;
+
+    @media (max-width: $media-max-width-tablet) {
+        gap: 32px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .bp-primary-img-link {
+        flex: 0 0 60%;
+
+        @media (max-width: $media-max-width-mobile) {
+            flex-basis: auto;
+        }
+    }
+
+    .bp-post-title {
+        @include line-clamp(3);
+    }
+}
+
+.bp-categories {
+    font-weight: $font-weight-semi-bold;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 4px;
+
+    &.bp-primary-post-categories {
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    a {
+        padding: 2px 8px;
+        background: $color-vaticle-purple;
+        border: 1px solid $color-vaticle-light-purple;
+        border-radius: $border-radius;
+        color: $color-vaticle-secondary-pink;
+    }
+}
+
+.bp-post-title {
+    font-weight: $font-weight-bold;
+    margin-top: 4px;
+
+    a:hover {
+        color: $color-vaticle-green;
+        text-decoration: underline;
+    }
+}
+
+.bp-primary-post-description {
+    font-weight: $font-weight-light;
+    margin-top: 16px;
+    @include line-clamp(5);
+
+    @media (max-width: $media-max-width-tablet) {
+        margin-top: 8px;
+    }
+}
+
+.bp-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+    }
+}
+
+.bp-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+td-aspect-ratio {
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    overflow: hidden;
+}
+
+.bp-img {
+    transition: transform 250ms ease;
+
+    &:hover {
+        transform: scale(1.015);
+    }
+}
+
+.bp-secondary-posts {
+    display: flex;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.bp-secondary-post {
+    flex: 0 0 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .bp-post-title {
+        @include line-clamp(2);
+    }
+}
+
+.bp-secondary-post-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bp-secondary-post-description {
+    margin-top: 16px;
+    @include line-clamp(4);
+}
+
+.bp-posts-list-section {
+    padding: 40px 0;
+}
+
+.bp-posts-list {
+    list-style: none;
+}
+
+.bp-post-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+
+    & + & {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid $color-vaticle-light-purple;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 16px 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+}
+
+.bp-img-tertiary-container {
+    flex: 1;
+    display: flex;
+    gap: 12px;
+}
+
+.bp-tertiary-img-link,
+.bp-img-tertiary {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.bp-post-text-tertiary {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+
+    .bp-post-title {
+        @include line-clamp(1);
+    }
+
+    .bp-tertiary-post-description {
+        margin-top: 12px;
+        @include line-clamp(3);
+    }
+}

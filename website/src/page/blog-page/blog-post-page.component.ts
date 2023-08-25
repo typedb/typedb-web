@@ -1,0 +1,136 @@
+import { Component } from "@angular/core";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import {
+    Link,
+    WordpressPost,
+    WordpressTaxonomy,
+    WordpressPosts,
+    WordpressRelatedPosts,
+    WordpressSite,
+    WordpressACF,
+    LinkButton,
+} from "typedb-web-schema";
+import { BlogService } from "../../service/blog.service";
+import { ContentService } from "../../service/content.service";
+import { Meta, Title } from "@angular/platform-browser";
+import { AnalyticsService } from "../../service/analytics.service";
+import { IdleMonitorService } from "@scullyio/ng-lib";
+import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, shareReplay, switchMap, tap } from "rxjs";
+
+@Component({
+    selector: "td-blog-post-page",
+    templateUrl: "./blog-post-page.component.html",
+    styleUrls: ["./blog-post-page.component.scss"],
+})
+export class BlogPostPageComponent {
+    readonly site$: Observable<WordpressSite>;
+    readonly post$: Observable<WordpressPost | null>;
+    readonly customFields$: Observable<WordpressACF | null>;
+    readonly categories$: Observable<WordpressTaxonomy[] | null>;
+    relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
+    readonly subscribeToNewsletterButton = new LinkButton({
+        style: "primary",
+        link: Link.fromAddress("?dialog=newsletter"),
+        text: "Subscribe",
+        comingSoon: false,
+    });
+
+    constructor(
+        private router: Router,
+        private _activatedRoute: ActivatedRoute,
+        private contentService: ContentService,
+        private blogService: BlogService,
+        private _title: Title,
+        private meta: Meta,
+        private _analytics: AnalyticsService,
+        private _idleMonitor: IdleMonitorService,
+    ) {
+        this.site$ = this.blogService.site;
+        this.post$ = this._activatedRoute.paramMap.pipe(
+            map((params: ParamMap) => params.get("slug")),
+            switchMap((slug: string | null) => {
+                return slug ? this.blogService.getPostBySlug(slug) : of(null);
+            }),
+            shareReplay(),
+        );
+        this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
+        this.customFields$ = this.post$.pipe(
+            switchMap((post) => (post ? this.blogService.getCustomFieldsForPost(post) : of(null))),
+        );
+        this.relatedPostGroups$ = combineLatest([this.post$, this.categories$]).pipe(
+            switchMap(([post, categories]) => {
+                if (!post || !categories) return of(null);
+                return combineLatest(
+                    categories.map((category) => {
+                        return this.blogService.getPostsByCategory(category).pipe(
+                            map((posts) => ({
+                                category: category,
+                                posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3),
+                            })),
+                        );
+                    }),
+                );
+            }),
+        );
+    }
+
+    ngOnInit() {
+        combineLatest([this.post$, this.customFields$, this.site$]).subscribe(
+            ([post, customFields, site]) => {
+                if (post && customFields) {
+                    this._title.setTitle(`${post.title} - ${site.name}`);
+                    this.meta.addTag({
+                        property: "og:description",
+                        content: customFields.social_sharing_description || "",
+                    });
+                    this._analytics.hubspot.trackPageView();
+                } else {
+                    this.router.navigate(["404"], { skipLocationChange: true });
+                }
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 10000);
+            },
+            (_err) => {
+                this.router.navigate(["404"], { skipLocationChange: true });
+            },
+        );
+    }
+
+    postCategories(post: WordpressPost): WordpressTaxonomy[] {
+        return Object.values(post.categories);
+    }
+
+    readPostLink(post: WordpressPost): Link {
+        return new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false });
+    }
+
+    heroImageURL(post: WordpressPost): string {
+        if (post.featured_image) return post.featured_image;
+        switch (post.slug.length % 3) {
+            case 0:
+                return "/assets/graphic/blog-placeholder-image-0.svg";
+            case 1:
+                return "/assets/graphic/blog-placeholder-image-1.svg";
+            case 2:
+            default:
+                return "/assets/graphic/blog-placeholder-image-2.webp";
+        }
+    }
+
+    shareOnTwitterURL(post: WordpressPost): string {
+        return `https://twitter.com/intent/tweet?text=${post.title}&url=${encodeURIComponent(window.location.href)}`;
+    }
+
+    shareOnFacebookURL(post: WordpressPost): string {
+        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
+    }
+
+    shareOnLinkedInURL(post: WordpressPost): string {
+        return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+    }
+
+    shareOnRedditURL(post: WordpressPost): string {
+        return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title}`;
+    }
+}

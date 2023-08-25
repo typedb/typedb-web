@@ -96,7 +96,7 @@
                                 },
                                 {
                                     "replace": "src/service/content-endpoint.service.ts",
-                                    "with": "src/service/content-endpoint.service.staging.ts"
+                                    "with": "src/service/content-endpoint.service.prod.ts"
                                 }
                             ],
                             "outputHashing": "all"

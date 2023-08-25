@@ -22,6 +22,11 @@ export const schemaTypes = [
     ...organisationSchemas, ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema, ...webinarSchemas, whitePaperSchema, eventSchema
 ];
 
+export {
+    type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
+    type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
+    blogNullFilter, type WordpressACFResponse, type WordpressACF,
+} from "./blog";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel } from "./component/content-text-panel";

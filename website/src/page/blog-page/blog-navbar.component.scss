@@ -1,0 +1,52 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+@import "../../styles/sizes";
+
+:host {
+    height: 72px;
+    margin-bottom: 40px;
+
+    &.bn-variant-post-page {
+        height: 58px;
+    }
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+    height: 100%;
+    list-style: none;
+    border-bottom: 1px solid $color-vaticle-light-purple;
+
+    &.bp-author-small {
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+    }
+}
+
+a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+
+    &:hover {
+        color: $color-vaticle-green;
+        text-decoration: underline;
+    }
+
+    &.bn-active {
+        font-weight: $font-weight-semi-bold;
+    }
+}

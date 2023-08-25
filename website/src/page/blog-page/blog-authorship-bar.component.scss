@@ -1,0 +1,66 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+@import "../../styles/sizes";
+
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+
+    &.bp-author-small {
+        gap: 8px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        gap: 8px;
+    }
+
+    h3 {
+        font-weight: $font-weight-semi-bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        flex-shrink: 0;
+    }
+}
+
+.bp-author-name {
+    margin-left: 8px;
+}
+
+.bp-avatar {
+    display: block;
+    width: 56px;
+    height: 56px;
+    border: 1px solid $color-vaticle-light-purple;
+    border-radius: $border-radius;
+
+    &.bp-avatar-small {
+        width: 40px;
+        height: 40px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: 40px;
+        height: 40px;
+
+        &.bp-avatar-small {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
+
+.bp-reading-time-icon {
+    margin: 0 6px -6px 0;
+}
+
+.bp-authored-date {
+    padding: 4px 0 4px 32px;
+    border-left: 1px solid $color-vaticle-light-purple;
+}

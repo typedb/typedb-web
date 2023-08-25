@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { BlogListPageComponent } from "./page/blog-page/blog-list-page.component";
+import { BlogPostPageComponent } from "./page/blog-page/blog-post-page.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./page/events-page/events-page.component";
@@ -33,6 +35,9 @@ const routes: Routes = [
     { path: "events/:slug", component: EventDetailsPageComponent },
     { path: "events", component: EventsPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
+    { path: "blog", component: BlogListPageComponent },
+    { path: "blog/category/:categorySlug", component: BlogListPageComponent },
+    { path: "blog/:slug", component: BlogPostPageComponent },
     { path: "support", component: SupportPageComponent },
     { path: "services", component: ServicesPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent },

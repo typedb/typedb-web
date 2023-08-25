@@ -69,44 +69,54 @@ code {
     font-family: "Ubuntu Mono", monospace;
 }
 
-typedb-website {
-    article {
-        min-height: 1080px;
+article {
+    min-height: 1080px;
 
-        > .article-content {
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 584px;
-            position: relative;
-
-            @media (max-width: $media-max-width-tablet) {
-                padding-bottom: 315px;
-            }
-
-            @media (max-width: $media-max-width-mobile) {
-                padding-bottom: 250px;
-            }
-        }
-    }
-
-    section,
-    .section {
+    > .article-content {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 584px;
         position: relative;
-        z-index: 1;
-        width: $section-width;
-        max-width: calc(100vw - 40px);
-        margin-left: auto;
-        margin-right: auto;
+
+        &.article-content-no-planet {
+            padding-bottom: 0;
+        }
 
         @media (max-width: $media-max-width-tablet) {
-            width: $section-width-tablet;
-            max-width: calc(100vw - $section-padding-tablet * 2);
+            padding-bottom: 315px;
+
+            &.article-content-no-planet {
+                padding-bottom: 0;
+            }
         }
 
         @media (max-width: $media-max-width-mobile) {
-            width: $section-width-mobile;
-            max-width: calc(100vw - 24px);
+            padding-bottom: 250px;
+
+            &.article-content-no-planet {
+                padding-bottom: 0;
+            }
         }
+    }
+}
+
+section,
+.section {
+    position: relative;
+    z-index: 1;
+    width: $section-width;
+    max-width: calc(100vw - 40px);
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: $media-max-width-tablet) {
+        width: $section-width-tablet;
+        max-width: calc(100vw - $section-padding-tablet * 2);
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        width: $section-width-mobile;
+        max-width: calc(100vw - 24px);
     }
 }
 
@@ -114,39 +124,31 @@ typedb-website {
     max-width: 870px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-pre {
+/* prettier-ignore */
+h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     margin: 0;
     padding: 0;
     font-size: unset;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* prettier-ignore */
+h1, h2, h3, h4, h5, h6 {
     color: $color-vaticle-white;
+}
+
+aside {
+    /* prettier-ignore */
+    h1, h2, h3, h4, h5, h6 {
+        color: $color-vaticle-grey;
+    }
 }
 
 h1 {
     font-weight: $font-weight-bold;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* prettier-ignore */
+h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
@@ -165,6 +167,11 @@ aside {
     a,
     a:visited {
         color: $color-vaticle-green;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -309,6 +316,7 @@ $text-sizes-map: (
     56 64,
     48 60,
     40 54,
+    40 48,
     34 48,
     32 44,
     28 43,
@@ -318,6 +326,7 @@ $text-sizes-map: (
     22 33,
     20 32,
     20 30,
+    20 28,
     18 32,
     18 28,
     18 26,
@@ -376,6 +385,10 @@ $text-sizes-map: (
 
 .text-quiet {
     color: $color-vaticle-secondary-light-grey;
+}
+
+.section-background-solid {
+    background-color: $color-vaticle-black-purple;
 }
 
 .card {
