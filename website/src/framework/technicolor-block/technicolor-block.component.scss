@@ -130,6 +130,7 @@ $block-gap-mobile: 64px;
 }
 
 .tb-graphic-dot {
+    display: none !important; // temporary patch to hide dot pending QA review
     position: absolute;
     width: 9px;
     height: 9px;
