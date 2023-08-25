@@ -105,7 +105,8 @@ export class BlogService {
     getCustomFieldsForPost(post: WordpressPost) {
         return this.acf.pipe(
             map((acf) => {
-                return acf.find((entry) => entry.id === post.ID)!.acf;
+                // TODO: unclear why ACF doesn't have an entry for every post (only "A New Era for TypeDB" is missing one!)
+                return acf.find((entry) => entry.id === post.ID)?.acf || { social_sharing_description: null };
             }),
         );
     }
