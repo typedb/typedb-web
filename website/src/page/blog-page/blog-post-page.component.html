@@ -60,6 +60,13 @@
                 </a>
               </div>
             </div>
+            <div class="bp-newsletter-section">
+              <h4 class="text-18-26 text-12-18-mobile">TypeDB Newsletter</h4>
+              <p class="text-16-24 text-14-21-mobile">
+                Stay up to date with the latest TypeDB announcements and events.
+              </p>
+              <td-button [button]="subscribeToNewsletterButton" />
+            </div>
             <ng-container *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
               <aside *ngIf="relatedPostGroup.posts.length">
                 <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">

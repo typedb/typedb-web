@@ -293,7 +293,12 @@ $post-content-width: 800px;
     }
 }
 
+.bp-newsletter-section p {
+    margin: 16px 0 24px;
+}
+
 .bp-sharing-section h4,
+.bp-newsletter-section h4,
 .bp-related-post-group-heading {
     color: $color-vaticle-grey;
     font-weight: $font-weight-semi-bold;

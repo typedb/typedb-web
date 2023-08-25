@@ -8,6 +8,7 @@ import {
     WordpressRelatedPosts,
     WordpressSite,
     WordpressACF,
+    LinkButton,
 } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { ContentService } from "../../service/content.service";
@@ -27,6 +28,12 @@ export class BlogPostPageComponent {
     readonly customFields$: Observable<WordpressACF | null>;
     readonly categories$: Observable<WordpressTaxonomy[] | null>;
     relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
+    readonly subscribeToNewsletterButton = new LinkButton({
+        style: "primary",
+        link: Link.fromAddress("?dialog=newsletter"),
+        text: "Subscribe",
+        comingSoon: false,
+    });
 
     constructor(
         private router: Router,
