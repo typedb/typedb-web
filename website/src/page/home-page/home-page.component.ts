@@ -49,7 +49,7 @@ export class HomePageComponent implements OnInit {
 @Component({
     selector: "td-home-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
+        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -69,8 +69,8 @@ export class HomePageTechnicolorBlockComponent {
         ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
-    get size(): TechnicolorBlockComponent["size"] {
-        return this.block === this.page!.introSection ? "large" : "medium";
+    get level(): TechnicolorBlockComponent["level"] {
+        return this.block === this.page!.introSection ? "h1" : "h2";
     }
 
     get index() {

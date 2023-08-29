@@ -2,7 +2,7 @@
   <div class="article-content article-content-no-planet">
     <section *ngIf="site$ | async as site" class="page-section bp-title-section">
       <a tdLink="/blog">
-        <td-h1-with-highlights
+        <td-heading-with-highlights
           [value]="site.name | paragraphWithHighlights"
           class="text-56-64 text-48-60-tablet text-28-36-mobile"
         />

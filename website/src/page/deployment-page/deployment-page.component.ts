@@ -43,13 +43,13 @@ export class DeploymentPageComponent implements OnInit {
 @Component({
     selector: "td-deployment-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]='block' [index]='index' [size]='size' [noLeadingLine]='index === 0'></td-technicolor-block>",
+        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0'></td-technicolor-block>",
 })
 export class DeploymentPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
 
-    get size(): TechnicolorBlockComponent["size"] {
-        return this.index === 0 ? "large" : "medium";
+    get level(): TechnicolorBlockComponent["level"] {
+        return this.index === 0 ? "h1" : "h2";
     }
 }

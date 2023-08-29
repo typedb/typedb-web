@@ -1,4 +1,4 @@
-<p *ngFor="let paragraph of value.paragraphs">
+<p *ngFor="let paragraph of value.paragraphs" [class]="paragraphClass">
   <ng-container *ngFor="let span of paragraph.spans">
     <span *ngIf="!span.level" [ngClass]="getSpanClasses(span)">{{ span.text }}</span>
     <ul *ngIf="span.level">

@@ -2,11 +2,11 @@ import { Component, Input } from "@angular/core";
 import { ParagraphWithHighlights } from "typedb-web-schema";
 
 @Component({
-    selector: "td-h1-with-highlights",
-    template:
-        '<h1><span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span></h1>\n',
+    selector: "td-heading-with-highlights",
+    templateUrl: "heading-with-highlights.component.html",
 })
-export class H1WithHighlightsComponent {
+export class HeadingWithHighlightsComponent {
+    @Input() level: "h1" | "h2" = "h2";
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex: string = "#02DAC9";
 }

@@ -42,7 +42,8 @@ body {
     height: 100%;
     background-color: $default-background;
     color: $default-text-color;
-    font-size: 16px;
+    font-size: 17px;
+    line-height: calc(25 / 17);
 
     // smoother edges on browsers running on Mac OS
     -webkit-font-smoothing: antialiased;
@@ -120,6 +121,48 @@ section,
     }
 }
 
+h1 {
+    font-size: $font-size-h1;
+    line-height: $line-height-h1;
+}
+
+h2 {
+    font-size: $font-size-h2;
+    line-height: $line-height-h2;
+}
+
+h3 {
+    font-size: $font-size-h3;
+    line-height: $line-height-h3;
+}
+
+h4 {
+    font-size: $font-size-h4;
+    line-height: $line-height-h4;
+}
+
+.text-p1 {
+    font-size: $font-size-p1;
+    line-height: $line-height-p1;
+}
+
+.text-p2 {
+    font-size: $font-size-p2;
+    line-height: $line-height-p2;
+}
+
+p,
+.text-p3 {
+    font-size: $font-size-p3;
+    line-height: $line-height-p3;
+}
+
+aside,
+.text-aside {
+    font-size: $font-size-aside;
+    line-height: $line-height-aside;
+}
+
 .narrow-section {
     max-width: 870px;
 }
@@ -128,7 +171,6 @@ section,
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     margin: 0;
     padding: 0;
-    font-size: unset;
 }
 
 /* prettier-ignore */
@@ -143,12 +185,13 @@ aside {
     }
 }
 
-h1 {
+h1,
+h2 {
     font-weight: $font-weight-bold;
 }
 
 /* prettier-ignore */
-h2, h3, h4, h5, h6 {
+h3, h4, h5, h6 {
     font-weight: 400;
 }
 

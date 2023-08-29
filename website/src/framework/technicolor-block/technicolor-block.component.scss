@@ -215,7 +215,7 @@ $block-gap-mobile: 64px;
     }
 }
 
-.tb-text-l {
+.text-p1 {
     margin-top: 32px;
 
     @media (max-width: $media-max-width-tablet) {
@@ -223,7 +223,7 @@ $block-gap-mobile: 64px;
     }
 }
 
-.tb-text-m {
+.text-p2 {
     margin-top: 24px;
 
     @media (max-width: $media-max-width-mobile) {
@@ -243,6 +243,6 @@ $block-gap-mobile: 64px;
     }
 }
 
-td-h1-with-highlights {
+td-heading-with-highlights {
     display: block;
 }

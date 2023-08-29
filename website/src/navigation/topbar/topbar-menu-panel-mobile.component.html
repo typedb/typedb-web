@@ -1,5 +1,5 @@
 <div *ngFor="let column of columns" class="mm-column">
-  <h3 class="text-14-21 text-12-16-mobile">
+  <h3>
     <strong>{{ column.title }}</strong>
   </h3>
   <ul *ngIf="isListColumn(column)">
@@ -16,11 +16,9 @@
 </div>
 
 <ng-template #linkContent let-item="item">
-  <h4 class="text-18-26 text-14-21-mobile">
+  <h4>
     <span>{{ item.title }}</span>
     <mat-icon *ngIf="item.link?.isForExternalDomain()" svgIcon="link" class="tb-external-link-icon" />
   </h4>
-  <p class="text-14-21 text-12-18-mobile mm-list-column-description">
-    {{ item.description }}
-  </p>
+  <p class="text-aside mm-list-column-description">{{ item.description }}</p>
 </ng-template>

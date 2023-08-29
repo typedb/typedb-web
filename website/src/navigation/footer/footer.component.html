@@ -10,11 +10,9 @@
   </div>
   <nav class="ft-section ft-nav-section">
     <div class="ft-contact-section">
-      <h3 class="text-28-43 text-22-33-tablet">
-        {{ footer.contactSectionTitle }}
-      </h3>
+      <h3>{{ footer.contactSectionTitle }}</h3>
       <ul>
-        <li *ngFor="let contactMediaLink of contactMediaLinks" class="text-16-28">
+        <li *ngFor="let contactMediaLink of contactMediaLinks">
           <a [tdLink]="contactMediaLink.link">
             <mat-icon [svgIcon]="contactMediaLink.svgIcon" class="td-icon-large" />
             <p>{{ contactMediaLink.text }}</p>
@@ -24,9 +22,9 @@
     </div>
     <div class="ft-sitemap-section">
       <div *ngFor="let column of footer.columns">
-        <h3 class="text-28-43 text-22-33-tablet">{{ column.title }}</h3>
+        <h3>{{ column.title }}</h3>
         <ul>
-          <li *ngFor="let item of column.items" class="text-16-28">
+          <li *ngFor="let item of column.items">
             <a [tdLink]="item">{{ item.text }}</a>
           </li>
         </ul>
@@ -34,12 +32,12 @@
     </div>
   </nav>
   <div class="ft-section ft-copyright-section">
-    <aside class="text-14-21 text-12-18-mobile">
+    <aside>
       © {{ copyrightYear }} Vaticle Ltd
       <br />
       Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd
     </aside>
-    <p class="text-14-21 ft-credits">
+    <aside class="ft-credits">
       <span class="cdk-visually-hidden"> Made </span>
       <mat-icon svgIcon="code" class="ft-icon-code" />
       with
@@ -47,6 +45,6 @@
       <mat-icon svgIcon="heart" class="ft-icon-heart" />
       by
       <img src="/assets/logo/vaticle-text-only.svg" alt="Vaticle" class="ft-logo-vaticle" />
-    </p>
+    </aside>
   </div>
 </footer>

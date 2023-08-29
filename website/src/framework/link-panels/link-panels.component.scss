@@ -91,8 +91,8 @@
         text-align: start;
         padding: 32px;
 
-        h2 {
-            height: calc(32px * 2);
+        h3 {
+            height: calc($line-height-h3 * 2);
         }
 
         td-rich-text {
@@ -166,10 +166,6 @@ td-button {
     @media (max-width: $media-max-width-mobile) {
         margin-top: 16px;
     }
-}
-
-.link-tertiary {
-    line-height: 32px;
 }
 
 .lc-flex-container {
