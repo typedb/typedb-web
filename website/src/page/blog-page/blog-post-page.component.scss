@@ -207,6 +207,7 @@ $post-content-width: 800px;
         border: 1px solid $color-vaticle-light-purple;
         background: $color-vaticle-purple;
         padding: 20px;
+        overflow: auto;
     }
 
     figure {
@@ -219,6 +220,7 @@ $post-content-width: 800px;
             display: block;
             border-radius: $border-radius;
             border: 1px solid $color-vaticle-light-purple;
+            max-width: 100%;
         }
 
         figcaption {
