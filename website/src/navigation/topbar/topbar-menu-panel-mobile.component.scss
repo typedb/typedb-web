@@ -42,7 +42,6 @@ h4 {
     display: flex;
     align-items: center;
     gap: 4px;
-    color: inherit;
     color: $color-vaticle-white;
 }
 
@@ -53,14 +52,19 @@ h4 {
 
 a:hover,
 a:focus {
-    h4 {
+    .mm-list-column-item-name {
         color: $color-vaticle-green;
         text-decoration: underline;
     }
 }
 
+.mm-column-title {
+    color: $color-vaticle-white;
+}
+
 .mm-list-column-item-name {
     color: $color-vaticle-white;
+    font-weight: $font-weight-semi-bold;
 }
 
 .mm-list-column-description {

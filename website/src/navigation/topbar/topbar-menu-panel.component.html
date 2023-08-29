@@ -1,6 +1,6 @@
 <div class="mp-root">
   <div *ngFor="let column of columns" class="mp-column">
-    <h4 class="mp-column-title">{{ column.title }}</h4>
+    <p class="mp-column-title">{{ column.title }}</p>
     <ul *ngIf="isListColumn(column)">
       <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
         <a
