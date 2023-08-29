@@ -1,7 +1,5 @@
 <div *ngFor="let column of columns" class="mm-column">
-  <h3>
-    <strong>{{ column.title }}</strong>
-  </h3>
+  <h4><strong>{{ column.title }}</strong></h4>
   <ul *ngIf="isListColumn(column)">
     <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
       <a *ngSwitchCase="true" [tdLink]="item.link" (click)="onClick(item)">
@@ -16,9 +14,9 @@
 </div>
 
 <ng-template #linkContent let-item="item">
-  <h4>
+  <p class="mm-list-column-item-name">
     <span>{{ item.title }}</span>
     <mat-icon *ngIf="item.link?.isForExternalDomain()" svgIcon="link" class="tb-external-link-icon" />
-  </h4>
+  </p>
   <p class="text-aside mm-list-column-description">{{ item.description }}</p>
 </ng-template>
