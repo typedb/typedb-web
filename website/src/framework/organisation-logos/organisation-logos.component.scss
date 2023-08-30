@@ -32,6 +32,12 @@
             padding: 12px;
         }
     }
+
+    &.ol-root-transparent {
+        gap: 42px;
+        width: 600px;
+        opacity: .7;
+    }
 }
 
 .ol-image {
