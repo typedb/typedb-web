@@ -1,5 +1,7 @@
 <div *ngFor="let column of columns" class="mm-column">
-  <p class="mm-column-title"><strong>{{ column.title }}</strong></p>
+  <p class="mm-column-title">
+    <strong>{{ column.title }}</strong>
+  </p>
   <ul *ngIf="isListColumn(column)">
     <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
       <a *ngSwitchCase="true" [tdLink]="item.link" (click)="onClick(item)">
