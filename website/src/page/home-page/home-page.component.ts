@@ -54,7 +54,7 @@ export class HomePageComponent implements OnInit {
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() page!: HomePage;
-    @Input() variant: "none" | "conclusion" = "none";
+    @Input() variant: "none" | "intro" | "conclusion" = "none";
 
     get allBlocks(): TechnicolorBlock[] {
         return [
