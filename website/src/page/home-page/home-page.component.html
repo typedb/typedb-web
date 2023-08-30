@@ -4,9 +4,12 @@
       <td-home-page-technicolor-block
         [block]="page.introSection"
         [page]="page"
+        variant="intro"
+        [organisationLogos]="page.introSection.userLogos"
         class="hp-intro-block"
       ></td-home-page-technicolor-block>
-      <td-organisation-logos [organisations]="page.introSection.userLogos" appearance="panel"></td-organisation-logos>
+      <!-- TODO: delete -->
+      <td-organisation-logos [organisations]="[]" appearance="panel"></td-organisation-logos>
     </ng-container>
     <ng-container *ngIf="page.featuresSection">
       <td-home-page-technicolor-block [block]="page.featuresSection" [page]="page"></td-home-page-technicolor-block>

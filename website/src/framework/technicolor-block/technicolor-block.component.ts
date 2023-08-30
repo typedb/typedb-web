@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, DestroyRef, ElementRef, Input } from "@angular/core";
-import { TechnicolorBlock } from "typedb-web-schema";
+import { Organisation, TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
     selector: "td-technicolor-block",
@@ -15,6 +15,7 @@ export class TechnicolorBlockComponent implements AfterViewInit {
     @Input() noTrailingLine?: boolean;
     @Input() noBody?: boolean;
     @Input() longUpperChain?: boolean;
+    @Input() organisationLogos?: Organisation[];
 
     private readonly opacityChangeDistance = 15;
 

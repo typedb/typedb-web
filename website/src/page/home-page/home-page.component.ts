@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { HomePage, homePageSchemaName, SanityHomePage } from "typedb-web-schema";
+import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { SocialMediaLink } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
@@ -49,12 +49,13 @@ export class HomePageComponent implements OnInit {
 @Component({
     selector: "td-home-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"'></td-technicolor-block>",
+        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"' [organisationLogos]='organisationLogos'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() page!: HomePage;
     @Input() variant: "none" | "intro" | "conclusion" = "none";
+    @Input() organisationLogos?: Organisation[];
 
     get allBlocks(): TechnicolorBlock[] {
         return [

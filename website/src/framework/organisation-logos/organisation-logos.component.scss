@@ -3,13 +3,11 @@
 
 .ol-root {
     border-radius: $border-radius;
-    padding-left: 72px;
-    padding-right: 72px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 32px;
 
     @media (max-width: $media-max-width-tablet) {
         padding-left: 32px;
@@ -22,8 +20,7 @@
     }
 
     &.ol-root-panel {
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding: 48px 72px;
         border: 1px solid $color-vaticle-light-purple;
         background: $color-vaticle-purple;
 

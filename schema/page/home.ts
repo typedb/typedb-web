@@ -1,4 +1,4 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
@@ -45,6 +45,7 @@ interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     userLogos: SanityReference<SanityOrganisation>[];
+    displayUserLogos: boolean;
 }
 
 interface SanityFeaturesSection extends SanityCoreSection {
@@ -104,7 +105,7 @@ class IntroSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            userLogos: data.userLogos.map(x => new Organisation(db.resolveRef(x), db)),
+            userLogos: data.displayUserLogos ? data.userLogos.map(x => new Organisation(db.resolveRef(x), db)) : [],
         }));
     }
 }
@@ -215,6 +216,13 @@ const sectionSchemas = [
         ...titleBodyIconFields,
         optionalActionsField,
         Object.assign({}, organisationLogosField, { name: "userLogos" }),
+        defineField({
+            name: "displayUserLogos",
+            title: "Display Organisation Logos?",
+            type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
+        }),
         isVisibleField,
     ]),
     sectionSchema("features", [
@@ -225,7 +233,7 @@ const sectionSchemas = [
             title: "Feature Tabs",
             type: "array",
             of: [{type: contentTextPanelSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.required(),
+            validation: requiredRule,
         }),
         isVisibleField,
     ]),
