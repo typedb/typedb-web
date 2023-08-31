@@ -1,9 +1,10 @@
 @use "@angular/material" as mat;
 
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import "prism";
 @import "colors";
+@import "mixins";
 @import "sizes";
+@import "prism";
 
 $default-typography: mat.define-typography-level(
     $font-size: inherit,
@@ -435,9 +436,8 @@ $text-sizes-map: (
 }
 
 .card {
-    border-radius: $border-radius;
-    background-color: $color-vaticle-purple;
-    border: 1px solid $color-vaticle-light-purple;
+    @include card-appearance;
+    @include card-padding;
     transition: border-color 150ms ease;
 
     &.hoverable:hover {
@@ -451,15 +451,7 @@ $text-sizes-map: (
 }
 
 .card-padding {
-    padding: 40px;
-
-    @media (max-width: $media-max-width-tablet) {
-        padding: 32px;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        padding: 12px;
-    }
+    @include card-padding;
 }
 
 .hs-form label {

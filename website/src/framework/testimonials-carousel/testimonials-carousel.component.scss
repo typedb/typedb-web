@@ -1,5 +1,6 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "mixins";
+@import "sizes";
 
 :host {
     display: block;
@@ -25,9 +26,7 @@
     right: 0;
     left: 0;
     margin: 0 auto;
-    border-radius: $border-radius;
-    background: $color-vaticle-deep-purple;
-    border: 1px solid $color-vaticle-light-purple;
+    @include card-appearance;
     opacity: 1;
     box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
     transition-property: transform, opacity;
@@ -47,12 +46,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 40px;
+    @include card-padding;
     border-radius: $border-radius;
-
-    @media (max-width: $media-max-width-mobile) {
-        padding: 20px;
-    }
 }
 
 .tc-details {

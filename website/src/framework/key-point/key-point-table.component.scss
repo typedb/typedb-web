@@ -1,5 +1,6 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "mixins";
+@import "sizes";
 
 .kpt-table {
     tr {
@@ -8,15 +9,7 @@
 
     th,
     td {
-        padding: 32px;
-
-        @media (max-width: $media-max-width-tablet) {
-            padding: 24px;
-        }
-
-        @media (max-width: $media-max-width-mobile) {
-            padding: 16px;
-        }
+        @include card-padding;
     }
 
     th {

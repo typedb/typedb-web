@@ -5,8 +5,8 @@
         [isIntroSection]="true"
         [title]="page.introSection.title"
         [body]="page.introSection.body"
-      ></td-title-body-actions-section>
-      <div class="subsection-margin wp-primary-whitepaper card card-padding">
+      />
+      <div class="subsection-margin card wp-primary-whitepaper">
         <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
           <img [src]="page.featuredWhitePaper.landscapeImageURL" class="wp-img" [alt]="" />
         </td-aspect-ratio>
@@ -25,7 +25,7 @@
           <td-button [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"></td-button>
         </div>
       </div>
-      <div class="subsection-margin wp-grid card">
+      <div class="subsection-margin card wp-grid">
         <div *ngFor="let whitePaper of page.whitePapersList" class="wp-grid-item">
           <div class="wp-img-and-text">
             <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
