@@ -57,15 +57,6 @@ export class TechnicolorBlockComponent implements AfterViewInit {
         }
     }
 
-    get bodyClass(): string {
-        switch (this.level) {
-            case "h1":
-                return "text-p1";
-            case "h2":
-                return "text-p2";
-        }
-    }
-
     private initDotListeners() {
         const dotEls = this.elementRef.nativeElement.querySelectorAll<HTMLElement>(".tb-graphic-dot");
         const handleScroll = () => dotEls.forEach((dotEl) => this.updateDotPosition(dotEl));
