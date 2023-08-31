@@ -1,7 +1,28 @@
+@import "colors";
+@import "sizes";
+
 @mixin line-clamp($lines) {
     display: -webkit-box;
     -webkit-line-clamp: $lines;
     line-clamp: $lines;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+@mixin card-appearance {
+    border-radius: $border-radius;
+    background-color: $color-vaticle-purple;
+    border: 1px solid $color-vaticle-light-purple;
+}
+
+@mixin card-padding {
+    padding: $card-padding;
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        padding: $card-padding-tablet;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: $card-padding-mobile;
+    }
 }

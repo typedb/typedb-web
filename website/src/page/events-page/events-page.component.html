@@ -7,7 +7,7 @@
         [body]="page.introSection.body"
       />
 
-      <div *ngIf="page.featuredEvent" class="subsection-margin ep-primary-event card">
+      <div *ngIf="page.featuredEvent" class="subsection-margin card ep-primary-event">
         <td-aspect-ratio ratio="16:9">
           <img [src]="page.featuredEvent.imageURL" class="ep-img" [alt]="" />
         </td-aspect-ratio>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div *ngIf="page.eventsList" class="ep-grid subsection-margin card">
+      <div *ngIf="page.eventsList" class="subsection-margin card ep-grid">
         <div *ngFor="let event of page.eventsList" class="ep-grid-item">
           <div class="ep-img-and-text">
             <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">

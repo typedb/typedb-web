@@ -25,7 +25,6 @@ export class ContentPanelComponent {
         return {
             section: true,
             card: true,
-            "card-padding": true,
             "cp-root": true,
         };
     }

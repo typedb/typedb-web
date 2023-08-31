@@ -1,26 +1,24 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "mixins";
+@import "sizes";
 
 .sm-root {
     display: flex;
     flex-direction: row;
+    @include card-appearance;
 }
 
 .sm-panel {
     flex: 1;
+    @include card-padding;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 0;
     gap: 8px;
 
     & + & {
         border-left: 1px solid $color-vaticle-light-purple;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        padding: 18px 0;
     }
 
     .mat-icon {

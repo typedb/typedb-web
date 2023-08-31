@@ -1,5 +1,5 @@
-<section class="sm-root card">
-  <a *ngFor="let link of socialMediaLinks" class="sm-panel text-16-20" [tdLink]="link.link">
+<section class="sm-root">
+  <a *ngFor="let link of socialMediaLinks" class="sm-panel" [tdLink]="link.link">
     <mat-icon [svgIcon]="link.svgIcon" />
     <p class="hide-mobile">{{ link.text }}</p>
   </a>

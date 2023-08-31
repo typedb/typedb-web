@@ -45,7 +45,10 @@ import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pi
 import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
 import { RichTextPipe } from "./text/rich-text.pipe";
-import { H1WithHighlightsComponent, ParagraphWithHighlightsComponent } from "./text/text-with-highlights.component";
+import {
+    HeadingWithHighlightsComponent,
+    ParagraphWithHighlightsComponent,
+} from "./text/text-with-highlights.component";
 import { TooltipComponent } from "./tooltip/tooltip.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
@@ -80,7 +83,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureTableComponent,
         FeatureTableCellComponent,
         GraphVisualisationComponent,
-        H1WithHighlightsComponent,
+        HeadingWithHighlightsComponent,
         IllustrationComponent,
         InfoButtonComponent,
         LinkDirective,
@@ -133,7 +136,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         DateRangePipe,
         EventDurationPipe,
         FeatureTableComponent,
-        H1WithHighlightsComponent,
+        HeadingWithHighlightsComponent,
         IllustrationComponent,
         KeyPointPanels2x2Component,
         KeyPointTableComponent,
