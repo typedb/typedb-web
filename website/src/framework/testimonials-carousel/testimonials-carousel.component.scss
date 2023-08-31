@@ -68,9 +68,9 @@
     gap: 16px;
 
     img {
-        width: 48px;
-        height: 48px;
-        border-radius: 3px;
+        width: 54px;
+        height: 54px;
+        border-radius: $border-radius;
 
         @media (max-width: $media-max-width-mobile) {
             width: 40px;

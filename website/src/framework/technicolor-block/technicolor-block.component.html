@@ -25,7 +25,7 @@
       <div class="tb-margin-top"></div>
       <td-heading-with-highlights [value]="block.title" [themeColorHex]="themeColorHex" [level]="level" />
       <ng-container *ngIf="!noBody">
-        <p *ngFor="let paragraph of block.body.paragraphs" [class]="bodyClass">
+        <p *ngFor="let paragraph of block.body.paragraphs" class="text-p2">
           <span
             *ngFor="let span of paragraph.spans"
             [ngStyle]="span.marks.includes('strong') ? { color: themeColorHex } : undefined"
