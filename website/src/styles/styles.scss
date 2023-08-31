@@ -1,9 +1,10 @@
 @use "@angular/material" as mat;
 
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import "prism";
 @import "colors";
+@import "mixins";
 @import "sizes";
+@import "prism";
 
 $default-typography: mat.define-typography-level(
     $font-size: inherit,
@@ -42,7 +43,8 @@ body {
     height: 100%;
     background-color: $default-background;
     color: $default-text-color;
-    font-size: 16px;
+    font-size: $font-size-base;
+    line-height: calc(25 / 17);
 
     // smoother edges on browsers running on Mac OS
     -webkit-font-smoothing: antialiased;
@@ -120,6 +122,48 @@ section,
     }
 }
 
+h1 {
+    font-size: $font-size-h1;
+    line-height: $line-height-h1;
+}
+
+h2 {
+    font-size: $font-size-h2;
+    line-height: $line-height-h2;
+}
+
+h3 {
+    font-size: $font-size-h3;
+    line-height: $line-height-h3;
+}
+
+h4 {
+    font-size: $font-size-h4;
+    line-height: $line-height-h4;
+}
+
+.text-p1 {
+    font-size: $font-size-p1;
+    line-height: $line-height-p1;
+}
+
+.text-p2 {
+    font-size: $font-size-p2;
+    line-height: $line-height-p2;
+}
+
+p,
+.text-p3 {
+    font-size: $font-size-p3;
+    line-height: $line-height-p3;
+}
+
+aside,
+.text-aside {
+    font-size: $font-size-aside;
+    line-height: $line-height-aside;
+}
+
 .narrow-section {
     max-width: 870px;
 }
@@ -128,7 +172,6 @@ section,
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
     margin: 0;
     padding: 0;
-    font-size: unset;
 }
 
 /* prettier-ignore */
@@ -143,12 +186,13 @@ aside {
     }
 }
 
-h1 {
+h1,
+h2 {
     font-weight: $font-weight-bold;
 }
 
 /* prettier-ignore */
-h2, h3, h4, h5, h6 {
+h3, h4, h5, h6 {
     font-weight: 400;
 }
 
@@ -392,9 +436,8 @@ $text-sizes-map: (
 }
 
 .card {
-    border-radius: $border-radius;
-    background-color: $color-vaticle-purple;
-    border: 1px solid $color-vaticle-light-purple;
+    @include card-appearance;
+    @include card-padding;
     transition: border-color 150ms ease;
 
     &.hoverable:hover {
@@ -408,15 +451,7 @@ $text-sizes-map: (
 }
 
 .card-padding {
-    padding: 40px;
-
-    @media (max-width: $media-max-width-tablet) {
-        padding: 32px;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        padding: 12px;
-    }
+    @include card-padding;
 }
 
 .hs-form label {

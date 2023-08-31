@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, DestroyRef, ElementRef, Input } from "@angular/core";
-import { TechnicolorBlock } from "typedb-web-schema";
+import { Organisation, TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
     selector: "td-technicolor-block",
@@ -9,12 +9,13 @@ import { TechnicolorBlock } from "typedb-web-schema";
 export class TechnicolorBlockComponent implements AfterViewInit {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
-    @Input() size: "medium" | "large" = "medium";
+    @Input() level: "h1" | "h2" = "h2";
     @Input() contentWidth: "narrow" | "wide" = "wide";
     @Input() noLeadingLine?: boolean;
     @Input() noTrailingLine?: boolean;
     @Input() noBody?: boolean;
     @Input() longUpperChain?: boolean;
+    @Input() organisationLogos?: Organisation[];
 
     private readonly opacityChangeDistance = 15;
 
@@ -56,21 +57,12 @@ export class TechnicolorBlockComponent implements AfterViewInit {
         }
     }
 
-    get titleClass(): string {
-        switch (this.size) {
-            case "large":
-                return "text-56-64 text-48-60-tablet text-34-48-mobile";
-            case "medium":
-                return "text-40-54 text-34-48-tablet text-22-33-mobile";
-        }
-    }
-
     get bodyClass(): string {
-        switch (this.size) {
-            case "large":
-                return "tb-text-l text-32-44 text-24-37-tablet text-16-24-mobile";
-            case "medium":
-                return "tb-text-m text-24-32 text-20-32-tablet text-14-21-mobile";
+        switch (this.level) {
+            case "h1":
+                return "text-p1";
+            case "h2":
+                return "text-p2";
         }
     }
 

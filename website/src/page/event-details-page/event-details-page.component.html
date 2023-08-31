@@ -1,7 +1,7 @@
 <article tdPageBackground nebula="cloud" planet="blue_pink">
   <div *ngIf="event$ | async; let event" class="article-content">
     <section class="page-section page-intro-section">
-      <td-h1-with-highlights [value]="event.title" class="text-56-64 text-48-60-tablet text-28-36-mobile" />
+      <td-heading-with-highlights [value]="event.title" class="text-56-64 text-48-60-tablet text-28-36-mobile" />
       <ul class="ed-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
         <li>{{ event.tag }}</li>
         <li>

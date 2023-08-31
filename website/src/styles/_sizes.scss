@@ -38,3 +38,32 @@ $media-max-width-mobile: 767px;
 $media-min-width-tablet: 768px;
 $media-max-width-tablet: 1199px;
 $media-min-width-desktop: 1200px;
+
+@function remify($font-size) {
+    @return $font-size;
+    // TODO: I've heard that rem units are best for accessibility, but major sites including Apple don't use them -
+    //  we should investigate best practices
+    //@return calc($font-size / $font-size-base) * 1rem;
+}
+
+$font-size-base: 17px;
+$font-size-h1: remify(51px);
+$line-height-h1: calc(remify(59px) / $font-size-h1);
+$font-size-h2: remify(39px);
+$line-height-h2: calc(remify(47px) / $font-size-h2);
+$font-size-h3: remify(25px);
+$line-height-h3: calc(remify(33px) / $font-size-h3);
+$font-size-h4: remify(21px);
+$line-height-h4: calc(remify(29px) / $font-size-h4);
+$font-size-p1: remify(27px);
+$line-height-p1: calc(remify(35px) / $font-size-p1);
+$font-size-p2: remify(21px);
+$line-height-p2: calc(remify(29px) / $font-size-p2);
+$font-size-p3: remify(17px);
+$line-height-p3: calc(remify(25px) / $font-size-p3);
+$font-size-aside: remify(15px);
+$line-height-aside: calc(remify(23px) / $font-size-aside);
+
+$card-padding: 28px;
+$card-padding-tablet: 20px;
+$card-padding-mobile: 12px;

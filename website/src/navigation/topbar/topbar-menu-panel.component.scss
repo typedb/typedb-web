@@ -60,8 +60,14 @@
 }
 
 .mp-column-title {
+    color: $color-vaticle-white;
     padding-bottom: 8px;
     border-bottom: 1px solid $color-vaticle-light-purple;
+    font-weight: $font-weight-semi-bold;
+}
+
+.mp-list-column-item-name {
+    color: $color-vaticle-white;
 }
 
 .mp-list-column-description {
@@ -91,7 +97,7 @@ a {
 
 a:hover,
 a:focus {
-    h4 {
+    .mp-list-column-item-name {
         color: $color-vaticle-green;
         text-decoration: underline;
     }

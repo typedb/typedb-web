@@ -2,13 +2,13 @@
 
 .hp-intro-block {
     display: inline-block;
-    margin-top: 288px;
+    margin-top: 136px;
 
-    @media (max-width: $media-max-width-tablet) {
-        margin-top: 216px;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: 100px;
-    }
+    //@media (max-width: $media-max-width-tablet) {
+    //    margin-top: 216px;
+    //}
+    //
+    //@media (max-width: $media-max-width-mobile) {
+    //    margin-top: 100px;
+    //}
 }

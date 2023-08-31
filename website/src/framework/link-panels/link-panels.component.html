@@ -7,20 +7,14 @@
         [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
         [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
       >
-        <div *ngIf="panel.button.comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
-        <div>
-          <img class="lc-icon" [src]="$any(panel).iconURL" alt="" />
-        </div>
+        <aside *ngIf="panel.button.comingSoon" class="lp-coming-soon">coming soon</aside>
+        <div><img class="lc-icon" [src]="$any(panel).iconURL" alt="" /></div>
         <div class="lc-flex-container">
-          <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile lc-title">
-            {{ panel.title }}
-          </h2>
-          <td-rich-text [value]="panel.body" class="text-16-28 text-12-18-mobile"></td-rich-text>
+          <h3 class="lc-title">{{ panel.title }}</h3>
+          <td-rich-text [value]="panel.body" />
           <ng-container [ngSwitch]="ctaStrength">
             <div class="flex"></div>
-            <a *ngSwitchCase="'weak'" class="text-16-24 text-14-24-mobile link-tertiary lc-cta-weak">{{
-              panel.button.text
-            }}</a>
+            <a *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</a>
           </ng-container>
         </div>
       </a>
@@ -32,11 +26,9 @@
           (mouseenter)="setPanelHovered(panel, true)"
           (mouseleave)="setPanelHovered(panel, false)"
         >
-          <div *ngIf="panel.button.comingSoon" class="text-14-21 lp-coming-soon">coming soon</div>
-          <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
-            {{ panel.title }}
-          </h2>
-          <td-rich-text [value]="panel.body" class="text-16-24 text-12-18-mobile"></td-rich-text>
+          <aside *ngIf="panel.button.comingSoon" class="lp-coming-soon">coming soon</aside>
+          <h3>{{ panel.title }}</h3>
+          <td-rich-text [value]="panel.body" />
           <div class="flex"></div>
           <td-button
             [button]="panel.button"
@@ -51,12 +43,10 @@
   </div>
   <div class="section lc-root-cols-4" *ngSwitchCase="4">
     <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="hoverable card lc-card lc-card-cols-4">
-      <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile">
-        {{ panel.title }}
-      </h2>
-      <td-rich-text [value]="panel.body" class="text-16-24 text-12-18-mobile"></td-rich-text>
+      <h3>{{ panel.title }}</h3>
+      <td-rich-text [value]="panel.body" />
       <div class="flex"></div>
-      <a class="text-16-24 text-14-24-mobile link-tertiary">{{ panel.button.text }}</a>
+      <a class="link-tertiary">{{ panel.button.text }}</a>
     </a>
   </div>
 </ng-container>

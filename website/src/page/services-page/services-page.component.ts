@@ -53,7 +53,7 @@ export class ServicesPageComponent implements OnInit {
     template: `<td-technicolor-block
         [block]="block"
         [index]="index"
-        [size]="size"
+        [level]="level"
         [noLeadingLine]="index === 0"
         [longUpperChain]="block === page.contactSection"
     />`,
@@ -66,8 +66,8 @@ export class ServicesPageTechnicolorBlockComponent {
         return this.allBlocks.indexOf(this.block);
     }
 
-    get size(): TechnicolorBlockComponent["size"] {
-        return this.block === this.page.introSection ? "large" : "medium";
+    get level(): TechnicolorBlockComponent["level"] {
+        return this.block === this.page.introSection ? "h1" : "h2";
     }
 
     private get allBlocks(): TechnicolorBlock[] {

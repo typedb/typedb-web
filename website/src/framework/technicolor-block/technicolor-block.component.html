@@ -23,11 +23,7 @@
     </div>
     <div [class]="'tb-body tb-body-' + contentWidth">
       <div class="tb-margin-top"></div>
-      <td-h1-with-highlights
-        [value]="block.title"
-        [themeColorHex]="themeColorHex"
-        [class]="titleClass"
-      ></td-h1-with-highlights>
+      <td-heading-with-highlights [value]="block.title" [themeColorHex]="themeColorHex" [level]="level" />
       <ng-container *ngIf="!noBody">
         <p *ngFor="let paragraph of block.body.paragraphs" [class]="bodyClass">
           <span
@@ -38,6 +34,7 @@
         </p>
       </ng-container>
       <td-actions *ngIf="block.actions" [actions]="block.actions"></td-actions>
+      <td-organisation-logos *ngIf="organisationLogos" appearance="transparent" [organisations]="organisationLogos" />
       <div class="tb-body-margin-bottom"></div>
     </div>
   </div>

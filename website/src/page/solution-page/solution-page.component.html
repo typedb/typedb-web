@@ -1,10 +1,10 @@
 <article tdPageBackground nebula="solutions" planet="pink">
   <div *ngIf="page" class="article-content">
     <section class="page-section page-intro-section" *ngIf="page.introSection">
-      <td-h1-with-highlights
+      <td-heading-with-highlights
         [value]="page.introSection.title"
         class="text-56-64 text-48-60-tablet text-28-36-mobile narrow-section"
-      ></td-h1-with-highlights>
+      ></td-heading-with-highlights>
       <td-rich-text
         [value]="page.introSection.body"
         class="text-24-32 text-24-37-tablet text-16-24-mobile"

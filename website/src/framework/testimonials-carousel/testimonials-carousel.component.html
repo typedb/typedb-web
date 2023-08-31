@@ -2,20 +2,20 @@
   <div class="tc-carousel">
     <div *ngFor="let testimonial of testimonials; index as idx" class="tc-card" [style.transform]="cardTransform(idx)">
       <div class="tc-card-content">
-        <p class="text-18-28 text-12-20-mobile text-weight-light">
+        <p class="text-weight-light">
           <em>{{ testimonial.body }}</em>
         </p>
         <div class="tc-details">
           <div class="tc-person">
             <img [src]="getHeadshotUrl(testimonial)" alt="" />
             <div>
-              <h3 class="text-18-26 text-16-24-mobile">
+              <p class="text-p2">
                 <strong>{{ testimonial.author.name }}</strong>
-              </h3>
-              <p class="tc-person-job text-14-23 text-10-15-mobile">
+              </p>
+              <aside class="tc-person-job">
                 {{ testimonial.author.jobTitle }},
                 {{ testimonial.author.organisation.name }}
-              </p>
+              </aside>
             </div>
           </div>
           <img class="tc-logo" [src]="getLogoUrl(testimonial)" alt="" />

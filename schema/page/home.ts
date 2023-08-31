@@ -1,4 +1,4 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
@@ -45,6 +45,8 @@ interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     userLogos: SanityReference<SanityOrganisation>[];
+    displayUserLogos: boolean;
+    contentTabs: SanityContentTextPanel[];
 }
 
 interface SanityFeaturesSection extends SanityCoreSection {
@@ -96,15 +98,18 @@ export class HomePage extends Page {
 
 class IntroSection extends TechnicolorBlock {
     readonly userLogos: Organisation[];
+    readonly contentTabs: ContentTextPanel[];
 
     constructor(props: PropsOf<IntroSection>) {
         super(props);
         this.userLogos = props.userLogos;
+        this.contentTabs = props.contentTabs;
     }
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            userLogos: data.userLogos.map(x => new Organisation(db.resolveRef(x), db)),
+            userLogos: data.displayUserLogos ? data.userLogos.map(x => new Organisation(db.resolveRef(x), db)) : [],
+            contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
         }));
     }
 }
@@ -214,7 +219,21 @@ const sectionSchemas = [
     sectionSchema("intro", [
         ...titleBodyIconFields,
         optionalActionsField,
+        defineField({
+            name: "displayUserLogos",
+            title: "Display Organisation Logos?",
+            type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
+        }),
         Object.assign({}, organisationLogosField, { name: "userLogos" }),
+        defineField({
+            name: "contentTabs",
+            title: "Content Tabs",
+            type: "array",
+            of: [{type: contentTextPanelSchemaName}],
+            validation: requiredRule,
+        }),
         isVisibleField,
     ]),
     sectionSchema("features", [
@@ -222,10 +241,10 @@ const sectionSchemas = [
         optionalActionsField,
         defineField({
             name: "featureTabs",
-            title: "Feature Tabs",
+            title: "Impact Tabs",
             type: "array",
             of: [{type: contentTextPanelSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.required(),
+            validation: requiredRule,
         }),
         isVisibleField,
     ]),

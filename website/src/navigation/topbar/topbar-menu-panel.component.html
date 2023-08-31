@@ -1,6 +1,6 @@
 <div class="mp-root">
   <div *ngFor="let column of columns" class="mp-column">
-    <h3 class="text-18-26 mp-column-title">{{ column.title }}</h3>
+    <p class="mp-column-title">{{ column.title }}</p>
     <ul *ngIf="isListColumn(column)">
       <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
         <a
@@ -28,7 +28,7 @@
 </div>
 
 <ng-template #linkContent let-item="item">
-  <h4 class="text-16-24">
+  <p class="mp-list-column-item-name">
     <td-tooltip
       *ngIf="item.comingSoon"
       text="Coming soon!"
@@ -36,6 +36,6 @@
     ></td-tooltip>
     <span>{{ item.title }}</span>
     <mat-icon *ngIf="item.link?.isForExternalDomain()" svgIcon="link" class="tb-external-link-icon" />
-  </h4>
-  <p class="text-14-21 mp-list-column-description">{{ item.description }}</p>
+  </p>
+  <p class="text-aside mp-list-column-description">{{ item.description }}</p>
 </ng-template>
