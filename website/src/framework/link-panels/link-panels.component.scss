@@ -80,7 +80,7 @@
         text-align: start;
 
         h3 {
-            height: calc($line-height-h3 * 2);
+            height: calc($font-size-h3 * $line-height-h3 * 2);
         }
 
         td-rich-text {

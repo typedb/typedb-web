@@ -24,7 +24,7 @@ export class ContentPanelComponent {
     get rootNgClass(): { [clazz: string]: boolean | undefined } {
         return {
             section: true,
-            "card": true,
+            card: true,
             "cp-root": true,
         };
     }

@@ -41,7 +41,9 @@ $media-min-width-desktop: 1200px;
 
 @function remify($font-size) {
     @return $font-size;
-    //@return calc($font-size / $font-size-base) * 1rem; // TODO: investigate best practice for accessibility
+    // TODO: I've heard that rem units are best for accessibility, but major sites including Apple don't use them -
+    //  we should investigate best practices
+    //@return calc($font-size / $font-size-base) * 1rem;
 }
 
 $font-size-base: 17px;
