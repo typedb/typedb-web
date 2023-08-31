@@ -43,7 +43,7 @@ body {
     height: 100%;
     background-color: $default-background;
     color: $default-text-color;
-    font-size: 17px;
+    font-size: $font-size-base;
     line-height: calc(25 / 17);
 
     // smoother edges on browsers running on Mac OS
