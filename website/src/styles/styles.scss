@@ -159,6 +159,12 @@ aside,
     line-height: $line-height-aside;
 }
 
+code,
+.text-code {
+    font-size: $font-size-code;
+    line-height: $line-height-code;
+}
+
 .narrow-section {
     max-width: 870px;
 }

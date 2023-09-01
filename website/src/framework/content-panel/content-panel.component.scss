@@ -19,8 +19,10 @@
     }
 }
 
+$number-of-lines: 20;
+
 td-aspect-ratio {
-    flex: 2 0 424px;
+    flex: 0 0 calc(($font-size-code * $line-height-code * $number-of-lines + 2px) * 16 / 9);
     max-width: 100%;
 
     @media (max-width: $media-max-width-tablet) {

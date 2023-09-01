@@ -61,6 +61,8 @@ $font-size-p2: remify(17px);
 $line-height-p2: calc(remify(25px) / $font-size-p2);
 $font-size-aside: remify(15px);
 $line-height-aside: calc(remify(23px) / $font-size-aside);
+$font-size-code: remify(14px);
+$line-height-code: calc(remify(21px) / $font-size-code);
 
 $card-padding: 28px;
 $card-padding-tablet: 20px;
