@@ -8,7 +8,7 @@ import { RichText, RichTextSpan } from "typedb-web-schema";
 })
 export class RichTextComponent {
     @Input() value!: RichText;
-    @Input() level: "p1" | "p2" | "p3" = "p3";
+    @Input() level: "p1" | "p2" = "p2";
 
     private readonly markClasses = {
         em: "rt-em",
@@ -17,14 +17,7 @@ export class RichTextComponent {
     };
 
     get paragraphClass(): string {
-        switch (this.level) {
-            case "p1":
-                return "text-p1";
-            case "p2":
-                return "text-p2";
-            case "p3":
-                return "text-p3";
-        }
+        return this.level === "p1" ? "text-p1" : "text-p2";
     }
 
     getSpanClasses(span: RichTextSpan) {
