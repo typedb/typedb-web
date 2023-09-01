@@ -34,7 +34,7 @@
         </p>
       </ng-container>
       <td-actions *ngIf="block.actions" [actions]="block.actions"></td-actions>
-      <td-organisation-logos *ngIf="organisationLogos" appearance="transparent" [organisations]="organisationLogos" />
+      <td-organisation-logos *ngIf="organisationLogos?.length" appearance="transparent" [organisations]="organisationLogos!" />
       <div class="tb-body-margin-bottom"></div>
     </div>
   </div>
