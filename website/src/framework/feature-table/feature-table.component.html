@@ -1,23 +1,17 @@
 <table class="section">
-  <colgroup>
-    <col *ngFor="let header of table.headerRow" />
-  </colgroup>
-  <thead class="text-24-32 text-22-33-tablet text-14-24-mobile">
-    <tr>
-      <th *ngFor="let header of table.headerRow">{{ header }}</th>
-    </tr>
+  <colgroup><col *ngFor="let header of table.headerRow" /></colgroup>
+  <thead>
+    <tr><th *ngFor="let header of table.headerRow" class="text-p1">{{ header }}</th></tr>
   </thead>
-  <tbody class="text-18-26 text-16-24-tablet text-12-18-mobile">
+  <tbody>
     <tr *ngFor="let row of table.bodyRows">
       <th>
         <div class="ft-row-header">
           <span>{{ row.heading }}</span>
-          <td-info-button *ngIf="row.description" [tooltipText]="row.description"></td-info-button>
+          <td-info-button *ngIf="row.description" [tooltipText]="row.description" />
         </div>
       </th>
-      <td *ngFor="let cell of row.cells">
-        <td-feature-table-cell [cell]="cell"></td-feature-table-cell>
-      </td>
+      <td *ngFor="let cell of row.cells"><td-feature-table-cell [cell]="cell" /></td>
     </tr>
   </tbody>
 </table>

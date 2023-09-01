@@ -5,7 +5,7 @@
         [isIntroSection]="true"
         [title]="page.introSection.title"
         [body]="page.introSection.body"
-      ></td-title-body-actions-section>
+      />
       <div class="card subsection-margin wp-primary-webinar">
         <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
         <ng-container *ngIf="primaryWebinar">
@@ -13,7 +13,7 @@
             <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" [alt]="" />
           </td-aspect-ratio>
           <div class="wp-primary-webinar-summary">
-            <h3 class="wp-webinar-title-container text-24-32 text-22-33-tablet text-18-32-mobile">
+            <h3 class="wp-webinar-title-container">
               <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
               <span class="wp-title-separator">|</span>
               <span *ngIf="primaryWebinar.isFinished()">On-Demand</span>
@@ -22,48 +22,36 @@
               </span>
             </h3>
             <div class="wp-webinar-text-container">
-              <td-rich-text
-                class="wp-webinar-description text-16-24 text-14-21-mobile"
-                [value]="primaryWebinar.description"
-              ></td-rich-text>
-
-              <td-button [button]="primaryWebinar.registrationButton()"></td-button>
+              <td-rich-text class="wp-webinar-description" [value]="primaryWebinar.description" />
+              <td-button [button]="primaryWebinar.registrationButton()" />
             </div>
           </div>
         </ng-container>
       </div>
     </div>
     <ng-container *ngIf="page.featuredWebinarsSection && secondaryWebinars && secondaryWebinars.length">
-      <td-technicolor-block
-        [block]="page.featuredWebinarsSection"
-        [index]="1"
-        [noLeadingLine]="true"
-      ></td-technicolor-block>
-      <td-webinar-panels [webinars]="secondaryWebinars"></td-webinar-panels>
+      <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true" />
+      <td-webinar-panels [webinars]="secondaryWebinars" />
     </ng-container>
     <ng-container *ngIf="page.exploreWebinarsSection">
-      <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2"></td-technicolor-block>
-      <section class="card">
+      <td-technicolor-block [block]="page.exploreWebinarsSection" [index]="2" />
+      <section class="card-appearance">
         <ul class="wp-webinar-list">
           <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
             <div class="wp-img-tertiary-container">
               <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
                 <img [src]="webinar.imageURL" class="wp-img" [alt]="" />
               </td-aspect-ratio>
-              <h3 class="text-18-26 wp-webinar-title hide-gt-mobile">
-                {{ webinar.title | plainText }}
-              </h3>
+              <h3 class="wp-webinar-title hide-gt-mobile">{{ webinar.title | plainText }}</h3>
             </div>
             <div class="wp-webinar-text">
-              <p class="text-24-32 text-22-33-tablet wp-webinar-title hide-mobile">
-                {{ webinar.title | plainText }}
+              <h3 class="wp-webinar-title hide-mobile">{{ webinar.title | plainText }}</h3>
+              <p class="wp-speaker">
+                <span *ngFor="let speaker of webinar.speakers">
+                  <span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}
+                </span>
               </p>
-              <p class="wp-speaker text-16-24 text-14-24-mobile">
-                <span *ngFor="let speaker of webinar.speakers"
-                  ><span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}</span
-                >
-              </p>
-              <p class="wp-timing text-16-24 text-14-21-mobile text-weight-light">
+              <aside class="wp-timing text-weight-light">
                 <span class="wp-webinar-datetime">
                   <mat-icon svgIcon="calendar" />
                   <span class="cdk-visually-hidden">Date/Time:</span>
@@ -79,7 +67,7 @@
                   <span class="cdk-visually-hidden">Duration:</span>
                   {{ webinar.durationMins | eventDuration }}
                 </span>
-              </p>
+              </aside>
             </div>
             <div class="flex"></div>
             <td-button [button]="webinar.registrationButton()" buttonWidth="100%" size="small"></td-button>

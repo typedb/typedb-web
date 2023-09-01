@@ -2,9 +2,5 @@
 
 .dp-intro-block {
     display: inline-block;
-    margin-top: 318px;
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: 136px;
-    }
+    margin-top: 136px;
 }

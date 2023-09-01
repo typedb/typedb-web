@@ -451,6 +451,10 @@ $text-sizes-map: (
     }
 }
 
+.card-appearance {
+    @include card-appearance;
+}
+
 .card-padding {
     @include card-padding;
 }

@@ -1,11 +1,8 @@
 <article tdPageBackground nebula="features" planet="blue_pink">
   <div *ngIf="webinar" class="article-content">
     <section class="page-section page-intro-section">
-      <td-heading-with-highlights
-        class="text-56-64 text-48-60-tablet text-28-36-mobile"
-        [value]="webinar.title"
-      ></td-heading-with-highlights>
-      <ul class="wd-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
+      <td-heading-with-highlights [value]="webinar.title" level="h1" />
+      <ul class="wd-subtitle text-p1">
         <li>Webinar</li>
         <li>
           <mat-icon svgIcon="calendar" />

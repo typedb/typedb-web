@@ -1,12 +1,10 @@
 <div [ngClass]="rootNgClass" [hidden]="hidden">
   <td-aspect-ratio ratio="16:9">
-    <td-illustration [illustration]="panel.illustration" [visible]="!hidden"></td-illustration>
+    <td-illustration [illustration]="panel.illustration" [visible]="!hidden" />
   </td-aspect-ratio>
   <div *ngIf="contentTextPanel" class="cp-text-area">
     <div>
-      <h2 *ngIf="isMobile$ | async" class="title-standalone">
-        <strong>{{ contentTextPanel.title }}</strong>
-      </h2>
+      <h2 *ngIf="isMobile$ | async" class="title-standalone"><strong>{{ contentTextPanel.title }}</strong></h2>
       <p *ngFor="let paragraph of contentTextPanel.body.paragraphs" class="text-weight-light">
         <span
           *ngFor="let span of paragraph.spans"
@@ -18,7 +16,7 @@
     <a
       *ngIf="contentTextPanel.learnMoreLink"
       [tdLink]="contentTextPanel.learnMoreLink"
-      class="text-16-24 text-14-24-mobile cp-learn-more link-tertiary"
+      class="cp-learn-more link-tertiary"
       >Learn More</a
     >
   </div>

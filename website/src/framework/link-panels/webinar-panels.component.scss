@@ -35,15 +35,15 @@ $card-content-width: 320px;
         border-radius: $border-radius;
     }
 
-    h2,
-    p {
+    h3,
+    .wp-speakers {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    h3 {
-        margin-top: 16px;
+    .wp-speakers {
+        margin-top: 12px;
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: 8px;

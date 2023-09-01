@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy } from "@angular/core";
-import { Subject, Subscription, distinct, distinctUntilChanged, endWith, takeUntil } from "rxjs";
+import { Subject, distinctUntilChanged, takeUntil } from "rxjs";
 import { MediaQueryService } from "src/service/media-query.service";
+import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "[tdPageBackground]",
@@ -16,12 +18,19 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     private readonly topOffset = 300;
     private readonly bottomOffset = 300;
     private readonly spaceSpeed = 0.2;
+    private withSiteBanner = false;
 
     constructor(
         private elementRef: ElementRef<HTMLElement>,
         private mediaQuery: MediaQueryService,
         private ngZone: NgZone,
-    ) {}
+        private contentService: ContentService,
+    ) {
+        this.contentService.data.subscribe((data) => {
+            const sanitySiteBanner = data.getDocumentByID(siteBannerSchemaName) as SanitySiteBanner;
+            this.withSiteBanner = !!sanitySiteBanner?.isEnabled;
+        });
+    }
 
     ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular(() => {
@@ -72,7 +81,7 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     }
 
     getNebulaClass(): string {
-        return `pb-nebula-${this.nebula}`;
+        return `pb-nebula-${this.nebula}${this.withSiteBanner ? ' pb-nebula-with-site-banner' : ''}`;
     }
 
     getNebulaSrc(size: "desktop" | "tablet" | "mobile", density2x?: boolean): string {
