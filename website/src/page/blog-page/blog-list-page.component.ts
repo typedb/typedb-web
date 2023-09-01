@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BlogFilter, Link, WordpressPost, WordpressTaxonomy, blogNullFilter } from "typedb-web-schema";
+import { Link, WordpressPost, WordpressTaxonomy, blogNullFilter } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { combineLatest, map, Observable } from "rxjs";
+import { map } from "rxjs";
 
 @Component({
     selector: "td-blog-list-page",

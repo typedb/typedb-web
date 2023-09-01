@@ -9,6 +9,10 @@ $block-gap-mobile: 64px;
     background-repeat: no-repeat;
     background-position-y: 72px;
     z-index: 0;
+
+    &.tb-level-h1 {
+        margin-top: 136px;
+    }
 }
 
 .tb-margin-top {

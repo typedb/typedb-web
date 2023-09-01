@@ -38,7 +38,6 @@
         }
 
         .pi-speaker-image-cover {
-            display: block;
             position: absolute;
             inset: 0;
             opacity: 0;
@@ -78,4 +77,8 @@
 
 .pi-speaker-image-cover {
     display: none;
+}
+
+.pi-person-name {
+    color: $color-vaticle-white;
 }

@@ -55,28 +55,6 @@ $post-content-width: 800px;
     border: 1px solid $color-vaticle-light-purple;
 }
 
-.bp-categories {
-    font-weight: $font-weight-semi-bold;
-    font-size: 14px;
-    line-height: 21px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-
-    @media (max-width: $media-max-width-mobile) {
-        font-size: 12px;
-        line-height: 18px;
-    }
-
-    a {
-        padding: 2px 8px;
-        background: $color-vaticle-purple;
-        border: 1px solid $color-vaticle-light-purple;
-        border-radius: $border-radius;
-        color: $color-vaticle-secondary-pink;
-    }
-}
-
 .bp-author-title {
     margin-top: 16px;
 }

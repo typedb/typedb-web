@@ -142,7 +142,8 @@ h4 {
     line-height: $line-height-h4;
 }
 
-.text-p1 {
+.text-p1,
+.text-p1 p {
     font-size: $font-size-p1;
     line-height: $line-height-p1;
 }
@@ -356,6 +357,7 @@ hr {
     }
 }
 
+// TODO: can we delete this?
 $text-sizes-map: (
     // font-size line-height
     56 64,

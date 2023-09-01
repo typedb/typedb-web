@@ -3,7 +3,6 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { Observable, map, tap } from "rxjs";
-
 import { SanityServicesPage, ServicesPage, TechnicolorBlock, servicesPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 import { AnalyticsService } from "src/service/analytics.service";
@@ -12,7 +11,6 @@ import { ContentService } from "src/service/content.service";
 @Component({
     selector: "td-services-page",
     templateUrl: "./services-page.component.html",
-    styleUrls: ["./services-page.component.scss"],
 })
 export class ServicesPageComponent implements OnInit {
     page$!: Observable<ServicesPage | null>;
@@ -28,10 +26,10 @@ export class ServicesPageComponent implements OnInit {
     ngOnInit() {
         this.page$ = this.contentService.data.pipe(
             map((data) => {
-                const sanityServicePage = data.getDocumentByID(servicesPageSchemaName) as
+                const sanityServicesPage = data.getDocumentByID(servicesPageSchemaName) as
                     | SanityServicesPage
                     | undefined;
-                return sanityServicePage ? new ServicesPage(sanityServicePage, data) : null;
+                return sanityServicesPage ? new ServicesPage(sanityServicesPage, data) : null;
             }),
             tap((page) => {
                 if (page) {

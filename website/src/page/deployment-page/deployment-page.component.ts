@@ -10,7 +10,6 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 @Component({
     selector: "td-deployment-page",
     templateUrl: "./deployment-page.component.html",
-    styleUrls: ["./deployment-page.component.scss"],
 })
 export class DeploymentPageComponent implements OnInit {
     page?: DeploymentPage;

@@ -22,20 +22,17 @@
       </ul>
       <div class="subsection-margin wd-details-area">
         <div class="card wd-form-card">
-          <h2 class="text-24-32 text-20-30-mobile">
+          <h3>
             <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register for Webinar" }}</strong>
-          </h2>
+          </h3>
           <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
-          <p class="text-16-24 text-14-21-mobile text-weight-light">
+          <p class="text-weight-light">
             By submitting your personal data, you consent to emails from Vaticle. See our
             <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
           </p>
         </div>
         <div>
-          <td-rich-text
-            class="text-24-32 text-20-32-tablet text-14-21-mobile"
-            [value]="webinar.description"
-          ></td-rich-text>
+          <td-rich-text [value]="webinar.description" />
           <ul class="wd-speakers subsection-margin">
             <li *ngFor="let speaker of webinar.speakers">
               <td-person-info [person]="speaker" />
@@ -45,8 +42,8 @@
       </div>
     </section>
     <ng-container *ngIf="webinar.furtherReading">
-      <td-technicolor-block [block]="webinar.furtherReading" [index]="1" [noLeadingLine]="true"></td-technicolor-block>
-      <td-link-panels [panels]="webinar.furtherReading.links" [cols]="3"></td-link-panels>
+      <td-technicolor-block [block]="webinar.furtherReading" [index]="1" [noLeadingLine]="true" />
+      <td-link-panels [panels]="webinar.furtherReading.links" [cols]="3" />
     </ng-container>
   </div>
 </article>

@@ -1,8 +1,8 @@
 <article tdPageBackground nebula="cloud" planet="blue_pink">
   <div *ngIf="event$ | async; let event" class="article-content">
     <section class="page-section page-intro-section">
-      <td-heading-with-highlights [value]="event.title" class="text-56-64 text-48-60-tablet text-28-36-mobile" />
-      <ul class="ed-subtitle text-32-44 text-24-37-tablet text-16-24-mobile">
+      <td-heading-with-highlights [value]="event.title" level="h1" />
+      <ul class="ed-subtitle text-p1">
         <li>{{ event.tag }}</li>
         <li>
           <mat-icon svgIcon="calendar" />
@@ -17,16 +17,16 @@
       </ul>
       <div class="subsection-margin ed-details-area">
         <div class="card ed-form-card">
-          <h2 class="text-24-32 text-20-30-mobile">
+          <h3>
             <strong>Register to {{ event.tag }}</strong>
-          </h2>
+          </h3>
           <td-aspect-ratio ratio="16:9">
             <img [src]="getEventImageUrl(event)" class="ed-img" alt="" />
           </td-aspect-ratio>
           <td-button *ngIf="event.externalUrlButton" [button]="event.externalUrlButton" buttonWidth="100%" />
         </div>
         <div class="ed-description-container">
-          <td-rich-text [value]="event.description" class="text-24-32 text-20-32-tablet text-14-21-mobile" />
+          <td-rich-text [value]="event.description" />
           <ul class="ed-speakers subsection-margin">
             <li *ngFor="let speaker of event.speakers">
               <td-person-info [person]="speaker" />

@@ -15,9 +15,9 @@
     </div>
   </div>
   <div>
-    <h3 class="text-18-26 text-12-18-mobile">
-      {{ person.name }}
-    </h3>
-    <p class="text-14-21 text-10-12-mobile text-quiet">{{ person.jobTitle }},<br />{{ person.organisation.name }}</p>
+    <p class="pi-person-name">
+      <strong>{{ person.name }}</strong>
+    </p>
+    <aside class="text-quiet">{{ person.jobTitle }},<br />{{ person.organisation.name }}</aside>
   </div>
 </ng-template>

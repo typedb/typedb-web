@@ -1,16 +1,8 @@
 <article tdPageBackground nebula="solutions">
   <div class="article-content article-content-no-planet">
     <section *ngIf="site$ | async as site" class="page-section bp-title-section">
-      <a tdLink="/blog">
-        <td-heading-with-highlights
-          [value]="site.name | paragraphWithHighlights"
-          class="text-56-64 text-48-60-tablet text-28-36-mobile"
-        />
-      </a>
-      <td-rich-text
-        [value]="site.description | richText"
-        class="narrow-section subtitle-l text-32-44 text-24-37-tablet text-16-24-mobile"
-      />
+      <a tdLink="/blog"><td-heading-with-highlights [value]="site.name | paragraphWithHighlights" level="h1" /></a>
+      <td-rich-text [value]="site.description | richText" class="narrow-section subtitle-l" level="p1" />
     </section>
 
     <div class="section-background-solid subsection-margin">
@@ -26,15 +18,11 @@
             </td-aspect-ratio>
           </a>
           <div class="bp-primary-post-summary">
-            <div class="bp-categories bp-primary-post-categories">
-              <p *ngFor="let category of postCategories(posts[0])">
-                <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
-              </p>
-            </div>
+            <td-blog-category-chips [categories]="postCategories(posts[0])" />
             <a [tdLink]="readPostLink(posts[0])">
-              <h2 class="bp-post-title text-40-54 text-34-48-tablet text-22-33-mobile">{{ posts[0].title }}</h2>
+              <h1 class="bp-post-title bp-primary-post-title">{{ posts[0].title }}</h1>
             </a>
-            <div class="bp-primary-post-description text-16-24 text-14-21-mobile" [innerHtml]="posts[0].excerpt"></div>
+            <div class="bp-primary-post-description" [innerHtml]="posts[0].excerpt"></div>
             <td-blog-authorship-bar [post]="posts[0]" />
           </div>
         </div>
@@ -48,18 +36,11 @@
                 <td-aspect-ratio ratio="16:9"><img [src]="heroImageURL(post)" alt="" class="bp-img" /></td-aspect-ratio>
               </a>
               <div class="bp-secondary-post-summary">
-                <div class="bp-categories">
-                  <p *ngFor="let category of postCategories(post)">
-                    <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
-                  </p>
-                </div>
-                <h2 class="text-34-48 text-28-36-tablet text-24-32-mobile bp-post-title">
+                <td-blog-category-chips [categories]="postCategories(post)" />
+                <h2 class="bp-post-title">
                   <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
                 </h2>
-                <div
-                  class="bp-secondary-post-description text-16-24 text-14-21-mobile"
-                  [innerHtml]="post.excerpt"
-                ></div>
+                <div class="bp-secondary-post-description" [innerHtml]="post.excerpt"></div>
                 <td-blog-authorship-bar [post]="post" />
               </div>
             </div>
@@ -77,18 +58,14 @@
                     <img [src]="heroImageURL(post)" class="bp-img" [alt]="" />
                   </td-aspect-ratio>
                 </a>
-                <h3 class="text-18-26 bp-post-title hide-gt-mobile">{{ post.title }}</h3>
+                <h3 class="bp-post-title hide-gt-mobile">{{ post.title }}</h3>
               </div>
               <div class="bp-post-text-tertiary">
-                <div class="bp-categories">
-                  <p *ngFor="let category of postCategories(post)">
-                    <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
-                  </p>
-                </div>
-                <h3 class="text-28-36 text-22-33-tablet bp-post-title hide-mobile">
+                <td-blog-category-chips [categories]="postCategories(post)" />
+                <h3 class="bp-post-title hide-mobile">
                   <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
                 </h3>
-                <div class="text-16-24 text-14-24-mobile bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
+                <div class="bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
                 <td-blog-authorship-bar [post]="post" />
               </div>
             </li>
