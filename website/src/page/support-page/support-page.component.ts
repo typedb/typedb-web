@@ -12,7 +12,6 @@ import { ContentService } from "src/service/content.service";
 @Component({
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
-    styleUrls: ["./support-page.component.scss"],
 })
 export class SupportPageComponent implements OnInit {
     page$!: Observable<SupportPage | null>;

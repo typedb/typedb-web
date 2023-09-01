@@ -14,9 +14,14 @@ export class HeadingWithHighlightsComponent {
 @Component({
     selector: "td-p-with-highlights",
     template:
-        '<p><span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span></p>\n',
+        '<p [class]="rootClass"><span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span></p>\n',
 })
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex: string = "#02DAC9";
+    @Input() level: "p1" | "p2" = "p1";
+
+    get rootClass(): string {
+        return `text-${this.level}`;
+    }
 }

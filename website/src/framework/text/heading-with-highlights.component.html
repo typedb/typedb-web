@@ -3,7 +3,7 @@
   <h2 *ngSwitchCase="'h2'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h2>
 </ng-container>
 
-<ng-template #content let-value="value" let-themeColorHex="themeColorHex">
+<ng-template #content>
   <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">
     {{ span.text }}
   </span>

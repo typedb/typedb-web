@@ -14,38 +14,24 @@
           <img [src]="page.featuredWhitePaper.portraitImageURL" class="wp-img" [alt]="" />
         </td-aspect-ratio>
         <div class="wp-primary-whitepaper-summary">
-          <h2 class="text-32-44 text-28-43-tablet text-22-33-mobile wp-whitepaper-title">
-            {{ page.featuredWhitePaper.title | plainText }}
-          </h2>
-          <td-rich-text
-            class="wp-primary-whitepaper-description text-16-24 text-14-21-mobile"
-            [value]="page.featuredWhitePaper.description"
-          ></td-rich-text>
+          <h2 class="wp-whitepaper-title">{{ page.featuredWhitePaper.title | plainText }}</h2>
+          <td-rich-text class="wp-primary-whitepaper-description" [value]="page.featuredWhitePaper.description" />
           <div class="flex"></div>
           <td-button [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"></td-button>
         </div>
       </div>
-      <div class="subsection-margin card wp-grid">
+      <div class="subsection-margin card-appearance wp-grid">
         <div *ngFor="let whitePaper of page.whitePapersList" class="wp-grid-item">
           <div class="wp-img-and-text">
             <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
-              <img [src]="whitePaper.landscapeImageURL" class="wp-img" [alt]=""
-            /></td-aspect-ratio>
+              <img [src]="whitePaper.landscapeImageURL" class="wp-img" [alt]="" />
+            </td-aspect-ratio>
             <div>
-              <h2 class="text-24-32 text-22-33-tablet text-18-26-mobile wp-whitepaper-title wp-grid-item-title">
-                {{ whitePaper.title | plainText }}
-              </h2>
+              <h3 class="wp-whitepaper-title wp-grid-item-title">{{ whitePaper.title | plainText }}</h3>
             </div>
           </div>
-          <td-rich-text
-            class="text-16-28 text-16-24-tablet text-14-21-mobile wp-grid-item-description"
-            [value]="whitePaper.description"
-          ></td-rich-text>
-          <td-button
-            [button]="accessResourceButton(whitePaper, 'secondary', 'Read')"
-            size="small"
-            buttonWidth="100%"
-          ></td-button>
+          <td-rich-text class="wp-grid-item-description" [value]="whitePaper.description" />
+          <td-button [button]="accessResourceButton(whitePaper, 'secondary', 'Read')" size="small" buttonWidth="100%" />
         </div>
       </div>
     </div>

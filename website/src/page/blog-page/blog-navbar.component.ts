@@ -47,7 +47,7 @@ export class BlogNavbarComponent {
     }
 
     get fontSizeClass() {
-        return this.variant === "listPage" ? "text-18-26" : "text-16-24";
+        return this.variant === "listPage" ? "text-p1" : "text-p2";
     }
 
     @HostBinding("class.bn-variant-post-page") get isPostPage() {

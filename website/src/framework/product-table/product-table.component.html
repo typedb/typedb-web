@@ -2,17 +2,17 @@
   <tr>
     <td *ngFor="let panel of panels">
       <div class="pp-cell-content">
-        <h2 class="text-28-43 text-24-32-tablet">{{ panel.title }}</h2>
-        <td-rich-text [value]="panel.body" class="text-16-24 pp-body-text"></td-rich-text>
+        <h3>{{ panel.title }}</h3>
+        <td-rich-text [value]="panel.body" class="pp-body-text" />
         <div class="flex"></div>
         <hr />
-        <td-rich-text [value]="panel.secondaryBody" class="text-16-24"></td-rich-text>
+        <td-rich-text [value]="panel.secondaryBody" />
       </div>
     </td>
   </tr>
   <tr class="pp-button-row">
     <td *ngFor="let panel of panels">
-      <td-button [button]="panel.button" size="small" buttonWidth="100%"></td-button>
+      <td-button [button]="panel.button" size="small" buttonWidth="100%" />
     </td>
   </tr>
 </table>
@@ -21,18 +21,16 @@
     <tr>
       <td>
         <div class="pp-cell-content">
-          <h2 class="text-20-32">{{ panel.title }}</h2>
-          <td-rich-text [value]="panel.body" class="text-12-18 pp-body-text"></td-rich-text>
+          <h3>{{ panel.title }}</h3>
+          <td-rich-text [value]="panel.body" class="pp-body-text" />
           <div class="flex"></div>
           <hr />
-          <td-rich-text [value]="panel.secondaryBody" class="text-12-18"></td-rich-text>
+          <td-rich-text [value]="panel.secondaryBody" />
         </div>
       </td>
     </tr>
     <tr class="pp-button-row">
-      <td>
-        <td-button [button]="panel.button" size="small" buttonWidth="100%"></td-button>
-      </td>
+      <td><td-button [button]="panel.button" size="small" buttonWidth="100%" /></td>
     </tr>
   </ng-container>
 </table>

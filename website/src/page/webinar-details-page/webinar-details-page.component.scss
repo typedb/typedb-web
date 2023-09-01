@@ -18,6 +18,12 @@ ul.wd-subtitle {
         gap: 8px;
     }
 
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
     li:not(:last-child):after {
         content: "|";
         margin-left: 24px;
@@ -28,6 +34,7 @@ ul.wd-subtitle {
     }
 
     .mat-icon {
+        font-size: 20px;
         margin-right: 16px;
 
         @media (max-width: $media-max-width-mobile) {

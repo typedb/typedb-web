@@ -5,14 +5,12 @@
     </div>
     <div class="st-cell-text">
       <div class="st-title-description">
-        <h2 class="text-24-32 text-18-26-mobile">
-          {{ keyPoint.title }}
-        </h2>
-        <td-rich-text [value]="keyPoint.body" class="text-16-28 text-12-18-mobile" />
+        <h3>{{ keyPoint.title }}</h3>
+        <td-rich-text [value]="keyPoint.body" />
       </div>
       <ul
         *ngIf="keyPoint.checklist.length"
-        class="st-check-list text-16-28 text-12-18-mobile"
+        class="st-check-list"
         [class.st-check-list-two-columns]="keyPoint.checklist.length === 4"
       >
         <li *ngFor="let checkText of keyPoint.checklist" class="st-check-item">

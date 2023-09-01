@@ -1,7 +1,7 @@
 <article tdPageBackground nebula="deploy" planet="green">
   <div *ngIf="page$ | async; let page" class="article-content">
     <ng-container *ngIf="page.introSection">
-      <td-support-page-technicolor-block [block]="page.introSection" [page]="page" class="sp-intro-block" />
+      <td-support-page-technicolor-block [block]="page.introSection" [page]="page" />
       <td-link-panels [panels]="page.introSection.panels" [cols]="3" ctaStrength="strong" />
     </ng-container>
     <ng-container *ngIf="page.featureTableSection">

@@ -1,7 +1,7 @@
 <article tdPageBackground nebula="studio" planet="green">
   <div *ngIf="page$ | async; let page" class="article-content">
     <ng-container *ngIf="page.introSection">
-      <td-services-page-technicolor-block [block]="page.introSection" [page]="page" class="sp-intro-block" />
+      <td-services-page-technicolor-block [block]="page.introSection" [page]="page" />
       <td-services-table [keyPoints]="page.introSection.keyPoints" />
     </ng-container>
     <ng-container *ngIf="page.testimonialsSection">

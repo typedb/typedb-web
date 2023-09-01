@@ -2,10 +2,7 @@
   <div class="article-content article-content-no-planet">
     <section *ngIf="site$ | async as site" class="page-section bp-nebula-section">
       <a tdLink="/blog">
-        <td-p-with-highlights
-          [value]="site.name | paragraphWithHighlights"
-          class="bp-site-title text-40-54 text-34-48-tablet text-22-33-mobile"
-        />
+        <td-heading-with-highlights [value]="site.name | paragraphWithHighlights" class="bp-site-title" level="h2" />
       </a>
     </section>
 
@@ -17,16 +14,9 @@
       <ng-container *ngIf="post$ | async as post">
         <section>
           <div class="bp-intro-section">
-            <div class="bp-categories">
-              <p *ngFor="let category of postCategories(post)">
-                <a [tdLink]="'/blog/category/' + category.slug" [innerHtml]="category.name"></a>
-              </p>
-            </div>
-            <h1 class="text-56-64 text-48-60-tablet text-28-36-mobile">{{ post.title }}</h1>
-            <div
-              class="bp-excerpt text-24-32 text-16-24-tablet text-14-21-mobile text-weight-light"
-              [innerHtml]="post.excerpt"
-            ></div>
+            <td-blog-category-chips [categories]="postCategories(post)" />
+            <h1>{{ post.title }}</h1>
+            <div class="text-p1 bp-excerpt text-weight-light" [innerHtml]="post.excerpt"></div>
           </div>
         </section>
 
@@ -44,7 +34,7 @@
           </div>
           <div class="bp-sidebar">
             <div class="bp-sharing-section">
-              <h4 class="text-18-26 text-12-18-mobile">Share this article</h4>
+              <h4>Share this article</h4>
               <div class="bp-sharing-links">
                 <a [href]="shareOnTwitterURL(post)" target="_blank">
                   <mat-icon svgIcon="twitter_rectangle" class="td-icon-xl" />
@@ -61,33 +51,26 @@
               </div>
             </div>
             <div class="bp-newsletter-section">
-              <h4 class="text-18-26 text-12-18-mobile">TypeDB Newsletter</h4>
-              <p class="text-16-24 text-14-21-mobile">
-                Stay up to date with the latest TypeDB announcements and events.
-              </p>
+              <h4>TypeDB Newsletter</h4>
+              <p>Stay up to date with the latest TypeDB announcements and events.</p>
               <td-button [button]="subscribeToNewsletterButton" />
             </div>
             <ng-container *ngFor="let relatedPostGroup of relatedPostGroups$ | async">
               <aside *ngIf="relatedPostGroup.posts.length">
-                <h2 class="text-18-26 text-12-18-mobile bp-related-post-group-heading">
+                <h4 class="bp-related-post-group-heading">
                   More on <span [innerHtml]="relatedPostGroup.category.name"></span>
-                </h2>
+                </h4>
                 <div class="bp-related-post" *ngFor="let relatedPost of relatedPostGroup.posts">
                   <a [tdLink]="readPostLink(relatedPost)">
                     <td-aspect-ratio ratio="16:9">
                       <img [src]="heroImageURL(relatedPost)" [alt]="" class="bp-img" />
                     </td-aspect-ratio>
                   </a>
-                  <h2 class="text-24-32 text-22-33-tablet text-16-24-mobile bp-related-post-title">
+                  <h3 class="bp-related-post-title">
                     <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
-                  </h2>
-                  <div
-                    class="bp-related-post-description text-16-24 text-14-21-mobile"
-                    [innerHtml]="relatedPost.excerpt"
-                  ></div>
-                  <div>
-                    <h3 class="text-14-21 text-12-18-mobile bp-related-post-author">{{ relatedPost.author.name }}</h3>
-                  </div>
+                  </h3>
+                  <div class="bp-related-post-description" [innerHtml]="relatedPost.excerpt"></div>
+                  <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
                 </div>
               </aside>
             </ng-container>

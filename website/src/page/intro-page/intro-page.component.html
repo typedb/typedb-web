@@ -4,26 +4,15 @@
       [isIntroSection]="true"
       [title]="page.introSection.title"
       [body]="page.introSection.body"
-    ></td-title-body-actions-section>
+    />
     <ng-container *ngFor="let section of page.coreSections; index as idx">
-      <td-intro-page-technicolor-block
-        [section]="section"
-        [page]="page"
-        [index]="idx"
-      ></td-intro-page-technicolor-block>
-      <td-content-tabs [id]="'section' + idx" [tabs]="section.contentTabs"></td-content-tabs>
-      <td-rich-text
-        [value]="section.longText"
-        class="section subsection-margin text-24-32 text-14-21-mobile ip-long-text"
-      ></td-rich-text>
+      <td-intro-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
+      <td-content-tabs [id]="'section' + idx" [tabs]="section.contentTabs" />
+      <td-rich-text [value]="section.longText" class="section subsection-margin ip-long-text" />
     </ng-container>
     <ng-container *ngIf="page.finalSection">
-      <td-intro-page-technicolor-block
-        [section]="page.finalSection"
-        [page]="page"
-        [index]="page.coreSections.length"
-      ></td-intro-page-technicolor-block>
-      <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
+      <td-intro-page-technicolor-block [section]="page.finalSection" [page]="page" [index]="page.coreSections.length" />
+      <td-conclusion-panel [panel]="page.finalSection.panel" />
     </ng-container>
   </div>
 </article>
