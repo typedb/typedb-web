@@ -239,6 +239,14 @@ td-heading-with-highlights {
     display: block;
 }
 
+.tb-level-h1 td-heading-with-highlights {
+    margin-top: 4px;
+}
+
+.tb-level-h2 td-heading-with-highlights {
+    margin-top: 10px;
+}
+
 td-organisation-logos {
     display: block;
     margin-top: 40px;
