@@ -11,7 +11,9 @@
     <td-aspect-ratio ratio="16:9"><img [src]="webinar.imageURL" alt="" /></td-aspect-ratio>
     <div>
       <h3>{{ webinar.title | plainText }}</h3>
-      <p class="wp-speakers"><strong class="text-important">{{ webinar.listSpeakers() }}</strong></p>
+      <p class="wp-speakers">
+        <strong class="text-important">{{ webinar.listSpeakers() }}</strong>
+      </p>
       <aside class="text-quiet text-weight-light">{{ webinar.listSpeakerJobs() }}</aside>
     </div>
     <td-button

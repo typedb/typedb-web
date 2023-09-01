@@ -81,7 +81,7 @@ export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
     }
 
     getNebulaClass(): string {
-        return `pb-nebula-${this.nebula}${this.withSiteBanner ? ' pb-nebula-with-site-banner' : ''}`;
+        return `pb-nebula-${this.nebula}${this.withSiteBanner ? " pb-nebula-with-site-banner" : ""}`;
     }
 
     getNebulaSrc(size: "desktop" | "tablet" | "mobile", density2x?: boolean): string {

@@ -4,7 +4,9 @@
   </td-aspect-ratio>
   <div *ngIf="contentTextPanel" class="cp-text-area">
     <div>
-      <h2 *ngIf="isMobile$ | async" class="title-standalone"><strong>{{ contentTextPanel.title }}</strong></h2>
+      <h2 *ngIf="isMobile$ | async" class="title-standalone">
+        <strong>{{ contentTextPanel.title }}</strong>
+      </h2>
       <p *ngFor="let paragraph of contentTextPanel.body.paragraphs" class="text-weight-light">
         <span
           *ngFor="let span of paragraph.spans"

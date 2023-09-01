@@ -1,7 +1,11 @@
 <table class="section">
-  <colgroup><col *ngFor="let header of table.headerRow" /></colgroup>
+  <colgroup>
+    <col *ngFor="let header of table.headerRow" />
+  </colgroup>
   <thead>
-    <tr><th *ngFor="let header of table.headerRow" class="text-p1">{{ header }}</th></tr>
+    <tr>
+      <th *ngFor="let header of table.headerRow" class="text-p1">{{ header }}</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of table.bodyRows">
