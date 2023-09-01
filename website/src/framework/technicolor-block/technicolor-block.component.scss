@@ -27,7 +27,7 @@ $block-gap-mobile: 64px;
 
 .tb-core {
     display: flex;
-    gap: 38px;
+    gap: 30px;
 
     @media (max-width: $media-max-width-mobile) {
         gap: 0;
@@ -224,7 +224,7 @@ $block-gap-mobile: 64px;
 }
 
 .tb-body-margin-bottom {
-    margin-bottom: 72px;
+    margin-bottom: 64px;
 
     @media (max-width: $media-max-width-tablet) {
         margin-bottom: 56px;
