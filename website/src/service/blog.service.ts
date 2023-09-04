@@ -1,7 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TransferStateService } from "@scullyio/ng-lib";
-import { BehaviorSubject, combineLatest, first, map, Observable, race, shareReplay, iif, of, switchMap } from "rxjs";
+import {
+    BehaviorSubject,
+    combineLatest,
+    first,
+    map,
+    Observable,
+    race,
+    shareReplay,
+    iif,
+    of,
+    switchMap,
+    filter,
+} from "rxjs";
 import {
     WordpressPost,
     WordpressTaxonomy,
@@ -36,17 +48,24 @@ export class BlogService {
     ) {
         this.site = this.transferState
             .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
-            .pipe(shareReplay());
+            .pipe(
+                filter((data) => !!data),
+                shareReplay(),
+            );
         this.fetchedPosts = this.transferState.useScullyTransferState("blogAllPosts", this.listPosts()).pipe(
-            map((items) => items || []),
+            filter((data) => !!data?.length),
             shareReplay(),
         ); // TODO: currently this is only the first 100 posts - add ability to get more
         this.categories = this.transferState.useScullyTransferState("blogCategories", this.listCategories()).pipe(
-            map((items) => items || []),
+            filter((data) => !!data?.length),
             shareReplay(),
         );
-        this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
+        this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(
+            filter((data) => !!data),
+            shareReplay(),
+        );
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
+            filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
                 const postsList = posts || [];
                 if ("categorySlug" in filter)
