@@ -12,6 +12,10 @@ $block-gap-mobile: 64px;
 
     &.tb-level-h1 {
         margin-top: 136px;
+
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 52px;
+        }
     }
 }
 

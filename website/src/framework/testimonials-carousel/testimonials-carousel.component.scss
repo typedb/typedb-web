@@ -12,10 +12,6 @@
     height: 304px;
     perspective: 1400px;
     transform-style: preserve-3d;
-
-    @media (max-width: $media-max-width-mobile) {
-        height: 226px;
-    }
 }
 
 .tc-card {
