@@ -37,12 +37,14 @@ export class BlogService {
         this.site = this.transferState
             .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
             .pipe(shareReplay());
-        this.fetchedPosts = this.transferState
-            .useScullyTransferState("blogAllPosts", this.listPosts())
-            .pipe(map((items) => items || []), shareReplay()); // TODO: currently this is only the first 100 posts - add ability to get more
-        this.categories = this.transferState
-            .useScullyTransferState("blogCategories", this.listCategories())
-            .pipe(map((items) => items || []), shareReplay());
+        this.fetchedPosts = this.transferState.useScullyTransferState("blogAllPosts", this.listPosts()).pipe(
+            map((items) => items || []),
+            shareReplay(),
+        ); // TODO: currently this is only the first 100 posts - add ability to get more
+        this.categories = this.transferState.useScullyTransferState("blogCategories", this.listCategories()).pipe(
+            map((items) => items || []),
+            shareReplay(),
+        );
         this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
             map(([posts, filter]) => {
