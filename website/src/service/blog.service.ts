@@ -34,20 +34,16 @@ export class BlogService {
         private _http: HttpClient,
         private transferState: TransferStateService,
     ) {
-        this.site = this._http.get<WordpressSite>(siteApiUrl).pipe(shareReplay());
-        this.fetchedPosts = this.listPosts().pipe(shareReplay());
-        this.categories = this.listCategories().pipe(shareReplay());
-        this.acf = this.listCustomFields().pipe(shareReplay());
-        // this.site = this.transferState
-        //     .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
-        //     .pipe(shareReplay());
-        // this.fetchedPosts = this.transferState
-        //     .useScullyTransferState("blogAllPosts", this.listPosts())
-        //     .pipe(shareReplay()); // TODO: currently this is only the first 100 posts - add ability to get more
-        // this.categories = this.transferState
-        //     .useScullyTransferState("blogCategories", this.listCategories())
-        //     .pipe(shareReplay());
-        // this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
+        this.site = this.transferState
+            .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
+            .pipe(shareReplay());
+        this.fetchedPosts = this.transferState
+            .useScullyTransferState("blogAllPosts", this.listPosts())
+            .pipe(shareReplay()); // TODO: currently this is only the first 100 posts - add ability to get more
+        this.categories = this.transferState
+            .useScullyTransferState("blogCategories", this.listCategories())
+            .pipe(shareReplay());
+        this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
             map(([posts, filter]) => {
                 if ("categorySlug" in filter)
