@@ -43,7 +43,7 @@ export class EventDetailsPageComponent implements OnInit {
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
-                    }, 10000);
+                    }, 15000);
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }

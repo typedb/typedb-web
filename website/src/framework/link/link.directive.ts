@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, OnInit } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
+import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
+import { Router } from "@angular/router";
 import { Link } from "typedb-web-schema";
 
 @Directive({
     selector: "[tdLink]",
 })
-export class LinkDirective implements OnInit {
+export class LinkDirective implements OnChanges {
     @Input("tdLink") link?: Link | string;
     path!: string;
     query!: string;
@@ -16,7 +16,7 @@ export class LinkDirective implements OnInit {
         private _router: Router,
     ) {}
 
-    ngOnInit() {
+    ngOnChanges() {
         if (!this.link) return;
         this.resolvedLink = typeof this.link === "string" ? Link.fromAddress(this.link) : this.link;
 
@@ -32,12 +32,6 @@ export class LinkDirective implements OnInit {
                 this.constructRouterLink();
                 break;
         }
-
-        this._router.events.subscribe((e) => {
-            if (e instanceof NavigationEnd) {
-                this.updateHTMLElementHref();
-            }
-        });
     }
 
     constructRouterLink() {

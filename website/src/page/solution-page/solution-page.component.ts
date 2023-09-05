@@ -35,7 +35,7 @@ export class SolutionPageComponent implements OnInit {
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 10000);
+                    }, 15000);
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }

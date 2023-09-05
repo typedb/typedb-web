@@ -89,7 +89,7 @@ export class BlogPostPageComponent {
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 10000);
+                }, 15000);
             },
             (_err) => {
                 this.router.navigate(["404"], { skipLocationChange: true });
