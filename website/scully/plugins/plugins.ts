@@ -1,11 +1,13 @@
 import { registerPlugin, getPluginConfig, HandledRoute } from '@scullyio/scully';
 import axios from "axios";
+import { solutionPageSchemaName } from "typedb-web-schema";
 
 const validator = async () => [];
 
 export const pageRoutes = "pageRoutes";
 export const blogCategoryRoutes = "blogCategoryRoutes";
 export const blogPostRoutes = "blogPostRoutes";
+export const solutionRoutes = "solutionRoutes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
@@ -37,5 +39,13 @@ async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<Han
     return data.categories.map(x => ({ route: `/blog/category/${x.slug}` }));
 }
 
+async function solutionRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
+        params: { "query": `*[_type == '${solutionPageSchemaName}'].slug.current` },
+    });
+    return data.result.map(x => ({ route: `/solutions/${x}` }));
+}
+
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, validator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, validator);
+registerPlugin("router", solutionRoutes, solutionRoutesPlugin, validator);

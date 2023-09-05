@@ -1,6 +1,6 @@
 import { ScullyConfig } from "@scullyio/scully";
 import "@scullyio/scully-plugin-puppeteer";
-import { blogCategoryRoutes, blogPostRoutes } from "./scully/plugins/plugins";
+import { blogCategoryRoutes, blogPostRoutes, solutionRoutes } from "./scully/plugins/plugins";
 
 export const config: ScullyConfig = {
     projectRoot: "./src",
@@ -9,6 +9,7 @@ export const config: ScullyConfig = {
     routes: {
         "/blog/category/:categorySlug": { type: blogCategoryRoutes },
         "/blog/:slug": { type: blogPostRoutes },
+        "/solutions/:slug": { type: solutionRoutes },
     },
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
