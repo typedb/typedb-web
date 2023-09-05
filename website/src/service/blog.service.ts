@@ -7,7 +7,7 @@ import {
     first,
     map,
     Observable,
-    race,
+    concat,
     shareReplay,
     iif,
     of,
@@ -97,7 +97,7 @@ export class BlogService {
         return this.fetchedPosts.pipe(
             switchMap((posts) => {
                 const post = posts.find((post) => post.slug === slug);
-                return iif(() => !!post, of(post!), this.fetchPostBySlug(slug));
+                return iif(() => !!post, concat(of(post!), this.fetchPostBySlug(slug)), this.fetchPostBySlug(slug));
             }),
         );
     }
