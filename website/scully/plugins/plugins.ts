@@ -34,7 +34,7 @@ async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<Han
     const { data } = await axios.get<{ found: number, categories: { slug: string }[] }>(BLOG_CATEGORIES_URL, {
         params: { "fields": "slug" },
     });
-    return data.categories.map(x => ({ route: `/blog/${x.slug}` }));
+    return data.categories.map(x => ({ route: `/blog/category/${x.slug}` }));
 }
 
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, validator);
