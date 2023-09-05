@@ -1,12 +1,13 @@
 import { ScullyConfig } from "@scullyio/scully";
 import "@scullyio/scully-plugin-puppeteer";
-import { blogPostRoutes } from "./scully/plugins/plugins";
+import { blogCategoryRoutes, blogPostRoutes } from "./scully/plugins/plugins";
 
 export const config: ScullyConfig = {
     projectRoot: "./src",
     projectName: "typedb-web",
     outDir: process.env["OUT_DIR"],
     routes: {
+        "/blog/category/:categorySlug": { type: blogCategoryRoutes },
         "/blog/:slug": { type: blogPostRoutes },
     },
     puppeteerLaunchOptions: {
