@@ -55,7 +55,7 @@ export class PrivacyPolicyPageComponent implements OnInit {
         this._analytics.hubspot.trackPageView();
         setTimeout(() => {
             this._idleMonitor.fireManualMyAppReadyEvent();
-        }, 10000);
+        }, 15000);
     }
 }
 

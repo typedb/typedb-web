@@ -6,7 +6,8 @@ hr {
     margin: 0;
 }
 
-::ng-deep a:hover {
+.bp-blog-list ::ng-deep a:hover {
+    h1,
     h2,
     h3 {
         color: $color-vaticle-green;

@@ -1,7 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TransferStateService } from "@scullyio/ng-lib";
-import { BehaviorSubject, combineLatest, first, map, Observable, race, shareReplay, iif, of, switchMap } from "rxjs";
+import {
+    BehaviorSubject,
+    combineLatest,
+    first,
+    map,
+    Observable,
+    concat,
+    shareReplay,
+    iif,
+    of,
+    switchMap,
+    filter,
+} from "rxjs";
 import {
     WordpressPost,
     WordpressTaxonomy,
@@ -34,29 +46,37 @@ export class BlogService {
         private _http: HttpClient,
         private transferState: TransferStateService,
     ) {
-        this.site = this._http.get<WordpressSite>(siteApiUrl).pipe(shareReplay());
-        this.fetchedPosts = this.listPosts().pipe(shareReplay());
-        this.categories = this.listCategories().pipe(shareReplay());
-        this.acf = this.listCustomFields().pipe(shareReplay());
-        // this.site = this.transferState
-        //     .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
-        //     .pipe(shareReplay());
-        // this.fetchedPosts = this.transferState
-        //     .useScullyTransferState("blogAllPosts", this.listPosts())
-        //     .pipe(shareReplay()); // TODO: currently this is only the first 100 posts - add ability to get more
-        // this.categories = this.transferState
-        //     .useScullyTransferState("blogCategories", this.listCategories())
-        //     .pipe(shareReplay());
-        // this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(shareReplay());
+        // TODO: without this filter(), we get 'cannot read property of undefined' errors in production.
+        //  We should figure out why this filter() fixes the issue, and if there is a better way
+        this.site = this.transferState
+            .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
+            .pipe(
+                filter((data) => !!data),
+                shareReplay(),
+            );
+        this.fetchedPosts = this.transferState.useScullyTransferState("blogAllPosts", this.listPosts()).pipe(
+            filter((data) => !!data?.length),
+            shareReplay(),
+        ); // TODO: currently this is only the first 100 posts - add ability to get more
+        this.categories = this.transferState.useScullyTransferState("blogCategories", this.listCategories()).pipe(
+            filter((data) => !!data?.length),
+            shareReplay(),
+        );
+        this.acf = this.transferState.useScullyTransferState("blogACF", this.listCustomFields()).pipe(
+            filter((data) => !!data),
+            shareReplay(),
+        );
         this.displayedPosts = combineLatest([this.fetchedPosts, this.filter]).pipe(
+            filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
+                const postsList = posts || [];
                 if ("categorySlug" in filter)
-                    return posts.filter((post) =>
+                    return postsList.filter((post) =>
                         Object.values(post.categories)
                             .map((cat) => cat.slug)
                             .includes(filter.categorySlug),
                     );
-                return posts;
+                return postsList;
             }),
             map((posts) => posts.sort((a, b) => a.menu_order - b.menu_order)),
             shareReplay(),
@@ -77,7 +97,7 @@ export class BlogService {
         return this.fetchedPosts.pipe(
             switchMap((posts) => {
                 const post = posts.find((post) => post.slug === slug);
-                return iif(() => !!post, of(post!), this.fetchPostBySlug(slug));
+                return iif(() => !!post, concat(of(post!), this.fetchPostBySlug(slug)), this.fetchPostBySlug(slug));
             }),
         );
     }

@@ -38,7 +38,7 @@ export class RequestTechTalkPageComponent implements OnInit {
                 this.analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this.idleMonitor.fireManualMyAppReadyEvent();
-                }, 10000);
+                }, 15000);
 
                 this.formService.embedHubspotForm(this.page.hubspotFormID, "hubspot-form-holder");
             } else {

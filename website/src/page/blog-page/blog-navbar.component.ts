@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from "@angular/core";
-import { concat, map, merge, Observable, of, scan, startWith } from "rxjs";
+import { map, Observable } from "rxjs";
 import { BlogFilter, Link } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 
@@ -15,21 +15,20 @@ export class BlogNavbarComponent {
 
     constructor(private blogService: BlogService) {
         this.items$ = this.blogService.categories.pipe(
-            startWith([]),
             map((categories) =>
-                categories.map((category) => ({
-                    text: category.name,
-                    slug: category.slug,
-                    link: new Link({
-                        destination: `/blog/category/${category.slug}`,
-                        type: "route",
-                        opensNewTab: false,
-                    }),
-                })),
-            ),
-            scan(
-                (acc, curr) => acc.concat(curr),
-                [{ text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) }],
+                [
+                    { text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) },
+                ].concat(
+                    categories.map((category) => ({
+                        text: category.name,
+                        slug: category.slug,
+                        link: new Link({
+                            destination: `/blog/category/${category.slug}`,
+                            type: "route",
+                            opensNewTab: false,
+                        }),
+                    })),
+                ),
             ),
         );
         // TODO: refactor
