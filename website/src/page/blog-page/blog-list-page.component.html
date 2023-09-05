@@ -55,7 +55,7 @@
               <div class="bp-img-tertiary-container">
                 <a class="bp-tertiary-img-link" [tdLink]="readPostLink(post)">
                   <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
-                    <img [src]="heroImageURL(post)" class="bp-img" [alt]="" />
+                    <img [src]="heroImageURL(post)" class="bp-img" [alt]="" loading="lazy" />
                   </td-aspect-ratio>
                 </a>
                 <h3 class="bp-post-title hide-gt-mobile">{{ post.title }}</h3>
