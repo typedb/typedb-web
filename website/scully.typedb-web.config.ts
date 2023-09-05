@@ -9,7 +9,7 @@ export const config: ScullyConfig = {
     routes: {
         "/blog/category/:categorySlug": { type: blogCategoryRoutes },
         "/blog/:slug": { type: blogPostRoutes },
-        "/solutions/:slug": { type: solutionRoutes },
+        "/solutions/:route": { type: solutionRoutes },
     },
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
