@@ -45,7 +45,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 10000);
+                    }, 15000);
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
