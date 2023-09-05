@@ -46,6 +46,8 @@ export class BlogService {
         private _http: HttpClient,
         private transferState: TransferStateService,
     ) {
+        // TODO: without this filter(), we get 'cannot read property of undefined' errors in production.
+        //  We should figure out why this filter() fixes the issue, and if there is a better way
         this.site = this.transferState
             .useScullyTransferState("blogSite", this._http.get<WordpressSite>(siteApiUrl))
             .pipe(
