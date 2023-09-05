@@ -18,8 +18,8 @@ command = "pnpm run format-check && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run format-check && ENV=production pnpm run build && pnpm run prerender"
-publish = "dist/static"
+command = "pnpm run format-check && ENV=development pnpm run build"
+publish = "dist/dynamic"
 
 [[redirects]]
 from = "/discord"
