@@ -41,7 +41,7 @@ async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<Han
 
 async function solutionRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
-        params: { "query": `*[_type == '${solutionPageSchemaName}'].slug.current` },
+        params: { "query": `*[_type == '${solutionPageSchemaName}'].route.current` },
     });
     return data.result.map(x => ({ route: `/solutions/${x}` }));
 }
