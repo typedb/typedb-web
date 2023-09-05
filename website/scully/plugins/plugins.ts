@@ -8,6 +8,8 @@ export const blogPostRoutes = "blogPostRoutes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
+const BLOG_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
+const BLOG_POSTS_URL = `${BLOG_URL}/posts`;
 
 async function pageRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const sanityToken = process.env["SANITY_TOKEN"];
@@ -20,8 +22,10 @@ async function pageRoutesPlugin(route: string, config = {}): Promise<HandledRout
 }
 
 async function blogPostRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return [{ route: "/blog/the-need-for-subtyping-and-polymorphism-in-databases" }];
+    const { data } = await axios.get<{ found: number, posts: { slug: string }[] }>(BLOG_POSTS_URL, {
+        params: { "fields": "slug" },
+    });
+    return data.posts.map(x => ({ route: `/blog/${x.slug}` }));
 }
 
-registerPlugin("router", pageRoutes, pageRoutesPlugin, validator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, validator);
