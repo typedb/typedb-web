@@ -24,11 +24,12 @@ export interface SanityVideoEmbed extends SanityDocument {
 export const languages = {
     "typeql": "TypeQL",
     "sql": "SQL",
+    "cypher": "Cypher",
     "typedb-console": "Console",
     "rust": "Rust",
     "java": "Java",
     "python": "Python",
-    "typescript": "TypeScript",
+    "typescript": "TypeScript / MongoDB",
 } as const;
 
 export type Language = keyof typeof languages;

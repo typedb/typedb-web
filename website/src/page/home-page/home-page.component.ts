@@ -59,7 +59,7 @@ export class HomePageTechnicolorBlockComponent {
     get allBlocks(): TechnicolorBlock[] {
         return [
             this.page!.introSection,
-            this.page!.featuresSection,
+            ...this.page.impactSections,
             this.page!.solutionsSection,
             this.page!.toolingSection,
             this.page!.cloudSection,

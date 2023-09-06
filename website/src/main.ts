@@ -5,6 +5,7 @@ import { WebsiteModule } from "./website.module";
 import { environment } from "./environment/environment";
 
 import { installPrismTypeQL } from "./prism-typeql";
+import "prismjs/components/prism-cypher";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-rust";
