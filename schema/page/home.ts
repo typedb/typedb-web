@@ -17,7 +17,7 @@ import { Page, SanityPage } from "./common";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
-    features: { id: "featuresSection", title: "Features" },
+    impact: { id: "impactSection", title: "Impact" },
     solutions: { id: "solutionsSection", title: "Solutions" },
     tooling: { id: "toolingSection", title: "Tooling" },
     cloud: { id: "cloudSection", title: "Cloud" },
@@ -30,7 +30,7 @@ type SectionID = typeof sections[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
-    [sections.features.id]: SanityFeaturesSection;
+    impactSections: SanityImpactSection[];
     [sections.solutions.id]: SanitySolutionsSection;
     [sections.tooling.id]: SanityToolingSection;
     [sections.cloud.id]: SanityKeyPointsSection;
@@ -49,8 +49,8 @@ interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     contentTabs: SanityContentTextPanel[];
 }
 
-interface SanityFeaturesSection extends SanityCoreSection {
-    featureTabs: SanityContentTextPanel[];
+interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
+    impactTabs: SanityContentTextPanel[];
 }
 
 interface SanitySolutionsSection extends SanityCoreSection {
@@ -75,7 +75,7 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
-    readonly [sections.features.id]?: FeaturesSection;
+    readonly impactSections: ImpactSection[];
     readonly [sections.solutions.id]?: SolutionsSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.cloud.id]?: CloudSection;
@@ -86,7 +86,7 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
-        this.featuresSection = data.featuresSection.isVisible ? FeaturesSection.fromSanity(data.featuresSection, db) : undefined;
+        this.impactSections = data.impactSections.map(x => ImpactSection.fromSanity(x, db));
         this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanity(data.solutionsSection, db) : undefined;
         this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanity(data.toolingSection, db) : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
@@ -114,17 +114,17 @@ class IntroSection extends TechnicolorBlock {
     }
 }
 
-class FeaturesSection extends TechnicolorBlock {
-    readonly featureTabs: ContentTextPanel[];
+class ImpactSection extends TechnicolorBlock {
+    readonly impactTabs: ContentTextPanel[];
 
-    constructor(props: PropsOf<FeaturesSection>) {
+    constructor(props: PropsOf<ImpactSection>) {
         super(props);
-        this.featureTabs = props.featureTabs;
+        this.impactTabs = props.impactTabs;
     }
 
-    static override fromSanity(data: SanityFeaturesSection, db: SanityDataset) {
-        return new FeaturesSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            featureTabs: data.featureTabs.map(x => new ContentTextPanel(x, db)),
+    static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
+        return new ImpactSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            impactTabs: data.impactTabs.map(x => new ContentTextPanel(x, db)),
         }));
     }
 }
@@ -236,11 +236,11 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("features", [
+    sectionSchema("impact", [
         ...titleBodyIconFields,
         optionalActionsField,
         defineField({
-            name: "featureTabs",
+            name: "impactTabs",
             title: "Impact Tabs",
             type: "array",
             of: [{type: contentTextPanelSchemaName}],
@@ -300,12 +300,28 @@ const sectionSchemas = [
     ]),
 ];
 
-const sectionFields = (Object.keys(sections) as SectionKey[]).map(key => defineField({
-    name: sections[key].id,
-    title: `${sections[key].title} Section`,
-    type: sectionSchemaName(key),
+const introSectionField = defineField({
+    name: sections.intro.id,
+    title: `${sections.intro.title} Section`,
+    type: sectionSchemaName("intro"),
     options: collapsibleOptions,
-}));
+});
+
+const impactSectionsField = defineField({
+    name: "impactSections",
+    title: "Impact Sections",
+    type: "array",
+    of: [{type: sectionSchemaName("impact")}],
+});
+
+const otherSectionFields = (Object.keys(sections) as SectionKey[])
+    .filter(key => !["intro", "impact"].includes(key))
+    .map(key => defineField({
+        name: sections[key].id,
+        title: `${sections[key].title} Section`,
+        type: sectionSchemaName(key),
+        options: collapsibleOptions,
+    }));
 
 const homePageSchema = defineType({
     name: homePageSchemaName,
@@ -313,7 +329,9 @@ const homePageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
-        ...sectionFields,
+        introSectionField,
+        impactSectionsField,
+        ...otherSectionFields,
         defineField({
             name: "conclusionSection",
             title: "Conclusion Section",

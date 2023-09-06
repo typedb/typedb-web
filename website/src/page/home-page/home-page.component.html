@@ -9,9 +9,9 @@
       />
       <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
     </ng-container>
-    <ng-container *ngIf="page.featuresSection">
-      <td-home-page-technicolor-block [block]="page.featuresSection" [page]="page" />
-      <td-content-tabs id="features" [tabs]="page.featuresSection.featureTabs" />
+    <ng-container *ngFor="let impactSection of page.impactSections; index as idx">
+      <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
+      <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
     </ng-container>
     <ng-container *ngIf="page.solutionsSection">
       <td-home-page-technicolor-block [block]="page.solutionsSection" [page]="page" />
