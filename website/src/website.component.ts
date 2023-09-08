@@ -5,9 +5,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Event as RouterEvent, Router, Scroll } from "@angular/router";
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
+import { AnalyticsService } from "./service/analytics.service";
 
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
+import { FormService } from "./service/form.service";
 import { TopbarMobileService } from "./service/topbar-mobile.service";
 
 @Component({
@@ -29,6 +31,8 @@ export class WebsiteComponent {
         _cookieConsentService: NgcCookieConsentService,
         domSanitizer: DomSanitizer,
         matIconRegistry: MatIconRegistry,
+        analyticsService: AnalyticsService,
+        _formService: FormService,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
@@ -59,6 +63,8 @@ export class WebsiteComponent {
         _topbarMobileService.openState.subscribe((isOpen) => {
             document.body.style.overflowY = isOpen ? "hidden" : "unset";
         });
+        analyticsService.googleAnalytics.loadScriptTag();
+        analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);
     }
 
