@@ -16,9 +16,14 @@ export const HUBSPOT_REGION = "na1";
     providedIn: "root",
 })
 export class AnalyticsService {
+    /* Analytics scripts only run in production. */
     hubspot = {
-        trackPageView: () => {
-            /* Page views are only tracked in production. */
-        },
+        trackPageView: () => {},
+    };
+    googleAnalytics = {
+        loadScriptTag: () => {},
+    };
+    googleTagManager = {
+        loadScriptTag: () => {},
     };
 }

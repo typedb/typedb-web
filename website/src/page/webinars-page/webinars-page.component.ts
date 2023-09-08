@@ -10,7 +10,6 @@ import {
     webinarsPageSchemaName,
 } from "typedb-web-schema";
 import { AnalyticsService } from "../../service/analytics.service";
-import { WebinarService } from "../../service/webinar.service";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -27,7 +26,6 @@ export class WebinarsPageComponent implements OnInit {
     constructor(
         private router: Router,
         private contentService: ContentService,
-        private _webinarService: WebinarService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -51,9 +49,6 @@ export class WebinarsPageComponent implements OnInit {
             const futureWebinars = webinars.filter((x) => !x.isFinished()).sort((a, b) => +a.datetime - +b.datetime);
             const pastWebinars = webinars.filter((x) => x.isFinished()).sort((a, b) => +b.datetime - +a.datetime);
             this.allWebinars = [...futureWebinars, ...pastWebinars];
-        });
-        this._webinarService.data.subscribe((data) => {
-            console.log(data);
         });
     }
 
