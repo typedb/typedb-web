@@ -18,7 +18,7 @@ export class ContactPanelComponent implements AfterViewInit {
     ) {}
 
     ngAfterViewInit(): void {
-        this.formService.embedHubspotForm("contact", this.formHolderId, undefined, () =>
+        this.formService.embedHubspotForm("contact", this.formHolderId, () =>
             this.popupNotificationService.success("Your message has been sent!"),
         );
     }

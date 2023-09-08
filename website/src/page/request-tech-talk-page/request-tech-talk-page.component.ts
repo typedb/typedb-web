@@ -40,14 +40,16 @@ export class RequestTechTalkPageComponent implements OnInit {
                     this.idleMonitor.fireManualMyAppReadyEvent();
                 }, 15000);
 
-                this.formService.embedHubspotForm(this.page.hubspotFormID, "hubspot-form-holder");
+                this.formService.embedHubspotForm(this.page.hubspotFormID, "hubspot-form-holder", () =>
+                    this.onSubmit(),
+                );
             } else {
                 this.router.navigate(["404"], { skipLocationChange: true });
             }
         });
     }
 
-    onSubmit() {
+    private onSubmit() {
         this.popupNotificationService.success("Your request has been submitted!");
     }
 }
