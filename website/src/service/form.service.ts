@@ -3,6 +3,7 @@ import { Observable, map, shareReplay } from "rxjs";
 import { FormID, formsSchemaName, SanityHubspotForms } from "typedb-web-schema";
 import { ContentService } from "./content.service";
 import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./analytics.service";
+import { isScullyRunning } from "@scullyio/ng-lib";
 
 @Injectable({
     providedIn: "root",
@@ -15,6 +16,14 @@ export class FormService {
             map((data) => data.getDocumentByID(formsSchemaName) as SanityHubspotForms),
             shareReplay(1),
         );
+    }
+
+    loadHubspotFormsScriptTag() {
+        if (isScullyRunning()) return;
+
+        const scriptEl = document.createElement("script");
+        scriptEl.src = "//js.hsforms.net/forms/embed/v2.js";
+        document.head.appendChild(scriptEl);
     }
 
     embedHubspotForm(
