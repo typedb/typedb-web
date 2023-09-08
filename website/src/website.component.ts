@@ -32,7 +32,7 @@ export class WebsiteComponent {
         domSanitizer: DomSanitizer,
         matIconRegistry: MatIconRegistry,
         analyticsService: AnalyticsService,
-        formService: FormService,
+        _formService: FormService,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
@@ -63,7 +63,6 @@ export class WebsiteComponent {
         _topbarMobileService.openState.subscribe((isOpen) => {
             document.body.style.overflowY = isOpen ? "hidden" : "unset";
         });
-        formService.loadHubspotFormsScriptTag();
         analyticsService.googleAnalytics.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);
