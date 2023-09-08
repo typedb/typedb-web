@@ -46,6 +46,7 @@ export class AnalyticsService {
         gtag('js', new Date());
         gtag('config', '${GOOGLE_TAG_ID}');`;
             document.head.appendChild(scriptEl);
+            document.head.appendChild(scriptEl2);
         },
     };
     googleTagManager = {
