@@ -621,30 +621,12 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
 input[type="submit"].hs-button {
     margin-top: 46px;
-    display: flex;
-    height: 48px;
-    width: 100%;
-    border: 1px solid transparent;
-    border-radius: $border-radius;
-    justify-content: center;
-    align-items: center;
+    @include button-base;
+    @include button-primary;
     font-size: 16px;
-    font-weight: $font-weight-semi-bold;
-    line-height: 24px;
-    transition-property: background-color, border;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    background: $color-vaticle-green;
-    color: $color-vaticle-purple;
-    cursor: pointer;
-    font-family: "Titillium Web", sans-serif;
 
-    &:hover {
-        background-color: #0b939f;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        height: 40px;
+    &.hs-button {
+        width: 100%;
     }
 }
 
@@ -660,15 +642,12 @@ input[type="submit"].hs-button {
     }
 
     .cc-btn {
-        background: $color-vaticle-green;
-        border: 1px solid transparent;
-        border-radius: $border-radius;
-        color: $color-vaticle-purple;
-        font-weight: 600;
-        transition: box-shadow 100ms ease;
+        @include button-base;
+        @include button-primary;
 
-        &:hover {
-            box-shadow: 0 3px 26px 0 rgba($color-vaticle-green, 0.4);
+        &.cc-btn {
+            height: auto;
+            width: auto;
         }
     }
 }
