@@ -29,9 +29,9 @@ export class BlogPostPageComponent implements OnInit {
     readonly categories$: Observable<WordpressTaxonomy[] | null>;
     relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
     readonly subscribeToNewsletterButton = new LinkButton({
-        style: "primary",
+        style: "secondary",
         link: Link.fromAddress("?dialog=newsletter"),
-        text: "Subscribe",
+        text: "Subscribe to Newsletter",
         comingSoon: false,
     });
     @ViewChild("postContent") postContentEl!: ElementRef;
