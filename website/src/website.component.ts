@@ -1,16 +1,17 @@
-import { ViewportScroller } from "@angular/common";
-import { Component } from "@angular/core";
+import { DOCUMENT, ViewportScroller } from "@angular/common";
+import { Component, Inject } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, Event as RouterEvent, Router, Scroll } from "@angular/router";
+import { ActivatedRoute, Event as RouterEvent, NavigationEnd, Router, Scroll } from "@angular/router";
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
 import { AnalyticsService } from "./service/analytics.service";
-
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { FormService } from "./service/form.service";
 import { TopbarMobileService } from "./service/topbar-mobile.service";
+
+const SITE_URL = "https://typedb.com";
 
 @Component({
     selector: "typedb-website",
@@ -20,6 +21,7 @@ import { TopbarMobileService } from "./service/topbar-mobile.service";
 export class WebsiteComponent {
     private _originBeforeNavigation: string = window.location.origin;
     private _pathnameBeforeNavigation: string = window.location.pathname;
+    private canonicalLink?: HTMLLinkElement;
 
     constructor(
         contentService: ContentService,
@@ -33,6 +35,35 @@ export class WebsiteComponent {
         matIconRegistry: MatIconRegistry,
         analyticsService: AnalyticsService,
         _formService: FormService,
+        @Inject(DOCUMENT) doc: Document,
+    ) {
+        this.initScrollBehaviour(router, contentService, activatedRoute, viewportScroller);
+        this.setCanonicalLinkOnNavigation(router, doc);
+        _topbarMobileService.openState.subscribe((isOpen) => {
+            document.body.style.overflowY = isOpen ? "hidden" : "unset";
+        });
+        analyticsService.googleAnalytics.loadScriptTag();
+        analyticsService.googleTagManager.loadScriptTag();
+        this.registerIcons(domSanitizer, matIconRegistry);
+    }
+
+    private setCanonicalLinkOnNavigation(router: Router, doc: Document) {
+        router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd)).subscribe((e) => {
+            if (this.canonicalLink) {
+                doc.head.removeChild(this.canonicalLink);
+            }
+            this.canonicalLink = doc.createElement("link");
+            this.canonicalLink.setAttribute("rel", "canonical");
+            this.canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#\?]/)[0]}`);
+            doc.head.appendChild(this.canonicalLink);
+        });
+    }
+
+    private initScrollBehaviour(
+        router: Router,
+        contentService: ContentService,
+        activatedRoute: ActivatedRoute,
+        viewportScroller: ViewportScroller,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
@@ -60,12 +91,6 @@ export class WebsiteComponent {
                 this._pathnameBeforeNavigation = window.location.pathname;
             });
         });
-        _topbarMobileService.openState.subscribe((isOpen) => {
-            document.body.style.overflowY = isOpen ? "hidden" : "unset";
-        });
-        analyticsService.googleAnalytics.loadScriptTag();
-        analyticsService.googleTagManager.loadScriptTag();
-        this.registerIcons(domSanitizer, matIconRegistry);
     }
 
     private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {

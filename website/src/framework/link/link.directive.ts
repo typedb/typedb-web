@@ -59,7 +59,7 @@ export class LinkDirective implements OnChanges {
         if (this.path) {
             this.el.nativeElement.href = this.resolvedLink.destination;
         } else {
-            this.el.nativeElement.href = `${this._router.url}?${this.query}`;
+            this.el.nativeElement.href = `${this._router.url.split(/[#\?]/)[0]}?${this.query}`;
         }
     }
 
