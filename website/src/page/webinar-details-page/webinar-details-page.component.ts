@@ -17,6 +17,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 })
 export class WebinarDetailsPageComponent implements OnInit {
     webinar?: Webinar;
+    isSubmitting = false;
 
     constructor(
         private router: Router,
@@ -45,11 +46,12 @@ export class WebinarDetailsPageComponent implements OnInit {
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 15000);
-                    this._formService.embedHubspotForm(
-                        this.webinar.hubspotFormID!,
-                        "hubspot-form-holder",
-                        (_formEl, values) => this.onSubmit(values),
-                    );
+                    this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", {
+                        onLoadingChange: (val) => {
+                            this.isSubmitting = val;
+                        },
+                        onSuccess: (_formEl, values) => this.onSubmit(values),
+                    });
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }

@@ -16,6 +16,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 })
 export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
+    isSubmitting = false;
 
     constructor(
         private router: Router,
@@ -40,9 +41,12 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                         `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
                     );
                     this._analytics.hubspot.trackPageView();
-                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", () =>
-                        this.onSubmit(),
-                    );
+                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
+                        onLoadingChange: (val) => {
+                            this.isSubmitting = val;
+                        },
+                        onSuccess: () => this.onSubmit(),
+                    });
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 15000);

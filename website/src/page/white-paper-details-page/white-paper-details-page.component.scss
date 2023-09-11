@@ -2,6 +2,7 @@
 @import "../../styles/colors";
 
 .wd-form-card {
+    position: relative;
     padding: 32px;
     display: flex;
     flex-flow: row wrap;
@@ -48,4 +49,11 @@
     @media (max-width: $media-max-width-mobile) {
         margin: 20px 0;
     }
+}
+
+.mat-mdc-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

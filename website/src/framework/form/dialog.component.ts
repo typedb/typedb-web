@@ -10,20 +10,28 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     styleUrls: ["./name-email-dialog.component.scss"],
 })
 export class NameEmailDialogComponent {
+    @Input() isSubmitting!: boolean;
     @Input() titleProp!: string;
 }
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template: `<td-name-email-dialog titleProp="Join TypeDB Cloud Waitlist" />`,
+    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Join TypeDB Cloud Waitlist" />`,
 })
 export class CloudWaitlistDialogComponent {
+    isSubmitting = false;
+
     constructor(
         private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder", () => this.onSubmit());
+        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
     private onSubmit() {
@@ -34,15 +42,22 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template: `<td-name-email-dialog titleProp="Subscribe to TypeDB Newsletter" />`,
+    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Subscribe to TypeDB Newsletter" />`,
 })
 export class NewsletterDialogComponent {
+    isSubmitting = false;
+
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", () => this.onSubmit());
+        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
     private onSubmit() {
@@ -50,18 +65,6 @@ export class NewsletterDialogComponent {
         this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
     }
 }
-
-const CONTACT_FORM_TOPICS = [
-    "Products & Services",
-    "Support",
-    "Consulting",
-    "Sales",
-    "Training",
-    "Careers",
-    "PR & Analyst Relations",
-] as const;
-
-type ContactFormTopic = (typeof CONTACT_FORM_TOPICS)[number];
 
 @Component({
     selector: "td-contact-dialog",
@@ -78,13 +81,19 @@ export class ContactDialogComponent {
         "Careers",
         "PR & Analyst Relations",
     ] as const;
+    isSubmitting = false;
 
     constructor(
         private dialogRef: MatDialogRef<ContactDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact", () => this.onSubmit());
+        this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
     private onSubmit() {
