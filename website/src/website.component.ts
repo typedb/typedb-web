@@ -63,7 +63,7 @@ export class WebsiteComponent {
         router: Router,
         contentService: ContentService,
         activatedRoute: ActivatedRoute,
-        viewportScroller: ViewportScroller
+        viewportScroller: ViewportScroller,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
