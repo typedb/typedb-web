@@ -1,10 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import {
     Link,
     WordpressPost,
     WordpressTaxonomy,
-    WordpressPosts,
     WordpressRelatedPosts,
     WordpressSite,
     WordpressACF,
@@ -15,14 +14,15 @@ import { ContentService } from "../../service/content.service";
 import { Meta, Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { combineLatest, distinctUntilChanged, map, mergeMap, Observable, of, shareReplay, switchMap, tap } from "rxjs";
+import { combineLatest, filter, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import Prism from "prismjs";
 
 @Component({
     selector: "td-blog-post-page",
     templateUrl: "./blog-post-page.component.html",
     styleUrls: ["./blog-post-page.component.scss"],
 })
-export class BlogPostPageComponent {
+export class BlogPostPageComponent implements OnInit {
     readonly site$: Observable<WordpressSite>;
     readonly post$: Observable<WordpressPost | null>;
     readonly customFields$: Observable<WordpressACF | null>;
@@ -34,6 +34,7 @@ export class BlogPostPageComponent {
         text: "Subscribe",
         comingSoon: false,
     });
+    @ViewChild("postContent") postContentEl!: ElementRef;
 
     constructor(
         private router: Router,
@@ -51,7 +52,7 @@ export class BlogPostPageComponent {
             switchMap((slug: string | null) => {
                 return slug ? this.blogService.getPostBySlug(slug) : of(null);
             }),
-            shareReplay(),
+            shareReplay(1),
         );
         this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
         this.customFields$ = this.post$.pipe(
@@ -84,6 +85,8 @@ export class BlogPostPageComponent {
                         content: customFields.social_sharing_description || "",
                     });
                     this._analytics.hubspot.trackPageView();
+                    this.postContentEl.nativeElement.innerHTML = post!.content;
+                    Prism.highlightAll();
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
