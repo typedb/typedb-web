@@ -1,11 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { BlogFilter, Link, WordpressPost, WordpressTaxonomy, WordpressSite } from "typedb-web-schema";
-import { BlogService } from "../../service/blog.service";
-import { Title } from "@angular/platform-browser";
-import { AnalyticsService } from "../../service/analytics.service";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable, switchMap } from "rxjs";
+import { Component, HostBinding, Input } from "@angular/core";
+import { WordpressPost } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-authorship-bar",
@@ -15,8 +9,13 @@ import { map, Observable, switchMap } from "rxjs";
 export class BlogAuthorshipBarComponent {
     @Input() post!: WordpressPost;
     @Input() size: "medium" | "small" = "small";
+    @Input() variant: "tertiary" | "none" = "none";
 
     @HostBinding("class.bp-author-small") get isSmall() {
         return this.size === "small";
+    }
+
+    @HostBinding("class.variant-tertiary") get isTertiaryPost() {
+        return this.variant === "tertiary";
     }
 }

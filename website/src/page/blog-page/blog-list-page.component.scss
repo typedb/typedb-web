@@ -167,7 +167,7 @@ td-aspect-ratio {
 .bp-post-list-item {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
 
     & + & {
@@ -200,6 +200,7 @@ td-aspect-ratio {
     flex: 2;
     display: flex;
     flex-direction: column;
+    margin-top: 2px;
 
     .bp-post-title {
         @include line-clamp(1);

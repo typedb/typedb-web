@@ -13,6 +13,10 @@
         gap: 8px;
     }
 
+    &.variant-tertiary {
+        margin-top: 16px;
+    }
+
     @media (max-width: $media-max-width-mobile) {
         gap: 8px;
     }
