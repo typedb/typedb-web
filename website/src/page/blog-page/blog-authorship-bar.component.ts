@@ -9,13 +9,8 @@ import { WordpressPost } from "typedb-web-schema";
 export class BlogAuthorshipBarComponent {
     @Input() post!: WordpressPost;
     @Input() size: "medium" | "small" = "small";
-    @Input() variant: "tertiary" | "none" = "none";
 
     @HostBinding("class.bp-author-small") get isSmall() {
         return this.size === "small";
-    }
-
-    @HostBinding("class.variant-tertiary") get isTertiaryPost() {
-        return this.variant === "tertiary";
     }
 }
