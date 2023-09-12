@@ -16,6 +16,10 @@
     z-index: 50;
     overflow: hidden;
     touch-action: none;
+
+    ::ng-deep td-code-snippet {
+        overflow-x: hidden;
+    }
 }
 
 .sp-pane:nth-of-type(2) {
