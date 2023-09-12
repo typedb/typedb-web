@@ -54,8 +54,8 @@ import { PageBackgroundComponent } from "./page-background/page-background.compo
 import { AspectRatioComponent } from "./aspect-ratio/aspect-ratio.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
 import { PersonInfoComponent } from "./person-info/person-info.component";
+import { EventDatePipe } from "./date/event-date.pipe";
 import { EventDurationPipe } from "./date/event-duration.pipe";
-import { DateRangePipe } from "./date/date-range.pipe";
 import { SnackbarComponent } from "./snackbar/snackbar.component";
 import { ServicesTableComponent } from "./services-table/services-table.component";
 import { ContactPanelComponent } from "./contact-panel/contact-panel.component";
@@ -77,8 +77,8 @@ const globalRippleConfig: RippleGlobalOptions = {
         ContactPanelComponent,
         ContentPanelComponent,
         ContentTabsComponent,
-        DateRangePipe,
         DialogCloseButtonComponent,
+        EventDatePipe,
         EventDurationPipe,
         FeatureTableComponent,
         FeatureTableCellComponent,
@@ -133,7 +133,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         ContactPanelComponent,
         ContentPanelComponent,
         ContentTabsComponent,
-        DateRangePipe,
+        EventDatePipe,
         EventDurationPipe,
         FeatureTableComponent,
         HeadingWithHighlightsComponent,

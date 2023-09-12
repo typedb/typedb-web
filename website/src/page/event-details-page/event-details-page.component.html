@@ -3,11 +3,15 @@
     <section class="page-section page-intro-section">
       <td-heading-with-highlights [value]="event.title" level="h1" />
       <ul class="ed-subtitle text-p1">
-        <li>{{ event.tag }}</li>
         <li>
           <mat-icon svgIcon="calendar" />
           <span class="cdk-visually-hidden">Date/Time:</span>
-          {{ event.dateOptions | dateRange }}
+          {{ event.dateOptions | eventDate }}
+        </li>
+        <li *ngIf="event.dateOptions.endDate">
+          <mat-icon svgIcon="time" />
+          <span class="cdk-visually-hidden">Duration:</span>
+          {{ event.dateOptions | eventDuration }}
         </li>
         <li>
           <mat-icon svgIcon="location" />
