@@ -177,12 +177,22 @@ p,
 .text-p2 {
     font-size: $font-size-p2;
     line-height: $line-height-p2;
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-p2-mobile;
+        line-height: $line-height-p2-mobile;
+    }
 }
 
 aside,
 .text-aside {
     font-size: $font-size-aside;
     line-height: $line-height-aside;
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-aside-mobile;
+        line-height: $line-height-aside-mobile;
+    }
 }
 
 code,
@@ -379,64 +389,6 @@ hr {
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: $subtitle-margin-mobile;
-    }
-}
-
-// TODO: can we delete this?
-$text-sizes-map: (
-    // font-size line-height
-    56 64,
-    48 60,
-    40 54,
-    40 48,
-    34 48,
-    32 44,
-    28 43,
-    28 36,
-    24 37,
-    24 32,
-    22 33,
-    20 32,
-    20 30,
-    20 28,
-    18 32,
-    18 28,
-    18 26,
-    16 28,
-    16 24,
-    16 20,
-    14 24,
-    14 23,
-    14 21,
-    12 20,
-    12 18,
-    12 16,
-    10 15,
-    10 12
-);
-
-@each $fontSize, $lineHeight in $text-sizes-map {
-    .text-#{$fontSize}-#{$lineHeight} {
-        font-size: $fontSize * 1px;
-        line-height: $lineHeight * 1px;
-    }
-}
-
-@each $fontSize, $lineHeight in $text-sizes-map {
-    .text-#{$fontSize}-#{$lineHeight}-tablet {
-        @media (max-width: $media-max-width-tablet) {
-            font-size: $fontSize * 1px;
-            line-height: $lineHeight * 1px;
-        }
-    }
-}
-
-@each $fontSize, $lineHeight in $text-sizes-map {
-    .text-#{$fontSize}-#{$lineHeight}-mobile {
-        @media (max-width: $media-max-width-mobile) {
-            font-size: $fontSize * 1px;
-            line-height: $lineHeight * 1px;
-        }
     }
 }
 
