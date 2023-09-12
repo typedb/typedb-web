@@ -5,6 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -121,6 +122,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
+        MatProgressBarModule,
         MatSnackBarModule,
         RouterModule,
     ],
@@ -144,6 +146,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         LinkPanelsComponent,
         MatButtonModule,
         MatIconModule,
+        MatProgressBarModule,
         OrdinalDatePipe,
         OrganisationLogosComponent,
         PageBackgroundComponent,

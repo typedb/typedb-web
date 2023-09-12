@@ -16,6 +16,7 @@ import { AnalyticsService } from "src/service/analytics.service";
 })
 export class RequestTechTalkPageComponent implements OnInit {
     page?: RequestTechTalkPage;
+    isSubmitting = false;
 
     constructor(
         private analytics: AnalyticsService,
@@ -40,14 +41,19 @@ export class RequestTechTalkPageComponent implements OnInit {
                     this.idleMonitor.fireManualMyAppReadyEvent();
                 }, 15000);
 
-                this.formService.embedHubspotForm(this.page.hubspotFormID, "hubspot-form-holder");
+                this.formService.embedHubspotForm(this.page.hubspotFormID, "hubspot-form-holder", {
+                    onLoadingChange: (val) => {
+                        this.isSubmitting = val;
+                    },
+                    onSuccess: () => this.onSubmit(),
+                });
             } else {
                 this.router.navigate(["404"], { skipLocationChange: true });
             }
         });
     }
 
-    onSubmit() {
+    private onSubmit() {
         this.popupNotificationService.success("Your request has been submitted!");
     }
 }

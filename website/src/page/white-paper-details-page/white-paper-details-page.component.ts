@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
-import { ResourceAccessForm } from "../../framework/form/form";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
@@ -17,7 +16,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 })
 export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
-    form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
+    isSubmitting = false;
 
     constructor(
         private router: Router,
@@ -42,7 +41,12 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                         `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
                     );
                     this._analytics.hubspot.trackPageView();
-                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder");
+                    this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
+                        onLoadingChange: (val) => {
+                            this.isSubmitting = val;
+                        },
+                        onSuccess: () => this.onSubmit(),
+                    });
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 15000);
@@ -53,7 +57,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
         });
     }
 
-    onSubmit() {
+    private onSubmit() {
         this._popupNotificationService.success("Your file will be downloaded shortly.");
         fetch(this.whitePaper!.fileURL)
             .then((resp) => resp.blob())

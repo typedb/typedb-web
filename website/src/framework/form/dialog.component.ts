@@ -3,7 +3,6 @@ import { MatDialogRef } from "@angular/material/dialog";
 
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
-import { NameEmailForm } from "./form";
 
 @Component({
     selector: "td-name-email-dialog",
@@ -11,36 +10,31 @@ import { NameEmailForm } from "./form";
     styleUrls: ["./name-email-dialog.component.scss"],
 })
 export class NameEmailDialogComponent {
+    @Input() isSubmitting!: boolean;
     @Input() titleProp!: string;
-    @Input() submitButtonText = "Submit";
-    @Output() submit = new EventEmitter<NameEmailForm>();
-    @ViewChild("formEl") formEl!: ElementRef<HTMLFormElement>;
-    form: NameEmailForm = { firstName: "", lastName: "", email: "" };
-
-    constructor(private dialogRef: MatDialogRef<NameEmailDialogComponent>) {}
-
-    onSubmit() {
-        if (!this.formEl.nativeElement.reportValidity()) return;
-
-        this.submit.emit(this.form);
-    }
 }
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template:
-        "<td-name-email-dialog titleProp='Join TypeDB Cloud Waitlist' submitButtonText='Register' (submit)='onSubmit($event)'></td-name-email-dialog>",
+    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Join TypeDB Cloud Waitlist" />`,
 })
 export class CloudWaitlistDialogComponent {
+    isSubmitting = false;
+
     constructor(
         private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder");
+        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
-    onSubmit(data: NameEmailForm) {
+    private onSubmit() {
         this.dialogRef.close();
         this._popupNotificationService.success("You're now on the TypeDB Cloud waitlist!");
     }
@@ -48,38 +42,29 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template:
-        "<td-name-email-dialog titleProp='Subscribe to TypeDB Newsletter' submitButtonText='Subscribe' (submit)='onSubmit()'></td-name-email-dialog>",
+    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Subscribe to TypeDB Newsletter" />`,
 })
 export class NewsletterDialogComponent {
+    isSubmitting = false;
+
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder");
+        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
-    onSubmit() {
-        // TODO: maybe don't close immediately but show a loading indicator until it's submitted
-        // TODO: we don't actually check the submission status; the 'submit' event is triggered regardless.
-        //       this also means the user might have sent invalid data (that fails form validation)
+    private onSubmit() {
         this.dialogRef.close();
         this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
     }
 }
-
-const CONTACT_FORM_TOPICS = [
-    "Products & Services",
-    "Support",
-    "Consulting",
-    "Sales",
-    "Training",
-    "Careers",
-    "PR & Analyst Relations",
-] as const;
-
-type ContactFormTopic = (typeof CONTACT_FORM_TOPICS)[number];
 
 @Component({
     selector: "td-contact-dialog",
@@ -96,35 +81,25 @@ export class ContactDialogComponent {
         "Careers",
         "PR & Analyst Relations",
     ] as const;
-    form: ContactForm = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        companyName: "",
-        jobFunction: "",
-        topics: CONTACT_FORM_TOPICS.reduce((obj, x) => Object.assign(obj, { [x]: false }), {}) as any,
-        body: "",
-    };
+    isSubmitting = false;
 
     constructor(
         private dialogRef: MatDialogRef<ContactDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
     ) {
-        this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact");
+        this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
     }
 
-    onSubmit(event: SubmitEvent) {
+    private onSubmit() {
         this.dialogRef.close();
         this._popupNotificationService.success("Your message has been sent!");
     }
-}
-
-interface ContactForm extends NameEmailForm {
-    companyName: string;
-    jobFunction: string;
-    topics: { [topic in ContactFormTopic]: boolean };
-    body: string;
 }
 
 @Component({

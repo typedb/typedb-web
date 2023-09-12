@@ -3,10 +3,11 @@
   <td-dialog-close-button></td-dialog-close-button>
 </div>
 <div mat-dialog-content>
-  <div id="hubspot-form-holder-contact" (submit)="onSubmit($event)"></div>
+  <div id="hubspot-form-holder-contact"></div>
   <p>
     By submitting your personal data, you consent to emails from Vaticle. See our
     <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
   </p>
   <br class="hide-gt-mobile" />
 </div>
+<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />

@@ -11,6 +11,7 @@ export class ContactPanelComponent implements AfterViewInit {
     @HostBinding("class") readonly className = "section card";
 
     readonly formHolderId = "hubspot-form-holder-contact-section";
+    isSubmitting = false;
 
     constructor(
         private formService: FormService,
@@ -18,8 +19,11 @@ export class ContactPanelComponent implements AfterViewInit {
     ) {}
 
     ngAfterViewInit(): void {
-        this.formService.embedHubspotForm("contact", this.formHolderId, undefined, () =>
-            this.popupNotificationService.success("Your message has been sent!"),
-        );
+        this.formService.embedHubspotForm("contact", this.formHolderId, {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.popupNotificationService.success("Your message has been sent!"),
+        });
     }
 }

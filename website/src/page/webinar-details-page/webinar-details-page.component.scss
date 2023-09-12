@@ -56,6 +56,7 @@ ul.wd-speakers {
 }
 
 .wd-form-card {
+    position: relative;
     margin-bottom: 32px;
     padding: 32px;
     display: flex;
@@ -73,4 +74,11 @@ ul.wd-speakers {
         padding: 12px;
         gap: 12px;
     }
+}
+
+.mat-mdc-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
