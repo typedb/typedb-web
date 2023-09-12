@@ -39,30 +39,39 @@ $media-min-width-tablet: 768px;
 $media-max-width-tablet: 1199px;
 $media-min-width-desktop: 1200px;
 
-@function remify($font-size) {
-    @return $font-size;
-    // TODO: I've heard that rem units are best for accessibility, but major sites including Apple don't use them -
-    //  we should investigate best practices
-    //@return calc($font-size / $font-size-base) * 1rem;
-}
-
 $font-size-base: 17px;
-$font-size-h1: remify(51px);
-$line-height-h1: calc(remify(59px) / $font-size-h1);
-$font-size-h2: remify(39px);
-$line-height-h2: calc(remify(47px) / $font-size-h2);
-$font-size-h3: remify(25px);
-$line-height-h3: calc(remify(33px) / $font-size-h3);
-$font-size-h4: remify(21px);
-$line-height-h4: calc(remify(29px) / $font-size-h4);
-$font-size-p1: remify(21px);
-$line-height-p1: calc(remify(29px) / $font-size-p1);
-$font-size-p2: remify(17px);
-$line-height-p2: calc(remify(25px) / $font-size-p2);
-$font-size-aside: remify(15px);
-$line-height-aside: calc(remify(23px) / $font-size-aside);
-$font-size-code: remify(14px);
-$line-height-code: calc(remify(21px) / $font-size-code);
+
+$font-size-h1: 51px;
+$line-height-h1: calc(59px / $font-size-h1);
+$font-size-h1-mobile: 31px;
+$line-height-h1-mobile: calc(39px / $font-size-h1-mobile);
+
+$font-size-h2: 39px;
+$line-height-h2: calc(47px / $font-size-h2);
+$font-size-h2-mobile: 25px;
+$line-height-h2-mobile: calc(33px / $font-size-h2-mobile);
+
+$font-size-h3: 25px;
+$line-height-h3: calc(33px / $font-size-h3);
+$font-size-h3-mobile: 21px;
+$line-height-h3-mobile: calc(29px / $font-size-h3-mobile);
+
+$font-size-h4: 21px;
+$line-height-h4: calc(29px / $font-size-h4);
+$font-size-h4-mobile: 19px;
+$line-height-h4-mobile: calc(27px / $font-size-h4-mobile);
+
+$font-size-p1: 21px;
+$line-height-p1: calc(29px / $font-size-p1);
+$font-size-p1-mobile: 19px;
+$line-height-p1-mobile: calc(27px / $font-size-p1-mobile);
+
+$font-size-p2: 17px;
+$line-height-p2: calc(25px / $font-size-p2);
+$font-size-aside: 15px;
+$line-height-aside: calc(23px / $font-size-aside);
+$font-size-code: 14px;
+$line-height-code: calc(21px / $font-size-code);
 
 $card-padding: 28px;
 $card-padding-tablet: 20px;
