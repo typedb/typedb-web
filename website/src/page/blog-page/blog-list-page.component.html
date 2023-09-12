@@ -27,7 +27,7 @@
           </div>
         </div>
 
-        <hr />
+        <hr class="hide-mobile" />
 
         <div class="bp-secondary-posts">
           <ng-container *ngFor="let post of [posts[1], posts[2]]">
@@ -47,7 +47,7 @@
           </ng-container>
         </div>
 
-        <hr />
+        <hr class="hide-mobile" />
 
         <div class="bp-posts-list-section">
           <ul class="bp-posts-list">
@@ -58,11 +58,10 @@
                     <img [src]="heroImageURL(post)" class="bp-img" [alt]="" loading="lazy" />
                   </td-aspect-ratio>
                 </a>
-                <h3 class="bp-post-title hide-gt-mobile">{{ post.title }}</h3>
               </div>
               <div class="bp-post-text-tertiary">
                 <td-blog-category-chips [categories]="postCategories(post)" />
-                <h3 class="bp-post-title hide-mobile">
+                <h3 class="bp-post-title">
                   <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
                 </h3>
                 <div class="bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>

@@ -13,7 +13,7 @@
           <h3 class="lc-title">{{ panel.title }}</h3>
           <td-rich-text [value]="panel.body" />
           <ng-container [ngSwitch]="ctaStrength">
-            <div class="flex"></div>
+            <div class="hide-mobile flex"></div>
             <a *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</a>
           </ng-container>
         </div>
@@ -29,7 +29,6 @@
           <aside *ngIf="panel.button.comingSoon" class="lp-coming-soon">coming soon</aside>
           <h3>{{ panel.title }}</h3>
           <td-rich-text [value]="panel.body" />
-          <div class="flex"></div>
           <td-button
             [button]="panel.button"
             size="small"

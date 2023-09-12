@@ -8,5 +8,6 @@
 
     @media (max-width: $media-max-width-mobile) {
         flex-direction: column;
+        margin-top: 24px;
     }
 }

@@ -6,6 +6,11 @@
     height: 72px;
     margin-bottom: 40px;
 
+    @media (max-width: $media-max-width-mobile) {
+        height: 54px;
+        margin-bottom: 0;
+    }
+
     &.bn-variant-post-page {
         height: 58px;
     }
@@ -14,11 +19,16 @@
 ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     gap: 10px;
     height: 100%;
     list-style: none;
     border-bottom: 1px solid $color-vaticle-light-purple;
+    overflow: auto;
+    white-space: nowrap;
+
+    @media (min-width: $media-min-width-tablet) {
+        justify-content: space-around;
+    }
 
     &.bp-author-small {
         gap: 8px;

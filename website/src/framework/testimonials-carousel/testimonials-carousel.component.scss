@@ -12,6 +12,10 @@
     height: 304px;
     perspective: 1400px;
     transform-style: preserve-3d;
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 264px;
+    }
 }
 
 .tc-card {
@@ -77,6 +81,13 @@
 
 .tc-person-job {
     margin-top: 2px;
+
+    @media (max-width: $media-max-width-mobile) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 160px;
+    }
 }
 
 .tc-logo {

@@ -17,6 +17,10 @@ hr {
 
 .bp-title-section {
     margin-top: 160px;
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-top: 54px;
+    }
 }
 
 ::ng-deep .rt-reading-time {
@@ -37,8 +41,7 @@ hr {
     }
 
     @media (max-width: $media-max-width-mobile) {
-        flex-direction: column;
-        gap: 12px;
+        display: block;
     }
 
     .bp-primary-img-link {
@@ -122,9 +125,11 @@ td-aspect-ratio {
 }
 
 .bp-secondary-posts {
-    display: flex;
-    gap: 40px;
-    padding: 40px 0;
+    @media (min-width: $media-min-width-tablet) {
+        display: flex;
+        gap: 40px;
+        padding: 40px 0;
+    }
 }
 
 .bp-secondary-post {
@@ -134,10 +139,11 @@ td-aspect-ratio {
     gap: 24px;
 
     @media (max-width: $media-max-width-mobile) {
-        padding: 12px;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 12px;
+        display: block;
+
+        & + .bp-secondary-post {
+            margin-top: 40px;
+        }
     }
 
     .bp-post-title {
@@ -165,22 +171,20 @@ td-aspect-ratio {
 }
 
 .bp-post-list-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-
     & + & {
         margin-top: 40px;
-        padding-top: 40px;
-        border-top: 1px solid $color-vaticle-light-purple;
     }
 
-    @media (max-width: $media-max-width-mobile) {
-        padding: 16px 12px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
+    @media (min-width: $media-min-width-tablet) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+
+        & + & {
+            padding-top: 40px;
+            border-top: 1px solid $color-vaticle-light-purple;
+        }
     }
 }
 
