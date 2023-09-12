@@ -34,8 +34,13 @@ export class FormService {
     embedHubspotForm(
         form: FormID | string,
         placeholderElementID: string,
-        onSubmit?: (formEl: HTMLFormElement) => void,
-        onSuccess?: (formEl: HTMLFormElement) => void,
+        {
+            onLoadingChange,
+            onSuccess,
+        }: {
+            onLoadingChange?: (val: boolean) => void;
+            onSuccess?: (formEl: HTMLFormElement, submissionValues: Record<string, unknown>) => void;
+        } = {},
     ) {
         this.forms.subscribe((data) => {
             const hubspotFormID = data[form as FormID] || form;
@@ -45,8 +50,12 @@ export class FormService {
                     portalId: HUBSPOT_PORTAL_ID,
                     formId: hubspotFormID,
                     target: `#${placeholderElementID}`,
-                    onBeforeFormSubmit: onSubmit,
-                    onFormSubmitted: onSuccess,
+                    onFormError: () => onLoadingChange?.(false),
+                    onFormSubmit: () => onLoadingChange?.(true),
+                    onFormSubmitted: (formEl, { submissionValues }) => {
+                        onLoadingChange?.(false);
+                        onSuccess?.(formEl, submissionValues);
+                    },
                 });
             });
         });

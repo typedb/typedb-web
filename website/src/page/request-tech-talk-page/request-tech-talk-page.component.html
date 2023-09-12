@@ -6,11 +6,12 @@
       <div class="rt-details subsection-margin">
         <div class="card rt-form-card">
           <h3><strong>Submit Company Info</strong></h3>
-          <div id="hubspot-form-holder" (submit)="onSubmit()"></div>
+          <div id="hubspot-form-holder"></div>
           <p>
             By submitting your personal data, you consent to emails from Vaticle. See our
             <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
           </p>
+          <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
         </div>
         <div class="rt-details-text">
           <td-p-with-highlights [value]="page.details.title" class="rt-details-title" level="p1" />

@@ -23,6 +23,8 @@ interface Window {
                 sfdcCampaignId?: string;
                 goToWebinarWebinarKey?: string;
                 onBeforeFormInit?: (ctx: string) => void;
+                // HubSpot does not include this callback in its documentation
+                onFormError?: (error: string, arg1: unknown, arg2: unknown) => void;
                 onFormReady?: ($form: HTMLFormElement) => void;
                 onFormSubmit?: ($form: HTMLFormElement) => void;
                 onBeforeFormSubmit?: (

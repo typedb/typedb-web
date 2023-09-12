@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
-import { ResourceAccessForm } from "../../framework/form/form";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
@@ -18,7 +17,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 })
 export class WebinarDetailsPageComponent implements OnInit {
     webinar?: Webinar;
-    form: ResourceAccessForm = { firstName: "", lastName: "", email: "", companyName: "", jobFunction: "" };
+    isSubmitting = false;
 
     constructor(
         private router: Router,
@@ -47,15 +46,11 @@ export class WebinarDetailsPageComponent implements OnInit {
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 15000);
-                    this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", (formEl) => {
-                        this._webinarService.register({
-                            airmeetID: this.webinar!.airmeetID!,
-                            firstName: formEl["firstname"].value,
-                            lastName: formEl["lastname"].value,
-                            email: formEl["email"].value,
-                            companyName: formEl["company"].value,
-                            jobTitle: formEl["job_function"].value,
-                        });
+                    this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", {
+                        onLoadingChange: (val) => {
+                            this.isSubmitting = val;
+                        },
+                        onSuccess: (_formEl, values) => this.onSubmit(values),
                     });
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
@@ -64,7 +59,16 @@ export class WebinarDetailsPageComponent implements OnInit {
         });
     }
 
-    onSubmit() {
+    private onSubmit(values: Record<string, unknown>) {
+        this._webinarService.register({
+            airmeetID: this.webinar!.airmeetID!,
+            firstName: `${values["firstname"]}`,
+            lastName: `${values["lastname"]}`,
+            email: `${values["email"]}`,
+            companyName: `${values["company"]}`,
+            jobTitle: `${values["job_function"]}`,
+        });
+
         const successMsg = this.webinar!.isFinished()
             ? "A link to watch the webinar has been sent to your email inbox."
             : "A link to join the webinar has been sent to your email inbox.";

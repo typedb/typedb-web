@@ -766,4 +766,8 @@ body {
             padding: 0;
         }
     }
+
+    .mat-mdc-progress-bar {
+        --mdc-linear-progress-active-indicator-color: #{$color-vaticle-green};
+    }
 }
