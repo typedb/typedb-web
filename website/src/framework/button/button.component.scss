@@ -7,7 +7,7 @@
 }
 
 a {
-    @include button-base;
+    @include button;
 
     &.primary {
         @include button-primary;

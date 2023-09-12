@@ -621,7 +621,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
 input[type="submit"].hs-button {
     margin-top: 46px;
-    @include button-base;
+    @include button;
     @include button-primary;
     font-size: 16px;
 
@@ -642,7 +642,7 @@ input[type="submit"].hs-button {
     }
 
     .cc-btn {
-        @include button-base;
+        @include button;
         @include button-primary;
 
         &.cc-btn {

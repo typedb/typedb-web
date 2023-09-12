@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-@mixin button-base {
+@mixin button {
     display: flex;
     border-width: 1px;
     border-style: solid;
@@ -34,12 +34,12 @@
         height: 40px;
     }
 
-    &.td-disabled {
+    &.td-button-disabled {
         opacity: 50%;
         cursor: default;
     }
 
-    &.td-size-s {
+    &.td-button-size-s {
         height: 40px;
     }
 }
@@ -49,7 +49,7 @@
     background: $color-vaticle-green;
     color: $color-vaticle-purple;
 
-    &:not(.td-disabled) {
+    &:not(.td-button-disabled) {
         &:hover,
         &.container-hover,
         :host-context(.td-button-container:hover) {
@@ -67,7 +67,7 @@
     background: transparent;
     color: $color-vaticle-green;
 
-    &:not(.td-disabled) {
+    &:not(.td-button-disabled) {
         &:hover,
         &.container-hover,
         :host-context(.td-button-container:hover) {

@@ -22,8 +22,8 @@ export class ButtonComponent {
     get rootNgClass(): { [key: string]: boolean } {
         return {
             [this.button.style]: true,
-            "td-size-s": this.size === "small",
-            "td-disabled": this.button.comingSoon,
+            "td-button-size-s": this.size === "small",
+            "td-button-disabled": this.button.comingSoon,
             "container-hover": this.containerHovered,
         };
     }
