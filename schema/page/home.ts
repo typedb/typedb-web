@@ -86,7 +86,7 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
-        this.impactSections = data.impactSections.map(x => ImpactSection.fromSanity(x, db));
+        this.impactSections = data.impactSections.filter(x => x.isVisible).map(x => ImpactSection.fromSanity(x, db));
         this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanity(data.solutionsSection, db) : undefined;
         this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanity(data.toolingSection, db) : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
