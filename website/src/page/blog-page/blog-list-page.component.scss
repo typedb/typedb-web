@@ -59,7 +59,7 @@ hr {
 
 .bp-post-title {
     font-weight: $font-weight-bold;
-    margin-top: 4px;
+    margin-top: 12px;
 
     &.bp-primary-post-title {
         margin-top: 12px;
@@ -189,7 +189,7 @@ td-aspect-ratio {
 }
 
 .bp-img-tertiary-container {
-    flex: 1;
+    flex: 11;
     display: flex;
     gap: 12px;
 }
@@ -201,7 +201,7 @@ td-aspect-ratio {
 }
 
 .bp-post-text-tertiary {
-    flex: 2;
+    flex: 21;
     display: flex;
     flex-direction: column;
     margin-top: 2px;
