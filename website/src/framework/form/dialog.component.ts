@@ -42,7 +42,7 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Subscribe to TypeDB Newsletter" />`,
+    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Subscribe to Newsletter" />`,
 })
 export class NewsletterDialogComponent {
     isSubmitting = false;

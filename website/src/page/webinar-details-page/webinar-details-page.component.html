@@ -26,10 +26,10 @@
             <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register for Webinar" }}</strong>
           </h3>
           <div id="hubspot-form-holder"></div>
-          <p class="text-weight-light">
+          <aside class="text-weight-light">
             By submitting your personal data, you consent to emails from Vaticle. See our
             <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
-          </p>
+          </aside>
           <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
         </div>
         <div>
