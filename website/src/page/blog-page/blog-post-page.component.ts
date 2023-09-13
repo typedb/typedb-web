@@ -1,5 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, DestroyRef, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { IdleMonitorService } from "@scullyio/ng-lib";
+import Prism from "prismjs";
+import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     Link,
     WordpressPost,
@@ -9,13 +13,10 @@ import {
     WordpressACF,
     LinkButton,
 } from "typedb-web-schema";
+
+import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { BlogService } from "../../service/blog.service";
-import { ContentService } from "../../service/content.service";
-import { Meta, Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { combineLatest, filter, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import Prism from "prismjs";
 
 @Component({
     selector: "td-blog-post-page",
@@ -39,13 +40,15 @@ export class BlogPostPageComponent implements OnInit {
     constructor(
         private router: Router,
         private _activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
         private blogService: BlogService,
         private _title: Title,
         private meta: Meta,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
+        destroyRef: DestroyRef,
+        topbarMenuService: TopbarMenuService,
     ) {
+        topbarMenuService.registerPageOffset(100, destroyRef);
         this.site$ = this.blogService.site;
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),

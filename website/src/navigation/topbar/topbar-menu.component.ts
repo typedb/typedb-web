@@ -1,5 +1,14 @@
-import { Component, EventEmitter, HostListener, Input, NgZone, OnInit, Output } from "@angular/core";
-import { Router } from "@angular/router";
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    NgZone,
+    OnInit,
+    Output,
+    ViewChild,
+} from "@angular/core";
 import {
     communityResourcesSchemaName,
     SanityCommunityResources,
@@ -18,6 +27,7 @@ import {
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
 import { TopbarMobileService } from "../../service/topbar-mobile.service";
+import { TopbarMenuService } from "./topbar-menu.service";
 
 @Component({
     selector: "td-topbar",
@@ -33,23 +43,19 @@ export class TopbarMenuComponent implements OnInit {
     hoveredMenuPanel?: TopbarMenuPanel;
     focusedMenuPanel?: TopbarMenuPanel;
 
+    @ViewChild("siteHeader") set siteHeader(elRef: ElementRef<HTMLElement> | undefined) {
+        if (elRef?.nativeElement) {
+            this.setupScrollEvents(elRef.nativeElement);
+        }
+    }
+
     constructor(
-        private router: Router,
         private contentService: ContentService,
         private dialogService: DialogService,
+        private ngZone: NgZone,
+        private topbarMenuService: TopbarMenuService,
         private _topbarMobileService: TopbarMobileService,
-        private _ngZone: NgZone,
-    ) {
-        this._ngZone.runOutsideAngular(() => {
-            window.addEventListener("scroll", () => {
-                const headerEl = document.getElementById("siteHeader");
-                if (headerEl) {
-                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${window.pageYOffset / 300})`; // vaticle purple
-                    headerEl.style.borderBottomColor = window.pageYOffset >= 300 ? "#232135" : "transparent"; // vaticle secondary purple
-                }
-            });
-        });
-    }
+    ) {}
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
@@ -144,6 +150,23 @@ export class TopbarMenuComponent implements OnInit {
 
     hideMobileMenu() {
         this._topbarMobileService.setClosedState();
+    }
+
+    private setupScrollEvents(headerEl: HTMLElement) {
+        this.ngZone.runOutsideAngular(() => {
+            let removeListener = () => {};
+            this.topbarMenuService.offset.subscribe((offset) => {
+                removeListener();
+                const handleScroll = () => {
+                    const opacity = Math.min(window.scrollY / offset, 1);
+                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${opacity})`; // vaticle purple
+                    headerEl.style.borderBottomColor = opacity === 1 ? "#232135" : "transparent"; // vaticle secondary purple
+                };
+                removeListener = () => window.removeEventListener("scroll", handleScroll);
+                window.addEventListener("scroll", handleScroll);
+                handleScroll();
+            });
+        });
     }
 }
 
