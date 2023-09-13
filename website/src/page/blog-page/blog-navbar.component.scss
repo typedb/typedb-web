@@ -13,6 +13,10 @@
 
     &.bn-variant-post-page {
         height: 58px;
+
+        @media (max-width: $media-max-width-mobile) {
+            height: 40px;
+        }
     }
 }
 
