@@ -164,6 +164,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         TitleBodyActionsSectionComponent,
         TooltipComponent,
         WebinarPanelsComponent,
+        ScrollShadowComponent,
     ],
     providers: [PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
 })
