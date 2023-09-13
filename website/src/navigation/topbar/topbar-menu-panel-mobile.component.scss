@@ -64,6 +64,8 @@ a:focus {
 }
 
 .mm-list-column-item-name {
+    display: flex;
+    align-items: center;
     color: $color-vaticle-white;
 }
 
