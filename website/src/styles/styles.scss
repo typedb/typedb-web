@@ -470,7 +470,7 @@ select {
 select,
 textarea {
     &::placeholder {
-        color: $color-vaticle-secondary-grey;
+        color: rgba($color-vaticle-secondary-light-grey, 0.8);
         font-style: italic;
     }
 }
