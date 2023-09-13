@@ -19,11 +19,15 @@
     padding: 32px;
     flex: 1 1 400px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
         padding: 20px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
     }
 }
 
 td-rich-text {
-    margin-top: 6px;
+    margin-top: 8px;
 }
