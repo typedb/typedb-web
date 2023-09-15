@@ -6,7 +6,12 @@
         <li>
           <mat-icon svgIcon="calendar" />
           <span class="cdk-visually-hidden">Date/Time:</span>
-          {{ event.dateOptions | eventDate }}
+          <ng-container [ngSwitch]="!event.dateOptions.dateTBC && !!event.dateOptions.startDate">
+            <time *ngSwitchCase="true" [dateTime]="event.dateOptions.startDate!.toISOString()">
+              {{ event.dateOptions | eventDate }}
+            </time>
+            <span *ngSwitchCase="false">{{ event.dateOptions | eventDate }}</span>
+          </ng-container>
         </li>
         <li *ngIf="event.dateOptions.endDate">
           <mat-icon svgIcon="time" />

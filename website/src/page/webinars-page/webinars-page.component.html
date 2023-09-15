@@ -17,9 +17,9 @@
               <span class="wp-webinar-title">{{ primaryWebinar.title | plainText }}</span>
               <span class="wp-title-separator">|</span>
               <span *ngIf="primaryWebinar.isFinished()">On-Demand</span>
-              <span *ngIf="!primaryWebinar.isFinished()">
+              <time *ngIf="!primaryWebinar.isFinished()" [dateTime]="primaryWebinar.datetime.toISOString()">
                 {{ primaryWebinar.datetime | ordinalDate }}
-              </span>
+              </time>
             </h3>
             <div class="wp-webinar-text-container">
               <td-rich-text class="wp-webinar-description" [value]="primaryWebinar.description" />
@@ -57,9 +57,11 @@
                   <span class="cdk-visually-hidden">Date/Time:</span>
                   <ng-container *ngIf="webinar.isFinished()">On-Demand</ng-container>
                   <ng-container *ngIf="!webinar.isFinished()">
-                    {{ webinar.datetime | ordinalDate }},
-                    {{ webinar.datetime | date: "shortTime" }}
-                    {{ localTimezoneAbbreviation(webinar) }}
+                    <time [dateTime]="webinar.datetime.toISOString()">
+                      {{ webinar.datetime | ordinalDate }},
+                      {{ webinar.datetime | date: "shortTime" }}
+                      {{ localTimezoneAbbreviation(webinar) }}
+                    </time>
                   </ng-container>
                 </span>
                 <span>

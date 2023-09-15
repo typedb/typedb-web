@@ -8,11 +8,11 @@
           <mat-icon svgIcon="calendar" />
           <span class="cdk-visually-hidden">Date/Time:</span>
           <span *ngIf="webinar.isFinished()">On-Demand</span>
-          <span *ngIf="!webinar.isFinished()">
+          <time *ngIf="!webinar.isFinished()" [dateTime]="webinar.datetime.toISOString()">
             {{ webinar.datetime | ordinalDate }},
             {{ webinar.datetime | date: "shortTime" }}
             {{ localTimezoneAbbreviation }}
-          </span>
+          </time>
         </li>
         <li>
           <mat-icon svgIcon="time" />

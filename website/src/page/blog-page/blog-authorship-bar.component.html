@@ -3,4 +3,4 @@
   <strong>{{ post.author.name }}</strong>
 </p>
 <p>·</p>
-<p class="text-quiet bp-post-date">{{ post.date | date: "longDate" }}</p>
+<time class="text-quiet bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>
