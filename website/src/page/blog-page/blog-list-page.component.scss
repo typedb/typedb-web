@@ -158,6 +158,7 @@ td-aspect-ratio {
 }
 
 .bp-secondary-post-description {
+    font-weight: $font-weight-light;
     margin-top: 16px;
     @include line-clamp(4);
 }
@@ -211,6 +212,7 @@ td-aspect-ratio {
     }
 
     .bp-tertiary-post-description {
+        font-weight: $font-weight-light;
         margin-top: 12px;
         @include line-clamp(3);
     }
