@@ -187,7 +187,7 @@ $post-content-width: 800px;
 
     /* prettier-ignore */
     p, ul, ol {
-        margin-bottom: 1em;
+        margin: 1em 0 0;
     }
 
     ul,
@@ -195,8 +195,9 @@ $post-content-width: 800px;
         margin-left: 1em;
     }
 
-    li {
-        margin-bottom: 0.5em;
+    ol li+li,
+    ul li+li {
+        margin: 0.75rem 0 0;
     }
 
     /* prettier-ignore */
