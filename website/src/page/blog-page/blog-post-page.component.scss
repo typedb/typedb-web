@@ -195,8 +195,8 @@ $post-content-width: 800px;
         margin-left: 1em;
     }
 
-    ol li+li,
-    ul li+li {
+    ol li + li,
+    ul li + li {
         margin: 0.75rem 0 0;
     }
 
