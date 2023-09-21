@@ -15,7 +15,14 @@
           <h3 class="ep-event-title-container">
             <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
             <span class="ep-title-separator">|</span>
-            <span>{{ page.featuredEvent.dateOptions | eventDate }}</span>
+            <ng-container
+              [ngSwitch]="!page.featuredEvent.dateOptions.dateTBC && !!page.featuredEvent.dateOptions.startDate"
+            >
+              <time *ngSwitchCase="true" [dateTime]="page.featuredEvent.dateOptions.startDate!.toISOString()">
+                {{ page.featuredEvent.dateOptions | eventDate }}
+              </time>
+              <span *ngSwitchCase="false">{{ page.featuredEvent.dateOptions | eventDate }}</span>
+            </ng-container>
             <span class="ep-title-separator">|</span>
             <span>{{ page.featuredEvent.venue }}</span>
           </h3>
@@ -37,7 +44,12 @@
             </div>
           </div>
           <div class="ep-grid-item-description text-weight-light">
-            <span>{{ event.dateOptions | eventDate }}</span>
+            <ng-container [ngSwitch]="!event.dateOptions.dateTBC && !!event.dateOptions.startDate">
+              <time *ngSwitchCase="true" [dateTime]="event.dateOptions.startDate!.toISOString()">
+                {{ event.dateOptions | eventDate }}
+              </time>
+              <span *ngSwitchCase="false">{{ event.dateOptions | eventDate }}</span>
+            </ng-container>
             <span>|</span>
             <span>{{ event.venue }}</span>
           </div>
