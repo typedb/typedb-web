@@ -2,23 +2,23 @@
 ignore = "/bin/false"
 
 [context.production]
-command = "pnpm run lint && pnpm run format-check && ENV=production pnpm run build && pnpm run prerender"
+command = "pnpm run lint && pnpm run format && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.live-temp]
-command = "pnpm run lint && pnpm run format-check && ENV=production pnpm run build && pnpm run prerender"
+command = "pnpm run lint && pnpm run format && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run lint && pnpm run format-check && ENV=staging pnpm run build"
+command = "pnpm run lint && pnpm run format && ENV=staging pnpm run build"
 publish = "dist/dynamic"
 
 [context.development]
-command = "pnpm run lint && pnpm run format-check && ENV=development pnpm run build"
+command = "pnpm run lint && pnpm run format && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run lint && pnpm run format-check && ENV=development pnpm run build"
+command = "pnpm run lint && pnpm run format && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [[redirects]]
