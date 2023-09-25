@@ -52,8 +52,7 @@
                 opacity: 1;
             }
 
-            .pi-person-name,
-            .text-quiet {
+            .pi-person-name {
                 color: inherit;
             }
         }
@@ -79,8 +78,7 @@
     a.pi-speaker {
         color: $color-vaticle-green;
 
-        .pi-person-name,
-        .text-quiet {
+        .pi-person-name {
             color: inherit;
         }
     }
