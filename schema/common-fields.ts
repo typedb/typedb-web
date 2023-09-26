@@ -36,21 +36,25 @@ export const titleField = defineField({
     validation: requiredRule,
 });
 
-export const pageTitleField = Object.assign({}, titleField, { title: "Web Page Title", description: "Displayed in the browser's address bar" });
+export const pageTitleField = Object.assign({}, titleField, {
+    title: "Web Page Title",
+    description: "Displayed in the browser's address bar",
+});
 
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,
     title: "Title",
     description: "Text marked as 'bold' will instead be rendered in this section's theme color",
     type: "array",
-    of: [{type: "block"}],
-    validation: (rule: ArrayRule<any>) => rule.required().custom((value, _context) => {
-        return value?.length === 1 ? true : "Must contain exactly one paragraph";
-    }),
+    of: [{ type: "block" }],
+    validation: (rule: ArrayRule<any>) =>
+        rule.required().custom((value, _context) => {
+            return value?.length === 1 ? true : "Must contain exactly one paragraph";
+        }),
 });
 
 export function titleWithHighlightsPreview(value: any[]): string {
-    return (value || [])[0]?.children.map((x: any) => x.text).join("") as string || "Untitled";
+    return ((value || [])[0]?.children.map((x: any) => x.text).join("") as string) || "Untitled";
 }
 
 export const textFieldWithHighlights = defineField({
@@ -58,10 +62,11 @@ export const textFieldWithHighlights = defineField({
     title: "Text",
     description: "Text marked as 'bold' will instead be rendered in the highlight color",
     type: "array",
-    of: [{type: "block"}],
-    validation: (rule: ArrayRule<any>) => rule.custom((value, _context) => {
-        return !value || value.length <= 1 ? true : "Must contain exactly one paragraph";
-    }),
+    of: [{ type: "block" }],
+    validation: (rule: ArrayRule<any>) =>
+        rule.custom((value, _context) => {
+            return !value || value.length <= 1 ? true : "Must contain exactly one paragraph";
+        }),
 });
 
 export const bodyFieldName = "body";
@@ -70,14 +75,11 @@ export const bodyFieldRichText = defineField({
     name: bodyFieldName,
     type: "array",
     icon: BlockContentIcon,
-    of: [{type: "block"}],
+    of: [{ type: "block" }],
     validation: requiredRule,
 });
 
-export const titleAndBodyFields = [
-    titleFieldWithHighlights,
-    bodyFieldRichText,
-];
+export const titleAndBodyFields = [titleFieldWithHighlights, bodyFieldRichText];
 
 export const slugFieldName = "slug";
 
@@ -95,15 +97,12 @@ export const sectionIconField = defineField({
     name: iconFieldName,
     title: "Icon",
     type: "reference",
-    to: [{type: "sectionIcon"}],
+    to: [{ type: "sectionIcon" }],
     validation: requiredRule,
     options: { disableNew: true },
 });
 
-export const titleBodyIconFields = [
-    ...titleAndBodyFields,
-    sectionIconField,
-];
+export const titleBodyIconFields = [...titleAndBodyFields, sectionIconField];
 
 export const descriptionFieldName = "description";
 
@@ -117,7 +116,7 @@ export const descriptionFieldRichText = defineField({
     name: descriptionFieldName,
     title: "Description",
     type: "array",
-    of: [{type: "block"}],
+    of: [{ type: "block" }],
 });
 
 export const buttonFieldName = "button";
@@ -154,7 +153,7 @@ export const linkFieldName = "link";
 export const linkField = defineField({
     name: linkFieldName,
     type: "reference",
-    to: [{type: "link"}],
+    to: [{ type: "link" }],
     // TODO: should be required - but isn't in certain cases. Rethink
 });
 
@@ -166,7 +165,10 @@ export const textLinkField = defineField({
 
 export const learnMoreLinkFieldName = "learnMoreLink";
 
-export const learnMoreLinkField = Object.assign({}, linkField, { name: learnMoreLinkFieldName, title: "'Learn More' link" });
+export const learnMoreLinkField = Object.assign({}, linkField, {
+    name: learnMoreLinkFieldName,
+    title: "'Learn More' link",
+});
 
 export const comingSoonField = defineField({
     name: "comingSoon",
@@ -183,27 +185,29 @@ export const videoEmbedField = defineField({
     name: videoEmbedFieldName,
     title: "Video Embed",
     type: "reference",
-    to: [{type: "videoEmbed"}],
+    to: [{ type: "videoEmbed" }],
     validation: requiredRule,
 });
 
 export const keyPointsFieldName = "keyPoints";
 
-export const keyPointsField = (count?: number) => defineField({
-    name: keyPointsFieldName,
-    title: "Key Points",
-    type: "array",
-    of: [{type: "keyPoint"}],
-    validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
-});
+export const keyPointsField = (count?: number) =>
+    defineField({
+        name: keyPointsFieldName,
+        title: "Key Points",
+        type: "array",
+        of: [{ type: "keyPoint" }],
+        validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
+    });
 
-export const keyPointsWithIconsField = (count?: number) => defineField({
-    name: keyPointsFieldName,
-    title: "Key Points",
-    type: "array",
-    of: [{type: "keyPointWithIcon"}],
-    validation: count != null ? ((rule: ArrayRule<any>) => rule.length(count)) : undefined,
-});
+export const keyPointsWithIconsField = (count?: number) =>
+    defineField({
+        name: keyPointsFieldName,
+        title: "Key Points",
+        type: "array",
+        of: [{ type: "keyPointWithIcon" }],
+        validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
+    });
 
 export const linkPanelsFieldName = "links";
 
@@ -211,7 +215,7 @@ export const linkPanelsField = defineField({
     name: linkPanelsFieldName,
     title: "Links",
     type: "array",
-    of: [{type: "linkPanel"}],
+    of: [{ type: "linkPanel" }],
     validation: (rule: ArrayRule<any>) => rule.length(3),
 });
 
@@ -227,4 +231,12 @@ export const isVisibleField = defineField({
     type: "boolean",
     initialValue: true,
     validation: requiredRule,
+});
+
+export const sectionIdFieldName = "sectionId";
+
+export const sectionIdField = defineField({
+    name: sectionIdFieldName,
+    title: "Section HTML ID",
+    type: "string",
 });

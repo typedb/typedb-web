@@ -7,6 +7,7 @@ import {
     pageTitleField,
     titleBodyIconFields,
     SanityVisibleToggle,
+    sectionIdField,
 } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -123,6 +124,7 @@ const sectionSchemas = [
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "testimonials",
             title: "Testimonials",
@@ -131,7 +133,7 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, sectionIdField, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
