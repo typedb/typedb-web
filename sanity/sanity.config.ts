@@ -20,8 +20,6 @@ const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
 
-const isAdmin = () => userHasRole(useCurrentUser()!, 'administrator');
-
 export default defineConfig({
     name: "default",
     title: "TypeDB Website - Content Editor",
@@ -71,9 +69,9 @@ export default defineConfig({
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "HubSpot Forms", icon: ClipboardImageIcon }),
-                isAdmin() ? s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
+                s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
                     s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
-                ])) : s.divider(),
+                ])),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
         }),

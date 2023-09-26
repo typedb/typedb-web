@@ -35,7 +35,7 @@ $custom-typography: mat.define-typography-config(
 @include mat.snack-bar-typography($custom-typography);
 
 $default-background: $color-vaticle-black-purple;
-$default-text-color: $color-vaticle-grey;
+$default-text-color: $color-vaticle-dark-white;
 
 html,
 body {
@@ -44,11 +44,9 @@ body {
     background-color: $default-background;
     color: $default-text-color;
     font-size: $font-size-base;
+    font-weight: $font-weight-regular;
     line-height: calc(25 / 17);
-
-    // smoother edges on browsers running on Mac OS
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: .016em;
 
     // TODO: import this from npm @fontsource/titillium-web
     font-family: "Titillium Web", sans-serif;
@@ -219,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
 aside {
     /* prettier-ignore */
     h1, h2, h3, h4, h5, h6 {
-        color: $color-vaticle-grey;
+        color: $color-vaticle-dark-white;
     }
 }
 
@@ -239,7 +237,7 @@ a {
     text-decoration: none;
 
     p {
-        color: $color-vaticle-grey;
+        color: $color-vaticle-dark-white;
     }
 }
 
@@ -504,7 +502,7 @@ textarea {
 .hs-form input[type="checkbox"] {
     background-color: transparent;
     border-radius: 4px;
-    border: 2px solid $color-vaticle-grey;
+    border: 2px solid $color-vaticle-dark-white;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
