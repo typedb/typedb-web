@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Link, WordpressPost, WordpressTaxonomy, blogNullFilter } from "typedb-web-schema";
@@ -7,6 +7,7 @@ import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map } from "rxjs";
+import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
 @Component({
     selector: "td-blog-list-page",
@@ -21,7 +22,10 @@ export class BlogListPageComponent implements OnInit {
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
+        destroyRef: DestroyRef,
+        topbarMenuService: TopbarMenuService,
     ) {
+        topbarMenuService.registerPageOffset(100, destroyRef);
         this._route.paramMap
             .pipe(
                 takeUntilDestroyed(),

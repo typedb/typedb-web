@@ -58,7 +58,7 @@ const defaultTheme: GraphVisualisationTheme = {
 export const defaultGraphVisualisationTheme = defaultTheme;
 
 export const defaultStyles = {
-    fontFamily: "Ubuntu Mono",
+    fontFamily: "Monaco",
     fontFamilyFallback: "monospace",
 
     vertexLabel: {

@@ -1,10 +1,19 @@
 @use "@angular/material" as mat;
 
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700");
 @import "colors";
 @import "mixins";
 @import "sizes";
 @import "prism";
+
+@font-face {
+    font-family: "Monaco";
+    font-style: normal;
+    font-weight: 400;
+    src: url(/assets/font/Monaco.ttf) format("truetype");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 $default-typography: mat.define-typography-level(
     $font-size: inherit,
@@ -35,7 +44,7 @@ $custom-typography: mat.define-typography-config(
 @include mat.snack-bar-typography($custom-typography);
 
 $default-background: $color-vaticle-black-purple;
-$default-text-color: $color-vaticle-grey;
+$default-text-color: $color-vaticle-dark-white;
 
 html,
 body {
@@ -44,11 +53,9 @@ body {
     background-color: $default-background;
     color: $default-text-color;
     font-size: $font-size-base;
+    font-weight: $font-weight-regular;
     line-height: calc(25 / 17);
-
-    // smoother edges on browsers running on Mac OS
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.016em;
 
     // TODO: import this from npm @fontsource/titillium-web
     font-family: "Titillium Web", sans-serif;
@@ -68,7 +75,7 @@ body {
 
 pre,
 code {
-    font-family: "Ubuntu Mono", monospace;
+    font-family: "Monaco", monospace;
 }
 
 article {
@@ -219,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
 aside {
     /* prettier-ignore */
     h1, h2, h3, h4, h5, h6 {
-        color: $color-vaticle-grey;
+        color: $color-vaticle-dark-white;
     }
 }
 
@@ -239,7 +246,7 @@ a {
     text-decoration: none;
 
     p {
-        color: $color-vaticle-grey;
+        color: $color-vaticle-dark-white;
     }
 }
 
@@ -504,7 +511,7 @@ textarea {
 .hs-form input[type="checkbox"] {
     background-color: transparent;
     border-radius: 4px;
-    border: 2px solid $color-vaticle-grey;
+    border: 2px solid $color-vaticle-dark-white;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
