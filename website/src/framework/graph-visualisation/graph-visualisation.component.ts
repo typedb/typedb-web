@@ -355,7 +355,7 @@ export function renderGraph(
     container.appendChild(app.view as any);
 
     const simulation = createD3ForceSimulation(vertices, edges, width, height, isMobile);
-    const ubuntuMono = new FontFaceObserver("Ubuntu Mono") as { load: () => Promise<any> };
+    const ubuntuMono = new FontFaceObserver("Monaco") as { load: () => Promise<any> };
 
     function onDragStart(this: any, evt: any) {
         simulation.alphaTarget(0.3).restart();
