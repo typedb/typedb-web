@@ -62,10 +62,10 @@ export const defaultStyles = {
     fontFamilyFallback: "monospace",
 
     vertexLabel: {
-        fontSize: 20,
+        fontSize: 13,
     },
 
     edgeLabel: {
-        fontSize: 18,
+        fontSize: 13,
     },
 };

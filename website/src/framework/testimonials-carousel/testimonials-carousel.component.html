@@ -2,7 +2,7 @@
   <div class="tc-carousel">
     <div *ngFor="let testimonial of testimonials; index as idx" class="tc-card" [style.transform]="cardTransform(idx)">
       <div class="tc-card-content">
-        <p class="text-weight-light">
+        <p>
           <em>{{ testimonial.body }}</em>
         </p>
         <div class="tc-details">

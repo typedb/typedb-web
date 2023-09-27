@@ -43,7 +43,7 @@
               <h3 class="ep-grid-item-title">{{ event.title | plainText }}</h3>
             </div>
           </div>
-          <div class="ep-grid-item-description text-weight-light">
+          <div class="ep-grid-item-description">
             <ng-container [ngSwitch]="!event.dateOptions.dateTBC && !!event.dateOptions.startDate">
               <time *ngSwitchCase="true" [dateTime]="event.dateOptions.startDate!.toISOString()">
                 {{ event.dateOptions | eventDate }}
