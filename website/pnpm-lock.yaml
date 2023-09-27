@@ -160,6 +160,9 @@ devDependencies:
   '@angular/compiler-cli':
     specifier: 16.1.7
     version: 16.1.7(@angular/compiler@16.1.7)(typescript@5.1.6)
+  '@fontsource/titillium-web':
+    specifier: 5.0.12
+    version: 5.0.12
   '@sanity/icons':
     specifier: 2.4.1
     version: 2.4.1(react@18.2.0)
@@ -2206,6 +2209,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/titillium-web@5.0.12:
+    resolution: {integrity: sha512-uWnElWM4dhQYVT/JxQpX3Rk4r2nbP/pfDjh7OeFY53LUyjDTqk9JWWNoeI6oUpdp1lZ91GWjtf0hxlMgY1LTYg==}
+    dev: true
 
   /@interactjs/types@1.10.18:
     resolution: {integrity: sha512-3a+2Kx6PhA60ekxImRQJl+EyT4lD0/kd3/PveyaLtgfNxkxnSWdUq7Ixo3Y/t1lon4EqVGZQgp+qj/QNaEs6qA==}

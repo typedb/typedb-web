@@ -66,6 +66,7 @@
     "@angular-devkit/build-angular": "16.1.6",
     "@angular/cli": "16.1.6",
     "@angular/compiler-cli": "16.1.7",
+    "@fontsource/titillium-web": "5.0.12",
     "@sanity/icons": "2.4.1",
     "@sanity/types": "3.14.4",
     "@types/d3-force": "3.0.4",
