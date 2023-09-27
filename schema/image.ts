@@ -1,18 +1,39 @@
+import { getExtension } from "@sanity/asset-utils";
 import { ImageIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
+
 import { titleField } from "./common-fields";
-import { SanityImageAsset, SanityReference } from "./sanity-core";
+import { SanityImage } from "./sanity-core";
 
 export const assetRefFieldName = "assetRef";
 
 export interface SanityImageRef extends SanityDocument {
-    assetRef: { asset: SanityReference<SanityImageAsset> };
+    [assetRefFieldName]: SanityImage;
 }
 
 const assetRefField = defineField({
     name: assetRefFieldName,
     title: "Image",
     type: "image",
+});
+
+const svgRefField = defineField({
+    ...assetRefField,
+    options: { accept: "image/svg+xml" },
+    validation: (rule) =>
+        rule.custom((value) => {
+            if (!value?.asset) {
+                return true;
+            }
+
+            const filetype = getExtension(value.asset._ref);
+
+            if (filetype !== "svg") {
+                return "Image must be an SVG";
+            }
+
+            return true;
+        }),
 });
 
 const imageRefSchemaBase = defineType({
@@ -24,7 +45,12 @@ const imageRefSchemaBase = defineType({
 
 export const sectionIconSchemaName = "sectionIcon";
 
-const sectionIconSchema = Object.assign({}, imageRefSchemaBase, { name: sectionIconSchemaName, title: "Section Icon" });
+const sectionIconSchema = defineType({
+    ...imageRefSchemaBase,
+    fields: [titleField, svgRefField],
+    name: sectionIconSchemaName,
+    title: "Section Icon",
+});
 
 export const headshotSchemaName = "headshot";
 
