@@ -39,7 +39,7 @@
     }
 
     @media (hover: hover) {
-        &:hover p {
+        &:hover h5 {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
