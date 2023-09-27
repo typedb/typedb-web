@@ -214,7 +214,7 @@ code,
 }
 
 /* prettier-ignore */
-h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, pre {
     margin: 0;
     padding: 0;
 }
@@ -236,8 +236,8 @@ aside {
     }
 }
 
-h1,
-h2 {
+/* prettier-ignore */
+h1, h2 {
     font-weight: $font-weight-bold;
 }
 
@@ -248,6 +248,10 @@ h3, h4 {
 
 /* prettier-ignore */
 h5, h6 {
+    font-weight: $font-weight-regular;
+}
+
+dd {
     font-weight: $font-weight-regular;
 }
 
