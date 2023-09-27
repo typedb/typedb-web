@@ -39,7 +39,7 @@
     }
 
     @media (hover: hover) {
-        &:hover p {
+        &:hover h5 {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
@@ -47,7 +47,7 @@
 }
 
 .ft-tab-selected,
-.ft-tab-selected p {
+.ft-tab-selected h5 {
     color: $color-vaticle-green;
     background: $color-vaticle-purple;
 }

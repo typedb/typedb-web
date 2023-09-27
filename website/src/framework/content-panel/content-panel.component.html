@@ -4,7 +4,7 @@
   </td-aspect-ratio>
   <div *ngIf="contentTextPanel" class="cp-text-area">
     <div>
-      <p *ngFor="let paragraph of contentTextPanel.body.paragraphs" class="text-weight-light">
+      <p *ngFor="let paragraph of contentTextPanel.body.paragraphs">
         <span
           *ngFor="let span of paragraph.spans"
           [ngStyle]="span.marks.includes('strong') ? { 'font-weight': '700' } : undefined"

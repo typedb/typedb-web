@@ -53,7 +53,7 @@ body {
     background-color: $default-background;
     color: $default-text-color;
     font-size: $font-size-base;
-    font-weight: $font-weight-regular;
+    font-weight: $font-weight-light;
     line-height: calc(25 / 17);
     letter-spacing: 0.016em;
 
@@ -169,6 +169,16 @@ h4 {
     }
 }
 
+h5 {
+    font-size: $font-size-h5;
+    line-height: $line-height-h5;
+
+    @media (max-width: $media-max-width-mobile) {
+        font-size: $font-size-h5-mobile;
+        line-height: $line-height-h5-mobile;
+    }
+}
+
 .text-p1,
 .text-p1 p {
     font-size: $font-size-p1;
@@ -219,8 +229,13 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, pre {
 }
 
 /* prettier-ignore */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     color: $color-vaticle-white;
+}
+
+/* prettier-ignore */
+h5, h6 {
+    color: $color-vaticle-dark-white;
 }
 
 aside {
@@ -236,8 +251,13 @@ h2 {
 }
 
 /* prettier-ignore */
-h3, h4, h5, h6 {
-    font-weight: 400;
+h3, h4 {
+    font-weight: $font-weight-semi-bold;
+}
+
+/* prettier-ignore */
+h5, h6 {
+    font-weight: $font-weight-regular;
 }
 
 a {
@@ -266,7 +286,7 @@ aside {
 a.link-tertiary,
 a.link-tertiary:visited {
     color: $color-vaticle-white;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-semi-bold;
 
     &:hover,
     &:focus {
@@ -276,7 +296,7 @@ a.link-tertiary:visited {
 }
 
 strong {
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-semi-bold;
 }
 
 button,
@@ -396,16 +416,6 @@ hr {
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: $subtitle-margin-mobile;
-    }
-}
-
-.text-weight-light {
-    font-weight: $font-weight-light;
-}
-
-.text-weight-light-mobile {
-    @media (max-width: $media-max-width-mobile) {
-        font-weight: $font-weight-light;
     }
 }
 

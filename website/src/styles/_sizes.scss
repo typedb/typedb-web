@@ -61,6 +61,11 @@ $line-height-h4: calc(29px / $font-size-h4);
 $font-size-h4-mobile: 17px;
 $line-height-h4-mobile: calc(25px / $font-size-h4-mobile);
 
+$font-size-h5: 17px;
+$line-height-h5: calc(25px / $font-size-h5);
+$font-size-h5-mobile: 15px;
+$line-height-h5-mobile: calc(23px / $font-size-h5-mobile);
+
 $font-size-p1: 21px;
 $line-height-p1: calc(29px / $font-size-p1);
 $font-size-p1-mobile: 17px;
@@ -76,8 +81,8 @@ $line-height-aside: calc(23px / $font-size-aside);
 $font-size-aside-mobile: 13px;
 $line-height-aside-mobile: calc(21px / $font-size-aside-mobile);
 
-$font-size-code: 14px;
-$line-height-code: calc(22px / $font-size-code);
+$font-size-code: 13px;
+$line-height-code: calc(21px / $font-size-code);
 
 $card-padding: 28px;
 $card-padding-tablet: 20px;
