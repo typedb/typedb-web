@@ -12,4 +12,11 @@
       </div>
     </td>
   </tr>
+  <tr *ngIf="illustration" class="kpt-illustration-row">
+    <td [attr.colspan]="columnIndexes.length">
+      <td-aspect-ratio ratio="16:9">
+        <td-illustration [illustration]="illustration" />
+      </td-aspect-ratio>
+    </td>
+  </tr>
 </table>

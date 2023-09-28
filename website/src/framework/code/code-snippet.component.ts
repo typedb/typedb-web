@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 
-const DEFAULT_MIN_LINES = { desktop: 23, mobile: 13 };
+const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 
 @Component({
     selector: "td-code-snippet",
