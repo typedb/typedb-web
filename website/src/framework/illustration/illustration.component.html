@@ -1,7 +1,7 @@
 <img *ngIf="imageIllustration" class="il-image" [src]="imageIllustration.url" [alt]="imageIllustration.altText" />
 <p *ngIf="videoEmbed">TODO: video embed with URL {{ videoEmbed.url }}</p>
 <td-code-snippet *ngIf="codeSnippet" [snippet]="codeSnippet"></td-code-snippet>
-<p *ngIf="polyglotSnippet">TODO: polyglot snippet</p>
+<td-code-snippet *ngIf="polyglotSnippet" [snippet]="polyglotSnippet.snippets[0]" />
 <td-graph-visualisation *ngIf="graphVisualisation && visible" [graph]="graphVisualisation"></td-graph-visualisation>
 <td-split-pane-illustration
   *ngIf="splitPaneIllustration"
