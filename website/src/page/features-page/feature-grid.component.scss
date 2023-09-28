@@ -68,16 +68,9 @@
         flex-direction: row-reverse;
     }
 
-    .kpt-row-size-2 td-aspect-ratio {
-        width: 522px;
-    }
-
+    .kpt-row-size-2 td-aspect-ratio,
     .kpt-row-size-3 td-aspect-ratio {
-        width: 306px;
-    }
-
-    .kpt-row-size-4 td-aspect-ratio {
-        width: 236px;
+        width: 100%;
     }
 
     .kpt-row-size-2 td-rich-text {
