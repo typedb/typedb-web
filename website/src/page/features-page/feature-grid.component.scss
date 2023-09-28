@@ -32,7 +32,8 @@
         }
     }
 
-    td > div > * + * {
+    td > div > * + *,
+    td-rich-text {
         margin-top: 8px;
     }
 
@@ -52,6 +53,19 @@
         td-illustration {
             height: 100%;
         }
+    }
+
+    .kpt-row-size-1 > td > div {
+        display: flex;
+        gap: 24px;
+
+        td-aspect-ratio {
+            flex: 1 0 552px;
+        }
+    }
+
+    .kpt-row-size-1:nth-child(even) > td > div {
+        flex-direction: row-reverse;
     }
 
     .kpt-row-size-2 td-aspect-ratio {
