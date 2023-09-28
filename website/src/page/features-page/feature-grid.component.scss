@@ -10,6 +10,7 @@
     th,
     td {
         @include card-padding;
+        vertical-align: top;
     }
 
     th {
@@ -44,10 +45,34 @@
     }
 
     td-aspect-ratio {
-        width: 100%;
+        width: 522px;
 
         td-illustration {
             height: 100%;
         }
+    }
+
+    .kpt-row-size-2 td-aspect-ratio {
+        width: 522px;
+    }
+
+    .kpt-row-size-3 td-aspect-ratio {
+        width: 306px;
+    }
+
+    .kpt-row-size-4 td-aspect-ratio {
+        width: 236px;
+    }
+
+    .kpt-row-size-2 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 5;
+    }
+
+    .kpt-row-size-3 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 7;
+    }
+
+    .kpt-row-size-4 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 7;
     }
 }

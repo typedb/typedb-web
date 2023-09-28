@@ -1,5 +1,5 @@
 <table class="section kpt-table">
-  <tr *ngFor="let featureRow of featureRows">
+  <tr *ngFor="let featureRow of featureRows" [ngClass]="'kpt-row-size-' + featureRow.length">
     <td *ngFor="let feature of featureRow">
       <div>
         <h3>{{ feature.title }}</h3>
