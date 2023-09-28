@@ -1,0 +1,22 @@
+<table class="section kpt-table">
+  <tr *ngFor="let featureRow of featureRows" [ngClass]="'kpt-row-size-' + columnIndexes.length">
+    <td *ngFor="let idx of columnIndexes">
+      <div *ngIf="featureRow[idx] as feature">
+        <div>
+          <h3>{{ feature.title }}</h3>
+          <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
+        </div>
+        <td-aspect-ratio *ngIf="feature.illustration" ratio="16:9">
+          <td-illustration [illustration]="$any(feature.illustration)" />
+        </td-aspect-ratio>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="illustration" class="kpt-illustration-row">
+    <td [attr.colspan]="columnIndexes.length">
+      <td-aspect-ratio ratio="16:9">
+        <td-illustration [illustration]="illustration" />
+      </td-aspect-ratio>
+    </td>
+  </tr>
+</table>

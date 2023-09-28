@@ -15,7 +15,7 @@
         </div>
         <div class="rt-details-text">
           <td-p-with-highlights [value]="page.details.title" class="rt-details-title" level="p1" />
-          <td-rich-text [value]="page.details.body" />
+          <td-rich-text *ngIf="page.details.body" [value]="page.details.body" />
         </div>
       </div>
     </section>

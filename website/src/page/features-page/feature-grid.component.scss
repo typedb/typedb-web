@@ -1,0 +1,87 @@
+@import "colors";
+@import "mixins";
+@import "sizes";
+
+.kpt-table {
+    table-layout: fixed;
+
+    tr {
+        height: 137px;
+    }
+
+    th,
+    td {
+        @include card-padding;
+        vertical-align: top;
+    }
+
+    th {
+        background: $color-vaticle-deep-purple;
+        width: 140px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 72px;
+            vertical-align: top;
+            padding-top: 31px;
+        }
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    td > div > * + *,
+    td-rich-text {
+        margin-top: 8px;
+    }
+
+    img {
+        width: 48px;
+        height: 48px;
+
+        @media (max-width: $media-max-width-mobile) {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    td-aspect-ratio {
+        width: 100%;
+
+        td-illustration {
+            height: 100%;
+        }
+    }
+
+    .kpt-row-size-1 > td > div {
+        display: flex;
+        gap: 24px;
+
+        td-aspect-ratio {
+            flex: 1 0 552px;
+        }
+    }
+
+    .kpt-row-size-1:nth-child(even) > td > div {
+        flex-direction: row-reverse;
+    }
+
+    .kpt-row-size-2 td-aspect-ratio,
+    .kpt-row-size-3 td-aspect-ratio {
+        width: 100%;
+    }
+
+    .kpt-row-size-2 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 5;
+    }
+
+    .kpt-row-size-3 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 7;
+    }
+
+    .kpt-row-size-4 td-rich-text {
+        height: $font-size-p2 * $line-height-p2 * 7;
+    }
+}

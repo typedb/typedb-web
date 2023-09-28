@@ -34,7 +34,7 @@ export const languages = {
 
 export type Language = keyof typeof languages;
 
-interface SanityCodeSnippet extends SanityDocument {
+export interface SanityCodeSnippet extends SanityDocument {
     language: Language;
     code: string;
 }
@@ -356,6 +356,15 @@ const splitPaneIllustrationSchema = defineType({
     ],
 });
 
+export const codeSnippetFieldName = "codeSnippet";
+
+export const codeSnippetField = defineField({
+    name: codeSnippetFieldName,
+    title: "Code Snippet",
+    type: "reference",
+    to: [{type: codeSnippetSchemaName}],
+});
+
 export const illustrationFieldName = "illustration";
 
 export const illustrationField = defineField({
@@ -367,6 +376,16 @@ export const illustrationField = defineField({
         { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
     ],
     validation: (rule: ReferenceRule) => rule.required(),
+});
+
+export const illustrationFieldOptional = defineField({
+    name: illustrationFieldName,
+    title: "Illustration (optional)",
+    type: "reference",
+    to: [
+        { type: splitPaneIllustrationSchemaName }, { type: imageIllustrationSchemaName }, { type: videoEmbedSchemaName },
+        { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
+    ],
 });
 
 export const illustrationSchemas = [imageIllustrationSchema, videoEmbedSchema, codeSnippetSchema, polyglotSnippetSchema, graphVisualisationSchema, splitPaneIllustrationSchema];

@@ -1,6 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { FeaturesPage, featuresPageSchemaName, SanityFeaturesPage } from "typedb-web-schema";
+import {
+    FeatureGridCell,
+    FeatureGridLayout,
+    FeaturesPage,
+    featuresPageSchemaName,
+    Illustration,
+    SanityFeaturesPage,
+} from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
@@ -42,10 +49,25 @@ export class FeaturesPageComponent implements OnInit {
 
 @Component({
     selector: "td-features-page-technicolor-block",
-    template:
-        '<td-technicolor-block [block]="section" [index]="index + 1" [noLeadingLine]=\'index === 0\'></td-technicolor-block>',
+    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noLeadingLine]=\'index === 0\' />',
 })
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;
     @Input() index!: number;
+}
+
+@Component({
+    selector: "td-feature-grid",
+    templateUrl: "./feature-grid.component.html",
+    styleUrls: ["./feature-grid.component.scss"],
+})
+export class FeatureGridComponent {
+    @Input() layout!: FeatureGridLayout;
+    @Input() featureRows!: FeatureGridCell[][];
+    @Input() illustration?: Illustration;
+    columnIndexes!: number[];
+
+    ngOnInit() {
+        this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
+    }
 }

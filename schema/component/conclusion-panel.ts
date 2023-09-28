@@ -18,7 +18,7 @@ export interface SanityConclusionSection extends SanityTechnicolorBlock, SanityV
 
 export class ConclusionPanel {
     readonly title: string;
-    readonly body: RichText;
+    readonly body?: RichText;
     readonly actions?: LinkButton[];
     readonly resourceListTitle: string;
     readonly resources: TextLink[];
@@ -34,7 +34,7 @@ export class ConclusionPanel {
     static fromSanity(data: SanityConclusionPanel, db: SanityDataset): ConclusionPanel {
         return new ConclusionPanel({
             title: data.title,
-            body: RichText.fromSanity(data.body),
+            body: data.body ? RichText.fromSanity(data.body) : undefined,
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
             resources: data.resources.map(x => TextLink.fromSanityTextLink(x, db)),

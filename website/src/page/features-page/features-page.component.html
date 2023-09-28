@@ -6,14 +6,15 @@
       [body]="page.introSection.body"
       [actions]="page.introSection.actions"
     ></td-title-body-actions-section>
-    <ng-container *ngFor="let section of page.coreSections; index as idx">
+    <ng-container *ngFor="let section of page.featureSections; index as idx">
       <td-features-page-technicolor-block [section]="section" [index]="idx"></td-features-page-technicolor-block>
-      <td-content-tabs [id]="'section' + idx" [tabs]="section.panels"></td-content-tabs>
+      <td-feature-grid
+        [layout]="section.featureGridLayout"
+        [featureRows]="section.features"
+        [illustration]="section.illustration"
+      />
     </ng-container>
-    <td-features-page-technicolor-block
-      [section]="page.finalSection"
-      [index]="page.coreSections.length"
-    ></td-features-page-technicolor-block>
+    <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.featureSections.length" />
     <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
   </div>
 </article>

@@ -10,7 +10,7 @@ export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
 
 export class TechnicolorBlock {
     readonly title: ParagraphWithHighlights;
-    readonly body: RichText;
+    readonly body?: RichText;
     readonly iconURL: string;
     readonly actions?: LinkButton[];
 
@@ -24,7 +24,7 @@ export class TechnicolorBlock {
     static fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
         return new TechnicolorBlock({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: RichText.fromSanity(data.body),
+            body: data.body ? RichText.fromSanity(data.body) : undefined,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
         });

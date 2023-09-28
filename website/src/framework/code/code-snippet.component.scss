@@ -25,6 +25,10 @@
 
 .cs-code-area {
     flex: 1;
+
+    &:first-child {
+        padding: 2px 8px;
+    }
 }
 
 ol {

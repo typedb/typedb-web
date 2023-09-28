@@ -12,7 +12,7 @@ export type SanityTitle = { title: string };
 
 export type SanityTitleWithHighlights = { title: SanityPortableText };
 
-export type SanityBodyText = { body: SanityPortableText };
+export type SanityBodyText = { body?: SanityPortableText };
 
 export type SanityTitleAndBody = SanityTitleWithHighlights & SanityBodyText;
 
@@ -67,11 +67,11 @@ export class RichText {
 
 export type TitleWithHighlights = { title: ParagraphWithHighlights };
 
-export type BodyText = { body: RichText };
+export type BodyText = { body?: RichText };
 
 export class TitleAndBody implements TitleWithHighlights, BodyText {
     readonly title: ParagraphWithHighlights;
-    readonly body: RichText;
+    readonly body?: RichText;
 
     constructor(props: PropsOf<TitleAndBody>) {
         this.title = props.title;
@@ -81,7 +81,7 @@ export class TitleAndBody implements TitleWithHighlights, BodyText {
     static fromSanityTitleAndBody(data: SanityTitleAndBody) {
         return new TitleAndBody({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: RichText.fromSanity(data.body),
+            body: data.body ? RichText.fromSanity(data.body) : undefined,
         });
     }
 }
