@@ -3,6 +3,8 @@
 @import "sizes";
 
 .kpt-table {
+    table-layout: fixed;
+
     tr {
         height: 137px;
     }
