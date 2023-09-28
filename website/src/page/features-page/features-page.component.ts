@@ -65,4 +65,9 @@ export class FeatureGridComponent {
     @Input() layout!: FeatureGridLayout;
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
+    columnIndexes!: number[];
+
+    ngOnInit() {
+        this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
+    }
 }
