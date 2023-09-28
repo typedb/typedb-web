@@ -112,5 +112,5 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
 })
 export class CaptionedIllustrationComponent {
     @Input() illustration!: Illustration;
-    @Input() caption!: RichText;
+    @Input() caption?: RichText;
 }

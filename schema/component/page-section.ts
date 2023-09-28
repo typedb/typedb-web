@@ -25,7 +25,7 @@ export class FurtherReadingSection extends TechnicolorBlock {
     static fromSanityFurtherReadingSection(data: SanityFurtherReadingSection, db: SanityDataset) {
         return new FurtherReadingSection({
             title: new ParagraphWithHighlights({ spans: [{ text: "Further", highlight: false }, { text: " Learning", highlight: true }] }),
-            body: RichText.fromSanity(data.body),
+            body: data.body ? RichText.fromSanity(data.body) : undefined,
             actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/book-open.svg",
             links: data.links.map(x => LinkPanel.fromSanityLinkPanel(x, db)),

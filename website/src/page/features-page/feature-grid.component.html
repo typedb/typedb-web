@@ -1,0 +1,10 @@
+<table class="section kpt-table">
+  <tr *ngFor="let featureRow of featureRows">
+    <td *ngFor="let feature of featureRow">
+      <div>
+        <h3>{{ feature.title }}</h3>
+        <td-rich-text *ngIf="feature.body" [value]="feature.body" />
+      </div>
+    </td>
+  </tr>
+</table>

@@ -7,7 +7,7 @@ import { LinkButton, ParagraphWithHighlights, RichText } from "typedb-web-schema
 })
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;
-    @Input() body!: RichText;
+    @Input() body?: RichText;
     @Input() actions?: LinkButton[];
     @Input() isIntroSection = false;
 

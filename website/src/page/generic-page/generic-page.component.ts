@@ -49,7 +49,7 @@ export class GenericPageComponent implements OnInit {
 @Component({
     selector: "td-generic-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" contentWidth='narrow' [noLeadingLine]='index === 0' [noBody]='true'></td-technicolor-block>",
+        "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" contentWidth='narrow' [noLeadingLine]='index === 0' />",
 })
 export class GenericPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: TitleBodyIllustrationSection;
