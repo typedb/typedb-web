@@ -29,12 +29,8 @@
         }
     }
 
-    td > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 8px;
+    td > div > * + * {
+        margin-top: 8px;
     }
 
     img {
@@ -44,6 +40,14 @@
         @media (max-width: $media-max-width-mobile) {
             width: 32px;
             height: 32px;
+        }
+    }
+
+    td-aspect-ratio {
+        width: 100%;
+
+        td-illustration {
+            height: 100%;
         }
     }
 }

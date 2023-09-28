@@ -47,7 +47,7 @@ export class FeaturesPage extends Page {
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featureSections = data.featureSections.map(x => FeaturesPageFeatureSection.fromSanity(x, db));
+        this.featureSections = data.featureSections.slice(0, 3).map(x => FeaturesPageFeatureSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
