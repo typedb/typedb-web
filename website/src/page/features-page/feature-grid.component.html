@@ -4,8 +4,8 @@
       <div>
         <h3>{{ feature.title }}</h3>
         <td-rich-text *ngIf="feature.body" [value]="feature.body" />
-        <td-aspect-ratio ratio="16:9">
-          <td-illustration *ngIf="feature.illustration" [illustration]="feature.illustration" />
+        <td-aspect-ratio *ngIf="feature.illustration" ratio="16:9">
+          <td-illustration [illustration]="feature.illustration" />
         </td-aspect-ratio>
       </div>
     </td>
