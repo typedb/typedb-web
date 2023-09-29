@@ -2,7 +2,8 @@
 @import "../../styles/sizes";
 
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     border-radius: $border-radius;
     position: relative;
     overflow: hidden;
