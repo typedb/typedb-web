@@ -1,5 +1,14 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import {
+    bodyFieldRichText,
+    collapsibleOptions,
+    isVisibleField,
+    pageTitleField,
+    requiredRule,
+    sectionIconField,
+    sectionIdField,
+    titleFieldWithHighlights,
+} from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
 import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../component/link-panel";
@@ -44,9 +53,11 @@ export class IntroSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            productPanels: data.productPanels.map(x => ProductPanel.fromSanityProductPanel(x, db))
-        }));
+        return new IntroSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                productPanels: data.productPanels.map((x) => ProductPanel.fromSanityProductPanel(x, db)),
+            })
+        );
     }
 }
 
@@ -59,9 +70,11 @@ export class FeatureTableSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
-        return new FeatureTableSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            featureTable: FeatureTable.fromSanity(data.featureTable, db)
-        }));
+        return new FeatureTableSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                featureTable: FeatureTable.fromSanity(data.featureTable, db),
+            })
+        );
     }
 }
 
@@ -96,6 +109,7 @@ const featureTableSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
+        sectionIdField,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -134,18 +148,23 @@ const deploymentPageSchema = defineType({
             validation: requiredRule,
         }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Deployment Page" }), },
-    validation: (rule: DocumentRule) => rule.custom((value) => {
-        if (!value || !value["featureTableSection"]) return true; // handled at lower level
-        const featureTableSection = value["featureTableSection"] as { featureTable?: any };
-        if (!featureTableSection.featureTable) return true;
-        const featureTable = featureTableSection.featureTable as { headerRow?: string[], bodyRows: { heading: string, cells: any[] }[] };
-        if (!featureTable.headerRow || !featureTable.bodyRows) return true;
-        const requiredRowSize = featureTable.headerRow!.length - 1;
-        const invalidRow = featureTable.bodyRows.find(x => x.cells?.length !== requiredRowSize);
-        if (invalidRow) return `All rows must have the same number of cells as the header row (${requiredRowSize}), but the row "${invalidRow.heading}" has (${invalidRow.cells?.length}) cells`;
-        return true;
-    }),
+    preview: { prepare: (_selection) => ({ title: "Deployment Page" }) },
+    validation: (rule: DocumentRule) =>
+        rule.custom((value) => {
+            if (!value || !value["featureTableSection"]) return true; // handled at lower level
+            const featureTableSection = value["featureTableSection"] as { featureTable?: any };
+            if (!featureTableSection.featureTable) return true;
+            const featureTable = featureTableSection.featureTable as {
+                headerRow?: string[];
+                bodyRows: { heading: string; cells: any[] }[];
+            };
+            if (!featureTable.headerRow || !featureTable.bodyRows) return true;
+            const requiredRowSize = featureTable.headerRow!.length - 1;
+            const invalidRow = featureTable.bodyRows.find((x) => x.cells?.length !== requiredRowSize);
+            if (invalidRow)
+                return `All rows must have the same number of cells as the header row (${requiredRowSize}), but the row "${invalidRow.heading}" has (${invalidRow.cells?.length}) cells`;
+            return true;
+        }),
 });
 
 export const deploymentPageSchemas = [introSectionSchema, featureTableSectionSchema, deploymentPageSchema];

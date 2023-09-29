@@ -23,7 +23,12 @@
     </div>
     <div [class]="'tb-body tb-body-' + contentWidth">
       <div class="tb-margin-top"></div>
-      <td-heading-with-highlights [value]="block.title" [themeColorHex]="themeColorHex" [level]="level" />
+      <td-heading-with-highlights
+        [value]="block.title"
+        [id]="block.sectionId"
+        [themeColorHex]="themeColorHex"
+        [level]="level"
+      />
       <ng-container *ngIf="block.body">
         <p *ngFor="let paragraph of block.body.paragraphs" class="text-p1">
           <span

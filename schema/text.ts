@@ -1,6 +1,14 @@
 import { defineType, PortableTextSpan, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { bodyFieldRichText, isVisibleField, optionalActionsField, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "./common-fields";
+import {
+    bodyFieldRichText,
+    isVisibleField,
+    optionalActionsField,
+    SanityVisibleToggle,
+    sectionIconField,
+    sectionIdField,
+    titleFieldWithHighlights,
+} from "./common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "./illustration";
 import { SanityDataset } from "./sanity-core";
@@ -21,7 +29,7 @@ export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
 export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
 
 export class ParagraphWithHighlights {
-    readonly spans: { text: string, highlight: boolean }[];
+    readonly spans: { text: string; highlight: boolean }[];
 
     constructor(props: PropsOf<ParagraphWithHighlights>) {
         this.spans = props.spans;
@@ -31,8 +39,11 @@ export class ParagraphWithHighlights {
         console.assert(data.length === 1);
         return new ParagraphWithHighlights({
             spans: data[0].children
-                .filter(block => block._type === "span")
-                .map(block => ({ text: block.text as string, highlight: (block.marks as string[]).includes("strong") }))
+                .filter((block) => block._type === "span")
+                .map((block) => ({
+                    text: block.text as string,
+                    highlight: (block.marks as string[]).includes("strong"),
+                })),
         });
     }
 }
@@ -56,11 +67,11 @@ export class RichText {
 
     static fromSanity(data: SanityPortableText): RichText {
         return new RichText({
-            paragraphs: data.map(p => ({
-                spans: p.children.filter(block => isPortableTextSpan(block)).map(span => (
-                    { text: span.text as string, marks: span.marks as string[], level: p.level }
-                ))
-            }))
+            paragraphs: data.map((p) => ({
+                spans: p.children
+                    .filter((block) => isPortableTextSpan(block))
+                    .map((span) => ({ text: span.text as string, marks: span.marks as string[], level: p.level })),
+            })),
         });
     }
 }
@@ -95,9 +106,11 @@ export class TitleBodyActions extends TitleAndBody {
     }
 
     static fromSanityTitleBodyActions(data: SanityTitleBodyActions, db: SanityDataset) {
-        return new TitleBodyActions(Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
-            actions: data.actions?.map(x => LinkButton.fromSanity(x, db))
-        }));
+        return new TitleBodyActions(
+            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+                actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
+            })
+        );
     }
 }
 
@@ -110,9 +123,11 @@ export class TitleBodyIllustrationSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
-        return new TitleBodyIllustrationSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
-        }));
+        return new TitleBodyIllustrationSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
+            })
+        );
     }
 }
 
@@ -126,21 +141,14 @@ const titleAndBodySchema = defineType({
     name: titleAndBodySchemaName,
     title: "Title & Body",
     type: "document",
-    fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-    ],
+    fields: [titleFieldWithHighlights, bodyFieldRichText],
 });
 
 const titleBodyActionsSectionSchema = defineType({
     name: titleBodyActionsSectionSchemaName,
     title: "Title, Body & Actions",
     type: "document",
-    fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        optionalActionsField,
-    ],
+    fields: [titleFieldWithHighlights, bodyFieldRichText, optionalActionsField],
 });
 
 const titleBodyIllustrationSectionSchema = defineType({
@@ -151,6 +159,7 @@ const titleBodyIllustrationSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
+        sectionIdField,
         illustrationField,
         isVisibleField,
     ],
