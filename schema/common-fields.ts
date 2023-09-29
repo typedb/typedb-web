@@ -237,6 +237,6 @@ export const sectionIdFieldName = "sectionId";
 
 export const sectionIdField = defineField({
     name: sectionIdFieldName,
-    title: "Section HTML ID",
+    title: "Section ID",
     type: "string",
 });
