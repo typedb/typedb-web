@@ -5,6 +5,17 @@
 .kpt-table {
     table-layout: fixed;
 
+    @media (max-width: $media-max-width-mobile) {
+        &, tr, th, td {
+            display: block;
+        }
+
+        tr {
+            height: unset !important;
+            margin-bottom: 16px;
+        }
+    }
+
     tr {
         height: 137px;
     }
@@ -35,6 +46,12 @@
     td > div > * + *,
     td-rich-text {
         margin-top: 8px;
+    }
+
+    td > div > td-aspect-ratio {
+        @media (max-width: $media-max-width-mobile) {
+            margin-top: 16px !important;
+        }
     }
 
     img {
