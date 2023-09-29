@@ -8,6 +8,7 @@ import {
     titleBodyIconFields,
     SanityVisibleToggle,
     requiredRule,
+    sectionIdField,
 } from "../common-fields";
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
 import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
@@ -152,6 +153,7 @@ const sectionSchemas = [
     sectionSchema("featureTable", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -163,15 +165,16 @@ const sectionSchemas = [
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "testimonials",
             title: "Testimonials",
             type: "array",
-            of: [{type: "reference", to: [{ type: testimonialSchemaName }]}],
+            of: [{ type: "reference", to: [{ type: testimonialSchemaName }] }],
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, sectionIdField, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>

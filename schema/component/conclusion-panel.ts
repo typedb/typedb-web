@@ -1,7 +1,16 @@
-import { defineField, defineType, StringRule } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { bodyFieldRichText, isVisibleField, optionalActionsField, requiredRule, SanityVisibleToggle, titleBodyIconFields, titleField } from "../common-fields";
+import {
+    bodyFieldRichText,
+    isVisibleField,
+    optionalActionsField,
+    requiredRule,
+    SanityVisibleToggle,
+    sectionIdField,
+    titleBodyIconFields,
+    titleField,
+} from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { RichText, SanityBodyText, SanityTitle } from "../text";
 import { PropsOf } from "../util";
@@ -35,9 +44,9 @@ export class ConclusionPanel {
         return new ConclusionPanel({
             title: data.title,
             body: data.body ? RichText.fromSanity(data.body) : undefined,
-            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
-            resources: data.resources.map(x => TextLink.fromSanityTextLink(x, db)),
+            resources: data.resources.map((x) => TextLink.fromSanityTextLink(x, db)),
         });
     }
 }
@@ -51,9 +60,11 @@ export class ConclusionSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityConclusionSection, db: SanityDataset) {
-        return new ConclusionSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            panel: ConclusionPanel.fromSanity(data.panel, db)
-        }));
+        return new ConclusionSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                panel: ConclusionPanel.fromSanity(data.panel, db),
+            })
+        );
     }
 }
 
@@ -77,7 +88,7 @@ const conclusionPanelSchema = defineType({
             name: "resources",
             title: "Resources",
             type: "array",
-            of: [{type: textLinkSchemaName}],
+            of: [{ type: textLinkSchemaName }],
             validation: requiredRule,
         }),
     ],
@@ -92,6 +103,7 @@ const conclusionSectionSchema = defineType({
     fields: [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "panel",
             title: "Panel",

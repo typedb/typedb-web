@@ -1,8 +1,17 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleAndBodyFields } from "../common-fields";
+import {
+    collapsibleOptions,
+    isVisibleField,
+    pageTitleField,
+    requiredRule,
+    SanityVisibleToggle,
+    sectionIconField,
+    sectionIdField,
+    titleAndBodyFields,
+} from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { ParagraphWithHighlights, RichText, SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
+import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
 import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
 import { Page, SanityPage } from "./common";
@@ -31,8 +40,12 @@ export class WebinarsPage extends Page {
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible ? FeaturedWebinarsSection.fromSanity(data.featuredWebinarsSection, db) : undefined;
-        this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible ? ExploreWebinarsSection.fromSanity(data.exploreWebinarsSection, db) : undefined;
+        this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible
+            ? FeaturedWebinarsSection.fromSanity(data.featuredWebinarsSection, db)
+            : undefined;
+        this.exploreWebinarsSection = data.exploreWebinarsSection.isVisible
+            ? ExploreWebinarsSection.fromSanity(data.exploreWebinarsSection, db)
+            : undefined;
     }
 }
 
@@ -45,9 +58,13 @@ export class IntroSection extends TitleAndBody {
     }
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
-            featuredWebinar: data.featuredWebinar ? Webinar.fromSanity(db.resolveRef(data.featuredWebinar), db) : undefined,
-        }));
+        return new IntroSection(
+            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+                featuredWebinar: data.featuredWebinar
+                    ? Webinar.fromSanity(db.resolveRef(data.featuredWebinar), db)
+                    : undefined,
+            })
+        );
     }
 }
 
@@ -60,9 +77,13 @@ export class FeaturedWebinarsSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityFeaturedWebinarsSection, db: SanityDataset) {
-        return new FeaturedWebinarsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            featuredWebinars: data.featuredWebinars ? data.featuredWebinars.map(x => Webinar.fromSanity(db.resolveRef(x), db)) : undefined,
-        }));
+        return new FeaturedWebinarsSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                featuredWebinars: data.featuredWebinars
+                    ? data.featuredWebinars.map((x) => Webinar.fromSanity(db.resolveRef(x), db))
+                    : undefined,
+            })
+        );
     }
 }
 
@@ -90,9 +111,10 @@ const introSectionSchema = defineType({
         defineField({
             name: "featuredWebinar",
             title: "Featured Webinar",
-            description: "If unset, the next webinar will be displayed, or the most recent one if no webinars are scheduled",
+            description:
+                "If unset, the next webinar will be displayed, or the most recent one if no webinars are scheduled",
             type: "reference",
-            to: [{type: webinarSchemaName}],
+            to: [{ type: webinarSchemaName }],
         }),
         isVisibleField,
     ],
@@ -105,12 +127,14 @@ const featuredWebinarsSectionSchema = defineType({
     fields: [
         ...titleAndBodyFields,
         sectionIconField,
+        sectionIdField,
         defineField({
             name: "featuredWebinars",
             title: "Featured Webinars",
-            description: "If unset, the next 3 webinars will be displayed, falling back to the most recent ones if < 3 webinars are scheduled",
+            description:
+                "If unset, the next 3 webinars will be displayed, falling back to the most recent ones if < 3 webinars are scheduled",
             type: "array",
-            of: [{type: "reference", to: [{type: webinarSchemaName}]}],
+            of: [{ type: "reference", to: [{ type: webinarSchemaName }] }],
         }),
         isVisibleField,
     ],
@@ -120,11 +144,7 @@ const exploreWebinarsSectionSchema = defineType({
     name: exploreWebinarsSectionSchemaName,
     title: "Section",
     type: "object",
-    fields: [
-        ...titleAndBodyFields,
-        sectionIconField,
-        isVisibleField,
-    ],
+    fields: [...titleAndBodyFields, sectionIconField, sectionIdField, isVisibleField],
 });
 
 const webinarsPageSchema = defineType({
@@ -163,4 +183,9 @@ const webinarsPageSchema = defineType({
     },
 });
 
-export const webinarsPageSchemas = [introSectionSchema, featuredWebinarsSectionSchema, exploreWebinarsSectionSchema, webinarsPageSchema];
+export const webinarsPageSchemas = [
+    introSectionSchema,
+    featuredWebinarsSectionSchema,
+    exploreWebinarsSectionSchema,
+    webinarsPageSchema,
+];

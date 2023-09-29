@@ -1,6 +1,12 @@
 import { defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
-import { bodyFieldRichText, isVisibleField, linkPanelsField, SanityVisibleToggle } from "../common-fields";
+import {
+    bodyFieldRichText,
+    isVisibleField,
+    linkPanelsField,
+    SanityVisibleToggle,
+    sectionIdField,
+} from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityBodyText } from "../text";
 import { PropsOf } from "../util";
@@ -12,6 +18,7 @@ export interface SanityCoreSection extends SanityBodyText, SanityOptionalActions
 
 export interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
+    sectionId?: string;
 }
 
 export class FurtherReadingSection extends TechnicolorBlock {
@@ -24,11 +31,17 @@ export class FurtherReadingSection extends TechnicolorBlock {
 
     static fromSanityFurtherReadingSection(data: SanityFurtherReadingSection, db: SanityDataset) {
         return new FurtherReadingSection({
-            title: new ParagraphWithHighlights({ spans: [{ text: "Further", highlight: false }, { text: " Learning", highlight: true }] }),
+            title: new ParagraphWithHighlights({
+                spans: [
+                    { text: "Further", highlight: false },
+                    { text: " Learning", highlight: true },
+                ],
+            }),
             body: data.body ? RichText.fromSanity(data.body) : undefined,
-            actions: data.actions?.map(x => LinkButton.fromSanity(x, db)),
+            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/book-open.svg",
-            links: data.links.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
+            links: data.links.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
+            sectionId: data.sectionId,
         });
     }
 }
@@ -39,9 +52,5 @@ export const furtherReadingSectionSchema = defineType({
     name: furtherReadingSectionSchemaName,
     title: `Further Reading Section`,
     type: "object",
-    fields: [
-        bodyFieldRichText,
-        linkPanelsField,
-        isVisibleField,
-    ],
+    fields: [bodyFieldRichText, linkPanelsField, sectionIdField, isVisibleField],
 });

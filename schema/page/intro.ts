@@ -1,10 +1,26 @@
 import { defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleFieldWithHighlights } from "../common-fields";
+import {
+    bodyFieldRichText,
+    collapsibleOptions,
+    isVisibleField,
+    pageTitleField,
+    requiredRule,
+    SanityVisibleToggle,
+    sectionIconField,
+    sectionIdField,
+    titleFieldWithHighlights,
+} from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
-import { RichText, SanityPortableText, SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions } from "../text";
+import {
+    RichText,
+    SanityPortableText,
+    SanityTitleBodyActions,
+    titleAndBodySchemaName,
+    TitleBodyActions,
+} from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 
@@ -27,7 +43,7 @@ export class IntroPage extends Page {
     constructor(data: SanityIntroPage, db: SanityDataset) {
         super(data);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => IntroPageCoreSection.fromSanity(x, db));
+        this.coreSections = data.coreSections.map((x) => IntroPageCoreSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
@@ -43,10 +59,12 @@ export class IntroPageCoreSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityCoreSection, db: SanityDataset) {
-        return new IntroPageCoreSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
-            longText: RichText.fromSanity(data.longText),
-        }));
+        return new IntroPageCoreSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                contentTabs: data.contentTabs.map((x) => new ContentTextPanel(x, db)),
+                longText: RichText.fromSanity(data.longText),
+            })
+        );
     }
 }
 
@@ -62,18 +80,19 @@ const introPageCoreSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
+        sectionIdField,
         defineField({
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{type: contentTextPanelSchemaName}],
+            of: [{ type: contentTextPanelSchemaName }],
             validation: requiredRule,
         }),
         defineField({
             name: "longText",
             title: "Long Text",
             type: "array",
-            of: [{type: "block"}],
+            of: [{ type: "block" }],
             validation: requiredRule,
         }),
         isVisibleField,
@@ -97,7 +116,7 @@ const introPageSchema = defineType({
             name: "coreSections",
             title: "Core Sections",
             type: "array",
-            of: [{type: introPageCoreSectionSchemaName}],
+            of: [{ type: introPageCoreSectionSchemaName }],
             validation: requiredRule,
         }),
         defineField({
@@ -106,9 +125,9 @@ const introPageSchema = defineType({
             type: conclusionSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
-        })
+        }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Introduction Page" }), },
+    preview: { prepare: (_selection) => ({ title: "Introduction Page" }) },
 });
 
 export const introPageSchemas = [introPageCoreSectionSchema, introPageSchema];

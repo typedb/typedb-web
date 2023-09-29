@@ -6,6 +6,7 @@ import { PropsOf } from "../util";
 
 export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
     icon: SanityReference<SanityImageRef>;
+    sectionId?: string;
 }
 
 export class TechnicolorBlock {
@@ -13,12 +14,14 @@ export class TechnicolorBlock {
     readonly body?: RichText;
     readonly iconURL: string;
     readonly actions?: LinkButton[];
+    readonly sectionId?: string;
 
     constructor(props: PropsOf<TechnicolorBlock>) {
         this.title = props.title;
         this.body = props.body;
         this.iconURL = props.iconURL;
         this.actions = props.actions;
+        this.sectionId = props.sectionId;
     }
 
     static fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
@@ -27,6 +30,7 @@ export class TechnicolorBlock {
             body: data.body ? RichText.fromSanity(data.body) : undefined,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
+            sectionId: data.sectionId,
         });
     }
 }

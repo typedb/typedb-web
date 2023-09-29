@@ -6,9 +6,22 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
     templateUrl: "heading-with-highlights.component.html",
 })
 export class HeadingWithHighlightsComponent {
+    @Input("id") inputId?: string;
     @Input() level: "h1" | "h2" = "h2";
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex: string = "#02DAC9";
+
+    get id(): string {
+        return (
+            this.inputId ||
+            this.value.spans
+                .map((v) => v.text)
+                .join("")
+                .toLocaleLowerCase()
+                .replace(/ /g, "-")
+                .replace(/[^0-9a-z-]/g, "")
+        );
+    }
 }
 
 @Component({
