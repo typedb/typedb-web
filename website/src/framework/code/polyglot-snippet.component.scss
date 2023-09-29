@@ -15,12 +15,12 @@
 }
 
 .ft-tabs {
-    height: 48px;
+    height: 52px;
     display: flex;
     flex-direction: row;
 
     @media (max-width: $media-max-width-mobile) {
-        height: 44px;
+        height: 48px;
     }
 }
 

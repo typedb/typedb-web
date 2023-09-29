@@ -331,49 +331,18 @@ address {
 }
 
 table {
-    border: none;
-    border-collapse: separate;
+    background: $color-vaticle-purple;
+    border-radius: $border-radius;
+    border-collapse: collapse;
     box-shadow: 0 0 0 1px $color-vaticle-light-purple;
 
-    thead + tbody {
-        border-top: 1px solid $color-vaticle-light-purple;
-    }
-
-    tr:first-child {
-        > td:first-child,
-        > th:first-child {
-            border-top-left-radius: $border-radius;
-        }
-
-        > td:last-child,
-        > th:last-child {
-            border-top-right-radius: $border-radius;
-        }
-    }
-
-    tr:last-child {
-        > td:first-child,
-        > th:first-child {
-            border-bottom-left-radius: $border-radius;
-        }
-
-        > td:last-child,
-        > th:last-child {
-            border-bottom-right-radius: $border-radius;
-        }
-    }
-
+    thead + tbody,
     tr:not(:first-child) {
-        > td,
-        > th {
-            border-top: 1px solid $color-vaticle-light-purple;
-        }
+        border-top: 1px solid $color-vaticle-light-purple;
     }
 
     th,
     td {
-        background: $color-vaticle-purple;
-
         &:not(:first-child) {
             border-left: 1px solid $color-vaticle-light-purple;
         }
