@@ -29,7 +29,7 @@ export const languages = {
     "rust": "Rust",
     "java": "Java",
     "python": "Python",
-    "typescript": "TypeScript / MongoDB",
+    "typescript": "TypeScript",
 } as const;
 
 export type Language = keyof typeof languages;
@@ -268,6 +268,7 @@ const codeSnippetSchema = defineType({
             name: "language",
             title: "Language",
             type: "string",
+            description: "N.B. For MongoDB query language, select TypeScript",
             options: {
                 layout: "dropdown",
                 list: Object.entries(languages).map(([id, displayName]) => ({ title: displayName, value: id })),

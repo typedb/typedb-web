@@ -12,7 +12,7 @@ import { RouterModule } from "@angular/router";
 
 import { ActionsComponent } from "./actions/actions.component";
 import { ButtonComponent } from "./button/button.component";
-import { CodeSnippetComponent } from "./code/code-snippet.component";
+import { CodeSnippetComponent, PolyglotSnippetComponent } from "./code/code-snippet.component";
 import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.component";
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
@@ -101,6 +101,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         ParagraphWithHighlightsPipe,
         PersonInfoComponent,
         PlainTextPipe,
+        PolyglotSnippetComponent,
         ProductTableComponent,
         RichTextComponent,
         RichTextPipe,
@@ -154,6 +155,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         ParagraphWithHighlightsPipe,
         PersonInfoComponent,
         PlainTextPipe,
+        PolyglotSnippetComponent,
         ProductTableComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,

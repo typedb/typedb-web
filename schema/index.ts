@@ -37,8 +37,10 @@ export { Event, type SanityEvent, eventSchema, eventSchemaName } from "./event";
 export { EventDate, type SanityEventDate } from "./event-date";
 export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
 export {
-    imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
-    ImageIllustration, VideoEmbed, CodeSnippet, PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,
+    imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName,
+    graphVisualisationSchemaName, splitPaneIllustrationSchemaName, ImageIllustration, VideoEmbed, CodeSnippet,
+    PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,
+    languages
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
