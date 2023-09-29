@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
+    CodeSnippet,
     FeatureGridCell,
     FeatureGridLayout,
     FeaturesPage,
     featuresPageSchemaName,
     Illustration,
+    PolyglotSnippet,
     SanityFeaturesPage,
 } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
@@ -69,5 +71,9 @@ export class FeatureGridComponent {
 
     ngOnInit() {
         this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
+    }
+
+    hasCodeSnippetIllustration(feature: FeatureGridCell) {
+        return feature.illustration instanceof CodeSnippet || feature.illustration instanceof PolyglotSnippet;
     }
 }
