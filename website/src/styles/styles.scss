@@ -332,10 +332,21 @@ address {
 
 table {
     border: none;
-    border-collapse: separate;
-    box-shadow: 0 0 0 1px $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    border-collapse: collapse;
+    overflow: hidden;
 
-    thead + tbody {
+    td,
+    th {
+        border-bottom: 1px solid $color-vaticle-light-purple;
+        border-right: 1px solid $color-vaticle-light-purple;
+    }
+
+    td:first-child {
+        border-left: 1px solid $color-vaticle-light-purple;
+    }
+
+    tr:first-child td {
         border-top: 1px solid $color-vaticle-light-purple;
     }
 
@@ -363,20 +374,9 @@ table {
         }
     }
 
-    tr:not(:first-child) {
-        > td,
-        > th {
-            border-top: 1px solid $color-vaticle-light-purple;
-        }
-    }
-
     th,
     td {
         background: $color-vaticle-purple;
-
-        &:not(:first-child) {
-            border-left: 1px solid $color-vaticle-light-purple;
-        }
     }
 }
 

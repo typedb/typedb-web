@@ -15,6 +15,10 @@
         vertical-align: top;
     }
 
+    td:empty {
+        display: none;
+    }
+
     th {
         background: $color-vaticle-deep-purple;
         width: 140px;
