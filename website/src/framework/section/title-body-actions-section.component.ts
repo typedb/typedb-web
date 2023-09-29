@@ -4,6 +4,7 @@ import { LinkButton, ParagraphWithHighlights, RichText } from "typedb-web-schema
 @Component({
     selector: "td-title-body-actions-section",
     templateUrl: "./title-body-actions-section.component.html",
+    styleUrls: ["./title-body-actions-section.component.scss"],
 })
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;

@@ -1,0 +1,7 @@
+@import "sizes";
+
+@media (max-width: $media-max-width-mobile) {
+    td-actions {
+        width: 100%;
+    }
+}
