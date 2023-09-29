@@ -6,7 +6,10 @@
     table-layout: fixed;
 
     @media (max-width: $media-max-width-mobile) {
-        &, tr, th, td {
+        &,
+        tr,
+        th,
+        td {
             display: block;
         }
 
