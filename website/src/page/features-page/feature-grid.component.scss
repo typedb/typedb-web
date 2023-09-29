@@ -51,7 +51,8 @@
         margin-top: 8px;
     }
 
-    td > div > td-aspect-ratio {
+    td > div > td-aspect-ratio,
+    td > div > td-illustration.cp-code-snippet {
         @media (max-width: $media-max-width-mobile) {
             margin-top: 16px !important;
         }
@@ -67,11 +68,46 @@
         }
     }
 
+    $number-of-lines: 20;
+    $number-of-lines-short: 13;
+    $number-of-lines-mobile: 10;
+
     td-aspect-ratio {
-        width: 100%;
+        flex: 0 0 calc(($font-size-code * $line-height-code * $number-of-lines + 2px) * 16 / 9);
+        max-width: 100%;
+
+        @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+            flex-basis: 476px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+        }
 
         td-illustration {
             height: 100%;
+        }
+    }
+
+    td-illustration.cp-code-snippet {
+        flex: 0 0 calc(($font-size-code * $line-height-code * $number-of-lines + 2px) * 16 / 9);
+        max-width: 100%;
+        height: calc($font-size-code * $line-height-code * $number-of-lines + 2px);
+
+        @media (max-width: $media-max-width-tablet) {
+            flex-basis: 476px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+        }
+
+        &.cp-code-snippet-short {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+
+            @media (max-width: $media-max-width-mobile) {
+                height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            }
         }
     }
 
