@@ -1,5 +1,5 @@
 <div class="ft-root">
-  <td-scroll-shadow class="ft-tabs-container">
+  <div class="ft-tabs-container">
     <div class="ft-tabs">
       <a
         *ngFor="let snippet of polyglotSnippet.snippets"
@@ -12,7 +12,7 @@
         <h5>{{ languageDisplayNames[snippet.language] }}</h5>
       </a>
     </div>
-  </td-scroll-shadow>
+  </div>
   <td-code-snippet
     *ngFor="let snippet of polyglotSnippet.snippets"
     [snippet]="snippet"
