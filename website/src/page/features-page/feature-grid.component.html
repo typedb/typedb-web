@@ -3,11 +3,14 @@
     <td *ngFor="let idx of columnIndexes">
       <div *ngIf="featureRow[idx] as feature">
         <div>
-          <h3>{{ feature.title }}</h3>
+          <div class="kpt-feature-title-section">
+            <h3>{{ feature.title }}</h3>
+            <td-tag-chips [tags]="feature.tags" />
+          </div>
           <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
         </div>
         <td-aspect-ratio *ngIf="feature.illustration" ratio="16:9">
-          <td-illustration [illustration]="$any(feature.illustration)" />
+          <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
         </td-aspect-ratio>
       </div>
     </td>

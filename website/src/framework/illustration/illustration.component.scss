@@ -2,7 +2,8 @@
 @import "../../styles/sizes";
 
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     border-radius: $border-radius;
     position: relative;
     overflow: hidden;
@@ -14,6 +15,11 @@
     &:not(.sp-pane) {
         border: 1px solid $color-vaticle-light-purple;
     }
+
+    &.il-blur {
+        filter: blur(5px);
+        user-select: none;
+    }
 }
 
 .il-image {
@@ -21,4 +27,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+td-polyglot-snippet {
+    height: 100%;
 }

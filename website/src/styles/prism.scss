@@ -35,7 +35,8 @@ pre[class*="language-"] {
 }
 
 .token.class-name,
-.token.number {
+.token.number,
+.token.datetime {
     color: $color-prism-blue;
 }
 

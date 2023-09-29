@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ContentTextPanel } from "typedb-web-schema";
+import { CodeSnippet, ContentTextPanel } from "typedb-web-schema";
 
 @Component({
     selector: "td-content-panel",
@@ -20,5 +20,9 @@ export class ContentPanelComponent {
             card: true,
             "cp-root": true,
         };
+    }
+
+    illustrationIsCodeSnippet() {
+        return this.panel.illustration instanceof CodeSnippet;
     }
 }

@@ -1,7 +1,18 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { ContentTextPanel } from "../component/content-text-panel";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, requiredRule, sectionIconField, titleField, titleFieldWithHighlights } from "../common-fields";
+import {
+    bodyFieldRichText,
+    collapsibleOptions,
+    isVisibleField,
+    optionalActionsField,
+    pageTitleField,
+    requiredRule,
+    SanityVisibleToggle,
+    sectionIconField,
+    sectionIdField,
+    titleField,
+    titleFieldWithHighlights,
+} from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -33,10 +44,12 @@ interface SanityFeatureSection extends SanityTechnicolorBlock {
 
 export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
 
-interface SanityFeatureGridCell {
+interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
     body: SanityPortableText;
     illustration?: SanityReference<SanityIllustration>;
+    tags: string[];
+    isIllustrationBlurred: boolean;
 }
 
 export class FeaturesPage extends Page {
@@ -47,7 +60,7 @@ export class FeaturesPage extends Page {
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featureSections = data.featureSections.map(x => FeaturesPageFeatureSection.fromSanity(x, db));
+        this.featureSections = data.featureSections.map((x) => FeaturesPageFeatureSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
@@ -62,7 +75,7 @@ class IntroSection extends TitleBodyActions {
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
         return Object.assign(TitleBodyActions.fromSanityTitleBodyActions(data, db), {
-            userLogos: data.userLogos.map(x => new Organisation(db.resolveRef(x), db))
+            userLogos: data.userLogos.map((x) => new Organisation(db.resolveRef(x), db)),
         });
     }
 }
@@ -71,11 +84,15 @@ export class FeatureGridCell {
     readonly title: string;
     readonly body?: RichText;
     readonly illustration?: Illustration;
+    readonly tags: string[];
+    readonly isIllustrationBlurred: boolean;
 
     constructor(props: PropsOf<FeatureGridCell>) {
         this.title = props.title;
         this.body = props.body;
         this.illustration = props.illustration;
+        this.tags = props.tags;
+        this.isIllustrationBlurred = props.isIllustrationBlurred;
     }
 
     static fromSanity(data: SanityFeatureGridCell, db: SanityDataset) {
@@ -83,6 +100,8 @@ export class FeatureGridCell {
             title: data.title,
             body: data.body ? RichText.fromSanity(data.body) : undefined,
             illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
+            tags: data.tags,
+            isIllustrationBlurred: data.isIllustrationBlurred,
         });
     }
 }
@@ -100,16 +119,21 @@ export class FeaturesPageFeatureSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityFeatureSection, db: SanityDataset) {
+        const visibleFeatures = data.features.filter((x) => x.isVisible);
         const featureCells = [];
-        for (let i = 0; i < data.features.length; i += data.columnCount) {
-            const chunk = data.features.slice(i, i + data.columnCount).map(x => FeatureGridCell.fromSanity(x, db));
+        for (let i = 0; i < visibleFeatures.length; i += data.columnCount) {
+            const chunk = visibleFeatures.slice(i, i + data.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
             featureCells.push(chunk);
         }
-        return new FeaturesPageFeatureSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            featureGridLayout: data.featureGridLayout,
-            features: featureCells,
-            illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
-        }));
+        return new FeaturesPageFeatureSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                featureGridLayout: data.featureGridLayout,
+                features: featureCells,
+                illustration: data.illustration
+                    ? illustrationFromSanity(db.resolveRef(data.illustration), db)
+                    : undefined,
+            })
+        );
     }
 }
 
@@ -139,6 +163,21 @@ const featureGridCellSchema = defineType({
         titleField,
         bodyFieldRichText,
         illustrationFieldOptional, // TODO: hide this field when block type is 'text only'
+        defineField({
+            name: "tags",
+            title: "Tags",
+            type: "array",
+            of: [{ type: "string" }],
+            initialValue: [],
+        }),
+        defineField({
+            name: "isIllustrationBlurred",
+            title: "Blur Illustration?",
+            type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
+        }),
+        isVisibleField,
     ],
 });
 
@@ -151,6 +190,7 @@ const featureSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         sectionIconField,
+        sectionIdField,
         defineField({
             name: "columnCount",
             title: "Column Count",
@@ -175,7 +215,7 @@ const featureSectionSchema = defineType({
             name: "features",
             title: "Features",
             type: "array",
-            of: [{type: featureGridCellSchemaName}],
+            of: [{ type: featureGridCellSchemaName }],
             validation: (rule: ArrayRule<any>) => rule.required().min(2),
         }),
         illustrationFieldOptional,
@@ -199,7 +239,7 @@ const featuresPageSchema = defineType({
             name: featureSections,
             title: "Feature Sections",
             type: "array",
-            of: [{type: featureSectionSchemaName}],
+            of: [{ type: featureSectionSchemaName }],
         }),
         defineField({
             name: finalSection,
@@ -208,7 +248,12 @@ const featuresPageSchema = defineType({
             options: collapsibleOptions,
         }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Features Page" }), },
+    preview: { prepare: (_selection) => ({ title: "Features Page" }) },
 });
 
-export const featuresPageSchemas = [featureSectionSchema, featureGridCellSchema, featuresPageSchema, introSectionSchema];
+export const featuresPageSchemas = [
+    featureSectionSchema,
+    featureGridCellSchema,
+    featuresPageSchema,
+    introSectionSchema,
+];

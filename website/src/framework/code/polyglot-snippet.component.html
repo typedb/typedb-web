@@ -1,0 +1,21 @@
+<div class="ft-root">
+  <td-scroll-shadow class="ft-tabs-container">
+    <div class="ft-tabs">
+      <a
+        *ngFor="let snippet of polyglotSnippet.snippets"
+        class="ft-tab"
+        [ngClass]="{ 'ft-tab-selected': selectedSnippet === snippet }"
+        [id]="snippetTabID(snippet)"
+        [href]="'#' + snippetTabID(snippet)"
+        (click)="onSnippetTabClick(snippet, $event)"
+      >
+        <h5>{{ languageDisplayNames[snippet.language] }}</h5>
+      </a>
+    </div>
+  </td-scroll-shadow>
+  <td-code-snippet
+    *ngFor="let snippet of polyglotSnippet.snippets"
+    [snippet]="snippet"
+    [hidden]="selectedSnippet !== snippet"
+  />
+</div>

@@ -19,6 +19,7 @@ import {
     FeaturesPageComponent,
     FeaturesPageTechnicolorBlockComponent,
 } from "./features-page/features-page.component";
+import { TagChipsComponent } from "./features-page/tag-chips.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
@@ -62,6 +63,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         SolutionPageTechnicolorBlockComponent,
         SupportPageComponent,
         SupportPageTechnicolorBlockComponent,
+        TagChipsComponent,
         WebinarDetailsPageComponent,
         WebinarsPageComponent,
         WhitePaperDetailsPageComponent,

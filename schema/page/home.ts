@@ -1,9 +1,26 @@
 import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { LinkPanel, linkPanelSchemaName, LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanel, SanityLinkPanelWithIcon } from "../component/link-panel";
+import {
+    LinkPanel,
+    linkPanelSchemaName,
+    LinkPanelWithIcon,
+    linkPanelWithIconSchemaName,
+    SanityLinkPanel,
+    SanityLinkPanelWithIcon,
+} from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, titleBodyIconFields, SanityVisibleToggle, requiredRule, keyPointsWithIconsField } from "../common-fields";
+import {
+    collapsibleOptions,
+    isVisibleField,
+    optionalActionsField,
+    pageTitleField,
+    titleBodyIconFields,
+    SanityVisibleToggle,
+    requiredRule,
+    keyPointsWithIconsField,
+    sectionIdField,
+} from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -26,7 +43,7 @@ const sections = {
 } as const;
 
 type SectionKey = keyof typeof sections;
-type SectionID = typeof sections[SectionKey]["id"];
+type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
@@ -86,13 +103,25 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
-        this.impactSections = data.impactSections.filter(x => x.isVisible).map(x => ImpactSection.fromSanity(x, db));
-        this.solutionsSection = data.solutionsSection.isVisible ? SolutionsSection.fromSanity(data.solutionsSection, db) : undefined;
-        this.toolingSection = data.toolingSection.isVisible ? ToolingSection.fromSanity(data.toolingSection, db) : undefined;
+        this.impactSections = data.impactSections
+            .filter((x) => x.isVisible)
+            .map((x) => ImpactSection.fromSanity(x, db));
+        this.solutionsSection = data.solutionsSection.isVisible
+            ? SolutionsSection.fromSanity(data.solutionsSection, db)
+            : undefined;
+        this.toolingSection = data.toolingSection.isVisible
+            ? ToolingSection.fromSanity(data.toolingSection, db)
+            : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
-        this.communitySection = data.communitySection.isVisible ? CommunitySection.fromSanity(data.communitySection, db) : undefined;
-        this.testimonialsSection = data.testimonialsSection.isVisible ? TestimonialsSection.fromSanity(data.testimonialsSection, db) : undefined;
-        this.conclusionSection = data.conclusionSection.isVisible ? ConclusionSection.fromSanity(data.conclusionSection, db) : undefined;
+        this.communitySection = data.communitySection.isVisible
+            ? CommunitySection.fromSanity(data.communitySection, db)
+            : undefined;
+        this.testimonialsSection = data.testimonialsSection.isVisible
+            ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
+            : undefined;
+        this.conclusionSection = data.conclusionSection.isVisible
+            ? ConclusionSection.fromSanity(data.conclusionSection, db)
+            : undefined;
     }
 }
 
@@ -107,10 +136,14 @@ class IntroSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            userLogos: data.displayUserLogos ? data.userLogos.map(x => new Organisation(db.resolveRef(x), db)) : [],
-            contentTabs: data.contentTabs.map(x => new ContentTextPanel(x, db)),
-        }));
+        return new IntroSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                userLogos: data.displayUserLogos
+                    ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
+                    : [],
+                contentTabs: data.contentTabs.map((x) => new ContentTextPanel(x, db)),
+            })
+        );
     }
 }
 
@@ -123,9 +156,11 @@ class ImpactSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
-        return new ImpactSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            impactTabs: data.impactTabs.map(x => new ContentTextPanel(x, db)),
-        }));
+        return new ImpactSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                impactTabs: data.impactTabs.map((x) => new ContentTextPanel(x, db)),
+            })
+        );
     }
 }
 
@@ -138,9 +173,11 @@ class SolutionsSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanitySolutionsSection, db: SanityDataset) {
-        return new SolutionsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            solutions: data.solutions.map(x => LinkPanel.fromSanityLinkPanel(x, db)),
-        }));
+        return new SolutionsSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                solutions: data.solutions.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
+            })
+        );
     }
 }
 
@@ -153,9 +190,11 @@ class ToolingSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityToolingSection, db: SanityDataset) {
-        return new ToolingSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            panels: data.panels.map(x => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
-        }));
+        return new ToolingSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                panels: data.panels.map((x) => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
+            })
+        );
     }
 }
 
@@ -168,9 +207,11 @@ class CloudSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
-        return new CloudSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            keyPoints: data.keyPoints.map(x => new KeyPointWithIcon(x, db)),
-        }));
+        return new CloudSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
+            })
+        );
     }
 }
 
@@ -183,9 +224,11 @@ class CommunitySection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityCommunitySection, db: SanityDataset) {
-        return new CommunitySection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            socialMedias: data.socialMediaLinks,
-        }));
+        return new CommunitySection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                socialMedias: data.socialMediaLinks,
+            })
+        );
     }
 }
 
@@ -198,9 +241,11 @@ class TestimonialsSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
-        return new TestimonialsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            testimonials: data.testimonials.map(x => new Testimonial(db.resolveRef(x), db)),
-        }));
+        return new TestimonialsSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
+            })
+        );
     }
 }
 
@@ -208,12 +253,13 @@ export const homePageSchemaName = "homePage";
 
 const sectionSchemaName = (key: SectionKey) => `${homePageSchemaName}_${sections[key].id}`;
 
-const sectionSchema = (key: SectionKey, fields: any[]) => defineType({
-    name: sectionSchemaName(key),
-    title: `${sections[key].title} Section`,
-    type: "object",
-    fields: fields,
-});
+const sectionSchema = (key: SectionKey, fields: any[]) =>
+    defineType({
+        name: sectionSchemaName(key),
+        title: `${sections[key].title} Section`,
+        type: "object",
+        fields: fields,
+    });
 
 const sectionSchemas = [
     sectionSchema("intro", [
@@ -231,7 +277,7 @@ const sectionSchemas = [
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{type: contentTextPanelSchemaName}],
+            of: [{ type: contentTextPanelSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,
@@ -239,11 +285,12 @@ const sectionSchemas = [
     sectionSchema("impact", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "impactTabs",
             title: "Impact Tabs",
             type: "array",
-            of: [{type: contentTextPanelSchemaName}],
+            of: [{ type: contentTextPanelSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,
@@ -251,26 +298,29 @@ const sectionSchemas = [
     sectionSchema("solutions", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "solutions",
             title: "Solutions",
             type: "array",
-            of: [{type: linkPanelSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.required().custom((value) => {
-                if ([4, 8].includes(value.length)) return true;
-                return "Must contain exactly 4 or 8 items";
-            }),
+            of: [{ type: linkPanelSchemaName }],
+            validation: (rule: ArrayRule<any>) =>
+                rule.required().custom((value) => {
+                    if ([4, 8].includes(value.length)) return true;
+                    return "Must contain exactly 4 or 8 items";
+                }),
         }),
         isVisibleField,
     ]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "panels",
             title: "Panels",
             type: "array",
-            of: [{type: linkPanelWithIconSchemaName}],
+            of: [{ type: linkPanelWithIconSchemaName }],
             validation: (rule: ArrayRule<any>) => rule.required().length(3),
         }),
         isVisibleField,
@@ -278,23 +328,26 @@ const sectionSchemas = [
     sectionSchema("cloud", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         keyPointsWithIconsField(5),
         isVisibleField,
     ]),
     sectionSchema("community", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         socialMediaLinksField,
         isVisibleField,
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
+        sectionIdField,
         defineField({
             name: "testimonials",
             title: "Testimonials",
             type: "array",
-            of: [{type: "reference", to: [{type: testimonialSchemaName}]}],
+            of: [{ type: "reference", to: [{ type: testimonialSchemaName }] }],
         }),
         isVisibleField,
     ]),
@@ -311,17 +364,19 @@ const impactSectionsField = defineField({
     name: "impactSections",
     title: "Impact Sections",
     type: "array",
-    of: [{type: sectionSchemaName("impact")}],
+    of: [{ type: sectionSchemaName("impact") }],
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter(key => !["intro", "impact"].includes(key))
-    .map(key => defineField({
-        name: sections[key].id,
-        title: `${sections[key].title} Section`,
-        type: sectionSchemaName(key),
-        options: collapsibleOptions,
-    }));
+    .filter((key) => !["intro", "impact"].includes(key))
+    .map((key) =>
+        defineField({
+            name: sections[key].id,
+            title: `${sections[key].title} Section`,
+            type: sectionSchemaName(key),
+            options: collapsibleOptions,
+        })
+    );
 
 const homePageSchema = defineType({
     name: homePageSchemaName,
@@ -340,7 +395,7 @@ const homePageSchema = defineType({
             validation: requiredRule,
         }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Home Page" }), },
+    preview: { prepare: (_selection) => ({ title: "Home Page" }) },
 });
 
 export const homePageSchemas = [homePageSchema, ...sectionSchemas];
