@@ -14,6 +14,11 @@
     &:not(.sp-pane) {
         border: 1px solid $color-vaticle-light-purple;
     }
+
+    &.il-blur {
+        filter: blur(2px);
+        user-select: none;
+    }
 }
 
 .il-image {

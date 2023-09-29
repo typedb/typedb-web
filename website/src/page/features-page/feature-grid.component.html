@@ -7,7 +7,7 @@
           <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
         </div>
         <td-aspect-ratio *ngIf="feature.illustration" ratio="16:9">
-          <td-illustration [illustration]="$any(feature.illustration)" />
+          <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
         </td-aspect-ratio>
       </div>
     </td>

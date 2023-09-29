@@ -37,6 +37,8 @@ interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
     body: SanityPortableText;
     illustration?: SanityReference<SanityIllustration>;
+    tags: string[];
+    isIllustrationBlurred: boolean;
 }
 
 export class FeaturesPage extends Page {
@@ -71,11 +73,15 @@ export class FeatureGridCell {
     readonly title: string;
     readonly body?: RichText;
     readonly illustration?: Illustration;
+    readonly tags: string[];
+    readonly isIllustrationBlurred: boolean;
 
     constructor(props: PropsOf<FeatureGridCell>) {
         this.title = props.title;
         this.body = props.body;
         this.illustration = props.illustration;
+        this.tags = props.tags;
+        this.isIllustrationBlurred = props.isIllustrationBlurred;
     }
 
     static fromSanity(data: SanityFeatureGridCell, db: SanityDataset) {
@@ -83,6 +89,8 @@ export class FeatureGridCell {
             title: data.title,
             body: data.body ? RichText.fromSanity(data.body) : undefined,
             illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
+            tags: data.tags,
+            isIllustrationBlurred: data.isIllustrationBlurred,
         });
     }
 }
@@ -140,6 +148,20 @@ const featureGridCellSchema = defineType({
         titleField,
         bodyFieldRichText,
         illustrationFieldOptional, // TODO: hide this field when block type is 'text only'
+        defineField({
+            name: "tags",
+            title: "Tags",
+            type: "array",
+            of: [{type: "string"}],
+            initialValue: [],
+        }),
+        defineField({
+            name: "isIllustrationBlurred",
+            title: "Blur Illustration?",
+            type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
+        }),
         isVisibleField,
     ],
 });

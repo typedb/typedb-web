@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import interact from "interactjs";
 import { Subscription } from "rxjs";
 import {
@@ -22,6 +22,7 @@ export class IllustrationComponent {
     @Input() illustration!: Illustration;
     // TODO: requiring the caller to set visible explicitly is counter-intuitive
     @Input() visible = false;
+    @Input() @HostBinding("class.il-blur") isBlurred = false;
 
     get imageIllustration(): ImageIllustration | undefined {
         return this.illustration instanceof ImageIllustration ? this.illustration : undefined;
