@@ -85,3 +85,9 @@
         height: $font-size-p2 * $line-height-p2 * 7;
     }
 }
+
+.kpt-feature-title-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
