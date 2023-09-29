@@ -13,11 +13,11 @@ export function installPrismTypeQL() {
         },
         keyword: {
             pattern:
-                /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|commit|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
+                /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
             lookbehind: true,
         },
         annotation: {
-            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(@key|@unique)(?![-a-zA-Z_0-9])/,
+            pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(@key|@unique|@card)(?![-a-zA-Z_0-9])/,
             lookbehind: true,
         },
         type: {

@@ -1,7 +1,7 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContentTextPanel } from "../component/content-text-panel";
-import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, requiredRule, sectionIconField, titleField, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, collapsibleOptions, isVisibleField, optionalActionsField, pageTitleField, requiredRule, SanityVisibleToggle, sectionIconField, titleField, titleFieldWithHighlights } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -33,7 +33,7 @@ interface SanityFeatureSection extends SanityTechnicolorBlock {
 
 export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
 
-interface SanityFeatureGridCell {
+interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
     body: SanityPortableText;
     illustration?: SanityReference<SanityIllustration>;
@@ -100,9 +100,10 @@ export class FeaturesPageFeatureSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityFeatureSection, db: SanityDataset) {
+        const visibleFeatures = data.features.filter(x => x.isVisible);
         const featureCells = [];
-        for (let i = 0; i < data.features.length; i += data.columnCount) {
-            const chunk = data.features.slice(i, i + data.columnCount).map(x => FeatureGridCell.fromSanity(x, db));
+        for (let i = 0; i < visibleFeatures.length; i += data.columnCount) {
+            const chunk = visibleFeatures.slice(i, i + data.columnCount).map(x => FeatureGridCell.fromSanity(x, db));
             featureCells.push(chunk);
         }
         return new FeaturesPageFeatureSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
@@ -139,6 +140,7 @@ const featureGridCellSchema = defineType({
         titleField,
         bodyFieldRichText,
         illustrationFieldOptional, // TODO: hide this field when block type is 'text only'
+        isVisibleField,
     ],
 });
 
