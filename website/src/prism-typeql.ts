@@ -13,7 +13,7 @@ export function installPrismTypeQL() {
         },
         keyword: {
             pattern:
-                /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub|sub!|has|owns|abstract|relates|plays|value|match|isa|isa!|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
+                /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
             lookbehind: true,
         },
         annotation: {
@@ -32,15 +32,19 @@ export function installPrismTypeQL() {
             pattern: /typeql>>|answers>>|\.\.\./,
         },
         variable: {
-            pattern: /\$[-a-zA-Z_0-9]+/,
+            pattern: /[\$\?][-a-zA-Z_0-9]+/,
             alias: "variable",
         },
+        datetime: {
+            pattern: /\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(:\d{2})?)?)?/,
+            alias: "datetime",
+        },
         number: {
-            pattern: /[0-9]+(\.[0-9][0-9]*)?/,
+            pattern: /[0-9]+(\.-[0-9][0-9]*)?/,
             alias: "number",
         },
         operator: {
-            pattern: /=|;|\.|\+|\*|,|\(|\)|:|{|}|!=|>|<|>=|<=/,
+            pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|[|]|!=|>|<|>=|<=/,
             alias: "operator",
         },
     };
