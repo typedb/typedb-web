@@ -2,7 +2,7 @@
   <div class="ft-section ft-social-section">
     <td-button [button]="footer.button"></td-button>
     <div class="ft-social-links">
-      <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" [href]="socialMediaLink.link.destination" target="_blank">
+      <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" [href]="socialMediaLink.link.destination" [target]="_blank">
         <span class="cdk-visually-hidden">{{ socialMediaLink.text }}</span>
         <mat-icon [svgIcon]="socialMediaLink.svgIcon" />
       </a>
