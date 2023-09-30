@@ -78,7 +78,7 @@ class ContactMediaLink {
                 return new Link({
                     destination: communityResources.discussionForumURL || "",
                     type: "external",
-                    opensNewTab: true,
+                    opensNewTab: false,
                 });
         }
     }
