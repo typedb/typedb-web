@@ -2,7 +2,7 @@
   <div class="ft-section ft-social-section">
     <td-button [button]="footer.button"></td-button>
     <div class="ft-social-links">
-      <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" [href]="socialMediaLink.link.destination">
+      <a *ngFor="let socialMediaLink of socialMediaLinks" class="sm-panel" target="_blank" [href]="socialMediaLink.link.destination">
         <span class="cdk-visually-hidden">{{ socialMediaLink.text }}</span>
         <mat-icon [svgIcon]="socialMediaLink.svgIcon" />
       </a>
@@ -13,7 +13,7 @@
       <h3>{{ footer.contactSectionTitle }}</h3>
       <ul>
         <li *ngFor="let contactMediaLink of contactMediaLinks">
-          <a [tdLink]="contactMediaLink.link" target="_blank">
+          <a [tdLink]="contactMediaLink.link">
             <mat-icon [svgIcon]="contactMediaLink.svgIcon" class="td-icon-large" />
             <p>{{ contactMediaLink.text }}</p>
           </a>
