@@ -13,7 +13,7 @@
       <h3>{{ footer.contactSectionTitle }}</h3>
       <ul>
         <li *ngFor="let contactMediaLink of contactMediaLinks">
-          <a [tdLink]="contactMediaLink.link">
+          <a [tdLink]="contactMediaLink.link" target="_blank">
             <mat-icon [svgIcon]="contactMediaLink.svgIcon" class="td-icon-large" />
             <p>{{ contactMediaLink.text }}</p>
           </a>
