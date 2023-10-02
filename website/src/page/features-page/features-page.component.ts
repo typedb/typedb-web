@@ -1,15 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import {
-    CodeSnippet,
-    FeatureGridCell,
-    FeatureGridLayout,
-    FeaturesPage,
-    featuresPageSchemaName,
-    Illustration,
-    PolyglotSnippet,
-    SanityFeaturesPage,
-} from "typedb-web-schema";
+import { FeaturesPage, featuresPageSchemaName, SanityFeaturesPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
@@ -56,24 +47,4 @@ export class FeaturesPageComponent implements OnInit {
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;
     @Input() index!: number;
-}
-
-@Component({
-    selector: "td-feature-grid",
-    templateUrl: "./feature-grid.component.html",
-    styleUrls: ["./feature-grid.component.scss"],
-})
-export class FeatureGridComponent {
-    @Input() layout!: FeatureGridLayout;
-    @Input() featureRows!: FeatureGridCell[][];
-    @Input() illustration?: Illustration;
-    columnIndexes!: number[];
-
-    ngOnInit() {
-        this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
-    }
-
-    hasCodeSnippetIllustration(feature: FeatureGridCell) {
-        return feature.illustration instanceof CodeSnippet || feature.illustration instanceof PolyglotSnippet;
-    }
 }

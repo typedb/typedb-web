@@ -76,7 +76,6 @@ export const bodyFieldRichText = defineField({
     type: "array",
     icon: BlockContentIcon,
     of: [{ type: "block" }],
-    validation: requiredRule,
 });
 
 export const titleAndBodyFields = [titleFieldWithHighlights, bodyFieldRichText];

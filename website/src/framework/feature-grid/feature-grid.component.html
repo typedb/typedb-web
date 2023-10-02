@@ -9,9 +9,14 @@
           </div>
           <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
         </div>
-        <td-aspect-ratio *ngIf="feature.illustration && !hasCodeSnippetIllustration(feature)" ratio="16:9">
+        <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
           <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
         </td-aspect-ratio>
+        <pre
+          *ngIf="hasShortCodeSnippet(feature)"
+          [class]="'kpt-code-short language-' + $any(feature.illustration).language"
+          >{{ $any(feature.illustration).code }}</pre
+        >
         <td-illustration
           class="cp-code-snippet cp-code-snippet-short"
           *ngIf="hasCodeSnippetIllustration(feature)"

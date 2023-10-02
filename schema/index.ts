@@ -1,4 +1,5 @@
 import { actionSchemas } from "./button";
+import { codeSchemas } from "./code";
 import { componentSchemas } from "./component";
 import { illustrationSchemas } from "./illustration";
 import { linkSchemas } from "./link";
@@ -18,8 +19,10 @@ import { webinarSchemas } from "./webinar";
 import { whitePaperSchema } from "./white-paper";
 
 export const schemaTypes = [
-    ...actionSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas,
-    ...organisationSchemas, ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema, ...webinarSchemas, whitePaperSchema, eventSchema
+    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
+    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
+    ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
+    ...webinarSchemas, whitePaperSchema, eventSchema
 ];
 
 export {
@@ -28,8 +31,10 @@ export {
     blogNullFilter, type WordpressACFResponse, type WordpressACF,
 } from "./blog";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
+export { languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName } from "./code";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel } from "./component/content-text-panel";
+export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
@@ -37,10 +42,9 @@ export { Event, type SanityEvent, eventSchema, eventSchemaName } from "./event";
 export { EventDate, type SanityEventDate } from "./event-date";
 export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
 export {
-    imageIllustrationSchemaName, videoEmbedSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName,
-    graphVisualisationSchemaName, splitPaneIllustrationSchemaName, ImageIllustration, VideoEmbed, CodeSnippet,
-    PolyglotSnippet, GraphVisualisation, SplitPaneIllustration, type Illustration, type SplitPaneIllustrationContent,
-    languages
+    imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
+    ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
+    type SplitPaneIllustrationContent
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
@@ -53,7 +57,7 @@ export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./pa
 export { Page, type SanityPage } from "./page/common";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
-export { FeaturesPage, FeaturesPageFeatureSection, type FeatureGridLayout, featuresPageSchemaName, type SanityFeaturesPage, FeatureGridCell } from "./page/features";
+export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
 export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";

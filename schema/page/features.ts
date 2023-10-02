@@ -1,23 +1,10 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    isVisibleField,
-    optionalActionsField,
-    pageTitleField,
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    sectionIdField,
-    titleField,
-    titleFieldWithHighlights,
-} from "../common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
-import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { bodyFieldRichText, collapsibleOptions, optionalActionsField, pageTitleField, titleFieldWithHighlights } from "../common-fields";
+import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityPortableText, SanityTitleBodyActions, TitleBodyActions } from "../text";
+import { SanityTitleBodyActions, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 
@@ -27,7 +14,7 @@ const finalSection = "finalSection";
 
 export interface SanityFeaturesPage extends SanityPage {
     [introSection]: SanityIntroSection;
-    [featureSections]: SanityFeatureSection[];
+    [featureSections]: SanityFeatureGridSection[];
     [finalSection]: SanityConclusionSection;
 }
 
@@ -35,32 +22,15 @@ interface SanityIntroSection extends SanityTitleBodyActions {
     userLogos: SanityReference<SanityOrganisation>[];
 }
 
-interface SanityFeatureSection extends SanityTechnicolorBlock {
-    featureGridLayout: FeatureGridLayout;
-    features: SanityFeatureGridCell[];
-    illustration?: SanityReference<SanityIllustration>;
-    columnCount: number;
-}
-
-export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
-
-interface SanityFeatureGridCell extends SanityVisibleToggle {
-    title: string;
-    body: SanityPortableText;
-    illustration?: SanityReference<SanityIllustration>;
-    tags: string[];
-    isIllustrationBlurred: boolean;
-}
-
 export class FeaturesPage extends Page {
     readonly [introSection]: IntroSection;
-    readonly [featureSections]: FeaturesPageFeatureSection[];
+    readonly [featureSections]: FeatureGridSection[];
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
-        this.featureSections = data.featureSections.map((x) => FeaturesPageFeatureSection.fromSanity(x, db));
+        this.featureSections = data.featureSections.map((x) => FeatureGridSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
@@ -80,63 +50,6 @@ class IntroSection extends TitleBodyActions {
     }
 }
 
-export class FeatureGridCell {
-    readonly title: string;
-    readonly body?: RichText;
-    readonly illustration?: Illustration;
-    readonly tags: string[];
-    readonly isIllustrationBlurred: boolean;
-
-    constructor(props: PropsOf<FeatureGridCell>) {
-        this.title = props.title;
-        this.body = props.body;
-        this.illustration = props.illustration;
-        this.tags = props.tags;
-        this.isIllustrationBlurred = props.isIllustrationBlurred;
-    }
-
-    static fromSanity(data: SanityFeatureGridCell, db: SanityDataset) {
-        return new FeatureGridCell({
-            title: data.title,
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
-            illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
-            tags: data.tags,
-            isIllustrationBlurred: data.isIllustrationBlurred,
-        });
-    }
-}
-
-export class FeaturesPageFeatureSection extends TechnicolorBlock {
-    readonly featureGridLayout: FeatureGridLayout;
-    readonly features: FeatureGridCell[][];
-    readonly illustration?: Illustration;
-
-    constructor(props: PropsOf<FeaturesPageFeatureSection>) {
-        super(props);
-        this.featureGridLayout = props.featureGridLayout;
-        this.features = props.features;
-        this.illustration = props.illustration;
-    }
-
-    static override fromSanity(data: SanityFeatureSection, db: SanityDataset) {
-        const visibleFeatures = data.features.filter((x) => x.isVisible);
-        const featureCells = [];
-        for (let i = 0; i < visibleFeatures.length; i += data.columnCount) {
-            const chunk = visibleFeatures.slice(i, i + data.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
-            featureCells.push(chunk);
-        }
-        return new FeaturesPageFeatureSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                featureGridLayout: data.featureGridLayout,
-                features: featureCells,
-                illustration: data.illustration
-                    ? illustrationFromSanity(db.resolveRef(data.illustration), db)
-                    : undefined,
-            })
-        );
-    }
-}
-
 export const featuresPageSchemaName = "featuresPage";
 
 const introSectionSchemaName = `${featuresPageSchemaName}_introSection`;
@@ -150,76 +63,6 @@ const introSectionSchema = defineType({
         bodyFieldRichText,
         optionalActionsField,
         Object.assign({}, organisationLogosField, { name: "userLogos", title: "User Logos" }) as any,
-    ],
-});
-
-const featureGridCellSchemaName = `${featuresPageSchemaName}_featureGridCell`;
-
-const featureGridCellSchema = defineType({
-    name: featureGridCellSchemaName,
-    title: "Feature",
-    type: "object",
-    fields: [
-        titleField,
-        bodyFieldRichText,
-        illustrationFieldOptional, // TODO: hide this field when block type is 'text only'
-        defineField({
-            name: "tags",
-            title: "Tags",
-            type: "array",
-            of: [{ type: "string" }],
-            initialValue: [],
-        }),
-        defineField({
-            name: "isIllustrationBlurred",
-            title: "Blur Illustration?",
-            type: "boolean",
-            initialValue: false,
-            validation: requiredRule,
-        }),
-        isVisibleField,
-    ],
-});
-
-const featureSectionSchemaName = `${featuresPageSchemaName}_featureSection`;
-
-const featureSectionSchema = defineType({
-    name: featureSectionSchemaName,
-    title: "Feature Section",
-    type: "object",
-    fields: [
-        titleFieldWithHighlights,
-        sectionIconField,
-        sectionIdField,
-        defineField({
-            name: "columnCount",
-            title: "Column Count",
-            type: "number",
-            initialValue: 3,
-        }),
-        defineField({
-            name: "layout",
-            title: "Layout",
-            type: "string",
-            options: {
-                layout: "dropdown",
-                list: [
-                    { title: "Text Blocks", value: "textBlocks" },
-                    { title: "Text + Illustration Blocks", value: "textIllustrationBlocks" },
-                ],
-            },
-            initialValue: "textBlocks",
-            validation: requiredRule,
-        }),
-        defineField({
-            name: "features",
-            title: "Features",
-            type: "array",
-            of: [{ type: featureGridCellSchemaName }],
-            validation: (rule: ArrayRule<any>) => rule.required().min(2),
-        }),
-        illustrationFieldOptional,
-        isVisibleField,
     ],
 });
 
@@ -239,7 +82,7 @@ const featuresPageSchema = defineType({
             name: featureSections,
             title: "Feature Sections",
             type: "array",
-            of: [{ type: featureSectionSchemaName }],
+            of: [{ type: featureGridSectionSchemaName }],
         }),
         defineField({
             name: finalSection,
@@ -252,8 +95,6 @@ const featuresPageSchema = defineType({
 });
 
 export const featuresPageSchemas = [
-    featureSectionSchema,
-    featureGridCellSchema,
     featuresPageSchema,
     introSectionSchema,
 ];

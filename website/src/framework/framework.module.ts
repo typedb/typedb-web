@@ -17,6 +17,7 @@ import { ConclusionPanelComponent } from "./conclusion-panel/conclusion-panel.co
 import { ContentPanelComponent } from "./content-panel/content-panel.component";
 import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
+import { TagChipsComponent } from "./feature-grid/tag-chips.component";
 import {
     CloudWaitlistDialogComponent,
     ContactDialogComponent,
@@ -25,6 +26,7 @@ import {
     NewsletterDialogComponent,
 } from "./form/dialog.component";
 import { OptionDirective } from "./form/option.directive";
+import { FeatureGridComponent } from "./feature-grid/feature-grid.component";
 import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
 import {
@@ -81,6 +83,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         DialogCloseButtonComponent,
         EventDatePipe,
         EventDurationPipe,
+        FeatureGridComponent,
         FeatureTableComponent,
         FeatureTableCellComponent,
         GraphVisualisationComponent,
@@ -110,6 +113,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         SnackbarComponent,
         SocialMediaPanelsComponent,
         SplitPaneIllustrationComponent,
+        TagChipsComponent,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
@@ -138,6 +142,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         ContentTabsComponent,
         EventDatePipe,
         EventDurationPipe,
+        FeatureGridComponent,
         FeatureTableComponent,
         HeadingWithHighlightsComponent,
         IllustrationComponent,
