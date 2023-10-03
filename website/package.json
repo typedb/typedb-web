@@ -11,6 +11,8 @@
     "format:fix": "prettier --write src",
     "lint:verify": "ng lint",
     "lint:fix": "ng lint --fix",
+    "style:verify": "prettier --check src && ng lint",
+    "style:fix": "prettier --write src && ng lint --fix",
     "prerender": "node prerender.js"
   },
   "private": true,
