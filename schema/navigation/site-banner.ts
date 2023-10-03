@@ -14,7 +14,7 @@ export interface SanitySiteBanner extends SanityDocument {
 
 export class SiteBanner {
     readonly text: ParagraphWithHighlights;
-    readonly link: Link;
+    readonly link?: Link;
 
     constructor(data: PropsOf<SiteBanner>) {
         this.text = data.text;
@@ -25,7 +25,7 @@ export class SiteBanner {
         if (!data.isEnabled) return undefined;
         return new SiteBanner({
             text: ParagraphWithHighlights.fromSanity(data.text!),
-            link: Link.fromSanityLinkRef(data.link!, db),
+            link: data.link && Link.fromSanityLinkRef(data.link, db),
         });
     }
 }

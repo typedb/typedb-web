@@ -1,7 +1,7 @@
 import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { featureGridCellSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
+import { featureGridCellSchemaName, featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
 import {
     LinkPanel,
     linkPanelSchemaName,
@@ -337,16 +337,10 @@ const sectionSchemas = [
         optionalActionsField,
         sectionIdField,
         defineField({
-            name: "features",
+            name: "featureGrid",
             title: "Drivers",
-            type: "array",
-            of: [{ type: featureGridCellSchemaName }],
-        }),
-        defineField({
-            name: "columnCount",
-            title: "Column Count",
-            type: "number",
-            initialValue: 3,
+            type: "reference",
+            to: [{ type: featureGridSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,

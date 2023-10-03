@@ -26,6 +26,7 @@ export const languages = {
     "sql": "SQL",
     "cypher": "Cypher",
     "typedb-console": "Console",
+    "bash": "Bash",
     "rust": "Rust",
     "java": "Java",
     "python": "Python",

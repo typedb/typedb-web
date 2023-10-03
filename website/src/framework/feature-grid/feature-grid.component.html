@@ -1,29 +1,14 @@
 <table class="section kpt-table">
   <tr *ngFor="let featureRow of featureRows" [ngClass]="'kpt-row-size-' + columnIndexes.length">
     <td *ngFor="let idx of columnIndexes">
-      <div *ngIf="featureRow[idx] as feature">
-        <div>
-          <div class="kpt-feature-title-section">
-            <h3>{{ feature.title }}</h3>
-            <td-tag-chips [tags]="feature.tags" />
-          </div>
-          <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
-        </div>
-        <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
-          <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
-        </td-aspect-ratio>
-        <pre
-          *ngIf="hasShortCodeSnippet(feature)"
-          [class]="'kpt-code-short language-' + $any(feature.illustration).language"
-          >{{ $any(feature.illustration).code }}</pre
-        >
-        <td-illustration
-          class="cp-code-snippet cp-code-snippet-short"
-          *ngIf="hasCodeSnippetIllustration(feature)"
-          [illustration]="$any(feature.illustration)"
-          [isBlurred]="feature.isIllustrationBlurred"
-        />
-      </div>
+      <ng-container *ngIf="featureRow[idx] as feature">
+        <a *ngIf="feature.link" [tdLink]="feature.link">
+          <ng-container *ngTemplateOutlet="cellContent; context: { feature }" />
+        </a>
+        <ng-container *ngIf="!feature.link">
+          <ng-container *ngTemplateOutlet="cellContent; context: { feature }" />
+        </ng-container>
+      </ng-container>
     </td>
   </tr>
   <tr *ngIf="illustration" class="kpt-illustration-row">
@@ -34,3 +19,29 @@
     </td>
   </tr>
 </table>
+
+<ng-template #cellContent let-feature="feature">
+  <div class="kpt-cell-content">
+    <div>
+      <div class="kpt-feature-title-section">
+        <img *ngIf="feature.iconURL" [src]="feature.iconURL" alt="" />
+        <h3>{{ feature.title }}</h3>
+        <td-tag-chips [tags]="feature.tags" />
+      </div>
+      <td-rich-text *ngIf="feature.body" [value]="$any(feature.body)" />
+    </div>
+    <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
+      <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
+    </td-aspect-ratio>
+    <pre
+      *ngIf="hasShortCodeSnippet(feature)"
+      [class]="'kpt-code-short language-' + $any(feature.illustration).language"
+    ><code [class]="'kpt-code-short language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
+    <td-illustration
+      class="cp-code-snippet cp-code-snippet-short"
+      *ngIf="hasCodeSnippetIllustration(feature)"
+      [illustration]="$any(feature.illustration)"
+      [isBlurred]="feature.isIllustrationBlurred"
+    />
+  </div>
+</ng-template>

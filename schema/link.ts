@@ -7,7 +7,7 @@ export type LinkType = "route" | "external";
 export type SanityLinkType = LinkType | "autoDetect";
 
 export interface SanityLink extends SanityDocument {
-    destination: Slug;
+    destination?: Slug;
     type: SanityLinkType;
     opensNewTab: boolean;
 }
@@ -29,8 +29,9 @@ export class Link {
         this.opensNewTab = props.opensNewTab;
     }
 
-    static fromSanityLink(data: SanityLink): Link {
+    static fromSanityLink(data: SanityLink): Link | undefined {
         let type: LinkType;
+        if (!data.destination) return undefined;
         if (data.type === "autoDetect") {
             try {
                 new URL(data.destination.current);
@@ -74,9 +75,9 @@ export class TextLink extends Link {
         this.comingSoon = props.comingSoon;
     }
 
-    static fromSanityTextLink(data: SanityTextLink, db: SanityDataset) {
+    static fromSanityTextLink(data: SanityTextLink, db: SanityDataset): TextLink | undefined {
         const link = Link.fromSanityLinkRef(data.link, db);
-        return new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab, comingSoon: data.comingSoon });
+        return link && new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab, comingSoon: data.comingSoon });
     }
 }
 

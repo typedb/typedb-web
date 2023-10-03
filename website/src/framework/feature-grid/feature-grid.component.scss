@@ -25,8 +25,17 @@
 
     th,
     td {
-        @include card-padding;
         vertical-align: top;
+
+        > div,
+        > a {
+            display: block;
+            @include card-padding;
+        }
+
+        > a:hover h3 {
+            color: $color-vaticle-green;
+        }
     }
 
     th {
@@ -150,8 +159,9 @@
         padding: 1.25rem 3rem 1.25rem 1.25rem;
         border-radius: $border-radius;
         border: 1px solid $color-vaticle-light-purple;
-        background: $color-vaticle-purple;
+        background: $color-vaticle-black-purple;
         hyphens: none;
+        margin-top: 20px !important; // overrides margin-top from style on * + * in this component
 
         @media (max-width: $media-max-width-mobile) {
             padding: 12px;
@@ -163,4 +173,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
+    img {
+        margin-right: 10px;
+    }
 }
