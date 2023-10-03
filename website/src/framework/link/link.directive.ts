@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 import { Link } from "typedb-web-schema";
 
 @Directive({
@@ -7,22 +7,16 @@ import { Link } from "typedb-web-schema";
 })
 export class LinkDirective implements OnChanges {
     @Input("tdLink") link?: Link | string;
-    path!: string;
-    query!: string;
-    resolvedLink!: Link;
+    private resolvedLink!: Link;
 
     constructor(
         private el: ElementRef<HTMLAnchorElement>,
-        private _router: Router,
+        private router: Router,
     ) {}
 
     ngOnChanges() {
         if (!this.link) return;
         this.resolvedLink = typeof this.link === "string" ? Link.fromAddress(this.link) : this.link;
-
-        const [path, query] = this.resolvedLink.destination.split("?");
-        this.path = path;
-        this.query = query;
 
         switch (this.resolvedLink.type) {
             case "external":
@@ -34,36 +28,28 @@ export class LinkDirective implements OnChanges {
         }
     }
 
-    constructRouterLink() {
+    private constructRouterLink() {
+        const [pathWithQuery, fragment] = this.resolvedLink.destination.split("#");
+        const [path, query] = pathWithQuery.split("?");
+
+        const commands = path ? [path] : [];
+        const navigationExtras: NavigationExtras = {
+            queryParams: Object.fromEntries(new URLSearchParams(query).entries()),
+            fragment,
+        };
+
+        this.el.nativeElement.href = this.router.createUrlTree(commands, navigationExtras).toString();
         this.el.nativeElement.tabIndex = 0;
-        this.updateHTMLElementHref();
         this.el.nativeElement.addEventListener("click", (e: MouseEvent) => {
             if (e.ctrlKey || e.metaKey) {
                 return; // fall back to default browser behaviour (open in new tab)
             }
             e.preventDefault();
-            if (!this.query) {
-                this._router.navigate([this.resolvedLink.destination]);
-            } else {
-                const queryParams = Object.fromEntries(new URLSearchParams(this.query).entries());
-                if (!this.path) {
-                    this._router.navigate([], { queryParams });
-                } else {
-                    this._router.navigate([this.path], { queryParams });
-                }
-            }
+            this.router.navigate(commands, navigationExtras);
         });
     }
 
-    updateHTMLElementHref() {
-        if (this.path) {
-            this.el.nativeElement.href = this.resolvedLink.destination;
-        } else {
-            this.el.nativeElement.href = `${this._router.url.split(/[#\?]/)[0]}?${this.query}`;
-        }
-    }
-
-    constructHrefLink() {
+    private constructHrefLink() {
         this.el.nativeElement.href = this.resolvedLink.destination;
         this.el.nativeElement.target = this.resolvedLink.opensNewTab ? "_blank" : "";
     }
