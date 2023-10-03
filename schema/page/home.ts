@@ -1,6 +1,7 @@
 import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { featureGridCellSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
 import {
     LinkPanel,
     linkPanelSchemaName,
@@ -37,6 +38,7 @@ const sections = {
     impact: { id: "impactSection", title: "Impact" },
     solutions: { id: "solutionsSection", title: "Solutions" },
     tooling: { id: "toolingSection", title: "Tooling" },
+    drivers: { id: "driversSection", title: "Drivers" },
     cloud: { id: "cloudSection", title: "Cloud" },
     community: { id: "communitySection", title: "Community" },
     testimonials: { id: "testimonialsSection", title: "Testimonials" },
@@ -50,6 +52,7 @@ export interface SanityHomePage extends SanityPage {
     impactSections: SanityImpactSection[];
     [sections.solutions.id]: SanitySolutionsSection;
     [sections.tooling.id]: SanityToolingSection;
+    [sections.drivers.id]: SanityDriversSection;
     [sections.cloud.id]: SanityKeyPointsSection;
     [sections.community.id]: SanityCommunitySection;
     [sections.testimonials.id]: SanityTestimonialsSection;
@@ -74,6 +77,8 @@ interface SanitySolutionsSection extends SanityCoreSection {
     solutions: SanityLinkPanel[];
 }
 
+type SanityDriversSection = SanityFeatureGridSection;
+
 interface SanityToolingSection extends SanityCoreSection {
     panels: SanityLinkPanelWithIcon[];
 }
@@ -95,6 +100,7 @@ export class HomePage extends Page {
     readonly impactSections: ImpactSection[];
     readonly [sections.solutions.id]?: SolutionsSection;
     readonly [sections.tooling.id]?: ToolingSection;
+    readonly [sections.drivers.id]?: FeatureGridSection;
     readonly [sections.cloud.id]?: CloudSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
@@ -112,6 +118,7 @@ export class HomePage extends Page {
         this.toolingSection = data.toolingSection.isVisible
             ? ToolingSection.fromSanity(data.toolingSection, db)
             : undefined;
+        this.driversSection = data.driversSection.isVisible ? FeatureGridSection.fromSanity(data.driversSection, db) : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible
             ? CommunitySection.fromSanity(data.communitySection, db)
@@ -322,6 +329,25 @@ const sectionSchemas = [
             type: "array",
             of: [{ type: linkPanelWithIconSchemaName }],
             validation: (rule: ArrayRule<any>) => rule.required().length(3),
+        }),
+        isVisibleField,
+    ]),
+    sectionSchema("drivers", [
+        ...titleBodyIconFields,
+        optionalActionsField,
+        sectionIdField,
+        defineField({
+            name: "features",
+            title: "Drivers",
+            type: "array",
+            of: [{ type: featureGridCellSchemaName }],
+        }),
+        defineField({
+            name: "columnCount",
+            title: "Column Count",
+            type: "number",
+            initialValue: 3,
+            validation: requiredRule,
         }),
         isVisibleField,
     ]),

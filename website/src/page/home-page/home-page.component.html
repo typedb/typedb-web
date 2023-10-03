@@ -21,6 +21,10 @@
       <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
       <td-link-panels [panels]="page.toolingSection.panels" [cols]="3" />
     </ng-container>
+    <ng-container *ngIf="page.driversSection">
+      <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />
+      <td-feature-grid [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features" />
+    </ng-container>
     <ng-container *ngIf="page.cloudSection">
       <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
       <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />

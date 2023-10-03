@@ -140,6 +140,23 @@
     .kpt-row-size-4 td-rich-text {
         height: $font-size-p2 * $line-height-p2 * 7;
     }
+
+    pre.kpt-code-short {
+        display: block;
+        -webkit-box-flex: 1;
+        flex: 1;
+        min-width: 0;
+        overflow: auto;
+        padding: 1.25rem 3rem 1.25rem 1.25rem;
+        border-radius: $border-radius;
+        border: 1px solid $color-vaticle-light-purple;
+        background: $color-vaticle-purple;
+        hyphens: none;
+
+        @media (max-width: $media-max-width-mobile) {
+            padding: 12px;
+        }
+    }
 }
 
 .kpt-feature-title-section {

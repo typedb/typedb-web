@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, DestroyRef, ElementRef, Input } from "@angular/core";
+import { AfterViewInit, Component, DestroyRef, ElementRef, Input, NgZone } from "@angular/core";
 import { Organisation, TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
@@ -22,13 +22,16 @@ export class TechnicolorBlockComponent implements AfterViewInit {
     constructor(
         private destroyRef: DestroyRef,
         private elementRef: ElementRef<HTMLElement>,
+        private ngZone: NgZone,
     ) {}
 
     ngAfterViewInit(): void {
-        const { cleanupDotListeners } = this.initDotListeners();
-        this.destroyRef.onDestroy(() => {
-            cleanupDotListeners();
-        });
+        // this.ngZone.runOutsideAngular(() => {
+        //     const { cleanupDotListeners } = this.initDotListeners();
+        //     this.destroyRef.onDestroy(() => {
+        //         cleanupDotListeners();
+        //     });
+        // });
     }
 
     get graphicColorClass(): string {

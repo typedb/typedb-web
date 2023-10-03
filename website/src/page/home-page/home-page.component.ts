@@ -8,6 +8,7 @@ import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import Prism from "prismjs";
 
 @Component({
     selector: "td-home-page",
@@ -38,6 +39,7 @@ export class HomePageComponent implements OnInit {
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 15000);
+                Prism.highlightAll();
             } else {
                 this.router.navigate(["404"], { skipLocationChange: true });
             }
@@ -62,6 +64,7 @@ export class HomePageTechnicolorBlockComponent {
             ...this.page.impactSections,
             this.page!.solutionsSection,
             this.page!.toolingSection,
+            this.page!.driversSection,
             this.page!.cloudSection,
             this.page!.communitySection,
             this.page!.testimonialsSection,
