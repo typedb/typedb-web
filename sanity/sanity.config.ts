@@ -11,7 +11,7 @@ import {
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName
+    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -63,6 +63,7 @@ export default defineConfig({
                 s.documentTypeListItem(personSchemaName).title("People"),
                 s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                 s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
+                s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
                 s.documentTypeListItem(webinarSchemaName).title("Webinars"),
                 s.documentTypeListItem(whitePaperSchemaName).title("White Papers"),
                 s.documentTypeListItem(eventSchemaName).title("Events"),

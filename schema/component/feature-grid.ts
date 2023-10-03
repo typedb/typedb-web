@@ -1,6 +1,7 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
+import { DashboardIcon } from "@sanity/icons";
+import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { codeSnippetSchemaName, CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort, polyglotSnippetSchemaName } from "../code";
-import { bodyFieldRichText, isVisibleField, linkField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, descriptionField, isVisibleField, linkField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
 import { graphVisualisationSchemaName, Illustration, illustrationFieldOptional, illustrationFromSanity, imageIllustrationSchemaName, SanityIllustration, splitPaneIllustrationSchemaName, videoEmbedSchemaName } from "../illustration";
 import { SanityImageRef } from "../image";
 import { Link, SanityLink } from "../link";
@@ -10,13 +11,17 @@ import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
 export interface SanityFeatureGridSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+    featureGrid: SanityReference<SanityFeatureGrid>;
+}
+
+export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
+
+export interface SanityFeatureGrid extends SanityDocument {
     featureGridLayout: FeatureGridLayout;
     features: SanityFeatureGridCell[];
     illustration?: SanityReference<SanityIllustration>;
     columnCount: number;
 }
-
-export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
 
 export interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
@@ -78,18 +83,19 @@ export class FeatureGridSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityFeatureGridSection, db: SanityDataset) {
-        const visibleFeatures = data.features.filter((x) => x.isVisible);
+        const featureGrid = db.resolveRef(data.featureGrid);
+        const visibleFeatures = featureGrid.features.filter((x) => x.isVisible);
         const featureCells = [];
-        for (let i = 0; i < visibleFeatures.length; i += data.columnCount) {
-            const chunk = visibleFeatures.slice(i, i + data.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
+        for (let i = 0; i < visibleFeatures.length; i += featureGrid.columnCount) {
+            const chunk = visibleFeatures.slice(i, i + featureGrid.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
             featureCells.push(chunk);
         }
         return new FeatureGridSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                featureGridLayout: data.featureGridLayout,
+                featureGridLayout: featureGrid.featureGridLayout,
                 features: featureCells,
-                illustration: data.illustration
-                    ? featureGridIllustrationFromSanity(db.resolveRef(data.illustration), db)
+                illustration: featureGrid.illustration
+                    ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
                     : undefined,
             })
         );
@@ -136,22 +142,15 @@ const featureGridCellSchema = defineType({
     ],
 });
 
-export const featureGridSectionSchemaName = `featureGridSection`;
+export const featureGridSchemaName = `featureGrid`;
 
-const featureGridSectionSchema = defineType({
-    name: featureGridSectionSchemaName,
-    title: "Feature Grid Section",
-    type: "object",
+const featureGridSchema = defineType({
+    name: featureGridSchemaName,
+    title: "Feature Grid",
+    type: "document",
+    icon: DashboardIcon,
     fields: [
-        titleFieldWithHighlights,
-        sectionIconField,
-        sectionIdField,
-        defineField({
-            name: "columnCount",
-            title: "Column Count",
-            type: "number",
-            initialValue: 3,
-        }),
+        nameField,
         defineField({
             name: "layout",
             title: "Layout",
@@ -167,6 +166,12 @@ const featureGridSectionSchema = defineType({
             validation: requiredRule,
         }),
         defineField({
+            name: "columnCount",
+            title: "Column Count",
+            type: "number",
+            initialValue: 3,
+        }),
+        defineField({
             name: "features",
             title: "Features",
             type: "array",
@@ -174,8 +179,28 @@ const featureGridSectionSchema = defineType({
             validation: (rule: ArrayRule<any>) => rule.required().min(2),
         }),
         illustrationFieldOptional,
+    ],
+});
+
+export const featureGridSectionSchemaName = `featureGridSection`;
+
+const featureGridSectionSchema = defineType({
+    name: featureGridSectionSchemaName,
+    title: "Feature Grid Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        sectionIconField,
+        sectionIdField,
+        defineField({
+            name: "featureGrid",
+            title: "Feature Grid",
+            type: "reference",
+            to: [{type: featureGridSchemaName}],
+            validation: requiredRule,
+        }),
         isVisibleField,
     ],
 });
 
-export const featureGridSchemas = [featureGridSectionSchema, featureGridCellSchema];
+export const featureGridSchemas = [featureGridSchema, featureGridSectionSchema, featureGridCellSchema];
