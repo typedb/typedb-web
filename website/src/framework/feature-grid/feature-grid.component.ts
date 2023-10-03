@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import Prism from "prismjs";
 import {
     CodeSnippet,
     CodeSnippetShort,
@@ -17,7 +18,7 @@ import {
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
 })
-export class FeatureGridComponent {
+export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() layout!: FeatureGridLayout;
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
@@ -25,6 +26,10 @@ export class FeatureGridComponent {
 
     ngOnInit() {
         this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
+    }
+
+    ngAfterViewInit() {
+        Prism.highlightAll();
     }
 
     hasMediaIllustration(feature: FeatureGridCell) {

@@ -22,7 +22,7 @@ const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
 
 export default defineConfig({
     name: "default",
-    title: "TypeDB Website - Content Editor",
+    title: "TypeDB Website CMS",
 
     projectId: config.projectId,
     dataset: config.dataset,

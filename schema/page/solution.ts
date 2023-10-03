@@ -196,7 +196,7 @@ class ExampleTab {
     readonly title: string;
     readonly videoURL: string;
     readonly body?: RichText;
-    readonly learnMoreLink: Link;
+    readonly learnMoreLink?: Link;
 
     constructor(data: SanityExampleTab, db: SanityDataset) {
         this.title = data.title;
@@ -208,7 +208,7 @@ class ExampleTab {
 
 class ExampleSection extends TechnicolorBlock {
     readonly exampleTabs: ExampleTab[];
-    readonly sampleProjectLink: Link;
+    readonly sampleProjectLink?: Link;
 
     constructor(props: PropsOf<ExampleSection>) {
         super(props);

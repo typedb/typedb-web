@@ -53,7 +53,7 @@ export class FooterColumn {
 
     constructor(data: SanityFooterColumn, db: SanityDataset) {
         this.title = data.title;
-        this.items = data.items.map(x => TextLink.fromSanityTextLink(x, db));
+        this.items = data.items.map(x => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[];
     }
 }
 

@@ -46,7 +46,7 @@ export class ConclusionPanel {
             body: data.body ? RichText.fromSanity(data.body) : undefined,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
-            resources: data.resources.map((x) => TextLink.fromSanityTextLink(x, db)),
+            resources: data.resources.map((x) => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
         });
     }
 }

@@ -92,13 +92,16 @@ export const slugField = defineField({
 
 export const iconFieldName = "icon";
 
-export const sectionIconField = defineField({
+export const sectionIconFieldOptional = defineField({
     name: iconFieldName,
     title: "Icon",
     type: "reference",
     to: [{ type: "sectionIcon" }],
-    validation: requiredRule,
     options: { disableNew: true },
+});
+
+export const sectionIconField = Object.assign({}, sectionIconFieldOptional, {
+    validation: requiredRule,
 });
 
 export const titleBodyIconFields = [...titleAndBodyFields, sectionIconField];
