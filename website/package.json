@@ -7,9 +7,9 @@
     "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --check src",
+    "format:verify": "prettier --check src",
     "format:fix": "prettier --write src",
-    "lint": "ng lint",
+    "lint:verify": "ng lint",
     "lint:fix": "ng lint --fix",
     "prerender": "node prerender.js"
   },
