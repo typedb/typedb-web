@@ -20,7 +20,8 @@
         </td-aspect-ratio>
         <pre
           *ngIf="hasShortCodeSnippet(feature)"
-          [class]="'kpt-code-short language-' + $any(feature.illustration).language" [class.kpt-blur]="feature.isIllustrationBlurred"
+          [class]="'kpt-code-short language-' + $any(feature.illustration).language"
+          [class.kpt-blur]="feature.isIllustrationBlurred"
         ><code [class]="'kpt-code-short language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
         <td-illustration
           class="cp-code-snippet cp-code-snippet-short"
