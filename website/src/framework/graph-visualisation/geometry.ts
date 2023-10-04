@@ -49,15 +49,15 @@ export function lineIntersect(line1: Line, line2: Line) {
     // Check if lines are parallel
     if (denominator === 0) return false;
 
-    let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator;
-    let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator;
+    const ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator;
+    const ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator;
 
     // Check if the intersection of infinite-length lines is within these segments
     if (ua < 0 || ua > 1 || ub < 0 || ub > 1) return false;
 
     // Return a object with the x and y coordinates of the intersection
-    let x = x1 + ua * (x2 - x1);
-    let y = y1 + ua * (y2 - y1);
+    const x = x1 + ua * (x2 - x1);
+    const y = y1 + ua * (y2 - y1);
 
     return { x, y };
 }
@@ -126,24 +126,24 @@ export function ellipseIncomingLineIntersect(sourcePoint: Point, targetEllipse: 
     py -= y;
 
     // compute intersection points: +-(x0, y0)
-    let x0 = (a * b * px) / Math.sqrt(a * a * py * py + b * b * px * px);
-    let y0 = (a * b * py) / Math.sqrt(a * a * py * py + b * b * px * px);
+    const x0 = (a * b * px) / Math.sqrt(a * a * py * py + b * b * px * px);
+    const y0 = (a * b * py) / Math.sqrt(a * a * py * py + b * b * px * px);
 
     return { x: x0 + x, y: y0 + y };
 }
 
 export function arrowhead(line: Line): Polygon | null {
     // first compute normalised vector for the line
-    let [dx, dy] = [line.to.x - line.from.x, line.to.y - line.from.y];
-    let l = Math.sqrt(dx * dx + dy * dy);
+    const [dx, dy] = [line.to.x - line.from.x, line.to.y - line.from.y];
+    const l = Math.sqrt(dx * dx + dy * dy);
 
     if (l === 0) return null; // if length is 0 - can't render arrows
 
-    let [nx, ny] = [dx / l, dy / l]; // normal vector in the direction of the line with length 1
-    let [arrowLength, arrowWidth] = [6, 3];
-    let [ex, ey] = [line.from.x + nx * l, line.from.y + ny * l]; // arrow endpoint
-    let [sx, sy] = [line.from.x + nx * (l - arrowLength), line.from.y + ny * (l - arrowLength)]; // wingtip offsets from line
-    let [topX, topY] = [-ny, nx]; // orthogonal vector to the line vector
+    const [nx, ny] = [dx / l, dy / l]; // normal vector in the direction of the line with length 1
+    const [arrowLength, arrowWidth] = [6, 3];
+    const [ex, ey] = [line.from.x + nx * l, line.from.y + ny * l]; // arrow endpoint
+    const [sx, sy] = [line.from.x + nx * (l - arrowLength), line.from.y + ny * (l - arrowLength)]; // wingtip offsets from line
+    const [topX, topY] = [-ny, nx]; // orthogonal vector to the line vector
 
     return [
         { x: ex, y: ey },

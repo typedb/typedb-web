@@ -8,7 +8,7 @@ import { MediaQueryService } from "src/service/media-query.service";
 import { ContentService } from "../../service/content.service";
 
 @Component({
-    selector: "[tdPageBackground]",
+    selector: "td-page-background, [tdPageBackground]",
     templateUrl: "page-background.component.html",
     styleUrls: ["page-background.component.scss"],
 })

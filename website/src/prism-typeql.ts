@@ -32,7 +32,7 @@ export function installPrismTypeQL() {
             pattern: /typeql>>|answers>>|\.\.\./,
         },
         variable: {
-            pattern: /[\$\?][-a-zA-Z_0-9]+/,
+            pattern: /[$?][-a-zA-Z_0-9]+/,
             alias: "variable",
         },
         datetime: {

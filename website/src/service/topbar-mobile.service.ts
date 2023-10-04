@@ -8,8 +8,6 @@ import { BehaviorSubject } from "rxjs";
 export class TopbarMobileService {
     openState = new BehaviorSubject(false);
 
-    constructor() {}
-
     toggleOpenState() {
         this.openState.next(!this.openState.getValue());
     }

@@ -16,7 +16,7 @@ import { TopbarMobileService } from "./service/topbar-mobile.service";
 const SITE_URL = "https://typedb.com";
 
 @Component({
-    selector: "typedb-website",
+    selector: "td-website",
     templateUrl: "./website.component.html",
     styleUrls: [],
 })
@@ -56,7 +56,7 @@ export class WebsiteComponent {
             }
             this.canonicalLink = doc.createElement("link");
             this.canonicalLink.setAttribute("rel", "canonical");
-            this.canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#\?]/)[0]}`);
+            this.canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#?]/)[0]}`);
             doc.head.appendChild(this.canonicalLink);
         });
     }
@@ -68,20 +68,20 @@ export class WebsiteComponent {
         viewportScroller: ViewportScroller,
     ) {
         viewportScroller.setOffset([0, 112]);
-        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((e) => {
+        router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
+            const { anchor, position } = ev;
             contentService.data.subscribe((_data) => {
                 let currentRoute = activatedRoute;
                 while (currentRoute.firstChild) currentRoute = currentRoute.firstChild;
 
-                if (e.position) {
-                    const position = e.position;
+                if (position) {
                     // backward navigation
                     setTimeout(() => {
                         viewportScroller.scrollToPosition(position);
                     }, 0);
-                } else if (e.anchor && !router.getCurrentNavigation()?.extras?.state?.["preventScrollToAnchor"]) {
+                } else if (anchor && !router.getCurrentNavigation()?.extras?.state?.["preventScrollToAnchor"]) {
                     setTimeout(() => {
-                        viewportScroller.scrollToAnchor(e.anchor!);
+                        viewportScroller.scrollToAnchor(anchor);
                     });
                 } else if (
                     this._originBeforeNavigation !== window.location.origin ||

@@ -3,7 +3,7 @@ import { Router, Event as RouterEvent, Scroll } from "@angular/router";
 
 import Prism from "prismjs";
 import { filter, Subscription } from "rxjs";
-import { CodeSnippet, ContentTextPanel, languages, PolyglotSnippet } from "typedb-web-schema";
+import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 
 import { MediaQueryService } from "../../service/media-query.service";
 import { sanitiseHtmlID } from "../util";
@@ -49,6 +49,7 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     styleUrls: ["polyglot-snippet.component.scss"],
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("snippet") polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
     lines!: number;

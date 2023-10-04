@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map, Observable, tap } from "rxjs";
-import { Event, EventsPage, eventsPageSchemaName, LinkButton, SanityEventsPage } from "typedb-web-schema";
+import { Event, EventsPage, eventsPageSchemaName, SanityEventsPage } from "typedb-web-schema";
 
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";

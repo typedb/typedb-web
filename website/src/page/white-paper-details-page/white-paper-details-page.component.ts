@@ -37,7 +37,9 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {};
+        let unregisterMetaTags = () => {
+            /**/
+        };
         this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
@@ -67,8 +69,13 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     private onSubmit() {
+        const whitePaper = this.whitePaper;
+        if (!whitePaper) {
+            return;
+        }
+
         this._popupNotificationService.success("Your file will be downloaded shortly.");
-        fetch(this.whitePaper!.fileURL)
+        fetch(whitePaper.fileURL)
             .then((resp) => resp.blob())
             .then((blob) => {
                 const url = window.URL.createObjectURL(blob);
@@ -76,7 +83,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 a.style.display = "none";
                 a.href = url;
                 // the filename you want
-                a.download = this.whitePaper!.fileName || "";
+                a.download = whitePaper.fileName || "";
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);

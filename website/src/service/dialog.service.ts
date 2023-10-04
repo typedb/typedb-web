@@ -13,7 +13,7 @@ import {
     providedIn: "root",
 })
 export class DialogService {
-    current?: MatDialogRef<any>;
+    current?: MatDialogRef<unknown>;
 
     constructor(
         private _router: Router,
@@ -41,7 +41,7 @@ export class DialogService {
         });
     }
 
-    open<T>(component: ComponentType<T>, config?: MatDialogConfig<any> | undefined) {
+    open<T>(component: ComponentType<T>, config?: MatDialogConfig<unknown> | undefined) {
         this.closeCurrent();
         const newDialog = this.dialog.open(component, config);
         newDialog.afterClosed().subscribe(() => {

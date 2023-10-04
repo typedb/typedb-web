@@ -79,8 +79,10 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
                     .resizable({
                         edges: { right: true },
                         listeners: {
-                            move: (event: any) => {
-                                const scale = event.target.getBoundingClientRect().width / event.target.offsetWidth;
+                            move: (event: Interact.InteractEvent) => {
+                                const scale =
+                                    event.target.getBoundingClientRect().width /
+                                    (event.target as HTMLElement).offsetWidth;
                                 let width = event.rect.width / scale;
                                 if (width < 50) width = 50;
                                 if (width > 600) width = 600;
@@ -89,11 +91,11 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
                             },
                         },
                     })
-                    .on("resizestart", (event: any) => {
-                        event.target!.style["user-select"] = "none";
+                    .on("resizestart", (event: Interact.InteractEvent) => {
+                        event.target.style.userSelect = "none";
                     })
-                    .on("resizeend", (event: any) => {
-                        event.target.style["user-select"] = "text";
+                    .on("resizeend", (event: Interact.InteractEvent) => {
+                        event.target.style.userSelect = "text";
                     });
             });
         });

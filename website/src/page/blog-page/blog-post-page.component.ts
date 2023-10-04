@@ -90,7 +90,7 @@ export class BlogPostPageComponent implements OnInit {
                         content: customFields.social_sharing_description || "",
                     });
                     this._analytics.hubspot.trackPageView();
-                    this.postContentEl.nativeElement.innerHTML = post!.content;
+                    this.postContentEl.nativeElement.innerHTML = post.content;
                     Prism.highlightAll();
                 } else {
                     this.router.navigate(["blog"]);
@@ -134,7 +134,7 @@ export class BlogPostPageComponent implements OnInit {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
     }
 
-    shareOnLinkedInURL(post: WordpressPost): string {
+    shareOnLinkedInURL(_post: WordpressPost): string {
         return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
     }
 

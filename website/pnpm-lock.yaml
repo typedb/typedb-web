@@ -190,6 +190,9 @@ devDependencies:
   '@types/d3-force':
     specifier: 3.0.4
     version: 3.0.4
+  '@types/fontfaceobserver':
+    specifier: 2.1.1
+    version: 2.1.1
   '@types/jasmine':
     specifier: 4.3.5
     version: 4.3.5
@@ -214,6 +217,9 @@ devDependencies:
   eslint:
     specifier: 8.40.0
     version: 8.40.0
+  eslint-plugin-unused-imports:
+    specifier: 3.0.0
+    version: 3.0.0(@typescript-eslint/eslint-plugin@5.59.7)(eslint@8.40.0)
   jasmine-core:
     specifier: 5.1.0
     version: 5.1.0
@@ -4395,6 +4401,10 @@ packages:
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.2
 
+  /@types/fontfaceobserver@2.1.1:
+    resolution: {integrity: sha512-ur2vdKw6m/2Ks1LHFCZxjgXyiXDwM9iThH+vQ4pBoxvoU06UhZ/j+vHnE8eKwsRooBRdGrkNBXSZ4k92JANhAQ==}
+    dev: true
+
   /@types/http-errors@2.0.1:
     resolution: {integrity: sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ==}
 
@@ -6219,6 +6229,26 @@ packages:
     optionalDependencies:
       source-map: 0.6.1
     dev: false
+
+  /eslint-plugin-unused-imports@3.0.0(@typescript-eslint/eslint-plugin@5.59.7)(eslint@8.40.0):
+    resolution: {integrity: sha512-sduiswLJfZHeeBJ+MQaG+xYzSWdRXoSw61DpU13mzWumCkR0ufD0HmO4kdNokjrkluMHpj/7PJeN35pgbhW3kw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^6.0.0
+      eslint: ^8.0.0
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 5.59.7(@typescript-eslint/parser@5.59.7)(eslint@8.40.0)(typescript@5.1.6)
+      eslint: 8.40.0
+      eslint-rule-composer: 0.3.0
+    dev: true
+
+  /eslint-rule-composer@0.3.0:
+    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
+    engines: {node: '>=4.0.0'}
+    dev: true
 
   /eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}

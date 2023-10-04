@@ -2,23 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { TransferStateService } from "@scullyio/ng-lib";
-import {
-    BehaviorSubject,
-    combineLatest,
-    concat,
-    filter,
-    first,
-    iif,
-    map,
-    Observable,
-    of,
-    shareReplay,
-    switchMap,
-} from "rxjs";
+import { BehaviorSubject, combineLatest, concat, filter, iif, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     BlogFilter,
     blogNullFilter,
-    WordpressACF,
     WordpressACFResponse,
     WordpressCategoriesResponse,
     WordpressPost,
@@ -98,7 +85,11 @@ export class BlogService {
         return this.fetchedPosts.pipe(
             switchMap((posts) => {
                 const post = posts.find((post) => post.slug === slug);
-                return iif(() => !!post, concat(of(post!), this.fetchPostBySlug(slug)), this.fetchPostBySlug(slug));
+                return iif(
+                    () => !!post,
+                    concat(of(post as WordpressPost), this.fetchPostBySlug(slug)),
+                    this.fetchPostBySlug(slug),
+                );
             }),
         );
     }

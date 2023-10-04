@@ -34,7 +34,9 @@ export class EventDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {};
+        let unregisterMetaTags = () => {
+            /**/
+        };
         this.destroyRef.onDestroy(() => unregisterMetaTags());
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {

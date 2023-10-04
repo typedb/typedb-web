@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { ParagraphWithHighlights, RichText } from "typedb-web-schema";
+import { ParagraphWithHighlights } from "typedb-web-schema";
 
 @Pipe({ name: "paragraphWithHighlights" })
 export class ParagraphWithHighlightsPipe implements PipeTransform {

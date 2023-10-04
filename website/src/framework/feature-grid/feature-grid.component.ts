@@ -58,7 +58,9 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
                 el.offsetHeight;
                 el.classList.remove("clicked");
             },
-            () => {},
+            () => {
+                /**/
+            },
         );
     }
 }

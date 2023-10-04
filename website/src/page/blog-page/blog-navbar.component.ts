@@ -6,7 +6,7 @@ import { BlogFilter, Link } from "typedb-web-schema";
 import { BlogService } from "../../service/blog.service";
 
 @Component({
-    selector: "[td-blog-navbar]",
+    selector: "td-blog-navbar, [td-blog-navbar]",
     templateUrl: "./blog-navbar.component.html",
     styleUrls: ["./blog-navbar.component.scss"],
 })
@@ -43,7 +43,7 @@ export class BlogNavbarComponent {
         return this.blogService.filter;
     }
 
-    isActive(item: NavbarItem) {
+    isActive(_item: NavbarItem) {
         return false;
     }
 

@@ -63,15 +63,15 @@ export class SolutionPageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.useCasesSection,
-            this.page!.challengesSection,
-            this.page!.solutionSection,
-            this.page!.furtherReadingSection,
+            this.page.useCasesSection,
+            this.page.challengesSection,
+            this.page.solutionSection,
+            this.page.furtherReadingSection,
         ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
     get index() {
-        return this.allBlocks.indexOf(this.block!);
+        return this.allBlocks.indexOf(this.block);
     }
 
     get noTrailingLine() {

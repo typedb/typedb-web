@@ -3,12 +3,6 @@ import { Router } from "@angular/router";
 
 import { isScullyRunning } from "@scullyio/ng-lib";
 
-declare global {
-    interface Window {
-        _hsq: any[];
-    }
-}
-
 export const HUBSPOT_PORTAL_ID = "4332244";
 export const HUBSPOT_REGION = "na1";
 export const GOOGLE_TAG_ID = "G-SNVZCNLJ9R"; // used by Google Analytics
