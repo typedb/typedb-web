@@ -1,7 +1,10 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy } from "@angular/core";
-import { Subject, distinctUntilChanged, takeUntil } from "rxjs";
-import { MediaQueryService } from "src/service/media-query.service";
+
+import { distinctUntilChanged, Subject, takeUntil } from "rxjs";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
+
+import { MediaQueryService } from "src/service/media-query.service";
+
 import { ContentService } from "../../service/content.service";
 
 @Component({
@@ -10,8 +13,8 @@ import { ContentService } from "../../service/content.service";
     styleUrls: ["page-background.component.scss"],
 })
 export class PageBackgroundComponent implements OnDestroy, AfterViewInit {
-    @Input("nebula") nebula?: "cloud" | "deploy" | "features" | "home" | "intro" | "solutions" | "studio";
-    @Input("planet") planet?: "blue_pink" | "green" | "pink_green" | "pink" | "yellow_green";
+    @Input() nebula?: "cloud" | "deploy" | "features" | "home" | "intro" | "solutions" | "studio";
+    @Input() planet?: "blue_pink" | "green" | "pink_green" | "pink" | "yellow_green";
 
     private readonly destroyNotifier = new Subject<void>();
 

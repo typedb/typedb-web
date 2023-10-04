@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { SiteBanner } from "typedb-web-schema";
 
 @Component({

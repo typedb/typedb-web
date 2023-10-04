@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
 import { Router, Event as RouterEvent, Scroll } from "@angular/router";
+
 import Prism from "prismjs";
 import { filter, Subscription } from "rxjs";
 import { CodeSnippet, ContentTextPanel, languages, PolyglotSnippet } from "typedb-web-schema";
+
 import { MediaQueryService } from "../../service/media-query.service";
 import { sanitiseHtmlID } from "../util";
 

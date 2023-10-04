@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { RichText, RichTextSpan } from "typedb-web-schema";
 
 @Component({

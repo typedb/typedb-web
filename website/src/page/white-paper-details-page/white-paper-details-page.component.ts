@@ -1,14 +1,17 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+
+import { IdleMonitorService } from "@scullyio/ng-lib";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
+
+import { MetaTagsService } from "src/service/meta-tags.service";
+
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
-import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
-import { Title } from "@angular/platform-browser";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-white-paper-details-page",

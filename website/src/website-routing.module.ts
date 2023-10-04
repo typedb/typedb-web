@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+
 import { BlogListPageComponent } from "./page/blog-page/blog-list-page.component";
 import { BlogPostPageComponent } from "./page/blog-page/blog-post-page.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";

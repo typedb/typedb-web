@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+
 import { isScullyRunning } from "@scullyio/ng-lib";
 
 declare global {

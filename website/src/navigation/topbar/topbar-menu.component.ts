@@ -9,6 +9,7 @@ import {
     Output,
     ViewChild,
 } from "@angular/core";
+
 import {
     communityResourcesSchemaName,
     SanityCommunityResources,
@@ -24,6 +25,7 @@ import {
     topbarSchemaName,
     TopbarVideoColumn,
 } from "typedb-web-schema";
+
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
 import { TopbarMobileService } from "../../service/topbar-mobile.service";

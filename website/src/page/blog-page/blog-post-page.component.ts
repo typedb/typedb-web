@@ -1,22 +1,24 @@
 import { Component, DestroyRef, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     Link,
+    LinkButton,
+    WordpressACF,
     WordpressPost,
-    WordpressTaxonomy,
     WordpressRelatedPosts,
     WordpressSite,
-    WordpressACF,
-    LinkButton,
+    WordpressTaxonomy,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
-import { BlogService } from "../../service/blog.service";
+
 import { AnalyticsService } from "../../service/analytics.service";
+import { BlogService } from "../../service/blog.service";
 
 @Component({
     selector: "td-blog-post-page",

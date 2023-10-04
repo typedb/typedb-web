@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
+
 import { Link } from "typedb-web-schema";
 
 @Directive({

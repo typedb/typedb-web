@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { KeyPoint, KeyPointWithIcon } from "typedb-web-schema";
 
 @Component({

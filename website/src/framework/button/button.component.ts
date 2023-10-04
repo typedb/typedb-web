@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { LinkButton, ActionButton } from "typedb-web-schema";
+
+import { ActionButton, LinkButton } from "typedb-web-schema";
 
 @Component({
     selector: "td-button",

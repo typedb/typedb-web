@@ -2,9 +2,11 @@ import { DOCUMENT, ViewportScroller } from "@angular/common";
 import { Component, Inject } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, Event as RouterEvent, NavigationEnd, Router, Scroll } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, Scroll } from "@angular/router";
+
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
+
 import { AnalyticsService } from "./service/analytics.service";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";

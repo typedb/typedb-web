@@ -3,7 +3,7 @@
     "singleQuote": false,
     "tabWidth": 4,
     "plugins": ["@trivago/prettier-plugin-sort-imports"],
-    "importOrder": ["^@angular/(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"],
+    "importOrder": ["^@angular/(.*)$", "<THIRD_PARTY_MODULES>", "^src/", "^[./]"],
     "importOrderCaseInsensitive": true,
     "importOrderParserPlugins": ["typescript", "decorators-legacy"],
     "importOrderSeparation": true,

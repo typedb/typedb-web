@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+
 import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({

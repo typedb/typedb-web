@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
+
 import interact from "interactjs";
 import { Subscription } from "rxjs";
 import {
@@ -11,6 +12,7 @@ import {
     SplitPaneIllustration,
     VideoEmbed,
 } from "typedb-web-schema";
+
 import { MediaQueryService } from "../../service/media-query.service";
 
 @Component({

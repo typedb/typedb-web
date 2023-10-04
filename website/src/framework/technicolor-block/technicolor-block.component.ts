@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, DestroyRef, ElementRef, Input, NgZone } from "@angular/core";
+
 import { Organisation, TechnicolorBlock } from "typedb-web-schema";
 
 @Component({
