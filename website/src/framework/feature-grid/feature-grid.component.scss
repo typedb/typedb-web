@@ -144,8 +144,8 @@
         height: $font-size-p2 * $line-height-p2 * 7;
     }
 
-    tr.kpt-illustration-row td-illustration {
-        border: none;
+    tr.kpt-illustration-row > td {
+        padding: 24px;
     }
 }
 
