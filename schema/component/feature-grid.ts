@@ -128,7 +128,6 @@ const featureGridCellSchema = defineType({
             title: "Links",
             type: "array",
             of: [{type: textLinkSchemaName}],
-            validation: (rule: ArrayRule<any>) => rule.max(2),
         }),
         defineField({
             name: "tags",
