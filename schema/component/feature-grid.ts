@@ -4,7 +4,7 @@ import { codeSnippetSchemaName, CodeSnippetShort, codeSnippetShortSchemaName, is
 import { bodyFieldRichText, descriptionField, isVisibleField, linkField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
 import { graphVisualisationSchemaName, Illustration, illustrationFieldOptional, illustrationFromSanity, imageIllustrationSchemaName, SanityIllustration, splitPaneIllustrationSchemaName, videoEmbedSchemaName } from "../illustration";
 import { SanityImageRef } from "../image";
-import { Link, SanityLink } from "../link";
+import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
 import { PropsOf } from "../util";
@@ -27,7 +27,7 @@ export interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
     body: SanityPortableText;
     icon?: SanityReference<SanityImageRef>;
-    link?: SanityReference<SanityLink>;
+    links?: SanityTextLink[];
     illustration?: SanityReference<SanityIllustration>;
     tags: string[];
     isIllustrationBlurred: boolean;
@@ -42,7 +42,7 @@ export class FeatureGridCell {
     readonly title: string;
     readonly body?: RichText;
     readonly iconURL?: string;
-    readonly link?: Link;
+    readonly links?: TextLink[];
     readonly illustration?: Illustration;
     readonly tags: string[];
     readonly isIllustrationBlurred: boolean;
@@ -51,7 +51,7 @@ export class FeatureGridCell {
         this.title = props.title;
         this.body = props.body;
         this.iconURL = props.iconURL;
-        this.link = props.link;
+        this.links = props.links;
         this.illustration = props.illustration;
         this.tags = props.tags;
         this.isIllustrationBlurred = props.isIllustrationBlurred;
@@ -62,7 +62,7 @@ export class FeatureGridCell {
             title: data.title,
             body: data.body && RichText.fromSanity(data.body),
             iconURL: data.icon && db.resolveImageRef(data.icon).url,
-            link: data.link && Link.fromSanityLinkRef(data.link, db),
+            links: data.links?.map(x => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
             illustration: data.illustration && featureGridIllustrationFromSanity(db.resolveRef(data.illustration), db),
             tags: data.tags,
             isIllustrationBlurred: data.isIllustrationBlurred,
@@ -123,7 +123,13 @@ const featureGridCellSchema = defineType({
                 { type: videoEmbedSchemaName },
             ]
         }), // TODO: hide this field when block type is 'text only'
-        linkField,
+        defineField({
+            name: "links",
+            title: "Links",
+            type: "array",
+            of: [{type: textLinkSchemaName}],
+            validation: (rule: ArrayRule<any>) => rule.max(2),
+        }),
         defineField({
             name: "tags",
             title: "Tags",

@@ -27,14 +27,9 @@
     td {
         vertical-align: top;
 
-        > div,
-        > a {
+        > div {
             display: block;
             @include card-padding;
-        }
-
-        > a:hover h3 {
-            color: $color-vaticle-green;
         }
     }
 
@@ -55,7 +50,6 @@
         }
     }
 
-    td > div > * + *,
     td-rich-text {
         margin-top: 8px;
     }
@@ -161,11 +155,15 @@
         border: 1px solid $color-vaticle-light-purple;
         background: $color-vaticle-black-purple;
         hyphens: none;
-        margin-top: 20px !important; // overrides margin-top from style on * + * in this component
+        margin-top: 16px !important; // overrides margin-top from style on * + * in this component
 
         @media (max-width: $media-max-width-mobile) {
             padding: 12px;
         }
+    }
+
+    tr.kpt-illustration-row td-illustration {
+        border: none;
     }
 }
 
@@ -177,4 +175,10 @@
     img {
         margin-right: 10px;
     }
+}
+
+.kpt-links-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
 }
