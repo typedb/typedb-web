@@ -144,24 +144,6 @@
         height: $font-size-p2 * $line-height-p2 * 7;
     }
 
-    pre.kpt-code-short {
-        display: block;
-        -webkit-box-flex: 1;
-        flex: 1;
-        min-width: 0;
-        overflow: auto;
-        padding: 1.25rem 3rem 1.25rem 1.25rem;
-        border-radius: $border-radius;
-        border: 1px solid $color-vaticle-light-purple;
-        background: $color-vaticle-black-purple;
-        hyphens: none;
-        margin-top: 16px !important; // overrides margin-top from style on * + * in this component
-
-        @media (max-width: $media-max-width-mobile) {
-            padding: 12px;
-        }
-    }
-
     tr.kpt-illustration-row td-illustration {
         border: none;
     }
@@ -187,4 +169,83 @@
     filter: blur(4px);
     user-select: none;
     overflow: hidden !important;
+}
+
+.kpt-code-short {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    overflow: auto;
+    padding: 1.25rem 3rem 1.25rem 1.25rem;
+    border-radius: $border-radius;
+    border: 1px solid $color-vaticle-light-purple;
+    background: $color-vaticle-black-purple;
+    hyphens: none;
+
+    @media (max-width: $media-max-width-mobile) {
+        padding: 12px;
+    }
+}
+
+.kpt-code-short-container {
+    position: relative;
+    margin-top: 16px;
+}
+
+.kpt-copy-button {
+    visibility: hidden;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.clicked .kpt-copy-toast {
+        opacity: 1;
+        transition: none;
+    }
+
+    .kpt-code-short-container:hover & {
+        visibility: visible;
+    }
+}
+
+.kpt-copy-icon {
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M9.333 14.667h-2.96A2.382 2.382 0 014 12.293v-5.92A2.382 2.382 0 016.373 4h5.92a2.382 2.382 0 012.374 2.373v2.96h2.666A2.667 2.667 0 0120 12v5.333A2.667 2.667 0 0117.333 20H12a2.667 2.667 0 01-2.667-2.667v-2.666zm0-1.778V12A2.667 2.667 0 0112 9.333h.889v-2.96a.596.596 0 00-.596-.595h-5.92a.596.596 0 00-.595.595v5.92a.596.596 0 00.595.596h2.96zm2.038-1.518a.889.889 0 01.629-.26h5.333a.889.889 0 01.89.889v5.333a.889.889 0 01-.89.89H12a.889.889 0 01-.889-.89V12c0-.236.094-.462.26-.629z'/%3E%3C/svg%3E");
+}
+
+.kpt-copy-toast {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s;
+    background: $color-vaticle-light-purple;
+    border-radius: $border-radius;
+    padding: 0.25rem 0.5rem;
+    position: absolute;
+    top: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        border: 0.55em solid transparent;
+        border-left: 0.55em solid $color-vaticle-light-purple;
+        transform: rotate(-90deg) translateX(50%) translateY(50%);
+        transform-origin: left;
+    }
 }
