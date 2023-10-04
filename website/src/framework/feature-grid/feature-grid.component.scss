@@ -161,8 +161,8 @@
 
 .kpt-links-section {
     display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
+    margin-top: 20px;
+    gap: 24px;
 }
 
 .kpt-blur {
@@ -189,7 +189,7 @@
 
 .kpt-code-short-container {
     position: relative;
-    margin-top: 16px;
+    margin-top: 20px;
 }
 
 .kpt-copy-button {
