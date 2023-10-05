@@ -15,7 +15,7 @@ import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../com
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { Page, SanityPage } from "./common";
+import { metaTagsField, Page, SanityPage } from "./common";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -37,7 +37,7 @@ export class DeploymentPage extends Page {
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = IntroSection.fromSanity(data.introSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
@@ -126,6 +126,7 @@ const deploymentPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: "introSection",
             title: "Intro Section",

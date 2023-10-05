@@ -3,6 +3,7 @@ import { Person, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
+import { MetaTags, SanityMetaTags } from "./page/common";
 
 export interface SanityEventBase extends SanityDocument {
     title: SanityPortableText;
@@ -11,6 +12,7 @@ export interface SanityEventBase extends SanityDocument {
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
     hubspotFormID?: string;
+    metaTags?: SanityMetaTags;
 }
 
 export abstract class EventBase {
@@ -20,6 +22,7 @@ export abstract class EventBase {
     readonly imageURL: string;
     readonly speakers: Person[];
     readonly hubspotFormID?: string;
+    readonly metaTags: MetaTags;
 
     constructor(props: PropsOf<EventBase>) {
         this.title = props.title;
@@ -28,6 +31,7 @@ export abstract class EventBase {
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
         this.hubspotFormID = props.hubspotFormID;
+        this.metaTags = props.metaTags;
     }
 
     static fromSanity(data: SanityEventBase, db: SanityDataset): PropsOf<EventBase> {
@@ -38,6 +42,7 @@ export abstract class EventBase {
             imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),
             hubspotFormID: data.hubspotFormID,
+            metaTags: MetaTags.fromSanity(data.metaTags || {}, db),
         };
     }
 }

@@ -14,7 +14,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
 import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
-import { Page, SanityPage } from "./common";
+import { Page, SanityPage, metaTagsField } from "./common";
 
 export interface SanityWebinarsPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -38,7 +38,7 @@ export class WebinarsPage extends Page {
     readonly exploreWebinarsSection?: ExploreWebinarsSection;
 
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.featuredWebinarsSection = data.featuredWebinarsSection.isVisible
             ? FeaturedWebinarsSection.fromSanity(data.featuredWebinarsSection, db)
@@ -153,6 +153,7 @@ const webinarsPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: "introSection",
             title: "Intro Section",

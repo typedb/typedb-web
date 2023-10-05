@@ -14,7 +14,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
-import { Page, SanityPage } from "./common";
+import { Page, SanityPage, metaTagsField } from "./common";
 import { SanityServicesKeyPoint, ServicesKeyPoint, servicesKeyPointSchemaName } from "../key-point";
 
 const sections = {
@@ -49,7 +49,7 @@ export class ServicesPage extends Page {
     readonly [sections.contact.id]?: TechnicolorBlock;
 
     constructor(data: SanityServicesPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this[sections.intro.id] = data.introSection.isVisible
             ? IntroSection.fromSanity(data.introSection, db)
             : undefined;
@@ -149,7 +149,7 @@ const servicesPageSchema = defineType({
     name: servicesPageSchemaName,
     title: "Services Page",
     type: "document",
-    fields: [pageTitleField, ...sectionFields],
+    fields: [pageTitleField, metaTagsField, ...sectionFields],
     preview: { prepare: (_selection) => ({ title: "Services Page" }) },
 });
 

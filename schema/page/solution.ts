@@ -32,7 +32,7 @@ import {
     TitleAndBody,
 } from "../text";
 import { PropsOf } from "../util";
-import { Page, SanityPage } from "./common";
+import { metaTagsField, Page, SanityPage } from "./common";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
@@ -90,7 +90,7 @@ export class SolutionPage extends Page {
     readonly [sections.furtherReading.id]?: FurtherReadingSection;
 
     constructor(data: SanitySolutionPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = data.introSection.isVisible
             ? IntroSection.fromSanityIntroSection(data.introSection, db)
             : undefined;
@@ -289,6 +289,7 @@ const solutionPageSchema = defineType({
     icon: DocumentIcon,
     fields: [
         pageTitleField,
+        metaTagsField,
         Object.assign({}, routeField, {
             description:
                 "URL fragment for this solution page (e.g. cybersecurity). Do not include 'solution', this is automatically prepended",

@@ -2,8 +2,15 @@ import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, SanityTitleBodyIllustrationSection, TitleBodyActions, titleBodyActionsSectionSchemaName, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../text";
-import { Page, SanityPage } from "./common";
+import {
+    SanityTitleBodyActions,
+    SanityTitleBodyIllustrationSection,
+    TitleBodyActions,
+    titleBodyActionsSectionSchemaName,
+    TitleBodyIllustrationSection,
+    titleBodyIllustrationSectionSchemaName,
+} from "../text";
+import { Page, SanityPage, metaTagsField } from "./common";
 
 export interface SanityGenericPage extends SanityPage {
     introSection: SanityTitleBodyActions;
@@ -17,9 +24,9 @@ export class GenericPage extends Page {
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityGenericPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
-        this.coreSections = data.coreSections.map(x => TitleBodyIllustrationSection.fromSanity(x, db));
+        this.coreSections = data.coreSections.map((x) => TitleBodyIllustrationSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
@@ -32,6 +39,7 @@ const genericPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: "introSection",
             title: "Intro Section",
@@ -43,7 +51,7 @@ const genericPageSchema = defineType({
             name: "coreSections",
             title: "Core Sections",
             type: "array",
-            of: [{type: titleBodyIllustrationSectionSchemaName}],
+            of: [{ type: titleBodyIllustrationSectionSchemaName }],
             validation: requiredRule,
         }),
         defineField({
@@ -54,7 +62,7 @@ const genericPageSchema = defineType({
             validation: requiredRule,
         }),
     ],
-    preview: { prepare: (_selection) => ({ title: "Page" }), },
+    preview: { prepare: (_selection) => ({ title: "Page" }) },
 });
 
 export const genericPageSchemas = [genericPageSchema];

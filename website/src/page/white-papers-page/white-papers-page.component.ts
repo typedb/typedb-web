@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
     ButtonStyle,
@@ -12,6 +12,7 @@ import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-white-papers-page",
@@ -24,6 +25,8 @@ export class WhitePapersPageComponent implements OnInit {
     constructor(
         private router: Router,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -35,6 +38,7 @@ export class WhitePapersPageComponent implements OnInit {
             if (sanityWhitePapersPage) {
                 this.page = new WhitePapersPage(sanityWhitePapersPage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
+                this.metaTags.register(this.page.metaTags, this.destroyRef);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();

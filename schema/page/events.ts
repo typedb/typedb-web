@@ -4,7 +4,7 @@ import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule } from
 import { Event, SanityEvent, eventSchemaName } from "../event";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
-import { Page, SanityPage } from "./common";
+import { Page, SanityPage, metaTagsField } from "./common";
 
 interface SanityEventsListSection {
     isVisible: boolean;
@@ -23,7 +23,7 @@ export class EventsPage extends Page {
     readonly eventsList?: Event[];
 
     constructor(data: SanityEventsPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
         this.featuredEvent = data.featuredEvent && Event.fromSanity(db.resolveRef(data.featuredEvent), db);
         this.eventsList = data.eventsList.isVisible
@@ -40,6 +40,7 @@ const eventsPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: "introSection",
             title: "Intro Section",

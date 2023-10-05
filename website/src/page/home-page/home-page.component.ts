@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, DestroyRef, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
@@ -9,6 +9,7 @@ import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-home-page",
@@ -21,6 +22,8 @@ export class HomePageComponent implements OnInit {
     constructor(
         private router: Router,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -32,6 +35,7 @@ export class HomePageComponent implements OnInit {
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
                 this._title.setTitle(`${this.page.title} - TypeDB`);
+                this.metaTags.register(this.page.metaTags, this.destroyRef);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
                     (x) => new SocialMediaLink(x, data),
                 );

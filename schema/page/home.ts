@@ -1,7 +1,12 @@
 import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { featureGridCellSchemaName, featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
+import {
+    featureGridCellSchemaName,
+    featureGridSchemaName,
+    FeatureGridSection,
+    SanityFeatureGridSection,
+} from "../component/feature-grid";
 import {
     LinkPanel,
     linkPanelSchemaName,
@@ -31,7 +36,7 @@ import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testim
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
-import { Page, SanityPage } from "./common";
+import { Page, SanityPage, metaTagsField } from "./common";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
@@ -107,7 +112,7 @@ export class HomePage extends Page {
     readonly conclusionSection?: ConclusionSection;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
         this.impactSections = data.impactSections
             .filter((x) => x.isVisible)
@@ -118,7 +123,9 @@ export class HomePage extends Page {
         this.toolingSection = data.toolingSection.isVisible
             ? ToolingSection.fromSanity(data.toolingSection, db)
             : undefined;
-        this.driversSection = data.driversSection.isVisible ? FeatureGridSection.fromSanity(data.driversSection, db) : undefined;
+        this.driversSection = data.driversSection.isVisible
+            ? FeatureGridSection.fromSanity(data.driversSection, db)
+            : undefined;
         this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible
             ? CommunitySection.fromSanity(data.communitySection, db)
@@ -404,6 +411,7 @@ const homePageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         introSectionField,
         impactSectionsField,
         ...otherSectionFields,

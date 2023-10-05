@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, DestroyRef, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GenericPage, SanityGenericPage, TechnicolorBlock, TitleBodyIllustrationSection } from "typedb-web-schema";
 import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-generic-page",
@@ -18,6 +19,8 @@ export class GenericPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -30,6 +33,7 @@ export class GenericPageComponent implements OnInit {
                 if (sanityCloudPage) {
                     this.page = new GenericPage(sanityCloudPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB`);
+                    this.metaTags.register(this.page.metaTags, this.destroyRef);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
