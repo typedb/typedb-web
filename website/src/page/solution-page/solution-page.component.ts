@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, DestroyRef, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
@@ -6,6 +6,7 @@ import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
 import { AnalyticsService } from "../../service/analytics.service";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-solution-page",
@@ -19,6 +20,8 @@ export class SolutionPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -31,7 +34,9 @@ export class SolutionPageComponent implements OnInit {
                 const sanitySolutionPage = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
                 if (sanitySolutionPage) {
                     this.page = new SolutionPage(sanitySolutionPage, data);
-                    this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
+                    this._title.setTitle(`TypeDB | ${this.page.title}`);
+                    const { unregister } = this.metaTags.register(this.page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

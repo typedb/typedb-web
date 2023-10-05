@@ -1,12 +1,19 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { bodyFieldRichText, collapsibleOptions, optionalActionsField, pageTitleField, titleFieldWithHighlights } from "../common-fields";
+import {
+    bodyFieldRichText,
+    collapsibleOptions,
+    optionalActionsField,
+    pageTitleField,
+    titleFieldWithHighlights,
+} from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 const introSection = "introSection";
 const featureSections = "featureSections";
@@ -28,7 +35,7 @@ export class FeaturesPage extends Page {
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
         this.featureSections = data.featureSections.map((x) => FeatureGridSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
@@ -72,6 +79,7 @@ const featuresPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: introSection,
             title: "Intro Section",
@@ -94,7 +102,4 @@ const featuresPageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Features Page" }) },
 });
 
-export const featuresPageSchemas = [
-    featuresPageSchema,
-    introSectionSchema,
-];
+export const featuresPageSchemas = [featuresPageSchema, introSectionSchema];

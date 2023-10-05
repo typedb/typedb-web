@@ -11,6 +11,7 @@ import { solutionPageSchemas } from "./solution";
 import { supportPageSchemas } from "./support";
 import { webinarsPageSchemas } from "./webinars";
 import { whitePapersPageSchema } from "./white-papers";
+import { metaTagsSchemas } from "./meta-tags";
 
 export const pageSchemas = [
     ...basePageSchemas,
@@ -26,4 +27,5 @@ export const pageSchemas = [
     ...webinarsPageSchemas,
     requestTechTalkPageSchema,
     whitePapersPageSchema,
+    ...metaTagsSchemas,
 ];

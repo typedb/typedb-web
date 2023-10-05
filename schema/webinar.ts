@@ -19,6 +19,7 @@ import { personSchemaName } from "./person";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
 import { EventBase, SanityEventBase } from "./event-base";
+import { metaTagsField } from "./page/meta-tags";
 
 export interface SanityWebinar extends SanityEventBase {
     datetime: string;
@@ -99,6 +100,7 @@ const webinarSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         slugField,
+        metaTagsField,
         descriptionFieldRichText,
         defineField({
             name: "datetime",

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -8,6 +8,7 @@ import { FormService } from "src/service/form.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 import { ContentService } from "src/service/content.service";
 import { AnalyticsService } from "src/service/analytics.service";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-request-tech-talk-page",
@@ -21,6 +22,8 @@ export class RequestTechTalkPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private formService: FormService,
         private idleMonitor: IdleMonitorService,
         private popupNotificationService: PopupNotificationService,
@@ -34,8 +37,10 @@ export class RequestTechTalkPageComponent implements OnInit {
                 requestTechTalkPageSchemaName,
             ) as SanityRequestTechTalkPage;
             if (sanityRequestTechTalkPage) {
-                this.page = new RequestTechTalkPage(sanityRequestTechTalkPage);
-                this.title.setTitle(`${this.page.title} - TypeDB`);
+                this.page = new RequestTechTalkPage(sanityRequestTechTalkPage, data);
+                this.title.setTitle(`TypeDB | ${this.page.title}`);
+                const { unregister } = this.metaTags.register(this.page.metaTags);
+                this.destroyRef.onDestroy(unregister);
                 this.analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this.idleMonitor.fireManualMyAppReadyEvent();

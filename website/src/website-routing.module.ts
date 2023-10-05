@@ -40,8 +40,8 @@ const routes: Routes = [
     { path: "blog/:slug", component: BlogPostPageComponent },
     { path: "support", component: SupportPageComponent },
     { path: "services", component: ServicesPageComponent },
-    { path: "privacy-policy", component: PrivacyPolicyPageComponent },
-    { path: "**", component: NotFoundPageComponent, title: "404 - TypeDB" },
+    { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
+    { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
 
 @NgModule({

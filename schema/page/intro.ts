@@ -23,6 +23,7 @@ import {
 } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityIntroPage extends SanityPage {
     introSection: SanityTitleBodyActions;
@@ -41,7 +42,7 @@ export class IntroPage extends Page {
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityIntroPage, db: SanityDataset) {
-        super(data);
+        super(data, db);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.coreSections = data.coreSections.map((x) => IntroPageCoreSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
@@ -105,6 +106,7 @@ const introPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({
             name: "introSection",
             title: "Intro Section",

@@ -11,6 +11,8 @@ import {
     TitleBodyActions,
     titleAndBodySchemaName,
 } from "../text";
+import { SanityDataset } from "../sanity-core";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityRequestTechTalkPage extends SanityPage {
     introTitle: SanityPortableText;
@@ -23,8 +25,8 @@ export class RequestTechTalkPage extends Page {
     readonly details: TitleBodyActions;
     readonly hubspotFormID: string;
 
-    constructor(data: SanityRequestTechTalkPage) {
-        super(data);
+    constructor(data: SanityRequestTechTalkPage, db: SanityDataset) {
+        super(data, db);
         this.introTitle = ParagraphWithHighlights.fromSanity(data.introTitle);
         this.details = TitleAndBody.fromSanityTitleAndBody(data.details);
         this.hubspotFormID = data.hubspotFormID;
@@ -39,6 +41,7 @@ export const requestTechTalkPageSchema = defineType({
     type: "document",
     fields: [
         pageTitleField,
+        metaTagsField,
         defineField({ ...titleFieldWithHighlights, name: "introTitle" }),
         defineField({
             name: "details",

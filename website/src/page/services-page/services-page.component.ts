@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, DestroyRef, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -7,6 +7,7 @@ import { SanityServicesPage, ServicesPage, TechnicolorBlock, servicesPageSchemaN
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-services-page",
@@ -18,6 +19,8 @@ export class ServicesPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private idleMonitor: IdleMonitorService,
         private router: Router,
         private title: Title,
@@ -33,7 +36,9 @@ export class ServicesPageComponent implements OnInit {
             }),
             tap((page) => {
                 if (page) {
-                    this.title.setTitle(`${page.title} - TypeDB`);
+                    this.title.setTitle(`TypeDB | ${page.title}`);
+                    const { unregister } = this.metaTags.register(page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
