@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
@@ -8,6 +8,7 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { Title } from "@angular/platform-browser";
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-white-paper-details-page",
@@ -22,6 +23,8 @@ export class WhitePaperDetailsPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
         private _title: Title,
@@ -31,6 +34,8 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let unregisterMetaTags = () => {};
+        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWhitePapers = data.getDocumentsByType(whitePaperSchemaName) as SanityWhitePaper[];
@@ -40,6 +45,9 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                     this._title.setTitle(
                         `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
                     );
+                    unregisterMetaTags();
+                    const { unregister } = this.metaTags.register(this.whitePaper.metaTags);
+                    unregisterMetaTags = unregister;
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
                         onLoadingChange: (val) => {

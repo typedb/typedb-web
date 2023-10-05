@@ -9,6 +9,7 @@ import { Link } from "./link";
 import { personSchemaName } from "./person";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
+import { metaTagsField } from "./page/meta-tags";
 
 enum SignupMethod {
     externalURL = "externalURL",
@@ -80,6 +81,7 @@ export const eventSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         slugField,
+        metaTagsField,
         defineField({
             name: "tag",
             title: "Tag",

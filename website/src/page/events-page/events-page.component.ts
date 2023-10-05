@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -8,6 +8,7 @@ import { Event, EventsPage, eventsPageSchemaName, LinkButton, SanityEventsPage }
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-events-page",
@@ -20,8 +21,10 @@ export class EventsPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
         private idleMonitor: IdleMonitorService,
         private imageBuilder: ImageBuilder,
+        private metaTags: MetaTagsService,
         private router: Router,
         private title: Title,
     ) {}
@@ -35,6 +38,8 @@ export class EventsPageComponent implements OnInit {
             tap((page) => {
                 if (page) {
                     this.title.setTitle(`${page.title} - TypeDB`);
+                    const { unregister } = this.metaTags.register(page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

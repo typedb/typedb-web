@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -10,6 +10,7 @@ import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
+import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-event-details-page",
@@ -23,6 +24,8 @@ export class EventDetailsPageComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private analytics: AnalyticsService,
         private contentService: ContentService,
+        private destroyRef: DestroyRef,
+        private metaTags: MetaTagsService,
         private idleMonitor: IdleMonitorService,
         private imageBuilder: ImageBuilder,
         private plainTextPipe: PlainTextPipe,
@@ -31,6 +34,8 @@ export class EventDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let unregisterMetaTags = () => {};
+        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
                 const sanityEvents = data.getDocumentsByType(eventSchemaName) as SanityEvent[];
@@ -40,6 +45,9 @@ export class EventDetailsPageComponent implements OnInit {
             tap((event) => {
                 if (event) {
                     this.title.setTitle(`${this.plainTextPipe.transform(event.title)} - TypeDB Events`);
+                    unregisterMetaTags();
+                    const { unregister } = this.metaTags.register(event.metaTags);
+                    unregisterMetaTags = unregister;
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

@@ -55,6 +55,7 @@ export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, Topb
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { Page, type SanityPage } from "./page/common";
+export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";

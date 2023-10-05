@@ -1,12 +1,17 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
 import { descriptionFieldRichText, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
-import { FurtherReadingSection, furtherReadingSectionSchemaName, SanityFurtherReadingSection } from "./component/page-section";
+import {
+    FurtherReadingSection,
+    furtherReadingSectionSchemaName,
+    SanityFurtherReadingSection,
+} from "./component/page-section";
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
 import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
+import { MetaTags, metaTagsField, SanityMetaTags } from "./page/meta-tags";
 
 export interface SanityWhitePaper extends SanityDocument {
     title: SanityPortableText;
@@ -18,6 +23,7 @@ export interface SanityWhitePaper extends SanityDocument {
     landscapeImage: SanityImage;
     furtherReading: SanityFurtherReadingSection;
     hubspotFormID: string;
+    metaTags?: SanityMetaTags;
 }
 
 export class WhitePaper {
@@ -31,6 +37,7 @@ export class WhitePaper {
     readonly landscapeImageURL: string;
     readonly furtherReading?: FurtherReadingSection;
     readonly hubspotFormID: string;
+    readonly metaTags: MetaTags;
 
     constructor(props: PropsOf<WhitePaper>) {
         this.title = props.title;
@@ -43,6 +50,7 @@ export class WhitePaper {
         this.landscapeImageURL = props.landscapeImageURL;
         this.furtherReading = props.furtherReading;
         this.hubspotFormID = props.hubspotFormID;
+        this.metaTags = props.metaTags;
     }
 
     static fromSanity(data: SanityWhitePaper, db: SanityDataset): WhitePaper {
@@ -55,8 +63,11 @@ export class WhitePaper {
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
-            furtherReading: data.furtherReading.isVisible ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db) : undefined,
+            furtherReading: data.furtherReading.isVisible
+                ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db)
+                : undefined,
             hubspotFormID: data.hubspotFormID,
+            metaTags: MetaTags.fromSanity(data.metaTags || {}, db),
         });
     }
 
@@ -79,6 +90,7 @@ export const whitePaperSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         slugField,
+        metaTagsField,
         descriptionFieldRichText,
         defineField({
             name: "file",
