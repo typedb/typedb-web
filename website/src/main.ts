@@ -5,7 +5,7 @@ import { WebsiteModule } from "./website.module";
 import { environment } from "./environment/environment";
 
 import { installPrismTypeQL } from "./prism-typeql";
-import "prismjs/components/prism-bash";
+import { installPrismBash } from "./prism-bash";
 import "prismjs/components/prism-cypher";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";
@@ -18,6 +18,7 @@ if (environment.production) {
 }
 
 installPrismTypeQL();
+installPrismBash();
 
 platformBrowserDynamic()
     .bootstrapModule(WebsiteModule)
