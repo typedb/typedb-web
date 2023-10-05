@@ -10,7 +10,8 @@ import {
     TitleBodyIllustrationSection,
     titleBodyIllustrationSectionSchemaName,
 } from "../text";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityGenericPage extends SanityPage {
     introSection: SanityTitleBodyActions;

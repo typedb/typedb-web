@@ -15,7 +15,8 @@ import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../com
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { metaTagsField, Page, SanityPage } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;

@@ -33,7 +33,8 @@ export class GenericPageComponent implements OnInit {
                 if (sanityCloudPage) {
                     this.page = new GenericPage(sanityCloudPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB`);
-                    this.metaTags.register(this.page.metaTags, this.destroyRef);
+                    const { unregister } = this.metaTags.register(this.page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

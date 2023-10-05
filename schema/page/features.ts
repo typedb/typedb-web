@@ -12,7 +12,8 @@ import { Organisation, organisationLogosField, SanityOrganisation } from "../org
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 const introSection = "introSection";
 const featureSections = "featureSections";

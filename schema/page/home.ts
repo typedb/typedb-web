@@ -36,7 +36,8 @@ import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testim
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },

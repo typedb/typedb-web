@@ -36,6 +36,8 @@ export class WebinarDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let unregisterMetaTags = () => {};
+        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
@@ -45,7 +47,9 @@ export class WebinarDetailsPageComponent implements OnInit {
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
                     this._title.setTitle(`${this._plainTextPipe.transform(this.webinar.title)} - TypeDB Webinars`);
-                    this.metaTags.register(this.webinar.metaTags, this.destroyRef);
+                    unregisterMetaTags();
+                    const { unregister } = this.metaTags.register(this.webinar.metaTags);
+                    unregisterMetaTags = unregister;
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

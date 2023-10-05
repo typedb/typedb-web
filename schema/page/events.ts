@@ -4,7 +4,8 @@ import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule } from
 import { Event, SanityEvent, eventSchemaName } from "../event";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 interface SanityEventsListSection {
     isVisible: boolean;

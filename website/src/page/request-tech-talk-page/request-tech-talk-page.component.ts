@@ -39,7 +39,8 @@ export class RequestTechTalkPageComponent implements OnInit {
             if (sanityRequestTechTalkPage) {
                 this.page = new RequestTechTalkPage(sanityRequestTechTalkPage, data);
                 this.title.setTitle(`${this.page.title} - TypeDB`);
-                this.metaTags.register(this.page.metaTags, this.destroyRef);
+                const { unregister } = this.metaTags.register(this.page.metaTags);
+                this.destroyRef.onDestroy(unregister);
                 this.analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this.idleMonitor.fireManualMyAppReadyEvent();

@@ -34,6 +34,8 @@ export class EventDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let unregisterMetaTags = () => {};
+        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
                 const sanityEvents = data.getDocumentsByType(eventSchemaName) as SanityEvent[];
@@ -43,7 +45,9 @@ export class EventDetailsPageComponent implements OnInit {
             tap((event) => {
                 if (event) {
                     this.title.setTitle(`${this.plainTextPipe.transform(event.title)} - TypeDB Events`);
-                    this.metaTags.register(event.metaTags, this.destroyRef);
+                    unregisterMetaTags();
+                    const { unregister } = this.metaTags.register(event.metaTags);
+                    unregisterMetaTags = unregister;
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

@@ -54,7 +54,8 @@ export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navig
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
-export { Page, type SanityPage, MetaTags, type SanityMetaTags } from "./page/common";
+export { Page, type SanityPage } from "./page/common";
+export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";

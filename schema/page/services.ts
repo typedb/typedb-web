@@ -14,8 +14,9 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
 import { SanityServicesKeyPoint, ServicesKeyPoint, servicesKeyPointSchemaName } from "../key-point";
+import { metaTagsField } from "./meta-tags";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },

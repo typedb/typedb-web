@@ -14,7 +14,8 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
 import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityWebinarsPage extends SanityPage {
     introSection: SanityIntroSection;

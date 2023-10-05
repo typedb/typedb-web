@@ -35,7 +35,8 @@ export class SolutionPageComponent implements OnInit {
                 if (sanitySolutionPage) {
                     this.page = new SolutionPage(sanitySolutionPage, data);
                     this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
-                    this.metaTags.register(this.page.metaTags, this.destroyRef);
+                    const { unregister } = this.metaTags.register(this.page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

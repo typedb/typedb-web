@@ -2,9 +2,9 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
-import { PropsOf } from "../util";
 import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "../white-paper";
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityWhitePapersPage extends SanityPage {
     introSection: SanityTitleAndBody;

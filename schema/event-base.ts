@@ -3,7 +3,7 @@ import { Person, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
-import { MetaTags, SanityMetaTags } from "./page/common";
+import { MetaTags, SanityMetaTags } from "./page/meta-tags";
 
 export interface SanityEventBase extends SanityDocument {
     title: SanityPortableText;

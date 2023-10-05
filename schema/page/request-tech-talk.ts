@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 
-import { Page, SanityPage, metaTagsField } from "./common";
+import { Page, SanityPage } from "./common";
 import { collapsibleOptions, pageTitleField, titleFieldWithHighlights } from "../common-fields";
 import { hubspotFormIDField } from "../form";
 import {
@@ -12,6 +12,7 @@ import {
     titleAndBodySchemaName,
 } from "../text";
 import { SanityDataset } from "../sanity-core";
+import { metaTagsField } from "./meta-tags";
 
 export interface SanityRequestTechTalkPage extends SanityPage {
     introTitle: SanityPortableText;

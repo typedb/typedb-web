@@ -1,4 +1,4 @@
-import { DestroyRef, Injectable, Injector } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Meta, MetaDefinition } from "@angular/platform-browser";
 import { MetaTags } from "typedb-web-schema";
 
@@ -8,7 +8,7 @@ import { MetaTags } from "typedb-web-schema";
 export class MetaTagsService {
     constructor(private meta: Meta) {}
 
-    register(metaTags: MetaTags, destroyRef: DestroyRef) {
+    register(metaTags: MetaTags) {
         const metaDefinitions: MetaDefinition[] = [];
         if (metaTags.description) {
             metaDefinitions.push({ name: "description", content: metaTags.description });
@@ -22,6 +22,7 @@ export class MetaTagsService {
         metaTags.custom.forEach(({ property, content }) => metaDefinitions.push({ property, content }));
 
         const tags = this.meta.addTags(metaDefinitions, true);
-        destroyRef.onDestroy(() => tags.forEach((tag) => this.meta.removeTagElement(tag)));
+
+        return { unregister: () => tags.forEach((tag) => this.meta.removeTagElement(tag)) };
     }
 }

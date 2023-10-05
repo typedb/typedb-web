@@ -11,7 +11,7 @@ import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
 import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
 import { PropsOf } from "./util";
-import { MetaTags, metaTagsField, SanityMetaTags } from "./page/common";
+import { MetaTags, metaTagsField, SanityMetaTags } from "./page/meta-tags";
 
 export interface SanityWhitePaper extends SanityDocument {
     title: SanityPortableText;

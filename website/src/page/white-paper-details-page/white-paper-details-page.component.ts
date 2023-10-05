@@ -34,6 +34,8 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let unregisterMetaTags = () => {};
+        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWhitePapers = data.getDocumentsByType(whitePaperSchemaName) as SanityWhitePaper[];
@@ -43,7 +45,9 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                     this._title.setTitle(
                         `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
                     );
-                    this.metaTags.register(this.whitePaper.metaTags, this.destroyRef);
+                    unregisterMetaTags();
+                    const { unregister } = this.metaTags.register(this.whitePaper.metaTags);
+                    unregisterMetaTags = unregister;
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
                         onLoadingChange: (val) => {

@@ -9,7 +9,7 @@ import { Link } from "./link";
 import { personSchemaName } from "./person";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
-import { metaTagsField } from "./page/common";
+import { metaTagsField } from "./page/meta-tags";
 
 enum SignupMethod {
     externalURL = "externalURL",

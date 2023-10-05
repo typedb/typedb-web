@@ -38,7 +38,8 @@ export class EventsPageComponent implements OnInit {
             tap((page) => {
                 if (page) {
                     this.title.setTitle(`${page.title} - TypeDB`);
-                    this.metaTags.register(page.metaTags, this.destroyRef);
+                    const { unregister } = this.metaTags.register(page.metaTags);
+                    this.destroyRef.onDestroy(unregister);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
