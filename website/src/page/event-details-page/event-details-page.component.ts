@@ -44,7 +44,7 @@ export class EventDetailsPageComponent implements OnInit {
             }),
             tap((event) => {
                 if (event) {
-                    this.title.setTitle(`${this.plainTextPipe.transform(event.title)} - TypeDB Events`);
+                    this.title.setTitle(`TypeDB | ${this.plainTextPipe.transform(event.title)}`);
                     unregisterMetaTags();
                     const { unregister } = this.metaTags.register(event.metaTags);
                     unregisterMetaTags = unregister;

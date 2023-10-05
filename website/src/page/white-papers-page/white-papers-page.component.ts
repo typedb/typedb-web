@@ -37,7 +37,7 @@ export class WhitePapersPageComponent implements OnInit {
             const sanityWhitePapersPage = data.getDocumentByID(whitePapersPageSchemaName) as SanityWhitePapersPage;
             if (sanityWhitePapersPage) {
                 this.page = new WhitePapersPage(sanityWhitePapersPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this._analytics.hubspot.trackPageView();

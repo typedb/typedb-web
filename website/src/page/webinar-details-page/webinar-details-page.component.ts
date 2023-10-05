@@ -46,7 +46,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                 );
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
-                    this._title.setTitle(`${this._plainTextPipe.transform(this.webinar.title)} - TypeDB Webinars`);
+                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.webinar.title)}`);
                     unregisterMetaTags();
                     const { unregister } = this.metaTags.register(this.webinar.metaTags);
                     unregisterMetaTags = unregister;

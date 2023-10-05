@@ -39,7 +39,7 @@ export class WebinarsPageComponent implements OnInit {
             const sanityWebinarsPage = data.getDocumentByID(webinarsPageSchemaName) as SanityWebinarsPage;
             if (sanityWebinarsPage) {
                 this.page = new WebinarsPage(sanityWebinarsPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this._analytics.hubspot.trackPageView();

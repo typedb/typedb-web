@@ -30,7 +30,7 @@ export class DeploymentPageComponent implements OnInit {
             const sanityDeploymentPage = data.getDocumentByID(deploymentPageSchemaName) as SanityDeploymentPage;
             if (sanityDeploymentPage) {
                 this.page = new DeploymentPage(sanityDeploymentPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this._analytics.hubspot.trackPageView();

@@ -34,7 +34,7 @@ export class SolutionPageComponent implements OnInit {
                 const sanitySolutionPage = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
                 if (sanitySolutionPage) {
                     this.page = new SolutionPage(sanitySolutionPage, data);
-                    this._title.setTitle(`${this.page.title} - TypeDB Solutions`);
+                    this._title.setTitle(`TypeDB | ${this.page.title}`);
                     const { unregister } = this.metaTags.register(this.page.metaTags);
                     this.destroyRef.onDestroy(unregister);
                     this._analytics.hubspot.trackPageView();

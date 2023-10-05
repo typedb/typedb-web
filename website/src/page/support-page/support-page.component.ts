@@ -35,7 +35,7 @@ export class SupportPageComponent implements OnInit {
             }),
             tap((page) => {
                 if (page) {
-                    this.title.setTitle(`${page.title} - TypeDB`);
+                    this.title.setTitle(`TypeDB | ${page.title}`);
                     const { unregister } = this.metaTags.register(page.metaTags);
                     this.destroyRef.onDestroy(unregister);
                     this.analytics.hubspot.trackPageView();

@@ -42,9 +42,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 const sanityWhitePaper = sanityWhitePapers.find((x) => x.slug.current === params.get("slug"));
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
-                    this._title.setTitle(
-                        `${this._plainTextPipe.transform(this.whitePaper.title)} - TypeDB White Papers`,
-                    );
+                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.whitePaper.title)}`);
                     unregisterMetaTags();
                     const { unregister } = this.metaTags.register(this.whitePaper.metaTags);
                     unregisterMetaTags = unregister;

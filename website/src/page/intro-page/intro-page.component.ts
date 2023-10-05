@@ -37,7 +37,7 @@ export class IntroPageComponent implements OnInit {
             const sanityIntroPage = data.getDocumentByID(introPageSchemaName) as SanityIntroPage;
             if (sanityIntroPage) {
                 this.page = new IntroPage(sanityIntroPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this._analytics.hubspot.trackPageView();

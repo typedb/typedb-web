@@ -31,7 +31,7 @@ export class FeaturesPageComponent implements OnInit {
             const sanityFeaturesPage = data.getDocumentByID(featuresPageSchemaName) as SanityFeaturesPage;
             if (sanityFeaturesPage) {
                 this.page = new FeaturesPage(sanityFeaturesPage, data);
-                this._title.setTitle(`${this.page.title} - TypeDB`);
+                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this._analytics.hubspot.trackPageView();
