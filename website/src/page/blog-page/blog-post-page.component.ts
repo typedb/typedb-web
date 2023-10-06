@@ -91,14 +91,14 @@ export class BlogPostPageComponent implements OnInit {
                     this.postContentEl.nativeElement.innerHTML = post!.content;
                     Prism.highlightAll();
                 } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
+                    this.router.navigate(["blog"]);
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 15000);
             },
             (_err) => {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.router.navigate(["blog"]);
             },
         );
     }
