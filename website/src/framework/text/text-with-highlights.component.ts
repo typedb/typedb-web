@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { ParagraphWithHighlights } from "typedb-web-schema";
 
 @Component({
@@ -6,10 +7,11 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
     templateUrl: "heading-with-highlights.component.html",
 })
 export class HeadingWithHighlightsComponent {
+    // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("id") inputId?: string;
     @Input() level: "h1" | "h2" = "h2";
     @Input() value!: ParagraphWithHighlights;
-    @Input() themeColorHex: string = "#02DAC9";
+    @Input() themeColorHex = "#02DAC9";
 
     get id(): string {
         return (
@@ -31,8 +33,8 @@ export class HeadingWithHighlightsComponent {
 })
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;
-    @Input() themeColorHex: string = "#02DAC9";
-    @Input() level: "p1" | "p2" = "p1";
+    @Input() themeColorHex = "#02DAC9";
+    @Input() level: "p1" | "p2" | "aside" = "p1";
 
     get rootClass(): string {
         return `text-${this.level}`;

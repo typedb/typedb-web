@@ -1,7 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+
 import { ReplaySubject } from "rxjs";
 import { associateBy, groupBy, SanityDataset } from "typedb-web-schema";
+
 import { ContentEndpointService } from "./content-endpoint.service";
 
 @Injectable({

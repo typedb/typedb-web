@@ -1,7 +1,9 @@
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
-import { Event as RouterEvent, Router, Scroll } from "@angular/router";
+import { Router, Event as RouterEvent, Scroll } from "@angular/router";
+
 import { filter } from "rxjs";
 import { ContentTextPanel } from "typedb-web-schema";
+
 import { sanitiseHtmlID } from "../util";
 
 @Component({

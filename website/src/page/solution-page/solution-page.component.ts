@@ -1,12 +1,15 @@
 import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+
+import { IdleMonitorService } from "@scullyio/ng-lib";
 import { SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
-import { ContentService } from "../../service/content.service";
-import { Title } from "@angular/platform-browser";
-import { AnalyticsService } from "../../service/analytics.service";
-import { IdleMonitorService } from "@scullyio/ng-lib";
+
 import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { AnalyticsService } from "../../service/analytics.service";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "td-solution-page",
@@ -60,15 +63,15 @@ export class SolutionPageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.useCasesSection,
-            this.page!.challengesSection,
-            this.page!.solutionSection,
-            this.page!.furtherReadingSection,
+            this.page.useCasesSection,
+            this.page.challengesSection,
+            this.page.solutionSection,
+            this.page.furtherReadingSection,
         ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
     get index() {
-        return this.allBlocks.indexOf(this.block!);
+        return this.allBlocks.indexOf(this.block);
     }
 
     get noTrailingLine() {

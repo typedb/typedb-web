@@ -9,6 +9,7 @@ import {
     Output,
     ViewChild,
 } from "@angular/core";
+
 import {
     communityResourcesSchemaName,
     SanityCommunityResources,
@@ -24,6 +25,7 @@ import {
     topbarSchemaName,
     TopbarVideoColumn,
 } from "typedb-web-schema";
+
 import { ContentService } from "../../service/content.service";
 import { DialogService } from "../../service/dialog.service";
 import { TopbarMobileService } from "../../service/topbar-mobile.service";
@@ -83,11 +85,11 @@ export class TopbarMenuComponent implements OnInit {
         return !!this.hoveredMenuPanel || !!this.dialogService.current || this.mobileMenuIsOpen;
     }
 
-    isMenuPanel(obj: any): obj is TopbarMenuPanel {
+    isMenuPanel(obj: unknown): obj is TopbarMenuPanel {
         return obj instanceof TopbarMenuPanel;
     }
 
-    isTextLink(obj: any): obj is TextLink {
+    isTextLink(obj: unknown): obj is TextLink {
         return obj instanceof TextLink;
     }
 
@@ -130,7 +132,7 @@ export class TopbarMenuComponent implements OnInit {
         this.focusedMenuPanel = undefined;
     }
 
-    onMenuItemClick(item: TopbarListColumnItem) {
+    onMenuItemClick(_item: TopbarListColumnItem) {
         this.hoveredMenuPanel = undefined;
         this.hoveredMenuItem = undefined;
         this.focusedMenuPanel = undefined;
@@ -154,7 +156,9 @@ export class TopbarMenuComponent implements OnInit {
 
     private setupScrollEvents(headerEl: HTMLElement) {
         this.ngZone.runOutsideAngular(() => {
-            let removeListener = () => {};
+            let removeListener = () => {
+                /**/
+            };
             this.topbarMenuService.offset.subscribe((offset) => {
                 removeListener();
                 const handleScroll = () => {
@@ -189,11 +193,11 @@ export class TopbarMenuPanelComponent {
         return this.menuPanel.title;
     }
 
-    isListColumn(obj: any): obj is TopbarListColumn {
+    isListColumn(obj: unknown): obj is TopbarListColumn {
         return obj instanceof TopbarListColumn;
     }
 
-    isVideoColumn(obj: any): obj is TopbarVideoColumn {
+    isVideoColumn(obj: unknown): obj is TopbarVideoColumn {
         return obj instanceof TopbarVideoColumn;
     }
 
@@ -223,11 +227,11 @@ export class TopbarMenuMobileComponent {
 
     visibleMenuPanels = new Set<TopbarMenuPanel>();
 
-    isMenuPanel(obj: any): obj is TopbarMenuPanel {
+    isMenuPanel(obj: unknown): obj is TopbarMenuPanel {
         return obj instanceof TopbarMenuPanel;
     }
 
-    isTextLink(obj: any): obj is TextLink {
+    isTextLink(obj: unknown): obj is TextLink {
         return obj instanceof TextLink;
     }
 
@@ -270,11 +274,11 @@ export class TopbarMenuPanelMobileComponent {
         return this.menuPanel.title;
     }
 
-    isListColumn(obj: any): obj is TopbarListColumn {
+    isListColumn(obj: unknown): obj is TopbarListColumn {
         return obj instanceof TopbarListColumn;
     }
 
-    isVideoColumn(obj: any): obj is TopbarVideoColumn {
+    isVideoColumn(obj: unknown): obj is TopbarVideoColumn {
         return obj instanceof TopbarVideoColumn;
     }
 

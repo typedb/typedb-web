@@ -1,22 +1,24 @@
 import { Component, DestroyRef, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     Link,
+    LinkButton,
+    WordpressACF,
     WordpressPost,
-    WordpressTaxonomy,
     WordpressRelatedPosts,
     WordpressSite,
-    WordpressACF,
-    LinkButton,
+    WordpressTaxonomy,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
-import { BlogService } from "../../service/blog.service";
+
 import { AnalyticsService } from "../../service/analytics.service";
+import { BlogService } from "../../service/blog.service";
 
 @Component({
     selector: "td-blog-post-page",
@@ -88,17 +90,17 @@ export class BlogPostPageComponent implements OnInit {
                         content: customFields.social_sharing_description || "",
                     });
                     this._analytics.hubspot.trackPageView();
-                    this.postContentEl.nativeElement.innerHTML = post!.content;
+                    this.postContentEl.nativeElement.innerHTML = post.content;
                     Prism.highlightAll();
                 } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
+                    this.router.navigate(["blog"]);
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 15000);
             },
             (_err) => {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.router.navigate(["blog"]);
             },
         );
     }
@@ -132,7 +134,7 @@ export class BlogPostPageComponent implements OnInit {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
     }
 
-    shareOnLinkedInURL(post: WordpressPost): string {
+    shareOnLinkedInURL(_post: WordpressPost): string {
         return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
     }
 

@@ -1,10 +1,10 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Observable, combineLatest, map, tap } from "rxjs";
 
-import { Event, SanityEvent, eventSchemaName } from "typedb-web-schema";
+import { IdleMonitorService } from "@scullyio/ng-lib";
+import { combineLatest, map, Observable, tap } from "rxjs";
+import { Event, eventSchemaName, SanityEvent } from "typedb-web-schema";
 
 import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { AnalyticsService } from "src/service/analytics.service";
@@ -34,7 +34,9 @@ export class EventDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {};
+        let unregisterMetaTags = () => {
+            /**/
+        };
         this.destroyRef.onDestroy(() => unregisterMetaTags());
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {

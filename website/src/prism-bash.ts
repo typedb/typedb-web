@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Prism from "prismjs";
 
 export function installPrismBash() {

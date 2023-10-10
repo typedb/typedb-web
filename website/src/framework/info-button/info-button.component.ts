@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: "td-info-button",
@@ -8,6 +8,6 @@ import { Component, HostBinding, Input } from "@angular/core";
 export class InfoButtonComponent {
     @Input() tooltipText!: string;
 
-    hovered: boolean = false;
-    focused: boolean = false;
+    hovered = false;
+    focused = false;
 }

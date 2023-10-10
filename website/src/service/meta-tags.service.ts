@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Meta, MetaDefinition } from "@angular/platform-browser";
+
 import { MetaTags } from "typedb-web-schema";
 
 @Injectable({
