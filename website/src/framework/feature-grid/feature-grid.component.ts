@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+
 import Prism from "prismjs";
 import {
     CodeSnippet,
@@ -57,7 +58,9 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
                 el.offsetHeight;
                 el.classList.remove("clicked");
             },
-            () => {},
+            () => {
+                /**/
+            },
         );
     }
 }

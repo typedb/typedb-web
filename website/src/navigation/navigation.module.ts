@@ -9,8 +9,8 @@ import { FooterComponent } from "./footer/footer.component";
 import { SiteBannerComponent } from "./site-banner/site-banner.component";
 import {
     TopbarMenuComponent,
-    TopbarMenuPanelComponent,
     TopbarMenuMobileComponent,
+    TopbarMenuPanelComponent,
     TopbarMenuPanelMobileComponent,
 } from "./topbar/topbar-menu.component";
 

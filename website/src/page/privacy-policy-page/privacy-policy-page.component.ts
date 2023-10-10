@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AnalyticsService } from "../../service/analytics.service";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
+
+import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-privacy-policy-page",

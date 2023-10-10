@@ -3,6 +3,7 @@
     <h5 class="mp-column-title">{{ column.title }}</h5>
     <dl *ngIf="isListColumn(column)">
       <ng-container *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
+        <!-- eslint-disable-next-line -->
         <a
           *ngSwitchCase="true"
           [tdLink]="item.link"
@@ -12,6 +13,7 @@
         >
           <ng-container *ngTemplateOutlet="linkContent; context: { item }" />
         </a>
+        <!-- eslint-disable-next-line -->
         <div
           *ngSwitchCase="false"
           class="mp-coming-soon"

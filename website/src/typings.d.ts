@@ -38,4 +38,6 @@ interface Window {
             }) => void;
         };
     };
+
+    _hsq: string[][];
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
 
 @Component({

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+
 import { RichText } from "typedb-web-schema";
 
 @Pipe({ name: "richText" })

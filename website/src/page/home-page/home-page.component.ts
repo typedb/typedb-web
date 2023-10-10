@@ -1,15 +1,17 @@
 import { Component, DestroyRef, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { SocialMediaLink } from "typedb-web-schema";
-import { TechnicolorBlock } from "typedb-web-schema";
-import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
-import { AnalyticsService } from "../../service/analytics.service";
+import { Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
+import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
+import { SocialMediaLink, TechnicolorBlock } from "typedb-web-schema";
+
 import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { AnalyticsService } from "../../service/analytics.service";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "td-home-page",
@@ -65,23 +67,23 @@ export class HomePageTechnicolorBlockComponent {
 
     get allBlocks(): TechnicolorBlock[] {
         return [
-            this.page!.introSection,
+            this.page.introSection,
             ...this.page.impactSections,
-            this.page!.solutionsSection,
-            this.page!.toolingSection,
-            this.page!.driversSection,
-            this.page!.cloudSection,
-            this.page!.communitySection,
-            this.page!.testimonialsSection,
-            this.page!.conclusionSection,
+            this.page.solutionsSection,
+            this.page.toolingSection,
+            this.page.driversSection,
+            this.page.cloudSection,
+            this.page.communitySection,
+            this.page.testimonialsSection,
+            this.page.conclusionSection,
         ].filter((x) => !!x) as TechnicolorBlock[];
     }
 
     get level(): TechnicolorBlockComponent["level"] {
-        return this.block === this.page!.introSection ? "h1" : "h2";
+        return this.block === this.page.introSection ? "h1" : "h2";
     }
 
     get index() {
-        return this.allBlocks.indexOf(this.block!);
+        return this.allBlocks.indexOf(this.block);
     }
 }

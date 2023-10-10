@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { LinkButton, ParagraphWithHighlights, RichText } from "typedb-web-schema";
 
 @Component({

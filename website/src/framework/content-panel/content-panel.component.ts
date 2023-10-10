@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { CodeSnippet, ContentTextPanel } from "typedb-web-schema";
 
 @Component({
