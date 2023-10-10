@@ -166,9 +166,12 @@
 }
 
 .kpt-blur {
-    filter: blur(4px);
     user-select: none;
     overflow: hidden !important;
+
+    > * {
+        filter: blur(4px);
+    }
 }
 
 .kpt-code-short {
