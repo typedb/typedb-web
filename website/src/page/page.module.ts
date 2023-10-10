@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+
 import { FrameworkModule } from "../framework/framework.module";
 import { BlogAuthorshipBarComponent } from "./blog-page/blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog-page/blog-category-chips.component";
@@ -16,7 +17,7 @@ import { EventDetailsPageComponent } from "./event-details-page/event-details-pa
 import { EventsPageComponent } from "./events-page/events-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
-import { HomePageTechnicolorBlockComponent, HomePageComponent } from "./home-page/home-page.component";
+import { HomePageComponent, HomePageTechnicolorBlockComponent } from "./home-page/home-page.component";
 import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";

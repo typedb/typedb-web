@@ -1,29 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+
 import { TransferStateService } from "@scullyio/ng-lib";
+import { BehaviorSubject, combineLatest, concat, filter, iif, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
-    BehaviorSubject,
-    combineLatest,
-    first,
-    map,
-    Observable,
-    concat,
-    shareReplay,
-    iif,
-    of,
-    switchMap,
-    filter,
-} from "rxjs";
-import {
-    WordpressPost,
-    WordpressTaxonomy,
-    WordpressPosts,
-    WordpressSite,
-    WordpressCategoriesResponse,
     BlogFilter,
     blogNullFilter,
-    WordpressACF,
     WordpressACFResponse,
+    WordpressCategoriesResponse,
+    WordpressPost,
+    WordpressPosts,
+    WordpressSite,
+    WordpressTaxonomy,
 } from "typedb-web-schema";
 
 const siteApiUrl = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
@@ -97,7 +85,11 @@ export class BlogService {
         return this.fetchedPosts.pipe(
             switchMap((posts) => {
                 const post = posts.find((post) => post.slug === slug);
-                return iif(() => !!post, concat(of(post!), this.fetchPostBySlug(slug)), this.fetchPostBySlug(slug));
+                return iif(
+                    () => !!post,
+                    concat(of(post as WordpressPost), this.fetchPostBySlug(slug)),
+                    this.fetchPostBySlug(slug),
+                );
             }),
         );
     }

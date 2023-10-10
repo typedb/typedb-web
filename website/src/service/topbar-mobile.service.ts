@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
@@ -6,8 +7,6 @@ import { BehaviorSubject } from "rxjs";
 })
 export class TopbarMobileService {
     openState = new BehaviorSubject(false);
-
-    constructor() {}
 
     toggleOpenState() {
         this.openState.next(!this.openState.getValue());

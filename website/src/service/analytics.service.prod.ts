@@ -1,12 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { isScullyRunning } from "@scullyio/ng-lib";
 
-declare global {
-    interface Window {
-        _hsq: any[];
-    }
-}
+import { isScullyRunning } from "@scullyio/ng-lib";
 
 export const HUBSPOT_PORTAL_ID = "4332244";
 export const HUBSPOT_REGION = "na1";

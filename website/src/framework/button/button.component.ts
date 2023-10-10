@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { LinkButton, ActionButton } from "typedb-web-schema";
+
+import { ActionButton, LinkButton } from "typedb-web-schema";
 
 @Component({
     selector: "td-button",
@@ -13,7 +14,7 @@ export class ButtonComponent {
     @Input() noComingSoonTooltip = false;
     @Input() containerHovered = false;
 
-    comingSoonPopupVisible: boolean = false;
+    comingSoonPopupVisible = false;
 
     get linkButton(): LinkButton | undefined {
         return this.button instanceof LinkButton ? this.button : undefined;
@@ -28,11 +29,11 @@ export class ButtonComponent {
         };
     }
 
-    onMouseEnter(event: Event) {
+    onMouseEnter(_event: Event) {
         if (this.button.comingSoon) this.comingSoonPopupVisible = true;
     }
 
-    onMouseLeave(event: Event) {
+    onMouseLeave(_event: Event) {
         if (this.button.comingSoon) this.comingSoonPopupVisible = false;
     }
 }

@@ -1,13 +1,15 @@
+/* eslint-disable */
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, ViewChild } from "@angular/core";
-import { Subscription } from "rxjs";
-import { GraphVisualisation } from "typedb-web-schema";
+
 import * as d3 from "d3-force";
+import FontFaceObserver from "fontfaceobserver";
 // pixi.js-legacy 7.x causes an issue where dragging stops at the edge of the visualisation, which is not a nice UX
 // pixi.js (non-legacy) causes an issue where all text is blurred
 import * as PIXI from "pixi.js-legacy";
-// @ts-ignore
-import FontFaceObserver from "fontfaceobserver";
+import { Subscription } from "rxjs";
+import { GraphVisualisation } from "typedb-web-schema";
+
 import {
     arrowhead,
     diamondIncomingLineIntersect,
@@ -19,6 +21,7 @@ import {
     rectIncomingLineIntersect,
 } from "./geometry";
 import { defaultGraphVisualisationTheme, defaultStyles, GraphVisualisationTheme } from "./theme";
+
 import VertexEncoding = GraphVisualisation.VertexEncoding;
 
 @Component({
@@ -429,7 +432,7 @@ export function renderGraph(
 
     const onTick = () => {
         vertices.forEach((vertex) => {
-            let { x, y, gfx } = vertex;
+            const { x, y, gfx } = vertex;
             // console.log(`Setting vertex position to {${x}, ${y}`);
             gfx?.position.set(x, y);
         });

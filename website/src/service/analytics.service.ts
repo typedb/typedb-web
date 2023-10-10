@@ -1,11 +1,5 @@
 import { Injectable } from "@angular/core";
 
-declare global {
-    interface Window {
-        _hsq: any[];
-    }
-}
-
 export const HUBSPOT_PORTAL_ID = "4332244";
 export const HUBSPOT_REGION = "na1";
 
@@ -18,12 +12,12 @@ export const HUBSPOT_REGION = "na1";
 export class AnalyticsService {
     /* Analytics scripts only run in production. */
     hubspot = {
-        trackPageView: () => {},
+        trackPageView: () => null,
     };
     googleAnalytics = {
-        loadScriptTag: () => {},
+        loadScriptTag: () => null,
     };
     googleTagManager = {
-        loadScriptTag: () => {},
+        loadScriptTag: () => null,
     };
 }

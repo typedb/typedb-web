@@ -1,9 +1,11 @@
 import { Component, DestroyRef, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Observable, map, tap } from "rxjs";
-import { SanityServicesPage, ServicesPage, TechnicolorBlock, servicesPageSchemaName } from "typedb-web-schema";
+import { map, Observable, tap } from "rxjs";
+import { SanityServicesPage, ServicesPage, servicesPageSchemaName, TechnicolorBlock } from "typedb-web-schema";
+
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";

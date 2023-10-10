@@ -1,4 +1,5 @@
 import { DestroyRef, Injectable } from "@angular/core";
+
 import { BehaviorSubject } from "rxjs";
 
 const DEFAULT_OFFSET = 300;
