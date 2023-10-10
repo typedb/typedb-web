@@ -1,6 +1,8 @@
 import { Component, Input } from "@angular/core";
-import { ImageBuilder } from "src/service/image-builder.service";
+
 import { Person } from "typedb-web-schema";
+
+import { ImageBuilder } from "src/service/image-builder.service";
 
 @Component({
     selector: "td-person-info",

@@ -1,12 +1,15 @@
 import { Component, DestroyRef, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { DeploymentPage, deploymentPageSchemaName, SanityDeploymentPage, TechnicolorBlock } from "typedb-web-schema";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { ContentService } from "../../service/content.service";
 import { Title } from "@angular/platform-browser";
-import { AnalyticsService } from "../../service/analytics.service";
+import { Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { DeploymentPage, deploymentPageSchemaName, SanityDeploymentPage, TechnicolorBlock } from "typedb-web-schema";
+
 import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { AnalyticsService } from "../../service/analytics.service";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "td-deployment-page",

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+
 import { Testimonial } from "typedb-web-schema";
+
 import { ImageBuilder } from "src/service/image-builder.service";
 
 @Component({

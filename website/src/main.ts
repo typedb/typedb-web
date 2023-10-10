@@ -1,11 +1,12 @@
 import { enableProdMode } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { WebsiteModule } from "./website.module";
 import { environment } from "./environment/environment";
-
-import { installPrismTypeQL } from "./prism-typeql";
 import { installPrismBash } from "./prism-bash";
+import { installPrismTypeQL } from "./prism-typeql";
+import { WebsiteModule } from "./website.module";
+
+import "prismjs/components/prism-bash";
 import "prismjs/components/prism-cypher";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";

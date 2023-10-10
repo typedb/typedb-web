@@ -1,14 +1,15 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { RequestTechTalkPage, SanityRequestTechTalkPage, requestTechTalkPageSchemaName } from "typedb-web-schema";
 
-import { FormService } from "src/service/form.service";
-import { PopupNotificationService } from "src/service/popup-notification.service";
-import { ContentService } from "src/service/content.service";
+import { IdleMonitorService } from "@scullyio/ng-lib";
+import { RequestTechTalkPage, requestTechTalkPageSchemaName, SanityRequestTechTalkPage } from "typedb-web-schema";
+
 import { AnalyticsService } from "src/service/analytics.service";
+import { ContentService } from "src/service/content.service";
+import { FormService } from "src/service/form.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { PopupNotificationService } from "src/service/popup-notification.service";
 
 @Component({
     selector: "td-request-tech-talk-page",

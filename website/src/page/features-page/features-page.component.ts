@@ -1,12 +1,15 @@
 import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+
+import { IdleMonitorService } from "@scullyio/ng-lib";
 import { FeaturesPage, featuresPageSchemaName, SanityFeaturesPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
-import { ContentService } from "../../service/content.service";
-import { Title } from "@angular/platform-browser";
-import { AnalyticsService } from "../../service/analytics.service";
-import { IdleMonitorService } from "@scullyio/ng-lib";
+
 import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { AnalyticsService } from "../../service/analytics.service";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "td-features-page",

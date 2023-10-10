@@ -1,15 +1,18 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+
+import { IdleMonitorService } from "@scullyio/ng-lib";
 import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
+
+import { MetaTagsService } from "src/service/meta-tags.service";
+
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
-import { AnalyticsService } from "../../service/analytics.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { WebinarService } from "../../service/webinar.service";
-import { Title } from "@angular/platform-browser";
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({
     selector: "td-webinar-details-page",
@@ -36,7 +39,9 @@ export class WebinarDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {};
+        let unregisterMetaTags = () => {
+            /**/
+        };
         this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
@@ -54,7 +59,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 15000);
-                    this._formService.embedHubspotForm(this.webinar.hubspotFormID!, "hubspot-form-holder", {
+                    this._formService.embedHubspotForm(this.webinar.hubspotFormID as string, "hubspot-form-holder", {
                         onLoadingChange: (val) => {
                             this.isSubmitting = val;
                         },
@@ -69,7 +74,7 @@ export class WebinarDetailsPageComponent implements OnInit {
 
     private onSubmit(values: Record<string, unknown>) {
         this._webinarService.register({
-            airmeetID: this.webinar!.airmeetID!,
+            airmeetID: (this.webinar as Webinar).airmeetID as string,
             firstName: `${values["firstname"]}`,
             lastName: `${values["lastname"]}`,
             email: `${values["email"]}`,
@@ -77,13 +82,15 @@ export class WebinarDetailsPageComponent implements OnInit {
             jobTitle: `${values["job_function"]}`,
         });
 
-        const successMsg = this.webinar!.isFinished()
+        const successMsg = (this.webinar as Webinar).isFinished()
             ? "A link to watch the webinar has been sent to your email inbox."
             : "A link to join the webinar has been sent to your email inbox.";
         this._popupNotificationService.success(successMsg);
     }
 
     get localTimezoneAbbreviation(): string {
-        return this.webinar!.datetime.toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" }).slice(4);
+        return (this.webinar as Webinar).datetime
+            .toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" })
+            .slice(4);
     }
 }
