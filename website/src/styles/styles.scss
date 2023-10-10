@@ -196,6 +196,7 @@ aside,
 .text-aside {
     font-size: $font-size-aside;
     line-height: $line-height-aside;
+    font-weight: $font-weight-regular;
 
     @media (max-width: $media-max-width-mobile) {
         font-size: $font-size-aside-mobile;
