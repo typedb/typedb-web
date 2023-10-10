@@ -1,4 +1,4 @@
-# TypeDB Website CMS: Sanity
+# TypeDB Website CMS - Sanity
 
 ## Install dependencies
 
