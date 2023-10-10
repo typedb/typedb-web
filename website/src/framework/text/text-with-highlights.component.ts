@@ -34,7 +34,7 @@ export class HeadingWithHighlightsComponent {
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex = "#02DAC9";
-    @Input() level: "p1" | "p2" = "p1";
+    @Input() level: "p1" | "p2" | "aside" = "p1";
 
     get rootClass(): string {
         return `text-${this.level}`;
