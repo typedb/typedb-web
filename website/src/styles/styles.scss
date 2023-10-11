@@ -280,8 +280,8 @@ aside {
     }
 }
 
-a.link-tertiary,
-a.link-tertiary:visited {
+.link-tertiary,
+.link-tertiary:visited {
     color: $color-vaticle-white;
     font-weight: $font-weight-semi-bold;
 
@@ -437,7 +437,7 @@ hr {
     &.hoverable:hover {
         border-color: $color-vaticle-green;
 
-        a.link-tertiary {
+        .link-tertiary {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
