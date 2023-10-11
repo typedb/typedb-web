@@ -1,8 +1,8 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
-import { codeSnippetSchemaName, CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort, polyglotSnippetSchemaName } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
-import { graphVisualisationSchemaName, Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, imageIllustrationSchemaName, SanityIllustration, splitPaneIllustrationSchemaName, videoEmbedSchemaName } from "../illustration";
+import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -39,7 +39,7 @@ export function featureGridIllustrationFromSanity(data: SanityIllustration, db: 
 }
 
 export class FeatureGridCell {
-    readonly title: string;
+    readonly title?: string;
     readonly body?: RichText;
     readonly iconURL?: string;
     readonly links?: TextLink[];
@@ -137,7 +137,7 @@ const featureGridCellSchema = defineType({
     title: "Feature",
     type: "object",
     fields: [
-        titleField,
+        titleFieldOptional,
         bodyFieldRichText,
         sectionIconFieldOptional,
         defineField({

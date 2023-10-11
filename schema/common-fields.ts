@@ -29,12 +29,13 @@ export const plainTextField = defineField({
 
 export const titleFieldName = "title";
 
-export const titleField = defineField({
+export const titleFieldOptional = defineField({
     name: titleFieldName,
     title: "Title",
     type: "string",
-    validation: requiredRule,
 });
+
+export const titleField = Object.assign({}, titleFieldOptional, { validation: requiredRule });
 
 export const pageTitleField = Object.assign({}, titleField, {
     title: "Web Page Title",
