@@ -68,12 +68,6 @@ ol {
             min-height: 16px;
         }
     }
-
-    &:hover {
-        .cs-scrollbar-thumb {
-            opacity: 1;
-        }
-    }
 }
 
 .cs-scrollbar-thumb {
@@ -85,11 +79,13 @@ ol {
     border-radius: 4px;
     transition: opacity 200ms;
 
-    &.td-active {
-        opacity: 1;
-    }
-
     :host:hover & {
         opacity: 0.5;
+    }
+
+    .cs-scrollbar:hover &,
+    &.td-active,
+    :host:hover &.td-active {
+        opacity: 1;
     }
 }
