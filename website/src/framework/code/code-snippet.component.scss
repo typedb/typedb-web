@@ -4,8 +4,14 @@
 :host {
     display: block;
     height: 100%;
-    overflow-y: auto;
+    overflow: auto;
     background-color: $color-vaticle-black-purple;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 }
 
 .cs-root {
@@ -25,13 +31,61 @@
 
 .cs-code-area {
     flex: 1;
+    padding-right: 14px;
+    cursor: text;
 
     &:first-child {
-        padding: 2px 8px;
+        padding: 2px 14px 2px 8px;
     }
 }
 
 ol {
     list-style: none;
     height: 0;
+}
+
+.cs-scrollbar {
+    position: absolute;
+
+    &.cs-scrollbar-x {
+        left: 6px;
+        bottom: 3px;
+        right: 6px;
+        height: 8px;
+
+        .cs-scrollbar-thumb {
+            min-width: 16px;
+        }
+    }
+
+    &.cs-scrollbar-y {
+        top: 6px;
+        right: 3px;
+        bottom: 6px;
+        width: 8px;
+
+        .cs-scrollbar-thumb {
+            min-height: 16px;
+        }
+    }
+}
+
+.cs-scrollbar-thumb {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: $color-vaticle-light-purple;
+    opacity: 0;
+    border-radius: 4px;
+    transition: opacity 200ms;
+
+    :host:hover & {
+        opacity: 0.5;
+    }
+
+    .cs-scrollbar:hover &,
+    &.td-active,
+    :host:hover &.td-active {
+        opacity: 1;
+    }
 }
