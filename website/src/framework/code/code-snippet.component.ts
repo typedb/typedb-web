@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Router, Event as RouterEvent, Scroll } from "@angular/router";
 
 import Prism from "prismjs";
@@ -17,12 +17,18 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 })
 export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() snippet!: CodeSnippet;
+    @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
+    @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
     lines!: number;
     lineNumbers!: number[];
 
     private mediaQuerySubscription = Subscription.EMPTY;
 
-    constructor(private _mediaQuery: MediaQueryService) {}
+    constructor(
+        private _mediaQuery: MediaQueryService,
+        private elementRef: ElementRef<HTMLElement>,
+        private ngZone: NgZone,
+    ) {}
 
     ngOnInit() {
         this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
@@ -36,10 +42,88 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit() {
         Prism.highlightAll();
+
+        this.ngZone.runOutsideAngular(() => this.initCustomScrollbars());
     }
 
     ngOnDestroy(): void {
         this.mediaQuerySubscription.unsubscribe();
+    }
+
+    private initCustomScrollbars(): void {
+        const handleScroll = () => {
+            this.updateScrollbarThumb(this.scrollbarX.nativeElement, "x");
+            this.updateScrollbarThumb(this.scrollbarY.nativeElement, "y");
+        };
+        this.elementRef.nativeElement.addEventListener("scroll", handleScroll);
+        handleScroll();
+
+        this.initScrollbarThumbListeners(this.scrollbarX.nativeElement, "x");
+        this.initScrollbarThumbListeners(this.scrollbarY.nativeElement, "y");
+    }
+
+    private initScrollbarThumbListeners(scrollbar: HTMLElement, orientation: "x" | "y"): void {
+        const [clientSize, scrollSize, scrollOffset, clientOffset, offset, offsetAxis] =
+            orientation === "x"
+                ? (["clientWidth", "scrollWidth", "scrollLeft", "clientX", "offsetLeft", "offsetX"] as const)
+                : (["clientHeight", "scrollHeight", "scrollTop", "clientY", "offsetTop", "offsetY"] as const);
+        const scrollbarThumb = scrollbar.firstElementChild as HTMLElement;
+        const scrollContainer = this.elementRef.nativeElement;
+
+        scrollbarThumb.addEventListener("mousedown", (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const startOffset = ev[clientOffset];
+            const startThumbOffset = scrollbarThumb[offset];
+            scrollbarThumb.classList.add("td-active");
+            const onMouseMove = (ev2: MouseEvent) => {
+                const scrollPosition =
+                    (startThumbOffset + ev2[clientOffset] - startOffset) /
+                    (scrollbar[clientSize] - scrollbarThumb[clientSize]);
+                scrollContainer[scrollOffset] =
+                    scrollPosition * (scrollContainer[scrollSize] - scrollContainer[clientSize]);
+            };
+            const onMouseUp = () => {
+                scrollbarThumb.classList.remove("td-active");
+                window.removeEventListener("mousemove", onMouseMove);
+                window.removeEventListener("mouseup", onMouseUp);
+            };
+            window.addEventListener("mousemove", onMouseMove, { passive: true });
+            window.addEventListener("mouseup", onMouseUp);
+        });
+        scrollbar.addEventListener("mousedown", (ev) => {
+            ev.preventDefault();
+            const scrollPosition =
+                (ev[offsetAxis] - scrollbarThumb[clientSize] / 2) /
+                (scrollbar[clientSize] - scrollbarThumb[clientSize]);
+            scrollContainer[scrollOffset] =
+                scrollPosition * (scrollContainer[scrollSize] - scrollContainer[clientSize]);
+        });
+    }
+
+    private updateScrollbarThumb(scrollbar: HTMLElement, orientation: "x" | "y"): void {
+        const [clientSize, scrollSize, scrollOffset, size, offsetSide] =
+            orientation === "x"
+                ? (["clientWidth", "scrollWidth", "scrollLeft", "width", "left"] as const)
+                : (["clientHeight", "scrollHeight", "scrollTop", "height", "top"] as const);
+        const scrollbarThumb = scrollbar.firstElementChild as HTMLElement;
+        const scrollContainer = this.elementRef.nativeElement;
+
+        const thumbSize = scrollContainer[clientSize] / scrollContainer[scrollSize];
+
+        if (thumbSize === 1) {
+            scrollbar.style.display = "none";
+            return;
+        }
+
+        scrollbar.style.display = "";
+
+        const scrollPosition =
+            scrollContainer[scrollOffset] / (scrollContainer[scrollSize] - scrollContainer[clientSize]);
+
+        const thumbOffset = scrollPosition * (scrollbar[clientSize] - scrollbarThumb[clientSize]);
+        scrollbarThumb.style[size] = `${thumbSize * 100}%`;
+        scrollbarThumb.style[offsetSide] = `${thumbOffset}px`;
     }
 }
 
