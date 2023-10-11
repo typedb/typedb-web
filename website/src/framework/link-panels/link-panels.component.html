@@ -14,7 +14,7 @@
           <td-rich-text [value]="panel.body" />
           <ng-container [ngSwitch]="ctaStrength">
             <div class="hide-mobile flex"></div>
-            <span *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</span>
+            <p *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
           </ng-container>
         </div>
       </a>
@@ -47,7 +47,7 @@
       <h3>{{ panel.title }}</h3>
       <td-rich-text [value]="panel.body" />
       <div class="flex"></div>
-      <span class="link-tertiary">{{ panel.button.text }}</span>
+      <p class="link-tertiary">{{ panel.button.text }}</p>
     </a>
   </div>
 </ng-container>
