@@ -1,0 +1,16 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@fontsource/titillium-web':
+    specifier: 5.0.13
+    version: 5.0.13
+
+packages:
+
+  /@fontsource/titillium-web@5.0.13:
+    resolution: {integrity: sha512-l9RlKSL3EH5zF/+S5cfcG3I9BF428G37UsJOzAzIZpYLKtOdzn6ILhtGFbCWmlX/S6RBgHC6TsYIzZZcADlTSw==}
+    dev: false

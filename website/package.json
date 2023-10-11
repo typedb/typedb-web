@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
+    "build": "cd ../common && pnpm i && cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:verify": "prettier --check src",
@@ -75,7 +75,6 @@
     "@angular-eslint/template-parser": "16.0.3",
     "@angular/cli": "16.1.6",
     "@angular/compiler-cli": "16.1.7",
-    "@fontsource/titillium-web": "5.0.12",
     "@sanity/icons": "2.4.1",
     "@sanity/types": "3.14.4",
     "@trivago/prettier-plugin-sort-imports": "4.2.0",
