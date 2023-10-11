@@ -63,42 +63,56 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private initScrollbarThumbListeners(scrollbar: HTMLElement, orientation: "x" | "y"): void {
-        const [clientSize, scrollSize, scrollOffset, clientOffset, offset, offsetAxis] =
+        const scrollbarThumb = scrollbar.firstElementChild as HTMLElement;
+
+        scrollbarThumb.addEventListener("mousedown", (ev) =>
+            this.onScrollbarThumbMouseDown(ev, scrollbar, orientation),
+        );
+        scrollbar.addEventListener("mousedown", (ev) => this.onScrollbarMouseDown(ev, scrollbar, orientation));
+    }
+
+    private onScrollbarMouseDown(ev: MouseEvent, scrollbar: HTMLElement, orientation: "x" | "y"): void {
+        ev.preventDefault();
+
+        const [clientSize, scrollSize, scrollOffset, offsetAxis] =
             orientation === "x"
-                ? (["clientWidth", "scrollWidth", "scrollLeft", "clientX", "offsetLeft", "offsetX"] as const)
-                : (["clientHeight", "scrollHeight", "scrollTop", "clientY", "offsetTop", "offsetY"] as const);
+                ? (["clientWidth", "scrollWidth", "scrollLeft", "offsetX"] as const)
+                : (["clientHeight", "scrollHeight", "scrollTop", "offsetY"] as const);
         const scrollbarThumb = scrollbar.firstElementChild as HTMLElement;
         const scrollContainer = this.elementRef.nativeElement;
 
-        scrollbarThumb.addEventListener("mousedown", (ev) => {
-            ev.preventDefault();
-            ev.stopPropagation();
-            const startOffset = ev[clientOffset];
-            const startThumbOffset = scrollbarThumb[offset];
-            scrollbarThumb.classList.add("td-active");
-            const onMouseMove = (ev2: MouseEvent) => {
-                const scrollPosition =
-                    (startThumbOffset + ev2[clientOffset] - startOffset) /
-                    (scrollbar[clientSize] - scrollbarThumb[clientSize]);
-                scrollContainer[scrollOffset] =
-                    scrollPosition * (scrollContainer[scrollSize] - scrollContainer[clientSize]);
-            };
-            const onMouseUp = () => {
-                scrollbarThumb.classList.remove("td-active");
-                window.removeEventListener("mousemove", onMouseMove);
-                window.removeEventListener("mouseup", onMouseUp);
-            };
-            window.addEventListener("mousemove", onMouseMove, { passive: true });
-            window.addEventListener("mouseup", onMouseUp);
-        });
-        scrollbar.addEventListener("mousedown", (ev) => {
-            ev.preventDefault();
+        const scrollPosition =
+            (ev[offsetAxis] - scrollbarThumb[clientSize] / 2) / (scrollbar[clientSize] - scrollbarThumb[clientSize]);
+        scrollContainer[scrollOffset] = scrollPosition * (scrollContainer[scrollSize] - scrollContainer[clientSize]);
+    }
+
+    private onScrollbarThumbMouseDown(ev: MouseEvent, scrollbar: HTMLElement, orientation: "x" | "y"): void {
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        const [clientSize, scrollSize, scrollOffset, clientOffset, offset] =
+            orientation === "x"
+                ? (["clientWidth", "scrollWidth", "scrollLeft", "clientX", "offsetLeft"] as const)
+                : (["clientHeight", "scrollHeight", "scrollTop", "clientY", "offsetTop"] as const);
+        const scrollbarThumb = scrollbar.firstElementChild as HTMLElement;
+        const scrollContainer = this.elementRef.nativeElement;
+        const startOffset = ev[clientOffset];
+        const startThumbOffset = scrollbarThumb[offset];
+        scrollbarThumb.classList.add("td-active");
+        const onMouseMove = (ev2: MouseEvent) => {
             const scrollPosition =
-                (ev[offsetAxis] - scrollbarThumb[clientSize] / 2) /
+                (startThumbOffset + ev2[clientOffset] - startOffset) /
                 (scrollbar[clientSize] - scrollbarThumb[clientSize]);
             scrollContainer[scrollOffset] =
                 scrollPosition * (scrollContainer[scrollSize] - scrollContainer[clientSize]);
-        });
+        };
+        const onMouseUp = () => {
+            scrollbarThumb.classList.remove("td-active");
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("mouseup", onMouseUp);
+        };
+        window.addEventListener("mousemove", onMouseMove, { passive: true });
+        window.addEventListener("mouseup", onMouseUp);
     }
 
     private updateScrollbarThumb(scrollbar: HTMLElement, orientation: "x" | "y"): void {
