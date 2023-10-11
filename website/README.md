@@ -5,6 +5,14 @@ we use [Scully](https://scully.io) to prerender the pages.
 
 ## Install dependencies
 
+### PNPM
+
+Check the `packageManager` entry in [package.json](./package.json) to find out the correct PNPM version.
+
+Generally speaking, it's OK to use a different minor/patch version to the specified one, but the major version should be the same.
+
+Installation instructions can be found at https://pnpm.io/installation.
+
 ### Angular CLI
 
 It's common practice to install Angular CLI globally, but local installation may be beneficial if you need to manage
