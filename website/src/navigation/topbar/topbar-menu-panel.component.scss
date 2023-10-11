@@ -68,11 +68,12 @@
     font-weight: $font-weight-semi-bold;
 }
 
-.mp-list-column-item-name {
+dt {
     color: $color-vaticle-white;
+    font-weight: $font-weight-regular;
 }
 
-.mp-list-column-description {
+dd {
     color: $color-vaticle-secondary-light-grey;
     margin-top: 4px;
     white-space: nowrap;
@@ -99,7 +100,7 @@ a {
 
 a:hover,
 a:focus {
-    .mp-list-column-item-name {
+    dt {
         color: $color-vaticle-green;
         text-decoration: underline;
     }
