@@ -6,6 +6,10 @@
     border-top: 1px solid $color-vaticle-light-purple;
 }
 
+$number-of-lines: 20;
+$number-of-lines-short: 13;
+$number-of-lines-mobile: 10;
+
 .pp-content-row {
     @include card-padding();
     display: flex;
@@ -15,4 +19,49 @@
     > * {
         flex: 1;
     }
+
+    ::ng-deep td-illustration td-polyglot-snippet td-code-snippet {
+        height: calc(100% - 28px);
+    }
+
+    ::ng-deep td-illustration > td-code-snippet,
+    ::ng-deep td-illustration > td-polyglot-snippet {
+        max-width: 100%;
+        height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+
+        @media (max-width: $media-max-width-tablet) {
+            flex-basis: 476px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+        }
+
+        &.cp-code-snippet-short {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+
+            @media (max-width: $media-max-width-mobile) {
+                height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            }
+        }
+    }
+}
+
+::ng-deep td-feature-grid table.section {
+    border-radius: 0;
+    width: 1158px;
+}
+
+::ng-deep td-feature-grid:first-child table.section {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+}
+
+::ng-deep td-feature-grid:last-child table.section {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+
+::ng-deep td-feature-grid .kpt-row-size-2 td-rich-text {
+    height: $font-size-p2 * $line-height-p2 * 7 !important; // overrides style in td-feature-grid
 }

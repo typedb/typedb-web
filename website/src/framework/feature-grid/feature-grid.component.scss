@@ -123,8 +123,13 @@
         display: flex;
         gap: 24px;
 
-        td-aspect-ratio {
-            flex: 1 0 552px;
+        > div {
+            flex: 1 1 0;
+        }
+
+        td-aspect-ratio,
+        td-illustration {
+            flex: 0 0 552px;
         }
     }
 
