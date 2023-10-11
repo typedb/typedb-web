@@ -8,6 +8,8 @@
   tabindex="0"
   class="text-p2"
   [ngClass]="rootNgClass"
+  [attr.role]="isDisabled ? 'button' : undefined"
+  [attr.aria-disabled]="isDisabled || undefined"
   [tdLink]="linkButton && !linkButton.comingSoon ? linkButton.link : undefined"
   [ngStyle]="{ width: buttonWidth }"
   (mouseenter)="onMouseEnter($event)"
