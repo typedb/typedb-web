@@ -1,10 +1,10 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { codeSnippetSchemaName, CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort, polyglotSnippetSchemaName } from "../code";
-import { bodyFieldRichText, descriptionField, isVisibleField, linkField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
-import { graphVisualisationSchemaName, Illustration, illustrationFieldOptional, illustrationFromSanity, imageIllustrationSchemaName, SanityIllustration, splitPaneIllustrationSchemaName, videoEmbedSchemaName } from "../illustration";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldWithHighlights } from "../common-fields";
+import { graphVisualisationSchemaName, Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, imageIllustrationSchemaName, SanityIllustration, splitPaneIllustrationSchemaName, videoEmbedSchemaName } from "../illustration";
 import { SanityImageRef } from "../image";
-import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
+import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
 import { PropsOf } from "../util";
@@ -70,6 +70,34 @@ export class FeatureGridCell {
     }
 }
 
+export class FeatureGrid { // not used in FeatureGridSection to flatten the structure, but used elsewhere
+    readonly featureGridLayout: FeatureGridLayout;
+    readonly features: FeatureGridCell[][];
+    readonly illustration?: Illustration;
+
+    constructor(props: PropsOf<FeatureGrid>) {
+        this.featureGridLayout = props.featureGridLayout;
+        this.features = props.features;
+        this.illustration = props.illustration;
+    }
+
+    static fromSanity(featureGrid: SanityFeatureGrid, db: SanityDataset) {
+        const visibleFeatures = featureGrid.features.filter((x) => x.isVisible);
+        const featureCells = [];
+        for (let i = 0; i < visibleFeatures.length; i += featureGrid.columnCount) {
+            const chunk = visibleFeatures.slice(i, i + featureGrid.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
+            featureCells.push(chunk);
+        }
+        return new FeatureGrid({
+            featureGridLayout: featureGrid.featureGridLayout,
+            features: featureCells,
+            illustration: featureGrid.illustration
+                ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
+                : undefined,
+        });
+    }
+}
+
 export class FeatureGridSection extends TechnicolorBlock {
     readonly featureGridLayout: FeatureGridLayout;
     readonly features: FeatureGridCell[][];
@@ -116,12 +144,7 @@ const featureGridCellSchema = defineType({
             name: "illustration",
             title: "Illustration",
             type: "reference",
-            to: [
-                { type: codeSnippetSchemaName }, { type: codeSnippetShortSchemaName},
-                { type: polyglotSnippetSchemaName }, { type: imageIllustrationSchemaName },
-                { type: graphVisualisationSchemaName }, { type: splitPaneIllustrationSchemaName },
-                { type: videoEmbedSchemaName },
-            ]
+            to: [{type: codeSnippetShortSchemaName}, ...illustrationFieldTargetTypes]
         }), // TODO: hide this field when block type is 'text only'
         defineField({
             name: "links",

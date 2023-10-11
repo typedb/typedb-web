@@ -5,10 +5,10 @@ import { Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import {
     ConclusionSection,
-    IntroPage,
-    IntroPageCoreSection,
-    introPageSchemaName,
-    SanityIntroPage,
+    PhilosophyPage,
+    philosophyPageSchemaName,
+    PublicationSection,
+    SanityPhilosophyPage,
 } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
@@ -18,12 +18,12 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 
 @Component({
-    selector: "td-intro-page",
-    templateUrl: "./intro-page.component.html",
-    styleUrls: ["./intro-page.component.scss"],
+    selector: "td-philosophy-page",
+    templateUrl: "./philosophy-page.component.html",
+    styleUrls: ["./philosophy-page.component.scss"],
 })
-export class IntroPageComponent implements OnInit {
-    page?: IntroPage;
+export class PhilosophyPageComponent implements OnInit {
+    page?: PhilosophyPage;
 
     constructor(
         private router: Router,
@@ -37,9 +37,9 @@ export class IntroPageComponent implements OnInit {
 
     ngOnInit() {
         this.contentService.data.subscribe((data) => {
-            const sanityIntroPage = data.getDocumentByID(introPageSchemaName) as SanityIntroPage;
+            const sanityIntroPage = data.getDocumentByID(philosophyPageSchemaName) as SanityPhilosophyPage;
             if (sanityIntroPage) {
-                this.page = new IntroPage(sanityIntroPage, data);
+                this.page = new PhilosophyPage(sanityIntroPage, data);
                 this._title.setTitle(`TypeDB | ${this.page.title}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
@@ -55,14 +55,14 @@ export class IntroPageComponent implements OnInit {
 }
 
 @Component({
-    selector: "td-intro-page-technicolor-block",
+    selector: "td-philosophy-page-technicolor-block",
     template:
         '<td-technicolor-block [block]="block" [index]="index + 1" [noLeadingLine]=\'index === 0\'></td-technicolor-block>',
 })
-export class IntroPageTechnicolorBlockComponent implements OnInit {
-    @Input() section!: IntroPageCoreSection | ConclusionSection;
+export class PhilosophyPageTechnicolorBlockComponent implements OnInit {
+    @Input() section!: PublicationSection | ConclusionSection;
     @Input() index!: number;
-    @Input() page!: IntroPage;
+    @Input() page!: PhilosophyPage;
 
     block!: TechnicolorBlock;
 
