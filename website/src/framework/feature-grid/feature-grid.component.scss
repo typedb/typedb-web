@@ -17,6 +17,11 @@
             height: unset !important;
             margin-bottom: 16px;
         }
+
+        td:not(:first-child) {
+            border-left: 0;
+            border-top: 1px solid $color-vaticle-light-purple;
+        }
     }
 
     tr {
