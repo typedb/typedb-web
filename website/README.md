@@ -19,6 +19,9 @@ pnpm add --global @angular/cli
 pnpm i
 ```
 
+ℹ️ _If this is a freshly cloned repo, you'll also need to run `pnpm i` in the `schema` directory. See the
+[Schema module README](../schema/README.md)._
+
 ## Develop locally
 
 ```shell
