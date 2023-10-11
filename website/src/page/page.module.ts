@@ -4,6 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { FrameworkModule } from "../framework/framework.module";
+import {
+    PhilosophyPageComponent,
+    PhilosophyPageTechnicolorBlockComponent,
+} from "././philosophy-page/philosophy-page.component";
 import { BlogAuthorshipBarComponent } from "./blog-page/blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog-page/blog-category-chips.component";
 import { BlogListPageComponent } from "./blog-page/blog-list-page.component";
@@ -18,7 +22,6 @@ import { EventsPageComponent } from "./events-page/events-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { HomePageComponent, HomePageTechnicolorBlockComponent } from "./home-page/home-page.component";
-import { IntroPageComponent, IntroPageTechnicolorBlockComponent } from "./intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
@@ -47,8 +50,8 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         FeaturesPageTechnicolorBlockComponent,
         HomePageComponent,
         HomePageTechnicolorBlockComponent,
-        IntroPageComponent,
-        IntroPageTechnicolorBlockComponent,
+        PhilosophyPageComponent,
+        PhilosophyPageTechnicolorBlockComponent,
         NotFoundPageComponent,
         PrivacyPolicyPageComponent,
         RequestTechTalkPageComponent,

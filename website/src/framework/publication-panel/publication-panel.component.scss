@@ -1,0 +1,18 @@
+@import "colors";
+@import "mixins";
+@import "sizes";
+
+:host > * + * {
+    border-top: 1px solid $color-vaticle-light-purple;
+}
+
+.pp-content-row {
+    @include card-padding();
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    > * {
+        flex: 1;
+    }
+}

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
+import { PhilosophyPageComponent } from "./page/./philosophy-page/philosophy-page.component";
 import { BlogListPageComponent } from "./page/blog-page/blog-list-page.component";
 import { BlogPostPageComponent } from "./page/blog-page/blog-post-page.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
@@ -9,7 +10,6 @@ import { EventsPageComponent } from "./page/events-page/events-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
-import { IntroPageComponent } from "./page/intro-page/intro-page.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
@@ -23,8 +23,8 @@ import { WhitePapersPageComponent } from "./page/white-papers-page/white-papers-
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
-    { path: "introduction", component: IntroPageComponent },
     { path: "features", component: FeaturesPageComponent },
+    { path: "philosophy", component: PhilosophyPageComponent },
     { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" } },
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
     { path: "deploy", component: DeploymentPageComponent },
@@ -42,6 +42,9 @@ const routes: Routes = [
     { path: "support", component: SupportPageComponent },
     { path: "services", component: ServicesPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
+
+    { path: "introduction", redirectTo: "philosophy" },
+
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
 
