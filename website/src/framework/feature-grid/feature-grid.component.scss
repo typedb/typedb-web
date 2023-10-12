@@ -195,13 +195,18 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 24px;
 
     img {
         margin-right: 10px;
     }
 
-    + td-rich-text {
-        margin-top: 8px;
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        margin-bottom: 18px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        margin-bottom: 12px;
     }
 }
 
