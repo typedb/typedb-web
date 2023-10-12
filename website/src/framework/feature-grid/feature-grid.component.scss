@@ -126,6 +126,10 @@
         td-aspect-ratio,
         td-illustration {
             flex: 0 0 552px;
+
+            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+                flex: 0 0 459px;
+            }
         }
     }
 
