@@ -5,7 +5,7 @@
     margin-top: 24px;
     display: block;
     padding-left: 16px;
-    border-left: 1px solid $color-vaticle-light-purple;
+    border-left: 1px solid $content-border-color;
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: 16px;
@@ -14,7 +14,7 @@
 
 .mm-column {
     padding: 16px 0;
-    border-top: 1px solid $color-vaticle-light-purple;
+    border-top: 1px solid $content-border-color;
 
     &:first-of-type {
         padding-top: 0;

@@ -20,7 +20,7 @@
 
         td:not(:first-child) {
             border-left: 0;
-            border-top: 1px solid $color-vaticle-light-purple;
+            border-top: 1px solid $content-border-color;
         }
     }
 
@@ -191,7 +191,7 @@
     overflow: auto;
     padding: 1.25rem 3rem 1.25rem 1.25rem;
     border-radius: $border-radius;
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     background: $color-vaticle-black-purple;
     hyphens: none;
 
@@ -257,7 +257,7 @@
         position: absolute;
         top: 0;
         border: 0.55em solid transparent;
-        border-left: 0.55em solid $color-vaticle-light-purple;
+        border-left: 0.55em solid $content-border-color;
         transform: rotate(-90deg) translateX(50%) translateY(50%);
         transform-origin: left;
     }

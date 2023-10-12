@@ -45,7 +45,7 @@
     display: block;
     width: 56px;
     height: 56px;
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     border-radius: $border-radius;
 
     &.bp-avatar-small {
@@ -70,5 +70,5 @@
 
 .bp-authored-date {
     padding: 4px 0 4px 32px;
-    border-left: 1px solid $color-vaticle-light-purple;
+    border-left: 1px solid $content-border-color;
 }

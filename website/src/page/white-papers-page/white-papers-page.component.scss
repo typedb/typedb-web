@@ -60,7 +60,7 @@
 }
 
 .wp-img {
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     border-radius: $border-radius;
 }
 
@@ -75,7 +75,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: solid $color-vaticle-light-purple;
+    border: solid $content-border-color;
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
 

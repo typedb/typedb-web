@@ -31,7 +31,7 @@ $card-content-width: 320px;
     }
 
     img {
-        border: 1px solid $color-vaticle-light-purple;
+        border: 1px solid $content-border-color;
         border-radius: $border-radius;
     }
 
@@ -62,8 +62,8 @@ $card-content-width: 320px;
     width: 98px;
     height: 32px;
     background-color: $color-vaticle-secondary-purple;
-    border-left: 1px solid $color-vaticle-light-purple;
-    border-bottom: 1px solid $color-vaticle-light-purple;
+    border-left: 1px solid $content-border-color;
+    border-bottom: 1px solid $content-border-color;
     border-bottom-left-radius: $border-radius;
     display: flex;
     justify-content: center;

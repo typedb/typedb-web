@@ -26,7 +26,7 @@ ul {
     gap: 10px;
     height: 100%;
     list-style: none;
-    border-bottom: 1px solid $color-vaticle-light-purple;
+    border-bottom: 1px solid $content-border-color;
     white-space: nowrap;
 
     @media (min-width: $media-min-width-tablet) {

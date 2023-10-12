@@ -3,7 +3,7 @@
 @import "sizes";
 
 :host > * + * {
-    border-top: 1px solid $color-vaticle-light-purple;
+    border-top: 1px solid $content-border-color;
 }
 
 $number-of-lines: 20;
@@ -31,10 +31,6 @@ $number-of-lines-mobile: 10;
     ::ng-deep td-illustration > td-polyglot-snippet {
         max-width: 100%;
         height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
-
-        @media (max-width: $media-max-width-tablet) {
-            flex-basis: 476px;
-        }
 
         @media (max-width: $media-max-width-mobile) {
             height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
