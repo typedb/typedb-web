@@ -2,7 +2,7 @@ import { BlockContentIcon, InlineIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { Illustration, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import {
-    isVisibleField,
+    isVisibleField, nameField, nameFieldOptional,
     optionalActionsField,
     requiredRule, SanityIconField,
     SanityVisibleToggle, sectionIconFieldOptional,
@@ -131,6 +131,7 @@ const publicationContentRowSchema = defineType({
     type: "document",
     icon: InlineIcon,
     fields: [
+        Object.assign({}, nameFieldOptional, { description: "For reference only - not visible to users" }),
         titleFieldOptional,
         sectionIconFieldOptional,
         defineField({
@@ -148,7 +149,10 @@ const publicationContentRowSchema = defineType({
         }),
     ],
     preview: {
-        prepare: (_selection) => ({ title: "Content Row" }),
+        select: { name: "name", title: "title" },
+        prepare: (selection) => ({
+            title: selection.name || selection.title,
+        }),
     },
 });
 

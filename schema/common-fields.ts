@@ -18,12 +18,13 @@ export const collapsibleOptions = {
 
 export const nameFieldName = "name";
 
-export const nameField = defineField({
+export const nameFieldOptional = defineField({
     name: nameFieldName,
     title: "Name",
     type: "string",
-    validation: requiredRule,
 });
+
+export const nameField = Object.assign({}, nameFieldOptional, { validation: requiredRule });
 
 export const textFieldName = "text";
 
