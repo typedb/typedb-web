@@ -3,7 +3,7 @@ import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fiel
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { PublicationSection, publicationSectionSchemaName, SanityPublicationSection } from "../component/publication-panel";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions } from "../text";
+import { SanityTitleBodyActions, titleAndBodySchemaName, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
@@ -38,7 +38,7 @@ const philosophyPageSchema = defineType({
         defineField({
             name: "introSection",
             title: "Intro Section",
-            type: titleAndBodySchemaName,
+            type: titleBodyActionsSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
