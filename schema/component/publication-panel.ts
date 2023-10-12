@@ -5,9 +5,9 @@ import {
     isVisibleField,
     optionalActionsField,
     requiredRule,
-    SanityVisibleToggle,
+    SanityVisibleToggle, sectionIconFieldOptional,
     sectionIdField,
-    titleBodyIconFields,
+    titleBodyIconFields, titleFieldOptional,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { RichText, SanityPortableText } from "../text";
@@ -125,6 +125,8 @@ const publicationContentRowSchema = defineType({
     type: "document",
     icon: InlineIcon,
     fields: [
+        titleFieldOptional,
+        sectionIconFieldOptional,
         defineField({
             name: "item1",
             title: "Left Side Item",
