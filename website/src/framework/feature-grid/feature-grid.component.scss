@@ -55,10 +55,6 @@
         }
     }
 
-    td-rich-text {
-        margin-top: 8px;
-    }
-
     td > div > td-aspect-ratio,
     td > div > td-illustration.cp-code-snippet {
         @media (max-width: $media-max-width-mobile) {
@@ -154,6 +150,20 @@
         height: $font-size-p2 * $line-height-p2 * 7;
     }
 
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        .kpt-row-size-2 td-rich-text {
+            height: $font-size-p2 * $line-height-p2 * 7;
+        }
+
+        .kpt-row-size-3 td-rich-text {
+            height: $font-size-p2 * $line-height-p2 * 9;
+        }
+
+        .kpt-row-size-4 td-rich-text {
+            height: $font-size-p2 * $line-height-p2 * 9;
+        }
+    }
+
     tr.kpt-illustration-row > td {
         padding: 24px;
     }
@@ -166,6 +176,10 @@
 
     img {
         margin-right: 10px;
+    }
+
+    + td-rich-text {
+        margin-top: 8px;
     }
 }
 

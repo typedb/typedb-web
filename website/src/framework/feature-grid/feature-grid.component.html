@@ -3,7 +3,7 @@
     <td *ngFor="let idx of columnIndexes">
       <div *ngIf="featureRow[idx] as feature" class="kpt-cell-content">
         <div>
-          <div class="kpt-feature-title-section">
+          <div *ngIf="feature.title" class="kpt-feature-title-section">
             <img *ngIf="feature.iconURL" [src]="feature.iconURL" alt="" />
             <h3>{{ feature.title }}</h3>
             <td-tag-chips [tags]="feature.tags" />

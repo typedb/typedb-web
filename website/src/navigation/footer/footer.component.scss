@@ -27,6 +27,7 @@ a:focus p {
 }
 
 .ft-section {
+    // TODO: for some reason @include section-width($offset: 0px) doesn't work here
     width: $section-width;
     max-width: $section-max-width;
     padding: 40px 0;

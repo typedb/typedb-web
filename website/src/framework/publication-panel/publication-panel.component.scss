@@ -48,7 +48,7 @@ $number-of-lines-mobile: 10;
 
 ::ng-deep td-feature-grid table.section {
     border-radius: 0;
-    width: 1158px;
+    @include section-width($offset: -2px);
 }
 
 ::ng-deep td-feature-grid:first-child table.section {
@@ -63,4 +63,8 @@ $number-of-lines-mobile: 10;
 
 ::ng-deep td-feature-grid .kpt-row-size-2 td-rich-text {
     height: $font-size-p2 * $line-height-p2 * 7 !important; // overrides style in td-feature-grid
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        height: $font-size-p2 * $line-height-p2 * 9 !important; // overrides style without media query
+    }
 }
