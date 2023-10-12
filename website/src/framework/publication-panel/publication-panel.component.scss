@@ -27,10 +27,6 @@ $number-of-lines-mobile: 10;
         flex: 1;
     }
 
-    ::ng-deep td-illustration td-polyglot-snippet td-code-snippet {
-        height: calc(100% - 28px);
-    }
-
     ::ng-deep td-illustration > td-code-snippet,
     ::ng-deep td-illustration > td-polyglot-snippet {
         max-width: 100%;

@@ -13,9 +13,11 @@
       </a>
     </div>
   </td-scroll-shadow>
-  <td-code-snippet
+  <div
     *ngFor="let snippet of polyglotSnippet.snippets"
-    [snippet]="snippet"
+    class="ft-snippet-container"
     [hidden]="selectedSnippet !== snippet"
-  />
+  >
+    <td-code-snippet [snippet]="snippet" />
+  </div>
 </div>

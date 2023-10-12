@@ -16,7 +16,8 @@ export function installPrismTypeQL() {
                 /(?:\s)(sub!?|isa!?|as|has|owns|abstract|relates|plays|match|regex|iid|label|define|undefine|insert|delete|aggregate|where|asc|desc|when|then|fetch|like|floor|ceil|round|abs|or|not)(?=\s|$|;)/,
         },
         unreservedKeyword: {
-            pattern: /(?<=;\s*|^\s*)(value|min|max|median|mean|std|sum|count|get|sort|limit|offset|group|contains|rule)(?=\s|$|;)/,
+            pattern:
+                /(?<=;\s*|^\s*)(value|min|max|median|mean|std|sum|count|get|sort|limit|offset|group|contains|rule)(?=\s|$|;)/,
             lookbehind: true,
             alias: "keyword",
         },

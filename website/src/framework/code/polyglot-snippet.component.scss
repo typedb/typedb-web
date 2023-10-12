@@ -3,8 +3,14 @@
 
 .ft-root {
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+}
+
+.ft-snippet-container {
+    position: relative;
+    height: calc(100% - 42px);
+    width: 100%;
+    overflow: auto;
 }
 
 .ft-tabs-container {
@@ -15,13 +21,9 @@
 }
 
 .ft-tabs {
-    height: 52px;
+    height: 42px;
     display: flex;
     flex-direction: row;
-
-    @media (max-width: $media-max-width-mobile) {
-        height: 48px;
-    }
 }
 
 .ft-tab {
