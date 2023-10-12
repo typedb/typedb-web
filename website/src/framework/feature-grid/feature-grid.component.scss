@@ -15,7 +15,6 @@
 
         tr {
             height: unset !important;
-            margin-bottom: 16px;
         }
 
         td:not(:first-child) {
@@ -115,7 +114,7 @@
         }
     }
 
-    .kpt-row-size-1 > td > div {
+    .kpt-row-size-1 > td > div.kpt-cell-content {
         display: flex;
         gap: 24px;
 
@@ -130,11 +129,22 @@
             @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
                 flex: 0 0 459px;
             }
+
+            @media (max-width: $media-max-width-mobile) {
+                flex: 0 0 calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            }
+        }
+
+        @media (max-width: $media-max-width-mobile) {
+            flex-direction: column;
+            gap: 8px;
         }
     }
 
     .kpt-row-size-1:nth-child(even) > td > div {
-        flex-direction: row-reverse;
+        @media (min-width: $media-min-width-tablet) {
+            flex-direction: row-reverse;
+        }
     }
 
     .kpt-row-size-2 td-aspect-ratio,
@@ -165,6 +175,14 @@
 
         .kpt-row-size-4 td-rich-text {
             height: $font-size-p2 * $line-height-p2 * 9;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        .kpt-row-size-2 td-rich-text,
+        .kpt-row-size-3 td-rich-text,
+        .kpt-row-size-4 td-rich-text {
+            height: unset !important; // overrides important style in publication panel component
         }
     }
 

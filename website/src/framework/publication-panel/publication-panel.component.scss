@@ -44,6 +44,11 @@ $number-of-lines-mobile: 10;
             }
         }
     }
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 ::ng-deep td-feature-grid table.section {
