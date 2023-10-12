@@ -9,7 +9,7 @@
         [href]="'#' + snippetTabID(snippet)"
         (click)="onSnippetTabClick(snippet, $event)"
       >
-        <h5>{{ languageDisplayNames[snippet.language] }}</h5>
+        <h5>{{ snippet.tabText || languageDisplayNames[snippet.language] }}</h5>
       </a>
     </div>
   </td-scroll-shadow>
