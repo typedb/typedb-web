@@ -1,7 +1,13 @@
 import { BlockContentIcon, LinkIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, RuleDef } from "@sanity/types";
+import { SanityImageRef } from "./image";
+import { SanityReference } from "./sanity-core";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
+
+export interface SanityIconField {
+    icon: SanityReference<SanityImageRef>;
+}
 
 export const requiredRule = (rule: RuleDef<any>) => rule.required();
 

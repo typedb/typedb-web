@@ -12,6 +12,13 @@ $number-of-lines-mobile: 10;
 
 .pp-content-row {
     @include card-padding();
+
+    h3 {
+        margin-bottom: 8px;
+    }
+}
+
+.pp-content-row-body {
     display: flex;
     flex-direction: row;
     gap: 24px;

@@ -27,7 +27,7 @@ import {
     ParagraphWithHighlights,
     RichText,
     SanityBodyText,
-    SanityTitle,
+    SanityTitleField,
     SanityTitleWithHighlights,
     TitleAndBody,
 } from "../text";
@@ -72,7 +72,7 @@ interface SanitySolutionSection extends SanityKeyPointsSection {
     keyPoints: SanityKeyPointWithIcon[];
 }
 
-interface SanityExampleTab extends SanityTitle, SanityBodyText {
+interface SanityExampleTab extends SanityTitleField, SanityBodyText {
     videoURL: string;
     learnMoreLink: SanityReference<SanityLink>;
 }

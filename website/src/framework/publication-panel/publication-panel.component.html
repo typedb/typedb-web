@@ -1,7 +1,12 @@
 <ng-container *ngFor="let item of items">
   <div *ngIf="isContentRow(item)" class="pp-content-row">
-    <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
-    <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
+    <div *ngIf="item.title">
+      <h3>{{ item.title }}</h3>
+    </div>
+    <div class="pp-content-row-body">
+      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
+      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
+    </div>
   </div>
   <td-feature-grid
     *ngIf="!isContentRow(item)"

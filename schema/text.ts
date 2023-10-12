@@ -16,7 +16,7 @@ import { PropsOf } from "./util";
 
 export type SanityPortableText = PortableTextTextBlock[];
 
-export type SanityTitle = { title: string };
+export type SanityTitleField = { title: string };
 
 export type SanityTitleWithHighlights = { title: SanityPortableText };
 

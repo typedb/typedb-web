@@ -4,13 +4,13 @@ import { Illustration, illustrationFieldTargetTypes, illustrationFromSanity, San
 import {
     isVisibleField,
     optionalActionsField,
-    requiredRule,
+    requiredRule, SanityIconField,
     SanityVisibleToggle, sectionIconFieldOptional,
     sectionIdField,
     titleBodyIconFields, titleFieldOptional,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityPortableText } from "../text";
+import { RichText, SanityPortableText, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { FeatureGrid, featureGridSchemaName, SanityFeatureGrid } from "./feature-grid";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
@@ -25,7 +25,7 @@ function isTextBlock(item: SanityPublicationContentRowItem): item is SanityPubli
     return item._type === publicationTextBlockSchemaName;
 }
 
-export interface SanityPublicationContentRow {
+export interface SanityPublicationContentRow extends Partial<SanityTitleField & SanityIconField> {
     item1: SanityReference<SanityPublicationContentRowItem>;
     item2?: SanityReference<SanityPublicationContentRowItem>;
 }
@@ -53,16 +53,22 @@ function contentRowItemFromSanity(data: SanityReference<SanityPublicationContent
 }
 
 export class PublicationContentRow {
+    readonly title?: string;
+    readonly iconURL?: string;
     readonly item1: PublicationContentRowItem;
     readonly item2?: PublicationContentRowItem;
 
     constructor(props: PropsOf<PublicationContentRow>) {
+        this.title = props.title;
+        this.iconURL = props.iconURL;
         this.item1 = props.item1;
         this.item2 = props.item2;
     }
 
     static fromSanity(data: SanityPublicationContentRow, db: SanityDataset): PublicationContentRow {
         return new PublicationContentRow({
+            title: data.title,
+            iconURL: data.icon && db.resolveImageRef(data.icon).url,
             item1: contentRowItemFromSanity(data.item1, db),
             item2: data.item2 && contentRowItemFromSanity(data.item2, db),
         });
