@@ -1,7 +1,13 @@
 import { BlockContentIcon, LinkIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, RuleDef } from "@sanity/types";
+import { SanityImageRef } from "./image";
+import { SanityReference } from "./sanity-core";
 
 // IMPORTANT: Do not reference other schema files from this file, as this generally creates cyclic dependencies.
+
+export interface SanityIconField {
+    icon: SanityReference<SanityImageRef>;
+}
 
 export const requiredRule = (rule: RuleDef<any>) => rule.required();
 
@@ -12,12 +18,13 @@ export const collapsibleOptions = {
 
 export const nameFieldName = "name";
 
-export const nameField = defineField({
+export const nameFieldOptional = defineField({
     name: nameFieldName,
     title: "Name",
     type: "string",
-    validation: requiredRule,
 });
+
+export const nameField = Object.assign({}, nameFieldOptional, { validation: requiredRule });
 
 export const textFieldName = "text";
 
@@ -29,12 +36,13 @@ export const plainTextField = defineField({
 
 export const titleFieldName = "title";
 
-export const titleField = defineField({
+export const titleFieldOptional = defineField({
     name: titleFieldName,
     title: "Title",
     type: "string",
-    validation: requiredRule,
 });
+
+export const titleField = Object.assign({}, titleFieldOptional, { validation: requiredRule });
 
 export const pageTitleField = Object.assign({}, titleField, {
     title: "Web Page Title",

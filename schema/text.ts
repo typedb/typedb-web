@@ -16,7 +16,7 @@ import { PropsOf } from "./util";
 
 export type SanityPortableText = PortableTextTextBlock[];
 
-export type SanityTitle = { title: string };
+export type SanityTitleField = { title: string };
 
 export type SanityTitleWithHighlights = { title: SanityPortableText };
 
@@ -54,7 +54,7 @@ function isPortableTextSpan(block: SanityPortableText[0]["children"][0]): block 
 
 export interface RichTextSpan {
     text: string;
-    marks: string[];
+    marks: ("em" | "strong" | "underline" | "code" | string)[];
     level?: number;
 }
 

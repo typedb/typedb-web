@@ -1,0 +1,87 @@
+@import "colors";
+@import "mixins";
+@import "sizes";
+
+:host > * + * {
+    border-top: 1px solid $content-border-color;
+}
+
+$number-of-lines: 20;
+$number-of-lines-short: 13;
+$number-of-lines-mobile: 10;
+
+.pp-content-row {
+    @include card-padding();
+}
+
+.pp-content-row-body {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    @media (min-width: $media-min-width-desktop) {
+        &:not(&:first-child) {
+            margin-top: 24px;
+        }
+    }
+
+    > * {
+        flex: 1;
+    }
+
+    ::ng-deep td-illustration > td-code-snippet,
+    ::ng-deep td-illustration > td-polyglot-snippet {
+        max-width: 100%;
+        height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+
+        @media (max-width: $media-max-width-mobile) {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+        }
+
+        &.cp-code-snippet-short {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+
+            @media (max-width: $media-max-width-mobile) {
+                height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            }
+        }
+    }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        flex-direction: column;
+        gap: 16px;
+
+        &:not(&:first-child) {
+            margin-top: 18px;
+        }
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+    }
+}
+
+::ng-deep td-feature-grid table.section {
+    border-radius: 0;
+    @include section-width($offset: -2px);
+}
+
+::ng-deep td-feature-grid:first-child table.section {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+}
+
+::ng-deep td-feature-grid:last-child table.section {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+
+::ng-deep td-feature-grid .kpt-row-size-2 td-rich-text.kpt-illustrated {
+    height: $font-size-p2 * $line-height-p2 * 7 !important; // overrides style in td-feature-grid
+
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        height: $font-size-p2 * $line-height-p2 * 9 !important; // overrides style without media query
+    }
+}

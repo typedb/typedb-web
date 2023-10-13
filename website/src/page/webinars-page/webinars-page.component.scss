@@ -7,7 +7,7 @@
 }
 
 .wp-img {
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     border-radius: $border-radius;
 }
 
@@ -82,7 +82,7 @@
     padding: 24px;
 
     & + & {
-        border-top: 1px solid $color-vaticle-light-purple;
+        border-top: 1px solid $content-border-color;
     }
 
     @media (max-width: $media-max-width-mobile) {

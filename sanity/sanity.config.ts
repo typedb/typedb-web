@@ -1,13 +1,13 @@
 import "./styles.css";
 
 import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, PresentationIcon, SparklesIcon, ThListIcon } from "@sanity/icons";
-import { defineConfig, isDev, useCurrentUser, userHasRole } from "sanity";
+import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
-    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, introPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
+    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
@@ -37,8 +37,8 @@ export default defineConfig({
                 ])),
                 s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
-                    singletonListItem(s, introPageSchemaName, { title: "Introduction", icon: DocumentIcon }),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
+                    singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),

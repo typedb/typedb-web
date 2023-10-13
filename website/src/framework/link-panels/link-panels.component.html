@@ -14,13 +14,15 @@
           <td-rich-text [value]="panel.body" />
           <ng-container [ngSwitch]="ctaStrength">
             <div class="hide-mobile flex"></div>
-            <a *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</a>
+            <p *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
           </ng-container>
         </div>
       </a>
       <ng-template #panelWithoutIcon>
         <a
           class="card lc-card lc-card-cols-3 lc-card-compact"
+          [attr.role]="panel.button.comingSoon || !panel.button.link ? 'button' : undefined"
+          [attr.aria-disabled]="panel.button.comingSoon || !panel.button.link ? true : undefined"
           [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
           [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
           (mouseenter)="setPanelHovered(panel, true)"
@@ -45,7 +47,7 @@
       <h3>{{ panel.title }}</h3>
       <td-rich-text [value]="panel.body" />
       <div class="flex"></div>
-      <a class="link-tertiary">{{ panel.button.text }}</a>
+      <p class="link-tertiary">{{ panel.button.text }}</p>
     </a>
   </div>
 </ng-container>

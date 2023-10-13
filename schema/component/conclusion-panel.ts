@@ -12,11 +12,11 @@ import {
     titleField,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitle } from "../text";
+import { RichText, SanityBodyText, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
-export interface SanityConclusionPanel extends SanityTitle, SanityBodyText, SanityOptionalActions {
+export interface SanityConclusionPanel extends SanityTitleField, SanityBodyText, SanityOptionalActions {
     resourceListTitle: string;
     resources: SanityTextLink[];
 }

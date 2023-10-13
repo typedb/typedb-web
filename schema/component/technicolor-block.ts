@@ -1,11 +1,10 @@
 import { LinkButton } from "../button";
-import { SanityImageRef } from "../image";
-import { SanityDataset, SanityReference } from "../sanity-core";
+import { SanityIconField } from "../common-fields";
+import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, RichText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
-export interface SanityTechnicolorBlock extends SanityTitleBodyActions {
-    icon: SanityReference<SanityImageRef>;
+export interface SanityTechnicolorBlock extends SanityTitleBodyActions, SanityIconField {
     sectionId?: string;
 }
 

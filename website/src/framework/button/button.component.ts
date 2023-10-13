@@ -16,6 +16,10 @@ export class ButtonComponent {
 
     comingSoonPopupVisible = false;
 
+    get isDisabled(): boolean {
+        return this.linkButton?.comingSoon || !this.linkButton?.link;
+    }
+
     get linkButton(): LinkButton | undefined {
         return this.button instanceof LinkButton ? this.button : undefined;
     }

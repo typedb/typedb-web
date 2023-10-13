@@ -247,14 +247,16 @@ const splitPaneIllustrationSchema = defineType({
 
 export const illustrationFieldName = "illustration";
 
+export const illustrationFieldTargetTypes = [
+    { type: splitPaneIllustrationSchemaName }, { type: imageIllustrationSchemaName }, { type: videoEmbedSchemaName },
+    { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
+];
+
 export const illustrationField = defineField({
     name: illustrationFieldName,
     title: "Illustration",
     type: "reference",
-    to: [
-        { type: splitPaneIllustrationSchemaName }, { type: imageIllustrationSchemaName }, { type: videoEmbedSchemaName },
-        { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
-    ],
+    to: illustrationFieldTargetTypes,
     validation: (rule: ReferenceRule) => rule.required(),
 });
 
@@ -262,10 +264,7 @@ export const illustrationFieldOptional = defineField({
     name: illustrationFieldName,
     title: "Illustration (optional)",
     type: "reference",
-    to: [
-        { type: splitPaneIllustrationSchemaName }, { type: imageIllustrationSchemaName }, { type: videoEmbedSchemaName },
-        { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
-    ],
+    to: illustrationFieldTargetTypes,
 });
 
 export const illustrationSchemas = [imageIllustrationSchema, videoEmbedSchema, graphVisualisationSchema, splitPaneIllustrationSchema];

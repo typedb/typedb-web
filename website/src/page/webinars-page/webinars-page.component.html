@@ -10,7 +10,7 @@
         <div *ngIf="!primaryWebinar" class="wp-primary-placeholder"></div>
         <ng-container *ngIf="primaryWebinar">
           <td-aspect-ratio ratio="16:9">
-            <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" [alt]="" />
+            <img [src]="primaryWebinar.imageURL" class="wp-img wp-img-primary" alt="" />
           </td-aspect-ratio>
           <div class="wp-primary-webinar-summary">
             <h3 class="wp-webinar-title-container">
@@ -40,7 +40,7 @@
           <li *ngFor="let webinar of allWebinars" class="wp-webinar-list-item">
             <div class="wp-img-tertiary-container">
               <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
-                <img [src]="webinar.imageURL" class="wp-img" [alt]="" />
+                <img [src]="webinar.imageURL" class="wp-img" alt="" />
               </td-aspect-ratio>
               <h3 class="wp-webinar-title hide-gt-mobile">{{ webinar.title | plainText }}</h3>
             </div>

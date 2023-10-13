@@ -3,9 +3,9 @@ import { Illustration, illustrationField, illustrationFromSanity, SanityIllustra
 import { Link, linkSchemaName, SanityLink } from "../link";
 import { bodyFieldRichText, learnMoreLinkField, learnMoreLinkFieldName, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitle } from "../text";
+import { RichText, SanityBodyText, SanityTitleField } from "../text";
 
-export interface SanityContentTextPanel extends SanityTitle, SanityIllustrationField, SanityBodyText {
+export interface SanityContentTextPanel extends SanityTitleField, SanityIllustrationField, SanityBodyText {
     learnMoreLink?: SanityReference<SanityLink>;
 }
 

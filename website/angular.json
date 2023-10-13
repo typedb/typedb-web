@@ -29,7 +29,7 @@
                             "src/styles/styles.scss"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src/styles"]
+                            "includePaths": ["src/styles", "../common/src/styles"]
                         },
                         "scripts": ["./node_modules/cookieconsent/build/cookieconsent.min.js"],
                         "allowedCommonJsDependencies": [
