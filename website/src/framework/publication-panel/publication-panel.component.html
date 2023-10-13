@@ -3,7 +3,7 @@
     <div *ngIf="item.title">
       <h3>{{ item.title }}</h3>
     </div>
-    <div class="pp-content-row-body">
+    <div class="pp-content-row-body" *ngIf="item.item1 || item.item2">
       <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
       <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
     </div>
