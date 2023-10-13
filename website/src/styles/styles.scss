@@ -200,6 +200,16 @@ code,
     line-height: $line-height-code;
 }
 
+p code,
+p .text-code {
+    hyphens: none;
+    color: $color-vaticle-secondary-pink;
+    background: $color-vaticle-black-purple;
+    border-radius: $border-radius;
+    border: 1px solid $content-border-color;
+    padding: 6px 6px 3px;
+}
+
 .narrow-section {
     max-width: 870px;
 }

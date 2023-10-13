@@ -54,7 +54,7 @@ function isPortableTextSpan(block: SanityPortableText[0]["children"][0]): block 
 
 export interface RichTextSpan {
     text: string;
-    marks: string[];
+    marks: ("em" | "strong" | "underline" | "code" | string)[];
     level?: number;
 }
 
