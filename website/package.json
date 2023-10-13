@@ -44,6 +44,7 @@
     "@pixi/text": "6.5.9",
     "@pixi/ticker": "6.5.9",
     "@pixi/utils": "6.5.9",
+    "@portabletext/to-html": "2.0.5",
     "@sanity/image-url": "1.0.2",
     "@scullyio/ng-lib": "2.1.41",
     "@scullyio/scully": "2.1.41",

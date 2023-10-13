@@ -24,9 +24,9 @@ import { LinkPanel, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, KeyPointWithIcon, SanityKeyPoint, SanityKeyPointWithIcon } from "../key-point";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import {
-    ParagraphWithHighlights,
-    RichText,
-    SanityBodyText,
+    BodyTextField,
+    ParagraphWithHighlights, PortableText,
+    SanityBodyTextField,
     SanityTitleField,
     SanityTitleWithHighlights,
     TitleAndBody,
@@ -58,7 +58,7 @@ export interface SanitySolutionPage extends SanityPage {
     [sections.furtherReading.id]: SanityFurtherReadingSection;
 }
 
-interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyText, SanityVisibleToggle {
+interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyTextField, SanityVisibleToggle {
     videoURL: string;
     links: SanityLinkPanel[];
 }
@@ -72,7 +72,7 @@ interface SanitySolutionSection extends SanityKeyPointsSection {
     keyPoints: SanityKeyPointWithIcon[];
 }
 
-interface SanityExampleTab extends SanityTitleField, SanityBodyText {
+interface SanityExampleTab extends SanityTitleField, SanityBodyTextField {
     videoURL: string;
     learnMoreLink: SanityReference<SanityLink>;
 }
@@ -159,7 +159,7 @@ class KeyPointsSection extends TechnicolorBlock {
         const { data, db, title, iconURL } = props;
         return new KeyPointsSection({
             title: title,
-            body: RichText.fromSanity(data.body!),
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: iconURL,
             keyPoints: data.keyPoints.map((x) => new KeyPoint(x)),
@@ -185,7 +185,7 @@ class SolutionSection extends TechnicolorBlock {
                     { text: " Solution", highlight: false },
                 ],
             }),
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/app-window-wrench.svg",
             keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
@@ -193,16 +193,16 @@ class SolutionSection extends TechnicolorBlock {
     }
 }
 
-class ExampleTab {
+class ExampleTab implements Partial<BodyTextField> {
     readonly title: string;
     readonly videoURL: string;
-    readonly body?: RichText;
+    readonly body?: PortableText;
     readonly learnMoreLink?: Link;
 
     constructor(data: SanityExampleTab, db: SanityDataset) {
         this.title = data.title;
         this.videoURL = data.videoURL;
-        this.body = RichText.fromSanity(data.body!);
+        this.body = data.body;
         this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
     }
 }
@@ -220,7 +220,7 @@ class ExampleSection extends TechnicolorBlock {
     static fromSanityExampleSection(data: SanityExampleSection, db: SanityDataset) {
         return new ExampleSection({
             title: new ParagraphWithHighlights({ spans: [] }),
-            body: RichText.fromSanity(data.body!),
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/globe-code.svg",
             exampleTabs: data.exampleTabs.map((x) => new ExampleTab(x, db)),

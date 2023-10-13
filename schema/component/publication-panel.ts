@@ -2,7 +2,7 @@ import { BlockContentIcon, InlineIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { Illustration, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import {
-    isVisibleField, nameField, nameFieldOptional,
+    isVisibleField, nameFieldOptional,
     optionalActionsField,
     requiredRule, SanityIconField,
     SanityVisibleToggle, sectionIconFieldOptional,
@@ -10,13 +10,13 @@ import {
     titleBodyIconFields, titleFieldOptional,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityPortableText, SanityTitleField } from "../text";
+import { PortableText, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { FeatureGrid, featureGridSchemaName, SanityFeatureGrid } from "./feature-grid";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
 export interface SanityPublicationTextBlock extends SanityDocument { // required as we can't mix primitive + object types in Sanity union types
-    content: SanityPortableText;
+    content: PortableText;
 }
 
 export type SanityPublicationContentRowItem = SanityPublicationTextBlock | SanityIllustration;
@@ -40,15 +40,11 @@ export interface SanityPublicationSection extends SanityTechnicolorBlock, Sanity
     panelItems: SanityPublicationItem[];
 }
 
-export type PublicationContentRowItem = RichText | Illustration;
-
-export function isRichText(item: PublicationContentRowItem): item is RichText {
-    return "paragraphs" in item;
-}
+export type PublicationContentRowItem = PortableText | Illustration;
 
 function contentRowItemFromSanity(data: SanityReference<SanityPublicationContentRowItem>, db: SanityDataset): PublicationContentRowItem {
     const resolvedData = db.resolveRef(data);
-    if (isTextBlock(resolvedData)) return RichText.fromSanity(resolvedData.content);
+    if (isTextBlock(resolvedData)) return resolvedData.content;
     else return illustrationFromSanity(resolvedData, db);
 }
 

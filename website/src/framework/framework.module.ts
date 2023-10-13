@@ -54,10 +54,10 @@ import { SnackbarComponent } from "./snackbar/snackbar.component";
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
+import { HtmlPipe } from "./text/html.pipe";
 import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pipe";
 import { PlainTextPipe } from "./text/plain-text.pipe";
-import { RichTextComponent } from "./text/rich-text.component";
-import { RichTextPipe } from "./text/rich-text.pipe";
+import { PortableTextPipe } from "./text/portable-text.pipe";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -89,6 +89,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureTableCellComponent,
         GraphVisualisationComponent,
         HeadingWithHighlightsComponent,
+        HtmlPipe,
         IllustrationComponent,
         InfoButtonComponent,
         LinkDirective,
@@ -108,8 +109,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
-        RichTextComponent,
-        RichTextPipe,
+        PortableTextPipe,
         ScrollShadowComponent,
         ServicesTableComponent,
         SnackbarComponent,
@@ -167,8 +167,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PublicationPanelComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,
-        RichTextComponent,
-        RichTextPipe,
+        PortableTextPipe,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,

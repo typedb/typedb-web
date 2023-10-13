@@ -8,13 +8,13 @@ import {
     sectionIdField,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { ParagraphWithHighlights, RichText, SanityBodyText } from "../text";
+import { ParagraphWithHighlights, SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
 import { LinkPanel, SanityLinkPanel } from "./link-panel";
 import { TechnicolorBlock } from "./technicolor-block";
 
 // TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
-export interface SanityCoreSection extends SanityBodyText, SanityOptionalActions, SanityVisibleToggle {}
+export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
 
 export interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
@@ -37,7 +37,7 @@ export class FurtherReadingSection extends TechnicolorBlock {
                     { text: " Learning", highlight: true },
                 ],
             }),
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "/assets/icon/section/book-open.svg",
             links: data.links.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),

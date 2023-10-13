@@ -1,24 +1,24 @@
 import { defineField, defineType } from "@sanity/types";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { Link, linkSchemaName, SanityLink } from "../link";
-import { bodyFieldRichText, learnMoreLinkField, learnMoreLinkFieldName, titleField } from "../common-fields";
+import { bodyFieldRichText, learnMoreLinkFieldName, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitleField } from "../text";
+import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 
-export interface SanityContentTextPanel extends SanityTitleField, SanityIllustrationField, SanityBodyText {
+export interface SanityContentTextPanel extends SanityTitleField, SanityIllustrationField, SanityBodyTextField {
     learnMoreLink?: SanityReference<SanityLink>;
 }
 
-export class ContentTextPanel {
+export class ContentTextPanel implements BodyTextField {
     readonly title: string;
-    readonly body: RichText;
+    readonly body: PortableText;
     readonly illustration: Illustration;
     readonly learnMoreLink?: Link;
 
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
         this.title = data.title;
         this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
-        this.body = RichText.fromSanity(data.body!);
+        this.body = data.body;
         this.learnMoreLink = data.learnMoreLink ? Link.fromSanityLinkRef(data.learnMoreLink, db) : undefined;
     }
 }

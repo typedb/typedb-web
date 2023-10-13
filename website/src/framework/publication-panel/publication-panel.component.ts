@@ -1,11 +1,9 @@
-import { Component, HostBinding, Input } from "@angular/core";
-
+import { Component, Input } from "@angular/core";
 import {
-    Illustration,
+    Illustration, PortableText,
     PublicationContentRow,
     PublicationContentRowItem,
     PublicationPanelItem,
-    RichText,
 } from "typedb-web-schema";
 
 @Component({
@@ -21,11 +19,11 @@ export class PublicationPanelComponent {
         return item instanceof PublicationContentRow;
     }
 
-    isRichText(item: PublicationContentRowItem): item is RichText {
-        return item instanceof RichText;
+    isPortableText(item: PublicationContentRowItem): item is PortableText {
+        return "slice" in item;
     }
 
     isIllustration(item: PublicationContentRowItem): item is Illustration {
-        return item && !this.isRichText(item);
+        return item && !this.isPortableText(item);
     }
 }

@@ -5,7 +5,7 @@ import { collapsibleOptions, pageTitleField, titleFieldWithHighlights } from "..
 import { hubspotFormIDField } from "../form";
 import {
     ParagraphWithHighlights,
-    SanityPortableText,
+    PortableText,
     SanityTitleAndBody,
     TitleAndBody,
     TitleBodyActions,
@@ -15,7 +15,7 @@ import { SanityDataset } from "../sanity-core";
 import { metaTagsField } from "./meta-tags";
 
 export interface SanityRequestTechTalkPage extends SanityPage {
-    introTitle: SanityPortableText;
+    introTitle: PortableText;
     details: SanityTitleAndBody;
     hubspotFormID: string;
 }

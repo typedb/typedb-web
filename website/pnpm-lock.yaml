@@ -86,6 +86,9 @@ dependencies:
   '@pixi/utils':
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/settings@6.5.9)
+  '@portabletext/to-html':
+    specifier: 2.0.5
+    version: 2.0.5
   '@sanity/image-url':
     specifier: 1.0.2
     version: 1.0.2
@@ -3992,6 +3995,26 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@portabletext/to-html@2.0.5:
+    resolution: {integrity: sha512-KkUI6iBuKSzclyKYnwGLiE0asxvW1ZcFmZ7wBslW+nulw78qwpTl3wuK47zf+y0XX7g52d5gw5WlYBAhuSEjSg==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+    dependencies:
+      '@portabletext/toolkit': 2.0.10
+      '@portabletext/types': 2.0.8
+    dev: false
+
+  /@portabletext/toolkit@2.0.10:
+    resolution: {integrity: sha512-d+F9JvpnMEx7kd6saZ9OWA4U1Iwuokh6TOht7iqkfWU+0ivh9yM4v+b0Kpu+iiPcElicoabhtXol+yTvWJ1jDw==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+    dependencies:
+      '@portabletext/types': 2.0.8
+    dev: false
+
+  /@portabletext/types@2.0.8:
+    resolution: {integrity: sha512-eiq9/kMX2bYezS4/kLFk3xNnruCFjCDdw6aYEv5ECHVKkYROiuLd3/AsP5d7tWF3+kPPy6tB0Wq8aqDG/URHGA==}
+    engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
+    dev: false
 
   /@protobufjs/aspromise@1.1.2:
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}

@@ -9,14 +9,14 @@ import {
 import { hubspotFormIDField } from "./form";
 import { Link } from "./link";
 import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
-import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
+import { ParagraphWithHighlights, PortableText } from "./text";
 import { PropsOf } from "./util";
 import { MetaTags, metaTagsField, SanityMetaTags } from "./page/meta-tags";
 
 export interface SanityWhitePaper extends SanityDocument {
-    title: SanityPortableText;
+    title: PortableText;
     slug: Slug;
-    description: SanityPortableText;
+    description: PortableText;
     file: SanityFile;
     tags: string[];
     portraitImage: SanityImage;
@@ -29,7 +29,7 @@ export interface SanityWhitePaper extends SanityDocument {
 export class WhitePaper {
     readonly title: ParagraphWithHighlights;
     readonly slug: string;
-    readonly description: RichText;
+    readonly description: PortableText;
     readonly fileURL: string;
     readonly fileName?: string;
     readonly tags: string[];
@@ -57,7 +57,7 @@ export class WhitePaper {
         return new WhitePaper({
             title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
-            description: RichText.fromSanity(data.description),
+            description: data.description,
             fileURL: db.resolveRef(data.file.asset).url,
             fileName: db.resolveRef(data.file.asset).originalFilename,
             tags: data.tags,

@@ -7,8 +7,7 @@ import {
     GraphVisualisation,
     Illustration,
     ImageIllustration,
-    PolyglotSnippet,
-    RichText,
+    PolyglotSnippet, PortableText,
     SplitPaneIllustration,
     VideoEmbed,
 } from "typedb-web-schema";
@@ -117,5 +116,5 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
 })
 export class CaptionedIllustrationComponent {
     @Input() illustration!: Illustration;
-    @Input() caption?: RichText;
+    @Input() caption?: PortableText;
 }
