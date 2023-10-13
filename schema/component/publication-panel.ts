@@ -25,15 +25,15 @@ function isTextBlock(item: SanityPublicationContentRowItem): item is SanityPubli
     return item._type === publicationTextBlockSchemaName;
 }
 
-export interface SanityPublicationContentRow extends Partial<SanityTitleField & SanityIconField> {
-    item1: SanityReference<SanityPublicationContentRowItem>;
+export interface SanityPublicationContentRow extends SanityDocument, Partial<SanityTitleField & SanityIconField> {
+    item1?: SanityReference<SanityPublicationContentRowItem>;
     item2?: SanityReference<SanityPublicationContentRowItem>;
 }
 
 export type SanityPublicationItem = SanityPublicationContentRow | SanityFeatureGrid;
 
 function isContentRow(item: SanityPublicationItem): item is SanityPublicationContentRow {
-    return "item1" in item;
+    return item._type === publicationContentRowSchemaName;
 }
 
 export interface SanityPublicationSection extends SanityTechnicolorBlock, SanityVisibleToggle {
@@ -55,7 +55,7 @@ function contentRowItemFromSanity(data: SanityReference<SanityPublicationContent
 export class PublicationContentRow {
     readonly title?: string;
     readonly iconURL?: string;
-    readonly item1: PublicationContentRowItem;
+    readonly item1?: PublicationContentRowItem;
     readonly item2?: PublicationContentRowItem;
 
     constructor(props: PropsOf<PublicationContentRow>) {
@@ -69,7 +69,7 @@ export class PublicationContentRow {
         return new PublicationContentRow({
             title: data.title,
             iconURL: data.icon && db.resolveImageRef(data.icon).url,
-            item1: contentRowItemFromSanity(data.item1, db),
+            item1: data.item1 && contentRowItemFromSanity(data.item1, db),
             item2: data.item2 && contentRowItemFromSanity(data.item2, db),
         });
     }
@@ -139,7 +139,6 @@ const publicationContentRowSchema = defineType({
             title: "Left Side Item",
             type: "reference",
             to: [{ type: publicationTextBlockSchemaName }, ...illustrationFieldTargetTypes],
-            validation: requiredRule,
         }),
         defineField({
             name: "item2",
