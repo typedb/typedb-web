@@ -43,6 +43,8 @@ $number-of-lines-mobile: 10;
     }
 
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        flex-direction: column;
+        gap: 16px;
         margin-top: 18px;
     }
 
@@ -68,7 +70,7 @@ $number-of-lines-mobile: 10;
     border-bottom-right-radius: $border-radius;
 }
 
-::ng-deep td-feature-grid .kpt-row-size-2 td-rich-text {
+::ng-deep td-feature-grid .kpt-row-size-2 td-rich-text.kpt-illustrated {
     height: $font-size-p2 * $line-height-p2 * 7 !important; // overrides style in td-feature-grid
 
     @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
