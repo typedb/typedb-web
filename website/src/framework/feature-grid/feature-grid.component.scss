@@ -62,8 +62,8 @@
         }
     }
 
-    td > div > td-aspect-ratio,
-    td > div > td-illustration.cp-code-snippet {
+    &:not(.kpt-row-size-1) td > div > td-aspect-ratio,
+    &:not(.kpt-row-size-1) td > div > td-illustration.cp-code-snippet {
         margin-top: 28px !important;
 
         @media (max-width: $media-max-width-tablet) {
@@ -146,7 +146,12 @@
             }
         }
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media (max-width: $media-max-width-mobile) {
             flex-direction: column;
             gap: 8px;
         }
@@ -164,7 +169,7 @@
     }
 
     &.kpt-row-size-2 td-rich-text.kpt-illustrated {
-        height: $font-size-p2 * $line-height-p2 * 5;
+        height: $font-size-p2 * $line-height-p2 * 5 !important;
     }
 
     &.kpt-row-size-3 td-rich-text.kpt-illustrated {
@@ -192,7 +197,10 @@
     @media (max-width: $media-max-width-mobile) {
         &.kpt-row-size-2 td-rich-text,
         &.kpt-row-size-3 td-rich-text,
-        &.kpt-row-size-4 td-rich-text {
+        &.kpt-row-size-4 td-rich-text,
+        &.kpt-row-size-2 td-rich-text.kpt-illustrated,
+        &.kpt-row-size-3 td-rich-text.kpt-illustrated,
+        &.kpt-row-size-4 td-rich-text.kpt-illustrated {
             height: unset !important; // overrides important style in publication panel component
         }
     }
