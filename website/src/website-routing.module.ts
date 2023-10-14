@@ -43,6 +43,8 @@ const routes: Routes = [
     { path: "services", component: ServicesPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
 
+    { path: "introduction", redirectTo: "philosophy" },
+
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
 
