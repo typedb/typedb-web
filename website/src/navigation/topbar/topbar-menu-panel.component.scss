@@ -1,5 +1,5 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "sizes";
 
 :host {
     position: absolute;
@@ -8,7 +8,7 @@
 
 .mp-root {
     width: 100%;
-    border-top: 1px solid $color-vaticle-secondary-purple;
+    border-top: 1px solid $color-vaticle-secondary-deep-grey;
     box-shadow: 0 8px 30px rgba($color-vaticle-black-purple, 0.58);
     padding-left: 186px;
     display: flex;
@@ -19,7 +19,7 @@
     padding: 32px 40px;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-vaticle-light-purple;
+        border-left: 1px solid $content-border-color;
     }
 
     ul,
@@ -64,15 +64,16 @@
 .mp-column-title {
     color: $color-vaticle-white;
     padding-bottom: 8px;
-    border-bottom: 1px solid $color-vaticle-light-purple;
+    border-bottom: 1px solid $content-border-color;
     font-weight: $font-weight-semi-bold;
 }
 
-.mp-list-column-item-name {
+dt {
     color: $color-vaticle-white;
+    font-weight: $font-weight-regular;
 }
 
-.mp-list-column-description {
+dd {
     color: $color-vaticle-secondary-light-grey;
     margin-top: 4px;
     white-space: nowrap;
@@ -99,7 +100,7 @@ a {
 
 a:hover,
 a:focus {
-    .mp-list-column-item-name {
+    dt {
         color: $color-vaticle-green;
         text-decoration: underline;
     }

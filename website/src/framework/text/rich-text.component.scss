@@ -18,9 +18,12 @@ ul {
 }
 
 .rt-strong {
-    color: $color-vaticle-green;
+    font-weight: $font-weight-bold;
 }
 
 .rt-underline {
     text-decoration: underline;
+}
+
+.rt-code {
 }

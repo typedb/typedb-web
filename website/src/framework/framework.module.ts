@@ -46,6 +46,7 @@ import { OrganisationLogosComponent } from "./organisation-logos/organisation-lo
 import { PageBackgroundComponent } from "./page-background/page-background.component";
 import { PersonInfoComponent } from "./person-info/person-info.component";
 import { ProductTableComponent } from "./product-table/product-table.component";
+import { PublicationPanelComponent } from "./publication-panel/publication-panel.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
 import { TitleBodyActionsSectionComponent } from "./section/title-body-actions-section.component";
 import { ServicesTableComponent } from "./services-table/services-table.component";
@@ -106,6 +107,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PlainTextPipe,
         PolyglotSnippetComponent,
         ProductTableComponent,
+        PublicationPanelComponent,
         RichTextComponent,
         RichTextPipe,
         ScrollShadowComponent,
@@ -162,6 +164,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PlainTextPipe,
         PolyglotSnippetComponent,
         ProductTableComponent,
+        PublicationPanelComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,
         RichTextComponent,

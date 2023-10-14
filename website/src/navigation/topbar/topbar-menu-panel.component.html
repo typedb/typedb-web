@@ -30,7 +30,7 @@
 </div>
 
 <ng-template #linkContent let-item="item">
-  <dt class="mp-list-column-item-name">
+  <dt>
     <td-tooltip
       *ngIf="item.comingSoon"
       text="Coming soon!"
@@ -39,5 +39,5 @@
     <span>{{ item.title }}</span>
     <mat-icon *ngIf="item.link?.isForExternalDomain()" svgIcon="link" class="tb-external-link-icon" />
   </dt>
-  <dd class="text-aside mp-list-column-description">{{ item.description }}</dd>
+  <dd class="text-aside">{{ item.description }}</dd>
 </ng-template>

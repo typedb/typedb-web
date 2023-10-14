@@ -104,20 +104,9 @@ section,
 .section {
     position: relative;
     z-index: 1;
-    width: $section-width;
-    max-width: calc(100vw - 40px);
+    @include section-width($offset: 0px);
     margin-left: auto;
     margin-right: auto;
-
-    @media (max-width: $media-max-width-tablet) {
-        width: $section-width-tablet;
-        max-width: calc(100vw - $section-padding-tablet * 2);
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        width: $section-width-mobile;
-        max-width: calc(100vw - 24px);
-    }
 }
 
 h1 {
@@ -211,6 +200,16 @@ code,
     line-height: $line-height-code;
 }
 
+p code,
+p .text-code {
+    hyphens: none;
+    color: $color-vaticle-secondary-pink;
+    background: $color-vaticle-black-purple;
+    border-radius: $border-radius;
+    border: 1px solid $content-border-color;
+    padding: 6px 6px 3px;
+}
+
 .narrow-section {
     max-width: 870px;
 }
@@ -280,8 +279,8 @@ aside {
     }
 }
 
-a.link-tertiary,
-a.link-tertiary:visited {
+.link-tertiary,
+.link-tertiary:visited {
     color: $color-vaticle-white;
     font-weight: $font-weight-semi-bold;
 
@@ -336,24 +335,24 @@ table {
     background: $color-vaticle-purple;
     border-radius: $border-radius;
     border-collapse: collapse;
-    box-shadow: 0 0 0 1px $color-vaticle-light-purple;
+    box-shadow: 0 0 0 1px $content-border-color;
 
     thead + tbody,
     tr:not(:first-child) {
-        border-top: 1px solid $color-vaticle-light-purple;
+        border-top: 1px solid $content-border-color;
     }
 
     th,
     td {
         &:not(:first-child) {
-            border-left: 1px solid $color-vaticle-light-purple;
+            border-left: 1px solid $content-border-color;
         }
     }
 }
 
 hr {
     border: 0;
-    border-top: 1px solid $color-vaticle-light-purple;
+    border-top: 1px solid $content-border-color;
 }
 
 .page-section {
@@ -437,7 +436,7 @@ hr {
     &.hoverable:hover {
         border-color: $color-vaticle-green;
 
-        a.link-tertiary {
+        .link-tertiary {
             color: $color-vaticle-green;
             text-decoration: underline;
         }
@@ -471,7 +470,7 @@ select {
     padding: 0 8px;
     background-color: $color-vaticle-purple;
     color: $default-text-color;
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     caret-color: $default-text-color;
     border-radius: $border-radius;
     font-size: 16px;
@@ -505,7 +504,7 @@ textarea {
         top: 1px;
         bottom: 1px;
         right: 0;
-        border-left: 1px solid $color-vaticle-light-purple;
+        border-left: 1px solid $content-border-color;
         background: no-repeat center url("/assets/icon/chevron-down.svg");
         pointer-events: none;
     }
@@ -583,7 +582,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     width: 100%;
     background-color: $color-vaticle-purple;
     color: $default-text-color;
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     caret-color: $default-text-color;
     border-radius: $border-radius;
     font-size: 16px;
@@ -646,7 +645,7 @@ input[type="submit"].hs-button {
 
 .cc-window {
     background: $color-vaticle-purple;
-    border-top: 1px solid $color-vaticle-light-purple;
+    border-top: 1px solid $content-border-color;
     font-family: inherit;
     transition-duration: 150ms;
 

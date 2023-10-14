@@ -37,6 +37,7 @@ export { ContentTextPanel } from "./component/content-text-panel";
 export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
+export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
 export { Event, type SanityEvent, eventSchema, eventSchemaName } from "./event";
 export { EventDate, type SanityEventDate } from "./event-date";
@@ -60,7 +61,7 @@ export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } f
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
-export { IntroPage, IntroPageCoreSection, introPageSchemaName, type SanityIntroPage } from "./page/intro";
+export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";

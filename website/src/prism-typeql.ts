@@ -44,7 +44,7 @@ export function installPrismTypeQL() {
             alias: "number",
         },
         operator: {
-            pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|[|]|!=|>|<|>=|<=/,
+            pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
             alias: "operator",
         },
     };

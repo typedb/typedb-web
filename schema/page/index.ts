@@ -4,7 +4,7 @@ import { eventsPageSchemas } from "./events";
 import { featuresPageSchemas } from "./features";
 import { genericPageSchemas } from "./generic";
 import { homePageSchemas } from "./home";
-import { introPageSchemas } from "./intro";
+import { philosophyPageSchemas } from "./philosophy";
 import { requestTechTalkPageSchema } from "./request-tech-talk";
 import { servicesPageSchemas } from "./services";
 import { solutionPageSchemas } from "./solution";
@@ -20,7 +20,7 @@ export const pageSchemas = [
     ...genericPageSchemas,
     ...featuresPageSchemas,
     ...homePageSchemas,
-    ...introPageSchemas,
+    ...philosophyPageSchemas,
     ...servicesPageSchemas,
     ...solutionPageSchemas,
     ...supportPageSchemas,

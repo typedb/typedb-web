@@ -1,8 +1,7 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, SanityDocument, StringRule, TextRule } from "@sanity/types";
+import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { requiredRule, titleField } from "./common-fields";
-import { Link, SanityLink, textLinkSchema } from "./link";
-import { Document, SanityDataset, SanityReference } from "./sanity-core";
+import { Document } from "./sanity-core";
 import { PropsOf } from "./util";
 
 export const codeSnippetSchemaName = "codeSnippet";
@@ -36,6 +35,7 @@ export const languages = {
 export type Language = keyof typeof languages;
 
 export interface SanityCodeSnippet extends SanityDocument {
+    tabText?: string;
     language: Language;
     code: string;
 }
@@ -45,17 +45,23 @@ export interface SanityPolyglotSnippet extends SanityDocument {
 }
 
 export class CodeSnippet extends Document {
+    readonly tabText?: string;
     readonly language: Language;
     readonly code: string;
 
     constructor(data: PropsOf<CodeSnippet>) {
         super({ _id: data.id });
+        this.tabText = data.tabText;
         this.language = data.language;
         this.code = data.code;
     }
 
     static fromSanity(data: SanityCodeSnippet): CodeSnippet {
-        return new CodeSnippet(Object.assign(new Document(data), { language: data.language, code: data.code }));
+        return new CodeSnippet(Object.assign(new Document(data), {
+            tabText: data.tabText,
+            language: data.language,
+            code: data.code,
+        }));
     }
 }
 
@@ -87,7 +93,7 @@ export class PolyglotSnippet extends Document {
     }
 }
 
-const snippetTitleField = Object.assign({}, titleField, { title: "Description" });
+const snippetTitleField = Object.assign({}, titleField, { title: "Description", description: "Internal use only - not visible to users" });
 
 const languageField = defineField({
     name: "language",
@@ -116,6 +122,12 @@ const codeSnippetSchema = defineType({
     type: "document",
     fields: [
         snippetTitleField,
+        defineField({
+            name: "tabText",
+            title: "Tab Text",
+            description: "Only displayed within a polyglot snippet; defaults to language name",
+            type: "string",
+        }),
         languageField,
         codeField,
     ],

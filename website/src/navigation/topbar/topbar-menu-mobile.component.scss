@@ -1,5 +1,5 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "sizes";
 
 :host {
     width: 530px;
@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: $color-vaticle-purple;
-    border: 1px solid $color-vaticle-secondary-purple;
+    border: 1px solid $color-vaticle-secondary-deep-grey;
 
     @media (max-width: $media-max-width-mobile) {
         width: 100%;
@@ -84,7 +84,7 @@
 }
 
 .tm-secondary-area {
-    border-top: 1px solid $color-vaticle-light-purple;
+    border-top: 1px solid $content-border-color;
     padding: 24px 0 32px;
     display: flex;
     align-items: center;

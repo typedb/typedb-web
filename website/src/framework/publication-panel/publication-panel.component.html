@@ -1,0 +1,23 @@
+<ng-container *ngFor="let item of items">
+  <div *ngIf="isContentRow(item)" class="pp-content-row">
+    <div *ngIf="item.title">
+      <h3>{{ item.title }}</h3>
+    </div>
+    <div class="pp-content-row-body" *ngIf="item.item1 || item.item2">
+      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
+      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
+    </div>
+  </div>
+  <td-feature-grid
+    *ngIf="!isContentRow(item)"
+    [featureRows]="item.features"
+    [layout]="item.featureGridLayout"
+    [illustration]="item.illustration"
+  />
+</ng-container>
+
+<ng-template #contentRow let-item="item">
+  <div *ngIf="!item"></div>
+  <td-rich-text *ngIf="isRichText(item)" [value]="item" />
+  <td-illustration *ngIf="isIllustration(item)" [illustration]="item" />
+</ng-template>

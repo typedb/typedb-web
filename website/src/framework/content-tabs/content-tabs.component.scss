@@ -1,5 +1,5 @@
-@import "../../styles/colors";
-@import "../../styles/sizes";
+@import "colors";
+@import "sizes";
 
 .ft-root {
     display: flex;
@@ -7,7 +7,7 @@
 }
 
 .ft-tabs-container {
-    border: 1px solid $color-vaticle-light-purple;
+    border: 1px solid $content-border-color;
     border-bottom: none;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
@@ -35,7 +35,7 @@
     white-space: nowrap;
 
     &:not(:first-child) {
-        border-left: 1px solid $color-vaticle-light-purple;
+        border-left: 1px solid $content-border-color;
     }
 
     @media (hover: hover) {
