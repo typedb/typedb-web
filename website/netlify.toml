@@ -84,6 +84,3 @@ path = "/api/webinars/register"
     # fixing an issue where a Netlify header would impact SEO score (https://github.com/netlify/netlify-plugin-lighthouse/issues/593).
     # Despite the name, it doesn't actually fail deploys, unless the 'threshold' option is also set.
     fail_deploy_on_score_thresholds = "true"
-
-    [context.production.plugins.inputs.settings]
-      preset = "desktop"
