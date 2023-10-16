@@ -2,7 +2,7 @@
   <div class="article-content article-content-no-planet">
     <section *ngIf="site$ | async as site" class="page-section bp-title-section">
       <a tdLink="/blog"><td-heading-with-highlights [value]="site.name | paragraphWithHighlights" level="h1" /></a>
-      <td-rich-text [value]="site.description | PortableTextPipe" class="narrow-section subtitle-l" level="p1" />
+      <p class="narrow-section subtitle-l text-p1">{{ site.description }}</p>
     </section>
 
     <div class="section-background-solid subsection-margin bp-blog-list">

@@ -4,21 +4,41 @@ import {
     bodyFieldRichText,
     isVisibleField,
     linkPanelsField,
-    SanityVisibleToggle,
-    sectionIdField,
+    SanityVisibleToggle, sectionIconField,
+    sectionIdField, titleFieldWithHighlights,
 } from "../common-fields";
+import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
 import { LinkPanel, SanityLinkPanel } from "./link-panel";
-import { TechnicolorBlock } from "./technicolor-block";
+import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
 // TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
 export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
 
+export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
+
 export interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
     sectionId?: string;
+}
+
+export class TitleBodyIllustrationSection extends TechnicolorBlock {
+    readonly illustration: Illustration;
+
+    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
+        super(props);
+        this.illustration = props.illustration;
+    }
+
+    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
+        return new TitleBodyIllustrationSection(
+            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+                illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
+            })
+        );
+    }
 }
 
 export class FurtherReadingSection extends TechnicolorBlock {
@@ -46,11 +66,29 @@ export class FurtherReadingSection extends TechnicolorBlock {
     }
 }
 
+export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
+
 export const furtherReadingSectionSchemaName = "furtherReadingSection";
 
-export const furtherReadingSectionSchema = defineType({
+const titleBodyIllustrationSectionSchema = defineType({
+    name: titleBodyIllustrationSectionSchemaName,
+    title: "Title, Body & Illustration",
+    type: "document",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        sectionIdField,
+        illustrationField,
+        isVisibleField,
+    ],
+});
+
+const furtherReadingSectionSchema = defineType({
     name: furtherReadingSectionSchemaName,
     title: `Further Reading Section`,
     type: "object",
     fields: [bodyFieldRichText, linkPanelsField, sectionIdField, isVisibleField],
 });
+
+export const pageSectionSchemas = [furtherReadingSectionSchema, titleBodyIllustrationSectionSchema];

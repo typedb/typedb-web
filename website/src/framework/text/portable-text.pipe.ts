@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+
 import { PortableText } from "typedb-web-schema";
 
 @Pipe({ name: "portableText" })

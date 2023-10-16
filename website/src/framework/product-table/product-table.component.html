@@ -3,10 +3,10 @@
     <td *ngFor="let panel of panels">
       <div class="pp-cell-content">
         <h3>{{ panel.title }}</h3>
-        <td-rich-text [value]="panel.body" class="pp-body-text" />
+        <div [innerHtml]="panel.body | html" class="pp-body-text"></div>
         <div class="flex"></div>
         <hr />
-        <td-rich-text [value]="panel.secondaryBody" />
+        <div [innerHtml]="panel.secondaryBody | html"></div>
       </div>
     </td>
   </tr>
@@ -22,10 +22,10 @@
       <td>
         <div class="pp-cell-content">
           <h3>{{ panel.title }}</h3>
-          <td-rich-text [value]="panel.body" class="pp-body-text" />
+          <div [innerHtml]="panel.body | html" class="pp-body-text"></div>
           <div class="flex"></div>
           <hr />
-          <td-rich-text [value]="panel.secondaryBody" />
+          <div [innerHtml]="panel.secondaryBody | html"></div>
         </div>
       </td>
     </tr>

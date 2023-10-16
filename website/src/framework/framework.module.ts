@@ -147,6 +147,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureGridComponent,
         FeatureTableComponent,
         HeadingWithHighlightsComponent,
+        HtmlPipe,
         IllustrationComponent,
         KeyPointPanels2x2Component,
         KeyPointTableComponent,

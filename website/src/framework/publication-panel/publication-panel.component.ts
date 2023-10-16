@@ -1,6 +1,8 @@
 import { Component, Input } from "@angular/core";
+
 import {
-    Illustration, PortableText,
+    Illustration,
+    PortableText,
     PublicationContentRow,
     PublicationContentRowItem,
     PublicationPanelItem,

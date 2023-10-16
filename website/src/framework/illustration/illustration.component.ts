@@ -7,7 +7,8 @@ import {
     GraphVisualisation,
     Illustration,
     ImageIllustration,
-    PolyglotSnippet, PortableText,
+    PolyglotSnippet,
+    PortableText,
     SplitPaneIllustration,
     VideoEmbed,
 } from "typedb-web-schema";
