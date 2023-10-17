@@ -57,7 +57,6 @@ import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimoni
 import { HtmlPipe } from "./text/html.pipe";
 import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pipe";
 import { PlainTextPipe } from "./text/plain-text.pipe";
-import { PortableTextPipe } from "./text/portable-text.pipe";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -109,7 +108,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
-        PortableTextPipe,
         ScrollShadowComponent,
         ServicesTableComponent,
         SnackbarComponent,
@@ -168,7 +166,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         PublicationPanelComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,
-        PortableTextPipe,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
