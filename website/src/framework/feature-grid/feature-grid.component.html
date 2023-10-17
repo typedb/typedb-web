@@ -8,7 +8,7 @@
             <h3>{{ feature.title }}</h3>
             <td-tag-chips [tags]="feature.tags" />
           </div>
-          <div *ngIf="feature.body" [innerHtml]="feature.body" class="kpt-feature-body"></div>
+          <div *ngIf="feature.body" [innerHtml]="feature.body | html" class="kpt-feature-body"></div>
         </div>
 
         <div *ngIf="feature.links?.length" class="kpt-links-section">

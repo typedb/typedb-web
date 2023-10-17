@@ -1,5 +1,5 @@
 <section [class]="sectionClasses">
   <td-heading-with-highlights [value]="title" level="h1" />
-  <div *ngIf="body" [innerHtml]="body" class="narrow-section subtitle-l"></div>
+  <div *ngIf="body" [innerHtml]="body | html" class="narrow-section subtitle-l text-p1"></div>
   <td-actions [actions]="actions" />
 </section>
