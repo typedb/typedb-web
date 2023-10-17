@@ -1,15 +1,9 @@
 import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { SanityTitleBodyIllustrationSection, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../component/page-section";
 import { SanityDataset } from "../sanity-core";
-import {
-    SanityTitleBodyActions,
-    SanityTitleBodyIllustrationSection,
-    TitleBodyActions,
-    titleBodyActionsSectionSchemaName,
-    TitleBodyIllustrationSection,
-    titleBodyIllustrationSectionSchemaName,
-} from "../text";
+import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 

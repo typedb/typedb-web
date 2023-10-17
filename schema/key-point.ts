@@ -1,13 +1,10 @@
-import { defineField, defineType, PortableTextTextBlock } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
-import { RichText } from "./text";
+import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "./text";
 
-export interface SanityKeyPoint {
-    title: string;
-    body: PortableTextTextBlock[];
-}
+export type SanityKeyPoint = SanityTitleField & SanityBodyTextField;
 
 export interface SanityKeyPointWithIcon extends SanityKeyPoint {
     icon: SanityReference<SanityImageRef>;
@@ -17,13 +14,13 @@ export interface SanityServicesKeyPoint extends SanityKeyPointWithIcon {
     checklist: string[];
 }
 
-export class KeyPoint {
+export class KeyPoint implements BodyTextField {
     readonly title: string;
-    readonly body: RichText;
+    readonly body: PortableText;
 
     constructor(data: SanityKeyPoint) {
         this.title = data.title;
-        this.body = RichText.fromSanity(data.body);
+        this.body = data.body;
     }
 }
 

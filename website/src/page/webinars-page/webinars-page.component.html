@@ -22,7 +22,7 @@
               </time>
             </h3>
             <div class="wp-webinar-text-container">
-              <td-rich-text class="wp-webinar-description" [value]="primaryWebinar.description" />
+              <div class="wp-webinar-description" [innerHtml]="primaryWebinar.description | html"></div>
               <td-button [button]="primaryWebinar.registrationButton()" />
             </div>
           </div>

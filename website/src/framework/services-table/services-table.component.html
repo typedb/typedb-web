@@ -6,7 +6,7 @@
     <div class="st-cell-text">
       <div class="st-title-description">
         <h3>{{ keyPoint.title }}</h3>
-        <td-rich-text [value]="keyPoint.body" />
+        <div [innerHtml]="keyPoint.body | html"></div>
       </div>
       <ul
         *ngIf="keyPoint.checklist.length"

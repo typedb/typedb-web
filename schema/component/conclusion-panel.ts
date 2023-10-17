@@ -12,11 +12,11 @@ import {
     titleField,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { RichText, SanityBodyText, SanityTitleField } from "../text";
+import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
-export interface SanityConclusionPanel extends SanityTitleField, SanityBodyText, SanityOptionalActions {
+export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextField, SanityOptionalActions {
     resourceListTitle: string;
     resources: SanityTextLink[];
 }
@@ -25,9 +25,9 @@ export interface SanityConclusionSection extends SanityTechnicolorBlock, SanityV
     panel: SanityConclusionPanel;
 }
 
-export class ConclusionPanel {
+export class ConclusionPanel implements Partial<BodyTextField> {
     readonly title: string;
-    readonly body?: RichText;
+    readonly body?: PortableText;
     readonly actions?: LinkButton[];
     readonly resourceListTitle: string;
     readonly resources: TextLink[];
@@ -43,7 +43,7 @@ export class ConclusionPanel {
     static fromSanity(data: SanityConclusionPanel, db: SanityDataset): ConclusionPanel {
         return new ConclusionPanel({
             title: data.title,
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
             resources: data.resources.map((x) => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],

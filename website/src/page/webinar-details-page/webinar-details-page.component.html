@@ -33,7 +33,7 @@
           <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
         </div>
         <div>
-          <td-rich-text [value]="webinar.description" />
+          <div [innerHtml]="webinar.description | html"></div>
           <ul class="wd-speakers subsection-margin">
             <li *ngFor="let speaker of webinar.speakers">
               <td-person-info [person]="speaker" />

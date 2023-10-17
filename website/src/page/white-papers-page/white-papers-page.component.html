@@ -15,7 +15,7 @@
         </td-aspect-ratio>
         <div class="wp-primary-whitepaper-summary">
           <h2 class="wp-whitepaper-title">{{ page.featuredWhitePaper.title | plainText }}</h2>
-          <td-rich-text class="wp-primary-whitepaper-description" [value]="page.featuredWhitePaper.description" />
+          <div class="wp-primary-whitepaper-description" [innerHtml]="page.featuredWhitePaper.description | html"></div>
           <div class="flex"></div>
           <td-button [button]="accessResourceButton(page.featuredWhitePaper, 'primary', 'Read Now')"></td-button>
         </div>
@@ -30,7 +30,7 @@
               <h3 class="wp-whitepaper-title wp-grid-item-title">{{ whitePaper.title | plainText }}</h3>
             </div>
           </div>
-          <td-rich-text class="wp-grid-item-description" [value]="whitePaper.description" />
+          <div class="wp-grid-item-description" [innerHtml]="whitePaper.description | html"></div>
           <td-button [button]="accessResourceButton(whitePaper, 'secondary', 'Read')" size="small" buttonWidth="100%" />
         </div>
       </div>
