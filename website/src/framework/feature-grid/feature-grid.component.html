@@ -1,52 +1,46 @@
-<table class="section kpt-table" [ngClass]="'kpt-row-size-' + columnIndexes.length">
-  <tr *ngFor="let featureRow of featureRows">
-    <td *ngFor="let idx of columnIndexes">
-      <div *ngIf="featureRow[idx] as feature" class="kpt-cell-content">
-        <div>
-          <div *ngIf="feature.title" class="kpt-feature-title-section">
-            <img *ngIf="feature.iconURL" [src]="feature.iconURL" alt="" />
-            <h3>{{ feature.title }}</h3>
-            <td-tag-chips [tags]="feature.tags" />
-          </div>
-          <td-rich-text *ngIf="feature.body" [value]="feature.body" />
-        </div>
+<div class="section card-appearance fg-grid" [ngClass]="'fg-row-size-' + columnIndexes.length">
+  <div *ngFor="let feature of featureRows.flat()" class="fg-grid-item card-padding">
+    <div *ngIf="feature.title" class="fg-feature-title-section">
+      <img *ngIf="feature.iconURL" [src]="feature.iconURL" alt="" />
+      <h3>{{ feature.title }}</h3>
+      <td-tag-chips [tags]="feature.tags" />
+    </div>
 
-        <div *ngIf="feature.links?.length" class="kpt-links-section">
-          <a *ngFor="let link of feature.links" class="link-tertiary" [tdLink]="link">{{ link.text }}</a>
-        </div>
+    <td-rich-text *ngIf="feature.body" [value]="feature.body" />
 
-        <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
-          <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
-        </td-aspect-ratio>
-        <div *ngIf="hasShortCodeSnippet(feature)" class="kpt-code-short-container">
-          <pre
-            class="kpt-code-short"
-            [class.kpt-blur]="feature.isIllustrationBlurred"
-          ><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
-          <button
-            *ngIf="!feature.isIllustrationBlurred"
-            class="kpt-copy-button"
-            title="Copy to clipboard"
-            (click)="writeToClipboard($event, $any(feature.illustration).code)"
-          >
-            <div class="kpt-copy-icon"></div>
-            <span class="kpt-copy-toast">Copied!</span>
-          </button>
-        </div>
-        <td-illustration
-          class="cp-code-snippet cp-code-snippet-short"
-          *ngIf="hasCodeSnippetIllustration(feature)"
-          [illustration]="$any(feature.illustration)"
-          [isBlurred]="feature.isIllustrationBlurred"
-        />
-      </div>
-    </td>
-  </tr>
-  <tr *ngIf="illustration" class="kpt-illustration-row">
-    <td [attr.colspan]="columnIndexes.length">
-      <td-aspect-ratio ratio="16:9">
-        <td-illustration [illustration]="illustration" />
-      </td-aspect-ratio>
-    </td>
-  </tr>
-</table>
+    <div *ngIf="feature.links?.length" class="fg-links-section">
+      <a *ngFor="let link of feature.links" class="link-tertiary" [tdLink]="link">{{ link.text }}</a>
+    </div>
+
+    <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
+      <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
+    </td-aspect-ratio>
+    <div *ngIf="hasShortCodeSnippet(feature)" class="fg-code-short-container">
+      <pre
+        class="fg-code-short"
+        [class.fg-blur]="feature.isIllustrationBlurred"
+      ><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
+      <button
+        *ngIf="!feature.isIllustrationBlurred"
+        class="fg-copy-button"
+        title="Copy to clipboard"
+        (click)="writeToClipboard($event, $any(feature.illustration).code)"
+      >
+        <div class="fg-copy-icon"></div>
+        <span class="fg-copy-toast">Copied!</span>
+      </button>
+    </div>
+    <td-illustration
+      class="fg-code-snippet fg-code-snippet-short"
+      *ngIf="hasCodeSnippetIllustration(feature)"
+      [illustration]="$any(feature.illustration)"
+      [isBlurred]="feature.isIllustrationBlurred"
+    />
+  </div>
+
+  <div *ngIf="illustration" class="fg-illustration-row card-padding">
+    <td-aspect-ratio ratio="16:9">
+      <td-illustration [illustration]="illustration" />
+    </td-aspect-ratio>
+  </div>
+</div>

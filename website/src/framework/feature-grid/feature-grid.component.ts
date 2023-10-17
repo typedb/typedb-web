@@ -50,10 +50,6 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
         return feature.illustration instanceof CodeSnippetShort;
     }
 
-    hasAnyIllustration(feature: FeatureGridCell) {
-        return this.hasMediaIllustration(feature) || this.hasCodeSnippetIllustration(feature);
-    }
-
     writeToClipboard(ev: MouseEvent, code: string): void {
         const el = ev.currentTarget as HTMLButtonElement;
         window.navigator.clipboard.writeText(code).then(
