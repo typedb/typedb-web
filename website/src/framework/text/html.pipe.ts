@@ -10,7 +10,7 @@ export class HtmlPipe implements PipeTransform {
         const element = new DOMParser().parseFromString(initialHtmlString, "text/html");
         const anchorEls = element.getElementsByTagName("a");
         for (const i in anchorEls) {
-            if (!anchorEls.hasOwnProperty(i)) continue;
+            if (!Object.hasOwn(anchorEls, i)) continue;
             const anchorEl = anchorEls[i];
             if (!anchorEl.href.startsWith(window.location.origin)) {
                 anchorEl.target = "_blank";
