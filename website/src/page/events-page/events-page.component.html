@@ -27,7 +27,7 @@
             <span>{{ page.featuredEvent.venue }}</span>
           </h3>
           <div class="ep-event-text-container">
-            <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
+            <div class="ep-event-description" [innerHtml]="page.featuredEvent.description | html"></div>
             <td-button [button]="page.featuredEvent.registrationButton()" />
           </div>
         </div>

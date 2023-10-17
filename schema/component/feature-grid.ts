@@ -1,12 +1,12 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityPortableText } from "../text";
+import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
@@ -25,7 +25,7 @@ export interface SanityFeatureGrid extends SanityDocument {
 
 export interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
-    body: SanityPortableText;
+    body: PortableText;
     icon?: SanityReference<SanityImageRef>;
     links?: SanityTextLink[];
     illustration?: SanityReference<SanityIllustration>;
@@ -38,9 +38,9 @@ export function featureGridIllustrationFromSanity(data: SanityIllustration, db: 
     else return illustrationFromSanity(data, db);
 }
 
-export class FeatureGridCell {
+export class FeatureGridCell implements Partial<BodyTextField> {
     readonly title?: string;
-    readonly body?: RichText;
+    readonly body?: PortableText;
     readonly iconURL?: string;
     readonly links?: TextLink[];
     readonly illustration?: Illustration;
@@ -60,7 +60,7 @@ export class FeatureGridCell {
     static fromSanity(data: SanityFeatureGridCell, db: SanityDataset) {
         return new FeatureGridCell({
             title: data.title,
-            body: data.body && RichText.fromSanity(data.body),
+            body: data.body,
             iconURL: data.icon && db.resolveImageRef(data.icon).url,
             links: data.links?.map(x => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
             illustration: data.illustration && featureGridIllustrationFromSanity(db.resolveRef(data.illustration), db),

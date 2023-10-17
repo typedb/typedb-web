@@ -3,12 +3,12 @@ import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
 import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { RichText, SanityPortableText } from "../text";
+import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
 
 export interface SanityLinkPanel {
     title: string;
-    body: SanityPortableText;
+    body: PortableText;
     button: SanityButton;
 }
 
@@ -17,12 +17,12 @@ export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
 }
 
 export interface SanityProductPanel extends SanityLinkPanel {
-    secondaryBody: SanityPortableText;
+    secondaryBody: PortableText;
 }
 
-export class LinkPanel {
+export class LinkPanel implements BodyTextField {
     readonly title: string;
-    readonly body: RichText;
+    readonly body: PortableText;
     readonly button: LinkButton;
 
     constructor(props: PropsOf<LinkPanel>) {
@@ -34,7 +34,7 @@ export class LinkPanel {
     static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset) {
         return new LinkPanel({
             title: data.title,
-            body: RichText.fromSanity(data.body),
+            body: data.body,
             button: LinkButton.fromSanity(data.button, db),
         });
     }
@@ -54,7 +54,7 @@ export class LinkPanelWithIcon extends LinkPanel {
 }
 
 export class ProductPanel extends LinkPanel {
-    readonly secondaryBody: RichText;
+    readonly secondaryBody: PortableText;
 
     constructor(props: PropsOf<ProductPanel>) {
         super(props);
@@ -62,7 +62,7 @@ export class ProductPanel extends LinkPanel {
     }
 
     static fromSanityProductPanel(data: SanityProductPanel, db: SanityDataset): ProductPanel {
-        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: RichText.fromSanity(data.secondaryBody) }))
+        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: data.secondaryBody }))
     }
 }
 

@@ -1,4 +1,4 @@
-import { defineType, PortableTextSpan, PortableTextTextBlock } from "@sanity/types";
+import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
 import {
     bodyFieldRichText,
@@ -9,24 +9,21 @@ import {
     sectionIdField,
     titleFieldWithHighlights,
 } from "./common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "./component/technicolor-block";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "./illustration";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
 
-export type SanityPortableText = PortableTextTextBlock[];
+export type PortableText = PortableTextTextBlock[];
 
 export type SanityTitleField = { title: string };
 
-export type SanityTitleWithHighlights = { title: SanityPortableText };
+export type SanityTitleWithHighlights = { title: PortableText };
 
-export type SanityBodyText = { body?: SanityPortableText };
+export type SanityBodyTextField = { body: PortableText };
 
-export type SanityTitleAndBody = SanityTitleWithHighlights & SanityBodyText;
+export type SanityTitleAndBody = SanityTitleWithHighlights & Partial<SanityBodyTextField>;
 
 export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
-
-export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
 
 export class ParagraphWithHighlights {
     readonly spans: { text: string; highlight: boolean }[];
@@ -35,7 +32,7 @@ export class ParagraphWithHighlights {
         this.spans = props.spans;
     }
 
-    static fromSanity(data: SanityPortableText) {
+    static fromSanity(data: PortableText) {
         console.assert(data.length === 1);
         return new ParagraphWithHighlights({
             spans: data[0].children
@@ -48,41 +45,13 @@ export class ParagraphWithHighlights {
     }
 }
 
-function isPortableTextSpan(block: SanityPortableText[0]["children"][0]): block is PortableTextSpan {
-    return block._type === "span";
-}
-
-export interface RichTextSpan {
-    text: string;
-    marks: ("em" | "strong" | "underline" | "code" | string)[];
-    level?: number;
-}
-
-export class RichText {
-    readonly paragraphs: { spans: RichTextSpan[] }[];
-
-    constructor(data: PropsOf<RichText>) {
-        this.paragraphs = data.paragraphs;
-    }
-
-    static fromSanity(data: SanityPortableText): RichText {
-        return new RichText({
-            paragraphs: data.map((p) => ({
-                spans: p.children
-                    .filter((block) => isPortableTextSpan(block))
-                    .map((span) => ({ text: span.text as string, marks: span.marks as string[], level: p.level })),
-            })),
-        });
-    }
-}
-
 export type TitleWithHighlights = { title: ParagraphWithHighlights };
 
-export type BodyText = { body?: RichText };
+export type BodyTextField = { body: PortableText };
 
-export class TitleAndBody implements TitleWithHighlights, BodyText {
+export class TitleAndBody implements TitleWithHighlights, Partial<BodyTextField> {
     readonly title: ParagraphWithHighlights;
-    readonly body?: RichText;
+    readonly body?: PortableText;
 
     constructor(props: PropsOf<TitleAndBody>) {
         this.title = props.title;
@@ -92,7 +61,7 @@ export class TitleAndBody implements TitleWithHighlights, BodyText {
     static fromSanityTitleAndBody(data: SanityTitleAndBody) {
         return new TitleAndBody({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
+            body: data.body,
         });
     }
 }
@@ -114,28 +83,9 @@ export class TitleBodyActions extends TitleAndBody {
     }
 }
 
-export class TitleBodyIllustrationSection extends TechnicolorBlock {
-    readonly illustration: Illustration;
-
-    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
-        super(props);
-        this.illustration = props.illustration;
-    }
-
-    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
-        return new TitleBodyIllustrationSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
-            })
-        );
-    }
-}
-
 export const titleAndBodySchemaName = "titleAndBody";
 
 export const titleBodyActionsSectionSchemaName = "titleBodyActionsSection";
-
-export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
 
 const titleAndBodySchema = defineType({
     name: titleAndBodySchemaName,
@@ -151,18 +101,4 @@ const titleBodyActionsSectionSchema = defineType({
     fields: [titleFieldWithHighlights, bodyFieldRichText, optionalActionsField],
 });
 
-const titleBodyIllustrationSectionSchema = defineType({
-    name: titleBodyIllustrationSectionSchemaName,
-    title: "Title, Body & Illustration",
-    type: "document",
-    fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
-        sectionIdField,
-        illustrationField,
-        isVisibleField,
-    ],
-});
-
-export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema, titleBodyIllustrationSectionSchema];
+export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema];
