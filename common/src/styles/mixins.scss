@@ -2,17 +2,23 @@
 @import 'sizes';
 
 @mixin section-width($offset) {
+    // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
     width: $section-width + $offset;
-    max-width: calc(100vw - 40px + $offset);
 
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+    @media (min-width: $section-width-tablet + $section-padding-tablet * 2) and (max-width: $media-max-width-tablet) {
         width: $section-width-tablet + $offset;
-        max-width: calc(100vw - $section-padding-tablet * 2 + $offset);
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (min-width: $media-min-width-tablet) and (max-width: $section-width-tablet + $section-padding-tablet * 2 - 1px) {
+        width: calc(100vw - $section-padding-tablet * 2 + $offset);
+    }
+
+    @media (min-width: $section-width-mobile + 24px) and (max-width: $media-max-width-mobile) {
         width: $section-width-mobile + $offset;
-        max-width: calc(100vw - 24px + $offset);
+    }
+
+    @media (max-width: $section-width-mobile + 23px) {
+        width: calc(100vw - 24px + $offset);
     }
 }
 

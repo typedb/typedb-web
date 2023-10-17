@@ -12,24 +12,18 @@ $number-of-lines-mobile: 10;
 
 .pp-content-row {
     @include card-padding();
-
-    h3 {
-        margin-bottom: 24px;
-
-        @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-            margin-bottom: 18px;
-        }
-
-        @media (max-width: $media-max-width-mobile) {
-            margin-bottom: 12px;
-        }
-    }
 }
 
 .pp-content-row-body {
     display: flex;
     flex-direction: row;
     gap: 24px;
+
+    @media (min-width: $media-min-width-desktop) {
+        &:not(&:first-child) {
+            margin-top: 24px;
+        }
+    }
 
     > * {
         flex: 1;
@@ -53,9 +47,19 @@ $number-of-lines-mobile: 10;
         }
     }
 
+    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+        flex-direction: column;
+        gap: 16px;
+
+        &:not(&:first-child) {
+            margin-top: 18px;
+        }
+    }
+
     @media (max-width: $media-max-width-mobile) {
         flex-direction: column;
         gap: 8px;
+        margin-top: 12px;
     }
 }
 

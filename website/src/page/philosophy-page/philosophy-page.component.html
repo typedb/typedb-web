@@ -4,6 +4,7 @@
       [isIntroSection]="true"
       [title]="page.introSection.title"
       [body]="page.introSection.body"
+      [actions]="page.introSection.actions"
     />
     <ng-container *ngFor="let section of page.coreSections; index as idx">
       <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />

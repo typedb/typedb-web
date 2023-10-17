@@ -59,7 +59,7 @@ export class FurtherReadingSection extends TechnicolorBlock {
             }),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "/assets/icon/section/book-open.svg",
+            iconURL: "https://cdn.sanity.io/images/xndl14mc/production/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
             links: data.links.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
             sectionId: data.sectionId,
         });

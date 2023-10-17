@@ -1,5 +1,5 @@
-<table class="section kpt-table">
-  <tr *ngFor="let featureRow of featureRows" [ngClass]="'kpt-row-size-' + columnIndexes.length">
+<table class="section kpt-table" [ngClass]="'kpt-row-size-' + columnIndexes.length">
+  <tr *ngFor="let featureRow of featureRows">
     <td *ngFor="let idx of columnIndexes">
       <div *ngIf="featureRow[idx] as feature" class="kpt-cell-content">
         <div>
