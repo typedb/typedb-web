@@ -57,6 +57,7 @@ import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimoni
 import { HtmlPipe } from "./text/html.pipe";
 import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pipe";
 import { PlainTextPipe } from "./text/plain-text.pipe";
+import { RichTextComponent } from "./text/rich-text.component";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -108,6 +109,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
+        RichTextComponent,
         ScrollShadowComponent,
         ServicesTableComponent,
         SnackbarComponent,
@@ -164,6 +166,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
+        RichTextComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,
         TechnicolorBlockComponent,
@@ -173,6 +176,10 @@ const globalRippleConfig: RippleGlobalOptions = {
         WebinarPanelsComponent,
         ScrollShadowComponent,
     ],
-    providers: [PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
+    providers: [
+        HtmlPipe,
+        PlainTextPipe,
+        { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
+    ],
 })
 export class FrameworkModule {}

@@ -6,5 +6,5 @@
     </td-aspect-ratio>
     <div class="ci-illustration-footer"></div>
   </div>
-  <div *ngIf="caption" [innerHtml]="caption | html" class="ci-caption text-p1"></div>
+  <td-rich-text *ngIf="caption" [value]="caption" class="text-p1" />
 </div>

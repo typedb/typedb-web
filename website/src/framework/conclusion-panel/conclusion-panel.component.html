@@ -1,7 +1,7 @@
 <div class="section cp-root">
   <div class="cp-main-area">
     <h3>{{ panel.title }}</h3>
-    <div *ngIf="panel.body" [innerHtml]="panel.body | html"></div>
+    <td-rich-text *ngIf="panel.body" [value]="panel.body" />
     <div class="flex"></div>
     <td-actions [actions]="panel.actions" />
   </div>

@@ -147,7 +147,8 @@ $post-content-width: 800px;
     }
 }
 
-.bp-content ::ng-deep {
+.bp-content td-rich-text {
+    margin-top: 40px;
     width: $post-content-width;
     font-size: $font-size-p2;
     line-height: $line-height-p2;
@@ -158,13 +159,10 @@ $post-content-width: 800px;
     }
 
     @media (max-width: $media-max-width-mobile) {
+        margin-top: 24px;
         max-width: $section-max-width-mobile;
         font-size: $font-size-p2-mobile;
         line-height: $line-height-p2-mobile;
-    }
-
-    :first-child {
-        margin-top: 0;
     }
 
     section {
@@ -177,98 +175,6 @@ $post-content-width: 800px;
         @media (max-width: $media-max-width-mobile) {
             max-width: $section-max-width-mobile;
         }
-    }
-
-    /* prettier-ignore */
-    h1, h2, h3, h4 {
-        font-weight: $font-weight-bold;
-        margin: 1.5em 0 1em;
-    }
-
-    /* prettier-ignore */
-    p, ul, ol {
-        margin: 1em 0 0;
-    }
-
-    ul,
-    ol {
-        margin-left: 1em;
-    }
-
-    ol li + li,
-    ul li + li {
-        margin: 0.75rem 0 0;
-    }
-
-    /* prettier-ignore */
-    figure, pre, blockquote {
-        margin: 40px auto;
-
-        @media (max-width: $media-max-width-mobile) {
-            margin: 16px auto;
-        }
-    }
-
-    pre {
-        border-radius: $border-radius;
-        border: 1px solid $content-border-color;
-        background: $color-vaticle-purple;
-        padding: 20px;
-        overflow: auto;
-
-        @media (max-width: $media-max-width-mobile) {
-            padding: 12px;
-        }
-    }
-
-    figure {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-
-        img {
-            display: block;
-            border-radius: $border-radius;
-            border: 1px solid $content-border-color;
-            max-width: 100%;
-            height: 100%;
-        }
-
-        figcaption {
-            margin-top: 8px;
-            font-style: italic;
-            font-size: 20px;
-
-            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-                font-size: 14px;
-            }
-
-            @media (max-width: $media-max-width-mobile) {
-                font-size: 12px;
-            }
-        }
-    }
-
-    blockquote {
-        padding-left: 40px;
-        border-left: 2px solid $color-vaticle-green;
-        font-size: 24px;
-        line-height: 32px;
-
-        p {
-            margin-bottom: 1em;
-        }
-
-        cite {
-            font-size: 18px;
-            line-height: 26px;
-        }
-    }
-
-    strong {
-        color: #fff;
     }
 
     .rt-reading-time {

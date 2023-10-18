@@ -6,7 +6,7 @@
     <td>
       <div>
         <h3>{{ keyPoint.title }}</h3>
-        <div [innerHtml]="keyPoint.body | html"></div>
+        <td-rich-text [value]="keyPoint.body" />
       </div>
     </td>
   </tr>
