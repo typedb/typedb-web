@@ -9,7 +9,7 @@
     <td-illustration [illustration]="panel.illustration" [visible]="!hidden" />
   </td-aspect-ratio>
   <div *ngIf="contentTextPanel" class="cp-text-area">
-    <div [innerHtml]="contentTextPanel.body | html"></div>
+    <td-rich-text [value]="contentTextPanel.body" />
     <a
       *ngIf="contentTextPanel.learnMoreLink"
       [tdLink]="contentTextPanel.learnMoreLink"

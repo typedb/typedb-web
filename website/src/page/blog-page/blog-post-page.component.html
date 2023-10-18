@@ -15,7 +15,7 @@
         <div class="bp-intro-section">
           <td-blog-category-chips [categories]="postCategories(post)" />
           <h1>{{ post.title }}</h1>
-          <div class="text-p1 bp-excerpt" [innerHtml]="post.excerpt"></div>
+          <td-rich-text class="text-p1 bp-excerpt" [value]="post.excerpt" />
         </div>
         <div class="bp-author-section">
           <td-blog-authorship-bar [post]="post" size="medium" />
@@ -25,10 +25,12 @@
 
       <section class="bp-content-section">
         <div class="bp-content">
-          <figure *ngIf="post$ | async as post">
-            <img class="bp-featured-image" [src]="heroImageURL(post)" alt="" />
-          </figure>
-          <div #postContent></div>
+          <ng-container *ngIf="post$ | async as post">
+            <figure>
+              <img class="bp-featured-image" [src]="heroImageURL(post)" alt="" />
+            </figure>
+            <td-rich-text [value]="post.content" />
+          </ng-container>
         </div>
         <div *ngIf="post$ | async as post" class="bp-sidebar">
           <div class="bp-sharing-section">
@@ -67,7 +69,7 @@
                 <h3 class="bp-related-post-title">
                   <a [tdLink]="readPostLink(relatedPost)">{{ relatedPost.title }}</a>
                 </h3>
-                <div class="bp-related-post-description" [innerHtml]="relatedPost.excerpt"></div>
+                <td-rich-text class="bp-related-post-description" [value]="relatedPost.excerpt" />
                 <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
               </div>
             </aside>

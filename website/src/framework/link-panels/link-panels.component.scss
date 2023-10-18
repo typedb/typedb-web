@@ -55,7 +55,7 @@
     }
 
     &.lc-card-cols-3 {
-        .lc-body-text {
+        td-rich-text {
             margin-top: 8px;
         }
 
@@ -88,7 +88,7 @@
             height: calc($font-size-h3 * $line-height-h3 * 2);
         }
 
-        .lc-body-text {
+        td-rich-text {
             margin-top: 12px;
         }
 
@@ -101,7 +101,7 @@
                 height: calc(33px * 2);
             }
 
-            .lc-body-text {
+            td-rich-text {
                 @include line-clamp(7);
                 max-height: 24px * 7;
             }
@@ -112,7 +112,7 @@
                 height: auto;
             }
 
-            .lc-body-text {
+            td-rich-text {
                 margin-top: 8px;
             }
         }
@@ -123,7 +123,7 @@
             flex-direction: row;
             gap: 8px;
 
-            .lc-body-text {
+            td-rich-text {
                 margin-top: 0;
             }
         }

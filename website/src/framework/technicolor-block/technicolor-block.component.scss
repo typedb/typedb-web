@@ -224,6 +224,7 @@ $block-gap-mobile: 64px;
 }
 
 .text-p1 {
+    display: block;
     margin-top: 24px;
 
     @media (max-width: $media-max-width-mobile) {
