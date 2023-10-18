@@ -1,16 +1,16 @@
 import { LinkButton } from "../button";
 import { SanityIconField } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { ParagraphWithHighlights, RichText, SanityTitleBodyActions } from "../text";
+import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
 export interface SanityTechnicolorBlock extends SanityTitleBodyActions, SanityIconField {
     sectionId?: string;
 }
 
-export class TechnicolorBlock {
+export class TechnicolorBlock implements Partial<BodyTextField> {
     readonly title: ParagraphWithHighlights;
-    readonly body?: RichText;
+    readonly body?: PortableText;
     readonly iconURL: string;
     readonly actions?: LinkButton[];
     readonly sectionId?: string;
@@ -26,7 +26,7 @@ export class TechnicolorBlock {
     static fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
         return new TechnicolorBlock({
             title: ParagraphWithHighlights.fromSanity(data.title),
-            body: data.body ? RichText.fromSanity(data.body) : undefined,
+            body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
             sectionId: data.sectionId,

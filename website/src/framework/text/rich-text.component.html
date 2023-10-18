@@ -1,9 +1,0 @@
-<p *ngFor="let paragraph of value.paragraphs" [class]="paragraphClass">
-  <ng-container *ngFor="let span of paragraph.spans">
-    <span *ngIf="isPlainTextSpan(span)" [ngClass]="getSpanClasses(span)">{{ span.text }}</span>
-    <code *ngIf="isCodeSpan(span)" [ngClass]="getSpanClasses(span)">{{ span.text }}</code>
-    <ul *ngIf="isListSpan(span)">
-      <li>{{ span.text }}</li>
-    </ul>
-  </ng-container>
-</p>

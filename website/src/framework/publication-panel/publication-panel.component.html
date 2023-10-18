@@ -18,6 +18,6 @@
 
 <ng-template #contentRow let-item="item">
   <div *ngIf="!item"></div>
-  <td-rich-text *ngIf="isRichText(item)" [value]="item" />
+  <td-rich-text *ngIf="isPortableText(item)" [value]="item" />
   <td-illustration *ngIf="isIllustration(item)" [illustration]="item" />
 </ng-template>

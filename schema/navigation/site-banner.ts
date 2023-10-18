@@ -3,12 +3,12 @@ import { defineField, defineType, DocumentRule, SanityDocument } from "@sanity/t
 import { Link, SanityLink } from "../link";
 import { linkField, requiredRule, textFieldWithHighlights } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { ParagraphWithHighlights, SanityPortableText } from "../text";
+import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 
 export interface SanitySiteBanner extends SanityDocument {
     isEnabled: boolean;
-    text?: SanityPortableText;
+    text?: PortableText;
     link?: SanityReference<SanityLink>;
 }
 

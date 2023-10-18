@@ -8,11 +8,7 @@
             <h3>{{ feature.title }}</h3>
             <td-tag-chips [tags]="feature.tags" />
           </div>
-          <td-rich-text
-            *ngIf="feature.body"
-            [value]="$any(feature.body)"
-            [class]="hasAnyIllustration(feature) ? 'kpt-illustrated' : ''"
-          />
+          <td-rich-text *ngIf="feature.body" [value]="feature.body" />
         </div>
 
         <div *ngIf="feature.links?.length" class="kpt-links-section">

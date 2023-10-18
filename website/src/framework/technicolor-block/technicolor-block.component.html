@@ -29,15 +29,7 @@
         [themeColorHex]="themeColorHex"
         [level]="level"
       />
-      <ng-container *ngIf="block.body">
-        <p *ngFor="let paragraph of block.body.paragraphs" class="text-p1">
-          <span
-            *ngFor="let span of paragraph.spans"
-            [ngStyle]="span.marks.includes('strong') ? { color: themeColorHex } : undefined"
-            >{{ span.text }}</span
-          >
-        </p>
-      </ng-container>
+      <td-rich-text *ngIf="block.body && !noBody" [value]="block.body" class="text-p1" />
       <td-actions *ngIf="block.actions" [actions]="block.actions" />
       <td-organisation-logos
         *ngIf="organisationLogos?.length"

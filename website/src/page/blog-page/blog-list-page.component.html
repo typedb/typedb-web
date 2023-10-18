@@ -2,7 +2,7 @@
   <div class="article-content article-content-no-planet">
     <section *ngIf="site$ | async as site" class="page-section bp-title-section">
       <a tdLink="/blog"><td-heading-with-highlights [value]="site.name | paragraphWithHighlights" level="h1" /></a>
-      <td-rich-text [value]="site.description | richText" class="narrow-section subtitle-l" level="p1" />
+      <p class="narrow-section subtitle-l text-p1">{{ site.description }}</p>
     </section>
 
     <div class="section-background-solid subsection-margin bp-blog-list">
@@ -22,7 +22,7 @@
             <a [tdLink]="readPostLink(posts[0])">
               <h1 class="bp-post-title bp-primary-post-title">{{ posts[0].title }}</h1>
             </a>
-            <div class="bp-primary-post-description" [innerHtml]="posts[0].excerpt"></div>
+            <td-rich-text class="bp-primary-post-description" [value]="posts[0].excerpt" />
             <td-blog-authorship-bar [post]="posts[0]" />
           </div>
         </div>
@@ -40,7 +40,7 @@
                 <h2 class="bp-post-title">
                   <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
                 </h2>
-                <div class="bp-secondary-post-description" [innerHtml]="post.excerpt"></div>
+                <td-rich-text class="bp-secondary-post-description" [value]="post.excerpt" />
                 <td-blog-authorship-bar [post]="post" />
               </div>
             </div>
@@ -64,7 +64,7 @@
                 <h3 class="bp-post-title">
                   <a [tdLink]="readPostLink(post)">{{ post.title }}</a>
                 </h3>
-                <div class="bp-tertiary-post-description" [innerHtml]="post.excerpt"></div>
+                <td-rich-text class="bp-tertiary-post-description" [value]="post.excerpt" />
                 <td-blog-authorship-bar [post]="post" />
               </div>
             </li>

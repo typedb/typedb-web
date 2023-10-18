@@ -54,10 +54,10 @@ import { SnackbarComponent } from "./snackbar/snackbar.component";
 import { SocialMediaPanelsComponent } from "./social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "./technicolor-block/technicolor-block.component";
 import { TestimonialsCarouselComponent } from "./testimonials-carousel/testimonials-carousel.component";
+import { HtmlPipe } from "./text/html.pipe";
 import { ParagraphWithHighlightsPipe } from "./text/paragraph-with-highlights.pipe";
 import { PlainTextPipe } from "./text/plain-text.pipe";
 import { RichTextComponent } from "./text/rich-text.component";
-import { RichTextPipe } from "./text/rich-text.pipe";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -89,6 +89,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureTableCellComponent,
         GraphVisualisationComponent,
         HeadingWithHighlightsComponent,
+        HtmlPipe,
         IllustrationComponent,
         InfoButtonComponent,
         LinkDirective,
@@ -109,7 +110,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         ProductTableComponent,
         PublicationPanelComponent,
         RichTextComponent,
-        RichTextPipe,
         ScrollShadowComponent,
         ServicesTableComponent,
         SnackbarComponent,
@@ -147,6 +147,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureGridComponent,
         FeatureTableComponent,
         HeadingWithHighlightsComponent,
+        HtmlPipe,
         IllustrationComponent,
         KeyPointPanels2x2Component,
         KeyPointTableComponent,
@@ -165,10 +166,9 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
+        RichTextComponent,
         ServicesTableComponent,
         SocialMediaPanelsComponent,
-        RichTextComponent,
-        RichTextPipe,
         TechnicolorBlockComponent,
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
@@ -176,6 +176,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         WebinarPanelsComponent,
         ScrollShadowComponent,
     ],
-    providers: [PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
+    providers: [HtmlPipe, PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
 })
 export class FrameworkModule {}

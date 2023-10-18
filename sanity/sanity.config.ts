@@ -37,8 +37,8 @@ export default defineConfig({
                 ])),
                 s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
-                    singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
                     singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
+                    singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),

@@ -5,25 +5,91 @@
     display: block;
 }
 
-p + p {
-    margin-top: 1em;
-}
+:host ::ng-deep {
+    > :first-child {
+        margin-top: 0;
+    }
 
-ul {
-    margin-left: 1em;
-}
+    /* prettier-ignore */
+    h1, h2, h3, h4 {
+        font-weight: $font-weight-bold;
+        margin: 1.5em 0 1em;
+    }
 
-.rt-em {
-    font-style: italic;
-}
+    /* prettier-ignore */
+    p, ul, ol {
+        margin: 1em 0 0;
+    }
 
-.rt-strong {
-    font-weight: $font-weight-bold;
-}
+    ul,
+    ol {
+        padding-inline-start: 2em;
+    }
 
-.rt-underline {
-    text-decoration: underline;
-}
+    /* prettier-ignore */
+    figure, pre, blockquote {
+        margin: 40px auto;
 
-.rt-code {
+        @media (max-width: $media-max-width-mobile) {
+            margin: 16px auto;
+        }
+    }
+
+    pre {
+        border-radius: $border-radius;
+        border: 1px solid $content-border-color;
+        background: $color-vaticle-purple;
+        padding: 20px;
+        overflow: auto;
+
+        @media (max-width: $media-max-width-mobile) {
+            padding: 12px;
+        }
+    }
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+
+        img {
+            display: block;
+            border-radius: $border-radius;
+            border: 1px solid $content-border-color;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 20px;
+
+            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+                font-size: 14px;
+            }
+
+            @media (max-width: $media-max-width-mobile) {
+                font-size: 12px;
+            }
+        }
+    }
+
+    blockquote {
+        padding-left: 40px;
+        border-left: 2px solid $color-vaticle-green;
+        font-size: 24px;
+        line-height: 32px;
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        cite {
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
 }

@@ -2,7 +2,11 @@
   <div *ngIf="page" class="article-content">
     <section class="page-section page-intro-section" *ngIf="page.introSection">
       <td-heading-with-highlights [value]="page.introSection.title" class="narrow-section" level="h1" />
-      <td-rich-text *ngIf="page.introSection.body" [value]="page.introSection.body" level="p1" />
+      <td-rich-text
+        *ngIf="page.introSection.body"
+        [value]="page.introSection.body"
+        class="text-p1 sp-intro-section-body"
+      />
       <td-link-panels class="subsection-margin" [panels]="page.introSection.links" [cols]="3" />
     </section>
     <ng-container *ngIf="page.useCasesSection">

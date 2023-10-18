@@ -1,14 +1,14 @@
 import { SanityDocument, Slug } from "@sanity/types";
 import { Person, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
-import { ParagraphWithHighlights, RichText, SanityPortableText } from "./text";
+import { ParagraphWithHighlights, PortableText } from "./text";
 import { PropsOf } from "./util";
 import { MetaTags, SanityMetaTags } from "./page/meta-tags";
 
 export interface SanityEventBase extends SanityDocument {
-    title: SanityPortableText;
+    title: PortableText;
     slug: Slug;
-    description: SanityPortableText;
+    description: PortableText;
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
     hubspotFormID?: string;
@@ -18,7 +18,7 @@ export interface SanityEventBase extends SanityDocument {
 export abstract class EventBase {
     readonly title: ParagraphWithHighlights;
     readonly slug: string;
-    readonly description: RichText;
+    readonly description: PortableText;
     readonly imageURL: string;
     readonly speakers: Person[];
     readonly hubspotFormID?: string;
@@ -38,7 +38,7 @@ export abstract class EventBase {
         return {
             title: ParagraphWithHighlights.fromSanity(data.title),
             slug: data.slug.current,
-            description: RichText.fromSanity(data.description),
+            description: data.description,
             imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),
             hubspotFormID: data.hubspotFormID,

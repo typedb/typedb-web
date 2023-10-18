@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
@@ -37,7 +37,6 @@ export class BlogPostPageComponent implements OnInit {
         text: "Subscribe to Newsletter",
         comingSoon: false,
     });
-    @ViewChild("postContent") postContentEl!: ElementRef;
 
     constructor(
         private router: Router,
@@ -90,7 +89,6 @@ export class BlogPostPageComponent implements OnInit {
                         content: customFields.social_sharing_description || "",
                     });
                     this._analytics.hubspot.trackPageView();
-                    this.postContentEl.nativeElement.innerHTML = post.content;
                     Prism.highlightAll();
                 } else {
                     this.router.navigate(["blog"]);
