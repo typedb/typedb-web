@@ -1,5 +1,7 @@
 import { Component, HostBinding, Input } from "@angular/core";
+
 import { PortableText } from "typedb-web-schema";
+
 import { HtmlPipe } from "./html.pipe";
 
 @Component({

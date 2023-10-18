@@ -176,10 +176,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         WebinarPanelsComponent,
         ScrollShadowComponent,
     ],
-    providers: [
-        HtmlPipe,
-        PlainTextPipe,
-        { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
-    ],
+    providers: [HtmlPipe, PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
 })
 export class FrameworkModule {}
