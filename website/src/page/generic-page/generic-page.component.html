@@ -7,11 +7,8 @@
       [actions]="page.introSection.actions"
     ></td-title-body-actions-section>
     <ng-container *ngFor="let section of page.coreSections; index as idx">
-      <td-generic-page-technicolor-block [section]="section" [index]="idx"></td-generic-page-technicolor-block>
-      <td-captioned-illustration
-        [illustration]="section.illustration"
-        [caption]="section.body"
-      ></td-captioned-illustration>
+      <td-generic-page-technicolor-block [section]="section" [index]="idx" />
+      <td-captioned-illustration [illustration]="section.illustration" [caption]="section.body" />
     </ng-container>
     <td-features-page-technicolor-block
       [section]="page.finalSection"

@@ -29,7 +29,7 @@
         [themeColorHex]="themeColorHex"
         [level]="level"
       />
-      <div *ngIf="block.body" [innerHtml]="block.body | html" class="text-p1"></div>
+      <td-rich-text *ngIf="block.body && !noBody" [value]="block.body" class="text-p1" />
       <td-actions *ngIf="block.actions" [actions]="block.actions" />
       <td-organisation-logos
         *ngIf="organisationLogos?.length"

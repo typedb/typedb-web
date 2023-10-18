@@ -11,7 +11,7 @@
         <div><img class="lc-icon" [src]="$any(panel).iconURL" alt="" /></div>
         <div class="lc-flex-container">
           <h3 class="lc-title">{{ panel.title }}</h3>
-          <div [innerHtml]="panel.body | html" class="lc-body-text"></div>
+          <td-rich-text [value]="panel.body" />
           <ng-container [ngSwitch]="ctaStrength">
             <div class="hide-mobile flex"></div>
             <p *ngSwitchCase="'weak'" class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
@@ -30,7 +30,7 @@
         >
           <aside *ngIf="panel.button.comingSoon" class="lp-coming-soon">coming soon</aside>
           <h3>{{ panel.title }}</h3>
-          <div [innerHtml]="panel.body | html" class="lc-body-text"></div>
+          <td-rich-text [value]="panel.body" />
           <td-button
             [button]="panel.button"
             size="small"
@@ -45,7 +45,7 @@
   <div class="section lc-root-cols-4" *ngSwitchCase="4">
     <a *ngFor="let panel of panels" [tdLink]="panel.button.link" class="hoverable card lc-card lc-card-cols-4">
       <h3>{{ panel.title }}</h3>
-      <div [innerHtml]="panel.body | html" class="lc-body-text"></div>
+      <td-rich-text [value]="panel.body" />
       <div class="flex"></div>
       <p class="link-tertiary">{{ panel.button.text }}</p>
     </a>
