@@ -23,12 +23,7 @@
 
     ul,
     ol {
-        margin-left: 1em;
-    }
-
-    ol li + li,
-    ul li + li {
-        margin: 0.75rem 0 0;
+        padding-inline-start: 2em;
     }
 
     /* prettier-ignore */
