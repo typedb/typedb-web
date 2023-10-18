@@ -2,7 +2,7 @@
 @import "mixins";
 @import "sizes";
 
-.fg-grid {
+:host {
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
@@ -15,24 +15,51 @@
     margin: -1px 0 0 -1px;
 }
 
-.fg-grid-item {
+.fg-grid-item,
+.fg-grid-item-text {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 
-    .fg-grid:not(.fg-row-size-1) & {
-        > td-aspect-ratio,
-        > .fg-code-snippet {
-            margin-top: 28px;
+    @media (max-width: $media-max-width-tablet) {
+        gap: 16px;
+    }
 
-            @media (max-width: $media-max-width-tablet) {
-                margin-top: 16px;
-            }
+    @media (max-width: $media-max-width-mobile) {
+        gap: 12px;
+    }
+}
+
+:host.fg-row-size-1 .fg-grid-item {
+    flex-direction: row;
+
+    @media (max-width: $media-max-width-tablet) {
+        flex-direction: column;
+    }
+
+    &:nth-of-type(even) {
+        flex-direction: row-reverse;
+
+        @media (max-width: $media-max-width-tablet) {
+            flex-direction: column;
+        }
+    }
+
+    > .fg-grid-item-text {
+        flex: 1;
+    }
+
+    > :not(.fg-grid-item-text) {
+        flex: 0 0 552px;
+
+        @media (max-width: $media-max-width-tablet) {
+            flex-basis: auto;
         }
     }
 }
 
 @for $i from 1 through 4 {
-    .fg-row-size-#{$i} .fg-grid-item {
+    :host.fg-row-size-#{$i} .fg-grid-item {
         width: calc(100% / #{$i});
 
         @media (max-width: $media-max-width-mobile) {
@@ -76,7 +103,6 @@ td-aspect-ratio {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 24px;
 
     img {
         margin-right: 10px;
@@ -88,14 +114,6 @@ td-aspect-ratio {
             height: 32px;
         }
     }
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        margin-bottom: 18px;
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-bottom: 12px;
-    }
 }
 
 td-rich-text {
@@ -104,7 +122,6 @@ td-rich-text {
 
 .fg-links-section {
     display: flex;
-    margin-top: 20px;
     gap: 24px;
 }
 
@@ -135,7 +152,6 @@ td-rich-text {
 
 .fg-code-short-container {
     position: relative;
-    margin-top: 20px;
 }
 
 .fg-copy-button {
