@@ -62,26 +62,3 @@ $number-of-lines-mobile: 10;
         margin-top: 12px;
     }
 }
-
-::ng-deep td-feature-grid table.section {
-    border-radius: 0;
-    @include section-width($offset: -2px);
-}
-
-::ng-deep td-feature-grid:first-child table.section {
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
-}
-
-::ng-deep td-feature-grid:last-child table.section {
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
-}
-
-::ng-deep td-feature-grid .kpt-row-size-2 .kpt-feature-body {
-    height: $font-size-p2 * $line-height-p2 * 7 !important; // overrides style in td-feature-grid
-
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        height: $font-size-p2 * $line-height-p2 * 9 !important; // overrides style without media query
-    }
-}
