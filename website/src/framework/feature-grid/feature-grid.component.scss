@@ -68,13 +68,21 @@
     }
 }
 
-.fg-illustration-row {
-    width: 100%;
-}
-
 $number-of-lines: 20;
 $number-of-lines-short: 13;
 $number-of-lines-mobile: 10;
+
+.fg-illustration-row {
+    width: 100%;
+
+    ::ng-deep td-polyglot-snippet td-code-snippet {
+        height: calc($font-size-code * $line-height-code * $number-of-lines);
+
+        @media (max-width: $media-max-width-mobile) {
+            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile);
+        }
+    }
+}
 
 td-illustration.fg-code-snippet {
     max-width: 100%;
@@ -116,8 +124,9 @@ td-aspect-ratio {
     }
 }
 
-td-rich-text {
-    margin-bottom: auto;
+td-aspect-ratio,
+.fg-code-snippet {
+    margin-top: auto;
 }
 
 .fg-links-section {
