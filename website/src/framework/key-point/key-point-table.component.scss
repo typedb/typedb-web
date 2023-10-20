@@ -13,7 +13,7 @@
     }
 
     th {
-        background: $color-vaticle-deep-purple;
+        background: var(--color-primary-deep-purple);
         width: 140px;
 
         @media (max-width: $media-max-width-mobile) {

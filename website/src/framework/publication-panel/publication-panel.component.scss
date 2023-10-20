@@ -3,7 +3,7 @@
 @import "sizes";
 
 :host > * + * {
-    border-top: 1px solid $content-border-color;
+    border-top: 1px solid var(--content-border-color);
 }
 
 $number-of-lines: 20;
@@ -32,17 +32,17 @@ $number-of-lines-mobile: 10;
     ::ng-deep td-illustration > td-code-snippet,
     ::ng-deep td-illustration > td-polyglot-snippet {
         max-width: 100%;
-        height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+        height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-short + 2px);
 
         @media (max-width: $media-max-width-mobile) {
-            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
         }
 
         &.cp-code-snippet-short {
-            height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+            height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-short + 2px);
 
             @media (max-width: $media-max-width-mobile) {
-                height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+                height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
             }
         }
     }

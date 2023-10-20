@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "cd ../common && pnpm i && cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
+    "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:verify": "prettier --check src",
@@ -63,6 +63,7 @@
     "rxjs": "7.8.1",
     "ts-poet": "6.5.0",
     "ts-proto-descriptors": "1.15.0",
+    "typedb-web-common": "file:../common",
     "typedb-web-schema": "file:../schema",
     "zone.js": "0.13.1"
   },

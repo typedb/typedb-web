@@ -18,11 +18,11 @@
     gap: 8px;
 
     & + & {
-        border-left: 1px solid $content-border-color;
+        border-left: 1px solid var(--content-border-color);
     }
 
     .mat-icon {
-        color: $color-vaticle-white;
+        color: var(--color-primary-white);
         font-size: 48px;
 
         @media (max-width: $media-max-width-mobile) {

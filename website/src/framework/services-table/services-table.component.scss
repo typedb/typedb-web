@@ -2,8 +2,8 @@
 @import "sizes";
 
 .st-table {
-    border-radius: $border-radius;
-    border: 1px solid $content-border-color;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--content-border-color);
 }
 
 .st-row {
@@ -14,14 +14,14 @@
     }
 
     & + & {
-        border-top: 1px solid $content-border-color;
+        border-top: 1px solid var(--content-border-color);
     }
 }
 
 .st-cell-icon {
     flex: 0 0 268px;
-    border-right: 1px solid $content-border-color;
-    background: $color-vaticle-deep-purple;
+    border-right: 1px solid var(--content-border-color);
+    background: var(--color-primary-deep-purple);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@
 }
 
 .st-cell-text {
-    background: $color-vaticle-purple;
+    background: var(--color-primary-purple);
     padding: 32px;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,7 @@
     display: grid;
     grid-template-columns: repeat(3, fit-content(100%));
     gap: 8px 32px;
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
 
     &.st-check-list-two-columns {
         grid-template-columns: repeat(2, fit-content(100%));
@@ -98,6 +98,6 @@
 
     .mat-icon {
         flex-shrink: 0;
-        color: $color-vaticle-green;
+        color: var(--color-primary-green);
     }
 }

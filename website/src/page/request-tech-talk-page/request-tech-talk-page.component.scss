@@ -36,8 +36,8 @@
 .rt-details-title {
     display: block;
     margin-bottom: 40px;
-    color: $color-vaticle-white;
-    font-weight: $font-weight-bold;
+    color: var(--color-primary-white);
+    font-weight: var(--font-weight-bold);
 
     @media (max-width: $media-max-width-tablet) {
         margin-bottom: 32px;

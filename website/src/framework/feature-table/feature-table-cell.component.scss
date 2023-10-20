@@ -14,12 +14,12 @@
     }
 
     &.ftc-unchecked {
-        background: $color-vaticle-deep-purple;
+        background: var(--color-primary-deep-purple);
     }
 }
 
 .mat-icon.td-icon-large {
-    color: $color-vaticle-green;
+    color: var(--color-primary-green);
 
     @media (max-width: $media-max-width-mobile) {
         font-size: 24px;

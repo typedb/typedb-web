@@ -19,8 +19,8 @@ col:first-of-type {
 }
 
 thead {
-    background: $color-vaticle-deep-purple;
-    font-weight: $font-weight-semi-bold;
+    background: var(--color-primary-deep-purple);
+    font-weight: var(--font-weight-semi-bold);
 }
 
 th,
@@ -35,7 +35,7 @@ td {
 }
 
 th {
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
     font-weight: inherit;
     padding: 0 24px;
 

@@ -26,7 +26,7 @@ ul {
     gap: 10px;
     height: 100%;
     list-style: none;
-    border-bottom: 1px solid $content-border-color;
+    border-bottom: 1px solid var(--content-border-color);
     white-space: nowrap;
 
     @media (min-width: $media-min-width-tablet) {
@@ -43,7 +43,7 @@ ul {
     }
 
     h3 {
-        font-weight: $font-weight-semi-bold;
+        font-weight: var(--font-weight-semi-bold);
     }
 }
 
@@ -55,11 +55,11 @@ a {
     padding: 0 24px;
 
     &:hover {
-        color: $color-vaticle-green;
+        color: var(--color-primary-green);
         text-decoration: underline;
     }
 
     &.bn-active {
-        font-weight: $font-weight-semi-bold;
+        font-weight: var(--font-weight-semi-bold);
     }
 }

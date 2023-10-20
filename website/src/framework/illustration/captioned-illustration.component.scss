@@ -20,14 +20,14 @@
 
     .ci-illustration-header,
     .ci-illustration-footer {
-        background: $color-vaticle-purple;
-        border: 1px solid $content-border-color;
+        background: var(--color-primary-purple);
+        border: 1px solid var(--content-border-color);
         height: 13px;
     }
 
     .ci-illustration-header {
         border-bottom: none;
-        border-radius: $border-radius $border-radius 0 0;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="5" viewBox="0 0 22 5"><circle cx="19.0577" cy="2.29383" r="2.09754" fill="%2344A461"/><circle cx="10.6737" cy="2.29383" r="2.09754" fill="%23C0A851"/><circle cx="2.28968" cy="2.29383" r="2.09754" fill="%23F66B65"/></svg>');
         background-position: 4px center;
         background-repeat: no-repeat;
@@ -35,7 +35,7 @@
 
     .ci-illustration-footer {
         border-top: none;
-        border-radius: 0 0 $border-radius $border-radius;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
 }
 

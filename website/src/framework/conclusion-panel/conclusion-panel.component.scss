@@ -17,15 +17,15 @@
 }
 
 .cp-main-area {
-    background: $color-vaticle-purple;
-    border-radius: $border-radius 0 0 $border-radius;
+    background: var(--color-primary-purple);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
     @media (max-width: $media-max-width-mobile) {
-        border-radius: $border-radius $border-radius 0 0;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
         gap: 8px;
     }
 
@@ -35,9 +35,9 @@
 }
 
 .cp-resources-area {
-    background: $color-vaticle-deep-purple;
-    border-radius: 0 $border-radius $border-radius 0;
-    border-left: 1px solid $content-border-color;
+    background: var(--color-primary-deep-purple);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border-left: 1px solid var(--content-border-color);
     min-width: 360px;
 
     @media (max-width: $media-max-width-tablet) {
@@ -45,8 +45,8 @@
     }
 
     @media (max-width: $media-max-width-mobile) {
-        border-radius: 0 0 $border-radius $border-radius;
-        border-top: 1px solid $content-border-color;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        border-top: 1px solid var(--content-border-color);
         border-left: none;
         width: auto;
     }

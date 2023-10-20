@@ -97,6 +97,6 @@ ul.ed-speakers {
 }
 
 .ed-img {
-    border: 1px solid $content-border-color;
-    border-radius: $border-radius;
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius);
 }

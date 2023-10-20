@@ -35,8 +35,8 @@
 }
 
 .wd-img {
-    border: 1px solid $content-border-color;
-    border-radius: $border-radius;
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius);
 
     @media (max-width: $media-max-width-mobile) {
         max-width: 100%;

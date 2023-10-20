@@ -18,14 +18,14 @@ header {
         transition: background-color 100ms ease;
 
         &:hover {
-            background-color: $color-vaticle-purple !important;
-            border-bottom-color: $color-vaticle-secondary-deep-grey !important;
+            background-color: var(--color-primary-purple) !important;
+            border-bottom-color: var(--color-secondary-deep-grey) !important;
         }
     }
 
     &.tb-solid {
-        background-color: $color-vaticle-purple !important;
-        border-bottom-color: $color-vaticle-secondary-deep-grey !important;
+        background-color: var(--color-primary-purple) !important;
+        border-bottom-color: var(--color-secondary-deep-grey) !important;
     }
 }
 
@@ -33,23 +33,15 @@ td-topbar-menu-mobile {
     position: fixed;
     bottom: 0;
     right: 0;
-    top: $topbar-height;
-
-    @media (max-width: $media-max-width-mobile) {
-        top: $topbar-height-mobile;
-    }
+    top: var(--topbar-height);
 
     header.has-banner & {
-        top: $topbar-height + $banner-height;
-
-        @media (max-width: $media-max-width-mobile) {
-            top: $topbar-height-mobile + $banner-height-mobile;
-        }
+        top: calc(var(--topbar-height) + var(--banner-height));
     }
 }
 
 nav {
-    height: $topbar-height;
+    height: var(--topbar-height);
     background-color: transparent;
     padding: 0 30px;
     display: flex;
@@ -62,19 +54,18 @@ nav {
     }
 
     @media (max-width: $media-max-width-mobile) {
-        height: $topbar-height-mobile;
         padding: 0;
     }
 
     .tb-logo-container,
     .tb-menu-panel-header,
     .tb-desktop-items li > a {
-        color: $color-vaticle-white;
+        color: var(--color-primary-white);
         padding: 0 20px;
 
         &:hover,
         &:focus {
-            color: $color-vaticle-green;
+            color: var(--color-primary-green);
             text-decoration: underline;
         }
     }
@@ -134,14 +125,14 @@ nav {
 }
 
 .tb-big-icon {
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
     font-size: 40px;
 }
 
 .tb-hamburger-button {
     margin-right: 16px;
     align-self: center;
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
 
     .tb-hamburger-mobile,
     .tb-x-icon {
@@ -166,9 +157,9 @@ nav {
 }
 
 td-topbar-menu-panel {
-    top: $topbar-height;
-    border-bottom: 1px solid $color-vaticle-secondary-deep-grey;
-    background-color: rgba($color-vaticle-purple, 0.8);
+    top: var(--topbar-height);
+    border-bottom: 1px solid var(--color-secondary-deep-grey);
+    background-color: rgba($color-primary-purple, 0.8);
 
     &::before {
         content: "";
@@ -182,7 +173,7 @@ td-topbar-menu-panel {
 
 a,
 a:visited {
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
 }
 
 a .tb-external-link-icon {

@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    background-color: $color-vaticle-light-purple;
+    background-color: var(--color-primary-light-purple);
     transition: opacity 100ms ease;
 
     &.ib-tooltip-visible {
@@ -22,7 +22,7 @@
     border-radius: 4px;
     height: 28px;
     text-align: center;
-    color: $color-vaticle-white;
+    color: var(--color-primary-white);
     width: max-content;
     padding: 4px 8px;
 }

@@ -37,20 +37,20 @@
 
 .ss-left {
     left: 0;
-    background: linear-gradient(90deg, $color-vaticle-deep-purple 0%, rgba($color-vaticle-deep-purple, 0) 100%);
+    background: linear-gradient(90deg, $color-primary-deep-purple 0%, rgba($color-primary-deep-purple, 0) 100%);
 }
 
 .ss-right {
     right: 0;
-    background: linear-gradient(-90deg, $color-vaticle-deep-purple 0%, rgba($color-vaticle-deep-purple, 0) 100%);
+    background: linear-gradient(-90deg, $color-primary-deep-purple 0%, rgba($color-primary-deep-purple, 0) 100%);
 }
 
 .ss-top {
     top: 0;
-    background: linear-gradient(180deg, $color-vaticle-deep-purple 0%, rgba($color-vaticle-deep-purple, 0) 100%);
+    background: linear-gradient(180deg, $color-primary-deep-purple 0%, rgba($color-primary-deep-purple, 0) 100%);
 }
 
 .ss-bottom {
     bottom: 0;
-    background: linear-gradient(0deg, $color-vaticle-deep-purple 0%, rgba($color-vaticle-deep-purple, 0) 100%);
+    background: linear-gradient(0deg, $color-primary-deep-purple 0%, rgba($color-primary-deep-purple, 0) 100%);
 }

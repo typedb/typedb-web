@@ -10,7 +10,7 @@
 
 .fg-grid-item,
 .fg-illustration-row {
-    border: 0 solid $content-border-color;
+    border: 0 solid var(--content-border-color);
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
 }
@@ -76,27 +76,27 @@ $number-of-lines-mobile: 10;
     width: 100%;
 
     ::ng-deep td-polyglot-snippet td-code-snippet {
-        height: calc($font-size-code * $line-height-code * $number-of-lines);
+        height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines);
 
         @media (max-width: $media-max-width-mobile) {
-            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile);
+            height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile);
         }
     }
 }
 
 td-illustration.fg-code-snippet {
     max-width: 100%;
-    height: calc($font-size-code * $line-height-code * $number-of-lines + 2px);
+    height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px);
 
     @media (max-width: $media-max-width-mobile) {
-        height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+        height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
     }
 
     &.fg-code-snippet-short {
-        height: calc($font-size-code * $line-height-code * $number-of-lines-short + 2px);
+        height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-short + 2px);
 
         @media (max-width: $media-max-width-mobile) {
-            height: calc($font-size-code * $line-height-code * $number-of-lines-mobile + 2px);
+            height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
         }
     }
 }
@@ -149,9 +149,9 @@ td-aspect-ratio,
     min-width: 0;
     overflow: auto;
     padding: 1.25rem 3rem 1.25rem 1.25rem;
-    border-radius: $border-radius;
-    border: 1px solid $content-border-color;
-    background: $color-vaticle-black-purple;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--content-border-color);
+    background: var(--color-primary-black-purple);
     hyphens: none;
 
     @media (max-width: $media-max-width-mobile) {
@@ -197,8 +197,8 @@ td-aspect-ratio,
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.5s ease 0.5s;
-    background: $color-vaticle-light-purple;
-    border-radius: $border-radius;
+    background: var(--color-primary-light-purple);
+    border-radius: var(--border-radius);
     padding: 0.25rem 0.5rem;
     position: absolute;
     top: 100%;
@@ -215,7 +215,7 @@ td-aspect-ratio,
         position: absolute;
         top: 0;
         border: 0.55em solid transparent;
-        border-left: 0.55em solid $content-border-color;
+        border-left: 0.55em solid var(--content-border-color);
         transform: rotate(-90deg) translateX(50%) translateY(50%);
         transform-origin: left;
     }

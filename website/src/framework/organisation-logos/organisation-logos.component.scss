@@ -2,7 +2,7 @@
 @import "sizes";
 
 .ol-root {
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,8 +21,8 @@
 
     &.ol-root-panel {
         padding: 48px 72px;
-        border: 1px solid $content-border-color;
-        background: $color-vaticle-purple;
+        border: 1px solid var(--content-border-color);
+        background: var(--color-primary-purple);
 
         @media (max-width: $media-max-width-tablet) {
             padding: 32px;

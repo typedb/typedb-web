@@ -143,6 +143,9 @@ dependencies:
   ts-proto-descriptors:
     specifier: 1.15.0
     version: 1.15.0
+  typedb-web-common:
+    specifier: file:../common
+    version: file:../common
   typedb-web-schema:
     specifier: file:../schema
     version: file:../schema
@@ -2419,6 +2422,10 @@ packages:
     resolution: {integrity: sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource/titillium-web@5.0.13:
+    resolution: {integrity: sha512-l9RlKSL3EH5zF/+S5cfcG3I9BF428G37UsJOzAzIZpYLKtOdzn6ILhtGFbCWmlX/S6RBgHC6TsYIzZZcADlTSw==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
@@ -11168,6 +11175,13 @@ packages:
     resolution: {integrity: sha512-+bIeDAFEBYuXRuU3qGQvzdPap+N1zjM4KkBAiiQuVVCrHrhjDuY6VkUhNa5+U27+9w0q3fbKiMCbpJ0XzMmSWA==}
     dependencies:
       tslib: 2.6.1
+
+  file:../common:
+    resolution: {directory: ../common, type: directory}
+    name: typedb-web-common
+    dependencies:
+      '@fontsource/titillium-web': 5.0.13
+    dev: false
 
   file:../schema:
     resolution: {directory: ../schema, type: directory}

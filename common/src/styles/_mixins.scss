@@ -1,0 +1,109 @@
+@import "colors";
+@import "sizes";
+
+@mixin section-width($offset) {
+    // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
+    width: $section-width + $offset;
+
+    @media (min-width: ($section-width-tablet + $section-page-margin-tablet * 2)) and (max-width: $media-max-width-tablet) {
+        width: $section-width-tablet + $offset;
+    }
+
+    @media (min-width: $media-min-width-tablet) and (max-width: ($section-width-tablet + $section-page-margin-tablet * 2 - 1px)) {
+        width: calc(100vw - $section-page-margin-tablet * 2 + $offset);
+    }
+
+    @media (min-width: ($section-width-mobile + 24px)) and (max-width: $media-max-width-mobile) {
+        width: $section-width-mobile + $offset;
+    }
+
+    @media (max-width: ($section-width-mobile + 23px)) {
+        width: calc(100vw - 24px + $offset);
+    }
+}
+
+@mixin line-clamp($lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@mixin button {
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--border-radius);
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-weight-semi-bold);
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    transition-property: background-color, border, box-shadow, opacity;
+    transition-duration: 100ms;
+    transition-timing-function: ease;
+    text-decoration: none !important; // overrides various styles that set an underline on anchors
+
+    @media (min-width: $media-min-width-tablet) {
+        height: 48px;
+        width: 202px;
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        height: 40px;
+    }
+
+    &.td-button-disabled {
+        opacity: 50%;
+        cursor: default;
+    }
+
+    &.td-button-size-s {
+        height: 40px;
+    }
+}
+
+@mixin button-primary {
+    border-color: transparent;
+    background: var(--color-primary-green);
+    color: var(--color-primary-purple);
+
+    &:not(.td-button-disabled) {
+        &:hover,
+        &.container-hover,
+        :host-context(.td-button-container:hover) {
+            box-shadow: 0 3px 26px 0 rgba($color-primary-green, 0.4);
+        }
+
+        &:active {
+            background-color: mix($color-primary-green, $color-primary-purple);
+        }
+    }
+}
+
+@mixin button-secondary {
+    border-color: var(--color-primary-green);
+    background: transparent;
+    color: var(--color-primary-green);
+
+    &:not(.td-button-disabled) {
+        &:hover,
+        &.container-hover,
+        :host-context(.td-button-container:hover) {
+            background-color: var(--color-primary-green);
+            color: var(--color-primary-purple);
+        }
+    }
+}
+
+@mixin card-appearance {
+    border-radius: var(--border-radius);
+    background-color: var(--color-primary-purple);
+    border: 1px solid var(--content-border-color);
+}
+
+@mixin card-padding {
+    padding: var(--card-padding);
+}
