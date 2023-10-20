@@ -4,21 +4,28 @@
     display: block;
     padding: 32px;
     position: relative;
+
+    ::ng-deep .submitted-message {
+        margin-bottom: 50px;
+    }
 }
 
 .cp-contact-policy {
-    position: absolute;
-    bottom: 32px;
-    left: 32px;
-    right: calc(32px + 202px + 16px);
-    height: 48px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    height: 0;
+
+    aside {
+        width: calc(100% - 202px - 16px);
+    }
 
     @media (max-width: $media-max-width-mobile) {
-        position: static;
         height: auto;
         margin-top: 12px;
+
+        aside {
+            width: 100%;
+        }
     }
 }
 
