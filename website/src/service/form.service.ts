@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { map, Observable, ReplaySubject, shareReplay } from "rxjs";
@@ -14,7 +14,10 @@ export class FormService {
     private readonly forms: Observable<SanityHubspotForms>;
     private formScriptLoadedState = new ReplaySubject<true>();
 
-    constructor(contentService: ContentService) {
+    constructor(
+        contentService: ContentService,
+        private ngZone: NgZone,
+    ) {
         this.forms = contentService.data.pipe(
             map((data) => data.getDocumentByID(formsSchemaName) as SanityHubspotForms),
             shareReplay(1),
@@ -51,12 +54,15 @@ export class FormService {
                     region: HUBSPOT_REGION,
                     portalId: HUBSPOT_PORTAL_ID,
                     formId: hubspotFormID,
+                    formInstanceId: placeholderElementID,
                     target: `#${placeholderElementID}`,
-                    onFormError: () => onLoadingChange?.(false),
-                    onFormSubmit: () => onLoadingChange?.(true),
+                    onFormError: () => this.ngZone.run(() => onLoadingChange?.(false)),
+                    onFormSubmit: () => this.ngZone.run(() => onLoadingChange?.(true)),
                     onFormSubmitted: (formEl, { submissionValues }) => {
-                        onLoadingChange?.(false);
-                        onSuccess?.(formEl, submissionValues);
+                        this.ngZone.run(() => {
+                            onLoadingChange?.(false);
+                            onSuccess?.(formEl, submissionValues);
+                        });
                     },
                 });
             });
