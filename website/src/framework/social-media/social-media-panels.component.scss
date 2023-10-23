@@ -1,4 +1,3 @@
-@import "colors";
 @import "mixins";
 @import "sizes";
 
@@ -22,7 +21,7 @@
     }
 
     .mat-icon {
-        color: var(--color-primary-white);
+        color: var(--color-white);
         font-size: 48px;
 
         @media (max-width: $media-max-width-mobile) {

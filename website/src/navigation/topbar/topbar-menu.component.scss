@@ -18,13 +18,13 @@ header {
         transition: background-color 100ms ease;
 
         &:hover {
-            background-color: var(--color-primary-purple) !important;
+            background-color: var(--color-purple) !important;
             border-bottom-color: var(--color-secondary-deep-grey) !important;
         }
     }
 
     &.tb-solid {
-        background-color: var(--color-primary-purple) !important;
+        background-color: var(--color-purple) !important;
         border-bottom-color: var(--color-secondary-deep-grey) !important;
     }
 }
@@ -60,12 +60,12 @@ nav {
     .tb-logo-container,
     .tb-menu-panel-header,
     .tb-desktop-items li > a {
-        color: var(--color-primary-white);
+        color: var(--color-white);
         padding: 0 20px;
 
         &:hover,
         &:focus {
-            color: var(--color-primary-green);
+            color: var(--color-green);
             text-decoration: underline;
         }
     }
@@ -125,14 +125,14 @@ nav {
 }
 
 .tb-big-icon {
-    color: var(--color-primary-white);
+    color: var(--color-white);
     font-size: 40px;
 }
 
 .tb-hamburger-button {
     margin-right: 16px;
     align-self: center;
-    color: var(--color-primary-white);
+    color: var(--color-white);
 
     .tb-hamburger-mobile,
     .tb-x-icon {
@@ -159,7 +159,7 @@ nav {
 td-topbar-menu-panel {
     top: var(--topbar-height);
     border-bottom: 1px solid var(--color-secondary-deep-grey);
-    background-color: rgba($color-primary-purple, 0.8);
+    background-color: rgba($color-purple, 0.8);
 
     &::before {
         content: "";
@@ -173,7 +173,7 @@ td-topbar-menu-panel {
 
 a,
 a:visited {
-    color: var(--color-primary-white);
+    color: var(--color-white);
 }
 
 a .tb-external-link-icon {

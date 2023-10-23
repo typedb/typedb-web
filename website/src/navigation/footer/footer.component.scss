@@ -1,4 +1,3 @@
-@import "colors";
 @import "sizes";
 
 footer {
@@ -6,24 +5,24 @@ footer {
     flex-direction: column;
     align-items: center;
     border-top: 1px solid var(--content-border-color);
-    background: var(--color-primary-purple);
+    background: var(--color-purple);
 }
 
 a,
 a:visited,
 a p {
-    color: var(--color-primary-white);
+    color: var(--color-white);
 
     &:hover,
     &:focus {
-        color: var(--color-primary-green);
+        color: var(--color-green);
         text-decoration: underline;
     }
 }
 
 a:hover p,
 a:focus p {
-    color: var(--color-primary-green);
+    color: var(--color-green);
 }
 
 .ft-section {
@@ -69,7 +68,7 @@ a:focus p {
     }
 
     .mat-icon {
-        color: var(--color-primary-white);
+        color: var(--color-white);
         font-size: 48px;
 
         @media (max-width: $media-max-width-mobile) {
@@ -171,11 +170,11 @@ a:focus p {
     }
 
     .ft-icon-code {
-        color: var(--color-primary-green);
+        color: var(--color-green);
     }
 
     .ft-icon-heart {
-        color: var(--color-primary-red);
+        color: var(--color-red);
     }
 
     .ft-logo-vaticle {

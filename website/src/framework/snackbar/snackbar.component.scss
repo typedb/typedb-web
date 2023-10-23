@@ -1,12 +1,11 @@
 @import "colors";
-@import "sizes";
 
 :host {
     margin: 16px;
     width: 372px;
     border-radius: var(--border-radius);
-    background: mix($color-primary-green, $color-primary-black-purple, 15%);
-    box-shadow: inset 0 0 0 1px var(--color-primary-green);
+    background: mix($color-green, $color-black-purple, 15%);
+    box-shadow: inset 0 0 0 1px var(--color-green);
     padding: 16px;
     display: flex;
     align-items: center;
@@ -23,14 +22,14 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--color-primary-white);
+    color: var(--color-white);
 
     .mat-icon {
         flex-shrink: 0;
-        color: var(--color-primary-green);
+        color: var(--color-green);
     }
 }
 
 .sb-button .mat-icon {
-    color: rgba($color-primary-white, 0.8);
+    color: rgba($color-white, 0.8);
 }

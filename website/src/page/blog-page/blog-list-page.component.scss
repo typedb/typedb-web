@@ -1,4 +1,3 @@
-@import "colors";
 @import "mixins";
 @import "sizes";
 
@@ -10,7 +9,7 @@ hr {
     h1,
     h2,
     h3 {
-        color: var(--color-primary-green);
+        color: var(--color-green);
         text-decoration: underline;
     }
 }
@@ -66,7 +65,7 @@ hr {
     }
 
     a:hover {
-        color: var(--color-primary-green);
+        color: var(--color-green);
         text-decoration: underline;
     }
 }

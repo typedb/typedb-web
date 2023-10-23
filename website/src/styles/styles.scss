@@ -1,6 +1,5 @@
 @use "@angular/material" as mat;
 
-@import "colors";
 @import "fonts";
 @import "mixins";
 @import "sizes";
@@ -37,8 +36,8 @@ $custom-typography: mat.define-typography-config(
 
 html,
 body {
-    --default-background: var(--color-primary-black-purple);
-    --default-text-color: var(--color-primary-dark-white);
+    --default-background: var(--color-black-purple);
+    --default-text-color: var(--color-dark-white);
     color-scheme: dark;
     height: 100%;
     background-color: var(--default-background);
@@ -163,7 +162,7 @@ p code,
 p .text-code {
     hyphens: none;
     color: var(--color-secondary-pink);
-    background: var(--color-primary-black-purple);
+    background: var(--color-black-purple);
     border-radius: var(--border-radius);
     border: 1px solid var(--content-border-color);
     padding: 6px 6px 3px;
@@ -181,18 +180,18 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, pre, figure {
 
 /* prettier-ignore */
 h1, h2, h3, h4 {
-    color: var(--color-primary-white);
+    color: var(--color-white);
 }
 
 /* prettier-ignore */
 h5, h6 {
-    color: var(--color-primary-dark-white);
+    color: var(--color-dark-white);
 }
 
 aside {
     /* prettier-ignore */
     h1, h2, h3, h4, h5, h6 {
-        color: var(--color-primary-dark-white);
+        color: var(--color-dark-white);
     }
 }
 
@@ -217,11 +216,11 @@ dd {
 
 a {
     cursor: pointer;
-    color: var(--color-primary-white);
+    color: var(--color-white);
     text-decoration: none;
 
     p {
-        color: var(--color-primary-dark-white);
+        color: var(--color-dark-white);
     }
 }
 
@@ -229,7 +228,7 @@ p,
 aside {
     a,
     a:visited {
-        color: var(--color-primary-green);
+        color: var(--color-green);
 
         &:hover,
         &:focus {
@@ -240,12 +239,12 @@ aside {
 
 .link-tertiary,
 .link-tertiary:visited {
-    color: var(--color-primary-white);
+    color: var(--color-white);
     font-weight: var(--font-weight-semi-bold);
 
     &:hover,
     &:focus {
-        color: var(--color-primary-green);
+        color: var(--color-green);
         text-decoration: underline;
     }
 }
@@ -291,7 +290,7 @@ address {
 }
 
 table {
-    background: var(--color-primary-purple);
+    background: var(--color-purple);
     border-radius: var(--border-radius);
     border-collapse: collapse;
     box-shadow: 0 0 0 1px var(--content-border-color);
@@ -343,7 +342,7 @@ hr {
 }
 
 .text-important {
-    color: var(--color-primary-white);
+    color: var(--color-white);
     font-weight: 600;
 }
 
@@ -352,7 +351,7 @@ hr {
 }
 
 .section-background-solid {
-    background-color: var(--color-primary-black-purple);
+    background-color: var(--color-black-purple);
 }
 
 .card {
@@ -361,10 +360,10 @@ hr {
     transition: border-color 150ms ease;
 
     &.hoverable:hover {
-        border-color: var(--color-primary-green);
+        border-color: var(--color-green);
 
         .link-tertiary {
-            color: var(--color-primary-green);
+            color: var(--color-green);
             text-decoration: underline;
         }
     }
@@ -379,7 +378,7 @@ hr {
 }
 
 .hs-form label {
-    color: var(--color-primary-white);
+    color: var(--color-white);
 }
 
 .hs-form ul {
@@ -395,7 +394,7 @@ input[type="email"],
 select {
     width: 100% !important; // overrides media query from Hubspot
     padding: 0 8px;
-    background-color: var(--color-primary-purple);
+    background-color: var(--color-purple);
     color: var(--default-text-color);
     border: 1px solid var(--content-border-color);
     caret-color: var(--default-text-color);
@@ -444,7 +443,7 @@ textarea {
 .hs-form input[type="checkbox"] {
     background-color: transparent;
     border-radius: 4px;
-    border: 2px solid var(--color-primary-dark-white);
+    border: 2px solid var(--color-dark-white);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -507,7 +506,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 
 .hs-form textarea {
     width: 100%;
-    background-color: var(--color-primary-purple);
+    background-color: var(--color-purple);
     color: var(--default-text-color);
     border: 1px solid var(--content-border-color);
     caret-color: var(--default-text-color);
@@ -545,7 +544,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     }
 
     .hs-input.error {
-        border-color: var(--color-primary-red);
+        border-color: var(--color-red);
     }
 }
 
@@ -577,14 +576,14 @@ input[type="submit"].hs-button {
 }
 
 .cc-window {
-    background: var(--color-primary-purple);
+    background: var(--color-purple);
     border-top: 1px solid var(--content-border-color);
     font-family: inherit;
     transition-duration: 150ms;
 
     .cc-link {
         text-decoration: none;
-        color: var(--color-primary-green);
+        color: var(--color-green);
     }
 
     .cc-btn {
@@ -648,8 +647,8 @@ body {
     }
 
     .mdc-dialog {
-        --mdc-dialog-container-color: #{var(--color-primary-purple)};
-        --mdc-dialog-supporting-text-color: var(--color-primary-white);
+        --mdc-dialog-container-color: #{var(--color-purple)};
+        --mdc-dialog-supporting-text-color: var(--color-white);
 
         .mdc-dialog__surface {
             padding: 24px;
@@ -693,6 +692,6 @@ body {
     }
 
     .mat-mdc-progress-bar {
-        --mdc-linear-progress-active-indicator-color: var(--color-primary-green);
+        --mdc-linear-progress-active-indicator-color: var(--color-green);
     }
 }

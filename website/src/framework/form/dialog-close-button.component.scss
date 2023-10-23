@@ -1,6 +1,3 @@
-@import "colors";
-@import "sizes";
-
 :host {
     display: flex;
 }
@@ -12,13 +9,13 @@ button {
     &:hover,
     &:active,
     &:focus {
-        color: var(--color-primary-white);
+        color: var(--color-white);
     }
 
     &:active,
     &:focus {
         .mat-icon {
-            background: var(--color-primary-light-purple);
+            background: var(--color-light-purple);
         }
     }
 }

@@ -67,10 +67,10 @@ $block-gap-mobile: 64px;
 }
 
 .tb-graphic-green {
-    color: var(--color-primary-green);
+    color: var(--color-green);
 
     .tb-graphic-line {
-        @include graphic-line-gradient($color-primary-green);
+        @include graphic-line-gradient($color-green);
     }
 }
 

@@ -1,4 +1,3 @@
-@import "colors";
 @import "sizes";
 
 .ci-root {
@@ -20,7 +19,7 @@
 
     .ci-illustration-header,
     .ci-illustration-footer {
-        background: var(--color-primary-purple);
+        background: var(--color-purple);
         border: 1px solid var(--content-border-color);
         height: 13px;
     }

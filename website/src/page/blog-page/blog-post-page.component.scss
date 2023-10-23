@@ -1,5 +1,3 @@
-@import "colors";
-@import "mixins";
 @import "sizes";
 
 $post-content-width: 800px;
@@ -13,7 +11,7 @@ $post-content-width: 800px;
 }
 
 ::ng-deep .bp-site-title p {
-    color: var(--color-primary-white);
+    color: var(--color-white);
     font-weight: var(--font-weight-bold);
 }
 
@@ -205,7 +203,7 @@ $post-content-width: 800px;
 .bp-sharing-section h4,
 .bp-newsletter-section h4,
 .bp-related-post-group-heading {
-    color: var(--color-primary-dark-white);
+    color: var(--color-dark-white);
     font-weight: var(--font-weight-semi-bold);
     padding-bottom: 8px;
     border-bottom: 2px solid var(--content-border-color);
@@ -230,7 +228,7 @@ $post-content-width: 800px;
         font-weight: var(--font-weight-bold);
 
         &:hover {
-            color: var(--color-primary-green);
+            color: var(--color-green);
             text-decoration: underline;
         }
     }

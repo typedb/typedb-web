@@ -67,38 +67,38 @@
 
 @mixin button-primary {
     border-color: transparent;
-    background: var(--color-primary-green);
-    color: var(--color-primary-purple);
+    background: var(--color-green);
+    color: var(--color-purple);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 3px 26px 0 rgba($color-primary-green, 0.4);
+            box-shadow: 0 3px 26px 0 rgba($color-green, 0.4);
         }
 
         &:active {
-            background-color: mix($color-primary-green, $color-primary-purple);
+            background-color: mix($color-green, $color-purple);
         }
     }
 }
 
 @mixin button-secondary {
-    border-color: var(--color-primary-green);
+    border-color: var(--color-green);
     background: transparent;
-    color: var(--color-primary-green);
+    color: var(--color-green);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            background-color: var(--color-primary-green);
-            color: var(--color-primary-purple);
+            background-color: var(--color-green);
+            color: var(--color-purple);
         }
     }
 }
 
 @mixin card-appearance {
     border-radius: var(--border-radius);
-    background-color: var(--color-primary-purple);
+    background-color: var(--color-purple);
     border: 1px solid var(--content-border-color);
 }
 

@@ -1,15 +1,16 @@
 @import "colors";
+@import "sizes";
 
 :root {
     /* colors */
-    --color-primary-white: #{$color-primary-white};
-    --color-primary-dark-white: #{$color-primary-dark-white};
-    --color-primary-light-purple: #{$color-primary-light-purple};
-    --color-primary-purple: #{$color-primary-purple};
-    --color-primary-deep-purple: #{$color-primary-deep-purple};
-    --color-primary-black-purple: #{$color-primary-black-purple};
-    --color-primary-green: #{$color-primary-green};
-    --color-primary-red: #{$color-primary-red};
+    --color-white: #{$color-white};
+    --color-dark-white: #{$color-dark-white};
+    --color-light-purple: #{$color-light-purple};
+    --color-purple: #{$color-purple};
+    --color-deep-purple: #{$color-deep-purple};
+    --color-black-purple: #{$color-black-purple};
+    --color-green: #{$color-green};
+    --color-red: #{$color-red};
 
     --color-secondary-light-grey: #{$color-secondary-light-grey};
     --color-secondary-grey: #{$color-secondary-grey};

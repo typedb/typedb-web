@@ -1,4 +1,3 @@
-@import "colors";
 @import "sizes";
 
 .ol-root {
@@ -22,7 +21,7 @@
     &.ol-root-panel {
         padding: 48px 72px;
         border: 1px solid var(--content-border-color);
-        background: var(--color-primary-purple);
+        background: var(--color-purple);
 
         @media (max-width: $media-max-width-tablet) {
             padding: 32px;
