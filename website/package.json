@@ -27,6 +27,7 @@
     "@angular/platform-browser": "16.1.7",
     "@angular/platform-browser-dynamic": "16.1.7",
     "@angular/router": "16.1.7",
+    "@fontsource/titillium-web": "5.0.17",
     "@pixi/constants": "6.5.9",
     "@pixi/core": "6.5.9",
     "@pixi/display": "6.5.9",

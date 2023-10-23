@@ -11,11 +11,11 @@
     display: flex;
     align-items: center;
     gap: 16px;
+}
 
-    :host-context(.mat-mdc-snack-bar-handset) {
-        width: 100%;
-        margin: 0;
-    }
+:host-context(.mat-mdc-snack-bar-handset) {
+    width: 100%;
+    margin: 0;
 }
 
 .sb-text {

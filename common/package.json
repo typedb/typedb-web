@@ -1,10 +1,10 @@
 {
-  "name": "typedb-web-common",
-  "private": true,
-  "version": "1.0.0",
-  "main": "package.json",
-  "license": "UNLICENSED",
-  "dependencies": {
-    "@fontsource/titillium-web": "5.0.13"
-  }
+    "name": "typedb-web-common",
+    "private": true,
+    "version": "1.0.0",
+    "main": "package.json",
+    "license": "UNLICENSED",
+    "peerDependencies": {
+        "@fontsource/titillium-web": "5.x"
+    }
 }

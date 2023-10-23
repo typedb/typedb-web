@@ -72,8 +72,7 @@
 
     &:not(.td-button-disabled) {
         &:hover,
-        &.container-hover,
-        :host-context(.td-button-container:hover) {
+        &.container-hover {
             box-shadow: 0 3px 26px 0 rgba($color-primary-green, 0.4);
         }
 
@@ -90,8 +89,7 @@
 
     &:not(.td-button-disabled) {
         &:hover,
-        &.container-hover,
-        :host-context(.td-button-container:hover) {
+        &.container-hover {
             background-color: var(--color-primary-green);
             color: var(--color-primary-purple);
         }
