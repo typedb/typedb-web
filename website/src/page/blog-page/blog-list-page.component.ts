@@ -54,7 +54,7 @@ export class BlogListPageComponent {
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 15000);
+                    }, 20000);
                 },
                 (_err) => {
                     this.router.navigate(["404"], { skipLocationChange: true });

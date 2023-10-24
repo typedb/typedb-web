@@ -45,7 +45,7 @@ export class HomePageComponent implements OnInit {
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 15000);
+                }, 20000);
                 Prism.highlightAll();
             } else {
                 this.router.navigate(["404"], { skipLocationChange: true });

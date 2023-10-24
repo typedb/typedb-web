@@ -60,7 +60,7 @@ nav {
     .tb-logo-container,
     .tb-menu-panel-header,
     .tb-desktop-items li > a {
-        color: var(--color-white);
+        color: var(--default-heading-color);
         padding: 0 20px;
 
         &:hover,
@@ -173,7 +173,7 @@ td-topbar-menu-panel {
 
 a,
 a:visited {
-    color: var(--color-white);
+    color: var(--default-heading-color);
 }
 
 a .tb-external-link-icon {

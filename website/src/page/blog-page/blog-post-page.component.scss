@@ -11,7 +11,7 @@ $post-content-width: 800px;
 }
 
 ::ng-deep .bp-site-title p {
-    color: var(--color-white);
+    color: var(--default-heading-color);
     font-weight: var(--font-weight-bold);
 }
 
@@ -203,7 +203,7 @@ $post-content-width: 800px;
 .bp-sharing-section h4,
 .bp-newsletter-section h4,
 .bp-related-post-group-heading {
-    color: var(--color-dark-white);
+    color: var(--default-text-color);
     font-weight: var(--font-weight-semi-bold);
     padding-bottom: 8px;
     border-bottom: 2px solid var(--content-border-color);

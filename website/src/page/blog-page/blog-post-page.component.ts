@@ -95,7 +95,7 @@ export class BlogPostPageComponent implements OnInit {
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 15000);
+                }, 20000);
             },
             (_err) => {
                 this.router.navigate(["blog"]);
