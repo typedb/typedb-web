@@ -41,7 +41,7 @@ export class GenericPageComponent implements OnInit {
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 15000);
+                    }, 20000);
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }

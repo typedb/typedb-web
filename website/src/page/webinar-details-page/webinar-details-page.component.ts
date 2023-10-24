@@ -58,7 +58,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 15000);
+                    }, 20000);
                     this._formService.embedHubspotForm(this.webinar.hubspotFormID as string, "hubspot-form-holder", {
                         onLoadingChange: (val) => {
                             this.isSubmitting = val;
