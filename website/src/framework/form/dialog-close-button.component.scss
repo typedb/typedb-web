@@ -1,29 +1,26 @@
-@import "colors";
-@import "sizes";
-
 :host {
     display: flex;
 }
 
 button {
-    color: $color-vaticle-secondary-grey;
+    color: var(--color-secondary-grey);
     transition: color 100ms ease;
 
     &:hover,
     &:active,
     &:focus {
-        color: $color-vaticle-white;
+        color: var(--color-white);
     }
 
     &:active,
     &:focus {
         .mat-icon {
-            background: $color-vaticle-light-purple;
+            background: var(--color-light-purple);
         }
     }
 }
 
 .mat-icon {
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     transition: background 100ms ease;
 }

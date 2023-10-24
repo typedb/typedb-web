@@ -1,21 +1,14 @@
-@import "colors";
-@import "sizes";
-
 :host {
     display: flex;
     align-items: center;
-    height: $banner-height;
-    border-bottom: 1px solid $color-vaticle-secondary-deep-grey;
+    height: var(--banner-height);
+    border-bottom: 1px solid var(--color-secondary-deep-grey);
     box-shadow:
         2px 2px 1px -1px rgba(0, 0, 0, 0.2),
         2px 2px 3px 0px rgba(0, 0, 0, 0.14),
         2px 1px 5px 0px rgba(0, 0, 0, 0.12);
-    background-color: $color-vaticle-secondary-purple;
+    background-color: var(--color-secondary-purple);
     text-align: center;
-
-    @media (max-width: $media-max-width-mobile) {
-        height: $banner-height-mobile;
-    }
 
     a {
         flex: 1;

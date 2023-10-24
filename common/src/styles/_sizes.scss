@@ -1,12 +1,11 @@
 $border-radius: 5px;
 
-$section-width: 1160px;
-$section-max-width: calc(100vw - 40px);
-$section-padding-tablet: 32px;
-$section-width-tablet: 1024px - $section-padding-tablet * 2;
-$section-max-width-tablet: calc(100vw - $section-padding-tablet * 2);
+$section-page-margin: 20px;
+$section-width: 1200px - $section-page-margin * 2;
+$section-page-margin-tablet: 32px;
+$section-width-tablet: 1024px - $section-page-margin-tablet * 2;
+$section-page-margin-mobile: 12px;
 $section-width-mobile: 375px;
-$section-max-width-mobile: calc(100vw - 24px);
 
 $intro-section-margin: 280px;
 $intro-section-margin-tablet: 224px;

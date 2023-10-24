@@ -1,11 +1,10 @@
-@import "colors";
 @import "sizes";
 
 :host {
     margin-top: 24px;
     display: block;
     padding-left: 16px;
-    border-left: 1px solid $content-border-color;
+    border-left: 1px solid var(--content-border-color);
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: 16px;
@@ -14,7 +13,7 @@
 
 .mm-column {
     padding: 16px 0;
-    border-top: 1px solid $content-border-color;
+    border-top: 1px solid var(--content-border-color);
 
     &:first-of-type {
         padding-top: 0;
@@ -32,17 +31,17 @@ li {
 }
 
 ul {
-    margin-top: $text-margin-s;
+    margin-top: var(--text-margin-s);
     display: flex;
     flex-direction: column;
-    gap: $text-margin-s;
+    gap: var(--text-margin-s);
 }
 
 h4 {
     display: flex;
     align-items: center;
     gap: 4px;
-    color: $color-vaticle-white;
+    color: var(--color-white);
 }
 
 .mp-coming-soon {
@@ -53,25 +52,25 @@ h4 {
 a:hover,
 a:focus {
     .mm-list-column-item-name {
-        color: $color-vaticle-green;
+        color: var(--color-green);
         text-decoration: underline;
     }
 }
 
 .mm-column-title {
-    color: $color-vaticle-white;
-    font-weight: $font-weight-semi-bold;
+    color: var(--color-white);
+    font-weight: var(--font-weight-semi-bold);
 }
 
 .mm-list-column-item-name {
     display: flex;
     align-items: center;
-    color: $color-vaticle-white;
-    font-weight: $font-weight-regular;
+    color: var(--color-white);
+    font-weight: var(--font-weight-regular);
 }
 
 .mm-list-column-description {
-    color: $color-vaticle-secondary-light-grey;
+    color: var(--color-secondary-light-grey);
     margin-top: 4px;
     text-decoration: none;
 }

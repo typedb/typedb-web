@@ -19,9 +19,9 @@
     padding: 2px;
     width: 24px;
     height: 24px;
-    color: $color-vaticle-secondary-grey;
+    color: var(--color-secondary-grey);
     transition: 100ms ease;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     font-size: 20px;
 
     @media (max-width: $media-max-width-mobile) {
@@ -33,7 +33,7 @@
 
     &:hover,
     &:focus {
-        color: $color-vaticle-white;
+        color: var(--color-white);
 
         [class^="ib-tooltip"] {
             opacity: 1;
@@ -41,6 +41,6 @@
     }
 
     &:focus {
-        background: rgba($color-vaticle-secondary-blue, 0.15);
+        background: rgba($color-secondary-blue, 0.15);
     }
 }

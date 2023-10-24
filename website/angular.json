@@ -29,7 +29,7 @@
                             "src/styles/styles.scss"
                         ],
                         "stylePreprocessorOptions": {
-                            "includePaths": ["src/styles", "../common/src/styles"]
+                            "includePaths": ["./node_modules/typedb-web-common/src/styles"]
                         },
                         "scripts": ["./node_modules/cookieconsent/build/cookieconsent.min.js"],
                         "allowedCommonJsDependencies": [

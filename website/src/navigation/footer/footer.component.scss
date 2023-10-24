@@ -1,51 +1,42 @@
-@import "colors";
 @import "sizes";
 
 footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 1px solid $content-border-color;
-    background: $color-vaticle-purple;
+    border-top: 1px solid var(--content-border-color);
+    background: var(--color-purple);
 }
 
 a,
 a:visited,
 a p {
-    color: $color-vaticle-white;
+    color: var(--color-white);
 
     &:hover,
     &:focus {
-        color: $color-vaticle-green;
+        color: var(--color-green);
         text-decoration: underline;
     }
 }
 
 a:hover p,
 a:focus p {
-    color: $color-vaticle-green;
+    color: var(--color-green);
 }
 
 .ft-section {
     // TODO: for some reason @include section-width($offset: 0px) doesn't work here
-    width: $section-width;
-    max-width: $section-max-width;
+    width: var(--section-width);
+    max-width: var(--section-max-width);
     padding: 40px 0;
 
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
-        width: $section-width-tablet;
-        max-width: $section-max-width-tablet;
-        padding: 40px 0;
-    }
-
     @media (max-width: $media-max-width-mobile) {
-        width: $section-width-mobile;
-        max-width: $section-max-width-mobile;
         padding: 24px 0;
     }
 
     &:not(:first-child) {
-        border-top: 1px solid $content-border-color;
+        border-top: 1px solid var(--content-border-color);
     }
 }
 
@@ -77,7 +68,7 @@ a:focus p {
     }
 
     .mat-icon {
-        color: $color-vaticle-white;
+        color: var(--color-white);
         font-size: 48px;
 
         @media (max-width: $media-max-width-mobile) {
@@ -179,11 +170,11 @@ a:focus p {
     }
 
     .ft-icon-code {
-        color: $color-vaticle-green;
+        color: var(--color-green);
     }
 
     .ft-icon-heart {
-        color: $color-vaticle-red;
+        color: var(--color-red);
     }
 
     .ft-logo-vaticle {
