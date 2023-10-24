@@ -5,14 +5,14 @@ import { PropsOf } from "../util";
 
 export interface SanityMetaTags {
     description?: string;
-    keywords?: string[];
+    keywords?: string;
     ogImage?: SanityImage;
     custom?: { property: string; content: string }[];
 }
 
 export class MetaTags {
     readonly description?: string;
-    readonly keywords?: string[];
+    readonly keywords?: string;
     readonly ogImage?: string;
     readonly custom: { property: string; content: string }[];
 
@@ -65,7 +65,7 @@ export const metaTagsField = defineField({
     type: "object",
     fields: [
         { name: "description", type: "text" },
-        { name: "keywords", type: "array", of: [{ type: "string" }], options: { layout: "tags" } },
+        { name: "keywords", type: "string", description: "Comma-separated list" },
         { name: "ogImage", title: "Image", type: "image" },
         customMetaTagsField,
     ],

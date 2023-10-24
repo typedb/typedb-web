@@ -15,7 +15,7 @@ export class MetaTagsService {
             metaDefinitions.push({ name: "description", content: metaTags.description });
         }
         if (metaTags.keywords?.length) {
-            metaDefinitions.push({ name: "keywords", content: metaTags.keywords.join(", ") });
+            metaDefinitions.push({ name: "keywords", content: metaTags.keywords });
         }
         if (metaTags.ogImage) {
             metaDefinitions.push({ property: "og:image", content: metaTags.ogImage });
