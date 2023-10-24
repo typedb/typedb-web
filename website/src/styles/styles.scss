@@ -606,6 +606,12 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 }
 
 .hs-form {
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
     .hs-error-msgs,
     .hs_error_rollup {
         display: none;

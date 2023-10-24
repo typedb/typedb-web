@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { AfterViewInit, Component, HostBinding, Input, OnInit } from "@angular/core";
 
 import Prism from "prismjs";
 import {
@@ -23,6 +23,16 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() layout!: FeatureGridLayout;
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
+    @Input() disableCardAppearance = false;
+
+    @HostBinding("class") get classes() {
+        return {
+            "card-appearance": !this.disableCardAppearance,
+            section: !this.disableCardAppearance,
+            ["fg-row-size-" + this.columnIndexes.length]: true,
+        };
+    }
+
     columnIndexes!: number[];
 
     ngOnInit() {
@@ -48,10 +58,6 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
 
     hasShortCodeSnippet(feature: FeatureGridCell) {
         return feature.illustration instanceof CodeSnippetShort;
-    }
-
-    hasAnyIllustration(feature: FeatureGridCell) {
-        return this.hasMediaIllustration(feature) || this.hasCodeSnippetIllustration(feature);
     }
 
     writeToClipboard(ev: MouseEvent, code: string): void {

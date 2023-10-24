@@ -43,6 +43,10 @@ export class ParagraphWithHighlights {
                 })),
         });
     }
+
+    toPlainText(): string {
+        return this.spans.map(x => x.text).join(" ");
+    }
 }
 
 export type TitleWithHighlights = { title: ParagraphWithHighlights };

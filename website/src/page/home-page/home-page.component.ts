@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
         private contentService: ContentService,
         private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
-        private _title: Title,
+        private title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
@@ -36,7 +36,7 @@ export class HomePageComponent implements OnInit {
             const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
-                this._title.setTitle(`TypeDB | ${this.page.title}`);
+                this.title.setTitle(`TypeDB | ${this.page.introSection?.title.toPlainText() || "Home"}`);
                 const { unregister } = this.metaTags.register(this.page.metaTags);
                 this.destroyRef.onDestroy(unregister);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
