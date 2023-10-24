@@ -44,7 +44,7 @@ export class ServicesPageComponent implements OnInit {
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
-                    }, 15000);
+                    }, 20000);
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
