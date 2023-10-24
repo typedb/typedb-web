@@ -37,6 +37,7 @@ $custom-typography: mat.define-typography-config(
 html,
 body {
     --default-background: var(--color-black-purple);
+    --default-heading-color: var(--color-white);
     --default-text-color: var(--color-dark-white);
     color-scheme: dark;
     height: 100%;
@@ -54,6 +55,7 @@ body {
     scroll-padding-top: var(--topbar-height);
 
     @media (max-width: $media-max-width-mobile) {
+        --default-text-color: var(--color-white);
         font-size: 14px;
     }
 
@@ -179,19 +181,19 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, pre, figure {
 }
 
 /* prettier-ignore */
-h1, h2, h3, h4 {
-    color: var(--color-white);
+h1, h2, h3, h4, th {
+    color: var(--default-heading-color);
 }
 
 /* prettier-ignore */
 h5, h6 {
-    color: var(--color-dark-white);
+    color: var(--default-text-color);
 }
 
 aside {
     /* prettier-ignore */
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--color-dark-white);
+    h1, h2, h3, h4 {
+        color: var(--default-text-color);
     }
 }
 
@@ -220,7 +222,7 @@ a {
     text-decoration: none;
 
     p {
-        color: var(--color-dark-white);
+        color: var(--default-text-color);
     }
 }
 
@@ -378,7 +380,7 @@ hr {
 }
 
 .hs-form label {
-    color: var(--color-white);
+    color: var(--default-heading-color);
 }
 
 .hs-form ul {

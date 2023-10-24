@@ -25,7 +25,7 @@ import {
     SanityVisibleToggle,
     requiredRule,
     keyPointsWithIconsField,
-    sectionIdField,
+    sectionIdField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField,
 } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
@@ -278,7 +278,9 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 
 const sectionSchemas = [
     sectionSchema("intro", [
-        ...titleBodyIconFields,
+        Object.assign({}, titleFieldWithHighlights, { description: "For the Home Page, this gets automatically added to the web page title" }),
+        bodyFieldRichText,
+        sectionIconField,
         optionalActionsField,
         defineField({
             name: "displayUserLogos",

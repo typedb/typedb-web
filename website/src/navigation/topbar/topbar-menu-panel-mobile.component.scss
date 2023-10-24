@@ -41,7 +41,6 @@ h4 {
     display: flex;
     align-items: center;
     gap: 4px;
-    color: var(--color-white);
 }
 
 .mp-coming-soon {
@@ -58,14 +57,14 @@ a:focus {
 }
 
 .mm-column-title {
-    color: var(--color-white);
+    color: var(--default-heading-color);
     font-weight: var(--font-weight-semi-bold);
 }
 
 .mm-list-column-item-name {
     display: flex;
     align-items: center;
-    color: var(--color-white);
+    color: var(--default-heading-color);
     font-weight: var(--font-weight-regular);
 }
 

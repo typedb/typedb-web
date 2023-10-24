@@ -61,14 +61,14 @@
 }
 
 .mp-column-title {
-    color: var(--color-white);
+    color: var(--default-heading-color);
     padding-bottom: 8px;
     border-bottom: 1px solid var(--content-border-color);
     font-weight: var(--font-weight-semi-bold);
 }
 
 dt {
-    color: var(--color-white);
+    color: var(--default-heading-color);
     font-weight: var(--font-weight-regular);
 }
 
