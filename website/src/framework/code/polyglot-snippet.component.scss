@@ -1,6 +1,3 @@
-@import "colors";
-@import "sizes";
-
 .ft-root {
     height: 100%;
     width: 100%;
@@ -14,10 +11,10 @@
 }
 
 .ft-tabs-container {
-    border-bottom: 1px solid $content-border-color;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
-    background: $color-vaticle-deep-purple;
+    border-bottom: 1px solid var(--content-border-color);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    background: var(--color-deep-purple);
 }
 
 .ft-tabs {
@@ -37,12 +34,12 @@
     white-space: nowrap;
 
     &:not(:first-child) {
-        border-left: 1px solid $content-border-color;
+        border-left: 1px solid var(--content-border-color);
     }
 
     @media (hover: hover) {
         &:hover h5 {
-            color: $color-vaticle-green;
+            color: var(--color-green);
             text-decoration: underline;
         }
     }
@@ -50,8 +47,8 @@
 
 .ft-tab-selected,
 .ft-tab-selected h5 {
-    color: $color-vaticle-green;
-    background: $color-vaticle-purple;
+    color: var(--color-green);
+    background: var(--color-purple);
 }
 
 .ft-graphic {

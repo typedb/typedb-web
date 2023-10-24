@@ -1,0 +1,115 @@
+@import "colors";
+@import "sizes";
+
+:root {
+    /* colors */
+    --color-white: #{$color-white};
+    --color-dark-white: #{$color-dark-white};
+    --color-light-purple: #{$color-light-purple};
+    --color-purple: #{$color-purple};
+    --color-deep-purple: #{$color-deep-purple};
+    --color-black-purple: #{$color-black-purple};
+    --color-green: #{$color-green};
+    --color-red: #{$color-red};
+
+    --color-secondary-light-grey: #{$color-secondary-light-grey};
+    --color-secondary-grey: #{$color-secondary-grey};
+    --color-secondary-deep-grey: #{$color-secondary-deep-grey};
+    --color-secondary-purple: #{$color-secondary-purple};
+    --color-secondary-yellow: #{$color-secondary-yellow};
+    --color-secondary-pink: #{$color-secondary-pink};
+    --color-secondary-blue: #{$color-secondary-blue};
+
+    --content-border-color: var(--color-secondary-deep-grey);
+
+    /* sizes */
+    --border-radius: #{$border-radius};
+
+    --section-page-margin: #{$section-page-margin};
+    --section-width: #{$section-width};
+    --section-max-width: calc(100vw - var(--section-page-margin) * 2);
+
+    --intro-section-margin: #{$intro-section-margin};
+    --section-margin: #{$section-margin};
+    --subsection-margin: #{$subsection-margin};
+    --subtitle-margin-l: #{$subtitle-margin-l};
+    --subtitle-margin: #{$subtitle-margin};
+
+    --text-margin-s: #{$text-margin-s};
+
+    --font-weight-bold: #{$font-weight-bold};
+    --font-weight-semi-bold: #{$font-weight-semi-bold};
+    --font-weight-regular: #{$font-weight-regular};
+    --font-weight-light: #{$font-weight-light};
+
+    --topbar-height: #{$topbar-height};
+
+    --banner-height: #{$banner-height};
+
+    --font-size-base: #{$font-size-base};
+
+    --font-size-h1: #{$font-size-h1};
+    --line-height-h1: #{$line-height-h1};
+    --font-size-h2: #{$font-size-h2};
+    --line-height-h2: #{$line-height-h2};
+    --font-size-h3: #{$font-size-h3};
+    --line-height-h3: #{$line-height-h3};
+    --font-size-h4: #{$font-size-h4};
+    --line-height-h4: #{$line-height-h4};
+    --font-size-h5: #{$font-size-h5};
+    --line-height-h5: #{$line-height-h5};
+    --font-size-p1: #{$font-size-p1};
+    --line-height-p1: #{$line-height-p1};
+    --font-size-p2: #{$font-size-p2};
+    --line-height-p2: #{$line-height-p2};
+    --font-size-aside: #{$font-size-aside};
+    --line-height-aside: #{$line-height-aside};
+    --font-size-code: #{$font-size-code};
+    --line-height-code: #{$line-height-code};
+
+    --card-padding: #{$card-padding};
+
+    @media (max-width: $media-max-width-tablet) {
+        --section-width: #{$section-width-tablet};
+        --section-page-margin: #{$section-page-margin-tablet};
+
+        --intro-section-margin: #{$intro-section-margin-tablet};
+        --subsection-margin: #{$subsection-margin-tablet};
+
+        --card-padding: #{$card-padding-tablet};
+    }
+
+    @media (max-width: $media-max-width-mobile) {
+        --section-width: #{$section-width-mobile};
+        --section-page-margin: #{$section-page-margin-mobile};
+
+        --intro-section-margin: #{$intro-section-margin-mobile};
+        --section-margin: #{$section-margin-mobile};
+        --subsection-margin: #{$subsection-margin-mobile};
+        --subtitle-margin-l: #{$subtitle-margin-mobile};
+        --subtitle-margin: #{$subtitle-margin-mobile};
+
+        --topbar-height: #{$topbar-height-mobile};
+
+        --banner-height-mobile: #{$banner-height-mobile};
+
+        --font-size-h1: #{$font-size-h1-mobile};
+        --line-height-h1: #{$line-height-h1-mobile};
+        --font-size-h2: #{$font-size-h2-mobile};
+        --line-height-h2: #{$line-height-h2-mobile};
+        --font-size-h3: #{$font-size-h3-mobile};
+        --line-height-h3: #{$line-height-h3-mobile};
+        --font-size-h4: #{$font-size-h4-mobile};
+        --line-height-h4: #{$line-height-h4-mobile};
+        --font-size-h5: #{$font-size-h5-mobile};
+        --line-height-h5: #{$line-height-h5-mobile};
+        --font-size-p1: #{$font-size-p1-mobile};
+        --line-height-p1: #{$line-height-p1-mobile};
+        --font-size-p2: #{$font-size-p2-mobile};
+        --line-height-p2: #{$line-height-p2-mobile};
+        --font-size-aside: #{$font-size-aside-mobile};
+        --line-height-aside: #{$line-height-aside-mobile};
+
+        --card-padding: #{$card-padding-mobile};
+    }
+}

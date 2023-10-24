@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: 16.1.7
     version: 16.1.7(@angular/common@16.1.7)(@angular/core@16.1.7)(@angular/platform-browser@16.1.7)(rxjs@7.8.1)
+  '@fontsource/titillium-web':
+    specifier: 5.0.17
+    version: 5.0.17
   '@pixi/constants':
     specifier: 6.5.9
     version: 6.5.9
@@ -143,6 +146,9 @@ dependencies:
   ts-proto-descriptors:
     specifier: 1.15.0
     version: 1.15.0
+  typedb-web-common:
+    specifier: file:../common
+    version: file:../common(@fontsource/titillium-web@5.0.17)
   typedb-web-schema:
     specifier: file:../schema
     version: file:../schema
@@ -2419,6 +2425,10 @@ packages:
     resolution: {integrity: sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource/titillium-web@5.0.17:
+    resolution: {integrity: sha512-48k5KXQuoBmd8dO69Q65gYH3MgnpC84sLLOZ4VSH+y8C35SYWA0LiR3AFQhNPMeZ2RJJKKlCD6Y/vcybiDMOCg==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
@@ -11168,6 +11178,16 @@ packages:
     resolution: {integrity: sha512-+bIeDAFEBYuXRuU3qGQvzdPap+N1zjM4KkBAiiQuVVCrHrhjDuY6VkUhNa5+U27+9w0q3fbKiMCbpJ0XzMmSWA==}
     dependencies:
       tslib: 2.6.1
+
+  file:../common(@fontsource/titillium-web@5.0.17):
+    resolution: {directory: ../common, type: directory}
+    id: file:../common
+    name: typedb-web-common
+    peerDependencies:
+      '@fontsource/titillium-web': 5.x
+    dependencies:
+      '@fontsource/titillium-web': 5.0.17
+    dev: false
 
   file:../schema:
     resolution: {directory: ../schema, type: directory}

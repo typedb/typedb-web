@@ -1,7 +1,4 @@
-@import "colors";
 @import "sizes";
-
-$card-content-width: 320px;
 
 .wp-root {
     display: flex;
@@ -31,8 +28,8 @@ $card-content-width: 320px;
     }
 
     img {
-        border: 1px solid $content-border-color;
-        border-radius: $border-radius;
+        border: 1px solid var(--content-border-color);
+        border-radius: var(--border-radius);
     }
 
     h3,
@@ -61,10 +58,10 @@ $card-content-width: 320px;
     right: 0;
     width: 98px;
     height: 32px;
-    background-color: $color-vaticle-secondary-purple;
-    border-left: 1px solid $content-border-color;
-    border-bottom: 1px solid $content-border-color;
-    border-bottom-left-radius: $border-radius;
+    background-color: var(--color-secondary-purple);
+    border-left: 1px solid var(--content-border-color);
+    border-bottom: 1px solid var(--content-border-color);
+    border-bottom-left-radius: var(--border-radius);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -67,26 +67,26 @@ $block-gap-mobile: 64px;
 }
 
 .tb-graphic-green {
-    color: $color-vaticle-green;
+    color: var(--color-green);
 
     .tb-graphic-line {
-        @include graphic-line-gradient($color-vaticle-green);
+        @include graphic-line-gradient($color-green);
     }
 }
 
 .tb-graphic-pink {
-    color: $color-vaticle-secondary-pink;
+    color: var(--color-secondary-pink);
 
     .tb-graphic-line {
-        @include graphic-line-gradient($color-vaticle-secondary-pink);
+        @include graphic-line-gradient($color-secondary-pink);
     }
 }
 
 .tb-graphic-yellow {
-    color: $color-vaticle-secondary-yellow;
+    color: var(--color-secondary-yellow);
 
     .tb-graphic-line {
-        @include graphic-line-gradient($color-vaticle-secondary-yellow);
+        @include graphic-line-gradient($color-secondary-yellow);
     }
 }
 
