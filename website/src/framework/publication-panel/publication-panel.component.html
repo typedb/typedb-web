@@ -10,6 +10,7 @@
   </div>
   <td-feature-grid
     *ngIf="!isContentRow(item)"
+    [disableCardAppearance]="true"
     [featureRows]="item.features"
     [layout]="item.featureGridLayout"
     [illustration]="item.illustration"

@@ -1,11 +1,23 @@
-import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import {
+    AfterViewInit,
+    Component,
+    DestroyRef,
+    ElementRef,
+    Input,
+    NgZone,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, Event as RouterEvent, Scroll } from "@angular/router";
 
 import Prism from "prismjs";
-import { filter, Subscription } from "rxjs";
+import { filter, Observable, Subscription } from "rxjs";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 
-import { MediaQueryService } from "../../service/media-query.service";
+import { MediaQueryService } from "src/service/media-query.service";
+
 import { sanitiseHtmlID } from "../util";
 
 const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
@@ -15,23 +27,26 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "code-snippet.component.html",
     styleUrls: ["code-snippet.component.scss"],
 })
-export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CodeSnippetComponent implements AfterViewInit, OnInit {
     @Input() snippet!: CodeSnippet;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
+
     lines!: number;
     lineNumbers!: number[];
-
-    private mediaQuerySubscription = Subscription.EMPTY;
+    private isMobile$: Observable<boolean>;
 
     constructor(
-        private _mediaQuery: MediaQueryService,
+        private destroyRef: DestroyRef,
         private elementRef: ElementRef<HTMLElement>,
+        private mediaQuery: MediaQueryService,
         private ngZone: NgZone,
-    ) {}
+    ) {
+        this.isMobile$ = this.mediaQuery.isMobile.pipe(takeUntilDestroyed());
+    }
 
-    ngOnInit() {
-        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
+    ngOnInit(): void {
+        this.isMobile$.subscribe((isMobile) => {
             this.lines = Math.max(
                 (this.snippet.code.match(/\n/g) || []).length + 2,
                 DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
@@ -43,23 +58,26 @@ export class CodeSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
     ngAfterViewInit() {
         Prism.highlightAll();
 
-        this.ngZone.runOutsideAngular(() => this.initCustomScrollbars());
+        const { onDestroy } = this.ngZone.runOutsideAngular(() => this.initCustomScrollbars());
+        this.destroyRef.onDestroy(onDestroy);
     }
 
-    ngOnDestroy(): void {
-        this.mediaQuerySubscription.unsubscribe();
-    }
-
-    private initCustomScrollbars(): void {
+    private initCustomScrollbars() {
         const handleScroll = () => {
             this.updateScrollbarThumb(this.scrollbarX.nativeElement, "x");
             this.updateScrollbarThumb(this.scrollbarY.nativeElement, "y");
         };
         this.elementRef.nativeElement.addEventListener("scroll", handleScroll);
+        const observer = new ResizeObserver(handleScroll);
+        observer.observe(this.elementRef.nativeElement);
         handleScroll();
 
         this.initScrollbarThumbListeners(this.scrollbarX.nativeElement, "x");
         this.initScrollbarThumbListeners(this.scrollbarY.nativeElement, "y");
+
+        return {
+            onDestroy: () => observer.disconnect(),
+        };
     }
 
     private initScrollbarThumbListeners(scrollbar: HTMLElement, orientation: "x" | "y"): void {

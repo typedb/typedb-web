@@ -42,7 +42,7 @@ export class BlogPostPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private blogService: BlogService,
-        private _title: Title,
+        private title: Title,
         private meta: Meta,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
@@ -83,7 +83,7 @@ export class BlogPostPageComponent implements OnInit {
         combineLatest([this.post$, this.customFields$, this.site$]).subscribe(
             ([post, customFields, site]) => {
                 if (post && customFields) {
-                    this._title.setTitle(`${post.title} | ${site.name}`);
+                    this.title.setTitle(`TypeDB | Blog > ${post.title}`);
                     this.meta.addTag({
                         property: "og:description",
                         content: customFields.social_sharing_description || "",

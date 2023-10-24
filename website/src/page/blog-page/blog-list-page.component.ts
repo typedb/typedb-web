@@ -1,10 +1,10 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, DestroyRef } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map } from "rxjs";
+import { combineLatest, map } from "rxjs";
 import { blogNullFilter, Link, WordpressPost, WordpressTaxonomy } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -17,49 +17,57 @@ import { BlogService } from "../../service/blog.service";
     templateUrl: "./blog-list-page.component.html",
     styleUrls: ["./blog-list-page.component.scss"],
 })
-export class BlogListPageComponent implements OnInit {
+export class BlogListPageComponent {
     constructor(
         private router: Router,
-        private _route: ActivatedRoute,
+        private route: ActivatedRoute,
         private blogService: BlogService,
-        private _title: Title,
+        private title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
         destroyRef: DestroyRef,
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this._route.paramMap
-            .pipe(
-                takeUntilDestroyed(),
-                map((params) => {
-                    const categorySlug = params.get("categorySlug");
-                    if (categorySlug) return { categorySlug };
-                    return blogNullFilter();
-                }),
-            )
-            .subscribe((filter) => {
-                this.blogService.filter.next(filter);
-            });
-    }
-
-    ngOnInit() {
-        this.site$.subscribe(
-            (site) => {
-                this._title.setTitle(site.name);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 15000);
-            },
-            (_err) => {
-                this.router.navigate(["404"], { skipLocationChange: true });
-            },
-        );
+        combineLatest([this.site$, this.categories$])
+            .pipe(takeUntilDestroyed())
+            .subscribe(
+                ([_site, categories]) => {
+                    this.route.paramMap
+                        .pipe(
+                            map((params) => {
+                                const categorySlug = params.get("categorySlug");
+                                if (categorySlug) return { categorySlug };
+                                else return blogNullFilter();
+                            }),
+                        )
+                        .subscribe((filter) => {
+                            this.blogService.filter.next(filter);
+                            if ("categorySlug" in filter) {
+                                const category = categories.find((x) => x.slug === filter.categorySlug);
+                                if (!category) throw `Unknown category slug: ${filter.categorySlug}`;
+                                this.title.setTitle(`TypeDB | Blog > ${category.name}`);
+                            } else {
+                                this.title.setTitle(`TypeDB | Blog`);
+                            }
+                        });
+                    this._analytics.hubspot.trackPageView();
+                    setTimeout(() => {
+                        this._idleMonitor.fireManualMyAppReadyEvent();
+                    }, 15000);
+                },
+                (_err) => {
+                    this.router.navigate(["404"], { skipLocationChange: true });
+                },
+            );
     }
 
     get site$() {
         return this.blogService.site;
+    }
+
+    get categories$() {
+        return this.blogService.categories;
     }
 
     get posts$() {
