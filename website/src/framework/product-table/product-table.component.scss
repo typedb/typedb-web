@@ -1,4 +1,3 @@
-@import "colors";
 @import "sizes";
 
 table {
@@ -41,7 +40,7 @@ hr {
 }
 
 .pp-button-row {
-    background: $color-vaticle-deep-purple;
+    background: var(--color-deep-purple);
 
     td {
         padding: 16px 24px;

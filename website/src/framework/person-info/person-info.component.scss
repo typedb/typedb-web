@@ -33,8 +33,8 @@
             position: absolute;
             inset: 0;
             opacity: 0;
-            background: rgba($color-vaticle-black-purple, 0.4);
-            color: $color-vaticle-white;
+            background: rgba($color-black-purple, 0.4);
+            color: var(--color-white);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -42,10 +42,10 @@
         }
 
         &:hover {
-            color: $color-vaticle-green;
+            color: var(--color-green);
 
             .pi-speaker-image-container {
-                border-color: $color-vaticle-green;
+                border-color: var(--color-green);
             }
 
             .pi-speaker-image-cover {
@@ -61,8 +61,8 @@
 
 .pi-speaker-image-container {
     flex-shrink: 0;
-    border: 1px solid $content-border-color;
-    border-radius: $border-radius;
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 
@@ -71,12 +71,12 @@
 }
 
 .pi-person-name {
-    color: $color-vaticle-white;
+    color: var(--color-white);
 }
 
 @media (max-width: $media-max-width-tablet) {
     a.pi-speaker {
-        color: $color-vaticle-green;
+        color: var(--color-green);
 
         .pi-person-name {
             color: inherit;

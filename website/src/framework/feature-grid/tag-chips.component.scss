@@ -1,18 +1,14 @@
-@import "colors";
-@import "mixins";
-@import "sizes";
-
 :host {
-    font-weight: $font-weight-semi-bold;
+    font-weight: var(--font-weight-semi-bold);
     display: flex;
     flex-direction: row;
     gap: 8px;
 
     aside {
         padding: 2px 8px;
-        background: $color-vaticle-purple;
-        border: 1px solid $content-border-color;
-        border-radius: $border-radius;
-        color: $color-vaticle-secondary-pink;
+        background: var(--color-purple);
+        border: 1px solid var(--content-border-color);
+        border-radius: var(--border-radius);
+        color: var(--color-secondary-pink);
     }
 }
