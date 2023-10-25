@@ -69,8 +69,8 @@ status = 200
 
 [[redirects]]
 from = "/*"
-to = "/index.html"
-status = 200
+to = "/404"
+status = 404
 
 [[edge_functions]]
 function = "webinars-register"
