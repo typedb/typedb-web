@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -24,7 +24,6 @@ export class EventDetailsPageComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private analytics: AnalyticsService,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private idleMonitor: IdleMonitorService,
         private imageBuilder: ImageBuilder,
@@ -34,10 +33,6 @@ export class EventDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {
-            /**/
-        };
-        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
                 const sanityEvents = data.getDocumentsByType(eventSchemaName) as SanityEvent[];
@@ -47,9 +42,7 @@ export class EventDetailsPageComponent implements OnInit {
             tap((event) => {
                 if (event) {
                     this.title.setTitle(`TypeDB | ${this.plainTextPipe.transform(event.title)}`);
-                    unregisterMetaTags();
-                    const { unregister } = this.metaTags.register(event.metaTags);
-                    unregisterMetaTags = unregister;
+                    this.metaTags.register(event.metaTags);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

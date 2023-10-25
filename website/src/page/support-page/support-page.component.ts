@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -21,7 +21,6 @@ export class SupportPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private idleMonitor: IdleMonitorService,
         private router: Router,
@@ -37,8 +36,7 @@ export class SupportPageComponent implements OnInit {
             tap((page) => {
                 if (page) {
                     this.title.setTitle(`TypeDB | ${page.title}`);
-                    const { unregister } = this.metaTags.register(page.metaTags);
-                    this.destroyRef.onDestroy(unregister);
+                    this.metaTags.register(page.metaTags);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

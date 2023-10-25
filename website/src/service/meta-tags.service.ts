@@ -22,8 +22,9 @@ export class MetaTagsService {
         }
         metaTags.custom.forEach(({ property, content }) => metaDefinitions.push({ property, content }));
 
-        const tags = this.meta.addTags(metaDefinitions, true);
-
-        return { unregister: () => tags.forEach((tag) => this.meta.removeTagElement(tag)) };
+        for (const metaDef of metaDefinitions) {
+            this.meta.removeTag(metaDef.property ? `property='${metaDef.property}'` : `name='${metaDef.name}'`);
+            this.meta.addTag(metaDef);
+        }
     }
 }
