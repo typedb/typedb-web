@@ -1,4 +1,8 @@
 import { SanityDocument, Slug } from "@sanity/types";
+import { SanityImageRef } from "./image";
+import { Person, SanityPerson } from "./person";
+import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
+import { PortableText } from "./text";
 import { PropsOf } from "./util";
 
 export interface WordpressSite {
@@ -118,21 +122,61 @@ export const blogNullFilter: () => BlogNullFilter = () => ({});
 
 export type BlogCategoryFilter = { categorySlug: string }
 
-export interface SanityBlogPost extends SanityDocument {
+export const blogCategories = {
+    announcements: "Announcements",
+    applications: "Applications",
+    engineering: "Engineering",
+    philosophy: "Philosophy",
+    tutorials: "Tutorials",
+} as const;
+
+export const blogCategoryList = Object.keys(blogCategories);
+
+export type BlogCategoryID = keyof typeof blogCategories;
+
+export interface SanityArticle extends SanityDocument {
     slug: Slug;
+    title: PortableText;
+    excerpt: PortableText;
+    relatedArticles: SanityReference<SanityArticle>[];
 }
 
-export class BlogPost {
+export interface SanityFundamentalArticle extends SanityArticle {}
+
+export interface SanityApplicationArticle extends SanityArticle {}
+
+export interface SanityBlogPost extends SanityArticle {
+    author: SanityReference<SanityPerson>;
+    categories: BlogCategoryID[];
+    image: SanityImage;
+}
+
+export abstract class Article {
     readonly slug: string;
-    readonly title: string;
-    readonly author: WordpressAuthor;
-    readonly categories: { [name: string]: WordpressTaxonomy; };
+    readonly title: PortableText;
+    readonly excerpt: PortableText;
+
+    protected constructor(props: PropsOf<Article>) {
+        this.slug = props.slug;
+        this.title = props.title;
+        this.excerpt = props.excerpt;
+    }
+
+    static fromApi(data: SanityArticle): PropsOf<Article> {
+        return {
+            slug: data.slug.current,
+            title: data.title,
+            excerpt: data.excerpt,
+        };
+    }
+}
+
+export class BlogPost extends Article {
+    readonly author: Person;
+    readonly categories: BlogCategoryID[];
     readonly contentHtml: string;
     readonly dateString: string;
-    readonly excerptHtml: string;
-    readonly featuredImageURL: string;
-    readonly ordinal: number;
-    readonly tags: { [name: string]: WordpressTaxonomy };
+    readonly imageURL: string;
 
     constructor(props: PropsOf<BlogPost>) {
         this.slug = props.slug;
@@ -141,13 +185,20 @@ export class BlogPost {
         this.categories = props.categories;
         this.contentHtml = props.contentHtml;
         this.dateString = props.dateString;
-        this.excerptHtml = props.excerptHtml;
-        this.featuredImageURL = props.featuredImageURL;
-        this.ordinal = props.ordinal;
-        this.tags = props.tags;
+        this.excerpt = props.excerpt;
+        this.imageURL = props.imageURL;
     }
 
-    static fromApi(sanityData: SanityBlogPost) {
-
+    static override fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
+        return new BlogPost({
+            slug: data.slug.current,
+            title: data.title,
+            author: Person.fromSanity(db.resolveRef(data.author), db),
+            categories: data.categories,
+            contentHtml: wordpressPost.content,
+            dateString: wordpressPost.date,
+            excerpt: data.excerpt,
+            imageURL: db.resolveRef(data.image.asset).url,
+        });
     }
 }

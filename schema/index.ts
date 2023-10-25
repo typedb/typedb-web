@@ -29,7 +29,7 @@ export {
     type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
     type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
     blogNullFilter, type WordpressACFResponse, type WordpressACF,
-} from "./blog";
+} from "./article";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName } from "./code";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
