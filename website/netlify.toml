@@ -72,6 +72,11 @@ from = "https://typedb.com/*"
 to = "https://typedb.com/404.html"
 status = 404
 
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
 [[edge_functions]]
 function = "webinars-register"
 path = "/api/webinars/register"
