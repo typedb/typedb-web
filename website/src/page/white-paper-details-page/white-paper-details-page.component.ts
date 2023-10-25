@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
@@ -26,7 +26,6 @@ export class WhitePaperDetailsPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
@@ -37,10 +36,6 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {
-            /**/
-        };
-        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWhitePapers = data.getDocumentsByType(whitePaperSchemaName) as SanityWhitePaper[];
@@ -48,9 +43,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
                     this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.whitePaper.title)}`);
-                    unregisterMetaTags();
-                    const { unregister } = this.metaTags.register(this.whitePaper.metaTags);
-                    unregisterMetaTags = unregister;
+                    this.metaTags.register(this.whitePaper.metaTags);
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
                         onLoadingChange: (val) => {

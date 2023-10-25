@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -22,7 +22,6 @@ export class GenericPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
@@ -36,8 +35,7 @@ export class GenericPageComponent implements OnInit {
                 if (sanityCloudPage) {
                     this.page = new GenericPage(sanityCloudPage, data);
                     this._title.setTitle(`TypeDB | ${this.page.title}`);
-                    const { unregister } = this.metaTags.register(this.page.metaTags);
-                    this.destroyRef.onDestroy(unregister);
+                    this.metaTags.register(this.page.metaTags);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

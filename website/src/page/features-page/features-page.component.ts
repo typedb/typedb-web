@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -22,7 +22,6 @@ export class FeaturesPageComponent implements OnInit {
     constructor(
         private router: Router,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private _title: Title,
         private _analytics: AnalyticsService,
@@ -35,8 +34,7 @@ export class FeaturesPageComponent implements OnInit {
             if (sanityFeaturesPage) {
                 this.page = new FeaturesPage(sanityFeaturesPage, data);
                 this._title.setTitle(`TypeDB | ${this.page.title}`);
-                const { unregister } = this.metaTags.register(this.page.metaTags);
-                this.destroyRef.onDestroy(unregister);
+                this.metaTags.register(this.page.metaTags);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();

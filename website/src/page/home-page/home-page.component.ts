@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -24,7 +24,6 @@ export class HomePageComponent implements OnInit {
     constructor(
         private router: Router,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private title: Title,
         private _analytics: AnalyticsService,
@@ -37,8 +36,7 @@ export class HomePageComponent implements OnInit {
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
                 this.title.setTitle(`TypeDB | ${this.page.introSection?.title.toPlainText() || "Home"}`);
-                const { unregister } = this.metaTags.register(this.page.metaTags);
-                this.destroyRef.onDestroy(unregister);
+                this.metaTags.register(this.page.metaTags);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
                     (x) => new SocialMediaLink(x, data),
                 );
