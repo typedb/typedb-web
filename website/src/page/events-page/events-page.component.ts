@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -22,7 +22,6 @@ export class EventsPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private idleMonitor: IdleMonitorService,
         private imageBuilder: ImageBuilder,
         private metaTags: MetaTagsService,
@@ -39,8 +38,7 @@ export class EventsPageComponent implements OnInit {
             tap((page) => {
                 if (page) {
                     this.title.setTitle(`TypeDB | ${page.title}`);
-                    const { unregister } = this.metaTags.register(page.metaTags);
-                    this.destroyRef.onDestroy(unregister);
+                    this.metaTags.register(page.metaTags);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();

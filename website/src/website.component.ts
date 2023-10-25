@@ -23,7 +23,6 @@ const SITE_URL = "https://typedb.com";
 export class WebsiteComponent {
     private _originBeforeNavigation: string = window.location.origin;
     private _pathnameBeforeNavigation: string = window.location.pathname;
-    private canonicalLink?: HTMLLinkElement;
 
     constructor(
         contentService: ContentService,
@@ -51,13 +50,14 @@ export class WebsiteComponent {
 
     private setCanonicalLinkOnNavigation(router: Router, doc: Document) {
         router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd)).subscribe((e) => {
-            if (this.canonicalLink) {
-                doc.head.removeChild(this.canonicalLink);
+            const existingCanonicalLink = doc.head.querySelector("link[rel='canonical']");
+            if (existingCanonicalLink) {
+                doc.head.removeChild(existingCanonicalLink);
             }
-            this.canonicalLink = doc.createElement("link");
-            this.canonicalLink.setAttribute("rel", "canonical");
-            this.canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#?]/)[0]}`);
-            doc.head.appendChild(this.canonicalLink);
+            const canonicalLink = doc.createElement("link");
+            canonicalLink.setAttribute("rel", "canonical");
+            canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#?]/)[0]}`);
+            doc.head.appendChild(canonicalLink);
         });
     }
 

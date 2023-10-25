@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
@@ -27,7 +27,6 @@ export class WebinarDetailsPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private _formService: FormService,
         private _webinarService: WebinarService,
@@ -39,10 +38,6 @@ export class WebinarDetailsPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        let unregisterMetaTags = () => {
-            /**/
-        };
-        this.destroyRef.onDestroy(() => unregisterMetaTags());
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
                 const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
@@ -52,9 +47,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                 if (sanityWebinar) {
                     this.webinar = Webinar.fromSanity(sanityWebinar, data);
                     this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.webinar.title)}`);
-                    unregisterMetaTags();
-                    const { unregister } = this.metaTags.register(this.webinar.metaTags);
-                    unregisterMetaTags = unregister;
+                    this.metaTags.register(this.webinar.metaTags);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();

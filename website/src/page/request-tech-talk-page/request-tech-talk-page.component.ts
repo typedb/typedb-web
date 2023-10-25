@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -23,7 +23,6 @@ export class RequestTechTalkPageComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
         private contentService: ContentService,
-        private destroyRef: DestroyRef,
         private metaTags: MetaTagsService,
         private formService: FormService,
         private idleMonitor: IdleMonitorService,
@@ -40,8 +39,7 @@ export class RequestTechTalkPageComponent implements OnInit {
             if (sanityRequestTechTalkPage) {
                 this.page = new RequestTechTalkPage(sanityRequestTechTalkPage, data);
                 this.title.setTitle(`TypeDB | ${this.page.title}`);
-                const { unregister } = this.metaTags.register(this.page.metaTags);
-                this.destroyRef.onDestroy(unregister);
+                this.metaTags.register(this.page.metaTags);
                 this.analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this.idleMonitor.fireManualMyAppReadyEvent();

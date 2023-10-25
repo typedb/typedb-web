@@ -1,3 +1,6 @@
+import { SanityDocument, Slug } from "@sanity/types";
+import { PropsOf } from "./util";
+
 export interface WordpressSite {
     ID: number;
     URL: string;
@@ -114,3 +117,37 @@ export type BlogNullFilter = {};
 export const blogNullFilter: () => BlogNullFilter = () => ({});
 
 export type BlogCategoryFilter = { categorySlug: string }
+
+export interface SanityBlogPost extends SanityDocument {
+    slug: Slug;
+}
+
+export class BlogPost {
+    readonly slug: string;
+    readonly title: string;
+    readonly author: WordpressAuthor;
+    readonly categories: { [name: string]: WordpressTaxonomy; };
+    readonly contentHtml: string;
+    readonly dateString: string;
+    readonly excerptHtml: string;
+    readonly featuredImageURL: string;
+    readonly ordinal: number;
+    readonly tags: { [name: string]: WordpressTaxonomy };
+
+    constructor(props: PropsOf<BlogPost>) {
+        this.slug = props.slug;
+        this.title = props.title;
+        this.author = props.author;
+        this.categories = props.categories;
+        this.contentHtml = props.contentHtml;
+        this.dateString = props.dateString;
+        this.excerptHtml = props.excerptHtml;
+        this.featuredImageURL = props.featuredImageURL;
+        this.ordinal = props.ordinal;
+        this.tags = props.tags;
+    }
+
+    static fromApi(sanityData: SanityBlogPost) {
+
+    }
+}
