@@ -45,7 +45,7 @@ export class ParagraphWithHighlights {
     }
 
     toPlainText(): string {
-        return this.spans.map(x => x.text).join(" ");
+        return this.spans.map(x => x.text).join("");
     }
 }
 
