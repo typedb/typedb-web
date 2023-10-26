@@ -34,7 +34,22 @@ status = 303
 
 [[redirects]]
 from = "/docs"
-to = "/docs/typedb/2.x/overview.html"
+to = "/docs/typedb/2.x/overview"
+status = 301
+
+[[redirects]]
+from = "/docs/typedb/2.x/*"
+to = "/docs/typedb/:splat"
+status = 301
+
+[[redirects]]
+from = "/docs/typeql/2.x/*"
+to = "/docs/typeql/:splat"
+status = 301
+
+[[redirects]]
+from = "/docs/clients/2.x/*"
+to = "/docs/clients/:splat"
 status = 301
 
 [[redirects]]
