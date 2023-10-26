@@ -20,6 +20,9 @@ dependencies:
   '@sanity/vision':
     specifier: 3.18.0
     version: 3.18.0(@babel/runtime@7.23.2)(@codemirror/lint@6.4.2)(@codemirror/state@6.3.0)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.1.0)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+  axios:
+    specifier: 1.5.1
+    version: 1.5.1
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -3639,6 +3642,16 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /axios@1.5.1:
+    resolution: {integrity: sha512-Q28iYCWzNHjAm+yEAot5QaAMxhMghWLFVf7rRdwhUI+c2jix2DUXjAHXVi+s1ibs3mjPO/cCgbA++3BjD0vP/A==}
+    dependencies:
+      follow-redirects: 1.15.2(debug@4.3.4)
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query@3.1.1:
     resolution: {integrity: sha512-goKlv8DZrK9hUh975fnHzhNIO4jUnFCfv/dszV5VwUGDFjI6vQ2VwoyjYjYNEbBE8AH87TduWP5uyDR1D+Iteg==}
     dependencies:
@@ -6344,6 +6357,10 @@ packages:
     resolution: {integrity: sha512-YUHSPk+A30YPv+0Qf8i9Mbfe/C0hdPXk1s1jPVToV8pk8BQtpw10ct89Eo7OWkutrwqvT0eicAxlOg3dOAu8JA==}
     dependencies:
       xtend: 4.0.2
+    dev: false
+
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /psl@1.9.0:

@@ -1,4 +1,5 @@
 import { actionSchemas } from "./button";
+import { articleSchemas } from "./article";
 import { codeSchemas } from "./code";
 import { componentSchemas } from "./component";
 import { illustrationSchemas } from "./illustration";
@@ -19,16 +20,17 @@ import { webinarSchemas } from "./webinar";
 import { whitePaperSchema } from "./white-paper";
 
 export const schemaTypes = [
-    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
-    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
-    ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
+    ...actionSchemas, ...articleSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas,
+    ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
+    ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
     ...webinarSchemas, whitePaperSchema, eventSchema
 ];
 
 export {
     type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
     type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
-    blogNullFilter, type WordpressACFResponse, type WordpressACF,
+    blogNullFilter, type WordpressACFResponse, type WordpressACF, fundamentalArticleSchemaName,
+    applicationArticleSchemaName, blogPostSchemaName, Article, FundamentalArticle, ApplicationArticle, BlogPost,
 } from "./article";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName } from "./code";

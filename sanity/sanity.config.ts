@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import { BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, PresentationIcon, SparklesIcon, ThListIcon } from "@sanity/icons";
+import { BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, PresentationIcon, SparklesIcon, ThListIcon } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
@@ -11,7 +11,7 @@ import {
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName
+    eventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -50,6 +50,11 @@ export default defineConfig({
                     singletonListItem(s, servicesPageSchemaName, { title: "Services", icon: DocumentIcon }),
                     s.divider(),
                     s.documentTypeListItem(solutionPageSchemaName).title("Solutions").icon(DocumentsIcon),
+                ])),
+                s.listItem().title("Technical Articles").icon(BinaryDocumentIcon).child(s.list().title("Technical Articles").items([
+                    s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
+                    s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
+                    s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([

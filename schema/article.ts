@@ -1,5 +1,8 @@
-import { SanityDocument, Slug } from "@sanity/types";
-import { SanityImageRef } from "./image";
+import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
+import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
+import axios from "axios";
+import { authorField, imageFieldOptional, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
+import { metaTagsField } from "./page/meta-tags";
 import { Person, SanityPerson } from "./person";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PortableText } from "./text";
@@ -137,7 +140,7 @@ export type BlogCategoryID = keyof typeof blogCategories;
 export interface SanityArticle extends SanityDocument {
     slug: Slug;
     title: PortableText;
-    excerpt: PortableText;
+    previewText: PortableText;
     relatedArticles: SanityReference<SanityArticle>[];
 }
 
@@ -148,26 +151,38 @@ export interface SanityApplicationArticle extends SanityArticle {}
 export interface SanityBlogPost extends SanityArticle {
     author: SanityReference<SanityPerson>;
     categories: BlogCategoryID[];
-    image: SanityImage;
+    image?: SanityImage;
 }
 
 export abstract class Article {
     readonly slug: string;
     readonly title: PortableText;
-    readonly excerpt: PortableText;
+    readonly previewText: PortableText;
 
     protected constructor(props: PropsOf<Article>) {
         this.slug = props.slug;
         this.title = props.title;
-        this.excerpt = props.excerpt;
+        this.previewText = props.previewText;
     }
+}
 
-    static fromApi(data: SanityArticle): PropsOf<Article> {
-        return {
-            slug: data.slug.current,
-            title: data.title,
-            excerpt: data.excerpt,
-        };
+function articlePropsFromApi(data: SanityArticle): PropsOf<Article> {
+    return {
+        slug: data.slug.current,
+        title: data.title,
+        previewText: data.previewText,
+    };
+}
+
+export class FundamentalArticle extends Article {
+    static fromApi(data: SanityFundamentalArticle): FundamentalArticle {
+        return new FundamentalArticle(articlePropsFromApi(data));
+    }
+}
+
+export class ApplicationArticle extends Article {
+    static fromApi(data: SanityApplicationArticle): ApplicationArticle {
+        return new ApplicationArticle(articlePropsFromApi(data));
     }
 }
 
@@ -176,29 +191,107 @@ export class BlogPost extends Article {
     readonly categories: BlogCategoryID[];
     readonly contentHtml: string;
     readonly dateString: string;
-    readonly imageURL: string;
+    readonly imageURL?: string;
 
     constructor(props: PropsOf<BlogPost>) {
-        this.slug = props.slug;
-        this.title = props.title;
+        super(props);
         this.author = props.author;
         this.categories = props.categories;
         this.contentHtml = props.contentHtml;
         this.dateString = props.dateString;
-        this.excerpt = props.excerpt;
         this.imageURL = props.imageURL;
     }
 
-    static override fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
-        return new BlogPost({
-            slug: data.slug.current,
-            title: data.title,
+    static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
+        return new BlogPost(Object.assign(articlePropsFromApi(data), {
             author: Person.fromSanity(db.resolveRef(data.author), db),
             categories: data.categories,
             contentHtml: wordpressPost.content,
             dateString: wordpressPost.date,
-            excerpt: data.excerpt,
-            imageURL: db.resolveRef(data.image.asset).url,
-        });
+            imageURL: data.image && db.resolveRef(data.image.asset).url,
+        }));
     }
 }
+
+export const fundamentalArticleSchemaName = `fundamentalArticle`;
+export const applicationArticleSchemaName = `applicationArticle`;
+export const blogPostSchemaName = `blogPost`;
+
+const BLOG_POSTS_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts";
+const BLOG_POSTS_MIN_REFRESH_INTERVAL_MS = 3000;
+
+async function wordpressPostSlugs(): Promise<string[]> {
+    if (!(window as any)["wordpressData"]) {
+        (window as any)["wordpressData"] = { postSlugs: [], lastUpdated: 0 };
+    }
+    const wordpressData = (window as any)["wordpressData"] as { postSlugs: string[], lastUpdated: number };
+    if (Date.now() - wordpressData.lastUpdated < BLOG_POSTS_MIN_REFRESH_INTERVAL_MS) {
+        return wordpressData.postSlugs;
+    }
+    wordpressData.lastUpdated = Date.now();
+    const { data } = await axios.get<{ found: number, posts: { slug: string }[] }>(BLOG_POSTS_URL, {
+        params: { "fields": "slug" },
+    });
+    wordpressData.postSlugs = data.posts.map(x => x.slug);
+    return wordpressData.postSlugs;
+}
+
+const articleBaseSchema = defineType({
+    name: "article",
+    type: "document",
+    fields: [
+        Object.assign({}, slugField, {
+            description: "Must match the post's slug in WordPress. Content is pulled from WordPress",
+            validation: (rule: SlugRule) => rule.custom(async (value) => {
+                if (!value?.current) return "Required";
+                const slugs = await wordpressPostSlugs();
+                return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
+            }),
+        }),
+        titleFieldWithHighlights,
+        defineField({
+            name: "previewText",
+            title: "Preview Text",
+            type: "array",
+            of: [{type: "block"}],
+        }),
+        metaTagsField,
+    ],
+});
+
+const fundamentalArticleSchema = Object.assign({}, articleBaseSchema, {
+    name: fundamentalArticleSchemaName,
+    title: "Fundamental Article",
+    icon: BulbOutlineIcon,
+});
+
+const applicationArticleSchema = Object.assign({}, articleBaseSchema, {
+    name: applicationArticleSchemaName,
+    title: "Application Article",
+    icon: PlugIcon,
+});
+
+const blogPostSchema = Object.assign({}, articleBaseSchema, {
+    name: blogPostSchemaName,
+    title: "Blog Post",
+    icon: DocumentTextIcon,
+    fields: [
+        ...articleBaseSchema.fields,
+        authorField,
+        defineField({
+            name: "categories",
+            title: "Categories",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+                layout: "grid",
+                list: Object.entries(blogCategories).map(([id, title]) => ({ value: id, title: title })),
+            },
+            validation: requiredRule,
+            initialValue: ["engineering"],
+        }),
+        imageFieldOptional,
+    ],
+});
+
+export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, blogPostSchema];
