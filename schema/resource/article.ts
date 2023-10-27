@@ -176,6 +176,12 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
         ...articleSchemaBase.fields,
         authorField,
         defineField({
+            name: "date",
+            title: "Published Date",
+            type: "datetime",
+            validation: requiredRule,
+        }),
+        defineField({
             name: "categories",
             title: "Categories",
             type: "array",
