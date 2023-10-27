@@ -1,10 +1,8 @@
 import { actionSchemas } from "./button";
-import { articleSchemas } from "./article";
 import { codeSchemas } from "./code";
 import { componentSchemas } from "./component";
 import { illustrationSchemas } from "./illustration";
 import { linkSchemas } from "./link";
-import { eventSchema } from "./event";
 import { formSchemas } from "./form";
 import { imageSchemas } from "./image";
 import { keyPointSchemas } from "./key-point";
@@ -13,25 +11,17 @@ import { organisationSchemas } from "./organisation";
 import { pageSchemas } from "./page";
 import { personSchemas } from "./person";
 import { referenceMaterialSchema } from "./reference-material";
+import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
-import { webinarSchemas } from "./webinar";
-import { whitePaperSchema } from "./white-paper";
 
 export const schemaTypes = [
-    ...actionSchemas, ...articleSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas,
-    ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
-    ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
-    ...webinarSchemas, whitePaperSchema, eventSchema
+    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
+    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
+    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
 ];
 
-export {
-    type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
-    type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
-    blogNullFilter, type WordpressACFResponse, type WordpressACF, fundamentalArticleSchemaName,
-    applicationArticleSchemaName, blogPostSchemaName, Article, FundamentalArticle, ApplicationArticle, BlogPost,
-} from "./article";
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName } from "./code";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
@@ -42,8 +32,6 @@ export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-pan
 export { TitleBodyIllustrationSection } from "./component/page-section";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export { Event, type SanityEvent, eventSchema, eventSchemaName } from "./event";
-export { EventDate, type SanityEventDate } from "./event-date";
 export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -73,10 +61,18 @@ export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from ".
 export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName } from "./page/white-papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
+export {
+    type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
+    type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
+    blogNullFilter, type WordpressACFResponse, type WordpressACF, Article, FundamentalArticle, ApplicationArticle,
+    BlogPost,
+} from "./resource/article";
+export { LiveEvent, liveEventSchema } from "./resource/live-event";
+export { EventDate, type SanityEventDate } from "./resource/live-event-details";
+export { Webinar } from "./resource/webinar";
+export { WhitePaper } from "./resource/white-paper";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
 export { groupBy, associateBy } from "./util";
-export { Webinar, type SanityWebinar, webinarSchemaName } from "./webinar";
-export { WhitePaper, type SanityWhitePaper, whitePaperSchemaName } from "./white-paper";

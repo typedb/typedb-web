@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { SanityBlogPost } from "../article";
+import { BlogCategoryID, SanityBlogPost } from "../resource/article";
 import {
     collapsibleOptions,
     isVisibleField,
@@ -14,32 +14,24 @@ import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicol
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
-import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
+import { SanityWebinar, Webinar, webinarSchemaName } from "../resource/webinar";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
-import { SanityResourcePage } from "./resource";
+import { SanityResourcePage } from "../resource/base";
 
-export interface SanityBlogListPage extends SanityPage {
-    additionalRows: SanityBlogRow[];
+export interface SanityBlogHomePage extends SanityPage {
+    additionalRows: Record<"all" | BlogCategoryID, SanityBlogRow[]>;
 }
 
 type SanityBlogRow = SanityResourcePanelsRow;
 
-interface SanityResourcePanelsRow {
+interface SanityResourcePanelsRow extends SanityVisibleToggle {
     rowIndex: number;
     resources: SanityReference<SanityResourcePage>[];
 }
 
-export interface SanityFeaturedWebinarsSection extends SanityTechnicolorBlock, SanityVisibleToggle {
-    featuredWebinars?: SanityReference<SanityWebinar>[];
-}
-
-export interface SanityExploreWebinarsSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
-
-export class WebinarsPage extends Page {
-    readonly introSection: IntroSection;
-    readonly featuredWebinarsSection?: FeaturedWebinarsSection;
-    readonly exploreWebinarsSection?: ExploreWebinarsSection;
+export class BlogHomePage extends Page {
+    readonly additionalRows: Record<"all" | BlogCategoryID, BlogRow[]>;
 
     constructor(data: SanityWebinarsPage, db: SanityDataset) {
         super(data, db);
@@ -51,6 +43,13 @@ export class WebinarsPage extends Page {
             ? ExploreWebinarsSection.fromSanity(data.exploreWebinarsSection, db)
             : undefined;
     }
+}
+
+type BlogRow = ResourcePanelsRow;
+
+export class ResourcePanelsRow {
+    rowIndex: number;
+    resources: ResourcePanel[];
 }
 
 export class IntroSection extends TitleAndBody {

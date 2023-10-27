@@ -1,12 +1,13 @@
 import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
-import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
+import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios from "axios";
-import { authorField, imageFieldOptional, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
-import { metaTagsField } from "./page/meta-tags";
-import { Person, SanityPerson } from "./person";
-import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
-import { PortableText } from "./text";
-import { PropsOf } from "./util";
+import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
+import { Person } from "../person";
+import { SanityDataset } from "../sanity-core";
+import { PropsOf } from "../util";
+import { ResourceBase, resourceCommonFields, resourcePropsFromSanity } from "./base";
+import { blogCategories, BlogCategoryID } from "./blog-category";
+import { applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
 
 export interface WordpressSite {
     ID: number;
@@ -31,61 +32,7 @@ export interface WordpressPosts {
 
 export interface WordpressPost {
     ID: number;
-    URL: string;
-    attachment_count: number;
-    attachments: { [id: number]: WordpressAttachment; };
-    author: WordpressAuthor;
-    categories: { [name: string]: WordpressTaxonomy; };
     content: string;
-    date: string;
-    discussion: any;
-    excerpt: string;
-    featured_image: string;
-    global_ID: string;
-    i_like: boolean;
-    is_following: boolean;
-    is_reblogged: boolean;
-    like_count: number;
-    likes_enabled: boolean;
-    menu_order: number;
-    meta: any;
-    metadata: any[];
-    modified: string;
-    other_URLs: any;
-    post_thumbnail: any;
-    sharing_enabled: boolean;
-    short_URL: string;
-    slug: string;
-    status: "publish";
-    sticky: boolean;
-    tags: { [name: string]: WordpressTaxonomy };
-    terms: any;
-    title: string;
-}
-
-export interface WordpressAttachment {
-    ID: number;
-    URL: string;
-    alt: string;
-    author_ID: number;
-    caption: string;
-    date: string;
-    description: string;
-    height: number;
-    thumbnails: any;
-    title: string;
-    width: number;
-}
-
-export interface WordpressAuthor {
-    ID: number;
-    URL: string;
-    avatar_URL: string;
-    email: boolean;
-    first_name: string;
-    last_name: string;
-    name: string;
-    profile_URL: string;
 }
 
 export interface WordpressCategoriesResponse {
@@ -125,97 +72,54 @@ export const blogNullFilter: () => BlogNullFilter = () => ({});
 
 export type BlogCategoryFilter = { categorySlug: string }
 
-export const blogCategories = {
-    announcements: "Announcements",
-    applications: "Applications",
-    engineering: "Engineering",
-    philosophy: "Philosophy",
-    tutorials: "Tutorials",
-} as const;
-
-export const blogCategoryList = Object.keys(blogCategories);
-
-export type BlogCategoryID = keyof typeof blogCategories;
-
-export interface SanityArticle extends SanityDocument {
-    slug: Slug;
-    title: PortableText;
-    previewText: PortableText;
-    relatedArticles: SanityReference<SanityArticle>[];
-}
-
-export interface SanityFundamentalArticle extends SanityArticle {}
-
-export interface SanityApplicationArticle extends SanityArticle {}
-
-export interface SanityBlogPost extends SanityArticle {
-    author: SanityReference<SanityPerson>;
-    categories: BlogCategoryID[];
-    image?: SanityImage;
-}
-
-export abstract class Article {
-    readonly slug: string;
-    readonly title: PortableText;
-    readonly previewText: PortableText;
+export abstract class Article extends ResourceBase {
+    readonly contentHtml: string;
 
     protected constructor(props: PropsOf<Article>) {
-        this.slug = props.slug;
-        this.title = props.title;
-        this.previewText = props.previewText;
+        super(props);
+        this.contentHtml = props.contentHtml;
     }
 }
 
-function articlePropsFromApi(data: SanityArticle): PropsOf<Article> {
-    return {
-        slug: data.slug.current,
-        title: data.title,
-        previewText: data.previewText,
-    };
+function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
+    return Object.assign(resourcePropsFromSanity(data, db), { contentHtml: wordpressPost.content });
 }
 
 export class FundamentalArticle extends Article {
-    static fromApi(data: SanityFundamentalArticle): FundamentalArticle {
-        return new FundamentalArticle(articlePropsFromApi(data));
+    static fromApi(data: SanityFundamentalArticle, db: SanityDataset, wordpressPost: WordpressPost): FundamentalArticle {
+        return new FundamentalArticle(articlePropsFromApi(data, db, wordpressPost));
     }
 }
 
 export class ApplicationArticle extends Article {
-    static fromApi(data: SanityApplicationArticle): ApplicationArticle {
-        return new ApplicationArticle(articlePropsFromApi(data));
+    static fromApi(data: SanityApplicationArticle, db: SanityDataset, wordpressPost: WordpressPost): ApplicationArticle {
+        return new ApplicationArticle(articlePropsFromApi(data, db, wordpressPost));
     }
 }
 
 export class BlogPost extends Article {
     readonly author: Person;
     readonly categories: BlogCategoryID[];
-    readonly contentHtml: string;
-    readonly dateString: string;
+    readonly date: Date;
     readonly imageURL?: string;
 
     constructor(props: PropsOf<BlogPost>) {
         super(props);
         this.author = props.author;
         this.categories = props.categories;
-        this.contentHtml = props.contentHtml;
-        this.dateString = props.dateString;
+        this.date = props.date;
         this.imageURL = props.imageURL;
     }
 
     static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
-        return new BlogPost(Object.assign(articlePropsFromApi(data), {
+        return new BlogPost(Object.assign(articlePropsFromApi(data, db, wordpressPost), {
             author: Person.fromSanity(db.resolveRef(data.author), db),
             categories: data.categories,
-            contentHtml: wordpressPost.content,
-            dateString: wordpressPost.date,
+            date: data.date,
             imageURL: data.image && db.resolveRef(data.image.asset).url,
         }));
     }
 }
-
-export const fundamentalArticleSchemaName = `fundamentalArticle`;
-export const applicationArticleSchemaName = `applicationArticle`;
-export const blogPostSchemaName = `blogPost`;
 
 const BLOG_POSTS_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts";
 const BLOG_POSTS_MIN_REFRESH_INTERVAL_MS = 3000;
@@ -236,7 +140,7 @@ async function wordpressPostSlugs(): Promise<string[]> {
     return wordpressData.postSlugs;
 }
 
-const articleBaseSchema = defineType({
+const articleSchemaBase = defineType({
     name: "article",
     type: "document",
     fields: [
@@ -248,35 +152,28 @@ const articleBaseSchema = defineType({
                 return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
             }),
         }),
-        titleFieldWithHighlights,
-        defineField({
-            name: "previewText",
-            title: "Preview Text",
-            type: "array",
-            of: [{type: "block"}],
-        }),
-        metaTagsField,
+        ...resourceCommonFields,
     ],
 });
 
-const fundamentalArticleSchema = Object.assign({}, articleBaseSchema, {
+const fundamentalArticleSchema = Object.assign({}, articleSchemaBase, {
     name: fundamentalArticleSchemaName,
     title: "Fundamental Article",
     icon: BulbOutlineIcon,
 });
 
-const applicationArticleSchema = Object.assign({}, articleBaseSchema, {
+const applicationArticleSchema = Object.assign({}, articleSchemaBase, {
     name: applicationArticleSchemaName,
     title: "Application Article",
     icon: PlugIcon,
 });
 
-const blogPostSchema = Object.assign({}, articleBaseSchema, {
+const blogPostSchema = Object.assign({}, articleSchemaBase, {
     name: blogPostSchemaName,
     title: "Blog Post",
     icon: DocumentTextIcon,
     fields: [
-        ...articleBaseSchema.fields,
+        ...articleSchemaBase.fields,
         authorField,
         defineField({
             name: "categories",
