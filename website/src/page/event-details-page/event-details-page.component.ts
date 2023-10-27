@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, map, Observable, tap } from "rxjs";
-import { LiveEvent, liveEventSchemaName, SanityEvent } from "typedb-web-schema";
+import { LiveEvent, liveEventSchemaName, SanityLiveEvent } from "typedb-web-schema";
 
 import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { AnalyticsService } from "src/service/analytics.service";
@@ -35,7 +35,7 @@ export class EventDetailsPageComponent implements OnInit {
     ngOnInit() {
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
-                const sanityEvents = data.getDocumentsByType(liveEventSchemaName) as SanityEvent[];
+                const sanityEvents = data.getDocumentsByType<SanityLiveEvent>(liveEventSchemaName);
                 const sanityEvent = sanityEvents.find((x) => x.slug.current === params.get("slug"));
                 return sanityEvent ? LiveEvent.fromSanity(sanityEvent, data) : null;
             }),

@@ -63,15 +63,17 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export {
     type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
-    type WordpressTaxonomy, type WordpressRelatedPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
-    blogNullFilter, type WordpressACFResponse, type WordpressACF, Article, FundamentalArticle, ApplicationArticle,
-    BlogPost,
+    type WordpressTaxonomy, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
+    blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost
 } from "./resource/article";
+export { type BlogCategoryID } from "./resource/blog-category";
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
-    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName
+    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost, type SanityWhitePaper,
+    type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityApplicationArticle,
+    type SanityGenericResource
 } from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";

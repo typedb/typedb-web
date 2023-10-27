@@ -5,7 +5,7 @@ import { authorField, imageFieldOptional, requiredRule, slugField } from "../com
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { ResourceBase, resourceCommonFields, resourcePropsFromSanity } from "./base";
+import { ResourceBase, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
 import { applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
 
@@ -32,6 +32,7 @@ export interface WordpressPosts {
 
 export interface WordpressPost {
     ID: number;
+    slug: string;
     content: string;
 }
 
@@ -50,19 +51,14 @@ export interface WordpressTaxonomy {
     slug: string;
 }
 
-export type WordpressRelatedPosts = {
-    category: WordpressTaxonomy;
-    posts: WordpressPost[];
-}[];
-
-export type WordpressACFResponse = {
-    id: number;
-    acf: WordpressACF;
-}[];
-
-export interface WordpressACF {
-    social_sharing_description: string | null;
+export interface BlogPostLink extends ResourceLink {
+    imageURL: string;
 }
+
+export type RelatedBlogPosts = {
+    categorySlug: BlogCategoryID;
+    posts: BlogPostLink[];
+}[];
 
 export type BlogFilter = BlogNullFilter | BlogCategoryFilter;
 
@@ -102,6 +98,7 @@ export class BlogPost extends Article {
     readonly categories: BlogCategoryID[];
     readonly date: Date;
     readonly imageURL?: string;
+    // TODO: social sharing description
 
     constructor(props: PropsOf<BlogPost>) {
         super(props);

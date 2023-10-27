@@ -1,22 +1,20 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
+    BlogCategoryID,
+    BlogPost,
     Link,
     LinkButton,
-    WordpressACF,
     WordpressPost,
-    WordpressRelatedPosts,
+    RelatedBlogPosts,
     WordpressSite,
     WordpressTaxonomy,
 } from "typedb-web-schema";
-
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
-
 import { AnalyticsService } from "../../service/analytics.service";
 import { BlogService } from "../../service/blog.service";
 
@@ -27,10 +25,9 @@ import { BlogService } from "../../service/blog.service";
 })
 export class BlogPostPageComponent implements OnInit {
     readonly site$: Observable<WordpressSite>;
-    readonly post$: Observable<WordpressPost | null>;
-    readonly customFields$: Observable<WordpressACF | null>;
-    readonly categories$: Observable<WordpressTaxonomy[] | null>;
-    relatedPostGroups$?: Observable<WordpressRelatedPosts | null>;
+    readonly post$: Observable<BlogPost | null>;
+    readonly categories$: Observable<BlogCategoryID[] | null>;
+    relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
         link: Link.fromAddress("?dialog=newsletter"),
@@ -58,19 +55,24 @@ export class BlogPostPageComponent implements OnInit {
             }),
             shareReplay(1),
         );
-        this.categories$ = this.post$.pipe(map((post) => (post ? Object.values(post.categories) : null)));
-        this.customFields$ = this.post$.pipe(
-            switchMap((post) => (post ? this.blogService.getCustomFieldsForPost(post) : of(null))),
-        );
-        this.relatedPostGroups$ = combineLatest([this.post$, this.categories$]).pipe(
-            switchMap(([post, categories]) => {
-                if (!post || !categories) return of(null);
+        this.categories$ = this.post$.pipe(map((post) => (post ? post.categories : null)));
+        this.relatedPostGroups$ = this.post$.pipe(
+            switchMap((post) => {
+                if (!post) return of(null);
                 return combineLatest(
-                    categories.map((category) => {
+                    post.categories.map((category) => {
                         return this.blogService.getPostsByCategory(category).pipe(
                             map((posts) => ({
-                                category: category,
-                                posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3),
+                                categorySlug: category,
+                                posts: posts
+                                    .filter((p) => p.slug !== post.slug)
+                                    .slice(0, 3)
+                                    .map(x => ({
+                                        title: x.shortTitle,
+                                        description: x.shortDescription,
+                                        url: `/blog/${x.slug}`,
+                                        imageURL: x.imageURL || "",
+                                    }))
                             })),
                         );
                     }),
