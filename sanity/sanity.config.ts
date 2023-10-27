@@ -11,7 +11,7 @@ import {
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName
+    liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -72,6 +72,7 @@ export default defineConfig({
                 s.documentTypeListItem(webinarSchemaName).title("Webinars"),
                 s.documentTypeListItem(whitePaperSchemaName).title("White Papers"),
                 s.documentTypeListItem(liveEventSchemaName).title("Events"),
+                s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "HubSpot Forms", icon: ClipboardImageIcon }),

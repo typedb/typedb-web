@@ -69,6 +69,10 @@ export {
 } from "./resource/article";
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
+export {
+    applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
+    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName
+} from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";
 export { Document, SanityDataset } from "./sanity-core";
