@@ -24,12 +24,13 @@ body {
     box-sizing: border-box;
 }
 
-pre,
-code {
+code,
+kbd,
+pre {
     font-family: var(--code-font-family);
 }
 
-@each $tag in (h1, h2, h3, h4, h5) {
+@each $tag in (h1, h2, h3, h4, h5, h6) {
     #{$tag} {
         font-size: var(--font-size-#{$tag});
         line-height: var(--line-height-#{$tag});
@@ -132,8 +133,41 @@ dd {
     font-weight: var(--font-weight-regular);
 }
 
-strong {
+b,
+dt,
+strong,
+th {
     font-weight: var(--font-weight-semi-bold);
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+em em {
+    font-style: normal;
+}
+
+strong strong {
+    font-weight: normal;
+}
+
+summary {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 a {
@@ -175,6 +209,12 @@ address {
 
 .hide-gt-mobile {
     @media (min-width: $media-min-width-tablet) {
+        display: none !important;
+    }
+}
+
+.hide-lt-desktop {
+    @media (max-width: $media-max-width-tablet) {
         display: none !important;
     }
 }
