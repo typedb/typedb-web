@@ -1,0 +1,93 @@
+body {
+    .mat-icon {
+        width: 1em;
+        height: 1em;
+
+        svg {
+            display: block;
+        }
+    }
+
+    .mat-mdc-icon-button {
+        padding: 0.25em;
+        margin: -0.25em;
+        width: 1.5em;
+        height: 1.5em;
+
+        .mat-icon {
+            display: block;
+            font-size: inherit;
+        }
+
+        svg {
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .mat-icon,
+    .mat-mdc-icon-button {
+        font-size: 24px;
+
+        &.td-icon-small {
+            font-size: 20px;
+        }
+
+        &.td-icon-large {
+            font-size: 32px;
+        }
+
+        &.td-icon-xl {
+            font-size: 40px;
+        }
+    }
+
+    .mdc-dialog {
+        --mdc-dialog-container-color: #{var(--color-purple)};
+        --mdc-dialog-supporting-text-color: var(--color-white);
+
+        .mdc-dialog__surface {
+            padding: 24px;
+        }
+
+        .mdc-dialog__title {
+            padding: 0 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &::before {
+                display: none;
+            }
+
+            h1 {
+                font-size: 24px;
+                line-height: 32px;
+                font-weight: var(--font-weight-bold);
+            }
+        }
+
+        .mdc-dialog__content {
+            padding: 0;
+        }
+    }
+
+    .mat-mdc-snack-bar-container {
+        .mdc-snackbar__surface {
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+
+            &::before {
+                display: none;
+            }
+        }
+        .mdc-snackbar__label {
+            padding: 0;
+        }
+    }
+
+    .mat-mdc-progress-bar {
+        --mdc-linear-progress-active-indicator-color: var(--color-green);
+    }
+}

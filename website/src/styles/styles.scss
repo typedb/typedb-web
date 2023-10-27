@@ -1,8 +1,10 @@
 @use "@angular/material" as mat;
+@use "mixins" as *;
+@use "sizes" as *;
 
+@import "base";
 @import "fonts";
-@import "mixins";
-@import "sizes";
+@import "material";
 @import "prism";
 @import "vars";
 
@@ -11,10 +13,7 @@ $default-typography: mat.define-typography-level(
 );
 
 $custom-typography: mat.define-typography-config(
-    $font-family: (
-        "Titillium Web",
-        sans-serif,
-    ),
+    $font-family: var(--default-font-family),
     $headline-1: $default-typography,
     $headline-2: $default-typography,
     $headline-3: $default-typography,
@@ -33,41 +32,6 @@ $custom-typography: mat.define-typography-config(
 @include mat.core();
 @include mat.dialog-typography($custom-typography);
 @include mat.snack-bar-typography($custom-typography);
-
-html,
-body {
-    --default-background: var(--color-black-purple);
-    --default-heading-color: var(--color-white);
-    --default-text-color: var(--color-dark-white);
-    color-scheme: dark;
-    height: 100%;
-    background-color: var(--default-background);
-    color: var(--default-text-color);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-light);
-    line-height: calc(25 / 17);
-    letter-spacing: 0.016em;
-
-    // TODO: import this from npm @fontsource/titillium-web
-    font-family: "Titillium Web", sans-serif;
-
-    margin: 0;
-    scroll-padding-top: var(--topbar-height);
-
-    @media (max-width: $media-max-width-mobile) {
-        --default-text-color: var(--color-white);
-        font-size: 14px;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-}
-
-pre,
-code {
-    font-family: "Monaco", monospace;
-}
 
 article {
     min-height: 1080px;
@@ -109,57 +73,6 @@ section,
     margin-right: auto;
 }
 
-h1 {
-    font-size: var(--font-size-h1);
-    line-height: var(--line-height-h1);
-}
-
-h2 {
-    font-size: var(--font-size-h2);
-    line-height: var(--line-height-h2);
-}
-
-h3 {
-    font-size: var(--font-size-h3);
-    line-height: var(--line-height-h3);
-}
-
-h4 {
-    font-size: var(--font-size-h4);
-    line-height: var(--line-height-h4);
-}
-
-h5 {
-    font-size: var(--font-size-h5);
-    line-height: var(--line-height-h5);
-}
-
-.text-p1,
-.text-p1 p {
-    font-size: var(--font-size-p1);
-    line-height: var(--line-height-p1);
-}
-
-p,
-.text-p2 {
-    font-size: var(--font-size-p2);
-    line-height: var(--line-height-p2);
-}
-
-aside,
-.text-aside {
-    font-size: var(--font-size-aside);
-    line-height: var(--line-height-aside);
-    font-weight: var(--font-weight-regular);
-}
-
-pre,
-code,
-.text-code {
-    font-size: var(--font-size-code);
-    line-height: var(--line-height-code);
-}
-
 p code,
 p .text-code {
     hyphens: none;
@@ -174,71 +87,6 @@ p .text-code {
     max-width: 870px;
 }
 
-/* prettier-ignore */
-h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, pre, figure {
-    margin: 0;
-    padding: 0;
-}
-
-/* prettier-ignore */
-h1, h2, h3, h4, th {
-    color: var(--default-heading-color);
-}
-
-/* prettier-ignore */
-h5, h6 {
-    color: var(--default-text-color);
-}
-
-aside {
-    /* prettier-ignore */
-    h1, h2, h3, h4 {
-        color: var(--default-text-color);
-    }
-}
-
-/* prettier-ignore */
-h1, h2 {
-    font-weight: var(--font-weight-bold);
-}
-
-/* prettier-ignore */
-h3, h4 {
-    font-weight: var(--font-weight-semi-bold);
-}
-
-/* prettier-ignore */
-h5, h6 {
-    font-weight: var(--font-weight-regular);
-}
-
-dd {
-    font-weight: var(--font-weight-regular);
-}
-
-a {
-    cursor: pointer;
-    color: var(--color-white);
-    text-decoration: none;
-
-    p {
-        color: var(--default-text-color);
-    }
-}
-
-p,
-aside {
-    a,
-    a:visited {
-        color: var(--color-green);
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-}
-
 .link-tertiary,
 .link-tertiary:visited {
     color: var(--color-white);
@@ -249,46 +97,6 @@ aside {
         color: var(--color-green);
         text-decoration: underline;
     }
-}
-
-strong {
-    font-weight: var(--font-weight-semi-bold);
-}
-
-button,
-input[type="text"],
-input[type="email"] {
-    font-family: "Titillium Web", sans-serif;
-}
-
-address {
-    font-style: normal;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-.hide-mobile {
-    @media (max-width: $media-max-width-mobile) {
-        display: none !important;
-    }
-}
-
-.hide-gt-mobile {
-    @media (min-width: $media-min-width-tablet) {
-        display: none !important;
-    }
-}
-
-.hide-desktop {
-    @media (min-width: $media-min-width-desktop) {
-        display: none !important;
-    }
-}
-
-.flex {
-    flex: 1;
 }
 
 table {
@@ -308,11 +116,6 @@ table {
             border-left: 1px solid var(--content-border-color);
         }
     }
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid var(--content-border-color);
 }
 
 .page-section {
@@ -343,40 +146,8 @@ hr {
     margin-top: var(--subtitle-margin);
 }
 
-.text-important {
-    color: var(--color-white);
-    font-weight: 600;
-}
-
-.text-quiet {
-    color: var(--color-secondary-light-grey);
-}
-
 .section-background-solid {
     background-color: var(--color-black-purple);
-}
-
-.card {
-    @include card-appearance;
-    @include card-padding;
-    transition: border-color 150ms ease;
-
-    &.hoverable:hover {
-        border-color: var(--color-green);
-
-        .link-tertiary {
-            color: var(--color-green);
-            text-decoration: underline;
-        }
-    }
-}
-
-.card-appearance {
-    @include card-appearance;
-}
-
-.card-padding {
-    @include card-padding;
 }
 
 .hs-form label {
@@ -404,16 +175,6 @@ select {
     font-size: 16px;
     line-height: 46px;
     height: 48px;
-    font-family: "Titillium Web", sans-serif;
-}
-
-.hs-form input,
-select,
-textarea {
-    &::placeholder {
-        color: rgba($color-secondary-light-grey, 0.8);
-        font-style: italic;
-    }
 }
 
 .hs-form select {
@@ -514,7 +275,6 @@ body .hs-form fieldset.form-columns-1 .hs-input {
     caret-color: var(--default-text-color);
     border-radius: var(--border-radius);
     font-size: 16px;
-    font-family: "Titillium Web", sans-serif;
     padding: 8px;
     height: 136px;
 }
@@ -601,99 +361,4 @@ input[type="submit"].hs-button {
 
 .markdown pre {
     background: transparent;
-}
-
-// @angular/material styles
-body {
-    .mat-icon {
-        width: 1em;
-        height: 1em;
-
-        svg {
-            display: block;
-        }
-    }
-
-    .mat-mdc-icon-button {
-        padding: 0.25em;
-        margin: -0.25em;
-        width: 1.5em;
-        height: 1.5em;
-
-        .mat-icon {
-            display: block;
-            font-size: inherit;
-        }
-
-        svg {
-            width: auto;
-            height: auto;
-        }
-    }
-
-    .mat-icon,
-    .mat-mdc-icon-button {
-        font-size: 24px;
-
-        &.td-icon-small {
-            font-size: 20px;
-        }
-
-        &.td-icon-large {
-            font-size: 32px;
-        }
-
-        &.td-icon-xl {
-            font-size: 40px;
-        }
-    }
-
-    .mdc-dialog {
-        --mdc-dialog-container-color: #{var(--color-purple)};
-        --mdc-dialog-supporting-text-color: var(--color-white);
-
-        .mdc-dialog__surface {
-            padding: 24px;
-        }
-
-        .mdc-dialog__title {
-            padding: 0 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            &::before {
-                display: none;
-            }
-
-            h1 {
-                font-size: 24px;
-                line-height: 32px;
-                font-weight: var(--font-weight-bold);
-            }
-        }
-
-        .mdc-dialog__content {
-            padding: 0;
-        }
-    }
-
-    .mat-mdc-snack-bar-container {
-        .mdc-snackbar__surface {
-            padding: 0;
-            background: transparent;
-            box-shadow: none;
-
-            &::before {
-                display: none;
-            }
-        }
-        .mdc-snackbar__label {
-            padding: 0;
-        }
-    }
-
-    .mat-mdc-progress-bar {
-        --mdc-linear-progress-active-indicator-color: var(--color-green);
-    }
 }
