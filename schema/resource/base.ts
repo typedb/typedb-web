@@ -58,19 +58,19 @@ export class ResourceLink {
             link: Link.fromSanityLinkRef(data.link, db),
         }); else return new ResourceLink({
             title: data.shortTitle,
-            description: data.shortDescription,
+            description: data.shortDescription || data.description,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
         });
     }
 }
 
 function siteResourceUrl(data: SanitySiteResource): string {
-    if (isFundamentalArticle(data)) return `/learn/fundamentals/${data.slug}`;
-    else if (isApplicationArticle(data)) return `/learn/applications/${data.slug}`;
-    else if (isBlogPost(data)) return `/blog/${data.slug}`;
-    else if (isWebinar(data)) return `/webinars/${data.slug}`;
-    else if (isWhitePaper(data)) return `/white-papers/${data.slug}`;
-    else if (isLiveEvent(data)) return `/events/${data.slug}`;
+    if (isFundamentalArticle(data)) return `/learn/fundamentals/${data.slug.current}`;
+    else if (isApplicationArticle(data)) return `/learn/applications/${data.slug.current}`;
+    else if (isBlogPost(data)) return `/blog/${data.slug.current}`;
+    else if (isWebinar(data)) return `/webinars/${data.slug.current}`;
+    else if (isWhitePaper(data)) return `/white-papers/${data.slug.current}`;
+    else if (isLiveEvent(data)) return `/events/${data.slug.current}`;
     else return "";
 }
 

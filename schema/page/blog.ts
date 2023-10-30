@@ -1,5 +1,6 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
 import { collapsibleOptions, pageTitleField, requiredRule, SanityVisibleToggle, titleField } from "../common-fields";
+import { ResourceLinkPanel } from "../component/link-panel";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
 import { blogCategories, BlogCategoryID, blogCategoryList } from "../resource/blog-category";
@@ -76,7 +77,7 @@ export type BlogRow = BlogPostsRow | BlogAdditionalRow;
 
 export class ResourcePanelsRow {
     readonly rowIndex: number;
-    readonly resources: ResourceLink[];
+    readonly resources: ResourceLinkPanel[];
 
     constructor(props: PropsOf<ResourcePanelsRow>) {
         this.rowIndex = props.rowIndex;
@@ -86,7 +87,7 @@ export class ResourcePanelsRow {
     static fromSanity(data: SanityResourcePanelsRow, db: SanityDataset): ResourcePanelsRow {
         return new ResourcePanelsRow({
             rowIndex: data.rowIndex,
-            resources: data.resources.map(x => ResourceLink.fromSanity(x, db)),
+            resources: data.resources.map(x => ResourceLinkPanel.fromResourceLink(ResourceLink.fromSanity(x, db))),
         });
     }
 }

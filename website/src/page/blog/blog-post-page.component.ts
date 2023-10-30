@@ -4,10 +4,11 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import { blogCategories, BlogCategoryID, BlogPost, Link, LinkButton, RelatedBlogPosts } from "typedb-web-schema";
+import { Blog, blogCategories, BlogCategoryID, BlogPost, blogSchemaName, Link, LinkButton, RelatedBlogPosts, SanityBlog } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { BlogService } from "../../service/blog.service";
+import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 
 @Component({
@@ -16,6 +17,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     styleUrls: ["./blog-post-page.component.scss"],
 })
 export class BlogPostPageComponent implements OnInit {
+    blog?: Blog;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
     relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
@@ -29,6 +31,7 @@ export class BlogPostPageComponent implements OnInit {
     constructor(
         private router: Router,
         private _activatedRoute: ActivatedRoute,
+        private contentService: ContentService,
         private blogService: BlogService,
         private metaTags: MetaTagsService,
         private title: Title,
@@ -39,6 +42,12 @@ export class BlogPostPageComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
+        this.contentService.data.subscribe((data) => {
+            const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
+            if (sanityBlog) {
+                this.blog = new Blog(sanityBlog, data);
+            }
+        });
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) => {

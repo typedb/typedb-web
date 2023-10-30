@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { BlogPostsRow, BlogRow } from "typedb-web-schema";
+import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-row",
@@ -11,5 +11,9 @@ export class BlogRowComponent {
 
     get posts(): BlogPostsRow | undefined {
         return this.row instanceof BlogPostsRow ? this.row : undefined;
+    }
+
+    get resourcePanelsRow(): ResourcePanelsRow | undefined {
+        return "rowIndex" in this.row ? this.row : undefined;
     }
 }

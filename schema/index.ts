@@ -28,7 +28,7 @@ export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "
 export { ContentTextPanel } from "./component/content-text-panel";
 export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
+export { LinkPanel, LinkPanelWithIcon, ProductPanel, ResourceLinkPanel } from "./component/link-panel";
 export { TitleBodyIllustrationSection } from "./component/page-section";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
@@ -45,7 +45,7 @@ export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type Sani
 export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
-export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow } from "./page/blog";
+export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
 export { Page, type SanityPage } from "./page/common";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { MetaTags, type SanityMetaTags } from "./page/meta-tags";

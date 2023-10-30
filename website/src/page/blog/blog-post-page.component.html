@@ -3,7 +3,7 @@
     <ng-container *ngIf="post$ | async as post">
       <section class="page-section bp-nebula-section">
         <a tdLink="/blog">
-          <td-heading-with-highlights [value]="'Lorem ipsum' | paragraphWithHighlights" class="bp-site-title" level="h2" />
+          <td-heading-with-highlights *ngIf="blog" [value]="blog.blogTitle" class="bp-site-title" level="h2" />
         </a>
       </section>
 
@@ -15,7 +15,7 @@
         <section>
           <div class="bp-intro-section">
             <td-blog-category-chips [post]="post" />
-            <h1>{{ post.title }}</h1>
+            <td-heading-with-highlights level="h1" [value]="post.title" />
             <td-rich-text class="text-p1 bp-short-description" [value]="post.shortDescription" />
           </div>
           <div class="bp-author-section"><td-blog-authorship-bar [post]="post" size="medium" /></div>

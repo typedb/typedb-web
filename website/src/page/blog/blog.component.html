@@ -10,7 +10,7 @@
 
       <td-scroll-shadow class="section"><nav td-blog-navbar variant="listPage"></nav></td-scroll-shadow>
 
-      <section *ngIf="rows$ | async as rows">
+      <section *ngIf="rows">
         <td-blog-row *ngFor="let row of rows" [row]="row" />
       </section>
 

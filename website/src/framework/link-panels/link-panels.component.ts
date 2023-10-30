@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { LinkPanel, Webinar } from "typedb-web-schema";
+import { LinkPanel, ResourceLinkPanel, Webinar } from "typedb-web-schema";
 
 @Component({
     selector: "td-link-panels",
@@ -8,17 +8,17 @@ import { LinkPanel, Webinar } from "typedb-web-schema";
     styleUrls: ["link-panels.component.scss"],
 })
 export class LinkPanelsComponent {
-    @Input() panels!: LinkPanel[];
+    @Input() panels!: (LinkPanel | ResourceLinkPanel)[];
     @Input() cols!: 3 | 4;
     @Input() ctaStrength: "weak" | "strong" = "weak";
 
-    private _hoveredPanels = new Map<LinkPanel, boolean>();
+    private _hoveredPanels = new Map<LinkPanel | ResourceLinkPanel, boolean>();
 
-    setPanelHovered(panel: LinkPanel, value: boolean) {
+    setPanelHovered(panel: LinkPanel | ResourceLinkPanel, value: boolean) {
         this._hoveredPanels.set(panel, value);
     }
 
-    isPanelHovered(panel: LinkPanel) {
+    isPanelHovered(panel: LinkPanel | ResourceLinkPanel) {
         return this._hoveredPanels.get(panel) === true;
     }
 }

@@ -52,3 +52,6 @@
   </div>
 </ng-container>
 
+<ng-container *ngIf="resourcePanelsRow">
+  <td-link-panels [cols]="3" [panels]="resourcePanelsRow.resources" />
+</ng-container>

@@ -29,9 +29,9 @@ hr {
     margin-bottom: 8px;
 }
 
-.bp-primary-post,
-.bp-secondary-posts,
-.bp-tertiary-post {
+:host {
+    display: block;
+    padding: 40px 0;
     border-bottom: 1px solid var(--content-border-color);
 }
 
@@ -40,7 +40,6 @@ hr {
     flex-direction: row-reverse;
     align-items: flex-start;
     gap: 40px;
-    padding: 40px 0;
 
     @media (max-width: $media-max-width-tablet) {
         gap: 32px;
@@ -134,7 +133,6 @@ td-aspect-ratio {
     @media (min-width: $media-min-width-tablet) {
         display: flex;
         gap: 40px;
-        padding: 40px 0;
     }
 }
 
@@ -183,7 +181,6 @@ td-aspect-ratio {
         flex-direction: row;
         align-items: center;
         gap: 40px;
-        padding: 40px 0;
     }
 }
 

@@ -2,8 +2,8 @@ import { Component, DestroyRef } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { combineLatest, map, Observable } from "rxjs";
-import { Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName, SanityBlog } from "typedb-web-schema";
+import { combineLatest, map } from "rxjs";
+import { Blog, blogCategories, BlogCategoryFilter, BlogCategoryID, blogCategoryList, BlogFilter, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName, ResourcePanelsRow, SanityBlog } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { BlogService } from "../../service/blog.service";
@@ -36,6 +36,30 @@ export class BlogComponent {
             const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
             if (sanityBlog) {
                 this.blog = new Blog(sanityBlog, data);
+                combineLatest([this.blogService.displayedPosts, this.blogService.filter]).subscribe(([posts, filter]) => {
+                    const rows = [];
+                    let currentRowIndex = 0;
+                    for (let i = 0; i < posts.length; i++) {
+                        const selectedTab = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
+                        const additionalRow = this.blog!.tabs[selectedTab]!.additionalRows.find(x => x.rowIndex === currentRowIndex);
+                        if (additionalRow) {
+                            rows.push(additionalRow);
+                            currentRowIndex++;
+                            i--;
+                            continue;
+                        }
+                        if (i === 0 || posts[i].level === "primary") {
+                            rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
+                        } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
+                            rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
+                        } else {
+                            rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
+                            i++;
+                        }
+                        currentRowIndex++;
+                    }
+                    this.rows = rows;
+                });
                 this.route.paramMap
                     .pipe(
                         map((params) => {
@@ -66,30 +90,6 @@ export class BlogComponent {
                 this.router.navigate(["404"], { skipLocationChange: true });
             }
         });
-    }
-
-    get posts$() {
-        return this.blogService.displayedPosts;
-    }
-
-    get rows$(): Observable<BlogRow[]> {
-        return combineLatest([this.posts$, this.blogService.filter]).pipe(
-            map(([posts, filter]) => {
-                const rows = [];
-                // TODO: additional rows
-                for (let i = 0; i < posts.length; i++) {
-                    if (i === 0 || posts[i].level === "primary") {
-                        rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
-                    } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
-                        rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
-                    } else {
-                        rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]]}));
-                        i++;
-                    }
-                }
-                return rows;
-            }),
-        );
     }
 
     heroImageURL(post: BlogPost): string {

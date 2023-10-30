@@ -26,15 +26,15 @@ $post-content-width: 800px;
         max-width: var(--section-max-width);
     }
 
-    h1 {
-        margin-top: 24px;
+    ::ng-deep h1 {
+        margin-top: 28px;
 
         @media (max-width: $media-max-width-mobile) {
             margin-top: 12px;
         }
     }
 
-    ::ng-deep p {
+    td-rich-text {
         margin-top: 1.25em;
 
         @media (max-width: $media-max-width-mobile) {
