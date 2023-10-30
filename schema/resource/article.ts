@@ -2,28 +2,13 @@ import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios from "axios";
 import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
+import { Link } from "../link";
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { ResourceBase, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
-import { applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
-
-export interface WordpressSite {
-    ID: number;
-    URL: string;
-    description: string;
-    is_following: boolean;
-    logo: WordpressSiteLogo;
-    name: string;
-    subscribers_count: number;
-}
-
-export interface WordpressSiteLogo {
-    id: number;
-    sizes: any[];
-    url: string;
-}
+import { applicationArticleSchemaName, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
 
 export interface WordpressPosts {
     found: number;
@@ -36,22 +21,8 @@ export interface WordpressPost {
     content: string;
 }
 
-export interface WordpressCategoriesResponse {
-    found: number;
-    categories: WordpressTaxonomy[];
-}
-
-export interface WordpressTaxonomy {
-    ID: number;
-    description: string;
-    meta: any;
-    name: string;
-    parent: number;
-    post_count: number;
-    slug: string;
-}
-
 export interface BlogPostLink extends ResourceLink {
+    author: Person;
     imageURL: string;
 }
 
@@ -94,14 +65,15 @@ export class ApplicationArticle extends Article {
 }
 
 export class BlogPost extends Article {
+    readonly level: BlogPostLevel;
     readonly author: Person;
     readonly categories: BlogCategoryID[];
     readonly date: Date;
     readonly imageURL?: string;
-    // TODO: social sharing description
 
     constructor(props: PropsOf<BlogPost>) {
         super(props);
+        this.level = props.level;
         this.author = props.author;
         this.categories = props.categories;
         this.date = props.date;
@@ -110,11 +82,20 @@ export class BlogPost extends Article {
 
     static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
         return new BlogPost(Object.assign(articlePropsFromApi(data, db, wordpressPost), {
+            level: data.level,
             author: Person.fromSanity(db.resolveRef(data.author), db),
             categories: data.categories,
-            date: data.date,
+            date: new Date(data.date),
             imageURL: data.image && db.resolveRef(data.image.asset).url,
         }));
+    }
+
+    readPostLink(): Link {
+        return new Link({
+            type: "route",
+            destination: `/blog/${this.slug}`,
+            opensNewTab: false,
+        });
     }
 }
 
@@ -171,6 +152,22 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
     icon: DocumentTextIcon,
     fields: [
         ...articleSchemaBase.fields,
+        defineField({
+            name: "level",
+            title: "Level",
+            type: "string",
+            options: {
+                layout: "radio",
+                direction: "horizontal",
+                list: [
+                    { value: "primary", title: "Primary" },
+                    { value: "secondary", title: "Secondary" },
+                    { value: "tertiary", title: "Tertiary" },
+                ],
+            },
+            validation: requiredRule,
+            initialValue: "tertiary",
+        }),
         authorField,
         defineField({
             name: "date",

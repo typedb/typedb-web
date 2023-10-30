@@ -1,3 +1,4 @@
+import { blogSchemas } from "./blog";
 import { deploymentPageSchemas } from "./deployment";
 import { basePageSchemas } from "./common";
 import { eventsPageSchemas } from "./events";
@@ -15,6 +16,7 @@ import { metaTagsSchemas } from "./meta-tags";
 
 export const pageSchemas = [
     ...basePageSchemas,
+    ...blogSchemas,
     ...deploymentPageSchemas,
     ...eventsPageSchemas,
     ...genericPageSchemas,

@@ -2,7 +2,6 @@ import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
 import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
-import { Link } from "../link";
 import { ResourceLink } from "../resource/base";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
@@ -45,7 +44,7 @@ export class LinkPanel implements BodyTextField {
         return new LinkPanel({
             title: resourceLink.title,
             body: resourceLink.description,
-            button: new LinkButton({ style: "secondary", text: "Learn more", link: Link.fromAddress(resourceLink.url), comingSoon: false }),
+            button: new LinkButton({ style: "secondary", text: "Learn more", link: resourceLink.link, comingSoon: !!resourceLink.link }),
         });
     }
 }

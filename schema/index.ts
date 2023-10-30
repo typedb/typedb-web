@@ -45,8 +45,9 @@ export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type Sani
 export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
 export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
-export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
+export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow } from "./page/blog";
 export { Page, type SanityPage } from "./page/common";
+export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
@@ -62,18 +63,17 @@ export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName 
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export {
-    type WordpressCategoriesResponse, type WordpressPosts, type WordpressPost, type WordpressSite,
-    type WordpressTaxonomy, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter, type BlogNullFilter,
-    blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost
+    type WordpressPosts, type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
+    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
 } from "./resource/article";
-export { type BlogCategoryID } from "./resource/blog-category";
+export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
     liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost, type SanityWhitePaper,
     type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityApplicationArticle,
-    type SanityGenericResource
+    type SanityGenericResource, type BlogPostLevel,
 } from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";

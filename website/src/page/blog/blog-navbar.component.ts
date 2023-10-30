@@ -1,7 +1,6 @@
 import { Component, HostBinding, Input } from "@angular/core";
 
-import { map, Observable } from "rxjs";
-import { BlogFilter, Link } from "typedb-web-schema";
+import { blogCategories, blogCategoryList, BlogFilter, Link } from "typedb-web-schema";
 
 import { BlogService } from "../../service/blog.service";
 
@@ -12,27 +11,22 @@ import { BlogService } from "../../service/blog.service";
 })
 export class BlogNavbarComponent {
     @Input() variant!: "listPage" | "postPage";
-    items$: Observable<NavbarItem[]>;
+    items: NavbarItem[];
     activeFilter!: BlogFilter;
 
     constructor(private blogService: BlogService) {
-        this.items$ = this.blogService.categories.pipe(
-            map((categories) =>
-                [
-                    { text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) },
-                ].concat(
-                    categories.map((category) => ({
-                        text: category.name,
-                        slug: category.slug,
-                        link: new Link({
-                            destination: `/blog/category/${category.slug}`,
-                            type: "route",
-                            opensNewTab: false,
-                        }),
-                    })),
-                ),
-            ),
-        );
+        this.items = [
+            { text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) },
+            ...blogCategoryList.map((categorySlug) => ({
+                text: blogCategories[categorySlug],
+                slug: categorySlug,
+                link: new Link({
+                    destination: `/blog/category/${categorySlug}`,
+                    type: "route",
+                    opensNewTab: false,
+                }),
+            }),
+        )];
         // TODO: refactor
         this.filter$.subscribe((filter) => {
             this.activeFilter = filter;

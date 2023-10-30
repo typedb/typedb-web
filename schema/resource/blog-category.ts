@@ -6,6 +6,6 @@ export const blogCategories = {
     tutorials: "Tutorials",
 } as const;
 
-export const blogCategoryList = Object.keys(blogCategories);
-
 export type BlogCategoryID = keyof typeof blogCategories;
+
+export const blogCategoryList = Object.keys(blogCategories) as BlogCategoryID[];

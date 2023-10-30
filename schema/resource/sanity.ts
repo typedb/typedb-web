@@ -15,11 +15,12 @@ export type SanityResource = SanityGenericResource | SanityArticle | SanityWebin
 // in the same file to avoid circular dependencies
 export interface SanitySiteResource extends SanityDocument {
     slug: Slug;
+    metaTags?: SanityMetaTags;
     title: PortableText;
     description: PortableText;
     shortTitle: string;
     shortDescription: PortableText;
-    linkedResources: SanityReference<SanityResource>[];
+    linkedResources?: SanityReference<SanityResource>[];
 }
 
 export interface SanityGenericResource extends SanityDocument {
@@ -41,12 +42,14 @@ export interface SanityApplicationArticle extends SanityArticle {
 
 export interface SanityBlogPost extends SanityArticle {
     _type: typeof blogPostSchemaName;
+    level: BlogPostLevel;
     author: SanityReference<SanityPerson>;
-    date: Date;
+    date: string;
     categories: BlogCategoryID[];
     image?: SanityImage;
 }
 
+export type BlogPostLevel = "primary" | "secondary" | "tertiary";
 
 export interface SanityEventBase extends SanitySiteResource {
     image: SanityImage;

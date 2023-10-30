@@ -1,0 +1,54 @@
+<ng-container *ngIf="posts" [ngSwitch]="posts.level">
+  <div *ngSwitchCase="'primary'" class="bp-primary-post">
+    <a class="bp-primary-img-link" [tdLink]="posts.posts[0].readPostLink()">
+      <td-aspect-ratio ratio="16:9">
+        <img [src]="posts.posts[0].imageURL" alt="" loading="lazy" class="bp-img" />
+      </td-aspect-ratio>
+    </a>
+    <div class="bp-primary-post-summary">
+      <td-blog-category-chips [post]="posts.posts[0]" />
+      <a [tdLink]="posts.posts[0].readPostLink()">
+        <h1 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title.toPlainText() }}</h1>
+      </a>
+      <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].shortDescription" />
+      <td-blog-authorship-bar [post]="posts.posts[0]" />
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'secondary'" class="bp-secondary-posts">
+    <ng-container *ngFor="let post of posts.posts">
+      <div class="bp-secondary-post" *ngIf="post">
+        <a [tdLink]="post.readPostLink()">
+          <td-aspect-ratio ratio="16:9"><img [src]="post.imageURL" alt="" loading="lazy" class="bp-img" /></td-aspect-ratio>
+        </a>
+        <div class="bp-secondary-post-summary">
+          <td-blog-category-chips [post]="post" />
+          <a [tdLink]="post.readPostLink()">
+            <h2 class="bp-post-title">{{ post.title.toPlainText() }}</h2>
+          </a>
+          <td-rich-text class="bp-secondary-post-description" [value]="post.shortDescription" />
+          <td-blog-authorship-bar [post]="post" />
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngSwitchCase="'tertiary'" class="bp-tertiary-post">
+    <div class="bp-img-tertiary-container">
+      <a class="bp-tertiary-img-link" [tdLink]="posts.posts[0].readPostLink() ">
+        <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
+          <img [src]="posts.posts[0].imageURL" class="bp-img" alt="" loading="lazy" />
+        </td-aspect-ratio>
+      </a>
+    </div>
+    <div class="bp-post-text-tertiary">
+      <td-blog-category-chips [post]="posts.posts[0]" />
+      <a [tdLink]="posts.posts[0].readPostLink()">
+        <h3 class="bp-post-title">{{ posts.posts[0].title.toPlainText() }}</h3>
+      </a>
+      <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].shortDescription" />
+      <td-blog-authorship-bar [post]="posts.posts[0]" />
+    </div>
+  </div>
+</ng-container>
+

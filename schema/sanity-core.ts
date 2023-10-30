@@ -11,8 +11,8 @@ export class SanityDataset {
         this._byId = props.byId;
     }
 
-    getDocumentByID(id: string): SanityDocument | undefined {
-        return this._byId[`drafts.${id}`] || this._byId[id];
+    getDocumentByID<T extends SanityDocument>(id: string): T | undefined {
+        return (this._byId[`drafts.${id}`] || this._byId[id]) as T;
     }
 
     getDocumentsByType<T extends SanityDocument>(key: string): T[] {

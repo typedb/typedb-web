@@ -9,7 +9,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
 export class HeadingWithHighlightsComponent {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("id") inputId?: string;
-    @Input() level: "h1" | "h2" = "h2";
+    @Input() level: "h1" | "h2" | "h3" = "h2";
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex = "#02DAC9";
 

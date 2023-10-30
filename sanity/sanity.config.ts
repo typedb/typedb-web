@@ -11,7 +11,7 @@ import {
     webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName
+    liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -42,6 +42,7 @@ export default defineConfig({
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),
+                    singletonListItem(s, blogSchemaName, { title: "Blog", icon: DocumentIcon }),
                     singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     singletonListItem(s, whitePapersPageSchemaName, { title: "White Papers", icon: DocumentIcon }),
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),

@@ -4,19 +4,11 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import {
-    BlogCategoryID,
-    BlogPost,
-    Link,
-    LinkButton,
-    WordpressPost,
-    RelatedBlogPosts,
-    WordpressSite,
-    WordpressTaxonomy,
-} from "typedb-web-schema";
+import { blogCategories, BlogCategoryID, BlogPost, Link, LinkButton, RelatedBlogPosts } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { BlogService } from "../../service/blog.service";
+import { MetaTagsService } from "../../service/meta-tags.service";
 
 @Component({
     selector: "td-blog-post-page",
@@ -24,7 +16,6 @@ import { BlogService } from "../../service/blog.service";
     styleUrls: ["./blog-post-page.component.scss"],
 })
 export class BlogPostPageComponent implements OnInit {
-    readonly site$: Observable<WordpressSite>;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
     relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
@@ -39,6 +30,7 @@ export class BlogPostPageComponent implements OnInit {
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private blogService: BlogService,
+        private metaTags: MetaTagsService,
         private title: Title,
         private meta: Meta,
         private _analytics: AnalyticsService,
@@ -47,7 +39,6 @@ export class BlogPostPageComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this.site$ = this.blogService.site;
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) => {
@@ -71,6 +62,7 @@ export class BlogPostPageComponent implements OnInit {
                                         title: x.shortTitle,
                                         description: x.shortDescription,
                                         url: `/blog/${x.slug}`,
+                                        author: x.author,
                                         imageURL: x.imageURL || "",
                                     }))
                             })),
@@ -82,14 +74,11 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        combineLatest([this.post$, this.customFields$, this.site$]).subscribe(
-            ([post, customFields, site]) => {
-                if (post && customFields) {
+        this.post$.subscribe(
+            (post) => {
+                if (post) {
                     this.title.setTitle(`TypeDB | Blog > ${post.title}`);
-                    this.meta.addTag({
-                        property: "og:description",
-                        content: customFields.social_sharing_description || "",
-                    });
+                    this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
                 } else {
@@ -105,16 +94,8 @@ export class BlogPostPageComponent implements OnInit {
         );
     }
 
-    postCategories(post: WordpressPost): WordpressTaxonomy[] {
-        return Object.values(post.categories);
-    }
-
-    readPostLink(post: WordpressPost): Link {
-        return new Link({ type: "route", destination: `blog/${post.slug}`, opensNewTab: false });
-    }
-
-    heroImageURL(post: WordpressPost): string {
-        if (post.featured_image) return post.featured_image;
+    heroImageURL(post: BlogPost): string {
+        if (post.imageURL) return post.imageURL;
         switch (post.slug.length % 3) {
             case 0:
                 return "/assets/graphic/blog-placeholder-image-0.svg";
@@ -126,19 +107,23 @@ export class BlogPostPageComponent implements OnInit {
         }
     }
 
-    shareOnTwitterURL(post: WordpressPost): string {
+    categoryDisplayName(category: BlogCategoryID) {
+        return blogCategories[category];
+    }
+
+    shareOnTwitterURL(post: BlogPost): string {
         return `https://twitter.com/intent/tweet?text=${post.title}&url=${encodeURIComponent(window.location.href)}`;
     }
 
-    shareOnFacebookURL(post: WordpressPost): string {
+    shareOnFacebookURL(post: BlogPost): string {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
     }
 
-    shareOnLinkedInURL(_post: WordpressPost): string {
+    shareOnLinkedInURL(_post: BlogPost): string {
         return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
     }
 
-    shareOnRedditURL(post: WordpressPost): string {
+    shareOnRedditURL(post: BlogPost): string {
         return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title}`;
     }
 }

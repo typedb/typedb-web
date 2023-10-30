@@ -1,0 +1,3 @@
+<aside *ngFor="let category of post.categories">
+  <a [tdLink]="'/blog/category/' + category">{{ displayName(category) }}</a>
+</aside>

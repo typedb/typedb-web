@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { WordpressTaxonomy } from "typedb-web-schema";
+import { blogCategories, BlogCategoryID, BlogPost } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-category-chips",
@@ -8,5 +8,9 @@ import { WordpressTaxonomy } from "typedb-web-schema";
     styleUrls: ["./blog-category-chips.component.scss"],
 })
 export class BlogCategoryChipsComponent {
-    @Input() categories!: WordpressTaxonomy[];
+    @Input() post!: BlogPost;
+
+    displayName(category: BlogCategoryID) {
+        return blogCategories[category];
+    }
 }
