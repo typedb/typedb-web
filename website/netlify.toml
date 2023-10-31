@@ -53,7 +53,7 @@ to = "/docs/clients/:splat"
 status = 301
 
 [[redirects]]
-from = "/docs/typedb/2.x/quickstart-guide"
+from = "/docs/typedb/quickstart-guide"
 to = "/docs/home/quickstart"
 status = 301
 
