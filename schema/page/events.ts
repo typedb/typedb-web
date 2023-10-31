@@ -1,7 +1,8 @@
 import { defineField, defineType } from "@sanity/types";
 
 import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule } from "../common-fields";
-import { Event, SanityEvent, eventSchemaName } from "../event";
+import { LiveEvent } from "../resource/live-event";
+import { liveEventSchemaName, SanityLiveEvent } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { Page, SanityPage } from "./common";
@@ -9,26 +10,26 @@ import { metaTagsField } from "./meta-tags";
 
 interface SanityEventsListSection {
     isVisible: boolean;
-    events: SanityReference<SanityEvent>[];
+    events: SanityReference<SanityLiveEvent>[];
 }
 
 export interface SanityEventsPage extends SanityPage {
     introSection: SanityTitleAndBody;
-    featuredEvent?: SanityReference<SanityEvent>;
+    featuredEvent?: SanityReference<SanityLiveEvent>;
     eventsList: SanityEventsListSection;
 }
 
 export class EventsPage extends Page {
     readonly introSection: TitleAndBody;
-    readonly featuredEvent?: Event;
-    readonly eventsList?: Event[];
+    readonly featuredEvent?: LiveEvent;
+    readonly eventsList?: LiveEvent[];
 
     constructor(data: SanityEventsPage, db: SanityDataset) {
         super(data, db);
         this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
-        this.featuredEvent = data.featuredEvent && Event.fromSanity(db.resolveRef(data.featuredEvent), db);
+        this.featuredEvent = data.featuredEvent && LiveEvent.fromSanity(db.resolveRef(data.featuredEvent), db);
         this.eventsList = data.eventsList.isVisible
-            ? data.eventsList.events.map((x) => Event.fromSanity(db.resolveRef(x), db))
+            ? data.eventsList.events.map((x) => LiveEvent.fromSanity(db.resolveRef(x), db))
             : undefined;
     }
 }
@@ -52,7 +53,7 @@ const eventsPageSchema = defineType({
             name: "featuredEvent",
             title: "Featured Event",
             type: "reference",
-            to: [{ type: eventSchemaName }],
+            to: [{ type: liveEventSchemaName }],
         }),
         defineField({
             name: "eventsList",
@@ -67,7 +68,7 @@ const eventsPageSchema = defineType({
                     name: "events",
                     title: "Events",
                     type: "array",
-                    of: [{ type: "reference", to: [{ type: eventSchemaName }] }],
+                    of: [{ type: "reference", to: [{ type: liveEventSchemaName }] }],
                     validation: (rule) =>
                         rule.custom((value = [], { parent }) => {
                             if (!(parent as { isVisible: boolean }).isVisible) {

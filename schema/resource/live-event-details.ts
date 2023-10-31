@@ -1,6 +1,10 @@
 import { defineField } from "@sanity/types";
-import { collapsibleOptions } from "./common-fields";
-import { PropsOf } from "./util";
+import { collapsibleOptions } from "../common-fields";
+import { PropsOf } from "../util";
+
+export enum EventSignupMethod {
+    externalURL = "externalURL",
+}
 
 export interface SanityEventDate {
     dateTBC: boolean;
@@ -38,7 +42,7 @@ export class EventDate {
     }
 }
 
-export const eventDate = defineField({
+export const eventDateField = defineField({
     name: "dateOptions",
     title: "Date Options",
     type: "object",

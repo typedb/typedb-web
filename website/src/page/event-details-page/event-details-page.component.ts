@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, map, Observable, tap } from "rxjs";
-import { Event, eventSchemaName, SanityEvent } from "typedb-web-schema";
+import { LiveEvent, liveEventSchemaName, SanityLiveEvent } from "typedb-web-schema";
 
 import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { AnalyticsService } from "src/service/analytics.service";
@@ -18,7 +18,7 @@ import { MetaTagsService } from "src/service/meta-tags.service";
     styleUrls: ["./event-details-page.component.scss"],
 })
 export class EventDetailsPageComponent implements OnInit {
-    event$!: Observable<Event | null>;
+    event$!: Observable<LiveEvent | null>;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -35,9 +35,9 @@ export class EventDetailsPageComponent implements OnInit {
     ngOnInit() {
         this.event$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
-                const sanityEvents = data.getDocumentsByType(eventSchemaName) as SanityEvent[];
+                const sanityEvents = data.getDocumentsByType<SanityLiveEvent>(liveEventSchemaName);
                 const sanityEvent = sanityEvents.find((x) => x.slug.current === params.get("slug"));
-                return sanityEvent ? Event.fromSanity(sanityEvent, data) : null;
+                return sanityEvent ? LiveEvent.fromSanity(sanityEvent, data) : null;
             }),
             tap((event) => {
                 if (event) {
@@ -54,7 +54,7 @@ export class EventDetailsPageComponent implements OnInit {
         );
     }
 
-    getEventImageUrl(event: Event) {
+    getEventImageUrl(event: LiveEvent) {
         return this.imageBuilder.image(event.imageURL).width(494).url();
     }
 }

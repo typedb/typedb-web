@@ -3,10 +3,12 @@
   <h2 *ngSwitchCase="'h2'" [id]="id">
     <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
   </h2>
+  <h3 *ngSwitchCase="'h3'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h3>
+  <h4 *ngSwitchCase="'h4'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h4>
 </ng-container>
 
 <ng-template #content>
-  <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">
-    {{ span.text }}
-  </span>
+  <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">{{
+    span.text
+  }}</span>
 </ng-template>

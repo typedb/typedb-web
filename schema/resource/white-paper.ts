@@ -1,30 +1,15 @@
 import { DocumentPdfIcon } from "@sanity/icons";
-import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
-import {
-    FurtherReadingSection,
-    furtherReadingSectionSchemaName,
-    SanityFurtherReadingSection,
-} from "./component/page-section";
-import { hubspotFormIDField } from "./form";
-import { Link } from "./link";
-import { SanityDataset, SanityFile, SanityImage } from "./sanity-core";
-import { ParagraphWithHighlights, PortableText } from "./text";
-import { PropsOf } from "./util";
-import { MetaTags, metaTagsField, SanityMetaTags } from "./page/meta-tags";
-
-export interface SanityWhitePaper extends SanityDocument {
-    title: PortableText;
-    slug: Slug;
-    description: PortableText;
-    file: SanityFile;
-    tags: string[];
-    portraitImage: SanityImage;
-    landscapeImage: SanityImage;
-    furtherReading: SanityFurtherReadingSection;
-    hubspotFormID: string;
-    metaTags?: SanityMetaTags;
-}
+import { defineField, defineType } from "@sanity/types";
+import { requiredRule, slugField } from "../common-fields";
+import { FurtherReadingSection, furtherReadingSectionSchemaName } from "../component/page-section";
+import { hubspotFormIDField } from "../form";
+import { Link } from "../link";
+import { SanityDataset } from "../sanity-core";
+import { ParagraphWithHighlights, PortableText } from "../text";
+import { PropsOf } from "../util";
+import { MetaTags } from "../page/meta-tags";
+import { resourceCommonFields } from "./base";
+import { SanityWhitePaper, whitePaperSchemaName } from "./sanity";
 
 export class WhitePaper {
     readonly title: ParagraphWithHighlights;
@@ -80,18 +65,14 @@ export class WhitePaper {
     }
 }
 
-export const whitePaperSchemaName = "whitePaper";
-
 export const whitePaperSchema = defineType({
     name: whitePaperSchemaName,
     title: "White Paper",
     icon: DocumentPdfIcon,
     type: "document",
     fields: [
-        titleFieldWithHighlights,
         slugField,
-        metaTagsField,
-        descriptionFieldRichText,
+        ...resourceCommonFields,
         defineField({
             name: "file",
             title: "File",

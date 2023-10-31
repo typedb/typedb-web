@@ -26,15 +26,15 @@ $post-content-width: 800px;
         max-width: var(--section-max-width);
     }
 
-    h1 {
-        margin-top: 24px;
+    ::ng-deep h1 {
+        padding: 48px 0 24px;
 
         @media (max-width: $media-max-width-mobile) {
-            margin-top: 12px;
+            padding: 12px 0 0;
         }
     }
 
-    ::ng-deep p {
+    td-rich-text {
         margin-top: 1.25em;
 
         @media (max-width: $media-max-width-mobile) {
@@ -45,13 +45,14 @@ $post-content-width: 800px;
 
 .bp-post-section {
     margin-top: 40px;
+    border-top: 1px solid var(--content-border-color);
 
     @media (max-width: $media-max-width-mobile) {
         margin-top: 16px;
     }
 }
 
-::ng-deep .bp-excerpt .rt-reading-time {
+::ng-deep .bp-short-description .rt-reading-time {
     display: block;
     font-size: 16px;
     margin-bottom: 16px;
@@ -138,7 +139,6 @@ $post-content-width: 800px;
 }
 
 .bp-content td-rich-text {
-    margin-top: 40px;
     width: $post-content-width;
     font-size: var(--font-size-p2);
     line-height: var(--line-height-p2);
@@ -146,10 +146,6 @@ $post-content-width: 800px;
 
     @media (max-width: $media-max-width-tablet) {
         max-width: var(--section-max-width);
-    }
-
-    @media (max-width: $media-max-width-mobile) {
-        margin-top: 24px;
     }
 
     section {

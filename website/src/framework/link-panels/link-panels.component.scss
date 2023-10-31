@@ -149,6 +149,11 @@
         justify-content: center;
         align-items: center;
     }
+
+    &:hover h3 {
+        color: var(--default-heading-color);
+        text-decoration: none;
+    }
 }
 
 td-button {

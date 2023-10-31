@@ -11,15 +11,15 @@ export class SanityDataset {
         this._byId = props.byId;
     }
 
-    getDocumentByID(id: string): SanityDocument | undefined {
-        return this._byId[`drafts.${id}`] || this._byId[id];
+    getDocumentByID<T extends SanityDocument>(id: string): T | undefined {
+        return (this._byId[`drafts.${id}`] || this._byId[id]) as T;
     }
 
-    getDocumentsByType(key: string): SanityDocument[] {
+    getDocumentsByType<T extends SanityDocument>(key: string): T[] {
         const documentsByID = associateBy(this._byType[key] || [], (x) => x._id);
         return Object.entries(documentsByID)
             .filter(([id, _document]) => id.startsWith("drafts.") || !documentsByID[`drafts.${id}`])
-            .map(([_id, document]) => document);
+            .map(([_id, document]) => document as T);
     }
 
     resolveRef<T extends SanityDocument>(ref: SanityReference<T>): T {

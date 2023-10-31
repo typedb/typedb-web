@@ -189,6 +189,16 @@ export const comingSoonField = defineField({
     validation: requiredRule,
 });
 
+export const imageFieldName = "image";
+
+export const imageFieldOptional = defineField({
+    name: imageFieldName,
+    title: "Image",
+    type: "image",
+});
+
+export const imageField = Object.assign({}, imageFieldOptional, { validation: requiredRule });
+
 export const videoEmbedFieldName = "videoEmbed";
 
 export const videoEmbedField = defineField({
@@ -249,4 +259,28 @@ export const sectionIdField = defineField({
     name: sectionIdFieldName,
     title: "Section ID",
     type: "string",
+});
+
+export const authorFieldName = "author";
+
+export const authorField = defineField({
+    name: authorFieldName,
+    title: "Author",
+    type: "reference",
+    to: [{type: "person"}],
+});
+
+export const resourcesFieldName = "resources";
+
+export const resourcesField = defineField({
+    name: "resources",
+    title: "Resources",
+    type: "array",
+    of: [{
+        type: "reference",
+        to: [
+            {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "blogPost"},
+            {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"}, {type: "genericResource"}
+        ],
+    }],
 });

@@ -3,6 +3,8 @@ import axios from "axios";
 
 const defaultValidator = async () => [];
 
+export const fundamentalArticleRoutes = "fundamentalArticleRoutes";
+export const applicationArticleRoutes = "applicationArticleRoutes";
 export const blogCategoryRoutes = "blogCategoryRoutes";
 export const blogPostRoutes = "blogPostRoutes";
 export const solutionRoutes = "solutionRoutes";
@@ -12,29 +14,28 @@ export const eventRoutes = "eventRoutes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
-const BLOG_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com";
-const BLOG_POSTS_URL = `${BLOG_URL}/posts`;
-const BLOG_CATEGORIES_URL = `${BLOG_URL}/categories`;
-
-async function blogPostRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const { data } = await axios.get<{ found: number, posts: { slug: string }[] }>(BLOG_POSTS_URL, {
-        params: { "fields": "slug" },
-    });
-    return data.posts.map(x => ({ route: `/blog/${x.slug}` }));
-}
-
-async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    const { data } = await axios.get<{ found: number, categories: { slug: string }[] }>(BLOG_CATEGORIES_URL, {
-        params: { "fields": "slug" },
-    });
-    return data.categories.map(x => ({ route: `/blog/category/${x.slug}` }));
-}
 
 async function resourceRoutesPluginBase(props: { resourceType: string, resourcePath: string }): Promise<HandledRoute[]> {
     const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
         params: { "query": `*[_type == '${props.resourceType}'].slug.current` },
     });
     return data.result.map(x => ({ route: `/${props.resourcePath}/${x}` }));
+}
+
+async function fundamentalArticleRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "fundamentalArticle", resourcePath: "learn/fundamentals" });
+}
+
+async function applicationArticleRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "applicationArticle", resourcePath: "learn/applications" });
+}
+
+async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return ["announcements", "engineering", "applications", "philosophy", "tutorials"].map(x => ({ route: `/blog/category/${x}` }));
+}
+
+async function blogPostRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "blogPost", resourcePath: "blog" });
 }
 
 async function solutionRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
@@ -56,6 +57,8 @@ async function eventRoutesPlugin(route: string, config = {}): Promise<HandledRou
     return await resourceRoutesPluginBase({ resourceType: "event", resourcePath: "events" });
 }
 
+registerPlugin("router", fundamentalArticleRoutes, fundamentalArticleRoutesPlugin, defaultValidator);
+registerPlugin("router", applicationArticleRoutes, applicationArticleRoutesPlugin, defaultValidator);
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, defaultValidator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator);
 registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
