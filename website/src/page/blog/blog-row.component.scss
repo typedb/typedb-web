@@ -29,9 +29,13 @@ hr {
     margin-bottom: 8px;
 }
 
-:host {
-    display: block;
+.bp-posts-row {
     padding: 40px 0;
+    border-bottom: 1px solid var(--content-border-color);
+}
+
+.bp-resource-panels-row {
+    padding: 24px 0 40px;
     border-bottom: 1px solid var(--content-border-color);
 }
 
@@ -211,4 +215,9 @@ td-aspect-ratio {
         margin-top: 12px;
         @include line-clamp(3);
     }
+}
+
+td-heading-with-highlights + td-link-panels {
+    display: block;
+    margin-top: 24px;
 }

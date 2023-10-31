@@ -1,5 +1,5 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule, SanityVisibleToggle, titleField } from "../common-fields";
+import { collapsibleOptions, nameField, pageTitleField, requiredRule, SanityVisibleToggle, titleField, titleFieldWithHighlights } from "../common-fields";
 import { ResourceLinkPanel } from "../component/link-panel";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
@@ -25,6 +25,7 @@ export interface SanityBlogTab {
 type SanityBlogRow = SanityResourcePanelsRow;
 
 interface SanityResourcePanelsRow extends SanityVisibleToggle {
+    title: PortableText;
     rowIndex: number;
     resources: SanityReference<SanityResource>[];
 }
@@ -76,16 +77,19 @@ export class BlogPostsRow {
 export type BlogRow = BlogPostsRow | BlogAdditionalRow;
 
 export class ResourcePanelsRow {
+    readonly title: ParagraphWithHighlights;
     readonly rowIndex: number;
     readonly resources: ResourceLinkPanel[];
 
     constructor(props: PropsOf<ResourcePanelsRow>) {
+        this.title = props.title;
         this.rowIndex = props.rowIndex;
         this.resources = props.resources;
     }
 
     static fromSanity(data: SanityResourcePanelsRow, db: SanityDataset): ResourcePanelsRow {
         return new ResourcePanelsRow({
+            title: ParagraphWithHighlights.fromSanity(data.title),
             rowIndex: data.rowIndex,
             resources: data.resources.map(x => ResourceLinkPanel.fromResourceLink(ResourceLink.fromSanity(db.resolveRef(x), db))),
         });
@@ -99,7 +103,7 @@ const resourcePanelsRowSchema = defineType({
     title: "Resource Panels Row",
     type: "object",
     fields: [
-        titleField,
+        titleFieldWithHighlights,
         defineField({
             name: "rowIndex",
             title: "Row Index",
@@ -115,8 +119,9 @@ const resourcePanelsRowSchema = defineType({
             of: [{
                 type: "reference",
                 to: [
-                    {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "blogPost"},
-                    {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"}, {type: "genericResource"}
+                    {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "tutorialArticle"},
+                    {type: "blogPost"}, {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"},
+                    {type: "genericResource"}
                 ],
             }],
         }),

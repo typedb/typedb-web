@@ -1,5 +1,5 @@
 <ng-container *ngIf="posts" [ngSwitch]="posts.level">
-  <div *ngSwitchCase="'primary'" class="bp-primary-post">
+  <div *ngSwitchCase="'primary'" class="bp-posts-row bp-primary-post">
     <a class="bp-primary-img-link" [tdLink]="posts.posts[0].readPostLink()">
       <td-aspect-ratio ratio="16:9">
         <img [src]="posts.posts[0].imageURL" alt="" loading="lazy" class="bp-img" />
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div *ngSwitchCase="'secondary'" class="bp-secondary-posts">
+  <div *ngSwitchCase="'secondary'" class="bp-posts-row bp-secondary-posts">
     <ng-container *ngFor="let post of posts.posts">
       <div class="bp-secondary-post" *ngIf="post">
         <a [tdLink]="post.readPostLink()">
@@ -33,7 +33,7 @@
     </ng-container>
   </div>
 
-  <div *ngSwitchCase="'tertiary'" class="bp-tertiary-post">
+  <div *ngSwitchCase="'tertiary'" class="bp-posts-row bp-tertiary-post">
     <div class="bp-img-tertiary-container">
       <a class="bp-tertiary-img-link" [tdLink]="posts.posts[0].readPostLink() ">
         <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
@@ -52,6 +52,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="resourcePanelsRow">
+<div *ngIf="resourcePanelsRow" class="bp-resource-panels-row">
+  <td-heading-with-highlights level="h4" [value]="resourcePanelsRow.title" />
   <td-link-panels [cols]="3" [panels]="resourcePanelsRow.resources" />
-</ng-container>
+</div>

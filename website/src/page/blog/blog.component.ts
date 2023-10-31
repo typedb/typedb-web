@@ -39,9 +39,10 @@ export class BlogComponent {
                 combineLatest([this.blogService.displayedPosts, this.blogService.filter]).subscribe(([posts, filter]) => {
                     const rows = [];
                     let currentRowIndex = 0;
+                    const selectedTabSlug = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
+                    const selectedTab = this.blog!.tabs[selectedTabSlug]!;
                     for (let i = 0; i < posts.length; i++) {
-                        const selectedTab = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
-                        const additionalRow = this.blog!.tabs[selectedTab]!.additionalRows.find(x => x.rowIndex === currentRowIndex);
+                        const additionalRow = selectedTab.additionalRows.find(x => x.rowIndex === currentRowIndex);
                         if (additionalRow) {
                             rows.push(additionalRow);
                             currentRowIndex++;
@@ -58,6 +59,10 @@ export class BlogComponent {
                         }
                         currentRowIndex++;
                     }
+                    const furtherAdditionalRows = selectedTab.additionalRows
+                        .filter(x => x.rowIndex >= currentRowIndex)
+                        .sort((a, b) => a.rowIndex - b.rowIndex);
+                    rows.push(...furtherAdditionalRows);
                     this.rows = rows;
                 });
                 this.route.paramMap
