@@ -21,7 +21,7 @@
 .cs-line-numbers {
     flex-shrink: 0;
     padding: 0 7px;
-    font-family: "Monaco", monospace;
+    font-family: var(--code-font-family);
     color: #66637f;
     overflow: hidden;
 }

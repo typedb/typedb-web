@@ -1,19 +1,9 @@
-import { SanityDocument, Slug } from "@sanity/types";
-import { Person, SanityPerson } from "./person";
-import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
-import { ParagraphWithHighlights, PortableText } from "./text";
-import { PropsOf } from "./util";
-import { MetaTags, SanityMetaTags } from "./page/meta-tags";
-
-export interface SanityEventBase extends SanityDocument {
-    title: PortableText;
-    slug: Slug;
-    description: PortableText;
-    image: SanityImage;
-    speakers: SanityReference<SanityPerson>[];
-    hubspotFormID?: string;
-    metaTags?: SanityMetaTags;
-}
+import { Person } from "../person";
+import { SanityDataset } from "../sanity-core";
+import { ParagraphWithHighlights, PortableText } from "../text";
+import { PropsOf } from "../util";
+import { MetaTags } from "../page/meta-tags";
+import { SanityEventBase } from "./sanity";
 
 export abstract class EventBase {
     readonly title: ParagraphWithHighlights;
@@ -24,7 +14,7 @@ export abstract class EventBase {
     readonly hubspotFormID?: string;
     readonly metaTags: MetaTags;
 
-    constructor(props: PropsOf<EventBase>) {
+    protected constructor(props: PropsOf<EventBase>) {
         this.title = props.title;
         this.slug = props.slug;
         this.description = props.description;

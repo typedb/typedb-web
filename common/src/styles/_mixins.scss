@@ -1,5 +1,5 @@
-@import "colors";
-@import "sizes";
+@use "colors" as *;
+@use "sizes" as *;
 
 @mixin section-width($offset) {
     // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.

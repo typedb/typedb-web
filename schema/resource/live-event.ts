@@ -1,36 +1,24 @@
 import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
+import { LinkButton } from "../button";
+import { requiredRule, slugField } from "../common-fields";
+import { resourceCommonFields } from "./base";
+import { EventBase } from "./event-base";
+import { EventDate, eventDateField, EventSignupMethod } from "./live-event-details";
+import { Link } from "../link";
+import { personSchemaName } from "../person";
+import { SanityDataset } from "../sanity-core";
+import { PropsOf } from "../util";
+import { liveEventSchemaName, SanityLiveEvent } from "./sanity";
 
-import { LinkButton, SanityButton } from "./button";
-import { descriptionFieldRichText, requiredRule, slugField, titleFieldWithHighlights } from "./common-fields";
-import { EventBase, SanityEventBase } from "./event-base";
-import { EventDate, eventDate, SanityEventDate } from "./event-date";
-import { Link } from "./link";
-import { personSchemaName } from "./person";
-import { SanityDataset } from "./sanity-core";
-import { PropsOf } from "./util";
-import { metaTagsField } from "./page/meta-tags";
-
-enum SignupMethod {
-    externalURL = "externalURL",
-}
-
-export interface SanityEvent extends SanityEventBase {
-    tag: string;
-    venue: string;
-    dateOptions: SanityEventDate;
-    signupMethod: SignupMethod;
-    externalUrlButton?: SanityButton;
-}
-
-export class Event extends EventBase {
+export class LiveEvent extends EventBase {
     readonly tag: string;
     readonly venue: string;
     readonly dateOptions: EventDate;
-    readonly signupMethod: SignupMethod;
+    readonly signupMethod: EventSignupMethod;
     readonly externalUrlButton?: LinkButton;
 
-    constructor(props: PropsOf<Event>) {
+    constructor(props: PropsOf<LiveEvent>) {
         super(props);
         this.tag = props.tag;
         this.venue = props.venue;
@@ -39,15 +27,15 @@ export class Event extends EventBase {
         this.externalUrlButton = props.externalUrlButton;
     }
 
-    static override fromSanity(data: SanityEvent, db: SanityDataset): Event {
-        return new Event({
+    static override fromSanity(data: SanityLiveEvent, db: SanityDataset): LiveEvent {
+        return new LiveEvent({
             ...super.fromSanity(data, db),
             tag: data.tag,
             venue: data.venue,
             dateOptions: EventDate.fromSanity(data.dateOptions),
             signupMethod: data.signupMethod,
             externalUrlButton:
-                data.signupMethod === SignupMethod.externalURL && data.externalUrlButton
+                data.signupMethod === EventSignupMethod.externalURL && data.externalUrlButton
                     ? LinkButton.fromSanity(data.externalUrlButton, db)
                     : undefined,
         });
@@ -71,31 +59,27 @@ export class Event extends EventBase {
     }
 }
 
-export const eventSchemaName = "event";
-
-export const eventSchema = defineType({
-    name: eventSchemaName,
-    title: "Event",
+export const liveEventSchema = defineType({
+    name: liveEventSchemaName,
+    title: "Live Event",
     icon: CalendarIcon,
     type: "document",
     fields: [
-        titleFieldWithHighlights,
         slugField,
-        metaTagsField,
+        ...resourceCommonFields,
         defineField({
             name: "tag",
             title: "Tag",
             type: "string",
             validation: requiredRule,
         }),
-        eventDate,
+        eventDateField,
         defineField({
             name: "venue",
             title: "Venue",
             type: "string",
             validation: requiredRule,
         }),
-        defineField({ ...descriptionFieldRichText, validation: requiredRule }),
         defineField({
             name: "image",
             title: "Image",
@@ -113,15 +97,15 @@ export const eventSchema = defineType({
             name: "signupMethod",
             title: "Signup Method",
             type: "string",
-            initialValue: SignupMethod.externalURL,
-            options: { list: [{ title: "External URL", value: SignupMethod.externalURL }] },
+            initialValue: EventSignupMethod.externalURL,
+            options: { list: [{ title: "External URL", value: EventSignupMethod.externalURL }] },
             validation: requiredRule,
         }),
         defineField({
             name: "externalUrlButton",
             title: "External URL Button",
             type: "button",
-            hidden: ({ parent }) => (parent as SanityEvent)?.signupMethod !== SignupMethod.externalURL,
+            hidden: ({ parent }) => (parent as SanityLiveEvent)?.signupMethod !== EventSignupMethod.externalURL,
         }),
     ],
 });
