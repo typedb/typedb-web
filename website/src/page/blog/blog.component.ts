@@ -7,16 +7,13 @@ import { combineLatest, map } from "rxjs";
 import {
     Blog,
     blogCategories,
-    BlogCategoryFilter,
     BlogCategoryID,
     blogCategoryList,
-    BlogFilter,
     blogNullFilter,
     BlogPost,
     BlogPostsRow,
     BlogRow,
     blogSchemaName,
-    ResourcePanelsRow,
     SanityBlog,
 } from "typedb-web-schema";
 
