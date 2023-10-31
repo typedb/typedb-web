@@ -32,10 +32,10 @@ from = "/github"
 to = "https://github.com/vaticle/typedb"
 status = 303
 
-#[[redirects]]
-#from = "/docs"
-#to = "/docs/typedb/2.x/overview"
-#status = 301
+[[redirects]]
+from = "/docs"
+to = "/docs/home/overview"
+status = 303
 
 [[redirects]]
 from = "/docs/typedb/2.x/*"
