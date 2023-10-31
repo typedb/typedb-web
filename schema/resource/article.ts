@@ -1,4 +1,4 @@
-import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
+import { BookIcon, BulbOutlineIcon, DocumentTextIcon, PlugIcon, TerminalIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios from "axios";
 import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
@@ -8,7 +8,7 @@ import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Resource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
-import { applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
+import { applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle, SanityTutorialArticle, tutorialArticleSchemaName } from "./sanity";
 
 export interface WordpressPosts {
     found: number;
@@ -74,6 +74,12 @@ export class FundamentalArticle extends Article {
 export class ApplicationArticle extends Article {
     static fromApi(data: SanityApplicationArticle, db: SanityDataset, wordpressPost: WordpressPost): ApplicationArticle {
         return new ApplicationArticle(articlePropsFromApi(data, db, wordpressPost));
+    }
+}
+
+export class TutorialArticle extends Article {
+    static fromApi(data: SanityTutorialArticle, db: SanityDataset, wordpressPost: WordpressPost): TutorialArticle {
+        return new TutorialArticle(articlePropsFromApi(data, db, wordpressPost));
     }
 }
 
@@ -164,6 +170,12 @@ const applicationArticleSchema = Object.assign({}, articleSchemaBase, {
     icon: PlugIcon,
 });
 
+const tutorialArticleSchema = Object.assign({}, articleSchemaBase, {
+    name: tutorialArticleSchemaName,
+    title: "Tutorial Article",
+    icon: TerminalIcon,
+});
+
 const blogPostSchema = Object.assign({}, articleSchemaBase, {
     name: blogPostSchemaName,
     title: "Blog Post",
@@ -209,4 +221,4 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
     ],
 });
 
-export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, blogPostSchema];
+export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, tutorialArticleSchema, blogPostSchema];

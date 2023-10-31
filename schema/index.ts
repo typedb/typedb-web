@@ -72,9 +72,9 @@ export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
-    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost, type SanityWhitePaper,
-    type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityApplicationArticle,
-    type SanityGenericResource, type BlogPostLevel,
+    liveEventSchemaName, tutorialArticleSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost,
+    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar,
+    type SanityApplicationArticle, type SanityTutorialArticle, type SanityGenericResource, type BlogPostLevel,
 } from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";

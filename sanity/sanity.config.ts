@@ -7,11 +7,16 @@ import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
-    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName, schemaTypes, topbarSchemaName, solutionPageSchemaName,
-    webinarsPageSchemaName, footerSchemaName, communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, imageIllustrationSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
-    deploymentPageSchemaName, personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName, requestTechTalkPageSchemaName,
-    liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName, servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName, applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName
+    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
+    schemaTypes, topbarSchemaName, solutionPageSchemaName, webinarsPageSchemaName, footerSchemaName,
+    communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
+    imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
+    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
+    personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName,
+    requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
+    servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
+    applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
+    tutorialArticleSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -55,6 +60,7 @@ export default defineConfig({
                 s.listItem().title("Technical Articles").icon(BinaryDocumentIcon).child(s.list().title("Technical Articles").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
                     s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
+                    s.documentTypeListItem(tutorialArticleSchemaName).title("Tutorials"),
                     s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
