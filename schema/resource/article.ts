@@ -6,9 +6,9 @@ import { Link } from "../link";
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { ResourceBase, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
+import { Resource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
-import { applicationArticleSchemaName, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
+import { applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle } from "./sanity";
 
 export interface WordpressPosts {
     found: number;
@@ -21,9 +21,22 @@ export interface WordpressPost {
     content: string;
 }
 
-export interface BlogPostLink extends ResourceLink {
-    author: Person;
-    imageURL: string;
+export class BlogPostLink extends ResourceLink {
+    readonly author: Person;
+    readonly imageURL: string;
+
+    constructor(props: PropsOf<BlogPostLink>) {
+        super(props);
+        this.author = props.author;
+        this.imageURL = props.imageURL;
+    }
+
+    static override fromSanity(data: SanityBlogPost, db: SanityDataset): BlogPostLink {
+        return new BlogPostLink(Object.assign(super.fromSanity(data, db), {
+            author: Person.fromSanity(db.resolveRef(data.author), db),
+            imageURL: data.image ? db.resolveRef(data.image.asset).url : blogPostBackupHeroImageURL(data.slug.current),
+        }));
+    }
 }
 
 export type RelatedBlogPosts = {
@@ -39,7 +52,7 @@ export const blogNullFilter: () => BlogNullFilter = () => ({});
 
 export type BlogCategoryFilter = { categorySlug: string }
 
-export abstract class Article extends ResourceBase {
+export abstract class Article extends Resource {
     readonly contentHtml: string;
 
     protected constructor(props: PropsOf<Article>) {
@@ -96,6 +109,11 @@ export class BlogPost extends Article {
             destination: `/blog/${this.slug}`,
             opensNewTab: false,
         });
+    }
+
+    heroImageURL(): string {
+        if (this.imageURL) return this.imageURL;
+        else return blogPostBackupHeroImageURL(this.slug);
     }
 }
 

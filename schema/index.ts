@@ -62,6 +62,7 @@ export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from ".
 export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName } from "./page/white-papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
+export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
     type WordpressPosts, type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
     type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,

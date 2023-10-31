@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import { Blog, blogCategories, BlogCategoryID, BlogPost, blogSchemaName, Link, LinkButton, RelatedBlogPosts, SanityBlog } from "typedb-web-schema";
+import { Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, blogSchemaName, Link, LinkButton, RelatedBlogPosts, resourceLinkOf, SanityBlog } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { BlogService } from "../../service/blog.service";
@@ -64,16 +64,7 @@ export class BlogPostPageComponent implements OnInit {
                         return this.blogService.getPostsByCategory(category).pipe(
                             map((posts) => ({
                                 categorySlug: category,
-                                posts: posts
-                                    .filter((p) => p.slug !== post.slug)
-                                    .slice(0, 3)
-                                    .map(x => ({
-                                        title: x.shortTitle,
-                                        description: x.shortDescription,
-                                        url: `/blog/${x.slug}`,
-                                        author: x.author,
-                                        imageURL: x.imageURL || "",
-                                    }))
+                                posts: posts.filter((p) => p.slug !== post.slug).slice(0, 3).map(x => blogPostLinkOf(x))
                             })),
                         );
                     }),
@@ -103,29 +94,16 @@ export class BlogPostPageComponent implements OnInit {
         );
     }
 
-    heroImageURL(post: BlogPost): string {
-        if (post.imageURL) return post.imageURL;
-        switch (post.slug.length % 3) {
-            case 0:
-                return "/assets/graphic/blog-placeholder-image-0.svg";
-            case 1:
-                return "/assets/graphic/blog-placeholder-image-1.svg";
-            case 2:
-            default:
-                return "/assets/graphic/blog-placeholder-image-2.webp";
-        }
-    }
-
     categoryDisplayName(category: BlogCategoryID) {
         return blogCategories[category];
     }
 
     shareOnTwitterURL(post: BlogPost): string {
-        return `https://twitter.com/intent/tweet?text=${post.title}&url=${encodeURIComponent(window.location.href)}`;
+        return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(window.location.href)}`;
     }
 
     shareOnFacebookURL(post: BlogPost): string {
-        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title}`;
+        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title.toPlainText()}`;
     }
 
     shareOnLinkedInURL(_post: BlogPost): string {
@@ -133,6 +111,6 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     shareOnRedditURL(post: BlogPost): string {
-        return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title}`;
+        return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title.toPlainText()}`;
     }
 }

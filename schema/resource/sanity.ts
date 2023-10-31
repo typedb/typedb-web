@@ -51,6 +51,18 @@ export interface SanityBlogPost extends SanityArticle {
 
 export type BlogPostLevel = "primary" | "secondary" | "tertiary";
 
+export function blogPostBackupHeroImageURL(slug: string) {
+    switch (slug.length % 3) {
+        case 0:
+            return "/assets/graphic/blog-placeholder-image-0.svg";
+        case 1:
+            return "/assets/graphic/blog-placeholder-image-1.svg";
+        case 2:
+        default:
+            return "/assets/graphic/blog-placeholder-image-2.webp";
+    }
+}
+
 export interface SanityEventBase extends SanitySiteResource {
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];

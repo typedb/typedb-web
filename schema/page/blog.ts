@@ -87,7 +87,7 @@ export class ResourcePanelsRow {
     static fromSanity(data: SanityResourcePanelsRow, db: SanityDataset): ResourcePanelsRow {
         return new ResourcePanelsRow({
             rowIndex: data.rowIndex,
-            resources: data.resources.map(x => ResourceLinkPanel.fromResourceLink(ResourceLink.fromSanity(x, db))),
+            resources: data.resources.map(x => ResourceLinkPanel.fromResourceLink(ResourceLink.fromSanity(db.resolveRef(x), db))),
         });
     }
 }

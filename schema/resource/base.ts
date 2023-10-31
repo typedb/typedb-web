@@ -7,7 +7,7 @@ import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isWebinar, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
 
-export abstract class ResourceBase {
+export abstract class Resource {
     readonly slug: string;
     readonly metaTags: MetaTags;
     readonly title: ParagraphWithHighlights;
@@ -16,7 +16,7 @@ export abstract class ResourceBase {
     readonly shortDescription: PortableText;
     readonly linkedResources: ResourceLink[];
 
-    protected constructor(props: PropsOf<ResourceBase>) {
+    protected constructor(props: PropsOf<Resource>) {
         this.slug = props.slug;
         this.metaTags = props.metaTags;
         this.title = props.title;
@@ -27,7 +27,7 @@ export abstract class ResourceBase {
     }
 }
 
-export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityDataset): PropsOf<ResourceBase> {
+export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityDataset): PropsOf<Resource> {
     return {
         slug: data.slug.current,
         metaTags: MetaTags.fromSanity((data.metaTags || {}), db),
@@ -35,7 +35,7 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
         description: data.description,
         shortTitle: data.shortTitle,
         shortDescription: data.shortDescription || data.description,
-        linkedResources: data.linkedResources?.map(x => ResourceLink.fromSanity(x, db)) || [],
+        linkedResources: data.linkedResources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
     };
 }
 
@@ -50,15 +50,14 @@ export class ResourceLink {
         this.link = props.link;
     }
 
-    static fromSanity(dataRef: SanityReference<SanityResource>, db: SanityDataset): ResourceLink {
-        const data = db.resolveRef(dataRef);
+    static fromSanity(data: SanityResource, db: SanityDataset): ResourceLink {
         if (isGenericResource(data)) return new ResourceLink({
             title: data.title,
             description: data.description,
             link: Link.fromSanityLinkRef(data.link, db),
         }); else return new ResourceLink({
             title: data.shortTitle,
-            description: data.shortDescription || data.description,
+            description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
         });
     }

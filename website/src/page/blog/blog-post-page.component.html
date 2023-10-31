@@ -24,7 +24,7 @@
 
         <section class="bp-content-section">
           <div class="bp-content">
-            <figure><img class="bp-featured-image" [src]="heroImageURL(post)" alt="" /></figure>
+            <figure><img class="bp-featured-image" [src]="post.imageURL" alt="" /></figure>
             <td-rich-text [value]="post.contentHtml" />
           </div>
           <div *ngIf="post$ | async as post" class="bp-sidebar">
