@@ -33,6 +33,26 @@ to = "https://github.com/vaticle/typedb"
 status = 303
 
 [[redirects]]
+from = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show-a795701af90e"
+to = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show"
+status = 301
+
+[[redirects]]
+from = "/blog/typedb-for-identity-and-access-management-caeffa43f2f0"
+to = "/blog/identity-and-access-management-with-typedb-part-i-polymorphism"
+status = 301
+
+[[redirects]]
+from = "/blog/typedb-for-identity-and-access-management-6466dafb669e"
+to = "/blog/identity-and-access-management-with-typedb-part-ii-transitivity"
+status = 301
+
+[[redirects]]
+from = "/blog/typedb-for-identity-and-access-management-af995e4d5263"
+to = "/blog/identity-and-access-management-with-typedb-part-iii-inference"
+status = 301
+
+[[redirects]]
 from = "/docs"
 to = "/docs/home/overview"
 status = 303
