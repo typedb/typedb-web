@@ -53,6 +53,11 @@ to = "/docs/clients/:splat"
 status = 301
 
 [[redirects]]
+from = "/docs/typedb/2.x/quickstart-guide"
+to = "/docs/home/quickstart"
+status = 301
+
+[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs2.netlify.app/:splat"
 status = 200
