@@ -3,9 +3,9 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     bodyFieldRichText,
     isVisibleField,
-    linkPanelsField, resourcesField,
+    linkPanelsField, optionalActionsField, resourcesField,
     SanityVisibleToggle, sectionIconField,
-    sectionIdField, titleFieldWithHighlights,
+    sectionIdField, titleBodyIconFields, titleFieldWithHighlights,
 } from "../common-fields";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { ResourceLink } from "../resource/base";
@@ -119,8 +119,8 @@ const resourceSectionSchema = defineType({
     title: "Resources Section",
     type: "object",
     fields: [
-        titleFieldWithHighlights,
-        sectionIconField,
+        ...titleBodyIconFields,
+        optionalActionsField,
         sectionIdField,
         resourcesField,
         isVisibleField,
