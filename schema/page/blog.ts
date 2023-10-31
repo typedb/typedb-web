@@ -1,6 +1,5 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { collapsibleOptions, nameField, pageTitleField, requiredRule, SanityVisibleToggle, titleField, titleFieldWithHighlights } from "../common-fields";
-import { ResourceLinkPanel } from "../component/link-panel";
+import { collapsibleOptions, pageTitleField, requiredRule, resourcesField, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
 import { blogCategories, BlogCategoryID, blogCategoryList } from "../resource/blog-category";
@@ -79,7 +78,7 @@ export type BlogRow = BlogPostsRow | BlogAdditionalRow;
 export class ResourcePanelsRow {
     readonly title: ParagraphWithHighlights;
     readonly rowIndex: number;
-    readonly resources: ResourceLinkPanel[];
+    readonly resources: ResourceLink[];
 
     constructor(props: PropsOf<ResourcePanelsRow>) {
         this.title = props.title;
@@ -91,7 +90,7 @@ export class ResourcePanelsRow {
         return new ResourcePanelsRow({
             title: ParagraphWithHighlights.fromSanity(data.title),
             rowIndex: data.rowIndex,
-            resources: data.resources.map(x => ResourceLinkPanel.fromResourceLink(ResourceLink.fromSanity(db.resolveRef(x), db))),
+            resources: data.resources.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)),
         });
     }
 }
@@ -112,19 +111,7 @@ const resourcePanelsRowSchema = defineType({
             validation: (rule: NumberRule) => rule.required().positive(),
             initialValue: 0,
         }),
-        defineField({
-            name: "resources",
-            title: "Resources",
-            type: "array",
-            of: [{
-                type: "reference",
-                to: [
-                    {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "tutorialArticle"},
-                    {type: "blogPost"}, {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"},
-                    {type: "genericResource"}
-                ],
-            }],
-        }),
+        resourcesField,
     ],
 });
 

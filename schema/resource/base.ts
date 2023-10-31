@@ -5,7 +5,7 @@ import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isTutorialArticle, isWebinar, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
+import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isWebinar, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
 
 export abstract class Resource {
     readonly slug: string;
@@ -66,7 +66,6 @@ export class ResourceLink {
 function siteResourceUrl(data: SanitySiteResource): string {
     if (isFundamentalArticle(data)) return `/learn/fundamentals/${data.slug.current}`;
     else if (isApplicationArticle(data)) return `/learn/applications/${data.slug.current}`;
-    else if (isTutorialArticle(data)) return `/learn/tutorials/${data.slug.current}`;
     else if (isBlogPost(data)) return `/blog/${data.slug.current}`;
     else if (isWebinar(data)) return `/webinars/${data.slug.current}`;
     else if (isWhitePaper(data)) return `/white-papers/${data.slug.current}`;

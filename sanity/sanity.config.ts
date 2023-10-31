@@ -16,7 +16,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    tutorialArticleSchemaName
+    learningCenterSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -47,6 +47,7 @@ export default defineConfig({
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),
+                    singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, blogSchemaName, { title: "Blog", icon: DocumentIcon }),
                     singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
                     singletonListItem(s, whitePapersPageSchemaName, { title: "White Papers", icon: DocumentIcon }),
@@ -60,7 +61,6 @@ export default defineConfig({
                 s.listItem().title("Technical Articles").icon(BinaryDocumentIcon).child(s.list().title("Technical Articles").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
                     s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
-                    s.documentTypeListItem(tutorialArticleSchemaName).title("Tutorials"),
                     s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),

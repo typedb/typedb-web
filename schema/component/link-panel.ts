@@ -2,8 +2,6 @@ import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
 import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
-import { Link } from "../link";
-import { ResourceLink } from "../resource/base";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
@@ -38,26 +36,6 @@ export class LinkPanel implements BodyTextField {
             title: data.title,
             body: data.body,
             button: LinkButton.fromSanity(data.button, db),
-        });
-    }
-}
-
-export class ResourceLinkPanel implements BodyTextField {
-    readonly title: string;
-    readonly body: PortableText;
-    readonly link?: Link;
-
-    constructor(props: PropsOf<ResourceLinkPanel>) {
-        this.title = props.title;
-        this.body = props.body;
-        this.link = props.link;
-    }
-
-    static fromResourceLink(resourceLink: ResourceLink): ResourceLinkPanel {
-        return new ResourceLinkPanel({
-            title: resourceLink.title,
-            body: resourceLink.description,
-            link: resourceLink.link,
         });
     }
 }

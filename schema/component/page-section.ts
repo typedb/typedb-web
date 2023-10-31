@@ -3,12 +3,14 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     bodyFieldRichText,
     isVisibleField,
-    linkPanelsField,
+    linkPanelsField, resourcesField,
     SanityVisibleToggle, sectionIconField,
     sectionIdField, titleFieldWithHighlights,
 } from "../common-fields";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
-import { SanityDataset } from "../sanity-core";
+import { ResourceLink } from "../resource/base";
+import { SanityResource } from "../resource/sanity";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
 import { LinkPanel, SanityLinkPanel } from "./link-panel";
@@ -22,6 +24,10 @@ export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & Sanity
 export interface SanityFurtherReadingSection extends SanityCoreSection {
     links: SanityLinkPanel[];
     sectionId?: string;
+}
+
+export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+    resources: SanityReference<SanityResource>[];
 }
 
 export class TitleBodyIllustrationSection extends TechnicolorBlock {
@@ -66,6 +72,21 @@ export class FurtherReadingSection extends TechnicolorBlock {
     }
 }
 
+export class ResourceSection extends TechnicolorBlock {
+    readonly resources: ResourceLink[];
+
+    constructor(props: PropsOf<ResourceSection>) {
+        super(props);
+        this.resources = props.resources;
+    }
+
+    static override fromSanity(data: SanityResourceSection, db: SanityDataset) {
+        return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            resources: data.resources.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)),
+        }));
+    }
+}
+
 export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
 
 export const furtherReadingSectionSchemaName = "furtherReadingSection";
@@ -91,4 +112,19 @@ const furtherReadingSectionSchema = defineType({
     fields: [bodyFieldRichText, linkPanelsField, sectionIdField, isVisibleField],
 });
 
-export const pageSectionSchemas = [furtherReadingSectionSchema, titleBodyIllustrationSectionSchema];
+export const resourceSectionSchemaName = `resourceSection`;
+
+const resourceSectionSchema = defineType({
+    name: resourceSectionSchemaName,
+    title: "Resources Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        sectionIconField,
+        sectionIdField,
+        resourcesField,
+        isVisibleField,
+    ],
+});
+
+export const pageSectionSchemas = [furtherReadingSectionSchema, resourceSectionSchema, titleBodyIllustrationSectionSchema];

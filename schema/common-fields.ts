@@ -269,3 +269,18 @@ export const authorField = defineField({
     type: "reference",
     to: [{type: "person"}],
 });
+
+export const resourcesFieldName = "resources";
+
+export const resourcesField = defineField({
+    name: "resources",
+    title: "Resources",
+    type: "array",
+    of: [{
+        type: "reference",
+        to: [
+            {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "blogPost"},
+            {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"}, {type: "genericResource"}
+        ],
+    }],
+});

@@ -40,10 +40,6 @@ export interface SanityApplicationArticle extends SanityArticle {
     _type: typeof applicationArticleSchemaName;
 }
 
-export interface SanityTutorialArticle extends SanityArticle {
-    _type: typeof tutorialArticleSchemaName;
-}
-
 export interface SanityBlogPost extends SanityArticle {
     _type: typeof blogPostSchemaName;
     level: BlogPostLevel;
@@ -109,7 +105,6 @@ export interface SanityLiveEvent extends SanityEventBase {
 export const genericResourceSchemaName = "genericResource";
 export const fundamentalArticleSchemaName = "fundamentalArticle";
 export const applicationArticleSchemaName = "applicationArticle";
-export const tutorialArticleSchemaName = "tutorialArticle";
 export const blogPostSchemaName = "blogPost";
 export const webinarSchemaName = "webinar";
 export const whitePaperSchemaName = "whitePaper";
@@ -125,10 +120,6 @@ export function isFundamentalArticle(data: SanityResource): data is SanityFundam
 
 export function isApplicationArticle(data: SanityResource): data is SanityApplicationArticle {
     return data._type === applicationArticleSchemaName;
-}
-
-export function isTutorialArticle(data: SanityResource): data is SanityTutorialArticle {
-    return data._type === tutorialArticleSchemaName;
 }
 
 export function isBlogPost(data: SanityArticle): data is SanityBlogPost {

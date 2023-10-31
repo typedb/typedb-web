@@ -6,7 +6,7 @@ import { combineLatest, map } from "rxjs";
 import { Blog, blogCategories, BlogCategoryFilter, BlogCategoryID, blogCategoryList, BlogFilter, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName, ResourcePanelsRow, SanityBlog } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
-import { BlogService } from "../../service/blog.service";
+import { WordpressService } from "../../service/wordpress.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 
@@ -23,7 +23,7 @@ export class BlogComponent {
         private router: Router,
         private route: ActivatedRoute,
         private contentService: ContentService,
-        private blogService: BlogService,
+        private blogService: WordpressService,
         private title: Title,
         private metaTags: MetaTagsService,
         private _analytics: AnalyticsService,

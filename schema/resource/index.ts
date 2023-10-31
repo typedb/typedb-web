@@ -1,6 +1,6 @@
 import { Link } from "../link";
 import { PropsOf } from "../util";
-import { ApplicationArticle, articleSchemas, BlogPost, BlogPostLink, FundamentalArticle, TutorialArticle } from "./article";
+import { ApplicationArticle, articleSchemas, BlogPost, BlogPostLink, FundamentalArticle } from "./article";
 import { Resource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
@@ -28,7 +28,6 @@ export function blogPostLinkOf(post: BlogPost): BlogPostLink {
 function resourceUrl(resource: Resource): string {
     if (resource instanceof FundamentalArticle) return `/learn/fundamentals/${resource.slug}`;
     else if (resource instanceof ApplicationArticle) return `/learn/applications/${resource.slug}`;
-    else if (resource instanceof TutorialArticle) return `/learn/tutorials/${resource.slug}`;
     else if (resource instanceof BlogPost) return `/blog/${resource.slug}`;
     else if (resource instanceof Webinar) return `/webinars/${resource.slug}`;
     else if (resource instanceof WhitePaper) return `/white-papers/${resource.slug}`;

@@ -1,4 +1,4 @@
-import { BookIcon, BulbOutlineIcon, DocumentTextIcon, PlugIcon, TerminalIcon } from "@sanity/icons";
+import { BulbOutlineIcon, DocumentTextIcon, PlugIcon, TerminalIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios from "axios";
 import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
@@ -8,7 +8,11 @@ import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Resource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
-import { applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName, fundamentalArticleSchemaName, SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle, SanityTutorialArticle, tutorialArticleSchemaName } from "./sanity";
+import {
+    applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName,
+    fundamentalArticleSchemaName, isApplicationArticle, isBlogPost, isFundamentalArticle, SanityApplicationArticle,
+    SanityArticle, SanityBlogPost, SanityFundamentalArticle
+} from "./sanity";
 
 export interface WordpressPosts {
     found: number;
@@ -77,12 +81,6 @@ export class ApplicationArticle extends Article {
     }
 }
 
-export class TutorialArticle extends Article {
-    static fromApi(data: SanityTutorialArticle, db: SanityDataset, wordpressPost: WordpressPost): TutorialArticle {
-        return new TutorialArticle(articlePropsFromApi(data, db, wordpressPost));
-    }
-}
-
 export class BlogPost extends Article {
     readonly level: BlogPostLevel;
     readonly author: Person;
@@ -121,6 +119,13 @@ export class BlogPost extends Article {
         if (this.imageURL) return this.imageURL;
         else return blogPostBackupHeroImageURL(this.slug);
     }
+}
+
+export function articleFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): Article {
+    if (isFundamentalArticle(data)) return FundamentalArticle.fromApi(data, db, wordpressPost);
+    else if (isApplicationArticle(data)) return ApplicationArticle.fromApi(data, db, wordpressPost);
+    else if (isBlogPost(data)) return BlogPost.fromApi(data, db, wordpressPost);
+    else throw "Unreachable code";
 }
 
 const BLOG_POSTS_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts";
@@ -170,12 +175,6 @@ const applicationArticleSchema = Object.assign({}, articleSchemaBase, {
     icon: PlugIcon,
 });
 
-const tutorialArticleSchema = Object.assign({}, articleSchemaBase, {
-    name: tutorialArticleSchemaName,
-    title: "Tutorial Article",
-    icon: TerminalIcon,
-});
-
 const blogPostSchema = Object.assign({}, articleSchemaBase, {
     name: blogPostSchemaName,
     title: "Blog Post",
@@ -221,4 +220,4 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
     ],
 });
 
-export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, tutorialArticleSchema, blogPostSchema];
+export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, blogPostSchema];

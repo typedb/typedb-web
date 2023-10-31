@@ -28,7 +28,7 @@ export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "
 export { ContentTextPanel } from "./component/content-text-panel";
 export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon, ProductPanel, ResourceLinkPanel } from "./component/link-panel";
+export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TitleBodyIllustrationSection } from "./component/page-section";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
@@ -52,6 +52,7 @@ export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
+export { LearningCenter, learningCenterSchemaName, type SanityLearningCenter } from "./page/learn";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";
@@ -65,16 +66,17 @@ export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
     type WordpressPosts, type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
-    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
+    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost, articleFromApi,
 } from "./resource/article";
+export { ResourceLink } from "./resource/base";
 export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
-    liveEventSchemaName, tutorialArticleSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost,
-    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar,
-    type SanityApplicationArticle, type SanityTutorialArticle, type SanityGenericResource, type BlogPostLevel,
+    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost,
+    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityArticle,
+    type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel,
 } from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";

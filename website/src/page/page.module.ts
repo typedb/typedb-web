@@ -5,6 +5,8 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { FrameworkModule } from "../framework/framework.module";
 import { BlogRowComponent } from "./blog/blog-row.component";
+import { LearningArticleComponent } from "./learning-center/learning-article.component";
+import { LearningCenterBlockComponent, LearningCenterComponent } from "./learning-center/learning-center.component";
 import {
     PhilosophyPageComponent,
     PhilosophyPageTechnicolorBlockComponent,
@@ -52,6 +54,9 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         FeaturesPageTechnicolorBlockComponent,
         HomePageComponent,
         HomePageTechnicolorBlockComponent,
+        LearningArticleComponent,
+        LearningCenterComponent,
+        LearningCenterBlockComponent,
         PhilosophyPageComponent,
         PhilosophyPageTechnicolorBlockComponent,
         NotFoundPageComponent,
