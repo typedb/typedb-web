@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import { applicationArticleSchemaName, Article, blogCategories, BlogCategoryID, BlogPost, fundamentalArticleSchemaName, Link, LinkButton } from "typedb-web-schema";
+import { Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, LearningCenter, learningCenterSchemaName, Link, LinkButton, SanityLearningCenter } from "typedb-web-schema";
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { WordpressService } from "../../service/wordpress.service";
@@ -17,6 +17,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     styleUrls: ["./learning-article.component.scss"],
 })
 export class LearningArticleComponent implements OnInit {
+    learningCenter?: LearningCenter;
     readonly article$: Observable<Article | null>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
@@ -40,6 +41,12 @@ export class LearningArticleComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
+        this.contentService.data.subscribe((data) => {
+            const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
+            if (sanityLearningCenter) {
+                this.learningCenter = new LearningCenter(sanityLearningCenter, data);
+            }
+        });
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
             map(([routeData, params]) => ({ resourceType: routeData["resourceType"], slug: params.get("slug") })),
             switchMap(({ resourceType, slug }) => {

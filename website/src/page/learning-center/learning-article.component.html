@@ -1,6 +1,12 @@
 <article tdPageBackground nebula="solutions">
   <div class="article-content article-content-no-planet">
     <ng-container *ngIf="article$ | async as article">
+      <section class="page-section bp-nebula-section">
+        <a tdLink="/learn">
+          <td-heading-with-highlights *ngIf="learningCenter" [value]="learningCenter.introSection.title" class="bp-site-title" level="h2" />
+        </a>
+      </section>
+
       <div class="section-background-solid bp-post-section">
         <section>
           <div class="bp-intro-section">
