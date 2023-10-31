@@ -1,15 +1,28 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
-import { Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, LearningCenter, learningCenterSchemaName, Link, LinkButton, SanityLearningCenter } from "typedb-web-schema";
+import {
+    Article,
+    blogCategories,
+    BlogCategoryID,
+    fundamentalArticleSchemaName,
+    LearningCenter,
+    learningCenterSchemaName,
+    Link,
+    LinkButton,
+    SanityLearningCenter,
+} from "typedb-web-schema";
+
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
+
 import { AnalyticsService } from "../../service/analytics.service";
-import { WordpressService } from "../../service/wordpress.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
+import { WordpressService } from "../../service/wordpress.service";
 
 @Component({
     selector: "td-learning-article",
@@ -50,7 +63,10 @@ export class LearningArticleComponent implements OnInit {
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
             map(([routeData, params]) => ({ resourceType: routeData["resourceType"], slug: params.get("slug") })),
             switchMap(({ resourceType, slug }) => {
-                const articleStream = resourceType === fundamentalArticleSchemaName ? this.blogService.fundamentalArticles : this.blogService.applicationArticles;
+                const articleStream =
+                    resourceType === fundamentalArticleSchemaName
+                        ? this.blogService.fundamentalArticles
+                        : this.blogService.applicationArticles;
                 return slug ? this.blogService.getArticleBySlug(articleStream, resourceType, slug) : of(null);
             }),
             shareReplay(1),
@@ -83,11 +99,15 @@ export class LearningArticleComponent implements OnInit {
     }
 
     shareOnTwitterURL(post: Article): string {
-        return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(window.location.href)}`;
+        return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(
+            window.location.href,
+        )}`;
     }
 
     shareOnFacebookURL(post: Article): string {
-        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)}&t=${post.title.toPlainText()}`;
+        return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(
+            window.location.href,
+        )}&t=${post.title.toPlainText()}`;
     }
 
     shareOnLinkedInURL(_post: Article): string {
@@ -95,6 +115,8 @@ export class LearningArticleComponent implements OnInit {
     }
 
     shareOnRedditURL(post: Article): string {
-        return `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${post.title.toPlainText()}`;
+        return `https://www.reddit.com/submit?url=${encodeURIComponent(
+            window.location.href,
+        )}&title=${post.title.toPlainText()}`;
     }
 }

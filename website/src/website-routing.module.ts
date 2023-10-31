@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { PhilosophyPageComponent } from "./page/./philosophy-page/philosophy-page.component";
-import { BlogComponent } from "./page/./blog/blog.component";
 import { BlogPostPageComponent } from "./page/./blog/blog-post-page.component";
+import { BlogComponent } from "./page/./blog/blog.component";
+import { PhilosophyPageComponent } from "./page/./philosophy-page/philosophy-page.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./page/events-page/events-page.component";
@@ -31,8 +31,16 @@ const routes: Routes = [
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
     { path: "deploy", component: DeploymentPageComponent },
     { path: "learn", component: LearningCenterComponent },
-    { path: "learn/fundamentals/:slug", component: LearningArticleComponent, data: { resourceType: "fundamentalArticle" }},
-    { path: "learn/applications/:slug", component: LearningArticleComponent, data: { resourceType: "applicationArticle" }},
+    {
+        path: "learn/fundamentals/:slug",
+        component: LearningArticleComponent,
+        data: { resourceType: "fundamentalArticle" },
+    },
+    {
+        path: "learn/applications/:slug",
+        component: LearningArticleComponent,
+        data: { resourceType: "applicationArticle" },
+    },
     { path: "blog", component: BlogComponent },
     { path: "blog/category/:categorySlug", component: BlogComponent },
     { path: "blog/:slug", component: BlogPostPageComponent },

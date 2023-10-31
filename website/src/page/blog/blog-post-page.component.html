@@ -61,7 +61,9 @@
                       <img [src]="relatedPost.imageURL" alt="" class="bp-img" />
                     </td-aspect-ratio>
                   </a>
-                  <h3 class="bp-related-post-title"><a [tdLink]="relatedPost.link">{{ relatedPost.title }}</a></h3>
+                  <h3 class="bp-related-post-title">
+                    <a [tdLink]="relatedPost.link">{{ relatedPost.title }}</a>
+                  </h3>
                   <td-rich-text class="bp-related-post-description" [value]="relatedPost.description" />
                   <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
                 </div>

@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
 
 @Component({

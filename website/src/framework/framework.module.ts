@@ -40,7 +40,11 @@ import {
 } from "./illustration/illustration.component";
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
-import { LinkPanelsCols2Component, LinkPanelsComponent, WebinarPanelsComponent } from "./link-panels/link-panels.component";
+import {
+    LinkPanelsCols2Component,
+    LinkPanelsComponent,
+    WebinarPanelsComponent,
+} from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";

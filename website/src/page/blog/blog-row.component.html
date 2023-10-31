@@ -19,7 +19,9 @@
     <ng-container *ngFor="let post of posts.posts">
       <div class="bp-secondary-post" *ngIf="post">
         <a [tdLink]="post.readPostLink()">
-          <td-aspect-ratio ratio="16:9"><img [src]="post.heroImageURL()" alt="" loading="lazy" class="bp-img" /></td-aspect-ratio>
+          <td-aspect-ratio ratio="16:9"
+            ><img [src]="post.heroImageURL()" alt="" loading="lazy" class="bp-img"
+          /></td-aspect-ratio>
         </a>
         <div class="bp-secondary-post-summary">
           <td-blog-category-chips [post]="post" />
@@ -35,7 +37,7 @@
 
   <div *ngSwitchCase="'tertiary'" class="bp-posts-row bp-tertiary-post">
     <div class="bp-img-tertiary-container">
-      <a class="bp-tertiary-img-link" [tdLink]="posts.posts[0].readPostLink() ">
+      <a class="bp-tertiary-img-link" [tdLink]="posts.posts[0].readPostLink()">
         <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
           <img [src]="posts.posts[0].imageURL" class="bp-img" alt="" loading="lazy" />
         </td-aspect-ratio>

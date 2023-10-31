@@ -10,7 +10,10 @@
       <td-learning-center-block [section]="section" [index]="idx" />
       <td-link-panels-cols-2 [resources]="section.resources" />
     </ng-container>
-    <td-learning-center-block [section]="learningCenter.finalSection" [index]="learningCenter.resourceSections.length" />
+    <td-learning-center-block
+      [section]="learningCenter.finalSection"
+      [index]="learningCenter.resourceSections.length"
+    />
     <td-conclusion-panel [panel]="learningCenter.finalSection.panel" />
   </div>
 </article>

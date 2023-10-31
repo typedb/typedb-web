@@ -24,7 +24,9 @@
           [attr.role]="$any(panel).button?.comingSoon || !$any(panel).button?.link ? 'button' : undefined"
           [attr.aria-disabled]="$any(panel).button?.comingSoon || !$any(panel).button?.link ? true : undefined"
           [class.hoverable]="!$any(panel).button?.comingSoon"
-          [tdLink]="$any(panel).link ? $any(panel).link : $any(panel).button?.comingSoon ? undefined : $any(panel).button?.link"
+          [tdLink]="
+            $any(panel).link ? $any(panel).link : $any(panel).button?.comingSoon ? undefined : $any(panel).button?.link
+          "
           (mouseenter)="setPanelHovered(panel, true)"
           (mouseleave)="setPanelHovered(panel, false)"
         >
@@ -32,7 +34,7 @@
           <h3>{{ panel.title }}</h3>
           <td-rich-text [value]="$any(panel).body || $any(panel).description" />
           <td-button
-              *ngIf="$any(panel).button"
+            *ngIf="$any(panel).button"
             [button]="$any(panel).button"
             size="small"
             buttonWidth="100%"

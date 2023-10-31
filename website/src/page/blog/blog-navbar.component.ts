@@ -25,8 +25,8 @@ export class BlogNavbarComponent {
                     type: "route",
                     opensNewTab: false,
                 }),
-            }),
-        )];
+            })),
+        ];
         // TODO: refactor
         this.filter$.subscribe((filter) => {
             this.activeFilter = filter;

@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { LearningCenter, SanityLearningCenter, learningCenterSchemaName } from "typedb-web-schema";
+import { LearningCenter, learningCenterSchemaName, SanityLearningCenter } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";

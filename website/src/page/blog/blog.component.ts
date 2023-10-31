@@ -1,14 +1,31 @@
 import { Component, DestroyRef } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, map } from "rxjs";
-import { Blog, blogCategories, BlogCategoryFilter, BlogCategoryID, blogCategoryList, BlogFilter, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName, ResourcePanelsRow, SanityBlog } from "typedb-web-schema";
+import {
+    Blog,
+    blogCategories,
+    BlogCategoryFilter,
+    BlogCategoryID,
+    blogCategoryList,
+    BlogFilter,
+    blogNullFilter,
+    BlogPost,
+    BlogPostsRow,
+    BlogRow,
+    blogSchemaName,
+    ResourcePanelsRow,
+    SanityBlog,
+} from "typedb-web-schema";
+
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
+
 import { AnalyticsService } from "../../service/analytics.service";
-import { WordpressService } from "../../service/wordpress.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
+import { WordpressService } from "../../service/wordpress.service";
 
 @Component({
     selector: "td-blog-list-page",
@@ -36,35 +53,39 @@ export class BlogComponent {
             const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
             if (sanityBlog) {
                 this.blog = new Blog(sanityBlog, data);
-                combineLatest([this.blogService.displayedPosts, this.blogService.filter]).subscribe(([posts, filter]) => {
-                    const rows = [];
-                    let currentRowIndex = 0;
-                    const selectedTabSlug = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
-                    const selectedTab = this.blog!.tabs[selectedTabSlug]!;
-                    for (let i = 0; i < posts.length; i++) {
-                        const additionalRow = selectedTab.additionalRows.find(x => x.rowIndex === currentRowIndex);
-                        if (additionalRow) {
-                            rows.push(additionalRow);
+                combineLatest([this.blogService.displayedPosts, this.blogService.filter]).subscribe(
+                    ([posts, filter]) => {
+                        const rows = [];
+                        let currentRowIndex = 0;
+                        const selectedTabSlug = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
+                        const selectedTab = this.blog!.tabs[selectedTabSlug]!;
+                        for (let i = 0; i < posts.length; i++) {
+                            const additionalRow = selectedTab.additionalRows.find(
+                                (x) => x.rowIndex === currentRowIndex,
+                            );
+                            if (additionalRow) {
+                                rows.push(additionalRow);
+                                currentRowIndex++;
+                                i--;
+                                continue;
+                            }
+                            if (i === 0 || posts[i].level === "primary") {
+                                rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
+                            } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
+                                rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
+                            } else {
+                                rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
+                                i++;
+                            }
                             currentRowIndex++;
-                            i--;
-                            continue;
                         }
-                        if (i === 0 || posts[i].level === "primary") {
-                            rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
-                        } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
-                            rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
-                        } else {
-                            rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
-                            i++;
-                        }
-                        currentRowIndex++;
-                    }
-                    const furtherAdditionalRows = selectedTab.additionalRows
-                        .filter(x => x.rowIndex >= currentRowIndex)
-                        .sort((a, b) => a.rowIndex - b.rowIndex);
-                    rows.push(...furtherAdditionalRows);
-                    this.rows = rows;
-                });
+                        const furtherAdditionalRows = selectedTab.additionalRows
+                            .filter((x) => x.rowIndex >= currentRowIndex)
+                            .sort((a, b) => a.rowIndex - b.rowIndex);
+                        rows.push(...furtherAdditionalRows);
+                        this.rows = rows;
+                    },
+                );
                 this.route.paramMap
                     .pipe(
                         map((params) => {
@@ -73,21 +94,25 @@ export class BlogComponent {
                             else return blogNullFilter();
                         }),
                     )
-                    .subscribe((filter) => {
-                        this.blogService.filter.next(filter);
-                        let categorySlug: "all" | BlogCategoryID = "all";
-                        if ("categorySlug" in filter) {
-                            categorySlug = filter.categorySlug as BlogCategoryID;
-                            if (!blogCategoryList.includes(categorySlug)) throw `Unknown category slug: ${categorySlug}`;
-                            this.title.setTitle(`TypeDB | ${this.blog!.title} > ${blogCategories[categorySlug]}`);
-                        } else {
-                            this.title.setTitle(`TypeDB | ${this.blog!.title}`);
-                        }
-                        this.metaTags.register(this.blog!.tabs[categorySlug].metaTags);
-                        this._analytics.hubspot.trackPageView();
-                    }, (_err) => {
-                        this.router.navigate(["404"], { skipLocationChange: true });
-                    });
+                    .subscribe(
+                        (filter) => {
+                            this.blogService.filter.next(filter);
+                            let categorySlug: "all" | BlogCategoryID = "all";
+                            if ("categorySlug" in filter) {
+                                categorySlug = filter.categorySlug as BlogCategoryID;
+                                if (!blogCategoryList.includes(categorySlug))
+                                    throw `Unknown category slug: ${categorySlug}`;
+                                this.title.setTitle(`TypeDB | ${this.blog!.title} > ${blogCategories[categorySlug]}`);
+                            } else {
+                                this.title.setTitle(`TypeDB | ${this.blog!.title}`);
+                            }
+                            this.metaTags.register(this.blog!.tabs[categorySlug].metaTags);
+                            this._analytics.hubspot.trackPageView();
+                        },
+                        (_err) => {
+                            this.router.navigate(["404"], { skipLocationChange: true });
+                        },
+                    );
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);

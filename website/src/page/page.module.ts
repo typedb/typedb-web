@@ -4,18 +4,12 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { FrameworkModule } from "../framework/framework.module";
-import { BlogRowComponent } from "./blog/blog-row.component";
-import { LearningArticleComponent } from "./learning-center/learning-article.component";
-import { LearningCenterBlockComponent, LearningCenterComponent } from "./learning-center/learning-center.component";
-import {
-    PhilosophyPageComponent,
-    PhilosophyPageTechnicolorBlockComponent,
-} from "./philosophy-page/philosophy-page.component";
 import { BlogAuthorshipBarComponent } from "./blog/blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog/blog-category-chips.component";
-import { BlogComponent } from "./blog/blog.component";
 import { BlogNavbarComponent } from "./blog/blog-navbar.component";
 import { BlogPostPageComponent } from "./blog/blog-post-page.component";
+import { BlogRowComponent } from "./blog/blog-row.component";
+import { BlogComponent } from "./blog/blog.component";
 import {
     DeploymentPageComponent,
     DeploymentPageTechnicolorBlockComponent,
@@ -25,7 +19,13 @@ import { EventsPageComponent } from "./events-page/events-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { HomePageComponent, HomePageTechnicolorBlockComponent } from "./home-page/home-page.component";
+import { LearningArticleComponent } from "./learning-center/learning-article.component";
+import { LearningCenterBlockComponent, LearningCenterComponent } from "./learning-center/learning-center.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
+import {
+    PhilosophyPageComponent,
+    PhilosophyPageTechnicolorBlockComponent,
+} from "./philosophy-page/philosophy-page.component";
 import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
 import { ServicesPageComponent, ServicesPageTechnicolorBlockComponent } from "./services-page/services-page.component";

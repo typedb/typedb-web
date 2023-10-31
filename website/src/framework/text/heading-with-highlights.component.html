@@ -8,5 +8,7 @@
 </ng-container>
 
 <ng-template #content>
-  <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">{{ span.text }}</span>
+  <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">{{
+    span.text
+  }}</span>
 </ng-template>
