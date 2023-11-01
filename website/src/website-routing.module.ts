@@ -56,10 +56,12 @@ const routes: Routes = [
     { path: "services", component: ServicesPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
 
+    // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
     { path: "learn/fundamentals", redirectTo: "learn" },
     { path: "learn/applications", redirectTo: "learn" },
     { path: "services", redirectTo: "support" },
+    { path: "solutions/:route", redirectTo: "philosophy" },
 
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
