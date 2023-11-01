@@ -59,6 +59,7 @@ const routes: Routes = [
     { path: "introduction", redirectTo: "philosophy" },
     { path: "learn/fundamentals", redirectTo: "learn" },
     { path: "learn/applications", redirectTo: "learn" },
+    { path: "services", redirectTo: "support" },
 
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
