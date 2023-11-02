@@ -134,9 +134,6 @@ dependencies:
   pixi.js-legacy:
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/mesh-extras@6.5.9)(@pixi/mesh@6.5.9)(@pixi/particle-container@6.5.9)(@pixi/prepare@6.5.9)(@pixi/settings@6.5.9)(@pixi/sprite-tiling@6.5.9)(@pixi/sprite@6.5.9)(@pixi/text@6.5.9)(@pixi/utils@6.5.9)
-  prismjs:
-    specifier: 1.29.0
-    version: 1.29.0
   rxjs:
     specifier: 7.8.1
     version: 7.8.1
