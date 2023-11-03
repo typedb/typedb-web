@@ -53,7 +53,6 @@ const routes: Routes = [
     { path: "events", component: EventsPageComponent },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent },
     { path: "support", component: SupportPageComponent },
-    { path: "services", component: ServicesPageComponent },
     { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
 
     // TODO: remember to clean up these redirects eventually
