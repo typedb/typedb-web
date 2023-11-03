@@ -206,7 +206,7 @@ select {
 .hs-form input[type="checkbox"] {
     background-color: transparent;
     border-radius: 4px;
-    border: 2px solid var(--color-dark-white);
+    border: 1px solid var(--color-dark-white);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -219,8 +219,7 @@ select {
 }
 
 .hs-form input[type="checkbox"]:checked {
-    background: url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==")
-        1px 1px no-repeat;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16" fill="%23fff"><path d="M11.1249 14.118L17.0828 8L18 8.94102L11.1249 16L7 11.7647L7.9165 10.8237L11.1249 14.118Z"/></svg>');
 }
 
 .hs-form-field {
