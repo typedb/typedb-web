@@ -1,9 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { BlogPostPageComponent } from "./page/./blog/blog-post-page.component";
-import { BlogComponent } from "./page/./blog/blog.component";
-import { PhilosophyPageComponent } from "./page/./philosophy-page/philosophy-page.component";
+import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
+import { BlogComponent } from "./page/blog/blog.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./page/events-page/events-page.component";
@@ -13,6 +12,7 @@ import { HomePageComponent } from "./page/home-page/home-page.component";
 import { LearningArticleComponent } from "./page/learning-center/learning-article.component";
 import { LearningCenterComponent } from "./page/learning-center/learning-center.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
+import { PhilosophyPageComponent } from "./page/philosophy-page/philosophy-page.component";
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
