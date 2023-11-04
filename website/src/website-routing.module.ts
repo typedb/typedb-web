@@ -15,7 +15,6 @@ import { LearningCenterComponent } from "./page/learning-center/learning-center.
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
-import { ServicesPageComponent } from "./page/services-page/services-page.component";
 import { SolutionPageComponent } from "./page/solution-page/solution-page.component";
 import { SupportPageComponent } from "./page/support-page/support-page.component";
 import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
