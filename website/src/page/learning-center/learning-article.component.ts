@@ -19,7 +19,6 @@ import {
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
-import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
@@ -33,7 +32,6 @@ import { WordpressService } from "../../service/wordpress.service";
 export class LearningArticleComponent implements OnInit {
     learningCenter?: LearningCenter;
     readonly article$: Observable<Article | null>;
-    readonly plainTextPipe = new PlainTextPipe();
 
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
@@ -101,15 +99,15 @@ export class LearningArticleComponent implements OnInit {
     }
 
     shareOnTwitterURL(post: Article): string {
-        return `https://twitter.com/intent/tweet?text=${this.plainTextPipe.transform(
-            post.title,
-        )}&url=${encodeURIComponent(window.location.href)}`;
+        return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(
+            window.location.href,
+        )}`;
     }
 
     shareOnFacebookURL(post: Article): string {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(
             window.location.href,
-        )}&t=${this.plainTextPipe.transform(post.title)}`;
+        )}&t=${post.title.toPlainText()}`;
     }
 
     shareOnLinkedInURL(_post: Article): string {
@@ -119,6 +117,6 @@ export class LearningArticleComponent implements OnInit {
     shareOnRedditURL(post: Article): string {
         return `https://www.reddit.com/submit?url=${encodeURIComponent(
             window.location.href,
-        )}&title=${this.plainTextPipe.transform(post.title)}`;
+        )}&title=${post.title.toPlainText()}`;
     }
 }

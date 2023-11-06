@@ -85,7 +85,7 @@ export class BlogPost extends Article {
     readonly level: BlogPostLevel;
     readonly author: Person;
     readonly categories: BlogCategoryID[];
-    readonly date: number;
+    readonly date: Date;
     readonly imageURL?: string;
 
     constructor(props: PropsOf<BlogPost>) {
@@ -102,9 +102,22 @@ export class BlogPost extends Article {
             level: data.level,
             author: Person.fromSanity(db.resolveRef(data.author), db),
             categories: data.categories,
-            date: new Date(data.date).getTime(),
+            date: new Date(data.date),
             imageURL: data.image && db.resolveRef(data.image.asset).url,
         }));
+    }
+
+    readPostLink(): Link {
+        return new Link({
+            type: "route",
+            destination: `/blog/${this.slug}`,
+            opensNewTab: false,
+        });
+    }
+
+    heroImageURL(): string {
+        if (this.imageURL) return this.imageURL;
+        else return blogPostBackupHeroImageURL(this.slug);
     }
 }
 
