@@ -25,7 +25,7 @@
         </a>
         <div class="bp-secondary-post-summary">
           <td-blog-category-chips [post]="post" />
-          <a [tdLink]="post.readPostLink()"></a>
+          <a [tdLink]="post.readPostLink()">
             <h2 class="bp-post-title">{{ post.title | plainText }}</h2>
           </a>
           <td-rich-text class="bp-secondary-post-description" [value]="post.shortDescription" />

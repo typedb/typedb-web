@@ -2,7 +2,19 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { TransferStateService } from "@scullyio/ng-lib";
-import { BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import {
+    BehaviorSubject,
+    combineLatest,
+    concat,
+    filter,
+    first,
+    iif,
+    map,
+    Observable,
+    of,
+    shareReplay,
+    switchMap,
+} from "rxjs";
 import {
     ApplicationArticle,
     applicationArticleSchemaName,
@@ -41,7 +53,8 @@ export class WordpressService {
         private contentService: ContentService,
         private transferState: TransferStateService,
     ) {
-        this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.listWordpressPosts())
+        this.wordpressPosts = this.transferState
+            .useScullyTransferState("wordpressPosts", this.listWordpressPosts())
             .pipe(first());
         this.blogPosts = this.listPosts().pipe(shareReplay());
         this.fundamentalArticles = this.listFundamentalArticles().pipe(shareReplay());
