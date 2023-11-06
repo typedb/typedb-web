@@ -1,6 +1,6 @@
 import { ScullyConfig } from "@scullyio/scully";
 import "@scullyio/scully-plugin-puppeteer";
-import { applicationArticleRoutes, blogCategoryRoutes, blogPostRoutes, fundamentalArticleRoutes, liveEventRoutes, solutionRoutes, webinarRoutes, whitePaperRoutes } from "./scully/plugins/plugins";
+import { applicationArticleRoutes, blogCategoryRoutes, blogPostRoutes, fundamentalArticleRoutes, liveEventRoutes, webinarRoutes, whitePaperRoutes } from "./scully/plugins/plugins";
 
 export const config: ScullyConfig = {
     projectRoot: "./src",
@@ -11,7 +11,7 @@ export const config: ScullyConfig = {
         "/learn/applications/:slug": { type: applicationArticleRoutes },
         "/blog/category/:categorySlug": { type: blogCategoryRoutes },
         "/blog/:slug": { type: blogPostRoutes },
-        "/solutions/:route": { type: solutionRoutes },
+        // "/solutions/:route": { type: solutionRoutes },
         "/webinars/:slug": { type: webinarRoutes },
         "/white-papers/:slug": { type: whitePaperRoutes },
         "/events/:slug": { type: liveEventRoutes },
