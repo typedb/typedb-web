@@ -1,13 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import {
-    BlogPost,
-    blogPostBackupHeroImageURL,
-    BlogPostsRow,
-    BlogRow,
-    Link,
-    ResourcePanelsRow,
-} from "typedb-web-schema";
+import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-row",
@@ -23,18 +16,5 @@ export class BlogRowComponent {
 
     get resourcePanelsRow(): ResourcePanelsRow | undefined {
         return "rowIndex" in this.row ? this.row : undefined;
-    }
-
-    readPostLink(post: BlogPost): Link {
-        return new Link({
-            type: "route",
-            destination: `/blog/${post.slug}`,
-            opensNewTab: false,
-        });
-    }
-
-    heroImageURL(post: BlogPost): string {
-        if (post.imageURL) return post.imageURL;
-        else return blogPostBackupHeroImageURL(post.slug);
     }
 }
