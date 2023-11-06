@@ -14,8 +14,8 @@ command = "pnpm run style:verify && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify && ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "pnpm run style:verify && ENV=production pnpm run build && pnpm run prerender"
+publish = "dist/static"
 
 [[redirects]]
 from = "/discord"
@@ -103,28 +103,28 @@ to = "https://live-temp.typedb.com/data.json"
 status = 200
 
 [[redirects]]
-from = "https://typedb.com/*/data.json"
-to = "https://typedb.com/data.json"
+from = "/*/data.json"
+to = "/data.json"
 status = 200
 
 [[redirects]]
-from = "https://typedb.com/blog/*"
-to = "https://typedb.com/blog"
+from = "/blog/*"
+to = "/blog"
 status = 302
 
 [[redirects]]
-from = "https://typedb.com/webinars/*"
-to = "https://typedb.com/webinars"
+from = "/webinars/*"
+to = "/webinars"
 status = 302
 
 [[redirects]]
-from = "https://typedb.com/white-papers/*"
-to = "https://typedb.com/white-papers"
+from = "/white-papers/*"
+to = "/white-papers"
 status = 302
 
 [[redirects]]
-from = "https://typedb.com/*"
-to = "https://typedb.com/__fallback.html"
+from = "/*"
+to = "/__fallback.html"
 status = 200
 
 [[redirects]]
