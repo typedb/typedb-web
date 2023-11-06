@@ -61,7 +61,7 @@ registerPlugin("router", fundamentalArticleRoutes, fundamentalArticleRoutesPlugi
 registerPlugin("router", applicationArticleRoutes, applicationArticleRoutesPlugin, defaultValidator);
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, defaultValidator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator);
-registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
+// registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
 registerPlugin("router", webinarRoutes, webinarRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
 registerPlugin("router", liveEventRoutes, liveEventRoutesPlugin, defaultValidator);
