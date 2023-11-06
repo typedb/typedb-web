@@ -16,6 +16,7 @@ import {
 } from "./deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./events-page/events-page.component";
+import { FallbackPageComponent } from "./fallback-page/fallback-page.component";
 import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
 import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
 import { HomePageComponent, HomePageTechnicolorBlockComponent } from "./home-page/home-page.component";
@@ -50,6 +51,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         EventsPageComponent,
         GenericPageComponent,
         GenericPageTechnicolorBlockComponent,
+        FallbackPageComponent,
         FeaturesPageComponent,
         FeaturesPageTechnicolorBlockComponent,
         HomePageComponent,

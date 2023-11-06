@@ -118,6 +118,16 @@ to = "https://typedb.com/webinars"
 status = 302
 
 [[redirects]]
+from = "https://typedb.com/white-papers/*"
+to = "https://typedb.com/white-papers"
+status = 302
+
+[[redirects]]
+from = "https://typedb.com/*"
+to = "https://typedb.com/__fallback.html"
+status = 200
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200

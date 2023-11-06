@@ -1,18 +1,19 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { BlogPostPageComponent } from "./page/./blog/blog-post-page.component";
-import { BlogComponent } from "./page/./blog/blog.component";
-import { PhilosophyPageComponent } from "./page/./philosophy-page/philosophy-page.component";
+import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
+import { BlogComponent } from "./page/blog/blog.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./page/events-page/events-page.component";
+import { FallbackPageComponent } from "./page/fallback-page/fallback-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
 import { LearningArticleComponent } from "./page/learning-center/learning-article.component";
 import { LearningCenterComponent } from "./page/learning-center/learning-center.component";
 import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
+import { PhilosophyPageComponent } from "./page/philosophy-page/philosophy-page.component";
 import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
 import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
 import { ServicesPageComponent } from "./page/services-page/services-page.component";
@@ -63,6 +64,7 @@ const routes: Routes = [
     { path: "services", redirectTo: "support" },
     { path: "solutions/:route", redirectTo: "philosophy" },
 
+    { path: "__fallback", component: FallbackPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
 
