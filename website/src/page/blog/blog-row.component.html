@@ -8,7 +8,7 @@
     <div class="bp-primary-post-summary">
       <td-blog-category-chips [post]="posts.posts[0]" />
       <a [tdLink]="readPostLink(posts.posts[0])">
-        <h1 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title.toPlainText() }}</h1>
+        <h1 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title | plainText }}</h1>
       </a>
       <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].shortDescription" />
       <td-blog-authorship-bar [post]="posts.posts[0]" />
@@ -26,7 +26,7 @@
         <div class="bp-secondary-post-summary">
           <td-blog-category-chips [post]="post" />
           <a [tdLink]="readPostLink(post)">
-            <h2 class="bp-post-title">{{ post.title.toPlainText() }}</h2>
+            <h2 class="bp-post-title">{{ post.title | plainText }}</h2>
           </a>
           <td-rich-text class="bp-secondary-post-description" [value]="post.shortDescription" />
           <td-blog-authorship-bar [post]="post" />
@@ -46,7 +46,7 @@
     <div class="bp-post-text-tertiary">
       <td-blog-category-chips [post]="posts.posts[0]" />
       <a [tdLink]="readPostLink(posts.posts[0])">
-        <h3 class="bp-post-title">{{ posts.posts[0].title.toPlainText() }}</h3>
+        <h3 class="bp-post-title">{{ posts.posts[0].title | plainText }}</h3>
       </a>
       <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].shortDescription" />
       <td-blog-authorship-bar [post]="posts.posts[0]" />

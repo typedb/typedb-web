@@ -6,7 +6,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
     name: "plainText",
 })
 export class PlainTextPipe implements PipeTransform {
-    transform(value: ParagraphWithHighlights): string {
+    transform(value?: ParagraphWithHighlights): string {
         return value ? value.spans.map((span) => span.text).join("") : "";
     }
 }

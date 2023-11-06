@@ -21,6 +21,7 @@ import {
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
@@ -42,6 +43,7 @@ export class BlogPostPageComponent implements OnInit {
         text: "Subscribe to Newsletter",
         comingSoon: false,
     });
+    readonly plainTextPipe = new PlainTextPipe();
 
     constructor(
         private router: Router,
@@ -119,15 +121,15 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     shareOnTwitterURL(post: BlogPost): string {
-        return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(
-            window.location.href,
-        )}`;
+        return `https://twitter.com/intent/tweet?text=${this.plainTextPipe.transform(
+            post.title,
+        )}&url=${encodeURIComponent(window.location.href)}`;
     }
 
     shareOnFacebookURL(post: BlogPost): string {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(
             window.location.href,
-        )}&t=${post.title.toPlainText()}`;
+        )}&t=${this.plainTextPipe.transform(post.title)}`;
     }
 
     shareOnLinkedInURL(_post: BlogPost): string {
@@ -137,6 +139,6 @@ export class BlogPostPageComponent implements OnInit {
     shareOnRedditURL(post: BlogPost): string {
         return `https://www.reddit.com/submit?url=${encodeURIComponent(
             window.location.href,
-        )}&title=${post.title.toPlainText()}`;
+        )}&title=${this.plainTextPipe.transform(post.title)}`;
     }
 }
