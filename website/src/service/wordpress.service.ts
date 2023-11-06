@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { TransferStateService } from "@scullyio/ng-lib";
-import { BehaviorSubject, combineLatest, concat, filter, iif, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     ApplicationArticle,
     applicationArticleSchemaName,
@@ -29,6 +29,7 @@ const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wor
     providedIn: "root",
 })
 export class WordpressService {
+    readonly wordpressPosts: Observable<WordpressPost[]>;
     readonly blogPosts: Observable<BlogPost[]>;
     readonly displayedPosts: Observable<BlogPost[]>;
     readonly fundamentalArticles: Observable<FundamentalArticle[]>;
@@ -40,24 +41,11 @@ export class WordpressService {
         private contentService: ContentService,
         private transferState: TransferStateService,
     ) {
-        // TODO: without this filter(), we get 'cannot read property of undefined' errors in production.
-        //  We should figure out why this filter() fixes the issue, and if there is a better way
-        this.blogPosts = this.transferState.useScullyTransferState("blogPosts", this.listPosts()).pipe(
-            filter((data) => !!data?.length),
-            shareReplay(),
-        ); // TODO: currently this is only the first 100 posts - add ability to get more
-        this.fundamentalArticles = this.transferState
-            .useScullyTransferState("fundamentalArticles", this.listFundamentalArticles())
-            .pipe(
-                filter((data) => !!data?.length),
-                shareReplay(),
-            );
-        this.applicationArticles = this.transferState
-            .useScullyTransferState("applicationArticles", this.listApplicationArticles())
-            .pipe(
-                filter((data) => !!data?.length),
-                shareReplay(),
-            );
+        this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.listWordpressPosts())
+            .pipe(first());
+        this.blogPosts = this.listPosts().pipe(shareReplay());
+        this.fundamentalArticles = this.listFundamentalArticles().pipe(shareReplay());
+        this.applicationArticles = this.listApplicationArticles().pipe(shareReplay());
         this.displayedPosts = combineLatest([this.blogPosts, this.filter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
@@ -71,14 +59,15 @@ export class WordpressService {
         );
     }
 
+    // TODO: currently this is the first 100 posts - add ability to get more
     private listWordpressPosts(limit = 100, offset = 0): Observable<WordpressPost[]> {
         return this._http
             .get<WordpressPosts>(`${postsApiUrl}?meta=sharing-buttons&number=${limit}&offset=${offset}`)
             .pipe(map((res) => res.posts));
     }
 
-    private listPosts(limit = 100, offset = 0): Observable<BlogPost[]> {
-        return combineLatest([this.contentService.data, this.listWordpressPosts(limit, offset)]).pipe(
+    private listPosts(): Observable<BlogPost[]> {
+        return combineLatest([this.contentService.data, this.wordpressPosts]).pipe(
             map(([data, wpPosts]) => {
                 return data
                     .getDocumentsByType<SanityBlogPost>(blogPostSchemaName)
@@ -108,7 +97,7 @@ export class WordpressService {
         limit = 100,
         offset = 0,
     ): Observable<U[]> {
-        return combineLatest([this.contentService.data, this.listWordpressPosts(limit, offset)]).pipe(
+        return combineLatest([this.contentService.data, this.wordpressPosts]).pipe(
             map(([data, wpPosts]) => {
                 return data
                     .getDocumentsByType<T>(schemaName)
