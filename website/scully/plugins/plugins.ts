@@ -10,7 +10,7 @@ export const blogPostRoutes = "blogPostRoutes";
 export const solutionRoutes = "solutionRoutes";
 export const webinarRoutes = "webinarRoutes";
 export const whitePaperRoutes = "whitePaperRoutes";
-export const eventRoutes = "eventRoutes";
+export const liveEventRoutes = "liveEventRoutes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
@@ -53,15 +53,15 @@ async function whitePaperRoutesPlugin(route: string, config = {}): Promise<Handl
     return await resourceRoutesPluginBase({ resourceType: "whitePaper", resourcePath: "white-papers" });
 }
 
-async function eventRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return await resourceRoutesPluginBase({ resourceType: "event", resourcePath: "events" });
+async function liveEventRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "liveEvent", resourcePath: "events" });
 }
 
 registerPlugin("router", fundamentalArticleRoutes, fundamentalArticleRoutesPlugin, defaultValidator);
 registerPlugin("router", applicationArticleRoutes, applicationArticleRoutesPlugin, defaultValidator);
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, defaultValidator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator);
-registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
+// registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
 registerPlugin("router", webinarRoutes, webinarRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
-registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);
+registerPlugin("router", liveEventRoutes, liveEventRoutesPlugin, defaultValidator);

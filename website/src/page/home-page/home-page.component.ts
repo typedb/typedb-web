@@ -10,6 +10,7 @@ import { SocialMediaLink, TechnicolorBlock } from "typedb-web-schema";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 
@@ -20,6 +21,7 @@ import { ContentService } from "../../service/content.service";
 export class HomePageComponent implements OnInit {
     page?: HomePage;
     socialMediaLinks?: SocialMediaLink[];
+    readonly plainTextPipe = new PlainTextPipe();
 
     constructor(
         private router: Router,
@@ -35,7 +37,9 @@ export class HomePageComponent implements OnInit {
             const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
-                this.title.setTitle(`TypeDB | ${this.page.introSection?.title.toPlainText() || "Home"}`);
+                this.title.setTitle(
+                    `TypeDB | ${this.plainTextPipe.transform(this.page.introSection?.title) || "Home"}`,
+                );
                 this.metaTags.register(this.page.metaTags);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
                     (x) => new SocialMediaLink(x, data),

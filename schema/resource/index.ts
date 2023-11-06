@@ -4,6 +4,7 @@ import { ApplicationArticle, articleSchemas, BlogPost, BlogPostLink, Fundamental
 import { Resource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
+import { blogPostBackupHeroImageURL } from "./sanity";
 import { Webinar, webinarSchemas } from "./webinar";
 import { WhitePaper, whitePaperSchema } from "./white-paper";
 
@@ -13,12 +14,16 @@ export function resourceLinkOf(resource: Resource): ResourceLink {
         description: resource.shortDescription,
         link: resourceLinkProp(resource),
     };
-    if (resource instanceof BlogPost) {
+    if (isBlogPost(resource)) { // TODO: should use 'instanceof' but TransferState won't support it
         return new BlogPostLink(Object.assign(commonProps, {
             author: resource.author,
-            imageURL: resource.heroImageURL(),
+            imageURL: resource.imageURL || blogPostBackupHeroImageURL(resource.slug),
         }));
     } else return new ResourceLink(commonProps);
+}
+
+function isBlogPost(resource: Resource): resource is BlogPost {
+    return "level" in resource;
 }
 
 export function blogPostLinkOf(post: BlogPost): BlogPostLink {
