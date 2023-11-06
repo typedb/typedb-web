@@ -1,5 +1,6 @@
-@import "colors";
-@import "sizes";
+@use "colors" as *;
+@use "sizes" as *;
+@use "@fontsource/titillium-web/scss/metadata" as TitilliumWebMetadata;
 
 :root {
     /* colors */
@@ -20,7 +21,10 @@
     --color-secondary-pink: #{$color-secondary-pink};
     --color-secondary-blue: #{$color-secondary-blue};
 
+    --body-background: var(--color-black-purple);
     --content-border-color: var(--color-secondary-deep-grey);
+    --default-heading-color: var(--color-white);
+    --default-text-color: var(--color-dark-white);
 
     /* sizes */
     --border-radius: #{$border-radius};
@@ -46,7 +50,12 @@
 
     --banner-height: #{$banner-height};
 
-    --font-size-base: #{$font-size-base};
+    /* typography */
+
+    --font-size-base: var(--font-size-p2);
+    --body-letter-spacing: 0.016em;
+    --default-font-family: #{TitilliumWebMetadata.$family}, sans-serif;
+    --code-font-family: "Monaco", monospace;
 
     --font-size-h1: #{$font-size-h1};
     --line-height-h1: #{$line-height-h1};
@@ -80,6 +89,8 @@
     }
 
     @media (max-width: $media-max-width-mobile) {
+        --default-text-color: var(--color-white);
+
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
 

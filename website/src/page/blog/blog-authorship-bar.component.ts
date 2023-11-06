@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from "@angular/core";
 
-import { WordpressPost } from "typedb-web-schema";
+import { BlogPost } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-authorship-bar",
@@ -8,7 +8,7 @@ import { WordpressPost } from "typedb-web-schema";
     styleUrls: ["./blog-authorship-bar.component.scss"],
 })
 export class BlogAuthorshipBarComponent {
-    @Input() post!: WordpressPost;
+    @Input() post!: BlogPost;
     @Input() size: "medium" | "small" = "small";
 
     @HostBinding("class.bp-author-small") get isSmall() {

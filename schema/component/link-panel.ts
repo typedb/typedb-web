@@ -31,7 +31,7 @@ export class LinkPanel implements BodyTextField {
         this.button = props.button;
     }
 
-    static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset) {
+    static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset): LinkPanel {
         return new LinkPanel({
             title: data.title,
             body: data.body,

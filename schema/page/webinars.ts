@@ -10,10 +10,11 @@ import {
     titleAndBodyFields,
 } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityWebinar, webinarSchemaName } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
-import { SanityWebinar, Webinar, webinarSchemaName } from "../webinar";
+import { Webinar } from "../resource/webinar";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 

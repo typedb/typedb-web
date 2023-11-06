@@ -1,0 +1,253 @@
+@use "colors" as *;
+@use "mixins" as *;
+@use "sizes" as *;
+
+html,
+body {
+    color-scheme: dark;
+    background-color: var(--body-background);
+    color: var(--default-text-color);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-light);
+    line-height: var(--line-height-p2);
+    letter-spacing: var(--body-letter-spacing);
+
+    font-family: var(--default-font-family);
+
+    margin: 0;
+    scroll-padding-top: var(--topbar-height);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+code,
+kbd,
+pre {
+    font-family: var(--code-font-family);
+}
+
+@each $tag in (h1, h2, h3, h4, h5, h6) {
+    #{$tag} {
+        font-size: var(--font-size-#{$tag});
+        line-height: var(--line-height-#{$tag});
+    }
+}
+
+.text-p1,
+.text-p1 p {
+    font-size: var(--font-size-p1);
+    line-height: var(--line-height-p1);
+}
+
+p,
+.text-p2 {
+    font-size: var(--font-size-p2);
+    line-height: var(--line-height-p2);
+}
+
+aside,
+.text-aside {
+    font-size: var(--font-size-aside);
+    line-height: var(--line-height-aside);
+    font-weight: var(--font-weight-regular);
+}
+
+pre,
+code,
+.text-code {
+    font-size: var(--font-size-code);
+    line-height: var(--line-height-code);
+}
+
+.text-important {
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.text-quiet {
+    color: var(--color-secondary-light-grey);
+}
+
+button {
+    font-family: var(--default-font-family);
+}
+
+input,
+select,
+textarea {
+    font-family: var(--default-font-family);
+    &::placeholder {
+        color: rgba($color-secondary-light-grey, 0.8);
+        font-style: italic;
+    }
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--content-border-color);
+}
+
+/* prettier-ignore */
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, pre, figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* prettier-ignore */
+h1, h2, h3, h4, th {
+    color: var(--default-heading-color);
+}
+
+/* prettier-ignore */
+h5, h6 {
+    color: var(--default-text-color);
+}
+
+aside {
+    /* prettier-ignore */
+    h1, h2, h3, h4 {
+        color: var(--default-text-color);
+    }
+}
+
+/* prettier-ignore */
+h1, h2 {
+  font-weight: var(--font-weight-bold);
+}
+
+/* prettier-ignore */
+h3, h4 {
+  font-weight: var(--font-weight-semi-bold);
+}
+
+/* prettier-ignore */
+h5, h6 {
+  font-weight: var(--font-weight-regular);
+}
+
+dd {
+    font-weight: var(--font-weight-regular);
+}
+
+b,
+dt,
+strong,
+th {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+em em {
+    font-style: normal;
+}
+
+strong strong {
+    font-weight: normal;
+}
+
+summary {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+a {
+    cursor: pointer;
+    color: var(--color-white);
+    text-decoration: none;
+
+    p {
+        color: var(--default-text-color);
+    }
+}
+
+p,
+aside {
+    a,
+    a:visited {
+        color: var(--color-green);
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+address {
+    font-style: normal;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.hide-mobile {
+    @media (max-width: $media-max-width-mobile) {
+        display: none !important;
+    }
+}
+
+.hide-gt-mobile {
+    @media (min-width: $media-min-width-tablet) {
+        display: none !important;
+    }
+}
+
+.hide-lt-desktop {
+    @media (max-width: $media-max-width-tablet) {
+        display: none !important;
+    }
+}
+
+.hide-desktop {
+    @media (min-width: $media-min-width-desktop) {
+        display: none !important;
+    }
+}
+
+.flex {
+    flex: 1;
+}
+
+.card {
+    @include card-appearance;
+    @include card-padding;
+    transition: border-color 150ms ease;
+
+    &.hoverable:hover {
+        border-color: var(--color-green);
+
+        .link-tertiary {
+            color: var(--color-green);
+            text-decoration: underline;
+        }
+    }
+}
+
+.card-appearance {
+    @include card-appearance;
+}
+
+.card-padding {
+    @include card-padding;
+}

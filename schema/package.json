@@ -9,6 +9,7 @@
         "@sanity/icons": "2.4.1",
         "@sanity/types": "3.14.1",
         "@types/react": "18.0.28",
+        "axios": "1.5.1",
         "react": "18.2.0",
         "typescript": "4.7.4"
     },

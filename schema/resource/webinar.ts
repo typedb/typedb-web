@@ -1,34 +1,16 @@
 import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
-import { LinkButton } from "./button";
-import {
-    comingSoonField,
-    descriptionFieldRichText,
-    requiredRule,
-    slugField,
-    titleFieldWithHighlights,
-} from "./common-fields";
-import {
-    FurtherReadingSection,
-    furtherReadingSectionSchemaName,
-    SanityFurtherReadingSection,
-} from "./component/page-section";
-import { hubspotFormIDField } from "./form";
-import { Link } from "./link";
-import { personSchemaName } from "./person";
-import { SanityDataset } from "./sanity-core";
-import { PropsOf } from "./util";
-import { EventBase, SanityEventBase } from "./event-base";
-import { metaTagsField } from "./page/meta-tags";
-
-export interface SanityWebinar extends SanityEventBase {
-    datetime: string;
-    durationMins: number;
-    furtherReading: SanityFurtherReadingSection;
-    airmeetID?: string;
-    onDemandVideoURL?: string;
-    comingSoon: boolean;
-}
+import { LinkButton } from "../button";
+import { comingSoonField, requiredRule, slugField } from "../common-fields";
+import { FurtherReadingSection, furtherReadingSectionSchemaName } from "../component/page-section";
+import { hubspotFormIDField } from "../form";
+import { Link } from "../link";
+import { personSchemaName } from "../person";
+import { SanityDataset } from "../sanity-core";
+import { PropsOf } from "../util";
+import { resourceCommonFields } from "./base";
+import { EventBase } from "./event-base";
+import { SanityWebinar, webinarSchemaName } from "./sanity";
 
 export class Webinar extends EventBase {
     readonly datetime: Date;
@@ -90,18 +72,14 @@ export class Webinar extends EventBase {
     }
 }
 
-export const webinarSchemaName = "webinar";
-
 const webinarSchema = defineType({
     name: webinarSchemaName,
     title: "Webinar",
     icon: PresentationIcon,
     type: "document",
     fields: [
-        titleFieldWithHighlights,
         slugField,
-        metaTagsField,
-        descriptionFieldRichText,
+        ...resourceCommonFields,
         defineField({
             name: "datetime",
             title: "Date & Time",

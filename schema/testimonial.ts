@@ -1,5 +1,6 @@
 import { BookIcon, HeartIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
+import { authorField } from "./common-fields";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 
@@ -27,12 +28,7 @@ export const testimonialSchema = defineType({
     type: "document",
     icon: HeartIcon,
     fields: [
-        defineField({
-            name: "author",
-            title: "Author",
-            type: "reference",
-            to: [{type: personSchemaName}],
-        }),
+        authorField,
         defineField({
             name: "body",
             title: "Body",
