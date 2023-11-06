@@ -76,7 +76,7 @@ export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
     liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost,
     type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityArticle,
-    type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel,
+    type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel, blogPostBackupHeroImageURL
 } from "./resource/sanity";
 export { Webinar } from "./resource/webinar";
 export { WhitePaper } from "./resource/white-paper";
