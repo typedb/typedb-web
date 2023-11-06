@@ -4,6 +4,7 @@ import { ApplicationArticle, articleSchemas, BlogPost, BlogPostLink, Fundamental
 import { Resource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
+import { blogPostBackupHeroImageURL } from "./sanity";
 import { Webinar, webinarSchemas } from "./webinar";
 import { WhitePaper, whitePaperSchema } from "./white-paper";
 
@@ -16,7 +17,7 @@ export function resourceLinkOf(resource: Resource): ResourceLink {
     if (resource instanceof BlogPost) {
         return new BlogPostLink(Object.assign(commonProps, {
             author: resource.author,
-            imageURL: resource.heroImageURL(),
+            imageURL: resource.imageURL || blogPostBackupHeroImageURL(resource.slug),
         }));
     } else return new ResourceLink(commonProps);
 }
