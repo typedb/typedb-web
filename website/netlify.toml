@@ -108,6 +108,16 @@ to = "https://typedb.com/data.json"
 status = 200
 
 [[redirects]]
+from = "https://typedb.com/blog/*"
+to = "https://typedb.com/blog"
+status = 302
+
+[[redirects]]
+from = "https://typedb.com/webinars/*"
+to = "https://typedb.com/webinars"
+status = 302
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
