@@ -1,6 +1,13 @@
 import { Component, Input } from "@angular/core";
 
-import { BlogPost, blogPostBackupHeroImageURL, BlogPostsRow, BlogRow, Link, ResourcePanelsRow } from "typedb-web-schema";
+import {
+    BlogPost,
+    blogPostBackupHeroImageURL,
+    BlogPostsRow,
+    BlogRow,
+    Link,
+    ResourcePanelsRow,
+} from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-row",
