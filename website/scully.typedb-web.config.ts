@@ -17,7 +17,7 @@ export const config: ScullyConfig = {
         "/events/:slug": { type: liveEventRoutes },
     },
     puppeteerLaunchOptions: {
-        executablePath: "/opt/homebrew/bin/chromium",
+        // executablePath: "/opt/homebrew/bin/chromium",
         args: ["--no-sandbox", "--disabled-setupid-sandbox"],
     },
 };
