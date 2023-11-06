@@ -54,7 +54,7 @@ export class WordpressService {
                     return postsList.filter((post) => (post.categories as string[]).includes(filter.categorySlug));
                 return postsList;
             }),
-            map((posts) => posts.sort((a, b) => b.date - a.date)),
+            map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
             shareReplay(),
         );
     }
