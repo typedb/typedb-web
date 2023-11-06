@@ -13,16 +13,12 @@ export function resourceLinkOf(resource: Resource): ResourceLink {
         description: resource.shortDescription,
         link: resourceLinkProp(resource),
     };
-    if (isBlogPost(resource)) { // TODO: should use 'instanceof' but TransferState won't support it
+    if (resource instanceof BlogPost) {
         return new BlogPostLink(Object.assign(commonProps, {
             author: resource.author,
             imageURL: resource.heroImageURL(),
         }));
     } else return new ResourceLink(commonProps);
-}
-
-function isBlogPost(resource: Resource): resource is BlogPost {
-    return "level" in resource;
 }
 
 export function blogPostLinkOf(post: BlogPost): BlogPostLink {
