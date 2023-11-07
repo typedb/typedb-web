@@ -67,7 +67,7 @@ export class HomePageTechnicolorBlockComponent {
         return [
             this.page.introSection,
             ...this.page.impactSections,
-            this.page.solutionsSection,
+            this.page.resourcesSection,
             this.page.toolingSection,
             this.page.driversSection,
             this.page.cloudSection,

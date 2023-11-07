@@ -3,24 +3,24 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
-import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
-import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
-import { EventsPageComponent } from "./page/events-page/events-page.component";
-import { FallbackPageComponent } from "./page/fallback-page/fallback-page.component";
-import { FeaturesPageComponent } from "./page/features-page/features-page.component";
-import { GenericPageComponent } from "./page/generic-page/generic-page.component";
-import { HomePageComponent } from "./page/home-page/home-page.component";
+import { DeploymentPageComponent } from "./page/./deployment/deployment-page.component";
+import { EventDetailsPageComponent } from "./page/events/event-details-page.component";
+import { EventsPageComponent } from "./page/./events/events-page.component";
+import { FallbackPageComponent } from "./page/./fallback/fallback-page.component";
+import { FeaturesPageComponent } from "./page/./features/features-page.component";
+import { GenericPageComponent } from "./page/./generic/generic-page.component";
+import { HomePageComponent } from "./page/./home/home-page.component";
 import { LearningArticleComponent } from "./page/learning-center/learning-article.component";
 import { LearningCenterComponent } from "./page/learning-center/learning-center.component";
-import { NotFoundPageComponent } from "./page/not-found-page/not-found-page.component";
-import { PhilosophyPageComponent } from "./page/philosophy-page/philosophy-page.component";
-import { PrivacyPolicyPageComponent } from "./page/privacy-policy-page/privacy-policy-page.component";
-import { RequestTechTalkPageComponent } from "./page/request-tech-talk-page/request-tech-talk-page.component";
-import { SupportPageComponent } from "./page/support-page/support-page.component";
-import { WebinarDetailsPageComponent } from "./page/webinar-details-page/webinar-details-page.component";
-import { WebinarsPageComponent } from "./page/webinars-page/webinars-page.component";
-import { WhitePaperDetailsPageComponent } from "./page/white-paper-details-page/white-paper-details-page.component";
-import { WhitePapersPageComponent } from "./page/white-papers-page/white-papers-page.component";
+import { _404PageComponent } from "./page/404/404-page.component";
+import { PhilosophyPageComponent } from "./page/./philosophy/philosophy-page.component";
+import { PrivacyPolicyPageComponent } from "./page/././privacy-policy/privacy-policy-page.component";
+import { RequestTechTalkPageComponent } from "./page/./tech-talk/request-tech-talk-page.component";
+import { SupportPageComponent } from "./page/./support/support-page.component";
+import { WebinarDetailsPageComponent } from "./page/webinars/webinar-details-page.component";
+import { WebinarsPageComponent } from "./page/./webinars/webinars-page.component";
+import { WhitePaperDetailsPageComponent } from "./page/white-papers/white-paper-details-page.component";
+import { WhitePapersPageComponent } from "./page/./white-papers/white-papers-page.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -61,7 +61,7 @@ const routes: Routes = [
     { path: "solutions/:route", redirectTo: "philosophy" },
 
     { path: "__fallback", component: FallbackPageComponent },
-    { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
+    { path: "**", component: _404PageComponent, title: "TypeDB | 404" },
 ];
 
 @NgModule({

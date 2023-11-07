@@ -9,75 +9,70 @@ import { PropsOf } from "../util";
 export interface SanityLinkPanel {
     title: string;
     body: PortableText;
-    button: SanityButton;
 }
 
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
     icon: SanityReference<SanityImageRef>;
+    button: SanityButton;
 }
 
 export interface SanityProductPanel extends SanityLinkPanel {
     secondaryBody: PortableText;
+    button: SanityButton;
 }
 
 export class LinkPanel implements BodyTextField {
     readonly title: string;
     readonly body: PortableText;
-    readonly button: LinkButton;
 
     constructor(props: PropsOf<LinkPanel>) {
         this.title = props.title;
         this.body = props.body;
-        this.button = props.button;
     }
 
-    static fromSanityLinkPanel(data: SanityLinkPanel, db: SanityDataset): LinkPanel {
+    static fromSanity(data: SanityLinkPanel, _db: SanityDataset): LinkPanel {
         return new LinkPanel({
             title: data.title,
             body: data.body,
-            button: LinkButton.fromSanity(data.button, db),
         });
     }
 }
 
 export class LinkPanelWithIcon extends LinkPanel {
     readonly iconURL: string;
+    readonly button: LinkButton;
 
     constructor(props: PropsOf<LinkPanelWithIcon>) {
         super(props);
         this.iconURL = props.iconURL;
+        this.button = props.button;
     }
 
-    static fromSanityLinkPanelWithIcon(data: SanityLinkPanelWithIcon, db: SanityDataset): LinkPanelWithIcon {
-        return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { iconURL: db.resolveImageRef(data.icon).url }));
+    static override fromSanity(data: SanityLinkPanelWithIcon, db: SanityDataset): LinkPanelWithIcon {
+        return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanity(data, db), {
+            iconURL: db.resolveImageRef(data.icon).url,
+            button: LinkButton.fromSanity(data.button, db),
+        }));
     }
 }
 
 export class ProductPanel extends LinkPanel {
     readonly secondaryBody: PortableText;
+    readonly button: LinkButton;
 
     constructor(props: PropsOf<ProductPanel>) {
         super(props);
         this.secondaryBody = props.secondaryBody;
+        this.button = props.button;
     }
 
-    static fromSanityProductPanel(data: SanityProductPanel, db: SanityDataset): ProductPanel {
-        return new ProductPanel(Object.assign(LinkPanel.fromSanityLinkPanel(data, db), { secondaryBody: data.secondaryBody }))
+    static override fromSanity(data: SanityProductPanel, db: SanityDataset): ProductPanel {
+        return new ProductPanel(Object.assign(LinkPanel.fromSanity(data, db), {
+            secondaryBody: data.secondaryBody,
+            button: LinkButton.fromSanity(data.button, db),
+        }));
     }
 }
-
-export const linkPanelSchemaName = "linkPanel";
-
-const linkPanelSchema = defineType({
-    name: linkPanelSchemaName,
-    title: "Link Panel",
-    type: "object",
-    fields: [
-        titleField,
-        bodyFieldRichText,
-        buttonField,
-    ],
-});
 
 export const linkPanelWithIconSchemaName = "linkPanelWithIcon";
 
@@ -86,8 +81,10 @@ const linkPanelWithIconSchema = defineType({
     title: "Link Panel",
     type: "object",
     fields: [
-        ...linkPanelSchema.fields,
+        titleField,
+        bodyFieldRichText,
         sectionIconField,
+        buttonField,
     ],
 });
 
@@ -112,4 +109,4 @@ const productPanelSchema = defineType({
     ],
 });
 
-export const linkPanelSchemas = [linkPanelSchema, linkPanelWithIconSchema, productPanelSchema];
+export const linkPanelSchemas = [linkPanelWithIconSchema, productPanelSchema];

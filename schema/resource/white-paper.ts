@@ -1,7 +1,7 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { requiredRule, slugField } from "../common-fields";
-import { FurtherReadingSection, furtherReadingSectionSchemaName } from "../component/page-section";
+import { furtherLearningField, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -20,7 +20,7 @@ export class WhitePaper {
     readonly tags: string[];
     readonly portraitImageURL: string;
     readonly landscapeImageURL: string;
-    readonly furtherReading?: FurtherReadingSection;
+    readonly furtherLearning?: ResourceSection;
     readonly hubspotFormID: string;
     readonly metaTags: MetaTags;
 
@@ -33,7 +33,7 @@ export class WhitePaper {
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
-        this.furtherReading = props.furtherReading;
+        this.furtherLearning = props.furtherLearning;
         this.hubspotFormID = props.hubspotFormID;
         this.metaTags = props.metaTags;
     }
@@ -48,8 +48,8 @@ export class WhitePaper {
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
-            furtherReading: data.furtherReading.isVisible
-                ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db)
+            furtherLearning: data.furtherLearning?.isVisible
+                ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
                 : undefined,
             hubspotFormID: data.hubspotFormID,
             metaTags: MetaTags.fromSanity(data.metaTags || {}, db),
@@ -91,12 +91,7 @@ export const whitePaperSchema = defineType({
             type: "image",
             validation: requiredRule,
         }),
-        defineField({
-            name: "furtherReading",
-            title: "Further Reading",
-            type: furtherReadingSectionSchemaName,
-            validation: requiredRule,
-        }),
+        furtherLearningField,
         hubspotFormIDField,
     ],
 });

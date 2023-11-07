@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton } from "../button";
-import { FurtherReadingSection, SanityCoreSection, SanityFurtherReadingSection } from "../component/page-section";
+import { furtherLearningField, ResourceSection, SanityCoreSection, SanityResourceSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { Link, SanityLink } from "../link";
 import {
@@ -11,8 +11,7 @@ import {
     keyPointsField,
     keyPointsWithIconsField,
     learnMoreLinkField,
-    linkPanelsField,
-    pageTitleField,
+    pageTitleField, resourcesFieldOptional,
     routeField,
     SanityVisibleToggle,
     sectionIdField,
@@ -41,7 +40,6 @@ const sections = {
     challenges: { id: "challengesSection", title: "Challenges" },
     solution: { id: "solutionSection", title: "Solution" },
     // example: { id: "exampleSection", title: "Example" },
-    furtherReading: { id: "furtherReadingSection", title: "Further Reading" },
 } as const;
 
 type SectionKey = keyof typeof sections;
@@ -55,7 +53,7 @@ export interface SanitySolutionPage extends SanityPage {
     [sections.challenges.id]: SanityKeyPointsSection;
     [sections.solution.id]: SanitySolutionSection;
     // [sections.example.id]: SanityExampleSection;
-    [sections.furtherReading.id]: SanityFurtherReadingSection;
+    furtherReadingSection: SanityResourceSection;
 }
 
 interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyTextField, SanityVisibleToggle {
@@ -88,7 +86,7 @@ export class SolutionPage extends Page {
     readonly [sections.challenges.id]?: KeyPointsSection;
     readonly [sections.solution.id]?: SolutionSection;
     // readonly [sections.example.id]?: ExampleSection;
-    readonly [sections.furtherReading.id]?: FurtherReadingSection;
+    readonly furtherReadingSection?: ResourceSection;
 
     constructor(data: SanitySolutionPage, db: SanityDataset) {
         super(data, db);
@@ -116,7 +114,7 @@ export class SolutionPage extends Page {
             : undefined;
         // this.exampleSection = data.exampleSection.isVisible ? ExampleSection.fromSanityExampleSection(data.exampleSection, db) : undefined;
         this.furtherReadingSection = data.furtherReadingSection.isVisible
-            ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReadingSection, db)
+            ? ResourceSection.fromSanityFurtherLearningSection(data.furtherReadingSection, db)
             : undefined;
     }
 }
@@ -136,7 +134,7 @@ class IntroSection extends TitleAndBody {
         return new IntroSection(
             Object.assign(titleAndBody, {
                 videoURL: data.videoURL,
-                links: data.links.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
+                links: data.links.map((x) => LinkPanel.fromSanity(x, db)),
             })
         );
     }
@@ -251,7 +249,7 @@ const exampleTabSchema = defineType({
 });
 
 const sectionSchemas = [
-    sectionSchema("intro", [...titleAndBodyFields, videoEmbedField, linkPanelsField, isVisibleField]),
+    sectionSchema("intro", [...titleAndBodyFields, videoEmbedField, resourcesFieldOptional, isVisibleField]),
     sectionSchema("useCases", [bodyFieldRichText, sectionIdField, keyPointsField(4), isVisibleField]),
     sectionSchema("challenges", [bodyFieldRichText, sectionIdField, keyPointsField(4), isVisibleField]),
     sectionSchema("solution", [bodyFieldRichText, sectionIdField, keyPointsWithIconsField(), isVisibleField]),
@@ -271,17 +269,19 @@ const sectionSchemas = [
     //     }),
     //     isVisibleField,
     // ]),
-    sectionSchema("furtherReading", [bodyFieldRichText, sectionIdField, linkPanelsField, isVisibleField]),
 ];
 
-const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
-    defineField({
-        name: sections[key].id,
-        title: `${sections[key].title} Section`,
-        type: sectionSchemaName(key),
-        options: collapsibleOptions,
-    })
-);
+const sectionFields = [
+    ...(Object.keys(sections) as SectionKey[]).map((key) =>
+        defineField({
+            name: sections[key].id,
+            title: `${sections[key].title} Section`,
+            type: sectionSchemaName(key),
+            options: collapsibleOptions,
+        })
+    ),
+    furtherLearningField,
+];
 
 const solutionPageSchema = defineType({
     name: solutionPageSchemaName,
