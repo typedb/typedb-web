@@ -15,7 +15,12 @@
     </ng-container>
   </div>
   <div class="section lc-root-cols-4" *ngSwitchCase="4">
-    <a *ngFor="let resource of resources" [tdLink]="resource.link" class="card lc-card lc-card-cols-4" [class.hoverable]="!!resource.link">
+    <a
+      *ngFor="let resource of resources"
+      [tdLink]="resource.link"
+      class="card lc-card lc-card-cols-4"
+      [class.hoverable]="!!resource.link"
+    >
       <aside *ngIf="!resource.link" class="lp-coming-soon">coming soon</aside>
       <h3>{{ resource.title }}</h3>
       <td-rich-text [value]="resource.description" />

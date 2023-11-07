@@ -42,7 +42,8 @@ import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import {
     LinkPanelsCols2Component,
-    LinkPanelsComponent, ResourcePanelsComponent,
+    LinkPanelsComponent,
+    ResourcePanelsComponent,
     WebinarPanelsComponent,
 } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
