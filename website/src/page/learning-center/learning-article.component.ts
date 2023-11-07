@@ -77,7 +77,7 @@ export class LearningArticleComponent implements OnInit {
         this.article$.subscribe(
             (post) => {
                 if (post) {
-                    this.title.setTitle(`TypeDB | Blog > ${post.title}`);
+                    this.title.setTitle(`TypeDB | Blog > ${post.title.toPlainText()}`);
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
