@@ -3,11 +3,11 @@ import { Component, OnInit } from "@angular/core";
 import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
-    selector: "td-not-found-page",
-    templateUrl: "./not-found-page.component.html",
-    styleUrls: ["./not-found-page.component.scss"],
+    selector: "td-404-page",
+    templateUrl: "./404-page.component.html",
+    styleUrls: ["./404-page.component.scss"],
 })
-export class NotFoundPageComponent implements OnInit {
+export class _404PageComponent implements OnInit {
     constructor(private _analytics: AnalyticsService) {}
 
     ngOnInit() {
