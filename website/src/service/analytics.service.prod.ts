@@ -29,7 +29,7 @@ export class AnalyticsService {
             }
         },
     };
-    googleAnalytics = {
+    google = {
         loadScriptTag: () => {
             if (isScullyRunning()) return;
 
@@ -42,6 +42,12 @@ export class AnalyticsService {
         gtag('config', '${GOOGLE_TAG_ID}');`;
             document.head.appendChild(scriptEl);
             document.head.appendChild(scriptEl2);
+        },
+        reportContactRequestConversion: () => {
+            window.gtag('event', 'conversion', {'send_to': 'AW-340366363/TDOzCPnH1PIYEJuopqIB'});
+        },
+        reportNewsletterSubscriptionConversion: () => {
+            window.gtag('event', 'conversion', {'send_to': 'AW-340366363/NZt8CPbH1PIYEJuopqIB'});
         },
     };
     googleTagManager = {
