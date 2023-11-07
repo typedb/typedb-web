@@ -4,7 +4,7 @@ import {
     bodyFieldRichText,
     collapsibleOptions,
     optionalActionsField,
-    pageTitleField,
+    pageTitleField, requiredRule,
     titleFieldWithHighlights,
 } from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
@@ -53,18 +53,21 @@ export const learningCenterSchema = defineType({
             title: "Intro Section",
             type: titleBodyActionsSectionSchemaName,
             options: collapsibleOptions,
+            validation: requiredRule,
         }),
         defineField({
             name: resourceSections,
             title: "Resource Sections",
             type: "array",
             of: [{ type: resourceSectionSchemaName }],
+            validation: requiredRule,
         }),
         defineField({
             name: finalSection,
             title: "Final Section",
             type: conclusionSectionSchemaName,
             options: collapsibleOptions,
+            validation: requiredRule,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Learning Center" }) },

@@ -1,5 +1,5 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule, resourcesField, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
+import { collapsibleOptions, pageTitleField, requiredRule, resourcesFieldOptional, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
 import { blogCategories, BlogCategoryID, blogCategoryList } from "../resource/blog-category";
@@ -26,7 +26,7 @@ type SanityBlogRow = SanityResourcePanelsRow;
 interface SanityResourcePanelsRow extends SanityVisibleToggle {
     title: PortableText;
     rowIndex: number;
-    resources: SanityReference<SanityResource>[];
+    resources?: SanityReference<SanityResource>[];
 }
 
 export class Blog extends Document {
@@ -90,7 +90,7 @@ export class ResourcePanelsRow {
         return new ResourcePanelsRow({
             title: ParagraphWithHighlights.fromSanity(data.title),
             rowIndex: data.rowIndex,
-            resources: data.resources.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)),
+            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
         });
     }
 }
@@ -111,7 +111,7 @@ const resourcePanelsRowSchema = defineType({
             validation: (rule: NumberRule) => rule.required().positive(),
             initialValue: 0,
         }),
-        resourcesField,
+        resourcesFieldOptional,
     ],
 });
 
