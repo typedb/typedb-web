@@ -3,7 +3,7 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     bodyFieldRichText,
     isVisibleField,
-    linkPanelsField, optionalActionsField, resourcesField,
+    linkPanelsField, optionalActionsField, resourcesFieldOptional,
     SanityVisibleToggle, sectionIconField,
     sectionIdField, titleBodyIconFields, titleFieldWithHighlights,
 } from "../common-fields";
@@ -27,7 +27,7 @@ export interface SanityFurtherReadingSection extends SanityCoreSection {
 }
 
 export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
-    resources: SanityReference<SanityResource>[];
+    resources?: SanityReference<SanityResource>[];
 }
 
 export class TitleBodyIllustrationSection extends TechnicolorBlock {
@@ -82,7 +82,7 @@ export class ResourceSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityResourceSection, db: SanityDataset) {
         return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            resources: data.resources.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)),
+            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
         }));
     }
 }
@@ -122,7 +122,7 @@ const resourceSectionSchema = defineType({
         ...titleBodyIconFields,
         optionalActionsField,
         sectionIdField,
-        resourcesField,
+        resourcesFieldOptional,
         isVisibleField,
     ],
 });
