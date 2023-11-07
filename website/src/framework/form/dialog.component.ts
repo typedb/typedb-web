@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 
+import { AnalyticsService } from "../../service/analytics.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 
@@ -51,6 +52,7 @@ export class NewsletterDialogComponent {
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
+        private analyticsService: AnalyticsService,
     ) {
         this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", {
             onLoadingChange: (val) => {
@@ -62,6 +64,7 @@ export class NewsletterDialogComponent {
 
     private onSubmit() {
         this.dialogRef.close();
+        this.analyticsService.google.reportNewsletterSubscriptionConversion();
         this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
     }
 }
@@ -87,6 +90,7 @@ export class ContactDialogComponent {
         private dialogRef: MatDialogRef<ContactDialogComponent>,
         private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
+        private analyticsService: AnalyticsService,
     ) {
         this._formService.embedHubspotForm("contact", "hubspot-form-holder-contact", {
             onLoadingChange: (val) => {
@@ -98,6 +102,7 @@ export class ContactDialogComponent {
 
     private onSubmit() {
         this.dialogRef.close();
+        this.analyticsService.google.reportContactRequestConversion();
         this._popupNotificationService.success("Your message has been sent!");
     }
 }

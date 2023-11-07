@@ -14,8 +14,10 @@ export class AnalyticsService {
     hubspot = {
         trackPageView: () => null,
     };
-    googleAnalytics = {
+    google = {
         loadScriptTag: () => null,
+        reportContactRequestConversion: () => null,
+        reportNewsletterSubscriptionConversion: () => null,
     };
     googleTagManager = {
         loadScriptTag: () => null,
