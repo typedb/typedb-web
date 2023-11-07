@@ -43,7 +43,7 @@ export class WebsiteComponent {
         _topbarMobileService.openState.subscribe((isOpen) => {
             document.body.style.overflowY = isOpen ? "hidden" : "unset";
         });
-        analyticsService.googleAnalytics.loadScriptTag();
+        analyticsService.google.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);
     }
