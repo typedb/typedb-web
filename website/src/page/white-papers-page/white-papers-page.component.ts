@@ -46,7 +46,7 @@ export class WhitePapersPageComponent implements OnInit {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             } else {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.router.navigate(["white-papers"]);
             }
         });
     }

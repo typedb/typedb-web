@@ -59,7 +59,7 @@ export class WebinarDetailsPageComponent implements OnInit {
                         onSuccess: (_formEl, values) => this.onSubmit(values),
                     });
                 } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
+                    this.router.navigate(["webinars"]);
                 }
             });
         });

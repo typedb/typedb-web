@@ -6,6 +6,7 @@ import { BlogComponent } from "./page/blog/blog.component";
 import { DeploymentPageComponent } from "./page/deployment-page/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/event-details-page/event-details-page.component";
 import { EventsPageComponent } from "./page/events-page/events-page.component";
+import { FallbackPageComponent } from "./page/fallback-page/fallback-page.component";
 import { FeaturesPageComponent } from "./page/features-page/features-page.component";
 import { GenericPageComponent } from "./page/generic-page/generic-page.component";
 import { HomePageComponent } from "./page/home-page/home-page.component";
@@ -59,6 +60,7 @@ const routes: Routes = [
     { path: "services", redirectTo: "support" },
     { path: "solutions/:route", redirectTo: "philosophy" },
 
+    { path: "__fallback", component: FallbackPageComponent },
     { path: "**", component: NotFoundPageComponent, title: "TypeDB | 404" },
 ];
 
