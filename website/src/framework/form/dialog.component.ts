@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { AnalyticsService } from "../../service/analytics.service";
 
+import { AnalyticsService } from "../../service/analytics.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 

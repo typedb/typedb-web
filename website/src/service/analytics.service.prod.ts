@@ -44,10 +44,10 @@ export class AnalyticsService {
             document.head.appendChild(scriptEl2);
         },
         reportContactRequestConversion: () => {
-            window.gtag('event', 'conversion', {'send_to': 'AW-340366363/TDOzCPnH1PIYEJuopqIB'});
+            window.gtag("event", "conversion", { send_to: "AW-340366363/TDOzCPnH1PIYEJuopqIB" });
         },
         reportNewsletterSubscriptionConversion: () => {
-            window.gtag('event', 'conversion', {'send_to': 'AW-340366363/NZt8CPbH1PIYEJuopqIB'});
+            window.gtag("event", "conversion", { send_to: "AW-340366363/NZt8CPbH1PIYEJuopqIB" });
         },
     };
     googleTagManager = {

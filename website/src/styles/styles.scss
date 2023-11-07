@@ -74,7 +74,9 @@ section,
 }
 
 p code,
-p .text-code {
+p .text-code,
+li > code,
+li > .text-code {
     hyphens: none;
     color: var(--color-secondary-pink);
     background: var(--color-black-purple);
