@@ -272,7 +272,7 @@ export const authorField = defineField({
 
 export const resourcesFieldName = "resources";
 
-export const resourcesField = defineField({
+export const resourcesFieldOptional = defineField({
     name: "resources",
     title: "Resources",
     type: "array",
@@ -284,3 +284,5 @@ export const resourcesField = defineField({
         ],
     }],
 });
+
+export const resourcesField = Object.assign({}, resourcesFieldOptional, { validation: requiredRule });
