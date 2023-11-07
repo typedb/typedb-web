@@ -91,4 +91,12 @@
             line-height: 26px;
         }
     }
+
+    li a[href] {
+        color: var(--color-green);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
