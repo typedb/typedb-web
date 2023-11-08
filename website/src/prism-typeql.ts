@@ -41,7 +41,7 @@ export function installPrismTypeQL() {
         },
         number: {
             pattern: /[0-9]+(\.-[0-9][0-9]*)?/,
-            alias: "constant",
+            alias: "number",
         },
         constant: {
             pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
