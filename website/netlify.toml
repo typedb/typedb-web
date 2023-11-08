@@ -56,6 +56,7 @@ status = 301
 from = "/docs"
 to = "/docs/home/overview"
 status = 303
+force = true
 
 [[redirects]]
 from = "/docs/typedb/2.x/*"
