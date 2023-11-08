@@ -55,7 +55,7 @@ export class PhilosophyPageComponent implements OnInit {
 @Component({
     selector: "td-philosophy-page-technicolor-block",
     template:
-        '<td-technicolor-block [block]="block" [index]="index + 1" [noLeadingLine]=\'index === 0\'></td-technicolor-block>',
+        '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\'></td-technicolor-block>',
 })
 export class PhilosophyPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: PublicationSection | ConclusionSection;

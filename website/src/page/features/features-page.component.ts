@@ -48,7 +48,7 @@ export class FeaturesPageComponent implements OnInit {
 
 @Component({
     selector: "td-features-page-technicolor-block",
-    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noLeadingLine]=\'index === 0\' />',
+    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]=\'index === 0\' />',
 })
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;

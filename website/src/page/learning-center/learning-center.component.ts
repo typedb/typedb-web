@@ -48,7 +48,7 @@ export class LearningCenterComponent implements OnInit {
 
 @Component({
     selector: "td-learning-center-block",
-    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noLeadingLine]=\'index === 0\' />',
+    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]=\'index === 0\' />',
 })
 export class LearningCenterBlockComponent {
     @Input() section!: TechnicolorBlock;

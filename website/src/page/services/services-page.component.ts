@@ -56,8 +56,8 @@ export class ServicesPageComponent implements OnInit {
         [block]="block"
         [index]="index"
         [level]="level"
-        [noLeadingLine]="index === 0"
-        [longUpperChain]="block === page.contactSection"
+        [noUpperLine]="index === 0"
+        [longUpperLine]="block === page.contactSection"
     />`,
 })
 export class ServicesPageTechnicolorBlockComponent {

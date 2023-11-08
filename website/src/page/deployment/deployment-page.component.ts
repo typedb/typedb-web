@@ -48,7 +48,7 @@ export class DeploymentPageComponent implements OnInit {
 @Component({
     selector: "td-deployment-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0'></td-technicolor-block>",
+        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noUpperLine]='index === 0'></td-technicolor-block>",
 })
 export class DeploymentPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
