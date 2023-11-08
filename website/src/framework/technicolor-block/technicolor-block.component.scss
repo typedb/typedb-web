@@ -65,17 +65,12 @@ $icon-size: 72px;
         }
     }
 
-    &.tb-long-upper .tb-background {
-        top: -100px;
+    &.tb-no-upper .tb-background {
+        top: 35px;
     }
 
-    &.tb-no-upper .tb-icon-area .tb-chain-shadow {
-        background: linear-gradient(
-            $color-black-purple 0%,
-            $color-black-purple 70%,
-            rgba($color-black-purple, 0.8) 80%,
-            transparent 100%
-        );
+    &.tb-long-upper .tb-background {
+        top: -100px;
     }
 }
 
@@ -110,44 +105,25 @@ $icon-size: 72px;
 .tb-icon-area {
     position: relative;
 
-    .tb-chain-cover,
-    .tb-icon-bg,
+    .tb-icon-bg-paper,
+    .tb-icon-bg-halo,
     .tb-icon {
         top: 0;
         bottom: 0;
         margin: auto 0;
     }
 
-    .tb-chain-cover {
+    .tb-icon-bg-paper {
         position: absolute;
-        z-index: 1;
-        left: 35px;
-        width: 3px;
-        height: $icon-size;
+        width: $icon-size + 32px;
+        height: $icon-size + 32px;
+        margin-left: -16px;
+        border-radius: $border-radius;
+        filter: blur(8px);
         background: var(--color-black-purple);
     }
 
-    .tb-chain-shadow {
-        position: absolute;
-        z-index: 1;
-        left: 35px;
-        top: 0;
-        bottom: 0;
-        height: 166px;
-        width: 3px;
-        margin: auto 0;
-        background: var(--color-black-purple);
-        background: linear-gradient(
-            transparent 0%,
-            rgba($color-black-purple, 0.8) 20%,
-            $color-black-purple 30%,
-            $color-black-purple 70%,
-            rgba($color-black-purple, 0.8) 80%,
-            transparent 100%
-        );
-    }
-
-    .tb-icon-bg {
+    .tb-icon-bg-halo {
         position: absolute;
         width: $icon-size + 32px;
         height: $icon-size + 32px;
@@ -156,7 +132,7 @@ $icon-size: 72px;
         filter: blur(15px);
         opacity: 0.15;
         background: currentColor;
-        z-index: 2;
+        z-index: 4;
     }
 
     .tb-icon {
