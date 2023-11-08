@@ -4,6 +4,7 @@
 $block-gap: 144px;
 $block-gap-tablet: 128px;
 $block-gap-mobile: 64px;
+$graphic-size: 72px;
 
 .tb-root {
     background-repeat: no-repeat;
@@ -42,20 +43,6 @@ $block-gap-mobile: 64px;
     }
 }
 
-.tb-graphic {
-    width: 100px;
-    padding: 0 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media (max-width: $media-max-width-mobile) {
-        width: 48px;
-        padding: 0;
-        margin-left: -12px;
-    }
-}
-
 @mixin graphic-line-gradient($base-color) {
     background: linear-gradient(
         transparent 0%,
@@ -66,65 +53,62 @@ $block-gap-mobile: 64px;
     );
 }
 
-.tb-graphic-green {
-    color: var(--color-green);
+.tb-graphic {
+    width: $graphic-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    .tb-graphic-line {
-        @include graphic-line-gradient($color-green);
+    &.tb-graphic-green {
+        color: var(--color-green);
+
+        .tb-graphic-line {
+            @include graphic-line-gradient($color-green);
+        }
     }
-}
 
-.tb-graphic-pink {
-    color: var(--color-secondary-pink);
+    &.tb-graphic-pink {
+        color: var(--color-secondary-pink);
 
-    .tb-graphic-line {
-        @include graphic-line-gradient($color-secondary-pink);
+        .tb-graphic-line {
+            @include graphic-line-gradient($color-secondary-pink);
+        }
     }
-}
 
-.tb-graphic-yellow {
-    color: var(--color-secondary-yellow);
+    &.tb-graphic-yellow {
+        color: var(--color-secondary-yellow);
 
-    .tb-graphic-line {
-        @include graphic-line-gradient($color-secondary-yellow);
+        .tb-graphic-line {
+            @include graphic-line-gradient($color-secondary-yellow);
+        }
     }
-}
 
-.tb-graphic-icon-area {
-    width: 72px;
-    height: 72px;
-    position: relative;
+    .tb-graphic-icon-area {
+        width: $graphic-size;
+        height: $graphic-size;
+        position: relative;
 
-    @media (max-width: $media-max-width-mobile) {
-        width: 48px;
-        height: 48px;
-    }
-}
+        .tb-graphic-icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(15px);
+            border-radius: 50%;
+            opacity: 0.15;
+            background: currentColor;
+        }
 
-.tb-graphic-icon-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    filter: blur(15px);
-    border-radius: 50%;
-    opacity: 0.15;
-    background: currentColor;
-}
-
-.tb-graphic-icon {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 40px;
-    height: 40px;
-    z-index: 1;
-
-    @media (max-width: $media-max-width-mobile) {
-        width: 24px;
-        height: 24px;
+        .tb-graphic-icon {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
     }
 }
 
@@ -181,8 +165,10 @@ $block-gap-mobile: 64px;
     }
 }
 
+$graphic-line-top-height: $block-gap + 22px;
+
 .tb-graphic-line-top {
-    height: $block-gap;
+    height: $graphic-line-top-height;
 
     @media (max-width: $media-max-width-tablet) {
         height: $block-gap-tablet;
