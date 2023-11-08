@@ -1,3 +1,4 @@
+@import "mixins";
 @import "sizes";
 
 :host {
@@ -98,5 +99,9 @@
         &:hover {
             text-decoration: underline;
         }
+    }
+
+    table {
+        @include content-table;
     }
 }

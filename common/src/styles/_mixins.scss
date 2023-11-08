@@ -105,3 +105,53 @@
 @mixin card-padding {
     padding: var(--card-padding);
 }
+
+@mixin content-table {
+    background: var(--table-body-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 0 1px var(--table-border-color);
+    overflow: hidden;
+
+    > * > tr {
+        border-bottom: 1px solid var(--table-border-color);
+
+        > * {
+            padding: 0.75rem 1.25rem;
+            color: var(--color-white);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        > th {
+            font-weight: var(--font-weight-semi-bold);
+        }
+
+        > td {
+            font-weight: normal;
+        }
+    }
+
+    > thead > tr > * {
+        background: var(--table-header-background);
+
+        &:first-child {
+            border-top-left-radius: var(--border-radius);
+        }
+
+        &:last-child {
+            border-top-left-radius: var(--border-radius);
+        }
+    }
+
+    > colgroup col:not(:first-of-type) {
+        border-left: 1px solid var(--table-border-color);
+    }
+
+    > tbody > tr:last-child {
+        border-bottom-width: 0;
+    }
+
+    > tfoot {
+        background: var(--table-footer-background);
+    }
+}
