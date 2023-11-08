@@ -55,7 +55,7 @@ export class HomePageComponent implements OnInit {
 @Component({
     selector: "td-home-page-technicolor-block",
     template:
-        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noLeadingLine]='index === 0' [longUpperChain]='variant === \"conclusion\"' [organisationLogos]='organisationLogos'></td-technicolor-block>",
+        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noUpperLine]='index === 0' [longUpperLine]='variant === \"conclusion\"' [organisationLogos]='organisationLogos'></td-technicolor-block>",
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

@@ -26,8 +26,8 @@ export function blogPostLinkOf(post: BlogPost): BlogPostLink {
 }
 
 function resourceUrl(resource: Resource): string {
-    if (resource instanceof FundamentalArticle) return `/learn/fundamentals/${resource.slug}`;
-    else if (resource instanceof ApplicationArticle) return `/learn/applications/${resource.slug}`;
+    if (resource instanceof FundamentalArticle) return `/fundamentals/${resource.slug}`;
+    else if (resource instanceof ApplicationArticle) return `/applications/${resource.slug}`;
     else if (resource instanceof BlogPost) return `/blog/${resource.slug}`;
     else if (resource instanceof Webinar) return `/webinars/${resource.slug}`;
     else if (resource instanceof WhitePaper) return `/white-papers/${resource.slug}`;

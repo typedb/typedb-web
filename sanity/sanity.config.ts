@@ -1,11 +1,15 @@
 import "./styles.css";
 
-import { BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, ImagesIcon, PresentationIcon, SparklesIcon, ThListIcon } from "@sanity/icons";
+import {
+    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon,
+    PresentationIcon, SparklesIcon, ThListIcon
+} from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
+
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
     schemaTypes, topbarSchemaName, solutionPageSchemaName, webinarsPageSchemaName, footerSchemaName,
@@ -83,9 +87,7 @@ export default defineConfig({
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "HubSpot Forms", icon: ClipboardImageIcon }),
-                s.listItem().title("Icons & Logos").icon(ImagesIcon).child(s.list().title("Icons & Logos").items([
-                    s.documentTypeListItem(sectionIconSchemaName).title("Section Icons"),
-                ])),
+                s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
         }),
@@ -107,6 +109,7 @@ export default defineConfig({
 });
 
 // N.B: To rename part of the schema of a singleton type, use 'sanity documents (get|create|delete)'
+// prettier-ignore
 const singletonListItem = (s: StructureBuilder, typeName: string, options: { title?: string, icon?: any, documentID?: string } = {}) => s.listItem()
     .title(options?.title || typeName)
     .id(options?.documentID || typeName)

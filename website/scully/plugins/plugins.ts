@@ -1,4 +1,4 @@
-import { registerPlugin, getPluginConfig, HandledRoute } from '@scullyio/scully';
+import { registerPlugin, HandledRoute } from '@scullyio/scully';
 import axios from "axios";
 
 const defaultValidator = async () => [];
@@ -23,11 +23,11 @@ async function resourceRoutesPluginBase(props: { resourceType: string, resourceP
 }
 
 async function fundamentalArticleRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return await resourceRoutesPluginBase({ resourceType: "fundamentalArticle", resourcePath: "learn/fundamentals" });
+    return await resourceRoutesPluginBase({ resourceType: "fundamentalArticle", resourcePath: "fundamentals" });
 }
 
 async function applicationArticleRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return await resourceRoutesPluginBase({ resourceType: "applicationArticle", resourcePath: "learn/applications" });
+    return await resourceRoutesPluginBase({ resourceType: "applicationArticle", resourcePath: "applications" });
 }
 
 async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {

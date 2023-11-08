@@ -26,6 +26,11 @@
     --default-heading-color: var(--color-white);
     --default-text-color: var(--color-dark-white);
 
+    --table-border-color: var(--color-light-purple);
+    --table-header-background: var(--color-deep-purple);
+    --table-body-background: var(--color-purple);
+    --table-footer-background: var(--color-purple);
+
     /* sizes */
     --border-radius: #{$border-radius};
 

@@ -31,12 +31,12 @@ const routes: Routes = [
     { path: "deploy", component: DeploymentPageComponent },
     { path: "learn", component: LearningCenterComponent },
     {
-        path: "learn/fundamentals/:slug",
+        path: "fundamentals/:slug",
         component: LearningArticleComponent,
         data: { resourceType: "fundamentalArticle" },
     },
     {
-        path: "learn/applications/:slug",
+        path: "applications/:slug",
         component: LearningArticleComponent,
         data: { resourceType: "applicationArticle" },
     },
@@ -55,8 +55,8 @@ const routes: Routes = [
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
-    { path: "learn/fundamentals", redirectTo: "learn" },
-    { path: "learn/applications", redirectTo: "learn" },
+    { path: "fundamentals", redirectTo: "learn" },
+    { path: "applications", redirectTo: "learn" },
     { path: "services", redirectTo: "support" },
     { path: "solutions/:route", redirectTo: "philosophy" },
 
