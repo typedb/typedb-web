@@ -4,37 +4,37 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { FrameworkModule } from "../framework/framework.module";
+import { _404PageComponent } from "./404/404-page.component";
+import { PrivacyPolicyPageComponent } from "./././privacy-policy/privacy-policy-page.component";
+import {
+    DeploymentPageComponent,
+    DeploymentPageTechnicolorBlockComponent,
+} from "././deployment/deployment-page.component";
+import { EventsPageComponent } from "././events/events-page.component";
+import { FallbackPageComponent } from "././fallback/fallback-page.component";
+import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "././features/features-page.component";
+import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "././generic/generic-page.component";
+import { HomePageComponent, HomePageTechnicolorBlockComponent } from "././home/home-page.component";
+import {
+    PhilosophyPageComponent,
+    PhilosophyPageTechnicolorBlockComponent,
+} from "././philosophy/philosophy-page.component";
+import { ServicesPageComponent, ServicesPageTechnicolorBlockComponent } from "././services/services-page.component";
+import { SupportPageComponent, SupportPageTechnicolorBlockComponent } from "././support/support-page.component";
+import { RequestTechTalkPageComponent } from "././tech-talk/request-tech-talk-page.component";
+import { WebinarsPageComponent } from "././webinars/webinars-page.component";
+import { WhitePapersPageComponent } from "././white-papers/white-papers-page.component";
 import { BlogAuthorshipBarComponent } from "./blog/blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog/blog-category-chips.component";
 import { BlogNavbarComponent } from "./blog/blog-navbar.component";
 import { BlogPostPageComponent } from "./blog/blog-post-page.component";
 import { BlogRowComponent } from "./blog/blog-row.component";
 import { BlogComponent } from "./blog/blog.component";
-import {
-    DeploymentPageComponent,
-    DeploymentPageTechnicolorBlockComponent,
-} from "./deployment-page/deployment-page.component";
-import { EventDetailsPageComponent } from "./event-details-page/event-details-page.component";
-import { EventsPageComponent } from "./events-page/events-page.component";
-import { FallbackPageComponent } from "./fallback-page/fallback-page.component";
-import { FeaturesPageComponent, FeaturesPageTechnicolorBlockComponent } from "./features-page/features-page.component";
-import { GenericPageComponent, GenericPageTechnicolorBlockComponent } from "./generic-page/generic-page.component";
-import { HomePageComponent, HomePageTechnicolorBlockComponent } from "./home-page/home-page.component";
+import { EventDetailsPageComponent } from "./events/event-details-page.component";
 import { LearningArticleComponent } from "./learning-center/learning-article.component";
 import { LearningCenterBlockComponent, LearningCenterComponent } from "./learning-center/learning-center.component";
-import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
-import {
-    PhilosophyPageComponent,
-    PhilosophyPageTechnicolorBlockComponent,
-} from "./philosophy-page/philosophy-page.component";
-import { PrivacyPolicyPageComponent } from "./privacy-policy-page/privacy-policy-page.component";
-import { RequestTechTalkPageComponent } from "./request-tech-talk-page/request-tech-talk-page.component";
-import { ServicesPageComponent, ServicesPageTechnicolorBlockComponent } from "./services-page/services-page.component";
-import { SupportPageComponent, SupportPageTechnicolorBlockComponent } from "./support-page/support-page.component";
-import { WebinarDetailsPageComponent } from "./webinar-details-page/webinar-details-page.component";
-import { WebinarsPageComponent } from "./webinars-page/webinars-page.component";
-import { WhitePaperDetailsPageComponent } from "./white-paper-details-page/white-paper-details-page.component";
-import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.component";
+import { WebinarDetailsPageComponent } from "./webinars/webinar-details-page.component";
+import { WhitePaperDetailsPageComponent } from "./white-papers/white-paper-details-page.component";
 
 @NgModule({
     declarations: [
@@ -60,7 +60,7 @@ import { WhitePapersPageComponent } from "./white-papers-page/white-papers-page.
         LearningCenterBlockComponent,
         PhilosophyPageComponent,
         PhilosophyPageTechnicolorBlockComponent,
-        NotFoundPageComponent,
+        _404PageComponent,
         PrivacyPolicyPageComponent,
         RequestTechTalkPageComponent,
         ServicesPageComponent,

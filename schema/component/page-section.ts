@@ -1,9 +1,9 @@
-import { defineType } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import {
     bodyFieldRichText,
     isVisibleField,
-    linkPanelsField, optionalActionsField, resourcesFieldOptional,
+    optionalActionsField, requiredRule, resourcesField, resourcesFieldOptional,
     SanityVisibleToggle, sectionIconField,
     sectionIdField, titleBodyIconFields, titleFieldWithHighlights,
 } from "../common-fields";
@@ -13,18 +13,12 @@ import { SanityResource } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
-import { LinkPanel, SanityLinkPanel } from "./link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 
 // TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
 export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
 
 export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
-
-export interface SanityFurtherReadingSection extends SanityCoreSection {
-    links: SanityLinkPanel[];
-    sectionId?: string;
-}
 
 export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
     resources?: SanityReference<SanityResource>[];
@@ -47,16 +41,22 @@ export class TitleBodyIllustrationSection extends TechnicolorBlock {
     }
 }
 
-export class FurtherReadingSection extends TechnicolorBlock {
-    readonly links: LinkPanel[];
+export class ResourceSection extends TechnicolorBlock {
+    readonly resources: ResourceLink[];
 
-    constructor(props: PropsOf<FurtherReadingSection>) {
+    constructor(props: PropsOf<ResourceSection>) {
         super(props);
-        this.links = props.links;
+        this.resources = props.resources;
     }
 
-    static fromSanityFurtherReadingSection(data: SanityFurtherReadingSection, db: SanityDataset) {
-        return new FurtherReadingSection({
+    static override fromSanity(data: SanityResourceSection, db: SanityDataset): ResourceSection {
+        return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
+        }));
+    }
+
+    static fromSanityFurtherLearningSection(data: SanityResourceSection, db: SanityDataset): ResourceSection {
+        return new ResourceSection({
             title: new ParagraphWithHighlights({
                 spans: [
                     { text: "Further", highlight: false },
@@ -66,30 +66,16 @@ export class FurtherReadingSection extends TechnicolorBlock {
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "https://cdn.sanity.io/images/xndl14mc/production/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
-            links: data.links.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
+            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
             sectionId: data.sectionId,
         });
     }
 }
 
-export class ResourceSection extends TechnicolorBlock {
-    readonly resources: ResourceLink[];
-
-    constructor(props: PropsOf<ResourceSection>) {
-        super(props);
-        this.resources = props.resources;
-    }
-
-    static override fromSanity(data: SanityResourceSection, db: SanityDataset) {
-        return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
-        }));
-    }
-}
-
 export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
 
-export const furtherReadingSectionSchemaName = "furtherReadingSection";
+// TODO: refactor schema name
+export const furtherLearningSectionSchemaName = "furtherReadingSection";
 
 const titleBodyIllustrationSectionSchema = defineType({
     name: titleBodyIllustrationSectionSchemaName,
@@ -105,12 +91,22 @@ const titleBodyIllustrationSectionSchema = defineType({
     ],
 });
 
-const furtherReadingSectionSchema = defineType({
-    name: furtherReadingSectionSchemaName,
+const furtherLearningSectionSchema = defineType({
+    name: furtherLearningSectionSchemaName,
     title: `Further Reading Section`,
     type: "object",
-    fields: [bodyFieldRichText, linkPanelsField, sectionIdField, isVisibleField],
+    fields: [bodyFieldRichText, resourcesField, sectionIdField, isVisibleField],
 });
+
+const furtherLearningFieldName = "furtherLearning";
+
+export const furtherLearningFieldOptional = defineField({
+    name: furtherLearningFieldName,
+    title: "Further Learning",
+    type: furtherLearningSectionSchemaName,
+});
+
+export const furtherLearningField = Object.assign({}, furtherLearningFieldOptional, { validation: requiredRule });
 
 export const resourceSectionSchemaName = `resourceSection`;
 
@@ -127,4 +123,4 @@ const resourceSectionSchema = defineType({
     ],
 });
 
-export const pageSectionSchemas = [furtherReadingSectionSchema, resourceSectionSchema, titleBodyIllustrationSectionSchema];
+export const pageSectionSchemas = [furtherLearningSectionSchema, resourceSectionSchema, titleBodyIllustrationSectionSchema];

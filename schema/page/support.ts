@@ -86,7 +86,7 @@ class IntroSection extends TechnicolorBlock {
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection({
             ...super.fromSanity(data, db),
-            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
+            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
         });
     }
 }

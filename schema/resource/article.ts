@@ -1,4 +1,4 @@
-import { BulbOutlineIcon, DocumentTextIcon, PlugIcon, TerminalIcon } from "@sanity/icons";
+import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios from "axios";
 import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
@@ -58,15 +58,20 @@ export type BlogCategoryFilter = { categorySlug: string }
 
 export abstract class Article extends Resource {
     readonly contentHtml: string;
+    readonly linkedResources: ResourceLink[];
 
     protected constructor(props: PropsOf<Article>) {
         super(props);
         this.contentHtml = props.contentHtml;
+        this.linkedResources = props.linkedResources;
     }
 }
 
 function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
-    return Object.assign(resourcePropsFromSanity(data, db), { contentHtml: wordpressPost.content });
+    return Object.assign(resourcePropsFromSanity(data, db), {
+        contentHtml: wordpressPost.content,
+        linkedResources: data.linkedResources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
+    });
 }
 
 export class FundamentalArticle extends Article {

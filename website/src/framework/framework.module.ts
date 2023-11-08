@@ -43,6 +43,7 @@ import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/
 import {
     LinkPanelsCols2Component,
     LinkPanelsComponent,
+    ResourcePanelsComponent,
     WebinarPanelsComponent,
 } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
@@ -114,6 +115,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PolyglotSnippetComponent,
         ProductTableComponent,
         PublicationPanelComponent,
+        ResourcePanelsComponent,
         RichTextComponent,
         ScrollShadowComponent,
         ServicesTableComponent,
@@ -181,6 +183,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         TooltipComponent,
         WebinarPanelsComponent,
         ScrollShadowComponent,
+        ResourcePanelsComponent,
     ],
     providers: [HtmlPipe, PlainTextPipe, { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
 })

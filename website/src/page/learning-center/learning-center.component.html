@@ -8,7 +8,7 @@
     />
     <ng-container *ngFor="let section of learningCenter.resourceSections; index as idx">
       <td-learning-center-block [section]="section" [index]="idx" />
-      <td-link-panels-cols-2 [resources]="section.resources" />
+      <td-resource-panels-cols-2 [resources]="section.resources" />
     </ng-container>
     <td-learning-center-block
       [section]="learningCenter.finalSection"

@@ -56,7 +56,7 @@ export class IntroSection extends TechnicolorBlock {
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                productPanels: data.productPanels.map((x) => ProductPanel.fromSanityProductPanel(x, db)),
+                productPanels: data.productPanels.map((x) => ProductPanel.fromSanity(x, db)),
             })
         );
     }
