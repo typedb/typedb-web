@@ -1,20 +1,9 @@
-import { ArrayRule, BooleanRule, defineField, defineType } from "@sanity/types";
+import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import {
-    featureGridCellSchemaName,
-    featureGridSchemaName,
-    FeatureGridSection,
-    SanityFeatureGridSection,
-} from "../component/feature-grid";
-import {
-    LinkPanel,
-    linkPanelSchemaName,
-    LinkPanelWithIcon,
-    linkPanelWithIconSchemaName,
-    SanityLinkPanel,
-    SanityLinkPanelWithIcon,
-} from "../component/link-panel";
+import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
+import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "../component/link-panel";
+import { ResourceSection, resourceSectionSchemaName, SanityResourceSection } from "../component/page-section";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import {
     collapsibleOptions,
@@ -25,7 +14,7 @@ import {
     SanityVisibleToggle,
     requiredRule,
     keyPointsWithIconsField,
-    sectionIdField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField,
+    sectionIdField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
 } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
@@ -42,7 +31,7 @@ import { metaTagsField } from "./meta-tags";
 const sections = {
     intro: { id: "introSection", title: "Intro" },
     impact: { id: "impactSection", title: "Impact" },
-    solutions: { id: "solutionsSection", title: "Solutions" },
+    resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
     drivers: { id: "driversSection", title: "Drivers" },
     cloud: { id: "cloudSection", title: "Cloud" },
@@ -56,7 +45,7 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     impactSections: SanityImpactSection[];
-    [sections.solutions.id]: SanitySolutionsSection;
+    [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityToolingSection;
     [sections.drivers.id]: SanityDriversSection;
     [sections.cloud.id]: SanityKeyPointsSection;
@@ -77,10 +66,6 @@ interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
 
 interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
     impactTabs: SanityContentTextPanel[];
-}
-
-interface SanitySolutionsSection extends SanityCoreSection {
-    solutions: SanityLinkPanel[];
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
@@ -104,7 +89,7 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly impactSections: ImpactSection[];
-    readonly [sections.solutions.id]?: SolutionsSection;
+    readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: FeatureGridSection;
     readonly [sections.cloud.id]?: CloudSection;
@@ -118,8 +103,8 @@ export class HomePage extends Page {
         this.impactSections = data.impactSections
             .filter((x) => x.isVisible)
             .map((x) => ImpactSection.fromSanity(x, db));
-        this.solutionsSection = data.solutionsSection.isVisible
-            ? SolutionsSection.fromSanity(data.solutionsSection, db)
+        this.resourcesSection = data.resourcesSection.isVisible
+            ? ResourceSection.fromSanity(data.resourcesSection, db)
             : undefined;
         this.toolingSection = data.toolingSection.isVisible
             ? ToolingSection.fromSanity(data.toolingSection, db)
@@ -179,23 +164,6 @@ class ImpactSection extends TechnicolorBlock {
     }
 }
 
-class SolutionsSection extends TechnicolorBlock {
-    readonly solutions: LinkPanel[];
-
-    constructor(props: PropsOf<SolutionsSection>) {
-        super(props);
-        this.solutions = props.solutions;
-    }
-
-    static override fromSanity(data: SanitySolutionsSection, db: SanityDataset) {
-        return new SolutionsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                solutions: data.solutions.map((x) => LinkPanel.fromSanityLinkPanel(x, db)),
-            })
-        );
-    }
-}
-
 class ToolingSection extends TechnicolorBlock {
     readonly panels: LinkPanelWithIcon[];
 
@@ -207,7 +175,7 @@ class ToolingSection extends TechnicolorBlock {
     static override fromSanity(data: SanityToolingSection, db: SanityDataset) {
         return new ToolingSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                panels: data.panels.map((x) => LinkPanelWithIcon.fromSanityLinkPanelWithIcon(x, db)),
+                panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
             })
         );
     }
@@ -312,21 +280,11 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("solutions", [
+    sectionSchema("resources", [
         ...titleBodyIconFields,
         optionalActionsField,
         sectionIdField,
-        defineField({
-            name: "solutions",
-            title: "Solutions",
-            type: "array",
-            of: [{ type: linkPanelSchemaName }],
-            validation: (rule: ArrayRule<any>) =>
-                rule.required().custom((value) => {
-                    if ([4, 8].includes(value.length)) return true;
-                    return "Must contain exactly 4 or 8 items";
-                }),
-        }),
+        resourcesField,
         isVisibleField,
     ]),
     sectionSchema("tooling", [
@@ -398,7 +356,7 @@ const impactSectionsField = defineField({
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact"].includes(key))
+    .filter((key) => !["intro", "impact", "resources"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -417,6 +375,13 @@ const homePageSchema = defineType({
         metaTagsField,
         introSectionField,
         impactSectionsField,
+        defineField({
+            name: "resourcesSection",
+            title: "Resources Section",
+            type: resourceSectionSchemaName,
+            options: collapsibleOptions,
+            validation: requiredRule,
+        }),
         ...otherSectionFields,
         defineField({
             name: "conclusionSection",

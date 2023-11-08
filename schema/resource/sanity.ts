@@ -1,6 +1,6 @@
 import { SanityDocument, Slug } from "@sanity/types";
 import { SanityButton } from "../button";
-import { SanityFurtherReadingSection } from "../component/page-section";
+import { SanityResourceSection } from "../component/page-section";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -74,8 +74,7 @@ export interface SanityWebinar extends SanityEventBase {
     _type: typeof webinarSchemaName;
     datetime: string;
     durationMins: number;
-    // TODO: dissolve
-    furtherReading: SanityFurtherReadingSection;
+    furtherLearning?: SanityResourceSection;
     airmeetID?: string;
     onDemandVideoURL?: string;
     comingSoon: boolean;
@@ -87,8 +86,7 @@ export interface SanityWhitePaper extends SanitySiteResource {
     tags: string[];
     portraitImage: SanityImage;
     landscapeImage: SanityImage;
-    // TODO: dissolve
-    furtherReading: SanityFurtherReadingSection;
+    furtherLearning?: SanityResourceSection;
     hubspotFormID: string;
     metaTags?: SanityMetaTags;
 }

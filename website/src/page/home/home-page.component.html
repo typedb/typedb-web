@@ -13,13 +13,13 @@
       <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
       <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
     </ng-container>
-    <ng-container *ngIf="page.solutionsSection">
-      <td-home-page-technicolor-block [block]="page.solutionsSection" [page]="page" />
-      <td-link-panels [panels]="page.solutionsSection.solutions" [cols]="4" />
+    <ng-container *ngIf="page.resourcesSection">
+      <td-home-page-technicolor-block [block]="page.resourcesSection" [page]="page" />
+      <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" />
     </ng-container>
     <ng-container *ngIf="page.toolingSection">
       <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
-      <td-link-panels [panels]="page.toolingSection.panels" [cols]="3" />
+      <td-link-panels [panels]="page.toolingSection.panels" />
     </ng-container>
     <ng-container *ngIf="page.driversSection">
       <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />

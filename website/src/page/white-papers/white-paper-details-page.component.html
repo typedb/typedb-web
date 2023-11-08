@@ -18,9 +18,9 @@
       </div>
       <td-rich-text class="subsection-margin wd-description" [value]="whitePaper.description" />
     </section>
-    <ng-container *ngIf="whitePaper.furtherReading">
-      <td-technicolor-block [block]="whitePaper.furtherReading" [index]="1" [noLeadingLine]="true" />
-      <td-link-panels [panels]="whitePaper.furtherReading.links" [cols]="3" />
+    <ng-container *ngIf="whitePaper.furtherLearning">
+      <td-technicolor-block [block]="whitePaper.furtherLearning" [index]="1" [noLeadingLine]="true" />
+      <td-resource-panels [resources]="whitePaper.furtherLearning.resources" [cols]="3" />
     </ng-container>
   </div>
 </article>

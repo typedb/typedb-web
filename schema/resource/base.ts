@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, titleFieldWithHighlights } from "../common-fields";
+import { descriptionFieldRichText, requiredRule, resourcesFieldOptional, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -14,7 +14,6 @@ export abstract class Resource {
     readonly description: PortableText;
     readonly shortTitle: string;
     readonly shortDescription: PortableText;
-    readonly linkedResources: ResourceLink[];
 
     protected constructor(props: PropsOf<Resource>) {
         this.slug = props.slug;
@@ -23,7 +22,6 @@ export abstract class Resource {
         this.description = props.description;
         this.shortTitle = props.shortTitle;
         this.shortDescription = props.shortDescription;
-        this.linkedResources = props.linkedResources;
     }
 }
 
@@ -35,7 +33,6 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
         description: data.description,
         shortTitle: data.shortTitle,
         shortDescription: data.shortDescription || data.description,
-        linkedResources: data.linkedResources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
     };
 }
 
@@ -90,3 +87,8 @@ export const resourceCommonFields = [
         type: "text",
     }),
 ];
+
+export const linkedResourcesField = Object.assign({}, resourcesFieldOptional, {
+    name: "linkedResources",
+    title: "Linked Resources",
+});

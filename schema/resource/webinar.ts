@@ -2,7 +2,7 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
 import { comingSoonField, requiredRule, slugField } from "../common-fields";
-import { FurtherReadingSection, furtherReadingSectionSchemaName } from "../component/page-section";
+import { furtherLearningField, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
@@ -15,7 +15,7 @@ import { SanityWebinar, webinarSchemaName } from "./sanity";
 export class Webinar extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
-    readonly furtherReading?: FurtherReadingSection;
+    readonly furtherLearning?: ResourceSection;
     readonly airmeetID?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
@@ -24,7 +24,6 @@ export class Webinar extends EventBase {
         super(props);
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
-        this.furtherReading = props.furtherReading;
         this.airmeetID = props.airmeetID;
         this.onDemandVideoURL = props.onDemandVideoURL;
         this.comingSoon = props.comingSoon;
@@ -35,8 +34,8 @@ export class Webinar extends EventBase {
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
-            furtherReading: data.furtherReading.isVisible
-                ? FurtherReadingSection.fromSanityFurtherReadingSection(data.furtherReading, db)
+            furtherLearning: data.furtherLearning?.isVisible
+                ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
                 : undefined,
             airmeetID: data.airmeetID,
             onDemandVideoURL: data.onDemandVideoURL,
@@ -108,12 +107,7 @@ const webinarSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        defineField({
-            name: "furtherReading",
-            title: "Further Reading",
-            type: furtherReadingSectionSchemaName,
-            validation: requiredRule,
-        }),
+        furtherLearningField,
         defineField({
             name: "airmeetID",
             title: "Airmeet ID",

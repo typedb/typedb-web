@@ -2,7 +2,7 @@
   <div *ngIf="page$ | async; let page" class="article-content">
     <ng-container *ngIf="page.introSection">
       <td-support-page-technicolor-block [block]="page.introSection" [page]="page" />
-      <td-link-panels [panels]="page.introSection.panels" [cols]="3" ctaStrength="strong" />
+      <td-link-panels [panels]="page.introSection.panels" />
     </ng-container>
     <ng-container *ngIf="page.featureTableSection">
       <td-support-page-technicolor-block [block]="page.featureTableSection" [page]="page" />
