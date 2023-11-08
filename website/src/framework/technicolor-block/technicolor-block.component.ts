@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, Input, NgZone } from "@angular/core";
+import { Component, ElementRef, HostBinding, Input } from "@angular/core";
 
 import { Organisation, TechnicolorBlock } from "typedb-web-schema";
 
@@ -12,18 +12,16 @@ export class TechnicolorBlockComponent {
     @Input() index!: number;
     @Input() level: "h1" | "h2" = "h2";
     @Input() contentWidth: "narrow" | "wide" = "wide";
-    @Input() noLeadingLine?: boolean;
-    @Input() noTrailingLine?: boolean;
+    @Input() @HostBinding("class.tb-no-upper") noUpperLine?: boolean;
     @Input() noBody?: boolean;
-    @Input() longUpperChain?: boolean;
+    @Input() @HostBinding("class.tb-long-upper") longUpperLine?: boolean;
     @Input() organisationLogos?: Organisation[];
 
     private readonly opacityChangeDistance = 15;
 
     constructor(
-        private destroyRef: DestroyRef,
-        private elementRef: ElementRef<HTMLElement>,
-        private ngZone: NgZone,
+        // private destroyRef: DestroyRef,
+        private elementRef: ElementRef<HTMLElement>, // private ngZone: NgZone,
     ) {}
 
     // ngAfterViewInit(): void {
@@ -35,17 +33,26 @@ export class TechnicolorBlockComponent {
     //     });
     // }
 
-    get graphicColorClass(): string {
+    @HostBinding("class")
+    get clazz(): string {
+        return `section ${this.levelClass} ${this.colorClass}`;
+    }
+
+    private get colorClass(): string {
         switch (this.index % 3) {
             case 0:
-                return "tb-graphic-green";
+                return "tb-green";
             case 1:
-                return "tb-graphic-pink";
+                return "tb-pink";
             case 2:
-                return "tb-graphic-yellow";
+                return "tb-yellow";
             default:
                 throw "Unreachable code";
         }
+    }
+
+    private get levelClass(): string {
+        return `tb-level-${this.level}`;
     }
 
     get themeColorHex(): string {

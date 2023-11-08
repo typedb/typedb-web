@@ -61,8 +61,8 @@ export class ResourceLink {
 }
 
 function siteResourceUrl(data: SanitySiteResource): string {
-    if (isFundamentalArticle(data)) return `/learn/fundamentals/${data.slug.current}`;
-    else if (isApplicationArticle(data)) return `/learn/applications/${data.slug.current}`;
+    if (isFundamentalArticle(data)) return `/fundamentals/${data.slug.current}`;
+    else if (isApplicationArticle(data)) return `/applications/${data.slug.current}`;
     else if (isBlogPost(data)) return `/blog/${data.slug.current}`;
     else if (isWebinar(data)) return `/webinars/${data.slug.current}`;
     else if (isWhitePaper(data)) return `/white-papers/${data.slug.current}`;

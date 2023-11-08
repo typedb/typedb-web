@@ -53,7 +53,7 @@ export class SolutionPageComponent implements OnInit {
 @Component({
     selector: "td-solution-page-technicolor-block",
     template:
-        '<td-technicolor-block [block]="block" [index]="index + 1" [noLeadingLine]=\'index === 0\' [noTrailingLine]="noTrailingLine"></td-technicolor-block>',
+        '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\' [noTrailingLine]="noTrailingLine"></td-technicolor-block>',
 })
 export class SolutionPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

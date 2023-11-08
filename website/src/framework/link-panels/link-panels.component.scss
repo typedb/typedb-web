@@ -44,13 +44,8 @@
     }
 
     img {
-        width: 48px;
-        height: 48px;
-
-        @media (max-width: $media-max-width-mobile) {
-            width: 32px;
-            height: 32px;
-        }
+        width: 72px;
+        height: 72px;
     }
 
     &.lc-card-cols-3 {

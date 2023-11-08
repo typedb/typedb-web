@@ -1,42 +1,24 @@
-<section class="tb-root" [class]="'tb-level-' + level">
-  <div class="tb-core">
-    <div class="tb-graphic" [ngClass]="graphicColorClass">
-      <div
-        *ngIf="!noLeadingLine"
-        class="tb-graphic-line tb-graphic-line-top"
-        [ngClass]="longUpperChain ? ' tb-long-upper-chain' : ''"
-      >
-        <div class="tb-graphic-dot">
-          <div class="tb-graphic-dot-blur"></div>
-        </div>
-      </div>
-      <div *ngIf="noLeadingLine" class="tb-margin-top"></div>
-      <div class="tb-graphic-icon-area">
-        <div class="tb-graphic-icon-bg"></div>
-        <img class="tb-graphic-icon" [src]="block.iconURL" alt="" />
-      </div>
-      <div [ngStyle]="{ visibility: noTrailingLine ? 'hidden' : 'visible' }" class="tb-graphic-line flex">
-        <div class="tb-graphic-dot">
-          <div class="tb-graphic-dot-blur"></div>
-        </div>
-      </div>
-    </div>
-    <div [class]="'tb-body tb-body-' + contentWidth">
-      <div class="tb-margin-top"></div>
-      <td-heading-with-highlights
-        [value]="block.title"
-        [id]="block.sectionId"
-        [themeColorHex]="themeColorHex"
-        [level]="level"
-      />
-      <td-rich-text *ngIf="block.body && !noBody" [value]="block.body" class="text-p1" />
-      <td-actions *ngIf="block.actions" [actions]="block.actions" />
-      <td-organisation-logos
-        *ngIf="organisationLogos?.length"
-        appearance="transparent"
-        [organisations]="organisationLogos!"
-      />
-      <div class="tb-body-margin-bottom"></div>
-    </div>
+<div class="tb-background"></div>
+<div [class]="'tb-main tb-main-' + contentWidth">
+  <div class="tb-icon-area">
+    <div class="tb-icon-bg-paper"></div>
+    <div class="tb-icon-bg-halo"></div>
+    <img class="tb-icon" [src]="block.iconURL" alt="" />
   </div>
-</section>
+  <td-heading-with-highlights
+    [value]="block.title"
+    [id]="block.sectionId"
+    [themeColorHex]="themeColorHex"
+    [level]="level"
+  />
+  <div></div>
+  <div>
+    <td-rich-text *ngIf="block.body && !noBody" [value]="block.body" class="text-p1" />
+    <td-actions *ngIf="block.actions" [actions]="block.actions" />
+    <td-organisation-logos
+      *ngIf="organisationLogos?.length"
+      appearance="transparent"
+      [organisations]="organisationLogos!"
+    />
+  </div>
+</div>

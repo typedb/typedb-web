@@ -30,7 +30,7 @@
       </div>
     </div>
     <ng-container *ngIf="page.featuredWebinarsSection && secondaryWebinars && secondaryWebinars.length">
-      <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noLeadingLine]="true" />
+      <td-technicolor-block [block]="page.featuredWebinarsSection" [index]="1" [noUpperLine]="true" />
       <td-webinar-panels [webinars]="secondaryWebinars" />
     </ng-container>
     <ng-container *ngIf="page.exploreWebinarsSection">
