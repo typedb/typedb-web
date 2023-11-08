@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { LinkPanel, LinkPanelWithIcon, ResourceLink, Webinar } from "typedb-web-schema";
+import { LinkPanelWithIcon, ResourceLink, Webinar } from "typedb-web-schema";
 
 @Component({
     selector: "td-link-panels",
