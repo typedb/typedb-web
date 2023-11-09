@@ -249,6 +249,7 @@ const sectionSchemas = [
         Object.assign({}, titleFieldWithHighlights, { description: "For the Home Page, this gets automatically added to the web page title" }),
         bodyFieldRichText,
         sectionIconField,
+        sectionIdField,
         optionalActionsField,
         defineField({
             name: "displayUserLogos",

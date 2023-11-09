@@ -16,6 +16,7 @@ body {
     font-family: var(--default-font-family);
 
     margin: 0;
+    scroll-behavior: smooth;
     scroll-padding-top: var(--topbar-height);
 }
 
@@ -268,4 +269,14 @@ pre code {
 
 .card-padding {
     @include card-padding;
+}
+
+.button-primary {
+    @include button;
+    @include button-primary;
+}
+
+.button-secondary {
+    @include button;
+    @include button-secondary;
 }

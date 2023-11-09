@@ -2,7 +2,8 @@
 <div [class]="'tb-main tb-main-' + contentWidth">
   <div class="tb-icon-area">
     <div class="tb-icon-bg-paper"></div>
-    <div class="tb-icon-bg-halo"></div>
+    <a *ngIf="block.sectionId" class="tb-icon-bg-halo" [href]="'#' + block.sectionId">&nbsp;</a>
+    <div *ngIf="!block.sectionId" class="tb-icon-bg-halo"></div>
     <img class="tb-icon" [src]="block.iconURL" alt="" />
   </div>
   <td-heading-with-highlights

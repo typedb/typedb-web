@@ -49,29 +49,8 @@
     }
 
     &.lc-card-cols-3 {
-        td-rich-text {
-            margin-top: 8px;
-        }
-
-        td-button {
-            @media (max-width: media.$max-width-mobile) {
-                margin-top: 16px;
-            }
-        }
-
-        .lc-flex-container {
-            text-align: center;
-
-            @media (max-width: media.$max-width-mobile) {
-                text-align: start;
-                gap: 8px;
-            }
-
-            .lc-title {
-                @media (min-width: media.$min-width-tablet) {
-                    margin-top: 14px;
-                }
-            }
+        h3 {
+            @include line-clamp(1);
         }
     }
 
@@ -126,7 +105,7 @@
     .lc-cta-weak {
         @media (min-width: media.$min-width-tablet) {
             display: block;
-            margin-top: 14px;
+            margin-top: 4px;
         }
     }
 
@@ -149,6 +128,11 @@
         color: var(--body-heading-color);
         text-decoration: none;
     }
+
+    &:hover ::ng-deep .button-secondary {
+        background: var(--color-green);
+        color: var(--color-purple);
+    }
 }
 
 td-button {
@@ -158,7 +142,18 @@ td-button {
 }
 
 .lc-flex-container {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    gap: 12px;
+    text-align: center;
+
+    @media (max-width: media.$max-width-mobile) {
+        text-align: start;
+    }
+
+    .button-secondary {
+        margin-top: 8px;
+        width: unset;
+    }
 }

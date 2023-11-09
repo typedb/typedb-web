@@ -2,7 +2,7 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
 import { comingSoonField, requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, ResourceSection } from "../component/page-section";
+import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
@@ -15,7 +15,6 @@ import { SanityWebinar, webinarSchemaName } from "./sanity";
 export class Webinar extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
-    readonly furtherLearning?: ResourceSection;
     readonly airmeetID?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
@@ -34,9 +33,6 @@ export class Webinar extends EventBase {
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
-            furtherLearning: data.furtherLearning?.isVisible
-                ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
-                : undefined,
             airmeetID: data.airmeetID,
             onDemandVideoURL: data.onDemandVideoURL,
             comingSoon: data.comingSoon,
@@ -107,7 +103,7 @@ const webinarSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        furtherLearningField,
+        furtherLearningFieldOptional,
         defineField({
             name: "airmeetID",
             title: "Airmeet ID",
