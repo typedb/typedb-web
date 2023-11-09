@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from "@angular/core";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { PortableText } from "typedb-web-schema";
 
@@ -12,8 +13,10 @@ import { HtmlPipe } from "./html.pipe";
 export class RichTextComponent {
     @Input() value!: string | PortableText;
 
+    constructor(private sanitizer: DomSanitizer) {}
+
     @HostBinding("innerHtml")
-    get innerHtml(): string {
-        return typeof this.value === "string" ? this.value : new HtmlPipe().transform(this.value);
+    get innerHtml(): SafeHtml {
+        return typeof this.value === "string" ? this.value : new HtmlPipe(this.sanitizer).transform(this.value);
     }
 }

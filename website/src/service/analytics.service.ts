@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 
-export const HUBSPOT_PORTAL_ID = "4332244";
-export const HUBSPOT_REGION = "na1";
+import { googleAdsConversionIds } from "./marketing-tech-constants";
 
 /**
  * When building the 'production' configuration, this file is replaced with `analytics.service.prod.ts`.
@@ -16,8 +15,7 @@ export class AnalyticsService {
     };
     google = {
         loadScriptTag: () => null,
-        reportContactRequestConversion: () => null,
-        reportNewsletterSubscriptionConversion: () => null,
+        reportAdConversion: (_event: keyof typeof googleAdsConversionIds) => null,
     };
     googleTagManager = {
         loadScriptTag: () => null,

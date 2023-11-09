@@ -1,10 +1,16 @@
 <ng-container [ngSwitch]="level">
-  <h1 *ngSwitchCase="'h1'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h1>
+  <h1 *ngSwitchCase="'h1'" [id]="id">
+    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+  </h1>
   <h2 *ngSwitchCase="'h2'" [id]="id">
     <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
   </h2>
-  <h3 *ngSwitchCase="'h3'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h3>
-  <h4 *ngSwitchCase="'h4'"><ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" /></h4>
+  <h3 *ngSwitchCase="'h3'" [id]="id">
+    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+  </h3>
+  <h4 *ngSwitchCase="'h4'" [id]="id">
+    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+  </h4>
 </ng-container>
 
 <ng-template #content>

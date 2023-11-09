@@ -6,7 +6,7 @@ import { Link } from "../link";
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { Resource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
+import { SiteResource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
 import {
     applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName,
@@ -56,7 +56,7 @@ export const blogNullFilter: () => BlogNullFilter = () => ({});
 
 export type BlogCategoryFilter = { categorySlug: string }
 
-export abstract class Article extends Resource {
+export abstract class Article extends SiteResource {
     readonly contentHtml: string;
     readonly linkedResources: ResourceLink[];
 

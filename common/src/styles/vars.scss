@@ -1,32 +1,37 @@
-@use "colors" as *;
-@use "sizes" as *;
+@use "colors";
+@use "media";
+@use "prism";
+@use "shapes" as *;
+@use "typography";
 @use "@fontsource/titillium-web/scss/metadata" as TitilliumWebMetadata;
 
 :root {
     /* colors */
-    --color-white: #{$color-white};
-    --color-dark-white: #{$color-dark-white};
-    --color-light-purple: #{$color-light-purple};
-    --color-purple: #{$color-purple};
-    --color-deep-purple: #{$color-deep-purple};
-    --color-black-purple: #{$color-black-purple};
-    --color-green: #{$color-green};
-    --color-red: #{$color-red};
+    --color-white: #{colors.$white};
+    --color-dark-white: #{colors.$dark-white};
+    --color-light-purple: #{colors.$light-purple};
+    --color-purple: #{colors.$purple};
+    --color-deep-purple: #{colors.$deep-purple};
+    --color-black-purple: #{colors.$black-purple};
+    --color-green: #{colors.$green};
+    --color-red: #{colors.$red};
 
-    --color-secondary-light-grey: #{$color-secondary-light-grey};
-    --color-secondary-grey: #{$color-secondary-grey};
-    --color-secondary-deep-grey: #{$color-secondary-deep-grey};
-    --color-secondary-purple: #{$color-secondary-purple};
-    --color-secondary-yellow: #{$color-secondary-yellow};
-    --color-secondary-pink: #{$color-secondary-pink};
-    --color-secondary-blue: #{$color-secondary-blue};
+    --color-secondary-light-grey: #{colors.$secondary-light-grey};
+    --color-secondary-grey: #{colors.$secondary-grey};
+    --color-secondary-deep-grey: #{colors.$secondary-deep-grey};
+    --color-secondary-purple: #{colors.$secondary-purple};
+    --color-secondary-yellow: #{colors.$secondary-yellow};
+    --color-secondary-pink: #{colors.$secondary-pink};
+    --color-secondary-blue: #{colors.$secondary-blue};
+
+    --content-border-color: var(--color-secondary-deep-grey);
 
     --body-background: var(--color-black-purple);
-    --content-border-color: var(--color-secondary-deep-grey);
-    --default-heading-color: var(--color-white);
-    --default-text-color: var(--color-dark-white);
-
-    --table-border-color: var(--color-light-purple);
+    --body-heading-color: var(--color-white);
+    --body-font-color: var(--color-dark-white);
+    --code-background: var(--color-deep-purple);
+    --code-font-color: var(--color-secondary-pink);
+    --pre-font-color: #{colors.$prism-white};
     --table-header-background: var(--color-deep-purple);
     --table-body-background: var(--color-purple);
     --table-footer-background: var(--color-purple);
@@ -46,10 +51,10 @@
 
     --text-margin-s: #{$text-margin-s};
 
-    --font-weight-bold: #{$font-weight-bold};
-    --font-weight-semi-bold: #{$font-weight-semi-bold};
-    --font-weight-regular: #{$font-weight-regular};
-    --font-weight-light: #{$font-weight-light};
+    --font-weight-bold: #{typography.$bold};
+    --font-weight-semi-bold: #{typography.$semi-bold};
+    --font-weight-regular: #{typography.$regular};
+    --font-weight-light: #{typography.$light};
 
     --topbar-height: #{$topbar-height};
 
@@ -62,28 +67,28 @@
     --default-font-family: #{TitilliumWebMetadata.$family}, sans-serif;
     --code-font-family: "Monaco", monospace;
 
-    --font-size-h1: #{$font-size-h1};
-    --line-height-h1: #{$line-height-h1};
-    --font-size-h2: #{$font-size-h2};
-    --line-height-h2: #{$line-height-h2};
-    --font-size-h3: #{$font-size-h3};
-    --line-height-h3: #{$line-height-h3};
-    --font-size-h4: #{$font-size-h4};
-    --line-height-h4: #{$line-height-h4};
-    --font-size-h5: #{$font-size-h5};
-    --line-height-h5: #{$line-height-h5};
-    --font-size-p1: #{$font-size-p1};
-    --line-height-p1: #{$line-height-p1};
-    --font-size-p2: #{$font-size-p2};
-    --line-height-p2: #{$line-height-p2};
-    --font-size-aside: #{$font-size-aside};
-    --line-height-aside: #{$line-height-aside};
-    --font-size-code: #{$font-size-code};
-    --line-height-code: #{$line-height-code};
+    --font-size-h1: #{typography.$h1};
+    --line-height-h1: #{typography.$height-h1};
+    --font-size-h2: #{typography.$h2};
+    --line-height-h2: #{typography.$height-h2};
+    --font-size-h3: #{typography.$h3};
+    --line-height-h3: #{typography.$height-h3};
+    --font-size-h4: #{typography.$h4};
+    --line-height-h4: #{typography.$height-h4};
+    --font-size-h5: #{typography.$h5};
+    --line-height-h5: #{typography.$height-h5};
+    --font-size-p1: #{typography.$p1};
+    --line-height-p1: #{typography.$height-p1};
+    --font-size-p2: #{typography.$p2};
+    --line-height-p2: #{typography.$height-p2};
+    --font-size-aside: #{typography.$aside};
+    --line-height-aside: #{typography.$height-aside};
+    --font-size-code: #{typography.$code};
+    --line-height-code: #{typography.$height-code};
 
     --card-padding: #{$card-padding};
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};
 
@@ -93,8 +98,8 @@
         --card-padding: #{$card-padding-tablet};
     }
 
-    @media (max-width: $media-max-width-mobile) {
-        --default-text-color: var(--color-white);
+    @media (max-width: media.$max-width-mobile) {
+        --body-font-color: var(--color-white);
 
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
@@ -109,22 +114,22 @@
 
         --banner-height-mobile: #{$banner-height-mobile};
 
-        --font-size-h1: #{$font-size-h1-mobile};
-        --line-height-h1: #{$line-height-h1-mobile};
-        --font-size-h2: #{$font-size-h2-mobile};
-        --line-height-h2: #{$line-height-h2-mobile};
-        --font-size-h3: #{$font-size-h3-mobile};
-        --line-height-h3: #{$line-height-h3-mobile};
-        --font-size-h4: #{$font-size-h4-mobile};
-        --line-height-h4: #{$line-height-h4-mobile};
-        --font-size-h5: #{$font-size-h5-mobile};
-        --line-height-h5: #{$line-height-h5-mobile};
-        --font-size-p1: #{$font-size-p1-mobile};
-        --line-height-p1: #{$line-height-p1-mobile};
-        --font-size-p2: #{$font-size-p2-mobile};
-        --line-height-p2: #{$line-height-p2-mobile};
-        --font-size-aside: #{$font-size-aside-mobile};
-        --line-height-aside: #{$line-height-aside-mobile};
+        --font-size-h1: #{typography.$h1-mobile};
+        --line-height-h1: #{typography.$height-h1-mobile};
+        --font-size-h2: #{typography.$h2-mobile};
+        --line-height-h2: #{typography.$height-h2-mobile};
+        --font-size-h3: #{typography.$h3-mobile};
+        --line-height-h3: #{typography.$height-h3-mobile};
+        --font-size-h4: #{typography.$h4-mobile};
+        --line-height-h4: #{typography.$height-h4-mobile};
+        --font-size-h5: #{typography.$h5-mobile};
+        --line-height-h5: #{typography.$height-h5-mobile};
+        --font-size-p1: #{typography.$p1-mobile};
+        --line-height-p1: #{typography.$height-p1-mobile};
+        --font-size-p2: #{typography.$p2-mobile};
+        --line-height-p2: #{typography.$height-p2-mobile};
+        --font-size-aside: #{typography.$aside-mobile};
+        --line-height-aside: #{typography.$height-aside-mobile};
 
         --card-padding: #{$card-padding-mobile};
     }

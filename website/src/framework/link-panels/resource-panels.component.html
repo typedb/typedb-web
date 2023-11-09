@@ -2,7 +2,7 @@
   <div class="section lc-root-cols-3" *ngSwitchCase="3">
     <ng-container *ngFor="let resource of resources">
       <a
-        class="card lc-card lc-card-cols-3 lc-card-compact"
+        class="card lc-card lc-card-cols-3 lc-flex-container lc-card-compact"
         [attr.role]="resource.link ? undefined : 'button'"
         [attr.aria-disabled]="resource.link ? undefined : true"
         [class.hoverable]="!!resource.link"
@@ -10,7 +10,8 @@
       >
         <aside *ngIf="!resource.link" class="lp-coming-soon">coming soon</aside>
         <h3>{{ resource.title }}</h3>
-        <td-rich-text [value]="resource.description" />
+        <td-rich-text [value]="resource.description" class="flex" />
+        <p class="button-secondary">{{ resource.linkText }}</p>
       </a>
     </ng-container>
   </div>
@@ -18,14 +19,13 @@
     <a
       *ngFor="let resource of resources"
       [tdLink]="resource.link"
-      class="card lc-card lc-card-cols-4"
+      class="card lc-card lc-flex-container lc-card-cols-4"
       [class.hoverable]="!!resource.link"
     >
       <aside *ngIf="!resource.link" class="lp-coming-soon">coming soon</aside>
       <h3>{{ resource.title }}</h3>
-      <td-rich-text [value]="resource.description" />
-      <div class="flex"></div>
-      <p class="link-tertiary">Learn More</p>
+      <td-rich-text [value]="resource.description" class="flex" />
+      <p class="link-tertiary">{{ resource.linkText }}</p>
     </a>
   </div>
 </ng-container>

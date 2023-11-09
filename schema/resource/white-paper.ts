@@ -1,20 +1,17 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, ResourceSection } from "../component/page-section";
+import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { MetaTags } from "../page/meta-tags";
-import { resourceCommonFields } from "./base";
+import { SiteResource, resourceCommonFields, resourcePropsFromSanity } from "./base";
 import { SanityWhitePaper, whitePaperSchemaName } from "./sanity";
 
-export class WhitePaper {
-    readonly title: ParagraphWithHighlights;
-    readonly slug: string;
-    readonly description: PortableText;
+export class WhitePaper extends SiteResource {
     readonly fileURL: string;
     readonly fileName?: string;
     readonly tags: string[];
@@ -22,12 +19,9 @@ export class WhitePaper {
     readonly landscapeImageURL: string;
     readonly furtherLearning?: ResourceSection;
     readonly hubspotFormID: string;
-    readonly metaTags: MetaTags;
 
     constructor(props: PropsOf<WhitePaper>) {
-        this.title = props.title;
-        this.slug = props.slug;
-        this.description = props.description;
+        super(props);
         this.fileURL = props.fileURL;
         this.fileName = props.fileName;
         this.tags = props.tags;
@@ -35,14 +29,10 @@ export class WhitePaper {
         this.landscapeImageURL = props.landscapeImageURL;
         this.furtherLearning = props.furtherLearning;
         this.hubspotFormID = props.hubspotFormID;
-        this.metaTags = props.metaTags;
     }
 
     static fromSanity(data: SanityWhitePaper, db: SanityDataset): WhitePaper {
-        return new WhitePaper({
-            title: ParagraphWithHighlights.fromSanity(data.title),
-            slug: data.slug.current,
-            description: data.description,
+        return new WhitePaper(Object.assign(resourcePropsFromSanity(data, db), {
             fileURL: db.resolveRef(data.file.asset).url,
             fileName: db.resolveRef(data.file.asset).originalFilename,
             tags: data.tags,
@@ -52,8 +42,7 @@ export class WhitePaper {
                 ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
                 : undefined,
             hubspotFormID: data.hubspotFormID,
-            metaTags: MetaTags.fromSanity(data.metaTags || {}, db),
-        });
+        }));
     }
 
     detailsPageLink(): Link {
@@ -91,7 +80,7 @@ export const whitePaperSchema = defineType({
             type: "image",
             validation: requiredRule,
         }),
-        furtherLearningField,
+        furtherLearningFieldOptional,
         hubspotFormIDField,
     ],
 });

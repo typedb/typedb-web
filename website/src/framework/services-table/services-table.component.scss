@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 .st-table {
     border-radius: var(--border-radius);
@@ -8,7 +8,7 @@
 .st-row {
     display: flex;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
     }
 
@@ -25,7 +25,7 @@
     align-items: center;
     justify-content: center;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-basis: 104px;
     }
 
@@ -33,12 +33,12 @@
         height: 96px;
         width: 96px;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             height: 72px;
             width: 72px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             height: 56px;
             width: 56px;
         }
@@ -52,7 +52,7 @@
     flex-direction: column;
     gap: 16px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 16px;
     }
 }
@@ -62,7 +62,7 @@
     flex-direction: column;
     gap: 8px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         align-items: center;
     }
 }
@@ -78,11 +78,11 @@
         grid-template-columns: repeat(2, fit-content(100%));
     }
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         grid-template-columns: repeat(2, fit-content(100%));
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         &,
         &.st-check-list-two-columns {
             grid-template-columns: 1fr;

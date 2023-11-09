@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 section {
     margin-top: 32px;
@@ -6,11 +6,11 @@ section {
     &:first-of-type {
         margin-top: 168px;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             margin-top: 140px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 110px;
         }
     }
@@ -37,7 +37,7 @@ a {
 }
 
 article > div {
-    padding-bottom: $subsection-margin;
+    padding-bottom: var(--subsection-margin);
 }
 
 th,

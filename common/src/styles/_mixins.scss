@@ -1,19 +1,20 @@
-@use "colors" as *;
-@use "sizes" as *;
+@use "colors";
+@use "media";
+@use "shapes" as *;
 
 @mixin section-width($offset) {
     // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
     width: $section-width + $offset;
 
-    @media (min-width: ($section-width-tablet + $section-page-margin-tablet * 2)) and (max-width: $media-max-width-tablet) {
+    @media (min-width: ($section-width-tablet + $section-page-margin-tablet * 2)) and (max-width: media.$max-width-tablet) {
         width: $section-width-tablet + $offset;
     }
 
-    @media (min-width: $media-min-width-tablet) and (max-width: ($section-width-tablet + $section-page-margin-tablet * 2 - 1px)) {
+    @media (min-width: media.$min-width-tablet) and (max-width: ($section-width-tablet + $section-page-margin-tablet * 2 - 1px)) {
         width: calc(100vw - $section-page-margin-tablet * 2 + $offset);
     }
 
-    @media (min-width: ($section-width-mobile + 24px)) and (max-width: $media-max-width-mobile) {
+    @media (min-width: ($section-width-mobile + 24px)) and (max-width: media.$max-width-mobile) {
         width: $section-width-mobile + $offset;
     }
 
@@ -46,12 +47,12 @@
     transition-timing-function: ease;
     text-decoration: none !important; // overrides various styles that set an underline on anchors
 
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         height: 48px;
         width: 202px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: 40px;
     }
 
@@ -73,11 +74,11 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 3px 26px 0 rgba($color-green, 0.4);
+            box-shadow: 0 3px 26px 0 rgba(colors.$green, 0.4);
         }
 
         &:active {
-            background-color: mix($color-green, $color-purple);
+            background-color: mix(colors.$green, colors.$purple);
         }
     }
 }
@@ -109,11 +110,11 @@
 @mixin content-table {
     background: var(--table-body-background);
     border-radius: var(--border-radius);
-    box-shadow: 0 0 0 1px var(--table-border-color);
+    box-shadow: 0 0 0 1px var(--content-border-color);
     overflow: hidden;
 
     > * > tr {
-        border-bottom: 1px solid var(--table-border-color);
+        border-bottom: 1px solid var(--content-border-color);
 
         > * {
             padding: 0.75rem 1.25rem;
@@ -144,7 +145,7 @@
     }
 
     > colgroup col:not(:first-of-type) {
-        border-left: 1px solid var(--table-border-color);
+        border-left: 1px solid var(--content-border-color);
     }
 
     > tbody > tr:last-child {

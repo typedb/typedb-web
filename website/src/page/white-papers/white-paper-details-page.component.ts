@@ -62,6 +62,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
     }
 
     private onSubmit() {
+        this._analytics.google.reportAdConversion("downloadWhitePaper");
         const whitePaper = this.whitePaper;
         if (!whitePaper) {
             return;

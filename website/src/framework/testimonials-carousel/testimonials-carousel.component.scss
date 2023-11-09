@@ -1,5 +1,5 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 :host {
     display: block;
@@ -12,7 +12,7 @@
     perspective: 1400px;
     transform-style: preserve-3d;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: 264px;
     }
 }
@@ -32,7 +32,7 @@
     transition-duration: 750ms;
     transition-timing-function: ease;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 311px;
         transition-duration: 400ms;
     }
@@ -56,7 +56,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding-top: 16px;
     }
 }
@@ -71,7 +71,7 @@
         height: 54px;
         border-radius: var(--border-radius);
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             width: 40px;
             height: 40px;
         }
@@ -81,7 +81,7 @@
 .tc-person-job {
     margin-top: 2px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -92,7 +92,7 @@
 .tc-logo {
     height: 48px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: 28px;
     }
 }
@@ -103,11 +103,11 @@
     justify-content: center;
     gap: 61px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         margin-top: 40px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 24px;
         gap: 24px;
     }
@@ -124,7 +124,7 @@
     background: transparent;
     cursor: pointer;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 30px;
         height: 30px;
 

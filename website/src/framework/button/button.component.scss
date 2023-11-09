@@ -1,17 +1,3 @@
-@import "mixins";
-
 :host {
     position: relative;
-}
-
-a {
-    @include button;
-
-    &.primary {
-        @include button-primary;
-    }
-
-    &.secondary {
-        @include button-secondary;
-    }
 }

@@ -2,6 +2,7 @@ import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import { requiredRule, slugField } from "../common-fields";
+import { furtherLearningField, furtherLearningFieldOptional } from "../component/page-section";
 import { resourceCommonFields } from "./base";
 import { EventBase } from "./event-base";
 import { EventDate, eventDateField, EventSignupMethod } from "./live-event-details";
@@ -107,5 +108,6 @@ export const liveEventSchema = defineType({
             type: "button",
             hidden: ({ parent }) => (parent as SanityLiveEvent)?.signupMethod !== EventSignupMethod.externalURL,
         }),
+        furtherLearningFieldOptional,
     ],
 });

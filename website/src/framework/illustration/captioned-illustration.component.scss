@@ -1,11 +1,11 @@
-@import "sizes";
+@use "media";
 
 .ci-root {
     display: flex;
     flex-flow: row wrap;
     gap: 24px 64px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         column-gap: 56px;
     }
 }
@@ -13,7 +13,7 @@
 .ci-illustration {
     flex: 0 0 700px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         flex: 1 1 600px;
     }
 

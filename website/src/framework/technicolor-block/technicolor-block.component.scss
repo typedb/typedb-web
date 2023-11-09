@@ -1,5 +1,5 @@
-@import "colors";
-@import "sizes";
+@use "colors";
+@use "media";
 
 $icon-size: 72px;
 
@@ -25,7 +25,7 @@ $icon-size: 72px;
             margin-top: 256px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 64px;
 
             &.tb-level-h1 {
@@ -43,7 +43,7 @@ $icon-size: 72px;
             color: var(--color-green);
         }
         .tb-background {
-            @include graphic-line-gradient($color-green);
+            @include graphic-line-gradient(colors.$green);
         }
     }
 
@@ -52,7 +52,7 @@ $icon-size: 72px;
             color: var(--color-secondary-pink);
         }
         .tb-background {
-            @include graphic-line-gradient($color-secondary-pink);
+            @include graphic-line-gradient(colors.$secondary-pink);
         }
     }
 
@@ -61,7 +61,7 @@ $icon-size: 72px;
             color: var(--color-secondary-yellow);
         }
         .tb-background {
-            @include graphic-line-gradient($color-secondary-yellow);
+            @include graphic-line-gradient(colors.$secondary-yellow);
         }
     }
 
@@ -82,7 +82,7 @@ $icon-size: 72px;
     width: 3px;
     z-index: -1;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 2px;
     }
 }
@@ -92,11 +92,11 @@ $icon-size: 72px;
     grid-template-columns: 120px minmax(auto, 660px);
     padding-bottom: 64px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         padding-bottom: 56px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding-bottom: 24px;
         grid-template-columns: 84px auto;
     }
@@ -118,12 +118,14 @@ $icon-size: 72px;
         width: $icon-size + 32px;
         height: $icon-size + 32px;
         margin-left: -16px;
-        border-radius: $border-radius;
+        border-radius: var(--border-radius);
         filter: blur(8px);
         background: var(--color-black-purple);
     }
 
     .tb-icon-bg-halo {
+        display: block;
+        color: unset;
         position: absolute;
         width: $icon-size + 32px;
         height: $icon-size + 32px;
@@ -133,6 +135,11 @@ $icon-size: 72px;
         opacity: 0.15;
         background: currentColor;
         z-index: 4;
+        transition: opacity 200ms ease;
+
+        &:hover {
+            opacity: 0.3;
+        }
     }
 
     .tb-icon {
@@ -155,7 +162,7 @@ $icon-size: 72px;
     left: -3px;
     pointer-events: none;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         left: -2px;
         width: 6px;
         height: 6px;
@@ -171,14 +178,14 @@ $icon-size: 72px;
         border-radius: 50%;
         filter: blur(15px);
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             top: -7px;
             left: -7px;
             width: 23px;
             height: 23px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             top: -5px;
             left: -5px;
             width: 16px;
@@ -191,7 +198,7 @@ td-heading-with-highlights {
     display: block;
     margin: 24px 0;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin: 16px 0;
     }
 }

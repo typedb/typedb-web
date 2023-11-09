@@ -1,5 +1,5 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 .wp-primary-placeholder {
     padding-bottom: calc(100% * 2 / 3);
@@ -13,7 +13,7 @@
 .wp-primary-webinar {
     padding: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
     }
 }
@@ -21,13 +21,13 @@
 .wp-primary-webinar-summary {
     margin-top: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 20px;
     }
 }
 
 .wp-webinar-title-container {
-    color: var(--default-text-color);
+    color: var(--body-font-color);
 }
 
 .wp-title-separator {
@@ -43,7 +43,7 @@
     display: flex;
     gap: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 8px;
         flex-direction: column;
         gap: 20px;
@@ -54,7 +54,7 @@
     @include line-clamp(2);
     max-height: 24px * 2;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         @include line-clamp(3);
         max-height: 21px * 3;
     }
@@ -63,7 +63,7 @@
 .wp-primary-webinar-actions {
     align-self: flex-end;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 24px;
     }
 }
@@ -83,7 +83,7 @@
         border-top: 1px solid var(--content-border-color);
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 16px 12px;
         flex-direction: column;
         align-items: stretch;
@@ -101,7 +101,7 @@
     td-button {
         width: 126px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             width: auto;
         }
     }
@@ -116,7 +116,7 @@
     width: 150px;
     flex-shrink: 0;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 100px;
     }
 }

@@ -1,10 +1,10 @@
-@import "sizes";
+@use "media";
 
 .wp-root {
     display: flex;
     gap: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         gap: 16px;
     }
@@ -18,11 +18,11 @@
     flex-direction: column;
     gap: 24px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         gap: 20px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
         gap: 12px;
     }
@@ -42,7 +42,7 @@
     .wp-speakers {
         margin-top: 12px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 8px;
         }
     }

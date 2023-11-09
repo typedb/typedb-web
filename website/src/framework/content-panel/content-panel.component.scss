@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 .cp-root {
     display: flex;
@@ -7,12 +7,12 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         padding: 32px;
         gap: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
         gap: 20px;
     }
@@ -25,11 +25,11 @@ td-aspect-ratio {
     flex: 0 0 calc((var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px) * 16 / 9);
     max-width: 100%;
 
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         flex-basis: 476px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
     }
 
@@ -43,11 +43,11 @@ td-illustration.cp-code-snippet {
     max-width: 100%;
     height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px);
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         flex-basis: 476px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
     }
 }
