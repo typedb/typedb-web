@@ -1,7 +1,7 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, ResourceSection } from "../component/page-section";
+import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -91,7 +91,7 @@ export const whitePaperSchema = defineType({
             type: "image",
             validation: requiredRule,
         }),
-        furtherLearningField,
+        furtherLearningFieldOptional,
         hubspotFormIDField,
     ],
 });

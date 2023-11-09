@@ -68,13 +68,13 @@ export interface SanityEventBase extends SanitySiteResource {
     speakers: SanityReference<SanityPerson>[];
     hubspotFormID?: string;
     metaTags?: SanityMetaTags;
+    furtherLearning?: SanityResourceSection;
 }
 
 export interface SanityWebinar extends SanityEventBase {
     _type: typeof webinarSchemaName;
     datetime: string;
     durationMins: number;
-    furtherLearning?: SanityResourceSection;
     airmeetID?: string;
     onDemandVideoURL?: string;
     comingSoon: boolean;

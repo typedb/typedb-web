@@ -269,3 +269,13 @@ pre code {
 .card-padding {
     @include card-padding;
 }
+
+.button-primary {
+    @include button;
+    @include button-primary;
+}
+
+.button-secondary {
+    @include button;
+    @include button-secondary;
+}

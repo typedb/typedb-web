@@ -9,8 +9,7 @@
       <div><img class="lc-icon" [src]="panel.iconURL" alt="" /></div>
       <div class="lc-flex-container">
         <h3 class="lc-title">{{ panel.title }}</h3>
-        <td-rich-text [value]="panel.body" />
-        <div class="hide-mobile flex"></div>
+        <td-rich-text [value]="panel.body" class="flex" />
         <p class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
       </div>
     </a>
