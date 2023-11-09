@@ -1,3 +1,0 @@
-build --define version="0.0.0" --define snapshot-version="0.0.0-snapshot"
-run
-test

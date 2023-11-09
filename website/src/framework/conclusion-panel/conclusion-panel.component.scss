@@ -1,11 +1,11 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 .cp-root {
     @include card-appearance;
     display: flex;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
     }
 }
@@ -23,7 +23,7 @@
     flex-direction: column;
     gap: 16px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
         gap: 8px;
     }
@@ -39,11 +39,11 @@
     border-left: 1px solid var(--content-border-color);
     min-width: 360px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         min-width: auto;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         border-radius: 0 0 var(--border-radius) var(--border-radius);
         border-top: 1px solid var(--content-border-color);
         border-left: none;
@@ -57,7 +57,7 @@
         flex-direction: column;
         gap: 8px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 16px;
         }
 

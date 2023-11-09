@@ -1,4 +1,4 @@
-@import "colors";
+@use "colors";
 
 :host {
     position: absolute;
@@ -8,7 +8,7 @@
 .mp-root {
     width: 100%;
     border-top: 1px solid var(--color-secondary-deep-grey);
-    box-shadow: 0 8px 30px rgba($color-black-purple, 0.58);
+    box-shadow: 0 8px 30px rgba(colors.$black-purple, 0.58);
     padding-left: 186px;
     display: flex;
     flex-direction: row;
@@ -61,14 +61,14 @@
 }
 
 .mp-column-title {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     padding-bottom: 8px;
     border-bottom: 1px solid var(--content-border-color);
     font-weight: var(--font-weight-semi-bold);
 }
 
 dt {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     font-weight: var(--font-weight-regular);
 }
 

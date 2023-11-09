@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 .ol-root {
     border-radius: var(--border-radius);
@@ -8,12 +8,12 @@
     align-items: center;
     gap: 32px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         padding-left: 32px;
         padding-right: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding-left: 12px;
         padding-right: 12px;
     }
@@ -23,11 +23,11 @@
         border: 1px solid var(--content-border-color);
         background: var(--color-purple);
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             padding: 32px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             padding: 12px;
         }
     }
@@ -43,7 +43,7 @@
     max-height: 66px;
     min-width: 0;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: 34px;
 
         &:nth-child(n + 4) {

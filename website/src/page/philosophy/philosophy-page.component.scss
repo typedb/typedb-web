@@ -1,9 +1,9 @@
-@import "sizes";
+@use "media";
 
 .ip-long-text {
     columns: 2;
 
-    @media (orientation: portrait) or (max-width: $media-max-width-mobile) {
+    @media (orientation: portrait) or (max-width: media.$max-width-mobile) {
         columns: 1;
     }
 }

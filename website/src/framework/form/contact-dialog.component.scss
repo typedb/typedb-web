@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 .mdc-dialog__content {
     max-height: none;
@@ -11,7 +11,7 @@ aside {
     bottom: 24px;
     left: 24px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         position: static;
         margin-top: 12px;
     }

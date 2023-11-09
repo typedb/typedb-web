@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 .ac-root {
     display: flex;
@@ -6,7 +6,7 @@
     gap: 16px;
     margin-top: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         margin-top: 24px;
     }

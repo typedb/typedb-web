@@ -1,4 +1,4 @@
-@import "node_modules/typedb-web-common/src/styles/sizes";
+@use "media";
 
 ul.wd-subtitle {
     margin-top: 32px;
@@ -8,11 +8,11 @@ ul.wd-subtitle {
     justify-content: center;
     gap: 24px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         margin-top: 24px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
         gap: 8px;
     }
@@ -27,7 +27,7 @@ ul.wd-subtitle {
         content: "|";
         margin-left: 24px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-left: 8px;
         }
     }
@@ -36,7 +36,7 @@ ul.wd-subtitle {
         font-size: 20px;
         margin-right: 16px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-right: 8px;
             font-size: 16px;
         }
@@ -62,14 +62,14 @@ ul.wd-speakers {
     flex-direction: column;
     gap: 24px;
 
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         width: 560px;
         max-width: 50%;
         float: right;
         margin-left: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
         gap: 12px;
     }

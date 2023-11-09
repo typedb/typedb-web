@@ -1,6 +1,6 @@
 @use "@angular/material" as mat;
+@use "media";
 @use "mixins" as *;
-@use "sizes" as *;
 
 @import "base";
 @import "fonts";
@@ -46,7 +46,7 @@ article {
             padding-bottom: 0;
         }
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             padding-bottom: 315px;
 
             &.article-content-no-planet {
@@ -54,7 +54,7 @@ article {
             }
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             padding-bottom: 250px;
 
             &.article-content-no-planet {
@@ -71,18 +71,6 @@ section,
     @include section-width($offset: 0px);
     margin-left: auto;
     margin-right: auto;
-}
-
-p code,
-p .text-code,
-li > code,
-li > .text-code {
-    hyphens: none;
-    color: var(--color-secondary-pink);
-    background: var(--color-black-purple);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--content-border-color);
-    padding: 6px 6px 3px;
 }
 
 .narrow-section {
@@ -153,7 +141,7 @@ table {
 }
 
 .hs-form label {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
 }
 
 .hs-form ul {
@@ -170,9 +158,9 @@ select {
     width: 100% !important; // overrides media query from Hubspot
     padding: 0 8px;
     background-color: var(--color-purple);
-    color: var(--default-text-color);
+    color: var(--body-font-color);
     border: 1px solid var(--content-border-color);
-    caret-color: var(--default-text-color);
+    caret-color: var(--body-font-color);
     border-radius: var(--border-radius);
     font-size: 16px;
     line-height: 46px;
@@ -233,7 +221,7 @@ body .hs-form fieldset {
 }
 
 body .hs-form fieldset.form-columns-2 > div:first-of-type .input {
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         margin-right: 32px;
     }
 }
@@ -248,13 +236,13 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 }
 
 .hs-form fieldset.form-columns-2 .hs-form-field + .hs-form-field {
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
     }
 }
 
 .hs_support_request__multi_check_box_ {
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         width: 50%;
         float: left;
     }
@@ -271,9 +259,9 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 .hs-form textarea {
     width: 100%;
     background-color: var(--color-purple);
-    color: var(--default-text-color);
+    color: var(--body-font-color);
     border: 1px solid var(--content-border-color);
-    caret-color: var(--default-text-color);
+    caret-color: var(--body-font-color);
     border-radius: var(--border-radius);
     font-size: 16px;
     padding: 8px;
@@ -287,7 +275,7 @@ body .hs-form fieldset.form-columns-1 .hs-input {
         position: absolute;
         height: 264px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 200px;
             height: 124px;
         }
@@ -314,13 +302,13 @@ body .hs-form fieldset.form-columns-1 .hs-input {
 #hubspot-form-holder-contact,
 #hubspot-form-holder-contact-section {
     .hs-submit {
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 100px;
         }
     }
 
     input[type="submit"].hs-button {
-        @media (min-width: $media-min-width-tablet) {
+        @media (min-width: media.$min-width-tablet) {
             width: 202px;
             float: right;
         }

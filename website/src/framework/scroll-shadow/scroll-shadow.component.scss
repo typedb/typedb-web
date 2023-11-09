@@ -1,4 +1,4 @@
-@import "colors";
+@use "colors";
 
 :host {
     display: block;
@@ -37,20 +37,20 @@
 
 .ss-left {
     left: 0;
-    background: linear-gradient(90deg, $color-deep-purple 0%, rgba($color-deep-purple, 0) 100%);
+    background: linear-gradient(90deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-right {
     right: 0;
-    background: linear-gradient(-90deg, $color-deep-purple 0%, rgba($color-deep-purple, 0) 100%);
+    background: linear-gradient(-90deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-top {
     top: 0;
-    background: linear-gradient(180deg, $color-deep-purple 0%, rgba($color-deep-purple, 0) 100%);
+    background: linear-gradient(180deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-bottom {
     bottom: 0;
-    background: linear-gradient(0deg, $color-deep-purple 0%, rgba($color-deep-purple, 0) 100%);
+    background: linear-gradient(0deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }

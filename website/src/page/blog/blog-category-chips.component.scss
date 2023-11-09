@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 :host {
     font-weight: var(--font-weight-semi-bold);
@@ -15,7 +15,7 @@
         color: var(--color-secondary-pink);
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
     }
 }

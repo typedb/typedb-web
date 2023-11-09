@@ -1,5 +1,5 @@
-@import "colors";
-@import "sizes";
+@use "colors";
+@use "media";
 
 .pi-speaker {
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;
     gap: 16px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 8px;
     }
 
@@ -16,7 +16,7 @@
         width: 88px;
         height: 88px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             width: 54px;
             height: 54px;
         }
@@ -33,7 +33,7 @@
             position: absolute;
             inset: 0;
             opacity: 0;
-            background: rgba($color-black-purple, 0.4);
+            background: rgba(colors.$black-purple, 0.4);
             color: var(--color-white);
             display: flex;
             align-items: center;
@@ -71,10 +71,10 @@
 }
 
 .pi-person-name {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
 }
 
-@media (max-width: $media-max-width-tablet) {
+@media (max-width: media.$max-width-tablet) {
     a.pi-speaker {
         color: var(--color-green);
 

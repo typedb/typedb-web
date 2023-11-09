@@ -1,5 +1,5 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 hr {
     margin: 0;
@@ -17,7 +17,7 @@ hr {
 .bp-title-section {
     margin-top: 160px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 54px;
     }
 }
@@ -44,18 +44,18 @@ hr {
     align-items: flex-start;
     gap: 40px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         gap: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         display: block;
     }
 
     .bp-primary-img-link {
         flex: 0 0 60%;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             flex-basis: auto;
         }
     }
@@ -84,7 +84,7 @@ hr {
     margin-top: 16px;
     @include line-clamp(5);
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         margin-top: 8px;
     }
 }
@@ -96,7 +96,7 @@ hr {
     gap: 16px;
     margin-top: 16px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 8px;
     }
 
@@ -112,7 +112,7 @@ hr {
     border: 1px solid var(--content-border-color);
     border-radius: var(--border-radius);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 32px;
         height: 32px;
     }
@@ -133,7 +133,7 @@ td-aspect-ratio {
 }
 
 .bp-secondary-posts {
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         display: flex;
         gap: 40px;
     }
@@ -145,7 +145,7 @@ td-aspect-ratio {
     flex-direction: column;
     gap: 24px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         display: block;
 
         & + .bp-secondary-post {
@@ -179,7 +179,7 @@ td-aspect-ratio {
 }
 
 .bp-tertiary-post {
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         display: flex;
         flex-direction: row;
         align-items: center;

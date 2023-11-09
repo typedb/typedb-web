@@ -1,15 +1,15 @@
-@import "sizes";
+@use "media";
 
 .kpp-root {
     display: flex;
     flex-flow: row wrap;
     gap: 40px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         gap: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 12px;
     }
 }
@@ -18,11 +18,11 @@
     padding: 32px;
     flex: 1 1 400px;
 
-    @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         padding: 20px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
     }
 }

@@ -1,17 +1,17 @@
-@import "sizes";
+@use "media";
 
 $post-content-width: 800px;
 
 .bp-nebula-section {
     margin-top: 120px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 48px;
     }
 }
 
 ::ng-deep .bp-site-title p {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     font-weight: var(--font-weight-bold);
 }
 
@@ -22,14 +22,14 @@ $post-content-width: 800px;
 .bp-intro-section {
     width: $post-content-width;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         max-width: var(--section-max-width);
     }
 
     ::ng-deep h1 {
         padding: 48px 0 24px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             padding: 12px 0 0;
         }
     }
@@ -37,7 +37,7 @@ $post-content-width: 800px;
     td-rich-text {
         margin-top: 1.25em;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 0.75em;
         }
     }
@@ -47,7 +47,7 @@ $post-content-width: 800px;
     margin-top: 40px;
     border-top: 1px solid var(--content-border-color);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
     }
 }
@@ -61,7 +61,7 @@ $post-content-width: 800px;
 .bp-author-section {
     width: $post-content-width;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         max-width: var(--section-max-width);
     }
 }
@@ -96,7 +96,7 @@ $post-content-width: 800px;
     gap: 10px;
     margin-top: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 8px;
     }
 
@@ -116,7 +116,7 @@ $post-content-width: 800px;
     border: 1px solid var(--content-border-color);
     border-radius: var(--border-radius);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 40px;
         height: 40px;
     }
@@ -132,7 +132,7 @@ $post-content-width: 800px;
     display: flex;
     gap: 48px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 24px;
         display: block;
     }
@@ -144,14 +144,14 @@ $post-content-width: 800px;
     line-height: var(--line-height-p2);
     font-weight: var(--font-weight-light);
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         max-width: var(--section-max-width);
     }
 
     section {
         width: $post-content-width;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             max-width: var(--section-max-width);
         }
     }
@@ -168,14 +168,14 @@ $post-content-width: 800px;
 .bp-sidebar {
     flex: 0 0 320px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 32px;
     }
 
     > * {
         margin-bottom: 64px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-bottom: 32px;
         }
     }
@@ -199,7 +199,7 @@ $post-content-width: 800px;
 .bp-sharing-section h4,
 .bp-newsletter-section h4,
 .bp-related-post-group-heading {
-    color: var(--default-text-color);
+    color: var(--body-font-color);
     font-weight: var(--font-weight-semi-bold);
     padding-bottom: 8px;
     border-bottom: 2px solid var(--content-border-color);
