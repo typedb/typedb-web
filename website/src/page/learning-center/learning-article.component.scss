@@ -59,8 +59,6 @@ $post-content-width: 800px;
 }
 
 .bp-author-section {
-    width: $post-content-width;
-
     @media (max-width: media.$max-width-tablet) {
         max-width: var(--section-max-width);
     }
@@ -166,7 +164,7 @@ $post-content-width: 800px;
 }
 
 .bp-sidebar {
-    flex: 0 0 320px;
+    flex: 1;
 
     @media (max-width: media.$max-width-mobile) {
         margin-top: 32px;
@@ -202,7 +200,7 @@ $post-content-width: 800px;
     color: var(--body-font-color);
     font-weight: var(--font-weight-semi-bold);
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--content-border-color);
+    border-bottom: 1px solid var(--content-border-color);
 }
 
 .bp-related-post {
