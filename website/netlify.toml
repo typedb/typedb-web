@@ -55,7 +55,7 @@ status = 301
 [[redirects]]
 from = "/docs"
 to = "/docs/home/overview"
-status = 303
+status = 302
 force = true
 
 [[redirects]]
