@@ -1,5 +1,5 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 :host {
     display: block;
@@ -30,7 +30,7 @@
     figure, pre, blockquote {
         margin: 40px auto;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin: 16px auto;
         }
     }
@@ -42,7 +42,7 @@
         padding: 20px;
         overflow: auto;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             padding: 12px;
         }
     }
@@ -67,11 +67,11 @@
             font-style: italic;
             font-size: 20px;
 
-            @media (min-width: $media-min-width-tablet) and (max-width: $media-max-width-tablet) {
+            @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
                 font-size: 14px;
             }
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 font-size: 12px;
             }
         }

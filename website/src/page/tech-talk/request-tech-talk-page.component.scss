@@ -1,9 +1,9 @@
-@import "sizes";
+@use "media";
 
 .rt-details {
     text-align: start;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         display: flex;
         flex-direction: column-reverse;
         gap: 24px;
@@ -22,11 +22,11 @@
     flex-direction: column;
     gap: 24px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         max-width: 405px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-left: 0;
         max-width: auto;
     }
@@ -35,14 +35,14 @@
 .rt-details-title {
     display: block;
     margin-bottom: 40px;
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     font-weight: var(--font-weight-bold);
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         margin-bottom: 32px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-bottom: 24px;
     }
 }

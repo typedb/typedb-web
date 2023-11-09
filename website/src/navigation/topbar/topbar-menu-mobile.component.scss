@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 :host {
     width: 530px;
@@ -9,14 +9,14 @@
     background-color: var(--color-purple);
     border: 1px solid var(--color-secondary-deep-grey);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 100%;
         padding: 0 20px;
         overflow-y: auto;
         border: none;
     }
 
-    @media (min-width: $media-min-width-desktop) {
+    @media (min-width: media.$min-width-desktop) {
         display: none;
     }
 }
@@ -35,7 +35,7 @@
     flex-direction: column;
     gap: 24px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin: 0 -20px;
         padding: 16px 20px;
         overflow-y: visible;
@@ -52,10 +52,10 @@
         justify-content: space-between;
         gap: 10px;
         align-items: center;
-        color: var(--default-heading-color);
+        color: var(--body-heading-color);
         cursor: pointer;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin: 0 -20px;
             padding: 0 20px;
             gap: 16px;
@@ -65,7 +65,7 @@
             color: var(--color-green);
             text-decoration: underline;
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 text-decoration: initial;
             }
 
@@ -89,7 +89,7 @@
     align-items: center;
     gap: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 16px 0;
         gap: 20px;
     }
@@ -98,7 +98,7 @@
         &:first-of-type {
             margin-right: 8px;
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 margin-right: -4px;
             }
         }
@@ -106,7 +106,7 @@
         &:last-of-type {
             margin-left: 8px;
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 margin-left: -4px;
             }
         }
