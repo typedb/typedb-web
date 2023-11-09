@@ -24,7 +24,7 @@ export class PublicationPanelComponent {
     }
 
     isPortableText(item: PublicationContentRowItem): item is PortableText {
-        return "slice" in item;
+        return item && "slice" in item;
     }
 
     isIllustration(item: PublicationContentRowItem): item is Illustration {

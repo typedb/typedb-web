@@ -58,6 +58,7 @@ export class RequestTechTalkPageComponent implements OnInit {
     }
 
     private onSubmit() {
+        this.analytics.google.reportAdConversion("requestTechTalk");
         this.popupNotificationService.success("Your request has been submitted!");
     }
 }
