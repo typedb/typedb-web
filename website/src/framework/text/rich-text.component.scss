@@ -101,6 +101,7 @@
     }
 
     table {
+        width: 100%;
         @include content-table;
     }
 }

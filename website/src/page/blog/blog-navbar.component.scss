@@ -32,11 +32,6 @@ ul {
         justify-content: space-around;
     }
 
-    &.bp-author-small {
-        gap: 8px;
-        margin-top: 24px;
-    }
-
     @media (max-width: media.$max-width-mobile) {
         gap: 8px;
     }
