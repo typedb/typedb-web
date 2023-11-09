@@ -1,5 +1,5 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 .sm-root {
     display: flex;
@@ -24,7 +24,7 @@
         color: var(--color-white);
         font-size: 48px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             font-size: 32px;
         }
     }

@@ -1,5 +1,5 @@
-@import "colors";
-@import "sizes";
+@use "colors";
+@use "media";
 
 :host {
     position: relative;
@@ -7,7 +7,7 @@
     ::ng-deep .ib-tooltip-text-box {
         transform: translateX(-50%) translateX(12px); // centre inside parent container, then offset half the info button width
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             transform: translateX(-50%) translateX(8px);
         }
     }
@@ -24,7 +24,7 @@
     border-radius: var(--border-radius);
     font-size: 20px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 0;
         width: 16px;
         height: 16px;
@@ -41,6 +41,6 @@
     }
 
     &:focus {
-        background: rgba($color-secondary-blue, 0.15);
+        background: rgba(colors.$secondary-blue, 0.15);
     }
 }

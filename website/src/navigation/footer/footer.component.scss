@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 footer {
     display: flex;
@@ -11,7 +11,7 @@ footer {
 a,
 a:visited,
 a p {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
 
     &:hover,
     &:focus {
@@ -31,7 +31,7 @@ a:focus p {
     max-width: var(--section-max-width);
     padding: 40px 0;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 24px 0;
     }
 
@@ -45,7 +45,7 @@ a:focus p {
     flex-direction: row;
     justify-content: space-between;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         gap: 24px;
 
@@ -61,7 +61,7 @@ a:focus p {
     gap: 24px;
     height: 48px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         align-self: stretch;
         justify-content: center;
         height: 32px;
@@ -71,7 +71,7 @@ a:focus p {
         color: var(--color-white);
         font-size: 48px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             font-size: 32px;
         }
     }
@@ -112,11 +112,11 @@ a:focus p {
     justify-content: space-between;
     gap: 104px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         gap: 72px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 32px 24px;
@@ -125,11 +125,11 @@ a:focus p {
     ul {
         margin-top: 34px;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             margin-top: 32px;
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 16px;
             width: 144px;
         }
@@ -138,7 +138,7 @@ a:focus p {
     li:not(:first-child) {
         margin-top: 20px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             margin-top: 12px;
         }
     }
@@ -150,7 +150,7 @@ a:focus p {
     justify-content: space-between;
     align-items: flex-end;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         align-items: center;
         text-align: center;

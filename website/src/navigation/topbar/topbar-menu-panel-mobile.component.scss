@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 :host {
     margin-top: 24px;
@@ -6,7 +6,7 @@
     padding-left: 16px;
     border-left: 1px solid var(--content-border-color);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
     }
 }
@@ -57,14 +57,14 @@ a:focus {
 }
 
 .mm-column-title {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     font-weight: var(--font-weight-semi-bold);
 }
 
 .mm-list-column-item-name {
     display: flex;
     align-items: center;
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
     font-weight: var(--font-weight-regular);
 }
 

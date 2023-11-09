@@ -1,12 +1,12 @@
+@use "media";
 @import "mixins";
-@import "sizes";
 
 .lc-root-cols-3 {
     display: flex;
     justify-content: space-between;
     gap: 40px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         gap: 16px;
     }
@@ -21,7 +21,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -39,7 +39,7 @@
         cursor: initial;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         text-align: start;
     }
 
@@ -54,7 +54,7 @@
         }
 
         td-button {
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 margin-top: 16px;
             }
         }
@@ -62,13 +62,13 @@
         .lc-flex-container {
             text-align: center;
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 text-align: start;
                 gap: 8px;
             }
 
             .lc-title {
-                @media (min-width: $media-min-width-tablet) {
+                @media (min-width: media.$min-width-tablet) {
                     margin-top: 14px;
                 }
             }
@@ -90,7 +90,7 @@
             margin-top: 8px;
         }
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             h3 {
                 height: calc(33px * 2);
             }
@@ -101,7 +101,7 @@
             }
         }
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             h3 {
                 height: auto;
             }
@@ -113,7 +113,7 @@
     }
 
     &.lc-icon-card {
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             flex-direction: row;
             gap: 8px;
 
@@ -124,7 +124,7 @@
     }
 
     .lc-cta-weak {
-        @media (min-width: $media-min-width-tablet) {
+        @media (min-width: media.$min-width-tablet) {
             display: block;
             margin-top: 14px;
         }
@@ -146,13 +146,13 @@
     }
 
     &:hover h3 {
-        color: var(--default-heading-color);
+        color: var(--body-heading-color);
         text-decoration: none;
     }
 }
 
 td-button {
-    @media (min-width: $media-min-width-tablet) {
+    @media (min-width: media.$min-width-tablet) {
         margin-top: 24px;
     }
 }

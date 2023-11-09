@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 :host {
     display: flex;
@@ -19,11 +19,11 @@
     flex-direction: column;
     gap: 24px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         gap: 16px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 12px;
     }
 }
@@ -31,14 +31,14 @@
 :host.fg-row-size-1 .fg-grid-item {
     flex-direction: row;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         flex-direction: column;
     }
 
     &:nth-of-type(even) {
         flex-direction: row-reverse;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             flex-direction: column;
         }
     }
@@ -50,7 +50,7 @@
     > :not(.fg-grid-item-text) {
         flex: 0 0 552px;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             flex-basis: auto;
         }
     }
@@ -60,7 +60,7 @@
     :host.fg-row-size-#{$i} .fg-grid-item {
         width: calc(100% / #{$i});
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             width: 100%;
         }
     }
@@ -76,7 +76,7 @@ $number-of-lines-mobile: 10;
     ::ng-deep td-polyglot-snippet td-code-snippet {
         height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines);
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile);
         }
     }
@@ -86,14 +86,14 @@ td-illustration.fg-code-snippet {
     max-width: 100%;
     height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
     }
 
     &.fg-code-snippet-short {
         height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-short + 2px);
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
         }
     }
@@ -115,7 +115,7 @@ td-aspect-ratio {
         width: 48px;
         height: 48px;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             width: 32px;
             height: 32px;
         }
@@ -152,7 +152,7 @@ td-aspect-ratio,
     background: var(--color-black-purple);
     hyphens: none;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
     }
 }

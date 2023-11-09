@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 :host {
     display: block;
@@ -19,7 +19,7 @@
         width: calc(100% - 202px - 16px);
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         height: auto;
         margin-top: 12px;
 

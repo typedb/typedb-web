@@ -1,4 +1,4 @@
-@import "node_modules/typedb-web-common/src/styles/sizes";
+@use "media";
 
 .wd-form-card {
     position: relative;
@@ -9,7 +9,7 @@
     gap: 12px 32px;
     text-align: start;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 12px;
         flex-flow: column-reverse nowrap;
     }
@@ -18,7 +18,7 @@
         flex: 1;
         min-width: 0;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             flex-basis: 100%;
         }
     }
@@ -28,7 +28,7 @@
     text-align: start;
     columns: 2;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         columns: 1;
     }
 }
@@ -37,7 +37,7 @@
     border: 1px solid var(--content-border-color);
     border-radius: var(--border-radius);
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         max-width: 100%;
     }
 }
@@ -45,7 +45,7 @@
 #hubspot-form-holder {
     margin: 24px 0;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin: 20px 0;
     }
 }

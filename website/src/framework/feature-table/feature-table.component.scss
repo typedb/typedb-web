@@ -1,4 +1,4 @@
-@import "sizes";
+@use "media";
 
 table {
     overflow: hidden;
@@ -8,11 +8,11 @@ table {
 col:first-of-type {
     width: 359px;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         width: 261px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         width: 114px;
     }
 }
@@ -26,7 +26,7 @@ th,
 td {
     height: 80px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         tr:last-of-type & {
             height: 48px;
         }
@@ -37,14 +37,14 @@ th {
     font-weight: inherit;
     padding: 0 24px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 0 4px;
     }
 
     &:first-of-type {
         text-align: start;
 
-        @media (max-width: $media-max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
             padding: 0 8px;
         }
     }
@@ -56,7 +56,7 @@ th {
     align-items: center;
     gap: 8px;
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         gap: 4px;
     }
 }

@@ -1,5 +1,5 @@
-@import "colors";
-@import "sizes";
+@use "colors";
+@use "media";
 
 header,
 td-topbar-menu-panel {
@@ -49,18 +49,18 @@ nav {
     justify-content: space-between;
     position: relative;
 
-    @media (max-width: $media-max-width-tablet) {
+    @media (max-width: media.$max-width-tablet) {
         padding: 0 12px;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         padding: 0;
     }
 
     .tb-logo-container,
     .tb-menu-panel-header,
     .tb-desktop-items li > a {
-        color: var(--default-heading-color);
+        color: var(--body-heading-color);
         padding: 0 20px;
 
         &:hover,
@@ -80,11 +80,11 @@ nav {
         align-items: center;
 
         img {
-            @media (max-width: $media-max-width-tablet) {
+            @media (max-width: media.$max-width-tablet) {
                 height: 32px;
             }
 
-            @media (max-width: $media-max-width-mobile) {
+            @media (max-width: media.$max-width-mobile) {
                 height: 24px;
             }
         }
@@ -100,7 +100,7 @@ nav {
         flex-direction: row;
         justify-content: space-between;
 
-        @media (max-width: $media-max-width-tablet) {
+        @media (max-width: media.$max-width-tablet) {
             display: none;
         }
 
@@ -139,7 +139,7 @@ nav {
         display: none;
     }
 
-    @media (max-width: $media-max-width-mobile) {
+    @media (max-width: media.$max-width-mobile) {
         margin-right: 12px;
 
         .tb-hamburger-tablet {
@@ -159,7 +159,7 @@ nav {
 td-topbar-menu-panel {
     top: var(--topbar-height);
     border-bottom: 1px solid var(--color-secondary-deep-grey);
-    background-color: rgba($color-purple, 0.8);
+    background-color: rgba(colors.$purple, 0.8);
 
     &::before {
         content: "";
@@ -173,7 +173,7 @@ td-topbar-menu-panel {
 
 a,
 a:visited {
-    color: var(--default-heading-color);
+    color: var(--body-heading-color);
 }
 
 a .tb-external-link-icon {
