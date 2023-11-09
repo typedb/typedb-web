@@ -1,4 +1,11 @@
 <img class="bp-avatar" [class.bp-avatar-small]="isSmall" [src]="post.author.headshotURL" alt="" />
-<p class="bp-author-name text-important">{{ post.author.name }}</p>
-<p>·</p>
-<time class="text-quiet bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>
+<div class="bp-author">
+  <p class="text-important">
+    <strong>{{ post.author.name }}</strong>
+  </p>
+  <p class="bp-author-description">
+    {{ post.author.jobTitle }},
+    {{ post.author.organisation.name }}
+  </p>
+</div>
+<time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>

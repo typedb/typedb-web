@@ -4,12 +4,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
     margin-top: 16px;
-
-    &.bp-author-small {
-        gap: 8px;
-    }
 
     &[size="medium"] {
         margin-top: 24px;
@@ -17,10 +13,6 @@
         @media (max-width: media.$max-width-mobile) {
             margin-top: 16px;
         }
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        gap: 8px;
     }
 
     h3 {
@@ -35,8 +27,16 @@
     }
 }
 
-.bp-author-name {
+.bp-author {
+    flex: 1;
+    min-width: 0;
     margin-left: 8px;
+}
+
+.bp-author-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .bp-avatar {
@@ -66,7 +66,7 @@
     margin: 0 6px -6px 0;
 }
 
-.bp-authored-date {
-    padding: 4px 0 4px 32px;
-    border-left: 1px solid var(--content-border-color);
+.bp-post-date {
+    margin-left: auto;
+    align-self: flex-end;
 }
