@@ -4,8 +4,8 @@ import { isScullyRunning } from "@scullyio/ng-lib";
 import { map, Observable, ReplaySubject, shareReplay } from "rxjs";
 import { FormID, formsSchemaName, SanityHubspotForms } from "typedb-web-schema";
 
-import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./analytics.service";
 import { ContentService } from "./content.service";
+import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./marketing-tech-constants";
 
 @Injectable({
     providedIn: "root",

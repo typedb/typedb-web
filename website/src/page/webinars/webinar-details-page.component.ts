@@ -66,6 +66,7 @@ export class WebinarDetailsPageComponent implements OnInit {
     }
 
     private onSubmit(values: Record<string, unknown>) {
+        this._analytics.google.reportAdConversion("registerForWebinar");
         this._webinarService.register({
             airmeetID: (this.webinar as Webinar).airmeetID as string,
             firstName: `${values["firstname"]}`,

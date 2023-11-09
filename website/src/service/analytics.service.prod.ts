@@ -3,10 +3,7 @@ import { Router } from "@angular/router";
 
 import { isScullyRunning } from "@scullyio/ng-lib";
 
-export const HUBSPOT_PORTAL_ID = "4332244";
-export const HUBSPOT_REGION = "na1";
-export const GOOGLE_TAG_ID = "G-SNVZCNLJ9R"; // used by Google Analytics
-export const GTM_ID = "GTM-WN8C98V";
+import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID, HUBSPOT_PORTAL_ID } from "./marketing-tech-constants";
 
 @Injectable({
     providedIn: "root",
@@ -43,11 +40,8 @@ export class AnalyticsService {
             document.head.appendChild(scriptEl);
             document.head.appendChild(scriptEl2);
         },
-        reportContactRequestConversion: () => {
-            window.gtag("event", "conversion", { send_to: "AW-340366363/TDOzCPnH1PIYEJuopqIB" });
-        },
-        reportNewsletterSubscriptionConversion: () => {
-            window.gtag("event", "conversion", { send_to: "AW-340366363/NZt8CPbH1PIYEJuopqIB" });
+        reportAdConversion: (event: keyof typeof googleAdsConversionIds) => {
+            window.gtag("event", "conversion", { send_to: googleAdsConversionIds[event] });
         },
     };
     googleTagManager = {
