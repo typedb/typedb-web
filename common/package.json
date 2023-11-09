@@ -4,17 +4,17 @@
     "version": "1.0.0",
     "license": "UNLICENSED",
     "scripts": {
-        "build": "webpack"
+        "build": "tsc"
+    },
+    "bin": {
+        "init-common": "./bin/init.js"
     },
     "peerDependencies": {
-        "@fontsource/titillium-web": "5.x"
+        "@fontsource/titillium-web": "5.x",
+        "prismjs": "1.29.x"
     },
     "devDependencies": {
         "@types/prismjs": "1.26.2",
-        "prismjs": "1.29.0",
-        "ts-loader": "9.5.0",
-        "typescript": "5.1.6",
-        "webpack": "5.89.0",
-        "webpack-cli": "5.1.4"
+        "typescript": "5.1.6"
     }
 }

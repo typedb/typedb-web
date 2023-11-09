@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import Prism from "prismjs";
 import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
 import { SocialMediaLink, TechnicolorBlock } from "typedb-web-schema";
 

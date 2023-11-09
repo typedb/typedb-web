@@ -3,6 +3,7 @@ import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
     Article,

@@ -12,6 +12,7 @@ import {
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Router, Event as RouterEvent, Scroll } from "@angular/router";
 
+import Prism from "prismjs";
 import { filter, Observable, Subscription } from "rxjs";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 

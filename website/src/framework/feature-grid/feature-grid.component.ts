@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, HostBinding, Input, OnInit } from "@angular/core";
 
+import Prism from "prismjs";
 import {
     CodeSnippet,
     CodeSnippetShort,
