@@ -7,7 +7,7 @@ import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isWebinar, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
 
-export abstract class Resource {
+export abstract class SiteResource {
     readonly slug: string;
     readonly metaTags: MetaTags;
     readonly title: ParagraphWithHighlights;
@@ -15,7 +15,7 @@ export abstract class Resource {
     readonly shortTitle: string;
     readonly shortDescription: PortableText;
 
-    protected constructor(props: PropsOf<Resource>) {
+    protected constructor(props: PropsOf<SiteResource>) {
         this.slug = props.slug;
         this.metaTags = props.metaTags;
         this.title = props.title;
@@ -25,7 +25,7 @@ export abstract class Resource {
     }
 }
 
-export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityDataset): PropsOf<Resource> {
+export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityDataset): PropsOf<SiteResource> {
     return {
         slug: data.slug.current,
         metaTags: MetaTags.fromSanity((data.metaTags || {}), db),
@@ -40,11 +40,13 @@ export class ResourceLink {
     readonly title: string;
     readonly description: PortableText;
     readonly link?: Link;
+    readonly linkText: string;
 
     constructor(props: PropsOf<ResourceLink>) {
         this.title = props.title;
         this.description = props.description;
         this.link = props.link;
+        this.linkText = props.linkText;
     }
 
     static fromSanity(data: SanityResource, db: SanityDataset): ResourceLink {
@@ -52,10 +54,12 @@ export class ResourceLink {
             title: data.title,
             description: data.description,
             link: Link.fromSanityLinkRef(data.link, db),
+            linkText: data.linkText,
         }); else return new ResourceLink({
             title: data.shortTitle,
             description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
+            linkText: resourceLinkText(data),
         });
     }
 }
@@ -67,6 +71,17 @@ function siteResourceUrl(data: SanitySiteResource): string {
     else if (isWebinar(data)) return `/webinars/${data.slug.current}`;
     else if (isWhitePaper(data)) return `/white-papers/${data.slug.current}`;
     else if (isLiveEvent(data)) return `/events/${data.slug.current}`;
+    else return "";
+}
+
+export function resourceLinkText(data: SanityResource): string {
+    if (isGenericResource(data)) return data.linkText;
+    else if (isFundamentalArticle(data)) return `Read article`;
+    else if (isApplicationArticle(data)) return `Read article`;
+    else if (isBlogPost(data)) return `Read article`;
+    else if (isWebinar(data)) return `Watch webinar`;
+    else if (isWhitePaper(data)) return `Get white paper`;
+    else if (isLiveEvent(data)) return `Go to event`;
     else return "";
 }
 

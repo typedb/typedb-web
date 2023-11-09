@@ -145,7 +145,6 @@ td-button {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    align-items: center;
     gap: 12px;
     text-align: center;
 
@@ -155,5 +154,6 @@ td-button {
 
     .button-secondary {
         margin-top: 8px;
+        width: unset;
     }
 }

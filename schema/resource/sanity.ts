@@ -28,6 +28,7 @@ export interface SanityGenericResource extends SanityDocument {
     title: string;
     description: PortableText;
     link: SanityReference<SanityLink>;
+    linkText: string;
 }
 
 export interface SanityArticle extends SanitySiteResource {}

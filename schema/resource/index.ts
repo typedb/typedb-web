@@ -1,17 +1,23 @@
 import { Link } from "../link";
 import { PropsOf } from "../util";
-import { ApplicationArticle, articleSchemas, BlogPost, BlogPostLink, FundamentalArticle } from "./article";
-import { Resource, ResourceLink } from "./base";
+import { ApplicationArticle, Article, articleSchemas, BlogPost, BlogPostLink, FundamentalArticle } from "./article";
+import { SiteResource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
 import { Webinar, webinarSchemas } from "./webinar";
 import { WhitePaper, whitePaperSchema } from "./white-paper";
 
+export type Resource = SiteResource | GenericResource;
+
 export function resourceLinkOf(resource: Resource): ResourceLink {
+    if (resource instanceof GenericResource) {
+        return new ResourceLink(resource);
+    }
     const commonProps: PropsOf<ResourceLink> = {
         title: resource.shortTitle,
         description: resource.shortDescription,
         link: resourceLinkProp(resource),
+        linkText: resourceLinkText(resource),
     };
     if (resource instanceof BlogPost) {
         return new BlogPostLink(Object.assign(commonProps, {
@@ -43,6 +49,15 @@ function resourceLinkProp(resource: Resource): Link {
         type: "route",
         opensNewTab: false,
     });
+}
+
+function resourceLinkText(resource: Resource): string {
+    if (resource instanceof Article) return `Read article`;
+    else if (resource instanceof Webinar) return `Watch webinar`;
+    else if (resource instanceof WhitePaper) return `Get white paper`;
+    else if (resource instanceof LiveEvent) return `Go to event`;
+    else if (resource instanceof GenericResource) return resource.linkText;
+    else return "";
 }
 
 export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...webinarSchemas, whitePaperSchema];

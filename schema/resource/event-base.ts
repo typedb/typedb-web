@@ -2,10 +2,10 @@ import { ResourceSection } from "../component/page-section";
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { Resource, resourcePropsFromSanity } from "./base";
+import { SiteResource, resourcePropsFromSanity } from "./base";
 import { SanityEventBase } from "./sanity";
 
-export abstract class EventBase extends Resource {
+export abstract class EventBase extends SiteResource {
     readonly imageURL: string;
     readonly speakers: Person[];
     readonly hubspotFormID?: string;
