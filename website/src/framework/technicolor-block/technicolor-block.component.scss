@@ -124,6 +124,8 @@ $icon-size: 72px;
     }
 
     .tb-icon-bg-halo {
+        display: block;
+        color: unset;
         position: absolute;
         width: $icon-size + 32px;
         height: $icon-size + 32px;
