@@ -1,11 +1,14 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { toHTML } from "@portabletext/to-html";
 import { PortableText } from "typedb-web-schema";
 
 @Pipe({ name: "html" })
 export class HtmlPipe implements PipeTransform {
-    transform(value: PortableText): string {
+    constructor(private sanitizer: DomSanitizer) {}
+
+    transform(value: PortableText): SafeHtml {
         const initialHtmlString = toHTML(value);
         const element = new DOMParser().parseFromString(initialHtmlString, "text/html");
         const anchorEls = element.getElementsByTagName("a");
@@ -16,6 +19,6 @@ export class HtmlPipe implements PipeTransform {
                 anchorEl.target = "_blank";
             }
         }
-        return element.body.innerHTML.toString();
+        return this.sanitizer.bypassSecurityTrustHtml(element.body.innerHTML.toString());
     }
 }
