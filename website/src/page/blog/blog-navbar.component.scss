@@ -53,7 +53,7 @@ a {
         text-decoration: underline;
     }
 
-    &.bn-active {
-        font-weight: var(--font-weight-semi-bold);
+    &.td-active {
+        color: var(--color-green);
     }
 }

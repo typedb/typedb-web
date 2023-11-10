@@ -1,9 +1,10 @@
+@use "colors";
 @use "media";
 
 :host {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     gap: 16px;
     margin-top: 16px;
 
@@ -14,37 +15,28 @@
             margin-top: 16px;
         }
     }
-
-    h3 {
-        font-weight: var(--font-weight-semi-bold);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    p {
-        flex-shrink: 0;
-    }
 }
 
 .bp-author {
-    flex: 1;
-    min-width: 0;
-    margin-left: 8px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
 }
 
-.bp-author-description {
-    white-space: nowrap;
+.bp-avatar-container {
+    flex-shrink: 0;
+    position: relative;
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius);
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .bp-avatar {
     display: block;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--content-border-color);
-    border-radius: var(--border-radius);
 
     &.bp-avatar-small {
         width: 40px;
@@ -62,11 +54,60 @@
     }
 }
 
-.bp-reading-time-icon {
-    margin: 0 6px -6px 0;
+.bp-avatar-cover {
+    display: none;
+
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: rgba(colors.$black-purple, 0.4);
+    color: var(--color-white);
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
 }
 
-.bp-post-date {
-    margin-left: auto;
-    align-self: flex-end;
+.bp-author-text {
+    flex: 1;
+    width: 0;
+
+    > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (hover: hover) {
+    a.bp-author {
+        .bp-avatar-cover {
+            display: flex;
+        }
+
+        &:hover {
+            color: var(--color-green);
+
+            .bp-avatar-container {
+                border-color: var(--color-green);
+            }
+
+            .bp-avatar-cover {
+                opacity: 1;
+            }
+
+            .bp-author-name {
+                color: inherit;
+            }
+        }
+    }
+}
+
+@media (max-width: media.$max-width-tablet) {
+    a.bp-author {
+        color: var(--color-green);
+
+        .bp-author-name {
+            color: inherit;
+        }
+    }
 }

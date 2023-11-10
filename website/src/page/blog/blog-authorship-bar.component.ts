@@ -8,6 +8,7 @@ import { BlogPost } from "typedb-web-schema";
     styleUrls: ["./blog-authorship-bar.component.scss"],
 })
 export class BlogAuthorshipBarComponent {
+    @Input() disableLink = false;
     @Input() post!: BlogPost;
     @Input() size: "medium" | "small" = "small";
 

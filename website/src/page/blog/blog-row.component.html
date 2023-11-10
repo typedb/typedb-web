@@ -11,7 +11,7 @@
         <h1 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title | plainText }}</h1>
       </a>
       <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].shortDescription" />
-      <td-blog-authorship-bar [post]="posts.posts[0]" />
+      <td-blog-authorship-bar [post]="posts.posts[0]" [disableLink]="true" />
     </div>
   </div>
 
@@ -29,7 +29,7 @@
             <h2 class="bp-post-title">{{ post.title | plainText }}</h2>
           </a>
           <td-rich-text class="bp-secondary-post-description" [value]="post.shortDescription" />
-          <td-blog-authorship-bar [post]="post" />
+          <td-blog-authorship-bar [post]="post" [disableLink]="true" />
         </div>
       </div>
     </ng-container>
@@ -49,7 +49,7 @@
         <h3 class="bp-post-title">{{ posts.posts[0].title | plainText }}</h3>
       </a>
       <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].shortDescription" />
-      <td-blog-authorship-bar [post]="posts.posts[0]" />
+      <td-blog-authorship-bar [post]="posts.posts[0]" [disableLink]="true" />
     </div>
   </div>
 </ng-container>

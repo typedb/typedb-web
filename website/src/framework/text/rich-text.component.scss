@@ -92,16 +92,16 @@
         }
     }
 
-    li a[href] {
+    table {
+        width: 100%;
+        @include content-table;
+    }
+
+    a {
         color: var(--color-green);
 
         &:hover {
             text-decoration: underline;
         }
-    }
-
-    table {
-        width: 100%;
-        @include content-table;
     }
 }

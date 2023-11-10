@@ -14,7 +14,7 @@ export function resourceLinkOf(resource: Resource): ResourceLink {
         return new ResourceLink(resource);
     }
     const commonProps: PropsOf<ResourceLink> = {
-        title: resource.shortTitle,
+        title: resource.title.toPlainText(),
         description: resource.shortDescription,
         link: resourceLinkProp(resource),
         linkText: resourceLinkText(resource),

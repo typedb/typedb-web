@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
+import { Directive, ElementRef, HostBinding, Input, OnChanges } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
 
 import { Link } from "typedb-web-schema";
@@ -8,6 +8,17 @@ import { Link } from "typedb-web-schema";
 })
 export class LinkDirective implements OnChanges {
     @Input("tdLink") link?: Link | string;
+
+    @HostBinding("class.td-active")
+    get activeClass(): boolean {
+        return this.router.isActive(this.resolvedLink.destination, {
+            fragment: "ignored",
+            matrixParams: "exact",
+            paths: "exact",
+            queryParams: "ignored",
+        });
+    }
+
     private resolvedLink!: Link;
 
     constructor(
