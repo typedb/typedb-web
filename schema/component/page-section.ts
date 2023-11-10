@@ -51,7 +51,7 @@ export class ResourceSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityResourceSection, db: SanityDataset): ResourceSection {
         return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
-            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
+            resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, true)) || [],
         }));
     }
 
