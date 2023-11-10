@@ -23,6 +23,10 @@ export class PersonInfoComponent {
         return classMap[this.variant];
     }
 
+    get displayAsLink(): boolean {
+        return !this.disableLink && !!this.person.linkedInURL;
+    }
+
     constructor(private imageBuilder: ImageBuilder) {}
 
     getPersonImage(person: Person): string {

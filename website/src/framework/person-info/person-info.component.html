@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="!disableLink && !!person.linkedInURL">
+<ng-container [ngSwitch]="displayAsLink">
   <a *ngSwitchCase="true" [href]="person.linkedInURL" target="_blank" class="pi-person">
     <ng-container *ngTemplateOutlet="content" />
   </a>

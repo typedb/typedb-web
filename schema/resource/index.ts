@@ -9,12 +9,12 @@ import { WhitePaper, whitePaperSchema } from "./white-paper";
 
 export type Resource = SiteResource | GenericResource;
 
-export function resourceLinkOf(resource: Resource): ResourceLink {
+export function resourceLinkOf(resource: Resource, useLongTitle = false): ResourceLink {
     if (resource instanceof GenericResource) {
         return new ResourceLink(resource);
     }
     const commonProps: PropsOf<ResourceLink> = {
-        title: resource.title.toPlainText(),
+        title: useLongTitle ? resource.title.toPlainText() : resource.shortTitle,
         description: resource.shortDescription,
         link: resourceLinkProp(resource),
         linkText: resourceLinkText(resource),
@@ -28,7 +28,7 @@ export function resourceLinkOf(resource: Resource): ResourceLink {
 }
 
 export function blogPostLinkOf(post: BlogPost): BlogPostLink {
-    return resourceLinkOf(post) as BlogPostLink;
+    return resourceLinkOf(post, true) as BlogPostLink;
 }
 
 function resourceUrl(resource: Resource): string {
