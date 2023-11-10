@@ -49,14 +49,14 @@ export class ResourceLink {
         this.linkText = props.linkText;
     }
 
-    static fromSanity(data: SanityResource, db: SanityDataset): ResourceLink {
+    static fromSanity(data: SanityResource, db: SanityDataset, useLongTitle: boolean = false): ResourceLink {
         if (isGenericResource(data)) return new ResourceLink({
             title: data.title,
             description: data.description,
             link: Link.fromSanityLinkRef(data.link, db),
             linkText: data.linkText,
         }); else return new ResourceLink({
-            title: data.shortTitle,
+            title: useLongTitle ? ParagraphWithHighlights.fromSanity(data.title).toPlainText() : data.shortTitle,
             description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
             linkText: resourceLinkText(data),
