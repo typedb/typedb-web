@@ -19,10 +19,12 @@ import {
     siteBannerSchemaName,
     TextLink,
     Topbar,
+    TopbarColumn,
     TopbarListColumn,
     TopbarListColumnItem,
     TopbarMenuPanel,
     topbarSchemaName,
+    TopbarSpotlightColumn,
     TopbarVideoColumn,
 } from "typedb-web-schema";
 
@@ -132,7 +134,7 @@ export class TopbarMenuComponent implements OnInit {
         this.focusedMenuPanel = undefined;
     }
 
-    onMenuItemClick(_item: TopbarListColumnItem) {
+    onMenuItemClick() {
         this.hoveredMenuPanel = undefined;
         this.hoveredMenuItem = undefined;
         this.focusedMenuPanel = undefined;
@@ -182,7 +184,7 @@ export class TopbarMenuComponent implements OnInit {
 })
 export class TopbarMenuPanelComponent {
     @Input() menuPanel!: TopbarMenuPanel;
-    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+    @Output() itemclick = new EventEmitter<void>();
 
     comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<TopbarListColumnItem, boolean>();
 
@@ -194,12 +196,16 @@ export class TopbarMenuPanelComponent {
         return this.menuPanel.title;
     }
 
-    isListColumn(obj: unknown): obj is TopbarListColumn {
+    isListColumn(obj: TopbarColumn): obj is TopbarListColumn {
         return obj instanceof TopbarListColumn;
     }
 
-    isVideoColumn(obj: unknown): obj is TopbarVideoColumn {
+    isVideoColumn(obj: TopbarColumn): obj is TopbarVideoColumn {
         return obj instanceof TopbarVideoColumn;
+    }
+
+    isSpotlightColumn(obj: TopbarColumn): obj is TopbarSpotlightColumn {
+        return obj instanceof TopbarSpotlightColumn;
     }
 
     onMouseEnter(item: TopbarListColumnItem) {
@@ -210,8 +216,8 @@ export class TopbarMenuPanelComponent {
         if (item.comingSoon) this.comingSoonPopupVisible.set(item, false);
     }
 
-    onClick(item: TopbarListColumnItem) {
-        this.itemclick.emit(item);
+    onItemClick() {
+        this.itemclick.emit();
     }
 }
 

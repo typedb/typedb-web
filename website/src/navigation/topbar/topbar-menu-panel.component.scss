@@ -3,9 +3,6 @@
 :host {
     position: absolute;
     top: 80px;
-}
-
-.mp-root {
     width: 100%;
     border-top: 1px solid var(--color-secondary-deep-grey);
     box-shadow: 0 8px 30px rgba(colors.$black-purple, 0.58);
@@ -106,5 +103,55 @@ a:focus {
 
     .tb-external-link-icon {
         visibility: visible;
+    }
+}
+
+.mp-spotlight-container {
+    height: 100%;
+    display: flex;
+}
+
+.mp-spotlight {
+    margin: auto 0;
+    display: flex;
+
+    .mp-spotlight-icon,
+    .mp-spotlight-title {
+        padding: 32px;
+        border: 1px solid var(--content-border-color);
+        transition: border-color 100ms ease;
+    }
+
+    .mp-spotlight-icon {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+        background-color: var(--color-purple);
+        border-right: none;
+
+        img {
+            width: 72px;
+            height: 72px;
+        }
+    }
+
+    &:hover .mp-spotlight-icon {
+        border-color: var(--color-green);
+        border-right-color: var(--content-border-color);
+    }
+
+    &:hover .mp-spotlight-title {
+        border-color: var(--color-green);
+
+        h4 {
+            color: var(--color-green);
+        }
+    }
+
+    .mp-spotlight-title {
+        border-left: none;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        background-color: var(--color-purple);
+        display: flex;
+        align-items: center;
+        padding-left: 0;
     }
 }
