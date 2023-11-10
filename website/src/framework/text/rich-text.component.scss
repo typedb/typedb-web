@@ -92,7 +92,12 @@
         }
     }
 
-    li a[href] {
+    table {
+        width: 100%;
+        @include content-table;
+    }
+
+    a {
         color: var(--color-green);
 
         &:hover {
@@ -100,8 +105,7 @@
         }
     }
 
-    table {
-        width: 100%;
-        @include content-table;
+    hr {
+        margin: 1.5em 0;
     }
 }
