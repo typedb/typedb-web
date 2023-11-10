@@ -3,24 +3,24 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { SanityWebinar, Webinar, webinarSchemaName } from "typedb-web-schema";
+import { Lecture, lectureSchemaName, SanityLecture } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { AirmeetService } from "../../service/airmeet.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
-import { WebinarService } from "../../service/webinar.service";
 
 @Component({
-    selector: "td-webinar-details-page",
-    templateUrl: "./webinar-details-page.component.html",
-    styleUrls: ["./webinar-details-page.component.scss"],
+    selector: "td-lecture-details-page",
+    templateUrl: "./lecture-details-page.component.html",
+    styleUrls: ["./lecture-details-page.component.scss"],
 })
-export class WebinarDetailsPageComponent implements OnInit {
-    webinar?: Webinar;
+export class LectureDetailsPageComponent implements OnInit {
+    lecture?: Lecture;
     isSubmitting = false;
 
     constructor(
@@ -29,7 +29,7 @@ export class WebinarDetailsPageComponent implements OnInit {
         private contentService: ContentService,
         private metaTags: MetaTagsService,
         private _formService: FormService,
-        private _webinarService: WebinarService,
+        private airmeetService: AirmeetService,
         private _popupNotificationService: PopupNotificationService,
         private _title: Title,
         private _analytics: AnalyticsService,
@@ -40,35 +40,35 @@ export class WebinarDetailsPageComponent implements OnInit {
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
             this.contentService.data.subscribe((data) => {
-                const sanityWebinars = data.getDocumentsByType(webinarSchemaName) as SanityWebinar[];
-                const sanityWebinar = sanityWebinars.find(
+                const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];
+                const sanityLecture = sanityLectures.find(
                     (x) => x.slug.current === params.get("slug") && !x.comingSoon,
                 );
-                if (sanityWebinar) {
-                    this.webinar = Webinar.fromSanity(sanityWebinar, data);
-                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.webinar.title)}`);
-                    this.metaTags.register(this.webinar.metaTags);
+                if (sanityLecture) {
+                    this.lecture = Lecture.fromSanity(sanityLecture, data);
+                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.lecture.title)}`);
+                    this.metaTags.register(this.lecture.metaTags);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this._idleMonitor.fireManualMyAppReadyEvent();
                     }, 20000);
-                    this._formService.embedHubspotForm(this.webinar.hubspotFormID as string, "hubspot-form-holder", {
+                    this._formService.embedHubspotForm(this.lecture.hubspotFormID as string, "hubspot-form-holder", {
                         onLoadingChange: (val) => {
                             this.isSubmitting = val;
                         },
                         onSuccess: (_formEl, values) => this.onSubmit(values),
                     });
                 } else {
-                    this.router.navigate(["webinars"]);
+                    this.router.navigate(["lectures"]);
                 }
             });
         });
     }
 
     private onSubmit(values: Record<string, unknown>) {
-        this._analytics.google.reportAdConversion("registerForWebinar");
-        this._webinarService.register({
-            airmeetID: (this.webinar as Webinar).airmeetID as string,
+        this._analytics.google.reportAdConversion("registerForLecture");
+        this.airmeetService.register({
+            airmeetID: (this.lecture as Lecture).airmeetID as string,
             firstName: `${values["firstname"]}`,
             lastName: `${values["lastname"]}`,
             email: `${values["email"]}`,
@@ -76,14 +76,14 @@ export class WebinarDetailsPageComponent implements OnInit {
             jobTitle: `${values["job_function"]}`,
         });
 
-        const successMsg = (this.webinar as Webinar).isFinished()
-            ? "A link to watch the webinar has been sent to your email inbox."
-            : "A link to join the webinar has been sent to your email inbox.";
+        const successMsg = (this.lecture as Lecture).isFinished()
+            ? "A link to watch the lecture has been sent to your email inbox."
+            : "A link to join the lecture has been sent to your email inbox.";
         this._popupNotificationService.success(successMsg);
     }
 
     get localTimezoneAbbreviation(): string {
-        return (this.webinar as Webinar).datetime
+        return (this.lecture as Lecture).datetime
             .toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" })
             .slice(4);
     }

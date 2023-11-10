@@ -114,8 +114,8 @@ to = "https://typedb.com/blog"
 status = 302
 
 [[redirects]]
-from = "https://typedb.com/webinars/*"
-to = "https://typedb.com/webinars"
+from = "https://typedb.com/lectures/*"
+to = "https://typedb.com/lectures"
 status = 302
 
 [[redirects]]
@@ -134,8 +134,8 @@ to = "/index.html"
 status = 200
 
 [[edge_functions]]
-function = "webinars-register"
-path = "/api/webinars/register"
+function = "airmeet-register"
+path = "/api/airmeet/register"
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"

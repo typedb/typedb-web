@@ -5,7 +5,7 @@ const internalServerError = () => new Response(null, { status: 500, headers: { "
 
 export default async (request: Request, context: Context) => {
     if (request.method.toLowerCase() === "options") {
-        console.log("OPTIONS /api/webinars/register");
+        console.log("OPTIONS /api/airmeet/register");
         return new Response(null, {
             status: 200,
             headers: {

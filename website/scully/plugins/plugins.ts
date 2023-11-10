@@ -8,7 +8,7 @@ export const applicationArticleRoutes = "applicationArticleRoutes";
 export const blogCategoryRoutes = "blogCategoryRoutes";
 export const blogPostRoutes = "blogPostRoutes";
 export const solutionRoutes = "solutionRoutes";
-export const webinarRoutes = "webinarRoutes";
+export const lectureRoutes = "lectureRoutes";
 export const whitePaperRoutes = "whitePaperRoutes";
 export const eventRoutes = "eventRoutes";
 
@@ -45,8 +45,8 @@ async function solutionRoutesPlugin(route: string, config = {}): Promise<Handled
     return data.result.map(x => ({ route: `/solutions/${x}` }));
 }
 
-async function webinarRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return await resourceRoutesPluginBase({ resourceType: "webinar", resourcePath: "webinars" });
+async function lectureRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "lecture", resourcePath: "lectures" });
 }
 
 async function whitePaperRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
@@ -62,6 +62,6 @@ registerPlugin("router", applicationArticleRoutes, applicationArticleRoutesPlugi
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, defaultValidator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator);
 // registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
-registerPlugin("router", webinarRoutes, webinarRoutesPlugin, defaultValidator);
+registerPlugin("router", lectureRoutes, lectureRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
 registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);

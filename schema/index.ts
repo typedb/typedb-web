@@ -32,7 +32,7 @@ export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-pan
 export { TitleBodyIllustrationSection } from "./component/page-section";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export { type FormID, type SanityHubspotForms, formsSchemaName, type WebinarRegistrationForm } from "./form";
+export { type FormID, type SanityHubspotForms, formsSchemaName, type AirmeetRegistrationForm } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
     ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
@@ -59,7 +59,7 @@ export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPag
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
-export { WebinarsPage, type SanityWebinarsPage, webinarsPageSchemaName } from "./page/webinars";
+export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName } from "./page/white-papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
@@ -74,11 +74,11 @@ export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
     applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
-    liveEventSchemaName, webinarSchemaName, whitePaperSchemaName, type SanityBlogPost,
-    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityWebinar, type SanityArticle,
+    liveEventSchemaName, lectureSchemaName, whitePaperSchemaName, type SanityBlogPost,
+    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityLecture, type SanityArticle,
     type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel,
 } from "./resource/sanity";
-export { Webinar } from "./resource/webinar";
+export { Lecture } from "./resource/lecture";
 export { WhitePaper } from "./resource/white-paper";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";

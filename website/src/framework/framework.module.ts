@@ -41,10 +41,10 @@ import {
 import { InfoButtonComponent } from "./info-button/info-button.component";
 import { KeyPointPanels2x2Component, KeyPointTableComponent } from "./key-point/key-point.component";
 import {
+    LecturePanelsComponent,
     LinkPanelsCols2Component,
     LinkPanelsComponent,
     ResourcePanelsComponent,
-    WebinarPanelsComponent,
 } from "./link-panels/link-panels.component";
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
@@ -127,7 +127,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
         TooltipComponent,
-        WebinarPanelsComponent,
+        LecturePanelsComponent,
     ],
     imports: [
         BrowserModule,
@@ -181,7 +181,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         TestimonialsCarouselComponent,
         TitleBodyActionsSectionComponent,
         TooltipComponent,
-        WebinarPanelsComponent,
+        LecturePanelsComponent,
         ScrollShadowComponent,
         ResourcePanelsComponent,
     ],

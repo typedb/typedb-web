@@ -4,7 +4,7 @@ import { ApplicationArticle, Article, articleSchemas, BlogPost, BlogPostLink, Fu
 import { SiteResource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
-import { Webinar, webinarSchemas } from "./webinar";
+import { Lecture, lectureSchemas } from "./lecture";
 import { WhitePaper, whitePaperSchema } from "./white-paper";
 
 export type Resource = SiteResource | GenericResource;
@@ -35,7 +35,7 @@ function resourceUrl(resource: Resource): string {
     if (resource instanceof FundamentalArticle) return `/fundamentals/${resource.slug}`;
     else if (resource instanceof ApplicationArticle) return `/applications/${resource.slug}`;
     else if (resource instanceof BlogPost) return `/blog/${resource.slug}`;
-    else if (resource instanceof Webinar) return `/webinars/${resource.slug}`;
+    else if (resource instanceof Lecture) return `/lectures/${resource.slug}`;
     else if (resource instanceof WhitePaper) return `/white-papers/${resource.slug}`;
     else if (resource instanceof LiveEvent) return `/events/${resource.slug}`;
     else if (resource instanceof GenericResource) return resource.link.destination;
@@ -53,11 +53,11 @@ function resourceLinkProp(resource: Resource): Link {
 
 function resourceLinkText(resource: Resource): string {
     if (resource instanceof Article) return `Read article`;
-    else if (resource instanceof Webinar) return `Watch webinar`;
+    else if (resource instanceof Lecture) return `Watch lecture`;
     else if (resource instanceof WhitePaper) return `Get white paper`;
     else if (resource instanceof LiveEvent) return `Go to event`;
     else if (resource instanceof GenericResource) return resource.linkText;
     else return "";
 }
 
-export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...webinarSchemas, whitePaperSchema];
+export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, whitePaperSchema];

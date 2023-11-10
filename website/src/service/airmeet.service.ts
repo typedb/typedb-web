@@ -1,19 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { WebinarRegistrationForm } from "typedb-web-schema";
+import { AirmeetRegistrationForm } from "typedb-web-schema";
 
 const apiURLs = {
-    register: `/api/webinars/register`,
+    register: `/api/airmeet/register`,
 };
 
 @Injectable({
     providedIn: "root",
 })
-export class WebinarService {
+export class AirmeetService {
     constructor(private http: HttpClient) {}
 
-    register(props: WebinarRegistrationForm) {
+    register(props: AirmeetRegistrationForm) {
         this.http.post(apiURLs.register, props).subscribe((resp) => {
             console.log(resp);
         });

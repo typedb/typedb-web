@@ -13,7 +13,7 @@ export type FormID = keyof typeof forms;
 
 export type SanityHubspotForms = SanityDocument & { [key in FormID]: string };
 
-export interface WebinarRegistrationForm {
+export interface AirmeetRegistrationForm {
     airmeetID: string;
     email: string;
     firstName: string;
