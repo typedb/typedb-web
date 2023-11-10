@@ -77,17 +77,17 @@ export class WebsiteComponent {
                 if (position) {
                     // backward navigation
                     setTimeout(() => {
-                        viewportScroller.scrollToPosition(position);
+                        scrollTo(...position);
                     }, 0);
                 } else if (anchor && !router.getCurrentNavigation()?.extras?.state?.["preventScrollToAnchor"]) {
                     setTimeout(() => {
-                        viewportScroller.scrollToAnchor(anchor);
+                        document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });
                 } else if (
                     this._originBeforeNavigation !== window.location.origin ||
                     this._pathnameBeforeNavigation !== window.location.pathname
                 ) {
-                    window.scrollTo(0, 0);
+                    scrollTo(0, 0);
                 }
                 this._originBeforeNavigation = window.location.origin;
                 this._pathnameBeforeNavigation = window.location.pathname;

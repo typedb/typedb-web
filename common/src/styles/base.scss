@@ -16,8 +16,7 @@ body {
     font-family: var(--default-font-family);
 
     margin: 0;
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--topbar-height);
+    scroll-padding-top: calc(var(--topbar-height) + 8px);
 }
 
 *,
