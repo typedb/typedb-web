@@ -10,16 +10,16 @@ import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { resourceCommonFields } from "./base";
 import { EventBase } from "./event-base";
-import { SanityWebinar, webinarSchemaName } from "./sanity";
+import { SanityLecture, lectureSchemaName } from "./sanity";
 
-export class Webinar extends EventBase {
+export class Lecture extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
     readonly airmeetID?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
 
-    constructor(props: PropsOf<Webinar>) {
+    constructor(props: PropsOf<Lecture>) {
         super(props);
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
@@ -28,8 +28,8 @@ export class Webinar extends EventBase {
         this.comingSoon = props.comingSoon;
     }
 
-    static override fromSanity(data: SanityWebinar, db: SanityDataset): Webinar {
-        return new Webinar({
+    static override fromSanity(data: SanityLecture, db: SanityDataset): Lecture {
+        return new Lecture({
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
@@ -59,7 +59,7 @@ export class Webinar extends EventBase {
                 ? undefined
                 : new Link({
                       type: "route",
-                      destination: `/webinars/${this.slug}`,
+                      destination: `/lectures/${this.slug}`,
                       opensNewTab: false,
                   }),
             comingSoon: this.comingSoon,
@@ -67,9 +67,9 @@ export class Webinar extends EventBase {
     }
 }
 
-const webinarSchema = defineType({
-    name: webinarSchemaName,
-    title: "Webinar",
+const lectureSchema = defineType({
+    name: lectureSchemaName,
+    title: "Lecture",
     icon: PresentationIcon,
     type: "document",
     fields: [
@@ -122,4 +122,4 @@ const webinarSchema = defineType({
     ],
 });
 
-export const webinarSchemas = [webinarSchema];
+export const lectureSchemas = [lectureSchema];

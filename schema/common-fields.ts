@@ -270,7 +270,7 @@ export const resourcesFieldOptional = defineField({
         type: "reference",
         to: [
             {type: "fundamentalArticle"}, {type: "applicationArticle"}, {type: "blogPost"},
-            {type: "webinar"}, {type: "whitePaper"}, {type: "liveEvent"}, {type: "genericResource"}
+            {type: "lecture"}, {type: "whitePaper"}, {type: "liveEvent"}, {type: "genericResource"}
         ],
     }],
 });

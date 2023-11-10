@@ -1,29 +1,29 @@
 <article tdPageBackground nebula="features" planet="blue_pink">
-  <div *ngIf="webinar" class="article-content">
+  <div *ngIf="lecture" class="article-content">
     <section class="page-section page-intro-section">
-      <td-heading-with-highlights [value]="webinar.title" level="h1" />
+      <td-heading-with-highlights [value]="lecture.title" level="h1" />
       <ul class="wd-subtitle text-p1">
-        <li>Webinar</li>
+        <li>Lecture</li>
         <li>
           <mat-icon svgIcon="calendar" />
           <span class="cdk-visually-hidden">Date/Time:</span>
-          <span *ngIf="webinar.isFinished()">On-Demand</span>
-          <time *ngIf="!webinar.isFinished()" [dateTime]="webinar.datetime.toISOString()">
-            {{ webinar.datetime | ordinalDate }},
-            {{ webinar.datetime | date: "shortTime" }}
+          <span *ngIf="lecture.isFinished()">On-Demand</span>
+          <time *ngIf="!lecture.isFinished()" [dateTime]="lecture.datetime.toISOString()">
+            {{ lecture.datetime | ordinalDate }},
+            {{ lecture.datetime | date: "shortTime" }}
             {{ localTimezoneAbbreviation }}
           </time>
         </li>
         <li>
           <mat-icon svgIcon="time" />
           <span class="cdk-visually-hidden">Duration:</span>
-          {{ webinar.durationMins | eventDuration }}
+          {{ lecture.durationMins | eventDuration }}
         </li>
       </ul>
       <div class="subsection-margin wd-details-area">
         <div class="card wd-form-card">
           <h3>
-            <strong>{{ webinar.isFinished() ? "Watch Webinar" : "Register for Webinar" }}</strong>
+            <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
           </h3>
           <div id="hubspot-form-holder"></div>
           <aside>
@@ -33,18 +33,18 @@
           <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
         </div>
         <div>
-          <td-rich-text [value]="webinar.description" />
+          <td-rich-text [value]="lecture.description" />
           <ul class="wd-speakers subsection-margin">
-            <li *ngFor="let speaker of webinar.speakers">
+            <li *ngFor="let speaker of lecture.speakers">
               <td-person-info [person]="speaker" />
             </li>
           </ul>
         </div>
       </div>
     </section>
-    <ng-container *ngIf="webinar.furtherLearning">
-      <td-technicolor-block [block]="webinar.furtherLearning" [index]="1" [noUpperLine]="true" />
-      <td-resource-panels [resources]="webinar.furtherLearning.resources" [cols]="3" />
+    <ng-container *ngIf="lecture.furtherLearning">
+      <td-technicolor-block [block]="lecture.furtherLearning" [index]="1" [noUpperLine]="true" />
+      <td-resource-panels [resources]="lecture.furtherLearning.resources" [cols]="3" />
     </ng-container>
   </div>
 </article>

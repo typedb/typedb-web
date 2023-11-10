@@ -57,8 +57,8 @@
     --font-weight-light: #{typography.$light};
 
     --topbar-height: #{$topbar-height};
-
     --banner-height: #{$banner-height};
+    --scroll-padding: #{$scroll-padding};
 
     /* typography */
 
@@ -111,8 +111,8 @@
         --subtitle-margin: #{$subtitle-margin-mobile};
 
         --topbar-height: #{$topbar-height-mobile};
-
-        --banner-height-mobile: #{$banner-height-mobile};
+        --banner-height: #{$banner-height-mobile};
+        --scroll-padding: #{$scroll-padding-mobile};
 
         --font-size-h1: #{typography.$h1-mobile};
         --line-height-h1: #{typography.$height-h1-mobile};

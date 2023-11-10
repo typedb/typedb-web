@@ -19,10 +19,9 @@ In order to run a migration script, you need an access token with **editor** per
 
 After generating the token, create a file named `credentials/token.js` with the following content:
 ```js
-export const projectID = "{OUR_PROJECT_ID}";
-export const token = "{YOUR_EDITOR_TOKEN}";
+export default "{YOUR_EDITOR_TOKEN}";
 ```
-replacing the templated variables with the appropriate values.
+replacing the templated variable with the appropriate value.
 
 ## Scripts
 

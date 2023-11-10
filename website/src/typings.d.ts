@@ -21,7 +21,7 @@ interface Window {
                 manuallyBlockedEmailDomain?: string[];
                 formInstanceId?: string;
                 sfdcCampaignId?: string;
-                goToWebinarWebinarKey?: string;
+                goToLectureLectureKey?: string;
                 onBeforeFormInit?: (ctx: string) => void;
                 // HubSpot does not include this callback in its documentation
                 onFormError?: (error: string, arg1: unknown, arg2: unknown) => void;

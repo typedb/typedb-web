@@ -10,7 +10,7 @@
     border-radius: var(--border-radius);
 }
 
-.wp-primary-webinar {
+.wp-primary-lecture {
     padding: 40px;
 
     @media (max-width: media.$max-width-mobile) {
@@ -18,7 +18,7 @@
     }
 }
 
-.wp-primary-webinar-summary {
+.wp-primary-lecture-summary {
     margin-top: 40px;
 
     @media (max-width: media.$max-width-mobile) {
@@ -26,7 +26,7 @@
     }
 }
 
-.wp-webinar-title-container {
+.wp-lecture-title-container {
     color: var(--body-font-color);
 }
 
@@ -34,11 +34,11 @@
     margin: 0 8px;
 }
 
-.wp-webinar-title {
+.wp-lecture-title {
     font-weight: var(--font-weight-semi-bold);
 }
 
-.wp-webinar-text-container {
+.wp-lecture-text-container {
     margin-top: 16px;
     display: flex;
     gap: 40px;
@@ -50,7 +50,7 @@
     }
 }
 
-.wp-webinar-description {
+.wp-lecture-description {
     @include line-clamp(2);
     max-height: 24px * 2;
 
@@ -60,7 +60,7 @@
     }
 }
 
-.wp-primary-webinar-actions {
+.wp-primary-lecture-actions {
     align-self: flex-end;
 
     @media (max-width: media.$max-width-mobile) {
@@ -68,11 +68,11 @@
     }
 }
 
-.wp-webinar-list {
+.wp-lecture-list {
     list-style: none;
 }
 
-.wp-webinar-list-item {
+.wp-lecture-list-item {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -121,7 +121,7 @@
     }
 }
 
-.wp-webinar-text {
+.wp-lecture-text {
     display: flex;
     flex-direction: column;
     gap: 6px;

@@ -132,6 +132,7 @@ $icon-size: 72px;
         margin-left: -16px;
         border-radius: 50%;
         filter: blur(15px);
+        transform: translate3d(0, 0, 0); /* patch for Safari ignoring border-radius on hover */
         opacity: 0.15;
         background: currentColor;
         z-index: 4;

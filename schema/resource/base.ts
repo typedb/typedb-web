@@ -5,7 +5,7 @@ import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isWebinar, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
+import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isLecture, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
 
 export abstract class SiteResource {
     readonly slug: string;
@@ -68,7 +68,7 @@ function siteResourceUrl(data: SanitySiteResource): string {
     if (isFundamentalArticle(data)) return `/fundamentals/${data.slug.current}`;
     else if (isApplicationArticle(data)) return `/applications/${data.slug.current}`;
     else if (isBlogPost(data)) return `/blog/${data.slug.current}`;
-    else if (isWebinar(data)) return `/webinars/${data.slug.current}`;
+    else if (isLecture(data)) return `/lectures/${data.slug.current}`;
     else if (isWhitePaper(data)) return `/white-papers/${data.slug.current}`;
     else if (isLiveEvent(data)) return `/events/${data.slug.current}`;
     else return "";
@@ -79,7 +79,7 @@ export function resourceLinkText(data: SanityResource): string {
     else if (isFundamentalArticle(data)) return `Read article`;
     else if (isApplicationArticle(data)) return `Read article`;
     else if (isBlogPost(data)) return `Read article`;
-    else if (isWebinar(data)) return `Watch webinar`;
+    else if (isLecture(data)) return `Watch lecture`;
     else if (isWhitePaper(data)) return `Get white paper`;
     else if (isLiveEvent(data)) return `Go to event`;
     else return "";

@@ -9,7 +9,7 @@ import { PortableText } from "../text";
 import { BlogCategoryID } from "./blog-category";
 import { EventSignupMethod, SanityEventDate } from "./live-event-details";
 
-export type SanityResource = SanityGenericResource | SanityArticle | SanityWebinar | SanityWhitePaper | SanityLiveEvent;
+export type SanityResource = SanityGenericResource | SanityArticle | SanityLecture | SanityWhitePaper | SanityLiveEvent;
 
 // Because in Sanity every Resource can link to every other kind of Resource, they must all be declared
 // in the same file to avoid circular dependencies
@@ -72,8 +72,8 @@ export interface SanityEventBase extends SanitySiteResource {
     furtherLearning?: SanityResourceSection;
 }
 
-export interface SanityWebinar extends SanityEventBase {
-    _type: typeof webinarSchemaName;
+export interface SanityLecture extends SanityEventBase {
+    _type: typeof lectureSchemaName;
     datetime: string;
     durationMins: number;
     airmeetID?: string;
@@ -105,7 +105,7 @@ export const genericResourceSchemaName = "genericResource";
 export const fundamentalArticleSchemaName = "fundamentalArticle";
 export const applicationArticleSchemaName = "applicationArticle";
 export const blogPostSchemaName = "blogPost";
-export const webinarSchemaName = "webinar";
+export const lectureSchemaName = "lecture";
 export const whitePaperSchemaName = "whitePaper";
 export const liveEventSchemaName = "liveEvent";
 
@@ -125,8 +125,8 @@ export function isBlogPost(data: SanityArticle): data is SanityBlogPost {
     return data._type === blogPostSchemaName;
 }
 
-export function isWebinar(data: SanityArticle): data is SanityWebinar {
-    return data._type === webinarSchemaName;
+export function isLecture(data: SanityArticle): data is SanityLecture {
+    return data._type === lectureSchemaName;
 }
 
 export function isWhitePaper(data: SanityArticle): data is SanityWhitePaper {

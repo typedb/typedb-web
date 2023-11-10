@@ -12,11 +12,11 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
-    schemaTypes, topbarSchemaName, solutionPageSchemaName, webinarsPageSchemaName, footerSchemaName,
+    schemaTypes, topbarSchemaName, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
     splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
-    personSchemaName, webinarSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName,
+    personSchemaName, lectureSchemaName, whitePapersPageSchemaName, whitePaperSchemaName, siteBannerSchemaName,
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
@@ -27,7 +27,7 @@ import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set([topbarSchemaName, webinarsPageSchemaName]);
+const singletonTypes = new Set([topbarSchemaName, lecturesPageSchemaName]);
 
 export default defineConfig({
     name: "default",
@@ -53,7 +53,7 @@ export default defineConfig({
                     singletonListItem(s, deploymentPageSchemaName, { title: "Deployment", icon: DocumentIcon }),
                     singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, blogSchemaName, { title: "Blog", icon: DocumentIcon }),
-                    singletonListItem(s, webinarsPageSchemaName, { title: "Webinars", icon: DocumentIcon }),
+                    singletonListItem(s, lecturesPageSchemaName, { title: "Lectures", icon: DocumentIcon }),
                     singletonListItem(s, whitePapersPageSchemaName, { title: "White Papers", icon: DocumentIcon }),
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Request Tech Talk", icon: DocumentIcon }),
@@ -80,7 +80,7 @@ export default defineConfig({
                 s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                 s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
                 s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
-                s.documentTypeListItem(webinarSchemaName).title("Webinars"),
+                s.documentTypeListItem(lectureSchemaName).title("Lectures"),
                 s.documentTypeListItem(whitePaperSchemaName).title("White Papers"),
                 s.documentTypeListItem(liveEventSchemaName).title("Events"),
                 s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
