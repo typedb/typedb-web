@@ -8,6 +8,7 @@ import { Lecture, lectureSchemaName, SanityLecture } from "typedb-web-schema";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { AirmeetService } from "../../service/airmeet.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
@@ -28,7 +29,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private contentService: ContentService,
         private metaTags: MetaTagsService,
         private _formService: FormService,
-        private airmeetService: LectureService,
+        private airmeetService: AirmeetService,
         private _popupNotificationService: PopupNotificationService,
         private _title: Title,
         private _analytics: AnalyticsService,
