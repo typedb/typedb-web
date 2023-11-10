@@ -1,29 +1,7 @@
-<ng-container [ngSwitch]="!disableLink && !!post.author.linkedInURL">
-  <a *ngSwitchCase="true" [href]="post.author.linkedInURL" target="_blank" class="bp-author">
-    <ng-container *ngTemplateOutlet="author" />
-  </a>
-  <div *ngSwitchCase="false" class="bp-author">
-    <ng-container *ngTemplateOutlet="author" />
-  </div>
-</ng-container>
+<td-person-info
+  [person]="post.author"
+  [variant]="size === 'small' ? 'articleDetails' : 'article'"
+  [disableLink]="size === 'small'"
+/>
 
 <time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>
-
-<ng-template #author>
-  <div class="bp-avatar-container">
-    <img class="bp-avatar" [class.bp-avatar-small]="isSmall" [src]="post.author.headshotURL" alt="" />
-    <div class="bp-avatar-cover">
-      <mat-icon svgIcon="linkedin" />
-    </div>
-  </div>
-
-  <div class="bp-author-text">
-    <p class="bp-author-name text-important">
-      <strong>{{ post.author.name }}</strong>
-    </p>
-    <p class="bp-author-description">
-      {{ post.author.jobTitle }},
-      {{ post.author.organisation.name }}
-    </p>
-  </div>
-</ng-template>

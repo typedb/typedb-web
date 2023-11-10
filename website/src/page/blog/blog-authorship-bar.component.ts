@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { BlogPost } from "typedb-web-schema";
 
@@ -8,11 +8,6 @@ import { BlogPost } from "typedb-web-schema";
     styleUrls: ["./blog-authorship-bar.component.scss"],
 })
 export class BlogAuthorshipBarComponent {
-    @Input() disableLink = false;
     @Input() post!: BlogPost;
     @Input() size: "medium" | "small" = "small";
-
-    @HostBinding("class.bp-author-small") get isSmall() {
-        return this.size === "small";
-    }
 }

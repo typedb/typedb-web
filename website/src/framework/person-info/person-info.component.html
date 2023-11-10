@@ -1,23 +1,26 @@
-<ng-container [ngSwitch]="!!person.linkedInURL">
-  <a *ngSwitchCase="true" [href]="person.linkedInURL" target="_blank" class="pi-speaker">
+<ng-container [ngSwitch]="!disableLink && !!person.linkedInURL">
+  <a *ngSwitchCase="true" [href]="person.linkedInURL" target="_blank" class="pi-person">
     <ng-container *ngTemplateOutlet="content" />
   </a>
-  <div *ngSwitchCase="false" class="pi-speaker">
+  <div *ngSwitchCase="false" class="pi-person">
     <ng-container *ngTemplateOutlet="content" />
   </div>
 </ng-container>
 
 <ng-template #content>
-  <div class="pi-speaker-image-container">
+  <div class="pi-person-image-container">
     <img [src]="getPersonImage(person)" alt="" />
-    <div class="pi-speaker-image-cover">
+    <div class="pi-person-image-cover">
       <mat-icon svgIcon="linkedin" />
     </div>
   </div>
-  <div>
+  <div class="pi-person-text">
     <p class="pi-person-name">
       <strong>{{ person.name }}</strong>
     </p>
-    <aside class="text-quiet">{{ person.jobTitle }},<br />{{ person.organisation.name }}</aside>
+    <aside class="pi-person-details">
+      {{ person.jobTitle }},<br *ngIf="variant === 'event'" />
+      {{ person.organisation.name }}
+    </aside>
   </div>
 </ng-template>
