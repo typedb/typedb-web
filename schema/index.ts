@@ -43,7 +43,7 @@ export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
-export { type SanityTopbar, Topbar, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn } from "./navigation/topbar";
+export { type SanityTopbar, Topbar, type TopbarColumn, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn, TopbarSpotlightColumn } from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
 export { Page, type SanityPage } from "./page/common";

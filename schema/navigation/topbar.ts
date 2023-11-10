@@ -2,8 +2,9 @@ import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { SanityVideoEmbed } from "../illustration";
+import { SanityImageRef } from "../image";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { comingSoonField, descriptionField, linkField, requiredRule, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { comingSoonField, descriptionField, linkField, requiredRule, sectionIconField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
 export interface SanityTopbar extends SanityDocument {
@@ -13,15 +14,17 @@ export interface SanityTopbar extends SanityDocument {
 
 interface SanityTopbarMenuPanel {
     title: string;
-    columns: (SanityTopbarListColumn | SanityTopbarVideoColumn)[];
+    columns: SanityTopbarColumn[];
 }
 
 interface SanityTopbarVideoColumn {
+    _type: typeof videoColumnSchemaName;
     title: string;
     videoEmbed: SanityReference<SanityVideoEmbed>;
 }
 
 interface SanityTopbarListColumn {
+    _type: typeof listColumnSchemaName;
     title: string;
     items: SanityTopbarListColumnItem[];
 }
@@ -31,6 +34,27 @@ interface SanityTopbarListColumnItem {
     description: string;
     link?: SanityReference<SanityLink>;
     comingSoon: boolean;
+}
+
+interface SanityTopbarSpotlightColumn {
+    _type: typeof spotlightColumnSchemaName;
+    title: string;
+    icon: SanityReference<SanityImageRef>;
+    link: SanityReference<SanityLink>;
+}
+
+type SanityTopbarColumn = SanityTopbarListColumn | SanityTopbarVideoColumn | SanityTopbarSpotlightColumn;
+
+function isListColumn(data: SanityTopbarColumn): data is SanityTopbarListColumn {
+    return data._type === listColumnSchemaName;
+}
+
+function isVideoColumn(data: SanityTopbarColumn): data is SanityTopbarVideoColumn {
+    return data._type === videoColumnSchemaName;
+}
+
+function isSpotlightColumn(data: SanityTopbarColumn): data is SanityTopbarSpotlightColumn {
+    return data._type === spotlightColumnSchemaName;
 }
 
 interface SanityTopbarSecondaryArea {
@@ -54,13 +78,15 @@ export class Topbar extends Document {
 
 export class TopbarMenuPanel {
     readonly title: string;
-    readonly columns: (TopbarListColumn | TopbarVideoColumn)[];
+    readonly columns: TopbarColumn[];
 
     constructor(data: SanityTopbarMenuPanel, db: SanityDataset) {
         this.title = data.title;
         this.columns = data.columns.map(x => {
-            if ("items" in x) return new TopbarListColumn(x, db);
-            else return new TopbarVideoColumn(x);
+            if (isListColumn(x)) return new TopbarListColumn(x, db);
+            else if (isVideoColumn(x)) return new TopbarVideoColumn(x);
+            else if (isSpotlightColumn(x)) return new TopbarSpotlightColumn(x, db);
+            else throw "Unreachable code";
         });
     }
 }
@@ -98,6 +124,20 @@ export class TopbarListColumnItem {
     }
 }
 
+export class TopbarSpotlightColumn {
+    readonly title: string;
+    readonly iconURL: string;
+    readonly link?: Link;
+
+    constructor(data: SanityTopbarSpotlightColumn, db: SanityDataset) {
+        this.title = data.title;
+        this.iconURL = db.resolveImageRef(data.icon).url;
+        this.link = Link.fromSanityLinkRef(data.link, db);
+    }
+}
+
+export type TopbarColumn = TopbarListColumn | TopbarVideoColumn | TopbarSpotlightColumn;
+
 export class TopbarSecondaryArea {
     readonly links: TextLink[];
     readonly button: LinkButton;
@@ -124,8 +164,10 @@ const listColumnItemSchema = defineType({
     },
 });
 
+const listColumnSchemaName = "topbarListColumn";
+
 const listColumnSchema = defineType({
-    name: "topbarListColumn",
+    name: listColumnSchemaName,
     title: "List Column",
     type: "object",
     fields: [
@@ -146,13 +188,28 @@ const listColumnSchema = defineType({
     },
 });
 
+const videoColumnSchemaName = "topbarVideoColumn";
+
 const videoColumnSchema = defineType({
-    name: "topbarVideoColumn",
+    name: videoColumnSchemaName,
     title: "Video Column",
     type: "object",
     fields: [
         titleField,
         videoEmbedField,
+    ],
+});
+
+const spotlightColumnSchemaName = "topbarSpotlightColumn";
+
+const spotlightColumnSchema = defineType({
+    name: spotlightColumnSchemaName,
+    title: "Spotlight Column",
+    type: "object",
+    fields: [
+        titleField,
+        sectionIconField,
+        Object.assign({}, linkField, { validation: requiredRule }),
     ],
 });
 
@@ -166,7 +223,7 @@ const topbarMenuPanelSchema = defineType({
         defineField({
             name: "columns",
             type: "array",
-            of: [{type: "topbarListColumn"}, {type: "topbarVideoColumn"}],
+            of: [{type: listColumnSchemaName}, {type: videoColumnSchemaName}, {type: spotlightColumnSchemaName}],
         }),
     ],
     preview: {
@@ -226,4 +283,4 @@ const topbarSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Topbar" }) },
 });
 
-export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, topbarMenuPanelSchema, secondaryAreaSchema, topbarSchema];
+export const topbarSchemas = [listColumnItemSchema, listColumnSchema, videoColumnSchema, spotlightColumnSchema, topbarMenuPanelSchema, secondaryAreaSchema, topbarSchema];

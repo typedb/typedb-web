@@ -47,7 +47,20 @@ export const sectionIconSchemaName = "sectionIcon";
 
 const sectionIconSchema = defineType({
     ...imageRefSchemaBase,
-    fields: [titleField, svgRefField],
+    fields: [
+        titleField,
+        defineField({
+            name: "tags",
+            title: "Tags",
+            description: "Tags help CMS users find this icon via the search function",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+                layout: "tags",
+            },
+        }),
+        svgRefField,
+    ],
     name: sectionIconSchemaName,
     title: "Section Icon",
 });
