@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { LinkPanelWithIcon, ResourceLink, Webinar } from "typedb-web-schema";
+import { LinkPanelWithIcon, ResourceLink, Lecture } from "typedb-web-schema";
 
 @Component({
     selector: "td-link-panels",
@@ -31,20 +31,20 @@ export class LinkPanelsCols2Component {
 }
 
 @Component({
-    selector: "td-webinar-panels",
-    templateUrl: "webinar-panels.component.html",
-    styleUrls: ["webinar-panels.component.scss"],
+    selector: "td-lecture-panels",
+    templateUrl: "lecture-panels.component.html",
+    styleUrls: ["lecture-panels.component.scss"],
 })
-export class WebinarPanelsComponent {
-    @Input() webinars!: Webinar[];
+export class LecturePanelsComponent {
+    @Input() lectures!: Lecture[];
 
-    private _hoveredPanels = new Map<Webinar, boolean>();
+    private _hoveredPanels = new Map<Lecture, boolean>();
 
-    setPanelHovered(panel: Webinar, value: boolean) {
+    setPanelHovered(panel: Lecture, value: boolean) {
         this._hoveredPanels.set(panel, value);
     }
 
-    isPanelHovered(panel: Webinar) {
+    isPanelHovered(panel: Lecture) {
         return this._hoveredPanels.get(panel) === true;
     }
 }
