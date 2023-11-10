@@ -37,10 +37,6 @@ export class BlogNavbarComponent {
         return this.blogService.filter;
     }
 
-    isActive(_item: NavbarItem) {
-        return false;
-    }
-
     get fontSizeClass() {
         return this.variant === "listPage" ? "text-p1" : "text-p2";
     }
