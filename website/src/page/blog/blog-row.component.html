@@ -10,7 +10,7 @@
       <a [tdLink]="posts.posts[0].readPostLink()">
         <h1 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title | plainText }}</h1>
       </a>
-      <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].shortDescription" />
+      <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].description" />
       <td-blog-authorship-bar [post]="posts.posts[0]" />
     </div>
   </div>
@@ -28,7 +28,7 @@
           <a [tdLink]="post.readPostLink()">
             <h2 class="bp-post-title">{{ post.title | plainText }}</h2>
           </a>
-          <td-rich-text class="bp-secondary-post-description" [value]="post.shortDescription" />
+          <td-rich-text class="bp-secondary-post-description" [value]="post.description" />
           <td-blog-authorship-bar [post]="post" />
         </div>
       </div>
@@ -48,7 +48,7 @@
       <a [tdLink]="posts.posts[0].readPostLink()">
         <h3 class="bp-post-title">{{ posts.posts[0].title | plainText }}</h3>
       </a>
-      <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].shortDescription" />
+      <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].description" />
       <td-blog-authorship-bar [post]="posts.posts[0]" />
     </div>
   </div>

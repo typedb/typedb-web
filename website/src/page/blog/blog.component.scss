@@ -70,16 +70,6 @@ hr {
     }
 }
 
-.bp-primary-post-description {
-    font-weight: var(--font-weight-light);
-    margin-top: 16px;
-    @include line-clamp(5);
-
-    @media (max-width: media.$max-width-tablet) {
-        margin-top: 8px;
-    }
-}
-
 .bp-author {
     display: flex;
     flex-direction: row;

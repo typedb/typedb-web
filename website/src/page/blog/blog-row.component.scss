@@ -65,6 +65,10 @@ hr {
     }
 }
 
+.bp-primary-post-summary {
+    min-width: 0;
+}
+
 .bp-post-title {
     font-weight: var(--font-weight-bold);
     margin-top: 12px;
@@ -82,7 +86,7 @@ hr {
 .bp-primary-post-description {
     font-weight: var(--font-weight-light);
     margin-top: 16px;
-    @include line-clamp(5);
+    @include line-clamp(4);
 
     @media (max-width: media.$max-width-tablet) {
         margin-top: 8px;

@@ -1,35 +1,73 @@
 @use "colors";
 @use "media";
 
-.pi-speaker {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
+:host {
+    &.pi-event {
+        --pi-image-size: 88px;
+        @media (max-width: media.$max-width-mobile) {
+            --pi-image-size: 54px;
+        }
 
-    @media (max-width: media.$max-width-mobile) {
-        gap: 8px;
+        .pi-person-details {
+            color: var(--color-secondary-light-grey);
+        }
     }
 
-    img {
-        display: block;
-        width: 88px;
-        height: 88px;
-
+    &.pi-article {
+        --pi-image-size: 56px;
         @media (max-width: media.$max-width-mobile) {
-            width: 54px;
-            height: 54px;
+            --pi-image-size: 40px;
+        }
+    }
+
+    &.pi-article-details {
+        --pi-image-size: 40px;
+        @media (max-width: media.$max-width-mobile) {
+            --pi-image-size: 32px;
+        }
+    }
+
+    &.pi-article,
+    &.pi-article-details {
+        overflow: hidden;
+
+        .pi-person-details {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--body-font-color);
         }
     }
 }
 
+.pi-person {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    color: inherit;
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 8px;
+    }
+}
+
+img {
+    display: block;
+    width: var(--pi-image-size);
+    height: var(--pi-image-size);
+}
+
 @media (hover: hover) {
-    a.pi-speaker {
-        .pi-speaker-image-container {
+    a.pi-person {
+        .pi-person-image-container {
             position: relative;
         }
 
-        .pi-speaker-image-cover {
+        .pi-person-image-cover {
             position: absolute;
             inset: 0;
             opacity: 0;
@@ -44,11 +82,11 @@
         &:hover {
             color: var(--color-green);
 
-            .pi-speaker-image-container {
+            .pi-person-image-container {
                 border-color: var(--color-green);
             }
 
-            .pi-speaker-image-cover {
+            .pi-person-image-cover {
                 opacity: 1;
             }
 
@@ -59,15 +97,19 @@
     }
 }
 
-.pi-speaker-image-container {
+.pi-person-image-container {
     flex-shrink: 0;
     border: 1px solid var(--content-border-color);
     border-radius: var(--border-radius);
     overflow: hidden;
 }
 
-.pi-speaker-image-cover {
+.pi-person-image-cover {
     display: none;
+}
+
+.pi-person-text {
+    overflow: hidden;
 }
 
 .pi-person-name {
@@ -75,7 +117,7 @@
 }
 
 @media (max-width: media.$max-width-tablet) {
-    a.pi-speaker {
+    a.pi-person {
         color: var(--color-green);
 
         .pi-person-name {
