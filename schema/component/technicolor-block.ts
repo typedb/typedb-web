@@ -24,12 +24,13 @@ export class TechnicolorBlock implements Partial<BodyTextField> {
     }
 
     static fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
+        const title = ParagraphWithHighlights.fromSanity(data.title);
         return new TechnicolorBlock({
-            title: ParagraphWithHighlights.fromSanity(data.title),
+            title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
-            sectionId: data.sectionId,
+            sectionId: data.sectionId || title.toPlainText().toLowerCase().replace(/([^A-Za-z0-9\s])/g, '').replace(/\s/g, "-"),
         });
     }
 }
