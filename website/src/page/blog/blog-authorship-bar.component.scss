@@ -1,9 +1,11 @@
+@use "colors";
 @use "media";
 
 :host {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: space-between;
     gap: 16px;
     margin-top: 16px;
 
@@ -14,59 +16,8 @@
             margin-top: 16px;
         }
     }
-
-    h3 {
-        font-weight: var(--font-weight-semi-bold);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    p {
-        flex-shrink: 0;
-    }
-}
-
-.bp-author {
-    flex: 1;
-    min-width: 0;
-    margin-left: 8px;
-}
-
-.bp-author-description {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.bp-avatar {
-    display: block;
-    width: 56px;
-    height: 56px;
-    border: 1px solid var(--content-border-color);
-    border-radius: var(--border-radius);
-
-    &.bp-avatar-small {
-        width: 40px;
-        height: 40px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        width: 40px;
-        height: 40px;
-
-        &.bp-avatar-small {
-            width: 32px;
-            height: 32px;
-        }
-    }
-}
-
-.bp-reading-time-icon {
-    margin: 0 6px -6px 0;
 }
 
 .bp-post-date {
-    margin-left: auto;
-    align-self: flex-end;
+    flex-shrink: 0;
 }
