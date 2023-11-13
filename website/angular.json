@@ -29,6 +29,7 @@
                             "src/assets",
                             "src/robots.txt",
                             "src/site.webmanifest",
+                            "src/sitemap.xml",
                             {
                                 "glob": "**/*",
                                 "input": "./node_modules/typedb-web-common/src/icons",

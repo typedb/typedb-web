@@ -4,3 +4,4 @@ Allow: /
 
 # Host
 Host: https://typedb.com
+Sitemap: https://typedb.com/sitemap.xml

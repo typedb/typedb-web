@@ -1,4 +1,5 @@
-import { registerPlugin, HandledRoute } from '@scullyio/scully';
+import { getSitemapPlugin, SitemapConfig } from "@gammastream/scully-plugin-sitemap";
+import { HandledRoute, registerPlugin, setPluginConfig } from "@scullyio/scully";
 import axios from "axios";
 
 const defaultValidator = async () => [];
@@ -15,11 +16,14 @@ export const eventRoutes = "eventRoutes";
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
 
-async function resourceRoutesPluginBase(props: { resourceType: string, resourcePath: string }): Promise<HandledRoute[]> {
+async function resourceRoutesPluginBase(props: {
+    resourceType: string;
+    resourcePath: string;
+}): Promise<HandledRoute[]> {
     const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
-        params: { "query": `*[_type == '${props.resourceType}'].slug.current` },
+        params: { query: `*[_type == '${props.resourceType}'].slug.current` },
     });
-    return data.result.map(x => ({ route: `/${props.resourcePath}/${x}` }));
+    return data.result.map((x) => ({ route: `/${props.resourcePath}/${x}` }));
 }
 
 async function fundamentalArticleRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
@@ -31,7 +35,9 @@ async function applicationArticleRoutesPlugin(route: string, config = {}): Promi
 }
 
 async function blogCategoryRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return ["announcements", "engineering", "applications", "philosophy", "tutorials"].map(x => ({ route: `/blog/category/${x}` }));
+    return ["announcements", "engineering", "applications", "philosophy", "tutorials"].map((x) => ({
+        route: `/blog/category/${x}`,
+    }));
 }
 
 async function blogPostRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
@@ -40,9 +46,9 @@ async function blogPostRoutesPlugin(route: string, config = {}): Promise<Handled
 
 async function solutionRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
-        params: { "query": `*[_type == 'solutionPage'].route.current` },
+        params: { query: `*[_type == 'solutionPage'].route.current` },
     });
-    return data.result.map(x => ({ route: `/solutions/${x}` }));
+    return data.result.map((x) => ({ route: `/solutions/${x}` }));
 }
 
 async function lectureRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
@@ -65,3 +71,17 @@ registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator)
 registerPlugin("router", lectureRoutes, lectureRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
 registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);
+
+const SitemapPlugin = getSitemapPlugin();
+setPluginConfig<SitemapConfig>(SitemapPlugin, {
+    urlPrefix: process.env.URL || "https://typedb.com",
+    changeFreq: "daily",
+    sitemapFilename: "sitemap-main.xml",
+    ignoredRoutes: ["/404"],
+    routes: {
+        "/": { priority: "0.9" },
+        "/philosophy": { priority: "0.8" },
+        "/features": { priority: "0.7" },
+        "/cloud": { priority: "0.6" },
+    },
+});
