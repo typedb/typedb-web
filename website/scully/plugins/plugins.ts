@@ -1,4 +1,4 @@
-import { getSitemapPlugin } from "@gammastream/scully-plugin-sitemap";
+import { getSitemapPlugin, SitemapConfig } from "@gammastream/scully-plugin-sitemap";
 import { HandledRoute, registerPlugin, setPluginConfig } from "@scullyio/scully";
 import axios from "axios";
 
@@ -73,9 +73,15 @@ registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValida
 registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);
 
 const SitemapPlugin = getSitemapPlugin();
-setPluginConfig(SitemapPlugin, {
+setPluginConfig<SitemapConfig>(SitemapPlugin, {
     urlPrefix: process.env.URL || "https://typedb.com",
     changeFreq: "daily",
     sitemapFilename: "sitemap-main.xml",
     ignoredRoutes: ["/404"],
+    routes: {
+        "/": { priority: "0.9" },
+        "/philosophy": { priority: "0.8" },
+        "/features": { priority: "0.7" },
+        "/cloud": { priority: "0.6" },
+    },
 });
