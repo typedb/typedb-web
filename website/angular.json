@@ -23,7 +23,14 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "assets": ["src/favicon.ico", "src/favicon.png", "src/assets", "src/robots.txt", "src/site.webmanifest"],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/favicon.png",
+                            "src/assets",
+                            "src/robots.txt",
+                            "src/site.webmanifest",
+                            "src/sitemap.xml"
+                        ],
                         "styles": [
                             "./node_modules/cookieconsent/build/cookieconsent.min.css",
                             "src/styles/styles.scss"
