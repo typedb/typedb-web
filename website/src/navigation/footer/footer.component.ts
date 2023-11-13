@@ -47,8 +47,8 @@ export class FooterComponent implements OnInit {
 }
 
 const contactMediaIcons: { [key in ContactMediaID]: string } = {
-    forum: "discourse_rectangle",
-    discord: "discord_rectangle",
+    forum: "discourse-rectangle",
+    discord: "discord-rectangle",
     contactForm: "mail",
 };
 

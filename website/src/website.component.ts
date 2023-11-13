@@ -97,37 +97,33 @@ export class WebsiteComponent {
 
     private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
         const icons = [
-            "arrow_down",
-            "burger_mobile",
-            "burger_tablet",
+            "arrow-down",
+            "burger-mobile",
+            "burger-tablet",
             "calendar",
             "check",
             "checked",
             "close",
             "code",
-            "discord_rectangle",
-            "discourse_rectangle",
-            "facebook_rectangle",
+            "discord-rectangle",
+            "discourse-rectangle",
+            "facebook-rectangle",
             "github",
             "heart",
             "info",
             "link",
             "linkedin",
-            "linkedin_rectangle",
+            "linkedin-rectangle",
             "location",
             "mail",
-            "meetup_rectangle",
-            "reddit_rectangle",
+            "meetup-rectangle",
+            "reddit-rectangle",
             "time",
-            "twitter_rectangle",
-            "youtube_rectangle",
+            "twitter-rectangle",
+            "youtube-rectangle",
         ];
-        icons.forEach((icon) => {
-            const fileName = icon.replace("_", "-");
-            matIconRegistry.addSvgIcon(
-                icon,
-                domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${fileName}.svg`),
-            );
-        });
+        icons.forEach((icon) =>
+            matIconRegistry.addSvgIcon(icon, domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${icon}.svg`)),
+        );
     }
 }
