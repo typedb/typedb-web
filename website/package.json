@@ -2,6 +2,7 @@
   "name": "typedb-website",
   "version": "0.0.0",
   "scripts": {
+    "postinstall": "init-common",
     "ng": "ng",
     "start": "ng serve",
     "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
