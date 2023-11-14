@@ -35,7 +35,7 @@ export class SocialMediaLink {
     constructor(id: SocialMediaID, db: SanityDataset) {
         this.id = id;
         this.text = socialMedias[id];
-        this.svgIcon = `${id}_rectangle`;
+        this.svgIcon = `${id}-rectangle`;
         const communityResources = db.getDocumentByID("communityResources") as SanityCommunityResources;
         this.link = new Link({ destination: communityResources[`${id}URL`] || "", type: "external", opensNewTab: true });
     }
