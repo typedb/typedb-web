@@ -14,8 +14,8 @@ command = "pnpm run style:verify && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify && ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "pnpm run style:verify && ENV=production pnpm run build && pnpm run prerender"
+publish = "dist/static"
 
 [[redirects]]
 from = "/discord"
@@ -124,14 +124,14 @@ to = "https://typedb.com/white-papers"
 status = 302
 
 [[redirects]]
-from = "https://typedb.com/404"
-to = "https://typedb.com/__404"
+from = "/404"
+to = "/__404"
 status = 404
 force = true
 
 [[redirects]]
-from = "https://typedb.com/*"
-to = "https://typedb.com/__404"
+from = "/*"
+to = "/__404"
 status = 404
 
 [[redirects]]
