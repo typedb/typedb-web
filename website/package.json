@@ -2,6 +2,7 @@
   "name": "typedb-website",
   "version": "0.0.0",
   "scripts": {
+    "postinstall": "init-common",
     "ng": "ng",
     "start": "ng serve",
     "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
@@ -28,6 +29,7 @@
     "@angular/platform-browser-dynamic": "16.1.7",
     "@angular/router": "16.1.7",
     "@fontsource/titillium-web": "5.0.17",
+    "@gammastream/scully-plugin-sitemap": "1.0.7",
     "@pixi/constants": "6.5.9",
     "@pixi/core": "6.5.9",
     "@pixi/display": "6.5.9",

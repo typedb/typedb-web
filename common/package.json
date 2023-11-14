@@ -2,9 +2,19 @@
     "name": "typedb-web-common",
     "private": true,
     "version": "1.0.0",
-    "main": "package.json",
     "license": "UNLICENSED",
+    "scripts": {
+        "build": "tsc"
+    },
+    "bin": {
+        "init-common": "./bin/init.js"
+    },
     "peerDependencies": {
-        "@fontsource/titillium-web": "5.x"
+        "@fontsource/titillium-web": "5.x",
+        "prismjs": "1.29.x"
+    },
+    "devDependencies": {
+        "@types/prismjs": "1.26.2",
+        "typescript": "5.1.6"
     }
 }

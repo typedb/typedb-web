@@ -8,7 +8,7 @@
       (click)="toggleMenuPanelVisible(item)"
     >
       {{ item.title }}
-      <mat-icon svgIcon="arrow_down" class="tm-chevron" />
+      <mat-icon svgIcon="arrow-down" class="tm-chevron" />
     </button>
     <a *ngIf="isTextLink(item)" [tdLink]="item" (mouseenter)="clearFocus()">
       {{ item.text }}

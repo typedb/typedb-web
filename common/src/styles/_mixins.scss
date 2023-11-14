@@ -156,3 +156,9 @@
         background: var(--table-footer-background);
     }
 }
+
+@mixin url-icon($url, $color) {
+    background: $color;
+    mask-image: url($url);
+    -webkit-mask-image: url($url);
+}
