@@ -77,19 +77,19 @@ export class LearningArticleComponent implements OnInit {
         this.article$.subscribe(
             (post) => {
                 if (post) {
-                    this.title.setTitle(`TypeDB | Blog > ${post.title.toPlainText()}`);
+                    this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
                 } else {
-                    this.router.navigate(["blog"]);
+                    this.router.navigate(["learn"]);
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
             (_err) => {
-                this.router.navigate(["blog"]);
+                this.router.navigate(["learn"]);
             },
         );
     }
