@@ -22,7 +22,6 @@ import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
-import { WordpressService } from "../../service/wordpress.service";
 
 @Component({
     selector: "td-learning-article",
@@ -43,8 +42,7 @@ export class LearningArticleComponent implements OnInit {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private blogService: WordpressService,
+        private content: ContentService,
         private metaTags: MetaTagsService,
         private title: Title,
         private meta: Meta,
@@ -54,7 +52,7 @@ export class LearningArticleComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this.contentService.data.subscribe((data) => {
+        this.content.data.subscribe((data) => {
             const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
             if (sanityLearningCenter) {
                 this.learningCenter = new LearningCenter(sanityLearningCenter, data);
@@ -65,9 +63,9 @@ export class LearningArticleComponent implements OnInit {
             switchMap(({ resourceType, slug }) => {
                 const articleStream =
                     resourceType === fundamentalArticleSchemaName
-                        ? this.blogService.fundamentalArticles
-                        : this.blogService.applicationArticles;
-                return slug ? this.blogService.getArticleBySlug(articleStream, resourceType, slug) : of(null);
+                        ? this.content.fundamentalArticles
+                        : this.content.applicationArticles;
+                return slug ? this.content.getArticleBySlug(articleStream, resourceType, slug) : of(null);
             }),
             shareReplay(1),
         );
