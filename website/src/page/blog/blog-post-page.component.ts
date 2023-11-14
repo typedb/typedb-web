@@ -24,7 +24,6 @@ import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
-import { WordpressService } from "../../service/wordpress.service";
 
 @Component({
     selector: "td-blog-post-page",
@@ -46,8 +45,7 @@ export class BlogPostPageComponent implements OnInit {
     constructor(
         private router: Router,
         private _activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private blogService: WordpressService,
+        private content: ContentService,
         private metaTags: MetaTagsService,
         private title: Title,
         private meta: Meta,
@@ -57,7 +55,7 @@ export class BlogPostPageComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this.contentService.data.subscribe((data) => {
+        this.content.data.subscribe((data) => {
             const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
             if (sanityBlog) {
                 this.blog = new Blog(sanityBlog, data);
@@ -67,7 +65,7 @@ export class BlogPostPageComponent implements OnInit {
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) => {
                 return slug
-                    ? this.blogService.getArticleBySlug<BlogPost>(this.blogService.blogPosts, blogPostSchemaName, slug)
+                    ? this.content.getArticleBySlug<BlogPost>(this.content.blogPosts, blogPostSchemaName, slug)
                     : of(null);
             }),
             shareReplay(1),
@@ -78,7 +76,7 @@ export class BlogPostPageComponent implements OnInit {
                 if (!post) return of(null);
                 return combineLatest(
                     post.categories.map((category) => {
-                        return this.blogService.getPostsByCategory(category).pipe(
+                        return this.content.getPostsByCategory(category).pipe(
                             map((posts) => ({
                                 categorySlug: category,
                                 posts: posts
@@ -101,6 +99,9 @@ export class BlogPostPageComponent implements OnInit {
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
+                    document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+                        el.setAttribute("rel", "noopener");
+                    });
                 } else {
                     this.router.navigate(["blog"]);
                 }

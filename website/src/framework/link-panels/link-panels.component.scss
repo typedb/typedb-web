@@ -46,6 +46,11 @@
     img {
         width: 72px;
         height: 72px;
+
+        @media (max-width: media.$max-width-mobile) {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     &.lc-card-cols-3 {
@@ -94,7 +99,7 @@
     &.lc-icon-card {
         @media (max-width: media.$max-width-mobile) {
             flex-direction: row;
-            gap: 8px;
+            gap: 12px;
 
             td-rich-text {
                 margin-top: 0;

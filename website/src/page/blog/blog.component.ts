@@ -22,7 +22,6 @@ import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
-import { WordpressService } from "../../service/wordpress.service";
 
 @Component({
     selector: "td-blog-list-page",
@@ -36,8 +35,7 @@ export class BlogComponent {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private contentService: ContentService,
-        private blogService: WordpressService,
+        private content: ContentService,
         private title: Title,
         private metaTags: MetaTagsService,
         private _analytics: AnalyticsService,
@@ -46,43 +44,39 @@ export class BlogComponent {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this.contentService.data.subscribe((data) => {
+        this.content.data.subscribe((data) => {
             const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
             if (sanityBlog) {
                 this.blog = new Blog(sanityBlog, data);
-                combineLatest([this.blogService.displayedPosts, this.blogService.filter]).subscribe(
-                    ([posts, filter]) => {
-                        const rows = [];
-                        let currentRowIndex = 0;
-                        const selectedTabSlug = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
-                        const selectedTab = this.blog!.tabs[selectedTabSlug]!;
-                        for (let i = 0; i < posts.length; i++) {
-                            const additionalRow = selectedTab.additionalRows.find(
-                                (x) => x.rowIndex === currentRowIndex,
-                            );
-                            if (additionalRow) {
-                                rows.push(additionalRow);
-                                currentRowIndex++;
-                                i--;
-                                continue;
-                            }
-                            if (i === 0 || posts[i].level === "primary") {
-                                rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
-                            } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
-                                rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
-                            } else {
-                                rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
-                                i++;
-                            }
+                combineLatest([this.content.displayedPosts, this.content.blogFilter]).subscribe(([posts, filter]) => {
+                    const rows = [];
+                    let currentRowIndex = 0;
+                    const selectedTabSlug = ((filter as any)["categorySlug"] || "all") as "all" | BlogCategoryID;
+                    const selectedTab = this.blog!.tabs[selectedTabSlug]!;
+                    for (let i = 0; i < posts.length; i++) {
+                        const additionalRow = selectedTab.additionalRows.find((x) => x.rowIndex === currentRowIndex);
+                        if (additionalRow) {
+                            rows.push(additionalRow);
                             currentRowIndex++;
+                            i--;
+                            continue;
                         }
-                        const furtherAdditionalRows = selectedTab.additionalRows
-                            .filter((x) => x.rowIndex >= currentRowIndex)
-                            .sort((a, b) => a.rowIndex - b.rowIndex);
-                        rows.push(...furtherAdditionalRows);
-                        this.rows = rows;
-                    },
-                );
+                        if (i === 0 || posts[i].level === "primary") {
+                            rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
+                        } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
+                            rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
+                        } else {
+                            rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
+                            i++;
+                        }
+                        currentRowIndex++;
+                    }
+                    const furtherAdditionalRows = selectedTab.additionalRows
+                        .filter((x) => x.rowIndex >= currentRowIndex)
+                        .sort((a, b) => a.rowIndex - b.rowIndex);
+                    rows.push(...furtherAdditionalRows);
+                    this.rows = rows;
+                });
                 this.route.paramMap
                     .pipe(
                         map((params) => {
@@ -93,7 +87,7 @@ export class BlogComponent {
                     )
                     .subscribe(
                         (filter) => {
-                            this.blogService.filter.next(filter);
+                            this.content.blogFilter.next(filter);
                             let categorySlug: "all" | BlogCategoryID = "all";
                             if ("categorySlug" in filter) {
                                 categorySlug = filter.categorySlug as BlogCategoryID;

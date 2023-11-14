@@ -1,8 +1,6 @@
 @use "colors";
 @use "media";
 
-$icon-size: 72px;
-
 @mixin graphic-line-gradient($base-color) {
     background: linear-gradient(
         transparent 0%,
@@ -15,8 +13,17 @@ $icon-size: 72px;
 }
 
 :host {
+    --icon-size: 72px;
+    --halo-size: 104px;
+    --graphic-area-width: 120px;
     display: block;
     position: relative;
+
+    @media (max-width: media.$max-width-mobile) {
+        --icon-size: 36px;
+        --halo-size: 52px;
+        --graphic-area-width: 52px;
+    }
 
     &.tb-no-upper {
         margin-top: 120px;
@@ -36,6 +43,10 @@ $icon-size: 72px;
 
     &:not(.tb-no-upper) .tb-main {
         padding-top: 144px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding-top: 64px;
+        }
     }
 
     &.tb-green {
@@ -78,7 +89,7 @@ $icon-size: 72px;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 35px;
+    left: calc(var(--icon-size) / 2 - 1px);
     width: 3px;
     z-index: -1;
 
@@ -89,7 +100,7 @@ $icon-size: 72px;
 
 .tb-main {
     display: grid;
-    grid-template-columns: 120px minmax(auto, 660px);
+    grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 64px;
 
     @media (max-width: media.$max-width-tablet) {
@@ -98,7 +109,7 @@ $icon-size: 72px;
 
     @media (max-width: media.$max-width-mobile) {
         padding-bottom: 24px;
-        grid-template-columns: 84px auto;
+        grid-template-columns: var(--graphic-area-width) auto;
     }
 }
 
@@ -115,8 +126,8 @@ $icon-size: 72px;
 
     .tb-icon-bg-paper {
         position: absolute;
-        width: $icon-size + 32px;
-        height: $icon-size + 32px;
+        width: var(--halo-size);
+        height: var(--halo-size);
         margin-left: -16px;
         border-radius: var(--border-radius);
         filter: blur(8px);
@@ -127,8 +138,8 @@ $icon-size: 72px;
         display: block;
         color: unset;
         position: absolute;
-        width: $icon-size + 32px;
-        height: $icon-size + 32px;
+        width: var(--halo-size);
+        height: var(--halo-size);
         margin-left: -16px;
         border-radius: 50%;
         filter: blur(15px);
@@ -145,8 +156,8 @@ $icon-size: 72px;
 
     .tb-icon {
         position: absolute;
-        width: $icon-size;
-        height: $icon-size;
+        width: var(--icon-size);
+        height: var(--icon-size);
         z-index: 3;
     }
 }

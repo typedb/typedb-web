@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from "@angular/core";
 
 import { blogCategories, blogCategoryList, BlogFilter, Link } from "typedb-web-schema";
 
-import { WordpressService } from "../../service/wordpress.service";
+import { ContentService } from "../../service/content.service";
 
 @Component({
     selector: "td-blog-navbar, [td-blog-navbar]",
@@ -14,7 +14,7 @@ export class BlogNavbarComponent {
     items: NavbarItem[];
     activeFilter!: BlogFilter;
 
-    constructor(private blogService: WordpressService) {
+    constructor(private content: ContentService) {
         this.items = [
             { text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) },
             ...blogCategoryList.map((categorySlug) => ({
@@ -34,7 +34,7 @@ export class BlogNavbarComponent {
     }
 
     get filter$() {
-        return this.blogService.filter;
+        return this.content.blogFilter;
     }
 
     get fontSizeClass() {
