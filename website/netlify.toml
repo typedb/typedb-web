@@ -1,9 +1,6 @@
 [build]
 ignore = "/bin/false"
 
-[build.processing.html]
-pretty_urls = true
-
 [context.production]
 command = "pnpm run style:verify && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
@@ -127,7 +124,7 @@ to = "https://typedb.com/white-papers"
 status = 302
 
 [[redirects]]
-from = "/404"
+from = "/404.html"
 to = "/__404"
 status = 404
 force = true
