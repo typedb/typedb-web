@@ -1,6 +1,9 @@
 [build]
 ignore = "/bin/false"
 
+[build.processing.html]
+pretty_urls = true
+
 [context.production]
 command = "pnpm run style:verify && ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
