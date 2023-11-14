@@ -20,17 +20,17 @@ publish = "dist/dynamic"
 [[redirects]]
 from = "/discord"
 to = "https://discord.com/invite/typedb"
-status = 303
+status = 301
 
 [[redirects]]
 from = "/meetup"
 to = "https://www.meetup.com/pro/typedb"
-status = 303
+status = 301
 
 [[redirects]]
 from = "/github"
 to = "https://github.com/vaticle/typedb"
-status = 303
+status = 301
 
 [[redirects]]
 from = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show-a795701af90e"
@@ -55,7 +55,7 @@ status = 301
 [[redirects]]
 from = "/docs"
 to = "/docs/home/overview"
-status = 302
+status = 301
 force = true
 
 [[redirects]]
