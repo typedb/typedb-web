@@ -124,9 +124,15 @@ to = "https://typedb.com/white-papers"
 status = 302
 
 [[redirects]]
+from = "https://typedb.com/404"
+to = "https://typedb.com/__404"
+status = 404
+force = true
+
+[[redirects]]
 from = "https://typedb.com/*"
-to = "https://typedb.com/__fallback.html"
-status = 200
+to = "https://typedb.com/__404"
+status = 404
 
 [[redirects]]
 from = "/*"
