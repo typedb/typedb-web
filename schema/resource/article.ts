@@ -65,6 +65,8 @@ export abstract class Article extends SiteResource {
         this.contentHtml = props.contentHtml;
         this.linkedResources = props.linkedResources;
     }
+
+    abstract pageTitle(): string;
 }
 
 function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
@@ -78,11 +80,19 @@ export class FundamentalArticle extends Article {
     static fromApi(data: SanityFundamentalArticle, db: SanityDataset, wordpressPost: WordpressPost): FundamentalArticle {
         return new FundamentalArticle(articlePropsFromApi(data, db, wordpressPost));
     }
+
+    pageTitle(): string {
+        return `TypeDB | Fundamentals > ${this.title.toPlainText()}`;
+    }
 }
 
 export class ApplicationArticle extends Article {
     static fromApi(data: SanityApplicationArticle, db: SanityDataset, wordpressPost: WordpressPost): ApplicationArticle {
         return new ApplicationArticle(articlePropsFromApi(data, db, wordpressPost));
+    }
+
+    pageTitle(): string {
+        return `TypeDB | Applications > ${this.title.toPlainText()}`;
     }
 }
 
@@ -123,6 +133,10 @@ export class BlogPost extends Article {
     heroImageURL(): string {
         if (this.imageURL) return this.imageURL;
         else return blogPostBackupHeroImageURL(this.slug);
+    }
+
+    pageTitle(): string {
+        return `TypeDB | Blog > ${this.title.toPlainText()}`;
     }
 }
 
