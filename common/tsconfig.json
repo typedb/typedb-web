@@ -1,0 +1,12 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "target": "ES2022",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "outDir": "lib",
+        "strict": true,
+        "esModuleInterop": true
+    }
+}

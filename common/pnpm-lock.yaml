@@ -6,11 +6,37 @@ settings:
 
 dependencies:
   '@fontsource/titillium-web':
-    specifier: 5.0.13
+    specifier: 5.x
     version: 5.0.13
+  prismjs:
+    specifier: 1.29.x
+    version: 1.29.0
+
+devDependencies:
+  '@types/prismjs':
+    specifier: 1.26.2
+    version: 1.26.2
+  typescript:
+    specifier: 5.1.6
+    version: 5.1.6
 
 packages:
 
   /@fontsource/titillium-web@5.0.13:
     resolution: {integrity: sha512-l9RlKSL3EH5zF/+S5cfcG3I9BF428G37UsJOzAzIZpYLKtOdzn6ILhtGFbCWmlX/S6RBgHC6TsYIzZZcADlTSw==}
     dev: false
+
+  /@types/prismjs@1.26.2:
+    resolution: {integrity: sha512-/r7Cp7iUIk7gts26mHXD66geUC+2Fo26TZYjQK6Nr4LDfi6lmdRmMqM0oPwfiMhUwoBAOFe8GstKi2pf6hZvwA==}
+    dev: true
+
+  /prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /typescript@5.1.6:
+    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true

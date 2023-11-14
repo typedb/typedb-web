@@ -97,7 +97,7 @@ export class BlogPostPageComponent implements OnInit {
         this.post$.subscribe(
             (post) => {
                 if (post) {
-                    this.title.setTitle(`TypeDB | Blog > ${post.title.toPlainText()}`);
+                    this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
