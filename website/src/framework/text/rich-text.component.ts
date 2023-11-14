@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, Input } from "@angular/core";
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { PortableText } from "typedb-web-schema";
@@ -10,13 +10,13 @@ import { HtmlPipe } from "./html.pipe";
     template: "",
     styleUrls: ["rich-text.component.scss"],
 })
-export class RichTextComponent implements AfterViewInit {
+export class RichTextComponent implements OnInit {
     @Input() value!: string | PortableText;
     @HostBinding("innerHtml") innerHtml!: SafeHtml;
 
     constructor(private sanitizer: DomSanitizer) {}
 
-    ngAfterViewInit() {
+    ngOnInit() {
         this.innerHtml =
             typeof this.value === "string" ? this.value : new HtmlPipe(this.sanitizer).transform(this.value);
     }
