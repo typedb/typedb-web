@@ -99,6 +99,9 @@ export class BlogPostPageComponent implements OnInit {
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     Prism.highlightAll();
+                    document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+                        el.setAttribute("rel", "noopener");
+                    });
                 } else {
                     this.router.navigate(["blog"]);
                 }
