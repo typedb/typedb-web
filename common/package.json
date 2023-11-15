@@ -13,7 +13,7 @@
         "@fontsource/titillium-web": "5.x",
         "prismjs": "1.29.x"
     },
-    "devDependencies": {
+    "dependencies": {
         "@types/prismjs": "1.26.2",
         "typescript": "5.1.6"
     }
