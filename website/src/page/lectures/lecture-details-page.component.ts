@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Lecture, lectureSchemaName, SanityLecture } from "typedb-web-schema";
+import { Lecture, lectureSchemaName, ParagraphWithHighlights, SanityLecture } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
@@ -22,6 +22,12 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
 export class LectureDetailsPageComponent implements OnInit {
     lecture?: Lecture;
     isSubmitting = false;
+    allLecturesHeading = new ParagraphWithHighlights({
+        spans: [
+            { text: "TypeDB ", highlight: false },
+            { text: "Lectures", highlight: true },
+        ],
+    });
 
     constructor(
         private router: Router,

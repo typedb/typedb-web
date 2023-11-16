@@ -2,14 +2,6 @@
 
 $post-content-width: 800px;
 
-.bp-nebula-section {
-    margin-top: 120px;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 48px;
-    }
-}
-
 ::ng-deep .bp-site-title p {
     color: var(--body-heading-color);
     font-weight: var(--font-weight-bold);

@@ -1,5 +1,17 @@
 @use "media";
 
+.resource-section {
+    padding-top: 64px;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding-top: 24px;
+    }
+
+    td-heading-with-highlights {
+        text-align: center;
+    }
+}
+
 ul.wd-subtitle {
     margin-top: 32px;
     list-style: none;

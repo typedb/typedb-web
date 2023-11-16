@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
+import { ParagraphWithHighlights, SanityWhitePaper, WhitePaper, whitePaperSchemaName } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
@@ -21,6 +21,12 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
 export class WhitePaperDetailsPageComponent implements OnInit {
     whitePaper?: WhitePaper;
     isSubmitting = false;
+    allWhitePapersHeading = new ParagraphWithHighlights({
+        spans: [
+            { text: "TypeDB ", highlight: false },
+            { text: "White Papers", highlight: true },
+        ],
+    });
 
     constructor(
         private router: Router,
