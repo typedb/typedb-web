@@ -83,14 +83,14 @@ export class LearningArticleComponent implements OnInit {
                         el.setAttribute("rel", "noopener");
                     });
                 } else {
-                    this.router.navigate(["learn"]);
+                    this.router.navigate(["learn"], { replaceUrl: true });
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
             (_err) => {
-                this.router.navigate(["learn"]);
+                this.router.navigate(["learn"], { replaceUrl: true });
             },
         );
     }

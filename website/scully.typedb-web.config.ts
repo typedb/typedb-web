@@ -17,7 +17,6 @@ setPluginConfig<SitemapConfig>(SitemapPlugin, {
     urlPrefix: process.env["URL"] || "https://typedb.com",
     changeFreq: "daily",
     sitemapFilename: "sitemap-main.xml",
-    ignoredRoutes: ["/__404"],
     routes: {
         "/": { priority: "0.9" },
         "/philosophy": { priority: "0.8" },
@@ -40,7 +39,6 @@ export const config: ScullyConfig = {
         "/white-papers/:slug": { type: whitePaperRoutes },
         "/events/:slug": { type: eventRoutes },
     },
-    extraRoutes: ["/__404"],
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
         args: ["--no-sandbox", "--disabled-setupid-sandbox"],

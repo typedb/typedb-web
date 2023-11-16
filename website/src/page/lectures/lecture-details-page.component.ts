@@ -59,7 +59,7 @@ export class LectureDetailsPageComponent implements OnInit {
                         onSuccess: (_formEl, values) => this.onSubmit(values),
                     });
                 } else {
-                    this.router.navigate(["lectures"]);
+                    this.router.navigate(["lectures"], { replaceUrl: true });
                 }
             });
         });
