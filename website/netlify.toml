@@ -14,8 +14,8 @@ command = "pnpm run style:verify && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify && ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "pnpm run style:verify && ENV=production pnpm run build && pnpm run prerender"
+publish = "dist/static"
 
 [[redirects]]
 from = "/discord"
@@ -109,8 +109,8 @@ to = "https://typedb.com/data.json"
 status = 200
 
 [[redirects]]
-from = "https://typedb.com/*"
-to = "https://typedb.com/__fallback"
+from = "/*"
+to = "/__fallback"
 status = 200
 
 [[redirects]]
