@@ -1,20 +1,31 @@
 <div *ngFor="let column of columns" class="mm-column">
-  <p class="mm-column-title">
+  <p class="mm-column-title" *ngIf="!isSpotlightColumn(column)">
     <strong>{{ column.title }}</strong>
   </p>
   <ul *ngIf="isListColumn(column)">
     <li *ngFor="let item of column.items" [ngSwitch]="!item.comingSoon">
       <!-- eslint-disable-next-line -->
-      <a *ngSwitchCase="true" [tdLink]="item.link" (click)="onClick(item)">
+      <a *ngSwitchCase="true" [tdLink]="item.link" (click)="onItemClick()">
         <ng-container *ngTemplateOutlet="linkContent; context: { item }" />
       </a>
       <!-- eslint-disable-next-line -->
-      <div *ngSwitchCase="false" class="mp-coming-soon" (click)="onClick(item)">
+      <div *ngSwitchCase="false" class="mp-coming-soon" (click)="onItemClick()">
         <ng-container *ngTemplateOutlet="linkContent; context: { item }" />
       </div>
     </li>
   </ul>
   <div *ngIf="isVideoColumn(column)">TODO: Video</div>
+  <div *ngIf="isSpotlightColumn(column)" class="mp-spotlight-container">
+    <!-- eslint-disable-next-line -->
+    <a class="mp-spotlight" [tdLink]="column.link" (click)="onItemClick()">
+      <div class="mp-spotlight-icon">
+        <img [src]="column.iconURL" [alt]="column.title" />
+      </div>
+      <div class="mp-spotlight-title">
+        <h4>{{ column.title }}</h4>
+      </div>
+    </a>
+  </div>
 </div>
 
 <ng-template #linkContent let-item="item">
