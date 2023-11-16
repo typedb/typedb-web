@@ -71,8 +71,8 @@ export class ContentService {
             .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
             .pipe(first());
         this.blogPosts = this.listPosts().pipe(shareReplay());
-        this.fundamentalArticles = this.listFundamentalArticles().pipe(shareReplay());
-        this.applicationArticles = this.listApplicationArticles().pipe(shareReplay());
+        this.fundamentalArticles = this.listFundamentalArticles();
+        this.applicationArticles = this.listApplicationArticles();
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
