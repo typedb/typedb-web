@@ -271,7 +271,7 @@ export class TopbarMenuMobileComponent {
 })
 export class TopbarMenuPanelMobileComponent {
     @Input() menuPanel!: TopbarMenuPanel;
-    @Output() itemclick = new EventEmitter<TopbarListColumnItem>();
+    @Output() itemclick = new EventEmitter<void>();
 
     get columns() {
         return this.menuPanel.columns;
@@ -289,7 +289,11 @@ export class TopbarMenuPanelMobileComponent {
         return obj instanceof TopbarVideoColumn;
     }
 
-    onClick(item: TopbarListColumnItem) {
-        this.itemclick.emit(item);
+    isSpotlightColumn(obj: TopbarColumn): obj is TopbarSpotlightColumn {
+        return obj instanceof TopbarSpotlightColumn;
+    }
+
+    onItemClick() {
+        this.itemclick.emit();
     }
 }

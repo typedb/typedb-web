@@ -77,3 +77,53 @@ a:focus {
 .tb-external-link-icon {
     font-size: 20px;
 }
+
+.mp-spotlight-container {
+    height: 100%;
+}
+
+.mp-spotlight {
+    margin: auto 0;
+    display: flex;
+
+    .mp-spotlight-icon,
+    .mp-spotlight-title {
+        border: 1px solid var(--content-border-color);
+        transition: border-color 100ms ease;
+    }
+
+    .mp-spotlight-icon {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+        background-color: var(--color-purple);
+        border-right: none;
+        padding: 16px;
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    &:hover .mp-spotlight-icon {
+        border-color: var(--color-green);
+        border-right-color: var(--content-border-color);
+    }
+
+    &:hover .mp-spotlight-title {
+        border-color: var(--color-green);
+
+        h4 {
+            color: var(--color-green);
+        }
+    }
+
+    .mp-spotlight-title {
+        border-left: none;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        background-color: var(--color-purple);
+        display: flex;
+        align-items: center;
+        padding-left: 4px;
+        width: 100%;
+    }
+}
