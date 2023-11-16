@@ -1,50 +1,58 @@
 <article tdPageBackground nebula="features" planet="blue_pink">
   <div *ngIf="lecture" class="article-content">
-    <section class="page-section page-intro-section">
-      <td-heading-with-highlights [value]="lecture.title" level="h1" />
-      <ul class="wd-subtitle text-p1">
-        <li>Lecture</li>
-        <li>
-          <mat-icon svgIcon="calendar" />
-          <span class="cdk-visually-hidden">Date/Time:</span>
-          <span *ngIf="lecture.isFinished()">On-Demand</span>
-          <time *ngIf="!lecture.isFinished()" [dateTime]="lecture.datetime.toISOString()">
-            {{ lecture.datetime | ordinalDate }},
-            {{ lecture.datetime | date: "shortTime" }}
-            {{ localTimezoneAbbreviation }}
-          </time>
-        </li>
-        <li>
-          <mat-icon svgIcon="time" />
-          <span class="cdk-visually-hidden">Duration:</span>
-          {{ lecture.durationMins | eventDuration }}
-        </li>
-      </ul>
-      <div class="subsection-margin wd-details-area">
-        <div class="card wd-form-card">
-          <h3>
-            <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
-          </h3>
-          <div id="hubspot-form-holder"></div>
-          <aside>
-            By submitting your personal data, you consent to emails from Vaticle. See our
-            <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
-          </aside>
-          <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
-        </div>
-        <div>
-          <td-rich-text [value]="lecture.description" />
-          <ul class="wd-speakers subsection-margin">
-            <li *ngFor="let speaker of lecture.speakers">
-              <td-person-info [person]="speaker" />
-            </li>
-          </ul>
-        </div>
-      </div>
+    <section class="page-section nebula-section">
+      <a tdLink="/lectures">
+        <td-heading-with-highlights [value]="allLecturesHeading" class="bp-site-title" level="h2" />
+      </a>
     </section>
-    <ng-container *ngIf="lecture.furtherLearning">
-      <td-technicolor-block [block]="lecture.furtherLearning" [index]="1" [noUpperLine]="true" />
-      <td-resource-panels [resources]="lecture.furtherLearning.resources" [cols]="3" />
-    </ng-container>
+
+    <div class="resource-section">
+      <section>
+        <td-heading-with-highlights [value]="lecture.title" level="h1" />
+        <ul class="wd-subtitle text-p1">
+          <li>Lecture</li>
+          <li>
+            <mat-icon svgIcon="calendar" />
+            <span class="cdk-visually-hidden">Date/Time:</span>
+            <span *ngIf="lecture.isFinished()">On-Demand</span>
+            <time *ngIf="!lecture.isFinished()" [dateTime]="lecture.datetime.toISOString()">
+              {{ lecture.datetime | ordinalDate }},
+              {{ lecture.datetime | date: "shortTime" }}
+              {{ localTimezoneAbbreviation }}
+            </time>
+          </li>
+          <li>
+            <mat-icon svgIcon="time" />
+            <span class="cdk-visually-hidden">Duration:</span>
+            {{ lecture.durationMins | eventDuration }}
+          </li>
+        </ul>
+        <div class="subsection-margin wd-details-area">
+          <div class="card wd-form-card">
+            <h3>
+              <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
+            </h3>
+            <div id="hubspot-form-holder"></div>
+            <aside>
+              By submitting your personal data, you consent to emails from Vaticle. See our
+              <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+            </aside>
+            <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+          </div>
+          <div>
+            <td-rich-text [value]="lecture.description" />
+            <ul class="wd-speakers subsection-margin">
+              <li *ngFor="let speaker of lecture.speakers">
+                <td-person-info [person]="speaker" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <ng-container *ngIf="lecture.furtherLearning">
+        <td-technicolor-block [block]="lecture.furtherLearning" [index]="1" [noUpperLine]="true" />
+        <td-resource-panels [resources]="lecture.furtherLearning.resources" [cols]="3" />
+      </ng-container>
+    </div>
   </div>
 </article>

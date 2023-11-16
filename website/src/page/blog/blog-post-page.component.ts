@@ -103,14 +103,14 @@ export class BlogPostPageComponent implements OnInit {
                         el.setAttribute("rel", "noopener");
                     });
                 } else {
-                    this.router.navigate(["blog"]);
+                    this.router.navigate(["blog"], { replaceUrl: true });
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
             (_err) => {
-                this.router.navigate(["blog"]);
+                this.router.navigate(["blog"], { replaceUrl: true });
             },
         );
     }

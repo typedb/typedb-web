@@ -1,26 +1,34 @@
 <article tdPageBackground nebula="studio" planet="pink">
   <div *ngIf="whitePaper" class="article-content">
-    <section class="page-section page-intro-section">
-      <td-heading-with-highlights class="narrow-section" [value]="whitePaper.title" level="h1" />
-      <div class="section subsection-margin card wd-form-card">
-        <td-aspect-ratio ratio="17:22">
-          <img [src]="whitePaper.portraitImageURL" class="wd-img" [alt]="whitePaper.title" />
-        </td-aspect-ratio>
-        <div>
-          <h3><strong>Get the white paper</strong></h3>
-          <div id="hubspot-form-holder"></div>
-          <aside>
-            By submitting your personal data, you consent to emails from Vaticle. See our
-            <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
-          </aside>
-          <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
-        </div>
-      </div>
-      <td-rich-text class="subsection-margin wd-description" [value]="whitePaper.description" />
+    <section class="page-section nebula-section">
+      <a tdLink="/white-papers">
+        <td-heading-with-highlights [value]="allWhitePapersHeading" class="bp-site-title" level="h2" />
+      </a>
     </section>
-    <ng-container *ngIf="whitePaper.furtherLearning">
-      <td-technicolor-block [block]="whitePaper.furtherLearning" [index]="1" [noUpperLine]="true" />
-      <td-resource-panels [resources]="whitePaper.furtherLearning.resources" [cols]="3" />
-    </ng-container>
+
+    <div class="resource-section">
+      <section>
+        <td-heading-with-highlights class="narrow-section" [value]="whitePaper.title" level="h1" />
+        <div class="section subsection-margin card wd-form-card">
+          <td-aspect-ratio ratio="17:22">
+            <img [src]="whitePaper.portraitImageURL" class="wd-img" [alt]="whitePaper.title" />
+          </td-aspect-ratio>
+          <div>
+            <h3><strong>Get the white paper</strong></h3>
+            <div id="hubspot-form-holder"></div>
+            <aside>
+              By submitting your personal data, you consent to emails from Vaticle. See our
+              <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+            </aside>
+            <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+          </div>
+        </div>
+        <td-rich-text class="subsection-margin wd-description" [value]="whitePaper.description" />
+      </section>
+      <ng-container *ngIf="whitePaper.furtherLearning">
+        <td-technicolor-block [block]="whitePaper.furtherLearning" [index]="1" [noUpperLine]="true" />
+        <td-resource-panels [resources]="whitePaper.furtherLearning.resources" [cols]="3" />
+      </ng-container>
+    </div>
   </div>
 </article>

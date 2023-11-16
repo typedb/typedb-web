@@ -77,6 +77,38 @@ section,
     max-width: 870px;
 }
 
+.nebula-section,
+.page-section.nebula-section {
+    margin-top: 120px;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 48px;
+    }
+
+    + article {
+        margin-top: 40px;
+        border-top: 1px solid var(--content-border-color);
+
+        section:first-of-type {
+            margin-top: 64px;
+
+            @media (max-width: media.$max-width-mobile) {
+                margin-top: 24px;
+            }
+        }
+    }
+}
+
+.resource-section {
+    margin-top: 40px;
+    border-top: 1px solid var(--content-border-color);
+    background: var(--color-black-purple);
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 16px;
+    }
+}
+
 .link-tertiary,
 .link-tertiary:visited {
     color: var(--color-white);
