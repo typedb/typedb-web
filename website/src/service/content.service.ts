@@ -7,7 +7,6 @@ import {
     combineLatest,
     concat,
     filter,
-    first,
     iif,
     map,
     Observable,
@@ -49,7 +48,7 @@ export class ContentService {
     readonly wordpressPosts: Observable<WordpressPost[]>;
     readonly blogPosts: Observable<BlogPost[]>;
     readonly displayedPosts: Observable<BlogPost[]>;
-    readonly fundamentalArticles: Observable<FundamentalArticle[]>;
+    readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
     readonly applicationArticles: Observable<ApplicationArticle[]>;
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
@@ -67,11 +66,11 @@ export class ContentService {
                 }),
             );
         });
-        this.wordpressPosts = this.transferState
-            .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
-            .pipe(first());
+        this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.wordpress.listPosts());
         this.blogPosts = this.listPosts().pipe(shareReplay());
-        this.fundamentalArticles = this.listFundamentalArticles();
+        this.listFundamentalArticles().subscribe((data) => {
+            this.fundamentalArticles.next(data);
+        });
         this.applicationArticles = this.listApplicationArticles();
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
