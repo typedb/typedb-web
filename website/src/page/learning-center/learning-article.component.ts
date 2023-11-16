@@ -30,7 +30,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
 })
 export class LearningArticleComponent implements OnInit {
     learningCenter?: LearningCenter;
-    readonly article$: Observable<Article | null>;
+    article$!: Observable<Article | null>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
@@ -52,6 +52,9 @@ export class LearningArticleComponent implements OnInit {
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
+    }
+
+    ngOnInit() {
         this.content.data.subscribe((data) => {
             const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
             if (sanityLearningCenter) {
@@ -69,9 +72,6 @@ export class LearningArticleComponent implements OnInit {
             }),
             shareReplay(1),
         );
-    }
-
-    ngOnInit() {
         this.article$.subscribe(
             (post) => {
                 if (post) {
