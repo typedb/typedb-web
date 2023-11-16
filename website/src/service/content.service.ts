@@ -47,10 +47,10 @@ const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wor
 export class ContentService {
     public data = new ReplaySubject<SanityDataset>();
     readonly wordpressPosts: Observable<WordpressPost[]>;
-    readonly blogPosts: Observable<BlogPost[]>;
+    readonly blogPosts = new ReplaySubject<BlogPost[]>();
     readonly displayedPosts: Observable<BlogPost[]>;
-    readonly fundamentalArticles: Observable<FundamentalArticle[]>;
-    readonly applicationArticles: Observable<ApplicationArticle[]>;
+    readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
+    readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
     constructor(
@@ -70,9 +70,15 @@ export class ContentService {
         this.wordpressPosts = this.transferState
             .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
             .pipe(first());
-        this.blogPosts = this.listPosts().pipe(shareReplay());
-        this.fundamentalArticles = this.listFundamentalArticles().pipe(shareReplay());
-        this.applicationArticles = this.listApplicationArticles().pipe(shareReplay());
+        this.listPosts().subscribe((data) => {
+            this.blogPosts.next(data);
+        });
+        this.listFundamentalArticles().subscribe((data) => {
+            this.fundamentalArticles.next(data);
+        });
+        this.listApplicationArticles().subscribe((data) => {
+            this.applicationArticles.next(data);
+        });
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
