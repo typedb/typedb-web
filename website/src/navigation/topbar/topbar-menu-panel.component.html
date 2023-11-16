@@ -40,11 +40,7 @@
 
 <ng-template #linkContent let-item="item">
   <dt>
-    <td-tooltip
-      *ngIf="item.comingSoon"
-      text="Coming soon!"
-      [visible]="comingSoonPopupVisible.get(item) || false"
-    ></td-tooltip>
+    <td-tooltip *ngIf="item.comingSoon" text="Coming soon!" [visible]="comingSoonPopupVisible.get(item) || false" />
     <span>{{ item.title }}</span>
     <mat-icon *ngIf="item.link?.isForExternalDomain()" svgIcon="link" class="tb-external-link-icon" />
   </dt>
