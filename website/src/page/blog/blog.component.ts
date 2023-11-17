@@ -93,9 +93,9 @@ export class BlogComponent {
                                 categorySlug = filter.categorySlug as BlogCategoryID;
                                 if (!blogCategoryList.includes(categorySlug))
                                     throw `Unknown category slug: ${categorySlug}`;
-                                this.title.setTitle(`TypeDB | ${this.blog!.title} > ${blogCategories[categorySlug]}`);
+                                this.title.setTitle(`TypeDB Blog: ${blogCategories[categorySlug]}`);
                             } else {
-                                this.title.setTitle(`TypeDB | ${this.blog!.title}`);
+                                this.title.setTitle(`TypeDB Blog`);
                             }
                             this.metaTags.register(this.blog!.tabs[categorySlug].metaTags);
                             this._analytics.hubspot.trackPageView();

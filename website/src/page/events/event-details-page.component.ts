@@ -41,7 +41,7 @@ export class EventDetailsPageComponent implements OnInit {
             }),
             tap((event) => {
                 if (event) {
-                    this.title.setTitle(`TypeDB | ${this.plainTextPipe.transform(event.title)}`);
+                    this.title.setTitle(`TypeDB Event: ${this.plainTextPipe.transform(event.title)}`);
                     this.metaTags.register(event.metaTags);
                     this.analytics.hubspot.trackPageView();
                     setTimeout(() => {

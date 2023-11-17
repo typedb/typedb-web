@@ -15,6 +15,7 @@ export class Lecture extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
     readonly airmeetID?: string;
+    readonly lectureSlidesURL?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
 
@@ -23,16 +24,19 @@ export class Lecture extends EventBase {
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
         this.airmeetID = props.airmeetID;
+        this.lectureSlidesURL = props.lectureSlidesURL;
         this.onDemandVideoURL = props.onDemandVideoURL;
         this.comingSoon = props.comingSoon;
     }
 
     static override fromSanity(data: SanityLecture, db: SanityDataset): Lecture {
+        const lectureSlides = data.lectureSlides ? db.resolveRef(data.lectureSlides.asset) : undefined;
         return new Lecture({
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
             airmeetID: data.airmeetID,
+            lectureSlidesURL: lectureSlides ? `${lectureSlides.url}?dl=${lectureSlides.originalFilename}` : undefined,
             onDemandVideoURL: data.onDemandVideoURL,
             comingSoon: data.comingSoon,
         });

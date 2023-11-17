@@ -11,6 +11,7 @@ export class LinkDirective implements OnChanges {
 
     @HostBinding("class.td-active")
     get activeClass(): boolean {
+        if (!this.resolvedLink) return false;
         return this.router.isActive(this.resolvedLink.destination, {
             fragment: "ignored",
             matrixParams: "exact",
@@ -19,7 +20,7 @@ export class LinkDirective implements OnChanges {
         });
     }
 
-    private resolvedLink!: Link;
+    private resolvedLink?: Link;
 
     constructor(
         private el: ElementRef<HTMLAnchorElement>,
@@ -41,7 +42,7 @@ export class LinkDirective implements OnChanges {
     }
 
     private constructRouterLink() {
-        const [pathWithQuery, fragment] = this.resolvedLink.destination.split("#");
+        const [pathWithQuery, fragment] = this.resolvedLink!.destination.split("#");
         const [path, query] = pathWithQuery.split("?");
 
         const commands = path ? [path] : [];
@@ -62,7 +63,7 @@ export class LinkDirective implements OnChanges {
     }
 
     private constructHrefLink() {
-        this.el.nativeElement.href = this.resolvedLink.destination;
-        this.el.nativeElement.target = this.resolvedLink.opensNewTab ? "_blank" : "";
+        this.el.nativeElement.href = this.resolvedLink!.destination;
+        this.el.nativeElement.target = this.resolvedLink!.opensNewTab ? "_blank" : "";
     }
 }

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
-import { requiredRule } from "./common-fields";
 import { Link, SanityLink, textLinkSchema } from "./link";
 import { SanityDataset, SanityReference } from "./sanity-core";
+import { PropsOf } from "./util";
 
 export const buttonStyles = {
     primary: "Primary",
@@ -25,25 +25,33 @@ export class ActionButton {
     readonly style: ButtonStyle;
     readonly text: string;
     readonly comingSoon: boolean;
+    readonly onClick?: () => any;
 
-    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean }) {
+    constructor(props: PropsOf<ActionButton>) {
         this.style = props.style;
         this.text = props.text;
         this.comingSoon = props.comingSoon;
+        this.onClick = props.onClick;
     }
 }
 
 export class LinkButton extends ActionButton {
     readonly link?: Link;
+    readonly download?: LinkButtonDownload;
 
-    constructor(props: { style: ButtonStyle, text: string, comingSoon: boolean, link?: Link }) {
+    constructor(props: PropsOf<LinkButton>) {
         super(props);
         this.link = props.link;
+        this.download = props.download;
     }
 
     static fromSanity(data: SanityButton, db: SanityDataset) {
         return new LinkButton({ style: data.style, text: data.text, comingSoon: data.comingSoon, link: data.link ? Link.fromSanityLinkRef(data.link, db) : undefined });
     }
+}
+
+export interface LinkButtonDownload {
+    filename?: string;
 }
 
 export interface SanityOptionalActions {

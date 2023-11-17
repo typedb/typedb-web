@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -23,7 +22,6 @@ export class LearningCenterComponent implements OnInit {
         private router: Router,
         private contentService: ContentService,
         private metaTags: MetaTagsService,
-        private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
@@ -33,7 +31,6 @@ export class LearningCenterComponent implements OnInit {
             const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
             if (sanityLearningCenter) {
                 this.learningCenter = new LearningCenter(sanityLearningCenter, data);
-                this._title.setTitle(`TypeDB | ${this.learningCenter.title}`);
                 this.metaTags.register(this.learningCenter.metaTags);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {

@@ -79,7 +79,7 @@ export class FundamentalArticle extends Article {
     }
 
     pageTitle(): string {
-        return `TypeDB | Fundamentals > ${this.title.toPlainText()}`;
+        return `TypeDB Fundamentals: ${this.title.toPlainText()}`;
     }
 }
 
@@ -89,7 +89,7 @@ export class ApplicationArticle extends Article {
     }
 
     pageTitle(): string {
-        return `TypeDB | Applications > ${this.title.toPlainText()}`;
+        return `TypeDB Applications: ${this.title.toPlainText()}`;
     }
 }
 
@@ -133,7 +133,7 @@ export class BlogPost extends Article {
     }
 
     pageTitle(): string {
-        return `TypeDB | Blog > ${this.title.toPlainText()}`;
+        return `TypeDB Blog: ${this.title.toPlainText()}`;
     }
 }
 

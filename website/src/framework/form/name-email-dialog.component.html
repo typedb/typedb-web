@@ -1,5 +1,6 @@
 <div mat-dialog-title>
   <h1>{{ titleProp }}</h1>
+  <td-p-with-highlights *ngIf="descriptionProp" [value]="descriptionProp" />
   <td-dialog-close-button></td-dialog-close-button>
 </div>
 <div mat-dialog-content>

@@ -9,7 +9,7 @@
     <div class="resource-section">
       <section>
         <td-heading-with-highlights [value]="lecture.title" level="h1" />
-        <ul class="wd-subtitle text-p1">
+        <ul *ngIf="!lecture.lectureSlidesURL" class="wd-subtitle text-p1">
           <li>Lecture</li>
           <li>
             <mat-icon svgIcon="calendar" />
@@ -27,6 +27,7 @@
             {{ lecture.durationMins | eventDuration }}
           </li>
         </ul>
+        <td-actions *ngIf="downloadSlidesActions" [actions]="downloadSlidesActions" class="ld-download-slides" />
         <div class="subsection-margin wd-details-area">
           <div class="card wd-form-card">
             <h3>

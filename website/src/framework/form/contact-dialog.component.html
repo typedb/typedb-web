@@ -3,6 +3,7 @@
   <td-dialog-close-button></td-dialog-close-button>
 </div>
 <div mat-dialog-content>
+  <td-p-with-highlights *ngIf="descriptionProp" [value]="descriptionProp" />
   <div id="hubspot-form-holder-contact"></div>
   <aside>
     By submitting your personal data, you consent to emails from Vaticle. See our

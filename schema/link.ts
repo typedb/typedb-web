@@ -21,7 +21,7 @@ export interface SanityTextLink {
 export class Link {
     readonly destination: string;
     readonly type: LinkType;
-    readonly opensNewTab: boolean;
+    opensNewTab: boolean;
 
     constructor(props: { destination: string, type: LinkType, opensNewTab: boolean }) {
         this.destination = props.destination;

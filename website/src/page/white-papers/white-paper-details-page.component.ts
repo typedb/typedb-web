@@ -48,7 +48,7 @@ export class WhitePaperDetailsPageComponent implements OnInit {
                 const sanityWhitePaper = sanityWhitePapers.find((x) => x.slug.current === params.get("slug"));
                 if (sanityWhitePaper) {
                     this.whitePaper = WhitePaper.fromSanity(sanityWhitePaper, data);
-                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.whitePaper.title)}`);
+                    this._title.setTitle(`TypeDB White Paper: ${this._plainTextPipe.transform(this.whitePaper.title)}`);
                     this.metaTags.register(this.whitePaper.metaTags);
                     this._analytics.hubspot.trackPageView();
                     this._formService.embedHubspotForm(this.whitePaper.hubspotFormID, "hubspot-form-holder", {
