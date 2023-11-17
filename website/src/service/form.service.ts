@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from "@angular/core";
 
 import { isScullyRunning } from "@scullyio/ng-lib";
-import { map, Observable, ReplaySubject, shareReplay } from "rxjs";
+import { map, ReplaySubject, shareReplay } from "rxjs";
 import { FormID, formsSchemaName, SanityHubspotForms } from "typedb-web-schema";
 
 import { ContentService } from "./content.service";
@@ -11,17 +11,21 @@ import { HUBSPOT_PORTAL_ID, HUBSPOT_REGION } from "./marketing-tech-constants";
     providedIn: "root",
 })
 export class FormService {
-    private readonly forms: Observable<SanityHubspotForms>;
+    readonly forms = new ReplaySubject<SanityHubspotForms>();
     private formScriptLoadedState = new ReplaySubject<true>();
 
     constructor(
         contentService: ContentService,
         private ngZone: NgZone,
     ) {
-        this.forms = contentService.data.pipe(
-            map((data) => data.getDocumentByID(formsSchemaName) as SanityHubspotForms),
-            shareReplay(1),
-        );
+        contentService.data
+            .pipe(
+                map((data) => data.getDocumentByID(formsSchemaName) as SanityHubspotForms),
+                shareReplay(1),
+            )
+            .subscribe((data) => {
+                this.forms.next(data);
+            });
         this.loadHubspotFormsScriptTag();
     }
 

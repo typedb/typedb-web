@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -30,7 +29,6 @@ export class LecturesPageComponent implements OnInit {
         private router: Router,
         private contentService: ContentService,
         private metaTags: MetaTagsService,
-        private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
@@ -40,7 +38,6 @@ export class LecturesPageComponent implements OnInit {
             const sanityLecturesPage = data.getDocumentByID(lecturesPageSchemaName) as SanityLecturesPage;
             if (sanityLecturesPage) {
                 this.page = new LecturesPage(sanityLecturesPage, data);
-                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 this.metaTags.register(this.page.metaTags);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {

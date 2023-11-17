@@ -2,7 +2,6 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
 import { comingSoonField, requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
@@ -16,6 +15,7 @@ export class Lecture extends EventBase {
     readonly datetime: Date;
     readonly durationMins: number;
     readonly airmeetID?: string;
+    readonly lectureSlidesURL?: string;
     readonly onDemandVideoURL?: string;
     readonly comingSoon: boolean;
 
@@ -24,16 +24,19 @@ export class Lecture extends EventBase {
         this.datetime = props.datetime;
         this.durationMins = props.durationMins;
         this.airmeetID = props.airmeetID;
+        this.lectureSlidesURL = props.lectureSlidesURL;
         this.onDemandVideoURL = props.onDemandVideoURL;
         this.comingSoon = props.comingSoon;
     }
 
     static override fromSanity(data: SanityLecture, db: SanityDataset): Lecture {
+        const lectureSlides = data.lectureSlides ? db.resolveRef(data.lectureSlides.asset) : undefined;
         return new Lecture({
             ...super.fromSanity(data, db),
             datetime: new Date(data.datetime),
             durationMins: data.durationMins,
             airmeetID: data.airmeetID,
+            lectureSlidesURL: lectureSlides ? `${lectureSlides.url}?dl=${lectureSlides.originalFilename}` : undefined,
             onDemandVideoURL: data.onDemandVideoURL,
             comingSoon: data.comingSoon,
         });
@@ -103,7 +106,6 @@ const lectureSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        furtherLearningFieldOptional,
         defineField({
             name: "airmeetID",
             title: "Airmeet ID",
@@ -112,8 +114,13 @@ const lectureSchema = defineType({
         }),
         hubspotFormIDField,
         defineField({
+            name: "lectureSlides",
+            title: "Lecture Slides",
+            type: "file",
+        }),
+        defineField({
             name: "onDemandVideoURL",
-            title: "On-Demand Video URL",
+            title: "YouTube Video URL",
             type: "url",
         }),
         Object.assign({}, comingSoonField, {

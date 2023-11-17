@@ -25,10 +25,7 @@
         </div>
         <td-rich-text class="subsection-margin wd-description" [value]="whitePaper.description" />
       </section>
-      <ng-container *ngIf="whitePaper.furtherLearning">
-        <td-technicolor-block [block]="whitePaper.furtherLearning" [index]="1" [noUpperLine]="true" />
-        <td-resource-panels [resources]="whitePaper.furtherLearning.resources" [cols]="3" />
-      </ng-container>
+      <td-further-learning *ngIf="whitePaper.furtherLearning" [value]="whitePaper.furtherLearning" />
     </div>
   </div>
 </article>

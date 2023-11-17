@@ -5,6 +5,7 @@ import { SiteResource, ResourceLink } from "./base";
 import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
 import { Lecture, lectureSchemas } from "./lecture";
+import { sectionSchemas } from "./section";
 import { WhitePaper, whitePaperSchema } from "./white-paper";
 
 export type Resource = SiteResource | GenericResource;
@@ -60,4 +61,4 @@ function resourceLinkText(resource: Resource): string {
     else return "";
 }
 
-export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, whitePaperSchema];
+export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, ...sectionSchemas, whitePaperSchema];

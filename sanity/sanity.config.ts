@@ -86,7 +86,7 @@ export default defineConfig({
                 s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
-                singletonListItem(s, formsSchemaName, { title: "HubSpot Forms", icon: ClipboardImageIcon }),
+                singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
                 s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),

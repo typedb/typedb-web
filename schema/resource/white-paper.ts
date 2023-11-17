@@ -1,13 +1,10 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
-import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { MetaTags } from "../page/meta-tags";
 import { SiteResource, resourceCommonFields, resourcePropsFromSanity } from "./base";
 import { SanityWhitePaper, whitePaperSchemaName } from "./sanity";
 
@@ -17,7 +14,6 @@ export class WhitePaper extends SiteResource {
     readonly tags: string[];
     readonly portraitImageURL: string;
     readonly landscapeImageURL: string;
-    readonly furtherLearning?: ResourceSection;
     readonly hubspotFormID: string;
 
     constructor(props: PropsOf<WhitePaper>) {
@@ -27,7 +23,6 @@ export class WhitePaper extends SiteResource {
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
-        this.furtherLearning = props.furtherLearning;
         this.hubspotFormID = props.hubspotFormID;
     }
 
@@ -38,9 +33,6 @@ export class WhitePaper extends SiteResource {
             tags: data.tags,
             portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
-            furtherLearning: data.furtherLearning?.isVisible
-                ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
-                : undefined,
             hubspotFormID: data.hubspotFormID,
         }));
     }
@@ -80,7 +72,6 @@ export const whitePaperSchema = defineType({
             type: "image",
             validation: requiredRule,
         }),
-        furtherLearningFieldOptional,
         hubspotFormIDField,
     ],
 });

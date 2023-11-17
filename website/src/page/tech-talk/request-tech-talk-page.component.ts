@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -28,7 +27,6 @@ export class RequestTechTalkPageComponent implements OnInit {
         private idleMonitor: IdleMonitorService,
         private popupNotificationService: PopupNotificationService,
         private router: Router,
-        private title: Title,
     ) {}
 
     ngOnInit() {
@@ -38,7 +36,6 @@ export class RequestTechTalkPageComponent implements OnInit {
             ) as SanityRequestTechTalkPage;
             if (sanityRequestTechTalkPage) {
                 this.page = new RequestTechTalkPage(sanityRequestTechTalkPage, data);
-                this.title.setTitle(`TypeDB | ${this.page.title}`);
                 this.metaTags.register(this.page.metaTags);
                 this.analytics.hubspot.trackPageView();
                 setTimeout(() => {

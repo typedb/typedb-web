@@ -3,7 +3,7 @@ import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
 import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "../component/link-panel";
-import { ResourceSection, resourceSectionSchemaName, SanityResourceSection } from "../component/page-section";
+import { resourceSectionSchemaName } from "../component/page-section";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import {
     collapsibleOptions,
@@ -19,6 +19,8 @@ import {
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
+import { SanityResourceSection } from "../resource/sanity";
+import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";

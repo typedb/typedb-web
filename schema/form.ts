@@ -1,5 +1,6 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { requiredRule } from "./common-fields";
+import { PortableText } from "./text";
 
 export const forms = {
     contact: "Contact",
@@ -11,7 +12,11 @@ export const formList = Object.entries(forms).map(([id, title]) => ({ value: id,
 
 export type FormID = keyof typeof forms;
 
-export type SanityHubspotForms = SanityDocument & { [key in FormID]: string };
+export type SanityHubspotForms = SanityDocument & { [key in FormID]: string } & {
+    contactDescription: PortableText;
+    newsletterDescription: PortableText;
+    typeDBCloudWaitlistDescription: PortableText;
+};
 
 export interface AirmeetRegistrationForm {
     airmeetID: string;
@@ -28,19 +33,33 @@ export const formsSchemaName = "forms";
 
 export const formsSchema = defineType({
     name: formsSchemaName,
-    title: "HubSpot Forms",
+    title: "Forms",
     type: "document",
+    fieldsets: [
+        { name: "hubspotIds", title: "Hubspot IDs" },
+        { name: "descriptions", title: "Descriptions" },
+    ],
     fields: [
         ...Object.entries(forms).map(([id, title]) =>
             defineField({
+                fieldset: "hubspotIds",
                 name: id,
                 title: `${title} Form ID`,
                 type: "string",
                 validation: requiredRule,
             })
         ),
+        ...Object.entries(forms).map(([id, title]) =>
+            defineField({
+                fieldset: "descriptions",
+                name: `${id}Description`,
+                title: `${title} Form Description`,
+                type: "array",
+                of: [{type: "block"}],
+            }),
+        ),
     ],
-    preview: { prepare: (_selection) => ({ title: "HubSpot Forms" }) },
+    preview: { prepare: (_selection) => ({ title: "Forms" }) },
 });
 
 export const formField = defineField({

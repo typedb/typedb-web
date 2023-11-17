@@ -1,11 +1,12 @@
 import { defineField } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, resourcesFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { descriptionFieldRichText, requiredRule, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
-import { SanityDataset, SanityReference } from "../sanity-core";
+import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isLecture, isWhitePaper, SanityResource, SanitySiteResource } from "./sanity";
+import { furtherLearningFieldOptional, ResourceSection } from "./section";
 
 export abstract class SiteResource {
     readonly slug: string;
@@ -14,6 +15,7 @@ export abstract class SiteResource {
     readonly description: PortableText;
     readonly shortTitle: string;
     readonly shortDescription: PortableText;
+    readonly furtherLearning?: ResourceSection;
 
     protected constructor(props: PropsOf<SiteResource>) {
         this.slug = props.slug;
@@ -22,6 +24,7 @@ export abstract class SiteResource {
         this.description = props.description;
         this.shortTitle = props.shortTitle;
         this.shortDescription = props.shortDescription;
+        this.furtherLearning = props.furtherLearning;
     }
 }
 
@@ -33,6 +36,9 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
         description: data.description,
         shortTitle: data.shortTitle,
         shortDescription: data.shortDescription || data.description,
+        furtherLearning: data.furtherLearning?.isVisible
+            ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
+            : undefined,
     };
 }
 
@@ -101,9 +107,5 @@ export const resourceCommonFields = [
         description: "Displayed in link panels, etc.",
         type: "text",
     }),
+    furtherLearningFieldOptional,
 ];
-
-export const linkedResourcesField = Object.assign({}, resourcesFieldOptional, {
-    name: "linkedResources",
-    title: "Linked Resources",
-});

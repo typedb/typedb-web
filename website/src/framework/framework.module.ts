@@ -32,6 +32,7 @@ import {
     NewsletterDialogComponent,
 } from "./form/dialog.component";
 import { OptionDirective } from "./form/option.directive";
+import { FurtherLearningComponent } from "./further-learning/further-learning.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
 import {
     CaptionedIllustrationComponent,
@@ -92,6 +93,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         FeatureGridComponent,
         FeatureTableComponent,
         FeatureTableCellComponent,
+        FurtherLearningComponent,
         GraphVisualisationComponent,
         HeadingWithHighlightsComponent,
         HtmlPipe,
@@ -153,6 +155,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         EventDurationPipe,
         FeatureGridComponent,
         FeatureTableComponent,
+        FurtherLearningComponent,
         HeadingWithHighlightsComponent,
         HtmlPipe,
         IllustrationComponent,

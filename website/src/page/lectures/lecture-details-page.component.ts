@@ -1,9 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Lecture, lectureSchemaName, ParagraphWithHighlights, SanityLecture } from "typedb-web-schema";
+import {
+    ActionButton,
+    Lecture,
+    lectureSchemaName,
+    Link,
+    LinkButton,
+    ParagraphWithHighlights,
+    SanityLecture,
+} from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
@@ -28,6 +36,8 @@ export class LectureDetailsPageComponent implements OnInit {
             { text: "Lectures", highlight: true },
         ],
     });
+    downloadSlidesActions?: ActionButton[];
+    safeVideoURL?: SafeResourceUrl;
 
     constructor(
         private router: Router,
@@ -41,6 +51,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
         private _plainTextPipe: PlainTextPipe,
+        private sanitizer: DomSanitizer,
     ) {}
 
     ngOnInit() {
@@ -52,7 +63,29 @@ export class LectureDetailsPageComponent implements OnInit {
                 );
                 if (sanityLecture) {
                     this.lecture = Lecture.fromSanity(sanityLecture, data);
-                    this._title.setTitle(`TypeDB | ${this._plainTextPipe.transform(this.lecture.title)}`);
+                    this.downloadSlidesActions = this.lecture.lectureSlidesURL
+                        ? [
+                              new LinkButton({
+                                  style: "secondary",
+                                  text: "Subscribe to Lectures",
+                                  link: Link.fromAddress("?dialog=newsletter"),
+                                  comingSoon: false,
+                              }),
+                              new LinkButton({
+                                  style: "primary",
+                                  text: "Download slides",
+                                  link: Object.assign(Link.fromAddress(this.lecture.lectureSlidesURL), {
+                                      opensNewTab: false,
+                                  }),
+                                  comingSoon: false,
+                                  download: {},
+                              }),
+                          ]
+                        : undefined;
+                    this.safeVideoURL = this.lecture.onDemandVideoURL
+                        ? this.sanitizer.bypassSecurityTrustResourceUrl(this.lecture.onDemandVideoURL)
+                        : undefined;
+                    this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(this.lecture.title)}`);
                     this.metaTags.register(this.lecture.metaTags);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
