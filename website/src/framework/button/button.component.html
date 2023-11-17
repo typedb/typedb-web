@@ -12,6 +12,7 @@
   [attr.aria-disabled]="isDisabled || undefined"
   [tdLink]="linkButton && !linkButton.comingSoon ? linkButton.link : undefined"
   (click)="button.onClick ? button.onClick() : undefined"
+  (keydown)="button.onClick ? button.onClick() : undefined"
   [download]="linkButton?.download ? linkButton!.download!.filename || '' : undefined"
   [ngStyle]="{ width: buttonWidth }"
   (mouseenter)="onMouseEnter($event)"
