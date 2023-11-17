@@ -79,6 +79,7 @@ export {
     type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel,
 } from "./resource/sanity";
 export { Lecture } from "./resource/lecture";
+export { ResourceSection } from "./resource/section";
 export { WhitePaper } from "./resource/white-paper";
 export { Document, SanityDataset } from "./sanity-core";
 export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";

@@ -1,6 +1,7 @@
-import { SanityDocument, Slug } from "@sanity/types";
+import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
 import { SanityButton } from "../button";
-import { SanityResourceSection } from "../component/page-section";
+import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField, SanityVisibleToggle, sectionIdField } from "../common-fields";
+import { SanityTechnicolorBlock } from "../component/technicolor-block";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -20,7 +21,7 @@ export interface SanitySiteResource extends SanityDocument {
     description: PortableText;
     shortTitle: string;
     shortDescription: PortableText;
-    linkedResources?: SanityReference<SanityResource>[];
+    furtherLearning?: SanityResourceSection;
 }
 
 export interface SanityGenericResource extends SanityDocument {
@@ -69,7 +70,6 @@ export interface SanityEventBase extends SanitySiteResource {
     speakers: SanityReference<SanityPerson>[];
     hubspotFormID?: string;
     metaTags?: SanityMetaTags;
-    furtherLearning?: SanityResourceSection;
 }
 
 export interface SanityLecture extends SanityEventBase {
@@ -99,6 +99,10 @@ export interface SanityLiveEvent extends SanityEventBase {
     dateOptions: SanityEventDate;
     signupMethod: EventSignupMethod;
     externalUrlButton?: SanityButton;
+}
+
+export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+    resources?: SanityReference<SanityResource>[];
 }
 
 export const genericResourceSchemaName = "genericResource";

@@ -58,12 +58,10 @@ export type BlogCategoryFilter = { categorySlug: string }
 
 export abstract class Article extends SiteResource {
     readonly contentHtml: string;
-    readonly linkedResources: ResourceLink[];
 
     protected constructor(props: PropsOf<Article>) {
         super(props);
         this.contentHtml = props.contentHtml;
-        this.linkedResources = props.linkedResources;
     }
 
     abstract pageTitle(): string;
@@ -72,7 +70,6 @@ export abstract class Article extends SiteResource {
 function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
     return Object.assign(resourcePropsFromSanity(data, db), {
         contentHtml: wordpressPost.content,
-        linkedResources: data.linkedResources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
     });
 }
 

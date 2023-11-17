@@ -2,7 +2,6 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
 import { comingSoonField, requiredRule, slugField } from "../common-fields";
-import { furtherLearningField, furtherLearningFieldOptional, ResourceSection } from "../component/page-section";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
@@ -103,7 +102,6 @@ const lectureSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        furtherLearningFieldOptional,
         defineField({
             name: "airmeetID",
             title: "Airmeet ID",
@@ -111,6 +109,11 @@ const lectureSchema = defineType({
             validation: requiredRule,
         }),
         hubspotFormIDField,
+        defineField({
+            name: "lectureSlides",
+            title: "Lecture Slides",
+            type: "file",
+        }),
         defineField({
             name: "onDemandVideoURL",
             title: "On-Demand Video URL",

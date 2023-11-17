@@ -49,10 +49,7 @@
           </div>
         </div>
       </section>
-      <ng-container *ngIf="lecture.furtherLearning">
-        <td-technicolor-block [block]="lecture.furtherLearning" [index]="1" [noUpperLine]="true" />
-        <td-resource-panels [resources]="lecture.furtherLearning.resources" [cols]="3" />
-      </ng-container>
+      <td-further-learning *ngIf="lecture.furtherLearning" [value]="lecture.furtherLearning" />
     </div>
   </div>
 </article>
