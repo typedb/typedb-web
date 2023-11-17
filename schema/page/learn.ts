@@ -1,18 +1,11 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    optionalActionsField,
-    pageTitleField, requiredRule,
-    titleFieldWithHighlights,
-} from "../common-fields";
-import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
-import { ResourceSection, resourceSectionSchemaName, SanityResourceSection } from "../component/page-section";
-import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { SanityDataset, SanityReference } from "../sanity-core";
+import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
+import { resourceSectionSchemaName } from "../component/page-section";
+import { SanityResourceSection } from "../resource/sanity";
+import { ResourceSection } from "../resource/section";
+import { SanityDataset } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
-import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 

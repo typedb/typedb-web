@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton } from "../button";
-import { furtherLearningField, ResourceSection, SanityCoreSection, SanityResourceSection } from "../component/page-section";
+import { SanityCoreSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { Link, SanityLink } from "../link";
 import {
@@ -21,6 +21,8 @@ import {
 } from "../common-fields";
 import { LinkPanel, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, KeyPointWithIcon, SanityKeyPoint, SanityKeyPointWithIcon } from "../key-point";
+import { SanityResourceSection } from "../resource/sanity";
+import { furtherLearningField, ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import {
     BodyTextField,

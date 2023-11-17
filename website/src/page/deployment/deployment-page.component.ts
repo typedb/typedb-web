@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -22,7 +21,6 @@ export class DeploymentPageComponent implements OnInit {
         private router: Router,
         private contentService: ContentService,
         private metaTags: MetaTagsService,
-        private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
@@ -32,7 +30,6 @@ export class DeploymentPageComponent implements OnInit {
             const sanityDeploymentPage = data.getDocumentByID(deploymentPageSchemaName) as SanityDeploymentPage;
             if (sanityDeploymentPage) {
                 this.page = new DeploymentPage(sanityDeploymentPage, data);
-                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 this.metaTags.register(this.page.metaTags);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {

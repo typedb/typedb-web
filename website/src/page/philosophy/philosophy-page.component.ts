@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -29,7 +28,6 @@ export class PhilosophyPageComponent implements OnInit {
         private router: Router,
         private contentService: ContentService,
         private metaTags: MetaTagsService,
-        private _title: Title,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
@@ -39,7 +37,6 @@ export class PhilosophyPageComponent implements OnInit {
             const sanityIntroPage = data.getDocumentByID(philosophyPageSchemaName) as SanityPhilosophyPage;
             if (sanityIntroPage) {
                 this.page = new PhilosophyPage(sanityIntroPage, data);
-                this._title.setTitle(`TypeDB | ${this.page.title}`);
                 this.metaTags.register(this.page.metaTags);
                 this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
@@ -54,8 +51,7 @@ export class PhilosophyPageComponent implements OnInit {
 
 @Component({
     selector: "td-philosophy-page-technicolor-block",
-    template:
-        '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\'></td-technicolor-block>',
+    template: '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\' />',
 })
 export class PhilosophyPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: PublicationSection | ConclusionSection;

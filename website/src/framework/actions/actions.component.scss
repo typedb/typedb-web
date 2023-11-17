@@ -1,6 +1,6 @@
 @use "media";
 
-.ac-root {
+:host {
     display: flex;
     flex-direction: row;
     gap: 16px;

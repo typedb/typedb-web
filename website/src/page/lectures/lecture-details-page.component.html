@@ -9,7 +9,7 @@
     <div class="resource-section">
       <section>
         <td-heading-with-highlights [value]="lecture.title" level="h1" />
-        <ul class="wd-subtitle text-p1">
+        <ul *ngIf="!lecture.lectureSlidesURL" class="wd-subtitle text-p1">
           <li>Lecture</li>
           <li>
             <mat-icon svgIcon="calendar" />
@@ -27,8 +27,19 @@
             {{ lecture.durationMins | eventDuration }}
           </li>
         </ul>
+        <td-actions *ngIf="downloadSlidesActions" [actions]="downloadSlidesActions" class="ld-download-slides" />
+        <td-aspect-ratio *ngIf="safeVideoURL" class="ld-video-container" ratio="16:9">
+          <iframe
+            class="ld-video-frame"
+            [src]="safeVideoURL"
+            title="Video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </td-aspect-ratio>
         <div class="subsection-margin wd-details-area">
-          <div class="card wd-form-card">
+          <div *ngIf="!safeVideoURL" class="card wd-form-card">
             <h3>
               <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
             </h3>
@@ -40,7 +51,7 @@
             <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
           </div>
           <div>
-            <td-rich-text [value]="lecture.description" />
+            <td-rich-text [value]="lecture.description" [class]="safeVideoURL ? 'ld-cols-2' : ''" />
             <ul class="wd-speakers subsection-margin">
               <li *ngFor="let speaker of lecture.speakers">
                 <td-person-info [person]="speaker" />
@@ -49,10 +60,7 @@
           </div>
         </div>
       </section>
-      <ng-container *ngIf="lecture.furtherLearning">
-        <td-technicolor-block [block]="lecture.furtherLearning" [index]="1" [noUpperLine]="true" />
-        <td-resource-panels [resources]="lecture.furtherLearning.resources" [cols]="3" />
-      </ng-container>
+      <td-further-learning *ngIf="lecture.furtherLearning" [value]="lecture.furtherLearning" />
     </div>
   </div>
 </article>

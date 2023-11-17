@@ -24,12 +24,12 @@ import { WhitePapersPageComponent } from "./page/white-papers/white-papers-page.
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
-    { path: "features", component: FeaturesPageComponent },
-    { path: "philosophy", component: PhilosophyPageComponent },
-    { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" } },
-    { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" } },
-    { path: "deploy", component: DeploymentPageComponent },
-    { path: "learn", component: LearningCenterComponent },
+    { path: "features", component: FeaturesPageComponent, title: "TypeDB Features" },
+    { path: "philosophy", component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
+    { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" }, title: "TypeDB Cloud" },
+    { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" }, title: "TypeDB Studio" },
+    { path: "deploy", component: DeploymentPageComponent, title: "TypeDB Deployments" },
+    { path: "learn", component: LearningCenterComponent, title: "TypeDB Learning Center" },
     {
         path: "fundamentals/:slug",
         component: LearningArticleComponent,
@@ -40,18 +40,18 @@ const routes: Routes = [
         component: LearningArticleComponent,
         data: { resourceType: "applicationArticle" },
     },
-    { path: "blog", component: BlogComponent },
+    { path: "blog", component: BlogComponent, title: "TypeDB Blog" },
     { path: "blog/category/:categorySlug", component: BlogComponent },
     { path: "blog/:slug", component: BlogPostPageComponent },
     { path: "lectures/:slug", component: LectureDetailsPageComponent },
-    { path: "lectures", component: LecturesPageComponent },
+    { path: "lectures", component: LecturesPageComponent, title: "TypeDB Lectures" },
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
-    { path: "white-papers", component: WhitePapersPageComponent },
+    { path: "white-papers", component: WhitePapersPageComponent, title: "TypeDB White Papers" },
     { path: "events/:slug", component: EventDetailsPageComponent },
-    { path: "events", component: EventsPageComponent },
-    { path: "request-tech-talk", component: RequestTechTalkPageComponent },
+    { path: "events", component: EventsPageComponent, title: "TypeDB Events" },
+    { path: "request-tech-talk", component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
     { path: "support", component: SupportPageComponent },
-    { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB | Privacy Policy" },
+    { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB Privacy Policy" },
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
@@ -63,7 +63,7 @@ const routes: Routes = [
     { path: "webinars", redirectTo: "lectures" },
 
     { path: "__fallback", component: FallbackPageComponent },
-    { path: "**", component: _404PageComponent, title: "TypeDB | 404" },
+    { path: "**", component: _404PageComponent, title: "TypeDB: 404" },
 ];
 
 @NgModule({

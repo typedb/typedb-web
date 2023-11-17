@@ -1,6 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 
+import { ParagraphWithHighlights } from "typedb-web-schema";
+
 import { AnalyticsService } from "../../service/analytics.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
@@ -13,14 +15,20 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
 export class NameEmailDialogComponent {
     @Input() isSubmitting!: boolean;
     @Input() titleProp!: string;
+    @Input() descriptionProp?: ParagraphWithHighlights;
 }
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Join TypeDB Cloud Waitlist" />`,
+    template: `<td-name-email-dialog
+        [isSubmitting]="isSubmitting"
+        titleProp="Join TypeDB Cloud Waitlist"
+        [descriptionProp]="descriptionProp"
+    />`,
 })
 export class CloudWaitlistDialogComponent {
     isSubmitting = false;
+    descriptionProp?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
@@ -34,6 +42,9 @@ export class CloudWaitlistDialogComponent {
             },
             onSuccess: () => this.onSubmit(),
         });
+        this._formService.forms.subscribe((forms) => {
+            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.typeDBCloudWaitlistDescription);
+        });
     }
 
     private onSubmit() {
@@ -45,10 +56,15 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template: `<td-name-email-dialog [isSubmitting]="isSubmitting" titleProp="Subscribe to Newsletter" />`,
+    template: `<td-name-email-dialog
+        [isSubmitting]="isSubmitting"
+        titleProp="Subscribe to Newsletter"
+        [descriptionProp]="descriptionProp"
+    />`,
 })
 export class NewsletterDialogComponent {
     isSubmitting = false;
+    descriptionProp?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
@@ -61,6 +77,9 @@ export class NewsletterDialogComponent {
                 this.isSubmitting = val;
             },
             onSuccess: () => this.onSubmit(),
+        });
+        this._formService.forms.subscribe((forms) => {
+            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.newsletterDescription);
         });
     }
 
@@ -87,6 +106,7 @@ export class ContactDialogComponent {
         "PR & Analyst Relations",
     ] as const;
     isSubmitting = false;
+    descriptionProp?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<ContactDialogComponent>,
@@ -99,6 +119,9 @@ export class ContactDialogComponent {
                 this.isSubmitting = val;
             },
             onSuccess: () => this.onSubmit(),
+        });
+        this._formService.forms.subscribe((forms) => {
+            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.contactDescription);
         });
     }
 

@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
             const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
             if (sanityHomePage) {
                 this.page = new HomePage(sanityHomePage, data);
-                this.title.setTitle(`TypeDB | ${this.page.introSection?.title.toPlainText() || "Home"}`);
+                this.title.setTitle(`TypeDB: ${this.page.introSection?.title.toPlainText() || "Home"}`);
                 this.metaTags.register(this.page.metaTags);
                 this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
                     (x) => new SocialMediaLink(x, data),

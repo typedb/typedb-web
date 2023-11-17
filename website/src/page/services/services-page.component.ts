@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -24,7 +23,6 @@ export class ServicesPageComponent implements OnInit {
         private metaTags: MetaTagsService,
         private idleMonitor: IdleMonitorService,
         private router: Router,
-        private title: Title,
     ) {}
 
     ngOnInit() {
@@ -37,8 +35,8 @@ export class ServicesPageComponent implements OnInit {
             }),
             tap((page) => {
                 if (page) {
-                    this.title.setTitle(`TypeDB | ${page.title}`);
                     this.analytics.hubspot.trackPageView();
+                    this.metaTags.register(page.metaTags);
                     setTimeout(() => {
                         this.idleMonitor.fireManualMyAppReadyEvent();
                     }, 20000);
