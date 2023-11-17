@@ -28,7 +28,7 @@ const routes: Routes = [
     { path: "philosophy", component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" }, title: "TypeDB Cloud" },
     { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" }, title: "TypeDB Studio" },
-    { path: "deploy", component: DeploymentPageComponent, title: "TypeDB: Deploy" },
+    { path: "deploy", component: DeploymentPageComponent, title: "TypeDB Deployments" },
     { path: "learn", component: LearningCenterComponent, title: "TypeDB Learning Center" },
     {
         path: "fundamentals/:slug",
