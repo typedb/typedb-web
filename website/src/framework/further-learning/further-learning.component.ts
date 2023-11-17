@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { ResourceSection } from "typedb-web-schema";
 
 @Component({

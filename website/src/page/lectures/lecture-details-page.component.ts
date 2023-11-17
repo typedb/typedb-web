@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -37,6 +37,7 @@ export class LectureDetailsPageComponent implements OnInit {
         ],
     });
     downloadSlidesActions?: ActionButton[];
+    safeVideoURL?: SafeResourceUrl;
 
     constructor(
         private router: Router,
@@ -50,6 +51,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
         private _plainTextPipe: PlainTextPipe,
+        private sanitizer: DomSanitizer,
     ) {}
 
     ngOnInit() {
@@ -79,6 +81,9 @@ export class LectureDetailsPageComponent implements OnInit {
                                   download: {},
                               }),
                           ]
+                        : undefined;
+                    this.safeVideoURL = this.lecture.onDemandVideoURL
+                        ? this.sanitizer.bypassSecurityTrustResourceUrl(this.lecture.onDemandVideoURL)
                         : undefined;
                     this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(this.lecture.title)}`);
                     this.metaTags.register(this.lecture.metaTags);

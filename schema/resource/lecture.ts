@@ -120,7 +120,7 @@ const lectureSchema = defineType({
         }),
         defineField({
             name: "onDemandVideoURL",
-            title: "On-Demand Video URL",
+            title: "YouTube Video URL",
             type: "url",
         }),
         Object.assign({}, comingSoonField, {

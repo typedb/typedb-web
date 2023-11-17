@@ -97,3 +97,23 @@ ul.wd-speakers {
 .ld-download-slides {
     justify-content: center;
 }
+
+.ld-video-container {
+    margin-top: var(--subsection-margin);
+    width: 100%;
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius);
+}
+
+.ld-video-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+}
+
+.ld-cols-2 {
+    @media (min-width: media.$min-width-desktop) {
+        columns: 2;
+        gap: 32px;
+    }
+}
