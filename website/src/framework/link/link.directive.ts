@@ -1,4 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input, OnChanges } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import { NavigationExtras, Router } from "@angular/router";
 
 import { Link } from "typedb-web-schema";
@@ -25,6 +26,7 @@ export class LinkDirective implements OnChanges {
     constructor(
         private el: ElementRef<HTMLAnchorElement>,
         private router: Router,
+        private sanitizer: DomSanitizer,
     ) {}
 
     ngOnChanges() {
