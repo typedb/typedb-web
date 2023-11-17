@@ -78,7 +78,7 @@ export class LectureDetailsPageComponent implements OnInit {
                                       opensNewTab: false,
                                   }),
                                   comingSoon: false,
-                                  download: {},
+                                  download: { filename: this.lecture.lectureSlidesFileName },
                               }),
                           ]
                         : undefined;
