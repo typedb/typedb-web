@@ -1,7 +1,7 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, sectionIdField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -219,7 +219,6 @@ const featureGridSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         sectionIconField,
-        sectionIdField,
         defineField({
             name: "featureGrid",
             title: "Feature Grid",

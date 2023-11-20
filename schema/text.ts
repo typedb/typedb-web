@@ -1,15 +1,6 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import {
-    bodyFieldRichText,
-    isVisibleField,
-    optionalActionsField,
-    SanityVisibleToggle,
-    sectionIconField,
-    sectionIdField,
-    titleFieldWithHighlights,
-} from "./common-fields";
-import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "./illustration";
+import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -46,6 +37,10 @@ export class ParagraphWithHighlights {
 
     toPlainText(): string {
         return this.spans.map(x => x.text).join("");
+    }
+
+    toSectionID(): string {
+        return this.toPlainText().toLowerCase().replace(/([^A-Za-z0-9-\s])/g, '').replace(/\s/g, "-");
     }
 }
 

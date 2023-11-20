@@ -14,7 +14,7 @@ import {
     SanityVisibleToggle,
     requiredRule,
     keyPointsWithIconsField,
-    sectionIdField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
+    titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
 } from "../common-fields";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
@@ -251,7 +251,6 @@ const sectionSchemas = [
         Object.assign({}, titleFieldWithHighlights, { description: "For the Home Page, this gets automatically added to the web page title" }),
         bodyFieldRichText,
         sectionIconField,
-        sectionIdField,
         optionalActionsField,
         defineField({
             name: "displayUserLogos",
@@ -273,7 +272,6 @@ const sectionSchemas = [
     sectionSchema("impact", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "impactTabs",
             title: "Impact Tabs",
@@ -286,14 +284,12 @@ const sectionSchemas = [
     sectionSchema("resources", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         resourcesField,
         isVisibleField,
     ]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "panels",
             title: "Panels",
@@ -306,7 +302,6 @@ const sectionSchemas = [
     sectionSchema("drivers", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "featureGrid",
             title: "Drivers",
@@ -319,21 +314,18 @@ const sectionSchemas = [
     sectionSchema("cloud", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         keyPointsWithIconsField(5),
         isVisibleField,
     ]),
     sectionSchema("community", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         socialMediaLinksField,
         isVisibleField,
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "testimonials",
             title: "Testimonials",

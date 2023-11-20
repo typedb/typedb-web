@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
-import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField, sectionIdField } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField } from "../common-fields";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights } from "../text";
@@ -46,7 +46,7 @@ const furtherLearningSectionSchema = defineType({
     name: furtherLearningSectionSchemaName,
     title: `Further Reading Section`,
     type: "object",
-    fields: [bodyFieldRichText, resourcesField, sectionIdField, isVisibleField],
+    fields: [bodyFieldRichText, resourcesField, isVisibleField],
 });
 
 const furtherLearningFieldName = "furtherLearning";

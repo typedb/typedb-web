@@ -7,7 +7,6 @@ import {
     optionalActionsField,
     requiredRule,
     SanityVisibleToggle,
-    sectionIdField,
     titleBodyIconFields,
     titleField,
 } from "../common-fields";
@@ -103,7 +102,6 @@ const conclusionSectionSchema = defineType({
     fields: [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "panel",
             title: "Panel",

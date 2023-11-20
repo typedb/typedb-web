@@ -6,7 +6,6 @@ import {
     pageTitleField,
     requiredRule,
     sectionIconField,
-    sectionIdField,
     titleFieldWithHighlights,
 } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
@@ -110,7 +109,6 @@ const featureTableSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
-        sectionIdField,
         defineField({
             name: "featureTable",
             title: "Feature Table",

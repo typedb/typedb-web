@@ -243,14 +243,6 @@ export const isVisibleField = defineField({
     validation: requiredRule,
 });
 
-export const sectionIdFieldName = "sectionId";
-
-export const sectionIdField = defineField({
-    name: sectionIdFieldName,
-    title: "Section ID",
-    type: "string",
-});
-
 export const authorFieldName = "author";
 
 export const authorField = defineField({
