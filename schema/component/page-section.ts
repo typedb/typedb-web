@@ -5,7 +5,7 @@ import {
     isVisibleField,
     optionalActionsField, resourcesFieldOptional,
     SanityVisibleToggle, sectionIconField,
-    sectionIdField, titleBodyIconFields, titleFieldWithHighlights,
+    titleBodyIconFields, titleFieldWithHighlights,
 } from "../common-fields";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { SanityDataset } from "../sanity-core";
@@ -45,7 +45,6 @@ const titleBodyIllustrationSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
-        sectionIdField,
         illustrationField,
         isVisibleField,
     ],
@@ -60,7 +59,6 @@ const resourceSectionSchema = defineType({
     fields: [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         resourcesFieldOptional,
         isVisibleField,
     ],

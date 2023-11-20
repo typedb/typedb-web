@@ -1,6 +1,6 @@
-import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
+import { SanityDocument, Slug } from "@sanity/types";
 import { SanityButton } from "../button";
-import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField, SanityVisibleToggle, sectionIdField } from "../common-fields";
+import { SanityVisibleToggle } from "../common-fields";
 import { SanityTechnicolorBlock } from "../component/technicolor-block";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";

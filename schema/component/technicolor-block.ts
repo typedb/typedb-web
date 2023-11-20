@@ -4,16 +4,14 @@ import { SanityDataset } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
-export interface SanityTechnicolorBlock extends SanityTitleBodyActions, SanityIconField {
-    sectionId?: string;
-}
+export interface SanityTechnicolorBlock extends SanityTitleBodyActions, SanityIconField {}
 
 export class TechnicolorBlock implements Partial<BodyTextField> {
     readonly title: ParagraphWithHighlights;
     readonly body?: PortableText;
     readonly iconURL: string;
     readonly actions?: LinkButton[];
-    readonly sectionId?: string;
+    readonly sectionId: string;
 
     constructor(props: PropsOf<TechnicolorBlock>) {
         this.title = props.title;
@@ -30,7 +28,7 @@ export class TechnicolorBlock implements Partial<BodyTextField> {
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: db.resolveImageRef(data.icon).url,
-            sectionId: data.sectionId || title.toPlainText().toLowerCase().replace(/([^A-Za-z0-9-\s])/g, '').replace(/\s/g, "-"),
+            sectionId: title.toSectionID(),
         });
     }
 }
