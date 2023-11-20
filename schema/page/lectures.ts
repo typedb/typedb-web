@@ -2,7 +2,7 @@ import { defineField, defineType } from "@sanity/types";
 import {
     collapsibleOptions,
     isVisibleField,
-    pageTitleField,
+
     requiredRule,
     SanityVisibleToggle,
     sectionIconField,
@@ -152,7 +152,6 @@ const lecturesPageSchema = defineType({
     title: "Lectures Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

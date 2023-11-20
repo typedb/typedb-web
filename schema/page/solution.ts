@@ -11,7 +11,7 @@ import {
     keyPointsField,
     keyPointsWithIconsField,
     learnMoreLinkField,
-    pageTitleField, resourcesFieldOptional,
+     resourcesFieldOptional,
     routeField,
     SanityVisibleToggle,
     titleAndBodyFields,
@@ -253,7 +253,6 @@ const solutionPageSchema = defineType({
     type: "document",
     icon: DocumentIcon,
     fields: [
-        pageTitleField,
         metaTagsField,
         Object.assign({}, routeField, {
             description:

@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
+import { collapsibleOptions,  requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { PublicationSection, publicationSectionSchemaName, SanityPublicationSection } from "../component/publication-panel";
 import { SanityDataset } from "../sanity-core";
@@ -33,7 +33,6 @@ const philosophyPageSchema = defineType({
     title: "Philosophy Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

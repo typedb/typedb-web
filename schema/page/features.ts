@@ -4,7 +4,7 @@ import {
     bodyFieldRichText,
     collapsibleOptions,
     optionalActionsField,
-    pageTitleField,
+
     titleFieldWithHighlights,
 } from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
@@ -78,7 +78,6 @@ const featuresPageSchema = defineType({
     title: "Features Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: introSection,

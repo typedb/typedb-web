@@ -4,7 +4,7 @@ import {
     collapsibleOptions,
     isVisibleField,
     optionalActionsField,
-    pageTitleField,
+
     titleBodyIconFields,
     SanityVisibleToggle,
     requiredRule,
@@ -188,7 +188,7 @@ const supportPageSchema = defineType({
     name: supportPageSchemaName,
     title: "Support Page",
     type: "document",
-    fields: [pageTitleField, metaTagsField, ...sectionFields],
+    fields: [metaTagsField, ...sectionFields],
     preview: { prepare: (_selection) => ({ title: "Support Page" }) },
 });
 

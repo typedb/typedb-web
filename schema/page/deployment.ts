@@ -3,7 +3,6 @@ import {
     bodyFieldRichText,
     collapsibleOptions,
     isVisibleField,
-    pageTitleField,
     requiredRule,
     sectionIconField,
     titleFieldWithHighlights,
@@ -124,7 +123,6 @@ const deploymentPageSchema = defineType({
     title: "Deployment Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

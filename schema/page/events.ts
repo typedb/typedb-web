@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 
-import { collapsibleOptions, isVisibleField, pageTitleField, requiredRule } from "../common-fields";
+import { collapsibleOptions, isVisibleField, requiredRule } from "../common-fields";
 import { LiveEvent } from "../resource/live-event";
 import { liveEventSchemaName, SanityLiveEvent } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -41,7 +41,6 @@ const eventsPageSchema = defineType({
     title: "Events Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",
