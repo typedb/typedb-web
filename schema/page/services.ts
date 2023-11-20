@@ -4,7 +4,7 @@ import {
     collapsibleOptions,
     isVisibleField,
     optionalActionsField,
-    pageTitleField,
+
     titleBodyIconFields,
     SanityVisibleToggle,
 } from "../common-fields";
@@ -148,7 +148,7 @@ const servicesPageSchema = defineType({
     name: servicesPageSchemaName,
     title: "Services Page",
     type: "document",
-    fields: [pageTitleField, metaTagsField, ...sectionFields],
+    fields: [metaTagsField, ...sectionFields],
     preview: { prepare: (_selection) => ({ title: "Services Page" }) },
 });
 

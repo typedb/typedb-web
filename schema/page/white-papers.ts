@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, pageTitleField } from "../common-fields";
+import { collapsibleOptions } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { WhitePaper } from "../resource/white-paper";
@@ -33,7 +33,6 @@ export const whitePapersPageSchema = defineType({
     title: "White Papers Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

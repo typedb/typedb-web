@@ -1,5 +1,5 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { collapsibleOptions, pageTitleField, requiredRule, resourcesFieldOptional, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
+import { collapsibleOptions, requiredRule, resourcesFieldOptional, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
 import { blogCategories, BlogCategoryID, blogCategoryList } from "../resource/blog-category";
@@ -156,7 +156,6 @@ const blogSchema = defineType({
     title: "Blog",
     type: "document",
     fields: [
-        pageTitleField,
         defineField({
             name: "blogTitle",
             title: "Blog Title",

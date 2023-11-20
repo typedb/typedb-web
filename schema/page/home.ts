@@ -9,7 +9,7 @@ import {
     collapsibleOptions,
     isVisibleField,
     optionalActionsField,
-    pageTitleField,
+
     titleBodyIconFields,
     SanityVisibleToggle,
     requiredRule,
@@ -366,7 +366,6 @@ const homePageSchema = defineType({
     title: "Home Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         introSectionField,
         impactSectionsField,
