@@ -1,7 +1,7 @@
 import { Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { generateTopbar } from "typedb-web-common/lib/topbar";
+import { generateTopbar, setupTopbarListeners } from "typedb-web-common/lib/topbar";
 
 import { ContentService } from "../../service/content.service";
 import { TopbarMenuService } from "./topbar-menu.service";
@@ -24,51 +24,11 @@ export class TopbarMenuComponent implements OnInit {
     ngOnInit() {
         this.contentService.getTopbarData().subscribe((data) => {
             this.elementRef.nativeElement.innerHTML = generateTopbar(data);
-            const headerEl = this.elementRef.nativeElement.querySelector<HTMLElement>(".td-topbar");
+            const headerEl = setupTopbarListeners();
+
             if (headerEl) {
                 this.setupScrollEvents(headerEl);
                 this.setupLinks(headerEl);
-
-                headerEl.querySelectorAll(".td-topbar-panel-header").forEach((el) =>
-                    el.addEventListener("click", () => {
-                        el.closest("li")?.classList.toggle("td-topbar-panel-expanded");
-                    }),
-                );
-
-                const menuButton = headerEl.querySelector(".td-topbar-menu-button");
-                menuButton?.addEventListener("click", () => {
-                    headerEl.classList.toggle("td-topbar-open");
-                    document.body.style.overflowY = headerEl.classList.contains("td-topbar-open") ? "hidden" : "unset";
-                });
-
-                let hoveredMenuItem: HTMLLIElement | null = null;
-
-                const links = headerEl.querySelectorAll("a");
-                links.forEach((link) =>
-                    link.addEventListener("click", () => {
-                        hoveredMenuItem = null;
-                        updateMenuPanelVisibility();
-                        headerEl.classList.remove("td-topbar-open");
-                    }),
-                );
-
-                const mainListItems = document.querySelectorAll<HTMLLIElement>(".td-topbar-main-area li");
-
-                const updateMenuPanelVisibility = () =>
-                    mainListItems.forEach((el) =>
-                        el.classList.toggle("td-topbar-panel-hovered", hoveredMenuItem === el),
-                    );
-
-                mainListItems.forEach((el) => {
-                    el.addEventListener("mouseenter", () => {
-                        hoveredMenuItem = el;
-                        updateMenuPanelVisibility();
-                    });
-                    el.addEventListener("mouseleave", () => {
-                        hoveredMenuItem = null;
-                        updateMenuPanelVisibility();
-                    });
-                });
             }
         });
     }
