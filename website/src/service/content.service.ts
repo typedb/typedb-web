@@ -7,7 +7,6 @@ import {
     combineLatest,
     concat,
     filter,
-    first,
     iif,
     map,
     Observable,
@@ -69,7 +68,10 @@ export class ContentService {
         });
         this.wordpressPosts = this.transferState
             .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
-            .pipe(first());
+            .pipe(
+                filter((data) => !!data?.length),
+                shareReplay(),
+            );
         this.listPosts().subscribe((data) => {
             this.blogPosts.next(data);
         });
