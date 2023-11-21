@@ -1,0 +1,76 @@
+@use "colors";
+@use "media";
+@import "mixins";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include card-appearance;
+    @include card-padding;
+    width: 760px;
+    max-width: calc(100vw - 24px);
+    @media (max-width: media.$max-width-mobile) {
+        width: 375px;
+    }
+}
+
+.pc-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pc-bio {
+    border-top: 1px solid var(--content-border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding-top: 16px;
+        margin-top: 16px;
+    }
+}
+
+.pc-person {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+
+    img {
+        width: 54px;
+        height: 54px;
+        border-radius: var(--border-radius);
+
+        @media (max-width: media.$max-width-mobile) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+.pc-person-name-job {
+    margin-top: -6px;
+}
+
+.pc-person-job {
+    margin-top: 2px;
+    color: var(--color-secondary-light-grey);
+
+    @media (max-width: media.$max-width-mobile) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 160px;
+    }
+}
+
+.pc-logo {
+    height: 64px;
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 48px;
+    }
+}

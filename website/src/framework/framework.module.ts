@@ -50,7 +50,7 @@ import {
 import { LinkDirective } from "./link/link.directive";
 import { OrganisationLogosComponent } from "./organisation-logos/organisation-logos.component";
 import { PageBackgroundComponent } from "./page-background/page-background.component";
-import { PersonInfoComponent } from "./person-info/person-info.component";
+import { AvatarComponent, PersonCardComponent, PersonInfoComponent } from "./person/person.component";
 import { ProductTableComponent } from "./product-table/product-table.component";
 import { PublicationPanelComponent } from "./publication-panel/publication-panel.component";
 import { ScrollShadowComponent } from "./scroll-shadow/scroll-shadow.component";
@@ -78,6 +78,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     declarations: [
         ActionsComponent,
         AspectRatioComponent,
+        AvatarComponent,
         ButtonComponent,
         CaptionedIllustrationComponent,
         CloudWaitlistDialogComponent,
@@ -112,6 +113,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         ParagraphWithHighlightsPipe,
+        PersonCardComponent,
         PersonInfoComponent,
         PlainTextPipe,
         PolyglotSnippetComponent,
@@ -145,6 +147,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     exports: [
         ActionsComponent,
         AspectRatioComponent,
+        AvatarComponent,
         ButtonComponent,
         CaptionedIllustrationComponent,
         ConclusionPanelComponent,
@@ -172,6 +175,7 @@ const globalRippleConfig: RippleGlobalOptions = {
         PageBackgroundComponent,
         ParagraphWithHighlightsComponent,
         ParagraphWithHighlightsPipe,
+        PersonCardComponent,
         PersonInfoComponent,
         PlainTextPipe,
         PolyglotSnippetComponent,

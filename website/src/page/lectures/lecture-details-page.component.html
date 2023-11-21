@@ -54,7 +54,7 @@
             <td-rich-text [value]="lecture.description" [class]="safeVideoURL ? 'ld-cols-2' : ''" />
             <ul class="wd-speakers subsection-margin">
               <li *ngFor="let speaker of lecture.speakers">
-                <td-person-info [person]="speaker" />
+                <td-person-card [person]="speaker" />
               </li>
             </ul>
           </div>
