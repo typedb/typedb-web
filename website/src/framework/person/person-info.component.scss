@@ -1,0 +1,67 @@
+@use "colors";
+@use "media";
+
+:host {
+    &.pi-article,
+    &.pi-article-details {
+        overflow: hidden;
+
+        .pi-person-details {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--body-font-color);
+        }
+    }
+}
+
+.pi-person {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    color: inherit;
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 8px;
+    }
+}
+
+.pi-person-details {
+    color: var(--color-secondary-light-grey);
+}
+
+.pi-person-text {
+    overflow: hidden;
+}
+
+.pi-person-name {
+    color: var(--body-heading-color);
+
+    &.text-p1 {
+        margin-top: -2px;
+    }
+}
+
+@media (hover: hover) {
+    a.pi-person:hover {
+        color: var(--color-green);
+
+        .pi-person-name {
+            color: inherit;
+        }
+    }
+}
+
+@media (max-width: media.$max-width-tablet) {
+    a.pi-person {
+        color: var(--color-green);
+
+        .pi-person-name {
+            color: inherit;
+        }
+    }
+}

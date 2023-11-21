@@ -8,19 +8,11 @@
 </ng-container>
 
 <ng-template #content>
-  <div class="pi-person-image-container">
-    <img [src]="getPersonImage(person)" alt="" />
-    <div class="pi-person-image-cover">
-      <mat-icon svgIcon="linkedin" />
-    </div>
-  </div>
+  <td-avatar [person]="person" [class]="avatarClass" />
   <div class="pi-person-text">
-    <p class="pi-person-name">
+    <p class="pi-person-name" [class.text-p1]="variant === 'event'">
       <strong>{{ person.name }}</strong>
     </p>
-    <aside class="pi-person-details">
-      {{ person.jobTitle }},<br *ngIf="variant === 'event'" />
-      {{ person.organisation.name }}
-    </aside>
+    <aside class="pi-person-details">{{ person.jobTitle }}, {{ person.organisation.name }}</aside>
   </div>
 </ng-template>
