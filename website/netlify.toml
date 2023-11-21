@@ -54,12 +54,12 @@ to = "/blog/identity-and-access-management-with-typedb-part-iii-inference"
 status = 301
 
 [[redirects]]
-from = "/webinars/polymophric-data-model"
+from = "/webinars/polymoprhic-data-model"
 to = "/lectures/polymorphic-data-model"
 status = 301
 
 [[redirects]]
-from = "/lectures/polymophric-data-model"
+from = "/lectures/polymoprhic-data-model"
 to = "/lectures/polymorphic-data-model"
 status = 301
 
