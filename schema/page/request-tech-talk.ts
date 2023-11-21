@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 
 import { Page, SanityPage } from "./common";
-import { collapsibleOptions, pageTitleField, titleFieldWithHighlights } from "../common-fields";
+import { collapsibleOptions,  titleFieldWithHighlights } from "../common-fields";
 import { hubspotFormIDField } from "../form";
 import {
     ParagraphWithHighlights,
@@ -40,7 +40,6 @@ export const requestTechTalkPageSchema = defineType({
     title: "Request Tech Talk Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({ ...titleFieldWithHighlights, name: "introTitle" }),
         defineField({

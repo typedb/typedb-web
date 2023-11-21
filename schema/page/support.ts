@@ -4,11 +4,10 @@ import {
     collapsibleOptions,
     isVisibleField,
     optionalActionsField,
-    pageTitleField,
+
     titleBodyIconFields,
     SanityVisibleToggle,
     requiredRule,
-    sectionIdField,
 } from "../common-fields";
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
 import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
@@ -154,7 +153,6 @@ const sectionSchemas = [
     sectionSchema("featureTable", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -166,7 +164,6 @@ const sectionSchemas = [
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
-        sectionIdField,
         defineField({
             name: "testimonials",
             title: "Testimonials",
@@ -175,7 +172,7 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, sectionIdField, isVisibleField]),
+    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
@@ -191,7 +188,7 @@ const supportPageSchema = defineType({
     name: supportPageSchemaName,
     title: "Support Page",
     type: "document",
-    fields: [pageTitleField, metaTagsField, ...sectionFields],
+    fields: [metaTagsField, ...sectionFields],
     preview: { prepare: (_selection) => ({ title: "Support Page" }) },
 });
 

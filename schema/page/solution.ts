@@ -3,7 +3,7 @@ import { defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton } from "../button";
 import { SanityCoreSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
-import { Link, SanityLink } from "../link";
+import { SanityLink } from "../link";
 import {
     bodyFieldRichText,
     collapsibleOptions,
@@ -11,10 +11,9 @@ import {
     keyPointsField,
     keyPointsWithIconsField,
     learnMoreLinkField,
-    pageTitleField, resourcesFieldOptional,
+     resourcesFieldOptional,
     routeField,
     SanityVisibleToggle,
-    sectionIdField,
     titleAndBodyFields,
     titleField,
     videoEmbedField,
@@ -25,8 +24,7 @@ import { SanityResourceSection } from "../resource/sanity";
 import { furtherLearningField, ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import {
-    BodyTextField,
-    ParagraphWithHighlights, PortableText,
+    ParagraphWithHighlights,
     SanityBodyTextField,
     SanityTitleField,
     SanityTitleWithHighlights,
@@ -65,7 +63,6 @@ interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyTextFi
 
 interface SanityKeyPointsSection extends SanityCoreSection {
     keyPoints: SanityKeyPoint[];
-    sectionId?: string;
 }
 
 interface SanitySolutionSection extends SanityKeyPointsSection {
@@ -163,7 +160,7 @@ class KeyPointsSection extends TechnicolorBlock {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: iconURL,
             keyPoints: data.keyPoints.map((x) => new KeyPoint(x)),
-            sectionId: data.sectionId,
+            sectionId: title.toSectionID(),
         });
     }
 }
@@ -189,42 +186,7 @@ class SolutionSection extends TechnicolorBlock {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "https://cdn.sanity.io/images/xndl14mc/production/19628ad84b647bdbc783df17ce2ea89c8fd507a3-98x108.svg",
             keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
-        });
-    }
-}
-
-class ExampleTab implements Partial<BodyTextField> {
-    readonly title: string;
-    readonly videoURL: string;
-    readonly body?: PortableText;
-    readonly learnMoreLink?: Link;
-
-    constructor(data: SanityExampleTab, db: SanityDataset) {
-        this.title = data.title;
-        this.videoURL = data.videoURL;
-        this.body = data.body;
-        this.learnMoreLink = Link.fromSanityLinkRef(data.learnMoreLink, db);
-    }
-}
-
-class ExampleSection extends TechnicolorBlock {
-    readonly exampleTabs: ExampleTab[];
-    readonly sampleProjectLink?: Link;
-
-    constructor(props: PropsOf<ExampleSection>) {
-        super(props);
-        this.exampleTabs = props.exampleTabs;
-        this.sampleProjectLink = props.sampleProjectLink;
-    }
-
-    static fromSanityExampleSection(data: SanityExampleSection, db: SanityDataset) {
-        return new ExampleSection({
-            title: new ParagraphWithHighlights({ spans: [] }),
-            body: data.body,
-            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "/assets/icon/section/globe-code.svg",
-            exampleTabs: data.exampleTabs.map((x) => new ExampleTab(x, db)),
-            sampleProjectLink: Link.fromSanityLinkRef(data.sampleProjectLink, db),
+            sectionId: "typedb-solution",
         });
     }
 }
@@ -252,9 +214,9 @@ const exampleTabSchema = defineType({
 
 const sectionSchemas = [
     sectionSchema("intro", [...titleAndBodyFields, videoEmbedField, resourcesFieldOptional, isVisibleField]),
-    sectionSchema("useCases", [bodyFieldRichText, sectionIdField, keyPointsField(4), isVisibleField]),
-    sectionSchema("challenges", [bodyFieldRichText, sectionIdField, keyPointsField(4), isVisibleField]),
-    sectionSchema("solution", [bodyFieldRichText, sectionIdField, keyPointsWithIconsField(), isVisibleField]),
+    sectionSchema("useCases", [bodyFieldRichText, keyPointsField(4), isVisibleField]),
+    sectionSchema("challenges", [bodyFieldRichText, keyPointsField(4), isVisibleField]),
+    sectionSchema("solution", [bodyFieldRichText, keyPointsWithIconsField(), isVisibleField]),
     // sectionSchema("example", [
     //     bodyFieldRichText,
     //     defineField({
@@ -291,7 +253,6 @@ const solutionPageSchema = defineType({
     type: "document",
     icon: DocumentIcon,
     fields: [
-        pageTitleField,
         metaTagsField,
         Object.assign({}, routeField, {
             description:

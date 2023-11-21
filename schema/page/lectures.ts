@@ -2,11 +2,10 @@ import { defineField, defineType } from "@sanity/types";
 import {
     collapsibleOptions,
     isVisibleField,
-    pageTitleField,
+
     requiredRule,
     SanityVisibleToggle,
     sectionIconField,
-    sectionIdField,
     titleAndBodyFields,
 } from "../common-fields";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
@@ -129,7 +128,6 @@ const featuredLecturesSectionSchema = defineType({
     fields: [
         ...titleAndBodyFields,
         sectionIconField,
-        sectionIdField,
         defineField({
             name: "featuredLectures",
             title: "Featured Lectures",
@@ -146,7 +144,7 @@ const exploreLecturesSectionSchema = defineType({
     name: exploreLecturesSectionSchemaName,
     title: "Section",
     type: "object",
-    fields: [...titleAndBodyFields, sectionIconField, sectionIdField, isVisibleField],
+    fields: [...titleAndBodyFields, sectionIconField, isVisibleField],
 });
 
 const lecturesPageSchema = defineType({
@@ -154,7 +152,6 @@ const lecturesPageSchema = defineType({
     title: "Lectures Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

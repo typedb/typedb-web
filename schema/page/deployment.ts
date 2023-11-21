@@ -3,10 +3,8 @@ import {
     bodyFieldRichText,
     collapsibleOptions,
     isVisibleField,
-    pageTitleField,
     requiredRule,
     sectionIconField,
-    sectionIdField,
     titleFieldWithHighlights,
 } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
@@ -110,7 +108,6 @@ const featureTableSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
-        sectionIdField,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -126,7 +123,6 @@ const deploymentPageSchema = defineType({
     title: "Deployment Page",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: "introSection",

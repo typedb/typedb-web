@@ -32,6 +32,7 @@ from = "/github"
 to = "https://github.com/vaticle/typedb"
 status = 301
 
+# TODO: delete these redirects once the old URLs are no longer indexed by Google
 [[redirects]]
 from = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show-a795701af90e"
 to = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show"
@@ -50,6 +51,16 @@ status = 301
 [[redirects]]
 from = "/blog/typedb-for-identity-and-access-management-af995e4d5263"
 to = "/blog/identity-and-access-management-with-typedb-part-iii-inference"
+status = 301
+
+[[redirects]]
+from = "/webinars/polymophric-data-model"
+to = "/lectures/polymorphic-data-model"
+status = 301
+
+[[redirects]]
+from = "/lectures/polymophric-data-model"
+to = "/lectures/polymorphic-data-model"
 status = 301
 
 [[redirects]]

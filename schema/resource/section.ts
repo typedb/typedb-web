@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
-import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField, sectionIdField } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField } from "../common-fields";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights } from "../text";
@@ -34,7 +34,7 @@ export class ResourceSection extends TechnicolorBlock {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "https://cdn.sanity.io/images/xndl14mc/production/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
-            sectionId: data.sectionId,
+            sectionId: "further-learning",
         });
     }
 }
@@ -46,7 +46,7 @@ const furtherLearningSectionSchema = defineType({
     name: furtherLearningSectionSchemaName,
     title: `Further Reading Section`,
     type: "object",
-    fields: [bodyFieldRichText, resourcesField, sectionIdField, isVisibleField],
+    fields: [bodyFieldRichText, resourcesField, isVisibleField],
 });
 
 const furtherLearningFieldName = "furtherLearning";

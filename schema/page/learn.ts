@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { collapsibleOptions, pageTitleField, requiredRule } from "../common-fields";
+import { collapsibleOptions,  requiredRule } from "../common-fields";
 import { resourceSectionSchemaName } from "../component/page-section";
 import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
@@ -39,7 +39,6 @@ export const learningCenterSchema = defineType({
     title: "Learning Center",
     type: "document",
     fields: [
-        pageTitleField,
         metaTagsField,
         defineField({
             name: introSection,

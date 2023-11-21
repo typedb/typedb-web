@@ -44,11 +44,6 @@ export const titleFieldOptional = defineField({
 
 export const titleField = Object.assign({}, titleFieldOptional, { validation: requiredRule });
 
-export const pageTitleField = Object.assign({}, titleField, {
-    title: "Web Page Title",
-    description: "Displayed in the browser's address bar",
-});
-
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,
     title: "Title",
@@ -241,14 +236,6 @@ export const isVisibleField = defineField({
     type: "boolean",
     initialValue: true,
     validation: requiredRule,
-});
-
-export const sectionIdFieldName = "sectionId";
-
-export const sectionIdField = defineField({
-    name: sectionIdFieldName,
-    title: "Section ID",
-    type: "string",
 });
 
 export const authorFieldName = "author";
