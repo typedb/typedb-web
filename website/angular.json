@@ -52,6 +52,7 @@
                             "interactjs",
                             "object-assign",
                             "prismjs",
+                            "typedb-web-common",
                             "url"
                         ]
                     },

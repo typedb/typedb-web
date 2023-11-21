@@ -6,6 +6,7 @@ import {
     BehaviorSubject,
     combineLatest,
     concat,
+    defer,
     filter,
     iif,
     map,
@@ -15,6 +16,7 @@ import {
     shareReplay,
     switchMap,
 } from "rxjs";
+import { getTopbarData, TopbarData } from "typedb-web-common/lib/topbar";
 import {
     ApplicationArticle,
     applicationArticleSchemaName,
@@ -51,6 +53,7 @@ export class ContentService {
     readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
     readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
+    readonly topbarData: Observable<TopbarData>;
 
     constructor(
         private http: HttpClient,
@@ -92,6 +95,16 @@ export class ContentService {
             map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
             shareReplay(),
         );
+        this.topbarData = this.transferState
+            .useScullyTransferState(
+                "topbarData",
+                defer(() => getTopbarData()),
+            )
+            .pipe(shareReplay(1));
+    }
+
+    getTopbarData() {
+        return this.topbarData;
     }
 
     private listPosts(): Observable<BlogPost[]> {
