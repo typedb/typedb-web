@@ -1,16 +1,5 @@
 <div class="pc-summary">
-  <div class="pc-person">
-    <td-avatar [person]="person" />
-    <div class="pc-person-name-job">
-      <p class="text-p1">
-        <strong>{{ person.name }}</strong>
-      </p>
-      <aside class="pc-person-job">
-        {{ person.jobTitle }},<br />
-        {{ person.organisation.name }}
-      </aside>
-    </div>
-  </div>
+  <td-person-info [person]="person" variant="event" />
   <img class="pc-logo" [src]="getLogoUrl()" alt="" />
 </div>
 

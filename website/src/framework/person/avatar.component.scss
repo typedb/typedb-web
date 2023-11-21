@@ -10,9 +10,9 @@
     overflow: hidden;
 
     &.av-event {
-        --av-image-size: 88px;
+        --av-image-size: 56px;
         @media (max-width: media.$max-width-mobile) {
-            --av-image-size: 54px;
+            --av-image-size: 40px;
         }
     }
 

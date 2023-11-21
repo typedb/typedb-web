@@ -8,7 +8,7 @@
     justify-content: space-between;
     @include card-appearance;
     @include card-padding;
-    width: 760px;
+    width: 560px;
     max-width: calc(100vw - 24px);
     @media (max-width: media.$max-width-mobile) {
         width: 375px;
@@ -52,7 +52,7 @@
 }
 
 .pc-person-name-job {
-    margin-top: -6px;
+    margin-top: -2px;
 }
 
 .pc-person-job {
@@ -68,9 +68,9 @@
 }
 
 .pc-logo {
-    height: 64px;
+    height: 58px;
 
     @media (max-width: media.$max-width-mobile) {
-        height: 48px;
+        height: 42px;
     }
 }

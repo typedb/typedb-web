@@ -40,6 +40,10 @@
 
 .pi-person-name {
     color: var(--body-heading-color);
+
+    &.text-p1 {
+        margin-top: -2px;
+    }
 }
 
 @media (hover: hover) {
