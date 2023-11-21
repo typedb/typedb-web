@@ -12,6 +12,7 @@ export interface SanityPerson extends SanityDocument {
     jobTitle: string;
     headshot: SanityImage;
     linkedInURL?: string;
+    bio?: string;
 }
 
 export class Person {
@@ -20,6 +21,7 @@ export class Person {
     readonly jobTitle: string;
     readonly headshotURL: string;
     readonly linkedInURL?: string;
+    readonly bio?: string;
 
     constructor(props: PropsOf<Person>) {
         this.name = props.name;
@@ -27,6 +29,7 @@ export class Person {
         this.jobTitle = props.jobTitle;
         this.headshotURL = props.headshotURL;
         this.linkedInURL = props.linkedInURL;
+        this.bio = props.bio;
     }
 
     static fromSanity(data: SanityPerson, db: SanityDataset) {
@@ -36,6 +39,7 @@ export class Person {
             jobTitle: data.jobTitle,
             headshotURL: db.resolveRef(data.headshot.asset).url,
             linkedInURL: data.linkedInURL,
+            bio: data.bio,
         });
     }
 
@@ -84,6 +88,11 @@ const personSchema = defineType({
             name: "linkedInURL",
             title: "LinkedIn URL",
             type: "url",
+        }),
+        defineField({
+            name: "bio",
+            title: "Bio",
+            type: "text",
         }),
     ],
     preview: {
