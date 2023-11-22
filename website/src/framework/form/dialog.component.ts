@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 
 import { ParagraphWithHighlights } from "typedb-web-schema";
@@ -8,27 +8,32 @@ import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 
 @Component({
-    selector: "td-name-email-dialog",
-    templateUrl: "name-email-dialog.component.html",
-    styleUrls: ["./name-email-dialog.component.scss"],
+    selector: "td-dialog",
+    templateUrl: "dialog.component.html",
+    styleUrls: ["./dialog.component.scss"],
 })
-export class NameEmailDialogComponent {
+export class DialogComponent {
     @Input() isSubmitting!: boolean;
     @Input() titleProp!: string;
-    @Input() descriptionProp?: ParagraphWithHighlights;
+    @Input() description?: ParagraphWithHighlights;
+    @Input() variant?: "contact" = undefined;
+
+    @HostBinding("class") get clazz() {
+        return this.variant ? "di-contact" : undefined;
+    }
 }
 
 @Component({
     selector: "td-cloud-waitlist-dialog",
-    template: `<td-name-email-dialog
+    template: ` <td-dialog
         [isSubmitting]="isSubmitting"
         titleProp="Join TypeDB Cloud Waitlist"
-        [descriptionProp]="descriptionProp"
+        [description]="description"
     />`,
 })
 export class CloudWaitlistDialogComponent {
     isSubmitting = false;
-    descriptionProp?: ParagraphWithHighlights;
+    description?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
@@ -43,7 +48,9 @@ export class CloudWaitlistDialogComponent {
             onSuccess: () => this.onSubmit(),
         });
         this._formService.forms.subscribe((forms) => {
-            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.typeDBCloudWaitlistDescription);
+            this.description =
+                forms.typeDBCloudWaitlistDescription &&
+                ParagraphWithHighlights.fromSanity(forms.typeDBCloudWaitlistDescription);
         });
     }
 
@@ -56,15 +63,15 @@ export class CloudWaitlistDialogComponent {
 
 @Component({
     selector: "td-newsletter-dialog",
-    template: `<td-name-email-dialog
+    template: `<td-dialog
         [isSubmitting]="isSubmitting"
         titleProp="Subscribe to Newsletter"
-        [descriptionProp]="descriptionProp"
+        [description]="description"
     />`,
 })
 export class NewsletterDialogComponent {
     isSubmitting = false;
-    descriptionProp?: ParagraphWithHighlights;
+    description?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
@@ -79,7 +86,8 @@ export class NewsletterDialogComponent {
             onSuccess: () => this.onSubmit(),
         });
         this._formService.forms.subscribe((forms) => {
-            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.newsletterDescription);
+            this.description =
+                forms.newsletterDescription && ParagraphWithHighlights.fromSanity(forms.newsletterDescription);
         });
     }
 
@@ -91,22 +99,45 @@ export class NewsletterDialogComponent {
 }
 
 @Component({
+    selector: "td-feedback-dialog",
+    template: `<td-dialog [isSubmitting]="isSubmitting" titleProp="Provide Feedback" [description]="description" />`,
+})
+export class FeedbackDialogComponent {
+    isSubmitting = false;
+    description?: ParagraphWithHighlights;
+
+    constructor(
+        private dialogRef: MatDialogRef<FeedbackDialogComponent>,
+        private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService,
+        private analyticsService: AnalyticsService,
+    ) {
+        this._formService.embedHubspotForm("feedback", "popup-hubspot-form-holder", {
+            onLoadingChange: (val) => {
+                this.isSubmitting = val;
+            },
+            onSuccess: () => this.onSubmit(),
+        });
+        this._formService.forms.subscribe((forms) => {
+            this.description =
+                forms.feedbackDescription && ParagraphWithHighlights.fromSanity(forms.feedbackDescription);
+        });
+    }
+
+    private onSubmit() {
+        this.dialogRef.close();
+        this.analyticsService.google.reportAdConversion("sendFeedback");
+        this._popupNotificationService.success("Your feedback has been submitted. Thank you!");
+    }
+}
+
+@Component({
     selector: "td-contact-dialog",
-    templateUrl: "contact-dialog.component.html",
-    styleUrls: ["./contact-dialog.component.scss"],
+    template: `<td-dialog [isSubmitting]="isSubmitting" titleProp="Get in touch" [description]="description" />`,
 })
 export class ContactDialogComponent {
-    allTopics = [
-        "Products & Services",
-        "Support",
-        "Consulting",
-        "Sales",
-        "Training",
-        "Careers",
-        "PR & Analyst Relations",
-    ] as const;
     isSubmitting = false;
-    descriptionProp?: ParagraphWithHighlights;
+    description?: ParagraphWithHighlights;
 
     constructor(
         private dialogRef: MatDialogRef<ContactDialogComponent>,
@@ -121,7 +152,7 @@ export class ContactDialogComponent {
             onSuccess: () => this.onSubmit(),
         });
         this._formService.forms.subscribe((forms) => {
-            this.descriptionProp = ParagraphWithHighlights.fromSanity(forms.contactDescription);
+            this.description = forms.contactDescription && ParagraphWithHighlights.fromSanity(forms.contactDescription);
         });
     }
 

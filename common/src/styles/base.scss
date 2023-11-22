@@ -215,6 +215,12 @@ pre code {
     padding: 0;
 }
 
+::file-selector-button {
+    border-radius: 4px;
+    font-family: inherit;
+    @include button-primary;
+}
+
 [hidden] {
     display: none !important;
 }

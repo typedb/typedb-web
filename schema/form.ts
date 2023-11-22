@@ -6,6 +6,7 @@ export const forms = {
     contact: "Contact",
     newsletter: "Newsletter",
     typeDBCloudWaitlist: "TypeDB Cloud Waitlist",
+    feedback: "Feedback",
 } as const;
 
 export const formList = Object.entries(forms).map(([id, title]) => ({ value: id, title: title }));
@@ -16,6 +17,7 @@ export type SanityHubspotForms = SanityDocument & { [key in FormID]: string } & 
     contactDescription: PortableText;
     newsletterDescription: PortableText;
     typeDBCloudWaitlistDescription: PortableText;
+    feedbackDescription: PortableText,
 };
 
 export interface AirmeetRegistrationForm {

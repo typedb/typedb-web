@@ -1,0 +1,48 @@
+@use "colors";
+
+:host {
+    position: fixed;
+    inset: auto 0px 50% auto;
+    width: 146px;
+    height: 72px;
+    touch-action: auto;
+    display: flex;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    transform: rotateZ(-90deg) translateX(50%);
+    transform-origin: 100% 100% 0px;
+    transition: transform 200ms ease-out;
+    z-index: 2147483647;
+    opacity: 1;
+}
+
+a {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: auto auto 0;
+    border: none;
+    font-weight: var(--font-weight-semi-bold);
+    font-size: var(--font-size-aside);
+    transition:
+        background-color 200ms ease-out,
+        transform 200ms ease-out,
+        box-shadow 200ms ease-out;
+    transform: translateY(3px);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: var(--color-purple);
+    color: var(--body-font-color);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    box-shadow: 0 3px 26px 0 rgba(colors.$purple, 0.4);
+
+    &:hover {
+        transform: translateY(0);
+        background-color: var(--color-light-purple);
+        box-shadow: 0 3px 26px 0 rgba(colors.$secondary-light-grey, 0.2);
+    }
+}
