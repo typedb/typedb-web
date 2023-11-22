@@ -1,12 +1,12 @@
 <div mat-dialog-title>
   <h1>{{ titleProp }}</h1>
-  <td-dialog-close-button></td-dialog-close-button>
+  <td-dialog-close-button />
 </div>
 <div mat-dialog-content>
-  <td-p-with-highlights *ngIf="descriptionProp" [value]="descriptionProp" level="p2" />
+  <td-p-with-highlights *ngIf="description" [value]="description" level="p2" />
   <div id="popup-hubspot-form-holder"></div>
   <aside>
-    By submitting your personal data, you consent to emails from Vaticle. See our
+    By submitting personal data, you consent to emails from Vaticle. See our
     <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
   </aside>
 </div>
