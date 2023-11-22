@@ -5,7 +5,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 
 import { FrameworkModule } from "../framework/framework.module";
-import { FeedbackComponent } from "./feedback/feedback.component";
+import { FeedbackButtonComponent } from "./feedback/feedback-button.component";
 import { FooterComponent } from "./footer/footer.component";
 import { SiteBannerComponent } from "./site-banner/site-banner.component";
 import {
@@ -17,7 +17,7 @@ import {
 
 @NgModule({
     declarations: [
-        FeedbackComponent,
+        FeedbackButtonComponent,
         FooterComponent,
         SiteBannerComponent,
         TopbarMenuComponent,
@@ -27,6 +27,6 @@ import {
     ],
     imports: [BrowserModule, FormsModule, FrameworkModule, HttpClientModule, RouterModule],
     providers: [],
-    exports: [FeedbackComponent, FooterComponent, TopbarMenuComponent],
+    exports: [FeedbackButtonComponent, FooterComponent, TopbarMenuComponent],
 })
 export class NavigationModule {}
