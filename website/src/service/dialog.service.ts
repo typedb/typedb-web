@@ -6,6 +6,7 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import {
     CloudWaitlistDialogComponent,
     ContactDialogComponent,
+    FeedbackDialogComponent,
     NewsletterDialogComponent,
 } from "../framework/form/dialog.component";
 
@@ -33,6 +34,9 @@ export class DialogService {
                         break;
                     case "newsletter":
                         this.openNewsletterDialog();
+                        break;
+                    case "feedback":
+                        this.openFeedbackDialog();
                         break;
                     default:
                         this.closeCurrent();
@@ -65,6 +69,10 @@ export class DialogService {
 
     openNewsletterDialog() {
         this.open(NewsletterDialogComponent, { width: "560px", maxWidth: "100vw", autoFocus: "input" });
+    }
+
+    openFeedbackDialog() {
+        this.open(FeedbackDialogComponent, { width: "560px", maxWidth: "100vw", autoFocus: "input" });
     }
 
     openContactDialog() {

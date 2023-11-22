@@ -1,0 +1,44 @@
+@use "media";
+
+td-button {
+    margin-top: 30px;
+}
+
+aside {
+    margin-top: 32px;
+}
+
+.mat-mdc-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mdc-dialog__content {
+    overflow: visible;
+}
+
+td-p-with-highlights {
+    display: block;
+    margin-bottom: 24px;
+    color: var(--body-font-color);
+}
+
+:host.di-contact {
+    .mdc-dialog__content {
+        max-height: none;
+        min-height: 506px;
+    }
+
+    aside {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+
+        @media (max-width: media.$max-width-mobile) {
+            position: static;
+            margin-top: 12px;
+        }
+    }
+}
