@@ -1,3 +1,25 @@
+@use "media";
 @use "topbar";
 
 @include topbar.styles("/assets/icon");
+
+.td-topbar {
+    --topbar-background-opacity: 0;
+
+    &::before {
+        transition: opacity 100ms;
+        opacity: var(--topbar-background-opacity);
+    }
+
+    @media (hover: hover) {
+        &:hover::before {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: media.$max-width-tablet) {
+        &.td-topbar-open::before {
+            opacity: 1;
+        }
+    }
+}

@@ -60,11 +60,8 @@ export class TopbarMenuComponent implements OnInit {
             this.topbarMenuService.offset.subscribe((offset) => {
                 removeListener();
                 const handleScroll = () => {
-                    // TODO: we should not hard-code color codes
                     const opacity = Math.min(window.scrollY / offset, 1);
-                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${opacity})`; // vaticle purple
-                    headerEl.style.borderBottomColor =
-                        opacity === 1 ? "var(--color-secondary-deep-grey)" : "transparent";
+                    headerEl.style.setProperty("--topbar-background-opacity", `${opacity}`);
                 };
                 removeListener = () => window.removeEventListener("scroll", handleScroll);
                 window.addEventListener("scroll", handleScroll);
