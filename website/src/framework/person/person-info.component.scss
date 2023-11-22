@@ -47,11 +47,20 @@
 }
 
 @media (hover: hover) {
+    :host:hover a.pi-person,
     a.pi-person:hover {
         color: var(--color-green);
 
         .pi-person-name {
             color: inherit;
+        }
+    }
+
+    :host:hover td-avatar {
+        border-color: var(--color-green);
+
+        ::ng-deep .av-linkedin-overlay {
+            opacity: 1;
         }
     }
 }
