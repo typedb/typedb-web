@@ -3,6 +3,8 @@
 @use "mixins" as *;
 @use "shapes" as *;
 
+@import "material";
+
 html,
 body {
     color-scheme: dark;
