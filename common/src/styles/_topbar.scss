@@ -17,6 +17,7 @@
             background-color: var(--color-purple);
             border-bottom: 1px solid var(--color-secondary-deep-grey);
             transition: opacity 100ms;
+            z-index: -1;
         }
 
         nav {

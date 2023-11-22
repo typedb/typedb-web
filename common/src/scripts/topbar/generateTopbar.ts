@@ -16,7 +16,7 @@ export const generateTopbar = (data: TopbarData, urlPrefix = ""): string => {
 const generateHeader = (params: GenerateParams) => {
     const hasBannerClass = params.data.siteBanner.isEnabled ? " td-topbar-has-banner" : "";
     const headerContent = [generateBanner(params.data.siteBanner, params.urlPrefix), generateNav(params)].join("");
-    return `<header class="td-topbar ${hasBannerClass}">${headerContent}</header>`;
+    return `<header class="td-topbar${hasBannerClass}">${headerContent}</header>`;
 };
 
 const generateNav = (params: GenerateParams) => {
