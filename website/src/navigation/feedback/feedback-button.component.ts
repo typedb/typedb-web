@@ -1,6 +1,5 @@
 import { Component, HostBinding } from "@angular/core";
 
-
 @Component({
     selector: "td-feedback-button",
     template: "<a tdLink='?dialog=feedback'>Feedback</a>",
