@@ -30,12 +30,12 @@
         }
     }
 
-    .av-image-cover {
+    .av-linkedin-overlay {
         display: none;
     }
 
     @media (hover: hover) {
-        .av-image-cover {
+        .av-linkedin-overlay {
             position: absolute;
             inset: 0;
             opacity: 0;
@@ -50,7 +50,7 @@
         &:hover {
             border-color: var(--color-green);
 
-            .av-image-cover {
+            .av-linkedin-overlay {
                 opacity: 1;
             }
         }
