@@ -76,10 +76,6 @@
                                     "with": "src/environment/environment.prod.ts"
                                 },
                                 {
-                                    "replace": "src/service/content-endpoint.service.ts",
-                                    "with": "src/service/content-endpoint.service.prod.ts"
-                                },
-                                {
                                     "replace": "src/service/analytics.service.ts",
                                     "with": "src/service/analytics.service.prod.ts"
                                 }
@@ -106,10 +102,6 @@
                                 {
                                     "replace": "src/environment/environment.ts",
                                     "with": "src/environment/environment.prod.ts"
-                                },
-                                {
-                                    "replace": "src/service/content-endpoint.service.ts",
-                                    "with": "src/service/content-endpoint.service.prod.ts"
                                 }
                             ],
                             "outputHashing": "all"

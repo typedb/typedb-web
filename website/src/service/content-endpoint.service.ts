@@ -2,29 +2,46 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { SanityDocument } from "@sanity/types";
+import { TransferStateService } from "@scullyio/ng-lib";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
 
-const SANITY_URL = "https://xndl14mc.api.sanity.io/";
-const SANITY_QUERY_STRING = "*[!(_type match 'system.**')]";
-const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production?query=${SANITY_QUERY_STRING}`;
-// Read-only API token that must be provided to read draft content
-const SANITY_TOKEN =
-    "skIRNgnaiMLWn9XUwl20yvPaUODDE4P6kNWiRicQEthG2J4wvcCA1vRaCkTC9y4SChNzoq8BAw2vRuDEKvXRayMbVgUFsuER7otBti0zDzDk6mrEPze4oDfEPYyiw9eklL352jwFXVELvHNESrvkRiAm5IDxECjN3aYM3JjNH7bWbp5czrw3";
+import { environment } from "src/environment/environment";
 
-/**
- * When building the 'staging' configuration, this file is replaced with `content-endpoint.service.staging.ts`.
- * When building the 'production' configuration, this file is replaced with `content-endpoint.service.prod.ts`.
- */
 @Injectable({
     providedIn: "root",
 })
 export class ContentEndpointService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private transferState: TransferStateService,
+    ) {}
 
     getContent() {
-        return this.http.get<{ result: SanityDocument[] }>(SANITY_QUERY_URL, {
-            headers: {
-                Authorization: `Bearer ${SANITY_TOKEN}`,
-            },
-        });
+        return this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content");
+    }
+
+    getTopbarContent() {
+        return this.getSanityResult<TopbarData>(topbarQuery, "topbarContent");
+    }
+
+    private getSanityResult<T>(query: string, name: string): Observable<T> {
+        return this.transferState
+            .useScullyTransferState(
+                name,
+                this.http.get<{ result: T }>(
+                    SANITY_QUERY_URL,
+                    environment.production
+                        ? {
+                              params: { query, perspective: "published" },
+                          }
+                        : {
+                              params: { query, perspective: "previewDrafts" },
+                              headers: { Authorization: `Bearer ${SANITY_TOKEN}` },
+                          },
+                ),
+            )
+            .pipe(map(({ result }) => result));
     }
 }
