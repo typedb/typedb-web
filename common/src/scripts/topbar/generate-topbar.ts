@@ -1,7 +1,7 @@
-import { generateBanner } from "./generateBanner";
-import { generateLink } from "./generateLink";
-import { generateMenuPanel } from "./generateMenuPanel";
-import { TopbarData } from "./topbarQuery";
+import { generateBanner } from "./generate-banner";
+import { generateLink } from "./generate-link";
+import { generateMenuPanel } from "./generate-menu-panel";
+import { TopbarData } from "./topbar-query";
 import { escapeHtml } from "./utils";
 
 interface GenerateParams {

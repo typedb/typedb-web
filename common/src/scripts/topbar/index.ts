@@ -1,4 +1,4 @@
-export * from "./generateTopbar";
-export * from "./getTopbarData";
-export * from "./setupTopbarListeners";
-export { TopbarData, topbarQuery } from "./topbarQuery";
+export * from "./generate-topbar";
+export * from "./get-topbar-data";
+export * from "./setup-topbar-listeners";
+export { TopbarData, topbarQuery } from "./topbar-query";

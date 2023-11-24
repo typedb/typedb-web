@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
+import { SanityDocument } from "@sanity/types";
 import { TransferStateService } from "@scullyio/ng-lib";
 import {
     BehaviorSubject,
@@ -15,7 +16,7 @@ import {
     shareReplay,
     switchMap,
 } from "rxjs";
-import { TopbarData } from "typedb-web-common/lib";
+import { SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
 import {
     ApplicationArticle,
     applicationArticleSchemaName,
@@ -36,7 +37,8 @@ import {
     WordpressPost,
 } from "typedb-web-schema";
 
-import { ContentEndpointService } from "./content-endpoint.service";
+import { environment } from "src/environment/environment";
+
 import { WordpressService } from "./wordpress.service";
 
 const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts`;
@@ -57,18 +59,18 @@ export class ContentService {
 
     constructor(
         private http: HttpClient,
-        private endpoint: ContentEndpointService,
         private wordpress: WordpressService,
         private transferState: TransferStateService,
     ) {
-        this.endpoint.getContent().subscribe((data) => {
+        this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content").subscribe((result) => {
             this.data.next(
                 new SanityDataset({
-                    byType: groupBy(data, (x) => x._type),
-                    byId: associateBy(data, (x) => x._id),
+                    byType: groupBy(result, (x) => x._type),
+                    byId: associateBy(result, (x) => x._id),
                 }),
             );
         });
+        this.topbarData = this.getSanityResult<TopbarData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
         this.wordpressPosts = this.transferState
             .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
             .pipe(
@@ -95,11 +97,56 @@ export class ContentService {
             map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
             shareReplay(),
         );
-        this.topbarData = this.endpoint.getTopbarContent().pipe(shareReplay(1));
     }
 
     getTopbarData() {
         return this.topbarData;
+    }
+
+    getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
+        return articles$.pipe(
+            switchMap((articles) => {
+                const article = articles.find((article) => article.slug === slug);
+                return iif(
+                    () => !!article,
+                    concat(of(article as T), this.fetchArticleBySlug<T>(schemaName, slug)),
+                    this.fetchArticleBySlug<T>(schemaName, slug),
+                );
+            }),
+        );
+    }
+
+    getPostsByCategory(categorySlug: BlogCategoryID): Observable<BlogPost[]> {
+        return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
+    }
+
+    private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
+        return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
+            map(([data, wpPost]) => {
+                const sanityArticles = data.getDocumentsByType<SanityArticle>(schemaName);
+                return articleFromApi(sanityArticles.find((x) => x.slug.current === slug)!, data, wpPost) as T;
+            }),
+            shareReplay(),
+        );
+    }
+
+    private getSanityResult<T>(query: string, name: string): Observable<T> {
+        return this.transferState
+            .useScullyTransferState(
+                name,
+                this.http.get<{ result: T }>(
+                    SANITY_QUERY_URL,
+                    environment.production
+                        ? {
+                              params: { query, perspective: "published" },
+                          }
+                        : {
+                              params: { query, perspective: "previewDrafts" },
+                              headers: { Authorization: `Bearer ${SANITY_TOKEN}` },
+                          },
+                ),
+            )
+            .pipe(map(({ result }) => result));
     }
 
     private listPosts(): Observable<BlogPost[]> {
@@ -148,32 +195,5 @@ export class ContentService {
                     .map(([sanityPost, wpPost]) => articleFromApi(sanityPost, data, wpPost) as U);
             }),
         );
-    }
-
-    getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
-        return articles$.pipe(
-            switchMap((articles) => {
-                const article = articles.find((article) => article.slug === slug);
-                return iif(
-                    () => !!article,
-                    concat(of(article as T), this.fetchArticleBySlug<T>(schemaName, slug)),
-                    this.fetchArticleBySlug<T>(schemaName, slug),
-                );
-            }),
-        );
-    }
-
-    private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
-        return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
-            map(([data, wpPost]) => {
-                const sanityArticles = data.getDocumentsByType<SanityArticle>(schemaName);
-                return articleFromApi(sanityArticles.find((x) => x.slug.current === slug)!, data, wpPost) as T;
-            }),
-            shareReplay(),
-        );
-    }
-
-    getPostsByCategory(categorySlug: BlogCategoryID): Observable<BlogPost[]> {
-        return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
     }
 }

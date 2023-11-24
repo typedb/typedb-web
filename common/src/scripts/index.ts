@@ -1,3 +1,3 @@
 export * from "./prism";
-export * from "./sanityConfig";
+export * from "./sanity-config";
 export * from "./topbar";

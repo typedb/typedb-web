@@ -50,7 +50,8 @@
 
     .td-topbar-panel-header,
     .td-topbar-logo-container,
-    .td-topbar-link {
+    .td-topbar-link,
+    .td-topbar-link:visited {
         display: flex;
         align-items: center;
         padding: 0 20px;

@@ -1,5 +1,5 @@
-import { generateLink } from "./generateLink";
-import { SiteBanner } from "./topbarQuery";
+import { generateLink } from "./generate-link";
+import { SiteBanner } from "./topbar-query";
 import { escapeHtml } from "./utils";
 
 export const generateBanner = (banner: SiteBanner, urlPrefix: string) => {
