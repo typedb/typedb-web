@@ -44,9 +44,11 @@ export class FormService {
         form: FormID | string,
         placeholderElementID: string,
         {
+            disableUntouched,
             onLoadingChange,
             onSuccess,
         }: {
+            disableUntouched?: boolean;
             onLoadingChange?: (val: boolean) => void;
             onSuccess?: (formEl: HTMLFormElement, submissionValues: Record<string, unknown>) => void;
         } = {},
@@ -60,6 +62,22 @@ export class FormService {
                     formId: hubspotFormID,
                     formInstanceId: placeholderElementID,
                     target: `#${placeholderElementID}`,
+                    onFormReady: (form) => {
+                        if (!disableUntouched) {
+                            return;
+                        }
+                        const submitButton = form.querySelector<HTMLInputElement>(`[type="submit"]`);
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                            submitButton.classList.add("td-button-disabled");
+                            const enableButton = () => {
+                                submitButton.disabled = false;
+                                submitButton.classList.remove("td-button-disabled");
+                                form.removeEventListener("change", enableButton);
+                            };
+                            form.addEventListener("change", enableButton);
+                        }
+                    },
                     onFormError: () => this.ngZone.run(() => onLoadingChange?.(false)),
                     onFormSubmit: () => this.ngZone.run(() => onLoadingChange?.(true)),
                     onFormSubmitted: (formEl, { submissionValues }) => {

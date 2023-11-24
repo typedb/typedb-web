@@ -113,6 +113,7 @@ export class FeedbackDialogComponent {
         private analyticsService: AnalyticsService,
     ) {
         this._formService.embedHubspotForm("feedback", "popup-hubspot-form-holder", {
+            disableUntouched: true,
             onLoadingChange: (val) => {
                 this.isSubmitting = val;
             },
