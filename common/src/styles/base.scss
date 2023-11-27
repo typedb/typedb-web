@@ -310,10 +310,7 @@ pre code {
         border: none;
         font-weight: var(--font-weight-semi-bold);
         font-size: var(--font-size-aside);
-        transition:
-                background-color 200ms ease-out,
-                transform 200ms ease-out,
-                box-shadow 200ms ease-out;
+        transition: background-color 200ms ease-out, transform 200ms ease-out, box-shadow 200ms ease-out;
         transform: translateY(3px);
         outline: none;
         display: flex;
@@ -325,6 +322,7 @@ pre code {
         color: var(--body-font-color);
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
+        border: 1px solid var(--content-border-color);
         box-shadow: 0 3px 26px 0 rgba(colors.$purple, 0.4);
 
         &:hover {
@@ -339,16 +337,22 @@ td-feedback-dialog aside {
     margin-top: 32px;
 }
 
-.hs-form label {
-    color: var(--body-heading-color);
-}
+.hs-form {
+    label {
+        color: var(--body-heading-color);
+    }
 
-.hs-form ul {
-    list-style: none;
-    display: flex;
-    flex-flow: column wrap;
-    gap: 12px;
-    margin-top: 12px;
+    .hs-form-field > label {
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-flow: column wrap;
+        gap: 12px;
+    }
 }
 
 .hs-form input[type="text"],
