@@ -1,13 +1,10 @@
 {
     "name": "typedb-web-common",
     "private": true,
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "UNLICENSED",
     "scripts": {
-        "build": "tsc"
-    },
-    "bin": {
-        "init-common": "./bin/init.js"
+        "install": "tsc"
     },
     "peerDependencies": {
         "@fontsource/titillium-web": "5.x",
