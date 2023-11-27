@@ -11221,7 +11221,6 @@ packages:
     resolution: {directory: ../common, type: directory}
     id: file:../common
     name: typedb-web-common
-    hasBin: true
     requiresBuild: true
     peerDependencies:
       '@fontsource/titillium-web': 5.x
