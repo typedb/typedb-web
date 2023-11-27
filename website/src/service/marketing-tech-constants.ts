@@ -9,4 +9,5 @@ export const googleAdsConversionIds = {
     registerForLecture: "AW-340366363/cEfACMS7mvUYEJuopqIB",
     getInTouch: "AW-340366363/TDOzCPnH1PIYEJuopqIB",
     requestTechTalk: "AW-340366363/n5DQCMe7mvUYEJuopqIB",
+    sendFeedback: "AW-340366363/u-TbCMuggvkYEJuopqIB",
 } as const;
