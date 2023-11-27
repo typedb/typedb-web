@@ -7,24 +7,10 @@ import { RouterModule } from "@angular/router";
 import { FrameworkModule } from "../framework/framework.module";
 import { FeedbackButtonComponent } from "./feedback/feedback-button.component";
 import { FooterComponent } from "./footer/footer.component";
-import { SiteBannerComponent } from "./site-banner/site-banner.component";
-import {
-    TopbarMenuComponent,
-    TopbarMenuMobileComponent,
-    TopbarMenuPanelComponent,
-    TopbarMenuPanelMobileComponent,
-} from "./topbar/topbar-menu.component";
+import { TopbarMenuComponent } from "./topbar/topbar-menu.component";
 
 @NgModule({
-    declarations: [
-        FeedbackButtonComponent,
-        FooterComponent,
-        SiteBannerComponent,
-        TopbarMenuComponent,
-        TopbarMenuMobileComponent,
-        TopbarMenuPanelComponent,
-        TopbarMenuPanelMobileComponent,
-    ],
+    declarations: [FeedbackButtonComponent, FooterComponent, TopbarMenuComponent],
     imports: [BrowserModule, FormsModule, FrameworkModule, HttpClientModule, RouterModule],
     providers: [],
     exports: [FeedbackButtonComponent, FooterComponent, TopbarMenuComponent],

@@ -1,159 +1,55 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    HostListener,
-    Input,
-    NgZone,
-    OnInit,
-    Output,
-    ViewChild,
-} from "@angular/core";
+import { Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
+import { Router } from "@angular/router";
 
-import {
-    communityResourcesSchemaName,
-    SanityCommunityResources,
-    SanitySiteBanner,
-    SanityTopbar,
-    SiteBanner,
-    siteBannerSchemaName,
-    TextLink,
-    Topbar,
-    TopbarColumn,
-    TopbarListColumn,
-    TopbarListColumnItem,
-    TopbarMenuPanel,
-    topbarSchemaName,
-    TopbarSpotlightColumn,
-    TopbarVideoColumn,
-} from "typedb-web-schema";
+import { generateTopbar, setupTopbarListeners } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
-import { DialogService } from "../../service/dialog.service";
-import { TopbarMobileService } from "../../service/topbar-mobile.service";
 import { TopbarMenuService } from "./topbar-menu.service";
 
 @Component({
     selector: "td-topbar",
-    templateUrl: "./topbar-menu.component.html",
+    template: ``,
     styleUrls: ["./topbar-menu.component.scss"],
+    encapsulation: ViewEncapsulation.None,
 })
 export class TopbarMenuComponent implements OnInit {
-    topbar?: Topbar;
-    siteBanner?: SiteBanner;
-    githubURL?: string;
-    hoveredMenuItem?: TopbarMenuPanel;
-    focusedMenuItem?: TopbarMenuPanel;
-    hoveredMenuPanel?: TopbarMenuPanel;
-    focusedMenuPanel?: TopbarMenuPanel;
-
-    @ViewChild("siteHeader") set siteHeader(elRef: ElementRef<HTMLElement> | undefined) {
-        if (elRef?.nativeElement) {
-            this.setupScrollEvents(elRef.nativeElement);
-        }
-    }
-
     constructor(
         private contentService: ContentService,
-        private dialogService: DialogService,
+        private elementRef: ElementRef<HTMLElement>,
         private ngZone: NgZone,
+        private router: Router,
         private topbarMenuService: TopbarMenuService,
-        private _topbarMobileService: TopbarMobileService,
     ) {}
 
     ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityTopbar = data.getDocumentByID(topbarSchemaName) as SanityTopbar;
-            this.topbar = sanityTopbar ? new Topbar(sanityTopbar, data) : undefined;
-            const communityResources = data.getDocumentByID(communityResourcesSchemaName) as SanityCommunityResources;
-            this.githubURL = communityResources?.githubURL;
-            const sanitySiteBanner = data.getDocumentByID(siteBannerSchemaName) as SanitySiteBanner;
-            this.siteBanner = sanitySiteBanner?.isEnabled ? SiteBanner.fromSanity(sanitySiteBanner, data) : undefined;
+        this.contentService.getTopbarData().subscribe((data) => {
+            this.elementRef.nativeElement.innerHTML = generateTopbar(data);
+            const headerEl = setupTopbarListeners();
+
+            if (headerEl) {
+                this.setupScrollEvents(headerEl);
+                this.setupLinks(headerEl);
+            }
         });
     }
 
-    get rootNgClass(): { [clazz: string]: boolean } {
-        return {
-            "tb-solid": this.shouldForceOpaque,
-            "has-banner": !!this.siteBanner,
-        };
-    }
+    private setupLinks(headerEl: HTMLElement) {
+        const links = headerEl.querySelectorAll("a");
+        links.forEach((link) =>
+            link.addEventListener("click", (ev) => {
+                if (link.dataset["type"] === "external") {
+                    return;
+                }
+                const href = link.getAttribute("href");
+                if (!href || href.includes("//")) {
+                    return;
+                }
+                ev.preventDefault();
 
-    get mobileMenuIsOpen(): boolean {
-        return this._topbarMobileService.openState.getValue();
-    }
-
-    private get shouldForceOpaque(): boolean {
-        return !!this.hoveredMenuPanel || !!this.dialogService.current || this.mobileMenuIsOpen;
-    }
-
-    isMenuPanel(obj: unknown): obj is TopbarMenuPanel {
-        return obj instanceof TopbarMenuPanel;
-    }
-
-    isTextLink(obj: unknown): obj is TextLink {
-        return obj instanceof TextLink;
-    }
-
-    isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
-        return [this.hoveredMenuItem, this.hoveredMenuPanel, this.focusedMenuItem, this.focusedMenuPanel].includes(
-            menuPanel,
+                const url = href.startsWith("?") ? `${window.location.pathname}${href}` : href;
+                this.router.navigateByUrl(url, {});
+            }),
         );
-    }
-
-    onMenuItemMouseEnter(menuPanel: TopbarMenuPanel) {
-        this.hoveredMenuItem = menuPanel;
-        if (this.focusedMenuItem !== menuPanel) this.clearFocus();
-        this.focusedMenuPanel = undefined;
-    }
-
-    clearFocus() {
-        (document.activeElement as HTMLElement)?.blur();
-    }
-
-    onMenuItemMouseLeave(menuPanel: TopbarMenuPanel) {
-        if (this.hoveredMenuItem === menuPanel) this.hoveredMenuItem = undefined;
-        this.focusedMenuPanel = undefined;
-    }
-
-    onMenuItemFocus(menuPanel: TopbarMenuPanel) {
-        this.focusedMenuItem = menuPanel;
-    }
-
-    onMenuItemBlur(menuPanel: TopbarMenuPanel) {
-        if (this.focusedMenuItem === menuPanel) this.focusedMenuItem = undefined;
-    }
-
-    onMenuPanelMouseEnter(menuPanel: TopbarMenuPanel) {
-        this.hoveredMenuPanel = menuPanel;
-        this.focusedMenuPanel = undefined;
-    }
-
-    onMenuPanelMouseLeave(menuPanel: TopbarMenuPanel) {
-        if (this.hoveredMenuPanel === menuPanel) this.hoveredMenuPanel = undefined;
-        this.focusedMenuPanel = undefined;
-    }
-
-    onMenuItemClick() {
-        this.hoveredMenuPanel = undefined;
-        this.hoveredMenuItem = undefined;
-        this.focusedMenuPanel = undefined;
-        this.focusedMenuItem = undefined;
-        this.clearFocus();
-    }
-
-    @HostListener("window:keyup.escape", ["$event"])
-    onEscKeyPressed(_event: KeyboardEvent) {
-        this.clearFocus();
-        this.focusedMenuPanel = undefined;
-    }
-
-    toggleMobileMenu() {
-        this._topbarMobileService.toggleOpenState();
-    }
-
-    hideMobileMenu() {
-        this._topbarMobileService.setClosedState();
     }
 
     private setupScrollEvents(headerEl: HTMLElement) {
@@ -164,136 +60,13 @@ export class TopbarMenuComponent implements OnInit {
             this.topbarMenuService.offset.subscribe((offset) => {
                 removeListener();
                 const handleScroll = () => {
-                    // TODO: we should not hard-code color codes
                     const opacity = Math.min(window.scrollY / offset, 1);
-                    headerEl.style.backgroundColor = `rgba(26, 24, 42, ${opacity})`; // vaticle purple
-                    headerEl.style.borderBottomColor = opacity === 1 ? "#383649" : "transparent"; // vaticle secondary deep gray
+                    headerEl.style.setProperty("--topbar-background-opacity", `${opacity}`);
                 };
                 removeListener = () => window.removeEventListener("scroll", handleScroll);
                 window.addEventListener("scroll", handleScroll);
                 handleScroll();
             });
         });
-    }
-}
-
-@Component({
-    selector: "td-topbar-menu-panel",
-    templateUrl: "./topbar-menu-panel.component.html",
-    styleUrls: ["./topbar-menu-panel.component.scss"],
-})
-export class TopbarMenuPanelComponent {
-    @Input() menuPanel!: TopbarMenuPanel;
-    @Output() itemclick = new EventEmitter<void>();
-
-    comingSoonPopupVisible: Map<TopbarListColumnItem, boolean> = new Map<TopbarListColumnItem, boolean>();
-
-    get columns() {
-        return this.menuPanel.columns;
-    }
-
-    get title() {
-        return this.menuPanel.title;
-    }
-
-    isListColumn(obj: TopbarColumn): obj is TopbarListColumn {
-        return obj instanceof TopbarListColumn;
-    }
-
-    isVideoColumn(obj: TopbarColumn): obj is TopbarVideoColumn {
-        return obj instanceof TopbarVideoColumn;
-    }
-
-    isSpotlightColumn(obj: TopbarColumn): obj is TopbarSpotlightColumn {
-        return obj instanceof TopbarSpotlightColumn;
-    }
-
-    onMouseEnter(item: TopbarListColumnItem) {
-        if (item.comingSoon) this.comingSoonPopupVisible.set(item, true);
-    }
-
-    onMouseLeave(item: TopbarListColumnItem) {
-        if (item.comingSoon) this.comingSoonPopupVisible.set(item, false);
-    }
-
-    onItemClick() {
-        this.itemclick.emit();
-    }
-}
-
-@Component({
-    selector: "td-topbar-menu-mobile",
-    templateUrl: "./topbar-menu-mobile.component.html",
-    styleUrls: ["./topbar-menu-mobile.component.scss"],
-})
-export class TopbarMenuMobileComponent {
-    @Input() topbar!: Topbar;
-    @Input() githubURL?: string;
-
-    constructor(private _topbarMobileService: TopbarMobileService) {}
-
-    visibleMenuPanels = new Set<TopbarMenuPanel>();
-
-    isMenuPanel(obj: unknown): obj is TopbarMenuPanel {
-        return obj instanceof TopbarMenuPanel;
-    }
-
-    isTextLink(obj: unknown): obj is TextLink {
-        return obj instanceof TextLink;
-    }
-
-    isMenuPanelVisible(menuPanel: TopbarMenuPanel): boolean {
-        return this.visibleMenuPanels.has(menuPanel);
-    }
-
-    toggleMenuPanelVisible(menuPanel: TopbarMenuPanel) {
-        if (this.visibleMenuPanels.has(menuPanel)) {
-            this.visibleMenuPanels.delete(menuPanel);
-        } else {
-            this.visibleMenuPanels.add(menuPanel);
-        }
-    }
-
-    clearFocus() {
-        (document.activeElement as HTMLElement)?.blur();
-    }
-
-    onMenuItemClick() {
-        this.clearFocus();
-        this._topbarMobileService.setClosedState();
-    }
-}
-
-@Component({
-    selector: "td-topbar-menu-panel-mobile",
-    templateUrl: "./topbar-menu-panel-mobile.component.html",
-    styleUrls: ["./topbar-menu-panel-mobile.component.scss"],
-})
-export class TopbarMenuPanelMobileComponent {
-    @Input() menuPanel!: TopbarMenuPanel;
-    @Output() itemclick = new EventEmitter<void>();
-
-    get columns() {
-        return this.menuPanel.columns;
-    }
-
-    get title() {
-        return this.menuPanel.title;
-    }
-
-    isListColumn(obj: unknown): obj is TopbarListColumn {
-        return obj instanceof TopbarListColumn;
-    }
-
-    isVideoColumn(obj: unknown): obj is TopbarVideoColumn {
-        return obj instanceof TopbarVideoColumn;
-    }
-
-    isSpotlightColumn(obj: TopbarColumn): obj is TopbarSpotlightColumn {
-        return obj instanceof TopbarSpotlightColumn;
-    }
-
-    onItemClick() {
-        this.itemclick.emit();
     }
 }

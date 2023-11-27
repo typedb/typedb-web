@@ -1,5 +1,5 @@
 <div *ngIf="nebula" class="pb-container">
-  <div class="pb-nebula" [ngClass]="getNebulaClass()">
+  <div class="pb-nebula" [ngClass]="getNebulaClass()" [class.pb-nebula-with-site-banner]="hasBanner$ | async">
     <picture>
       <source
         media="(max-width: 767px)"

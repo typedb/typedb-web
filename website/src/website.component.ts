@@ -11,7 +11,6 @@ import { AnalyticsService } from "./service/analytics.service";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { FormService } from "./service/form.service";
-import { TopbarMobileService } from "./service/topbar-mobile.service";
 
 const SITE_URL = "https://typedb.com";
 
@@ -30,7 +29,6 @@ export class WebsiteComponent {
         activatedRoute: ActivatedRoute,
         viewportScroller: ViewportScroller,
         _dialogService: DialogService,
-        _topbarMobileService: TopbarMobileService,
         _cookieConsentService: NgcCookieConsentService,
         domSanitizer: DomSanitizer,
         matIconRegistry: MatIconRegistry,
@@ -40,9 +38,6 @@ export class WebsiteComponent {
     ) {
         this.initScrollBehaviour(router, contentService, activatedRoute, viewportScroller);
         this.setCanonicalLinkOnNavigation(router, doc);
-        _topbarMobileService.openState.subscribe((isOpen) => {
-            document.body.style.overflowY = isOpen ? "hidden" : "unset";
-        });
         analyticsService.google.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);

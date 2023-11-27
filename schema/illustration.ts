@@ -4,8 +4,6 @@ import { CodeSnippet, codeSnippetSchemaName, isCodeSnippet, isPolyglotSnippet, P
 import { titleField } from "./common-fields";
 import { Document, SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
-import Vertex = GraphVisualisation.Vertex;
-import Edge = GraphVisualisation.Edge;
 
 export const imageIllustrationSchemaName = "imageIllustration";
 export const videoEmbedSchemaName = "videoEmbed";
@@ -121,6 +119,8 @@ export class GraphVisualisation extends Document {
         return new GraphVisualisation(Object.assign(new Document(data), parsedJSONData));
     }
 }
+type Vertex = GraphVisualisation.Vertex;
+type Edge = GraphVisualisation.Edge;
 
 export type SplitPaneIllustrationContent = ImageIllustration | CodeSnippet | GraphVisualisation;
 
