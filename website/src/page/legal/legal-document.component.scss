@@ -1,0 +1,19 @@
+@use "media";
+
+section {
+    margin-top: 128px;
+    padding-bottom: var(--subsection-margin);
+
+    @media (max-width: media.$max-width-tablet) {
+        margin-top: 100px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 70px;
+    }
+}
+
+td-heading-with-highlights {
+    display: block;
+    margin: 40px 0;
+}

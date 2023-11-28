@@ -38,9 +38,12 @@ import {
     FundamentalArticle,
     fundamentalArticleSchemaName,
     groupBy,
+    LegalDocument,
+    legalDocumentSchemaName,
     SanityArticle,
     SanityBlogPost,
     SanityDataset,
+    SanityLegalDocument,
     WordpressPost,
 } from "typedb-web-schema";
 
@@ -60,6 +63,7 @@ export class ContentService {
     readonly displayedPosts: Observable<BlogPost[]>;
     readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
     readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
+    readonly legalDocuments = new ReplaySubject<LegalDocument[]>();
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
     private readonly footerData: Observable<FooterData>;
@@ -95,6 +99,9 @@ export class ContentService {
         this.listApplicationArticles().subscribe((data) => {
             this.applicationArticles.next(data);
         });
+        this.listLegalDocuments().subscribe((data) => {
+            this.legalDocuments.next(data);
+        });
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
@@ -129,10 +136,6 @@ export class ContentService {
         );
     }
 
-    getPostsByCategory(categorySlug: BlogCategoryID): Observable<BlogPost[]> {
-        return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
-    }
-
     private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
         return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
             map(([data, wpPost]) => {
@@ -141,6 +144,33 @@ export class ContentService {
             }),
             shareReplay(),
         );
+    }
+
+    getLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
+        return this.legalDocuments.pipe(
+            switchMap((documents) => {
+                const document = documents.find((document) => document.slug === slug);
+                return iif(
+                    () => !!document,
+                    concat(of(document), this.fetchLegalDocumentBySlug(slug)),
+                    this.fetchLegalDocumentBySlug(slug),
+                ) as Observable<LegalDocument>;
+            }),
+        );
+    }
+
+    private fetchLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
+        return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
+            map(([data, wpPost]) => {
+                const sanityLegalDocuments = data.getDocumentsByType<SanityLegalDocument>(legalDocumentSchemaName);
+                return LegalDocument.fromApi(sanityLegalDocuments.find((x) => x.slug.current === slug)!, data, wpPost);
+            }),
+            shareReplay(),
+        );
+    }
+
+    getPostsByCategory(categorySlug: BlogCategoryID): Observable<BlogPost[]> {
+        return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
     }
 
     private getSanityResult<T>(query: string, name: string): Observable<T> {
@@ -206,6 +236,24 @@ export class ContentService {
                     )
                     .filter(([_sanityPost, wpPost]) => !!wpPost)
                     .map(([sanityPost, wpPost]) => articleFromApi(sanityPost, data, wpPost) as U);
+            }),
+        );
+    }
+
+    private listLegalDocuments(): Observable<LegalDocument[]> {
+        return combineLatest([this.data, this.wordpressPosts]).pipe(
+            map(([data, wpPosts]) => {
+                return data
+                    .getDocumentsByType<SanityLegalDocument>(legalDocumentSchemaName)
+                    .map(
+                        (sanityDocument) =>
+                            [sanityDocument, wpPosts.find((wpPost) => wpPost.slug === sanityDocument.slug.current)] as [
+                                SanityLegalDocument,
+                                WordpressPost,
+                            ],
+                    )
+                    .filter(([_sanityDocument, wpPost]) => !!wpPost)
+                    .map(([sanityDocument, wpPost]) => LegalDocument.fromApi(sanityDocument, data, wpPost));
             }),
         );
     }

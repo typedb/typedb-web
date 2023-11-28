@@ -21,7 +21,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     },
     theme: "block",
     content: {
-        href: "/privacy-policy",
+        href: "/legal/privacy-policy",
     },
     type: "info",
 };

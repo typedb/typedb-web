@@ -163,18 +163,20 @@ async function wordpressPostSlugs(): Promise<string[]> {
     return wordpressData.postSlugs;
 }
 
+export const wordpressSlugField = Object.assign({}, slugField, {
+    description: "Must match the post's slug in WordPress. Content is pulled from WordPress",
+    validation: (rule: SlugRule) => rule.custom(async (value) => {
+        if (!value?.current) return "Required";
+        const slugs = await wordpressPostSlugs();
+        return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
+    }),
+});
+
 const articleSchemaBase = defineType({
     name: "article",
     type: "document",
     fields: [
-        Object.assign({}, slugField, {
-            description: "Must match the post's slug in WordPress. Content is pulled from WordPress",
-            validation: (rule: SlugRule) => rule.custom(async (value) => {
-                if (!value?.current) return "Required";
-                const slugs = await wordpressPostSlugs();
-                return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
-            }),
-        }),
+        wordpressSlugField,
         ...resourceCommonFields,
     ],
 });
