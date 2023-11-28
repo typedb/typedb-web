@@ -4,6 +4,7 @@ import {
     BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
+import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
@@ -90,6 +91,9 @@ export default defineConfig({
                 s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
+        }),
+        presentationTool({
+            previewUrl: "https://development.typedb.com",
         }),
         media(),
         visionTool(),
