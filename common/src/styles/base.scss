@@ -333,18 +333,20 @@ pre code {
     }
 }
 
-td-feedback-dialog aside {
-    margin-top: 32px;
+td-feedback-dialog {
+    .hs-form-field > label {
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    aside {
+        margin-top: 32px;
+    }
 }
 
 .hs-form {
     label {
         color: var(--body-heading-color);
-    }
-
-    .hs-form-field > label {
-        margin-bottom: 8px;
-        display: inline-block;
     }
 
     ul {
