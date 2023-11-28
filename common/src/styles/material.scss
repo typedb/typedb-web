@@ -157,4 +157,9 @@ body {
         max-width: 560px;
         max-height: 100%;
     }
+
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        border: 1px solid var(--content-border-color);
+        box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.3), 0px 24px 38px 3px rgba(0, 0, 0, 0.21), 0px 9px 46px 8px rgba(0, 0, 0, 0.18);
+    }
 }
