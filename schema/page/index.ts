@@ -6,6 +6,7 @@ import { featuresPageSchemas } from "./features";
 import { genericPageSchemas } from "./generic";
 import { homePageSchemas } from "./home";
 import { learningCenterSchema } from "./learn";
+import { legalDocumentSchema } from "./legal";
 import { philosophyPageSchemas } from "./philosophy";
 import { requestTechTalkPageSchema } from "./request-tech-talk";
 import { servicesPageSchemas } from "./services";
@@ -24,6 +25,7 @@ export const pageSchemas = [
     ...featuresPageSchemas,
     ...homePageSchemas,
     learningCenterSchema,
+    legalDocumentSchema,
     ...philosophyPageSchemas,
     ...servicesPageSchemas,
     ...solutionPageSchemas,

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { generateTopbar, setupTopbarListeners } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
+import { setupLinks } from "../setup-links";
 import { TopbarMenuService } from "./topbar-menu.service";
 
 @Component({
@@ -28,28 +29,9 @@ export class TopbarMenuComponent implements OnInit {
 
             if (headerEl) {
                 this.setupScrollEvents(headerEl);
-                this.setupLinks(headerEl);
+                setupLinks(headerEl, this.router);
             }
         });
-    }
-
-    private setupLinks(headerEl: HTMLElement) {
-        const links = headerEl.querySelectorAll("a");
-        links.forEach((link) =>
-            link.addEventListener("click", (ev) => {
-                if (link.dataset["type"] === "external") {
-                    return;
-                }
-                const href = link.getAttribute("href");
-                if (!href || href.includes("//")) {
-                    return;
-                }
-                ev.preventDefault();
-
-                const url = href.startsWith("?") ? `${window.location.pathname}${href}` : href;
-                this.router.navigateByUrl(url, {});
-            }),
-        );
     }
 
     private setupScrollEvents(headerEl: HTMLElement) {

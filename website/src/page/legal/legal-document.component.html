@@ -1,0 +1,6 @@
+<article tdPageBackground>
+  <section class="article-content" *ngIf="document$ | async as doc">
+    <td-heading-with-highlights [value]="doc.title" level="h1" />
+    <td-rich-text [value]="doc.contentHtml" />
+  </section>
+</article>

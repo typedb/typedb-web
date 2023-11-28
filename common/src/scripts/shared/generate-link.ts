@@ -1,4 +1,4 @@
-import { Link } from "./topbar-query";
+import { Link } from "./link";
 import { escapeHtml } from "./utils";
 
 export const generateLink = ({
