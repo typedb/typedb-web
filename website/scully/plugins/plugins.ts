@@ -7,6 +7,7 @@ export const fundamentalArticleRoutes = "fundamentalArticleRoutes";
 export const applicationArticleRoutes = "applicationArticleRoutes";
 export const blogCategoryRoutes = "blogCategoryRoutes";
 export const blogPostRoutes = "blogPostRoutes";
+export const legalDocumentRoutes = "legalDocumentRoutes";
 export const solutionRoutes = "solutionRoutes";
 export const lectureRoutes = "lectureRoutes";
 export const whitePaperRoutes = "whitePaperRoutes";
@@ -43,6 +44,10 @@ async function blogPostRoutesPlugin(route: string, config = {}): Promise<Handled
     return await resourceRoutesPluginBase({ resourceType: "blogPost", resourcePath: "blog" });
 }
 
+async function legalDocumentRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
+    return await resourceRoutesPluginBase({ resourceType: "legalDocument", resourcePath: "legal" });
+}
+
 async function solutionRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
     const { data } = await axios.get<{ result: string[] }>(SANITY_QUERY_URL, {
         params: { query: `*[_type == 'solutionPage'].route.current` },
@@ -66,6 +71,7 @@ registerPlugin("router", fundamentalArticleRoutes, fundamentalArticleRoutesPlugi
 registerPlugin("router", applicationArticleRoutes, applicationArticleRoutesPlugin, defaultValidator);
 registerPlugin("router", blogCategoryRoutes, blogCategoryRoutesPlugin, defaultValidator);
 registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator);
+registerPlugin("router", legalDocumentRoutes, legalDocumentRoutesPlugin, defaultValidator);
 // registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
 registerPlugin("router", lectureRoutes, lectureRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
