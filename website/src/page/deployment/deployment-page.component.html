@@ -6,7 +6,10 @@
     <td-deployment-page-technicolor-block [block]="page.featureTableSection" [index]="1" />
     <td-feature-table [table]="page.featureTableSection.featureTable" />
 
-    <td-deployment-page-technicolor-block [block]="page.finalSection" [index]="2" />
+    <td-deployment-page-technicolor-block [block]="page.linkPanelsSection" [index]="2" />
+    <td-link-panels [panels]="page.linkPanelsSection.panels" />
+
+    <td-deployment-page-technicolor-block [block]="page.finalSection" [index]="3" />
     <td-conclusion-panel [panel]="page.finalSection.panel" />
   </div>
 </article>
