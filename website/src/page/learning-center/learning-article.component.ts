@@ -1,5 +1,5 @@
 import { Component, DestroyRef, OnInit } from "@angular/core";
-import { Meta, Title } from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -45,7 +45,6 @@ export class LearningArticleComponent implements OnInit {
         private content: ContentService,
         private metaTags: MetaTagsService,
         private title: Title,
-        private meta: Meta,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
         destroyRef: DestroyRef,

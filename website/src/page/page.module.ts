@@ -25,11 +25,11 @@ import { LearningArticleComponent } from "./learning-center/learning-article.com
 import { LearningCenterBlockComponent, LearningCenterComponent } from "./learning-center/learning-center.component";
 import { LectureDetailsPageComponent } from "./lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./lectures/lectures-page.component";
+import { LegalDocumentComponent } from "./legal/legal-document.component";
 import {
     PhilosophyPageComponent,
     PhilosophyPageTechnicolorBlockComponent,
 } from "./philosophy/philosophy-page.component";
-import { PrivacyPolicyPageComponent } from "./privacy-policy/privacy-policy-page.component";
 import { ServicesPageComponent, ServicesPageTechnicolorBlockComponent } from "./services/services-page.component";
 import { SupportPageComponent, SupportPageTechnicolorBlockComponent } from "./support/support-page.component";
 import { RequestTechTalkPageComponent } from "./tech-talk/request-tech-talk-page.component";
@@ -58,12 +58,12 @@ import { WhitePapersPageComponent } from "./white-papers/white-papers-page.compo
         LearningArticleComponent,
         LearningCenterComponent,
         LearningCenterBlockComponent,
+        LegalDocumentComponent,
         LectureDetailsPageComponent,
         LecturesPageComponent,
         PhilosophyPageComponent,
         PhilosophyPageTechnicolorBlockComponent,
         _404PageComponent,
-        PrivacyPolicyPageComponent,
         RequestTechTalkPageComponent,
         ServicesPageComponent,
         ServicesPageTechnicolorBlockComponent,

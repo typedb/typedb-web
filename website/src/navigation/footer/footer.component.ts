@@ -1,87 +1,30 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
-import {
-    ContactMediaID,
-    contactMedias,
-    Footer,
-    footerSchemaName,
-    Link,
-    SanityCommunityResources,
-    SanityDataset,
-    SanityFooter,
-} from "typedb-web-schema";
-import { SocialMediaLink } from "typedb-web-schema";
+import { generateFooter } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
+import { setupLinks } from "../setup-links";
 
 @Component({
     selector: "td-footer",
-    templateUrl: "./footer.component.html",
+    template: ``,
     styleUrls: ["./footer.component.scss"],
+    encapsulation: ViewEncapsulation.None,
 })
 export class FooterComponent implements OnInit {
-    footer?: Footer;
-    socialMediaLinks?: SocialMediaLink[];
-    contactMediaLinks?: ContactMediaLink[];
-
     constructor(
-        private router: Router,
         private contentService: ContentService,
+        private elementRef: ElementRef<HTMLElement>,
+        private router: Router,
     ) {}
 
     ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityFooter = data.getDocumentByID(footerSchemaName) as SanityFooter;
-            if (sanityFooter) this.footer = new Footer(sanityFooter, data);
-            if (this.footer) {
-                this.socialMediaLinks = this.footer.socialMediaLinks.map((x) => new SocialMediaLink(x, data));
-                this.contactMediaLinks = this.footer.contactMediaLinks.map((x) => new ContactMediaLink(x, data));
-            }
+        this.contentService.getFooterData().subscribe((data) => {
+            this.elementRef.nativeElement.innerHTML = generateFooter(data);
+            const footerEl = this.elementRef.nativeElement.querySelector<HTMLElement>(".td-footer");
+
+            setupLinks(footerEl, this.router);
         });
-    }
-
-    get copyrightYear(): number {
-        return new Date().getFullYear();
-    }
-}
-
-const contactMediaIcons: { [key in ContactMediaID]: string } = {
-    forum: "discourse-rectangle",
-    discord: "discord-rectangle",
-    contactForm: "mail",
-};
-
-class ContactMediaLink {
-    readonly id: ContactMediaID;
-    readonly text: string;
-    readonly svgIcon: string;
-    readonly link: Link;
-
-    constructor(id: ContactMediaID, db: SanityDataset) {
-        this.id = id;
-        this.text = contactMedias[id];
-        this.svgIcon = contactMediaIcons[id];
-        const communityResources = db.getDocumentByID("communityResources") as SanityCommunityResources;
-        this.link = this.getLink(id, communityResources);
-    }
-
-    private getLink(id: ContactMediaID, communityResources: SanityCommunityResources): Link {
-        switch (id) {
-            case "contactForm":
-                return new Link({ destination: "?dialog=contact", type: "route", opensNewTab: false });
-            case "discord":
-                return new Link({
-                    destination: communityResources.discordURL || "",
-                    type: "external",
-                    opensNewTab: true,
-                });
-            case "forum":
-                return new Link({
-                    destination: communityResources.discussionForumURL || "",
-                    type: "external",
-                    opensNewTab: false,
-                });
-        }
     }
 }

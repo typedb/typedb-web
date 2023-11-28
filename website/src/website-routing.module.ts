@@ -15,8 +15,8 @@ import { LearningArticleComponent } from "./page/learning-center/learning-articl
 import { LearningCenterComponent } from "./page/learning-center/learning-center.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
+import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
-import { PrivacyPolicyPageComponent } from "./page/privacy-policy/privacy-policy-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 import { WhitePaperDetailsPageComponent } from "./page/white-papers/white-paper-details-page.component";
@@ -45,13 +45,13 @@ const routes: Routes = [
     { path: "blog/:slug", component: BlogPostPageComponent },
     { path: "lectures/:slug", component: LectureDetailsPageComponent },
     { path: "lectures", component: LecturesPageComponent, title: "TypeDB Lectures" },
+    { path: "legal/:slug", component: LegalDocumentComponent },
     { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
     { path: "white-papers", component: WhitePapersPageComponent, title: "TypeDB White Papers" },
     { path: "events/:slug", component: EventDetailsPageComponent },
     { path: "events", component: EventsPageComponent, title: "TypeDB Events" },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
     { path: "support", component: SupportPageComponent },
-    { path: "privacy-policy", component: PrivacyPolicyPageComponent, title: "TypeDB Privacy Policy" },
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
@@ -61,6 +61,7 @@ const routes: Routes = [
     { path: "solutions/:route", redirectTo: "philosophy" },
     { path: "webinars/:slug", redirectTo: "lectures/:slug" },
     { path: "webinars", redirectTo: "lectures" },
+    { path: "privacy-policy", redirectTo: "legal/privacy-policy" },
 
     { path: "__fallback", component: FallbackPageComponent },
     { path: "**", component: _404PageComponent, title: "TypeDB: 404" },
