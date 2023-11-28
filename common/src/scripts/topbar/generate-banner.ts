@@ -1,6 +1,5 @@
-import { generateLink } from "./generate-link";
+import { escapeHtml, generateLink } from "../shared";
 import { SiteBanner } from "./topbar-query";
-import { escapeHtml } from "./utils";
 
 export const generateBanner = (banner: SiteBanner, urlPrefix: string) => {
     if (!banner.isEnabled) {
@@ -18,7 +17,7 @@ export const generateBanner = (banner: SiteBanner, urlPrefix: string) => {
     return generateLink({
         content,
         link: banner.link,
-        urlPrefix: urlPrefix,
+        urlPrefix,
         attributes: { class: "td-topbar-banner" },
     });
 };

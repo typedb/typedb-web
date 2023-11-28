@@ -16,7 +16,14 @@ import {
     shareReplay,
     switchMap,
 } from "rxjs";
-import { SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
+import {
+    FooterData,
+    footerQuery,
+    SANITY_QUERY_URL,
+    SANITY_TOKEN,
+    TopbarData,
+    topbarQuery,
+} from "typedb-web-common/lib";
 import {
     ApplicationArticle,
     applicationArticleSchemaName,
@@ -55,6 +62,7 @@ export class ContentService {
     readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
+    private readonly footerData: Observable<FooterData>;
     private readonly topbarData: Observable<TopbarData>;
 
     constructor(
@@ -70,6 +78,7 @@ export class ContentService {
                 }),
             );
         });
+        this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
         this.topbarData = this.getSanityResult<TopbarData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
         this.wordpressPosts = this.transferState
             .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
@@ -97,6 +106,10 @@ export class ContentService {
             map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
             shareReplay(),
         );
+    }
+
+    getFooterData() {
+        return this.footerData;
     }
 
     getTopbarData() {

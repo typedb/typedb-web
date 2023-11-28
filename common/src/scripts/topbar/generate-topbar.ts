@@ -1,8 +1,7 @@
+import { escapeHtml, generateLink } from "../shared";
 import { generateBanner } from "./generate-banner";
-import { generateLink } from "./generate-link";
 import { generateMenuPanel } from "./generate-menu-panel";
 import { TopbarData } from "./topbar-query";
-import { escapeHtml } from "./utils";
 
 interface GenerateParams {
     data: TopbarData;

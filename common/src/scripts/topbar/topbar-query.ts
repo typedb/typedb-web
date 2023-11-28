@@ -1,8 +1,4 @@
-const link = `{
-  type,
-  opensNewTab,
-  destination{current},
-}`;
+import { Link, linkProps, TextLink } from "../shared";
 
 export const topbarQuery = `
 {
@@ -16,7 +12,7 @@ export const topbarQuery = `
           title,
           _type == 'topbarListColumn' => {
             items[]{
-              link->${link},
+              link->${linkProps},
               description,
               title,
               comingSoon
@@ -24,12 +20,12 @@ export const topbarQuery = `
           },
           _type == 'topbarSpotlightColumn' => {
             "iconURL": icon->assetRef.asset->url,
-            link->${link}
+            link->${linkProps}
           }
         }
       },
       _type == 'textLink' => {
-        link->${link},
+        link->${linkProps},
         text,
         comingSoon
       }
@@ -38,11 +34,11 @@ export const topbarQuery = `
       button{
         style,
         text,
-        link->${link}
+        link->${linkProps}
       },
       links[]{
         _type,
-        link->${link},
+        link->${linkProps},
         text,
         comingSoon
       }
@@ -51,7 +47,7 @@ export const topbarQuery = `
   "siteBanner": *[(_type match 'siteBanner')][0]{
     isEnabled,
     isEnabled == true => {
-      link->${link},
+      link->${linkProps},
       "spans": text[0].children[_type=='span']{
         text,
         marks
@@ -61,19 +57,6 @@ export const topbarQuery = `
   "githubURL": *[(_type match 'communityResources')][0].githubURL
 }
 `;
-
-export interface Link {
-    destination: { current: string };
-    opensNewTab: boolean;
-    type: "autoDetect" | "route" | "external";
-}
-
-export interface TextLink {
-    _type: "textLink";
-    link: Link | null;
-    text: string;
-    comingSoon: boolean;
-}
 
 export interface TopbarListColumn {
     _type: "topbarListColumn";

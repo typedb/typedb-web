@@ -1,6 +1,5 @@
-import { generateLink } from "./generate-link";
+import { escapeHtml, generateLink } from "../shared";
 import { TopbarColumn, TopbarMenuPanel } from "./topbar-query";
-import { escapeHtml } from "./utils";
 
 export const generateMenuPanel = (panel: TopbarMenuPanel, urlPrefix: string) => {
     const columns = panel.columns
