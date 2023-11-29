@@ -40,7 +40,7 @@ export const config: ScullyConfig = {
         "/lectures/:slug": { type: lectureRoutes },
         "/white-papers/:slug": { type: whitePaperRoutes },
         "/events/:slug": { type: eventRoutes },
-        "/events": { type: staticPageRoute, sanityType: "eventsPage" },
+        "/events": { type: staticPageRoute, schemaName: "eventsPage" },
         "/studio": { type: genericPageRoute, pageId: "studioPage" },
     },
     puppeteerLaunchOptions: {
