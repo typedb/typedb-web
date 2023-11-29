@@ -51,7 +51,7 @@ interface SanityLinkPanelsSection extends SanityCoreSection {
 export class DeploymentPage extends Page {
     readonly introSection: IntroSection;
     readonly featureTableSection: FeatureTableSection;
-    readonly linkPanelsSection: LinkPanelsSection;
+    readonly linkPanelsSection?: LinkPanelsSection;
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
@@ -59,7 +59,9 @@ export class DeploymentPage extends Page {
         this.introSection = IntroSection.fromSanity(data.introSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
-        this.linkPanelsSection = LinkPanelsSection.fromSanity(data.linkPanelsSection, db);
+        this.linkPanelsSection = data.linkPanelsSection?.isVisible
+            ? LinkPanelsSection.fromSanity(data.linkPanelsSection, db)
+            : undefined;
     }
 }
 
