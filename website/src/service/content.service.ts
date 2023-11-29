@@ -8,6 +8,7 @@ import {
     combineLatest,
     concat,
     filter,
+    first,
     iif,
     map,
     Observable,
@@ -189,7 +190,10 @@ export class ContentService {
                           },
                 ),
             )
-            .pipe(map(({ result }) => result));
+            .pipe(
+                first(),
+                map(({ result }) => result),
+            );
     }
 
     private listPosts(): Observable<BlogPost[]> {

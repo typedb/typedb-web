@@ -4,22 +4,32 @@ import {
     collapsibleOptions,
     isVisibleField,
     requiredRule,
+    SanityVisibleToggle,
     sectionIconField,
     titleFieldWithHighlights,
 } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
-import { ProductPanel, productPanelSchemaName, SanityProductPanel } from "../component/link-panel";
+import {
+    LinkPanelWithIcon,
+    linkPanelWithIconSchemaName,
+    ProductPanel,
+    productPanelSchemaName,
+    SanityLinkPanelWithIcon,
+    SanityProductPanel,
+} from "../component/link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
+import { SanityTitleBodyActions } from "../text";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
     featureTableSection: SanityFeatureTableSection;
     finalSection: SanityConclusionSection;
+    linkPanelsSection: SanityLinkPanelsSection;
 }
 
 export interface SanityIntroSection extends SanityTechnicolorBlock {
@@ -30,9 +40,18 @@ export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
     featureTable: SanityFeatureTable;
 }
 
+interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
+
+interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
+
+interface SanityLinkPanelsSection extends SanityCoreSection {
+    panels: SanityLinkPanelWithIcon[];
+}
+
 export class DeploymentPage extends Page {
     readonly introSection: IntroSection;
     readonly featureTableSection: FeatureTableSection;
+    readonly linkPanelsSection?: LinkPanelsSection;
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityDeploymentPage, db: SanityDataset) {
@@ -40,6 +59,9 @@ export class DeploymentPage extends Page {
         this.introSection = IntroSection.fromSanity(data.introSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
+        this.linkPanelsSection = data.linkPanelsSection?.isVisible
+            ? LinkPanelsSection.fromSanity(data.linkPanelsSection, db)
+            : undefined;
     }
 }
 
@@ -77,10 +99,27 @@ export class FeatureTableSection extends TechnicolorBlock {
     }
 }
 
+export class LinkPanelsSection extends TechnicolorBlock {
+    readonly panels: LinkPanelWithIcon[];
+
+    constructor(props: PropsOf<LinkPanelsSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
+        return new LinkPanelsSection({
+            ...super.fromSanity(data, db),
+            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
+        });
+    }
+}
+
 export const deploymentPageSchemaName = "deploymentPage";
 
 const introSectionSchemaName = `${deploymentPageSchemaName}_introSection`;
 const featureTableSectionSchemaName = `${deploymentPageSchemaName}_featureTableSection`;
+const linkPanelsSectionSchemaName = `${deploymentPageSchemaName}_linkPanelsSection`;
 
 const introSectionSchema = defineType({
     name: introSectionSchemaName,
@@ -118,6 +157,25 @@ const featureTableSectionSchema = defineType({
     ],
 });
 
+const linkPanelsSectionSchema = defineType({
+    name: linkPanelsSectionSchemaName,
+    title: "Link Panels Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{ type: linkPanelWithIconSchemaName }],
+            validation: (rule) => rule.required().length(3),
+        }),
+        isVisibleField,
+    ],
+});
+
 const deploymentPageSchema = defineType({
     name: deploymentPageSchemaName,
     title: "Deployment Page",
@@ -135,6 +193,13 @@ const deploymentPageSchema = defineType({
             name: "featureTableSection",
             title: "Feature Table Section",
             type: featureTableSectionSchemaName,
+            options: collapsibleOptions,
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "linkPanelsSection",
+            title: "Link Panels Section",
+            type: linkPanelsSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
@@ -165,4 +230,9 @@ const deploymentPageSchema = defineType({
         }),
 });
 
-export const deploymentPageSchemas = [introSectionSchema, featureTableSectionSchema, deploymentPageSchema];
+export const deploymentPageSchemas = [
+    introSectionSchema,
+    featureTableSectionSchema,
+    linkPanelsSectionSchema,
+    deploymentPageSchema,
+];
