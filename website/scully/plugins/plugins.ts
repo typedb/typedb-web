@@ -12,6 +12,8 @@ export const solutionRoutes = "solutionRoutes";
 export const lectureRoutes = "lectureRoutes";
 export const whitePaperRoutes = "whitePaperRoutes";
 export const eventRoutes = "eventRoutes";
+export const staticPageRoute = "staticPage";
+export const genericPageRoute = "genericPage";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
@@ -64,7 +66,21 @@ async function whitePaperRoutesPlugin(route: string, config = {}): Promise<Handl
 }
 
 async function eventRoutesPlugin(route: string, config = {}): Promise<HandledRoute[]> {
-    return await resourceRoutesPluginBase({ resourceType: "event", resourcePath: "events" });
+    return await resourceRoutesPluginBase({ resourceType: "liveEvent", resourcePath: "events" });
+}
+
+async function staticPagePlugin(route: string, { schemaName }: { schemaName: string }): Promise<HandledRoute[]> {
+    const { data } = await axios.get<{ result: boolean }>(SANITY_QUERY_URL, {
+        params: { query: `defined(*[_type == '${schemaName}'][0])` },
+    });
+    return data.result ? [{ route }] : [];
+}
+
+async function genericPagePlugin(route: string, { pageId }: { pageId: string }): Promise<HandledRoute[]> {
+    const { data } = await axios.get<{ result: boolean }>(SANITY_QUERY_URL, {
+        params: { query: `defined(*[_type == 'genericPage' && _id == '${pageId}'][0])` },
+    });
+    return data.result ? [{ route }] : [];
 }
 
 registerPlugin("router", fundamentalArticleRoutes, fundamentalArticleRoutesPlugin, defaultValidator);
@@ -76,3 +92,5 @@ registerPlugin("router", legalDocumentRoutes, legalDocumentRoutesPlugin, default
 registerPlugin("router", lectureRoutes, lectureRoutesPlugin, defaultValidator);
 registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
 registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);
+registerPlugin("router", staticPageRoute, staticPagePlugin);
+registerPlugin("router", genericPageRoute, genericPagePlugin);
