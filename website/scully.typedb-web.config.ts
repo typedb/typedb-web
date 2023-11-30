@@ -9,6 +9,7 @@ import {
     eventRoutes,
     fundamentalArticleRoutes,
     lectureRoutes,
+    legalDocumentRoutes,
     whitePaperRoutes,
 } from "./scully/plugins/plugins";
 
@@ -38,6 +39,7 @@ export const config: ScullyConfig = {
         "/lectures/:slug": { type: lectureRoutes },
         "/white-papers/:slug": { type: whitePaperRoutes },
         "/events/:slug": { type: eventRoutes },
+        "/legal/:slug": { type: legalDocumentRoutes },
     },
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
