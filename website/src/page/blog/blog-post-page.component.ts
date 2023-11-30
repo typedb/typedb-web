@@ -1,5 +1,5 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
-import { Meta, Title } from "@angular/platform-browser";
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
@@ -29,12 +29,13 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     selector: "td-blog-post-page",
     templateUrl: "./blog-post-page.component.html",
     styleUrls: ["./blog-post-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogPostPageComponent implements OnInit {
-    blog?: Blog;
+    readonly blog$: Observable<Blog | null>;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
-    relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
+    readonly relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
         link: Link.fromAddress("?dialog=newsletter"),
@@ -48,26 +49,25 @@ export class BlogPostPageComponent implements OnInit {
         private content: ContentService,
         private metaTags: MetaTagsService,
         private title: Title,
-        private meta: Meta,
         private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
         destroyRef: DestroyRef,
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
-        this.content.data.subscribe((data) => {
-            const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
-            if (sanityBlog) {
-                this.blog = new Blog(sanityBlog, data);
-            }
-        });
+        this.blog$ = this.content.data.pipe(
+            map((data) => {
+                const sanityBlog = data.getDocumentByID<SanityBlog>(blogSchemaName);
+                return sanityBlog ? new Blog(sanityBlog, data) : null;
+            }),
+        );
         this.post$ = this._activatedRoute.paramMap.pipe(
             map((params: ParamMap) => params.get("slug")),
-            switchMap((slug: string | null) => {
-                return slug
+            switchMap((slug: string | null) =>
+                slug
                     ? this.content.getArticleBySlug<BlogPost>(this.content.blogPosts, blogPostSchemaName, slug)
-                    : of(null);
-            }),
+                    : of(null),
+            ),
             shareReplay(1),
         );
         this.categories$ = this.post$.pipe(map((post) => (post ? post.categories : null)));
@@ -92,8 +92,8 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.post$.subscribe(
-            (post) => {
+        this.post$.subscribe({
+            next: (post) => {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
@@ -109,10 +109,10 @@ export class BlogPostPageComponent implements OnInit {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
-            (_err) => {
+            error: (_err) => {
                 this.router.navigate(["blog"], { replaceUrl: true });
             },
-        );
+        });
     }
 
     categoryDisplayName(category: BlogCategoryID) {

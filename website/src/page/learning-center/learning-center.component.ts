@@ -1,51 +1,28 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { LearningCenter, learningCenterSchemaName, SanityLearningCenter } from "typedb-web-schema";
+import { of } from "rxjs";
+import { LearningCenter, learningCenterSchemaName, SanityDataset, SanityLearningCenter } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { StandardPageComponent } from "../standard-page.component";
 
 @Component({
     selector: "td-learning-center",
     templateUrl: "./learning-center.component.html",
     styleUrls: ["./learning-center.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LearningCenterComponent implements OnInit {
-    learningCenter?: LearningCenter;
-
-    constructor(
-        private router: Router,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
-            if (sanityLearningCenter) {
-                this.learningCenter = new LearningCenter(sanityLearningCenter, data);
-                this.metaTags.register(this.learningCenter.metaTags);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-            } else {
-                this.router.navigate(["404"], { skipLocationChange: true });
-            }
-        });
+export class LearningCenterComponent extends StandardPageComponent<LearningCenter> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
+        return of(page ? new LearningCenter(page, data) : null);
     }
 }
 
 @Component({
     selector: "td-learning-center-block",
-    template: '<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]=\'index === 0\' />',
+    template: `<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LearningCenterBlockComponent {
     @Input() section!: TechnicolorBlock;

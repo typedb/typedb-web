@@ -5,6 +5,6 @@
     [illustration]="panes.left"
     [visible]="visible"
   ></td-illustration>
-  <img #sliderEl [src]="sliderImageSrc" alt="slider" class="cs-split-pane-slider" />
+  <img #sliderEl [src]="sliderImageSrc$ | async" alt="slider" class="cs-split-pane-slider" />
   <td-illustration class="sp-pane" [illustration]="panes.right" [visible]="visible"></td-illustration>
 </div>

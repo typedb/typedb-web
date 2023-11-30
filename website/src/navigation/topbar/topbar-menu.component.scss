@@ -9,6 +9,10 @@
     &::before {
         transition: opacity 100ms;
         opacity: var(--topbar-background-opacity);
+
+        .cdk-global-scrollblock & {
+            opacity: 1;
+        }
     }
 
     @media (hover: hover) {

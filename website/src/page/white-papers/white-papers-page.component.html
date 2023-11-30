@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="studio" planet="pink">
-  <div *ngIf="page" class="article-content">
+  <div *ngIf="page$ | async as page" class="article-content">
     <div class="section">
       <td-title-body-actions-section
         [isIntroSection]="true"

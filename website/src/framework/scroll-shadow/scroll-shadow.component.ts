@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, ViewChild } from "@angular/core";
 
 @Component({
     selector: "td-scroll-shadow",
     templateUrl: "./scroll-shadow.component.html",
     styleUrls: ["./scroll-shadow.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollShadowComponent implements AfterViewInit {
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;

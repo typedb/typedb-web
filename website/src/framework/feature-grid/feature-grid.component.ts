@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, Input, OnInit } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
 
 import Prism from "prismjs";
 import {
@@ -18,6 +18,7 @@ import {
     selector: "td-feature-grid",
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() layout!: FeatureGridLayout;

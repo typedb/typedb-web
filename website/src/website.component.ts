@@ -1,5 +1,5 @@
-import { DOCUMENT, ViewportScroller } from "@angular/common";
-import { Component, Inject } from "@angular/core";
+import { DOCUMENT, LocationStrategy, ViewportScroller } from "@angular/common";
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, Scroll } from "@angular/router";
@@ -18,6 +18,7 @@ const SITE_URL = "https://typedb.com";
     selector: "td-website",
     templateUrl: "./website.component.html",
     styleUrls: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebsiteComponent {
     private _originBeforeNavigation: string = window.location.origin;
@@ -26,6 +27,7 @@ export class WebsiteComponent {
     constructor(
         contentService: ContentService,
         router: Router,
+        location: LocationStrategy,
         activatedRoute: ActivatedRoute,
         viewportScroller: ViewportScroller,
         _dialogService: DialogService,
@@ -36,7 +38,7 @@ export class WebsiteComponent {
         _formService: FormService,
         @Inject(DOCUMENT) doc: Document,
     ) {
-        this.initScrollBehaviour(router, contentService, activatedRoute, viewportScroller);
+        this.initScrollBehaviour(router, contentService, activatedRoute, location, viewportScroller);
         this.setCanonicalLinkOnNavigation(router, doc);
         analyticsService.google.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
@@ -60,12 +62,20 @@ export class WebsiteComponent {
         router: Router,
         contentService: ContentService,
         activatedRoute: ActivatedRoute,
+        location: LocationStrategy,
         viewportScroller: ViewportScroller,
     ) {
         viewportScroller.setOffset([0, 112]);
         router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
             const { anchor, position } = ev;
             contentService.data.subscribe((_data) => {
+                const state = location.getState();
+                const preventScrollToAnchor =
+                    typeof state === "object" &&
+                    state &&
+                    "preventScrollToAnchor" in state &&
+                    state.preventScrollToAnchor;
+
                 let currentRoute = activatedRoute;
                 while (currentRoute.firstChild) currentRoute = currentRoute.firstChild;
 
@@ -74,7 +84,7 @@ export class WebsiteComponent {
                     setTimeout(() => {
                         scrollTo(...position);
                     }, 0);
-                } else if (anchor && !router.getCurrentNavigation()?.extras?.state?.["preventScrollToAnchor"]) {
+                } else if (anchor && !preventScrollToAnchor) {
                     setTimeout(() => {
                         document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });

@@ -1,51 +1,38 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { DeploymentPage, deploymentPageSchemaName, SanityDeploymentPage, TechnicolorBlock } from "typedb-web-schema";
-
-import { MetaTagsService } from "src/service/meta-tags.service";
+import { of } from "rxjs";
+import {
+    DeploymentPage,
+    deploymentPageSchemaName,
+    SanityDataset,
+    SanityDeploymentPage,
+    TechnicolorBlock,
+} from "typedb-web-schema";
 
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { StandardPageComponent } from "../standard-page.component";
 
 @Component({
     selector: "td-deployment-page",
     templateUrl: "./deployment-page.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DeploymentPageComponent implements OnInit {
-    page?: DeploymentPage;
-
-    constructor(
-        private router: Router,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityDeploymentPage = data.getDocumentByID(deploymentPageSchemaName) as SanityDeploymentPage;
-            if (sanityDeploymentPage) {
-                this.page = new DeploymentPage(sanityDeploymentPage, data);
-                this.metaTags.register(this.page.metaTags);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-            } else {
-                this.router.navigate(["404"], { skipLocationChange: true });
-            }
-        });
+export class DeploymentPageComponent extends StandardPageComponent<DeploymentPage> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityDeploymentPage>(deploymentPageSchemaName);
+        return of(page ? new DeploymentPage(page, data) : null);
     }
 }
 
 @Component({
     selector: "td-deployment-page-technicolor-block",
-    template:
-        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noUpperLine]='index === 0'></td-technicolor-block>",
+    template: `<td-technicolor-block
+        [block]="block"
+        [index]="index"
+        [level]="level"
+        [noUpperLine]="index === 0"
+    ></td-technicolor-block>`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeploymentPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

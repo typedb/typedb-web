@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="home" planet="green">
-  <div *ngIf="page" class="article-content">
+  <div *ngIf="page$ | async as page" class="article-content">
     <ng-container *ngIf="page.introSection">
       <td-home-page-technicolor-block
         [block]="page.introSection"
@@ -31,7 +31,7 @@
     </ng-container>
     <ng-container *ngIf="page.communitySection">
       <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />
-      <td-social-media-panels [socialMediaLinks]="socialMediaLinks!" />
+      <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" />
     </ng-container>
     <ng-container *ngIf="page.testimonialsSection">
       <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />

@@ -1,6 +1,7 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 
+import { map, Observable, ReplaySubject, Subject } from "rxjs";
 import { ParagraphWithHighlights } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
@@ -11,11 +12,12 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     selector: "td-dialog",
     templateUrl: "dialog.component.html",
     styleUrls: ["./dialog.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
-    @Input() isSubmitting!: boolean;
+    @Input() isSubmitting: boolean | null = null;
     @Input() titleProp!: string;
-    @Input() description?: ParagraphWithHighlights;
+    @Input() description: ParagraphWithHighlights | null = null;
     @Input() variant?: "contact" = undefined;
 
     @HostBinding("class") get clazz() {
@@ -26,69 +28,78 @@ export class DialogComponent {
 @Component({
     selector: "td-cloud-waitlist-dialog",
     template: ` <td-dialog
-        [isSubmitting]="isSubmitting"
+        [isSubmitting]="isSubmitting$ | async"
         titleProp="Join TypeDB Cloud Waitlist"
-        [description]="description"
+        [description]="description$ | async"
     />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudWaitlistDialogComponent {
-    isSubmitting = false;
-    description?: ParagraphWithHighlights;
+    description$: Observable<ParagraphWithHighlights | null>;
+    isSubmitting$: Observable<boolean>;
+    private loadingChangeEvent: Subject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
-        private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
+        private dialogRef: MatDialogRef<CloudWaitlistDialogComponent>,
+        private popupNotificationService: PopupNotificationService,
+        formService: FormService,
     ) {
-        this._formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder", {
+        formService.embedHubspotForm("typeDBCloudWaitlist", "popup-hubspot-form-holder", {
             onLoadingChange: (val) => {
-                this.isSubmitting = val;
+                this.loadingChangeEvent.next(val);
             },
             onSuccess: () => this.onSubmit(),
         });
-        this._formService.forms.subscribe((forms) => {
-            this.description =
-                forms.typeDBCloudWaitlistDescription &&
-                ParagraphWithHighlights.fromSanity(forms.typeDBCloudWaitlistDescription);
-        });
+        this.description$ = formService.forms.pipe(
+            map((forms) =>
+                forms.typeDBCloudWaitlistDescription
+                    ? ParagraphWithHighlights.fromSanity(forms.typeDBCloudWaitlistDescription)
+                    : null,
+            ),
+        );
+        this.isSubmitting$ = this.loadingChangeEvent.asObservable();
     }
 
     private onSubmit() {
         this.dialogRef.close();
         this.analyticsService.google.reportAdConversion("joinCloudWaitlist");
-        this._popupNotificationService.success("You're now on the TypeDB Cloud waitlist!");
+        this.popupNotificationService.success("You're now on the TypeDB Cloud waitlist!");
     }
 }
 
 @Component({
     selector: "td-newsletter-dialog",
     template: `<td-dialog
-        [isSubmitting]="isSubmitting"
+        [isSubmitting]="isSubmitting$ | async"
         titleProp="Subscribe to Newsletter"
-        [description]="description"
+        [description]="description$ | async"
     />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsletterDialogComponent {
-    isSubmitting = false;
-    description?: ParagraphWithHighlights;
+    description$: Observable<ParagraphWithHighlights | null>;
+    isSubmitting$: Observable<boolean>;
+    private loadingChangeEvent: Subject<boolean> = new ReplaySubject(1);
 
     constructor(
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
-        private _formService: FormService,
         private _popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
+        formService: FormService,
     ) {
-        this._formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", {
+        formService.embedHubspotForm("newsletter", "popup-hubspot-form-holder", {
             onLoadingChange: (val) => {
-                this.isSubmitting = val;
+                this.loadingChangeEvent.next(val);
             },
             onSuccess: () => this.onSubmit(),
         });
-        this._formService.forms.subscribe((forms) => {
-            this.description =
-                forms.newsletterDescription && ParagraphWithHighlights.fromSanity(forms.newsletterDescription);
-        });
+        this.description$ = formService.forms.pipe(
+            map((forms) =>
+                forms.newsletterDescription ? ParagraphWithHighlights.fromSanity(forms.newsletterDescription) : null,
+            ),
+        );
+        this.isSubmitting$ = this.loadingChangeEvent.asObservable();
     }
 
     private onSubmit() {
@@ -100,67 +111,83 @@ export class NewsletterDialogComponent {
 
 @Component({
     selector: "td-feedback-dialog",
-    template: `<td-dialog [isSubmitting]="isSubmitting" titleProp="Provide Feedback" [description]="description" />`,
+    template: `<td-dialog
+        [isSubmitting]="isSubmitting$ | async"
+        titleProp="Provide Feedback"
+        [description]="description$ | async"
+    />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbackDialogComponent {
-    isSubmitting = false;
-    description?: ParagraphWithHighlights;
+    description$: Observable<ParagraphWithHighlights | null>;
+    isSubmitting$: Observable<boolean>;
+    private loadingChangeEvent: Subject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private dialogRef: MatDialogRef<FeedbackDialogComponent>,
-        private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
+        private dialogRef: MatDialogRef<FeedbackDialogComponent>,
+        private popupNotificationService: PopupNotificationService,
+        formService: FormService,
     ) {
-        this._formService.embedHubspotForm("feedback", "popup-hubspot-form-holder", {
-            disableUntouched: true,
+        formService.embedHubspotForm("feedback", "popup-hubspot-form-holder", {
             onLoadingChange: (val) => {
-                this.isSubmitting = val;
+                this.loadingChangeEvent.next(val);
             },
             onSuccess: () => this.onSubmit(),
         });
-        this._formService.forms.subscribe((forms) => {
-            this.description =
-                forms.feedbackDescription && ParagraphWithHighlights.fromSanity(forms.feedbackDescription);
-        });
+        this.description$ = formService.forms.pipe(
+            map((forms) =>
+                forms.feedbackDescription ? ParagraphWithHighlights.fromSanity(forms.feedbackDescription) : null,
+            ),
+        );
+        this.isSubmitting$ = this.loadingChangeEvent.asObservable();
     }
 
     private onSubmit() {
         this.dialogRef.close();
         this.analyticsService.google.reportAdConversion("sendFeedback");
-        this._popupNotificationService.success("Your feedback has been submitted. Thank you!");
+        this.popupNotificationService.success("Your feedback has been submitted. Thank you!");
     }
 }
 
 @Component({
     selector: "td-contact-dialog",
-    template: `<td-dialog [isSubmitting]="isSubmitting" titleProp="Get in touch" [description]="description" />`,
+    template: `<td-dialog
+        [isSubmitting]="isSubmitting$ | async"
+        titleProp="Get in touch"
+        [description]="description$ | async"
+    />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDialogComponent {
-    isSubmitting = false;
-    description?: ParagraphWithHighlights;
+    description$: Observable<ParagraphWithHighlights | null>;
+    isSubmitting$: Observable<boolean>;
+    private loadingChangeEvent: Subject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private dialogRef: MatDialogRef<ContactDialogComponent>,
-        private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
+        private dialogRef: MatDialogRef<ContactDialogComponent>,
+        private popupNotificationService: PopupNotificationService,
+        formService: FormService,
     ) {
-        this._formService.embedHubspotForm("contact", "popup-hubspot-form-holder", {
+        formService.embedHubspotForm("contact", "popup-hubspot-form-holder", {
             onLoadingChange: (val) => {
-                this.isSubmitting = val;
+                this.loadingChangeEvent.next(val);
             },
             onSuccess: () => this.onSubmit(),
         });
-        this._formService.forms.subscribe((forms) => {
-            this.description = forms.contactDescription && ParagraphWithHighlights.fromSanity(forms.contactDescription);
-        });
+        this.description$ = formService.forms.pipe(
+            map((forms) =>
+                forms.contactDescription ? ParagraphWithHighlights.fromSanity(forms.contactDescription) : null,
+            ),
+        );
+        this.isSubmitting$ = this.loadingChangeEvent.asObservable();
     }
 
     private onSubmit() {
         this.dialogRef.close();
         this.analyticsService.google.reportAdConversion("getInTouch");
-        this._popupNotificationService.success("Your message has been sent!");
+        this.popupNotificationService.success("Your message has been sent!");
     }
 }
 
@@ -168,5 +195,6 @@ export class ContactDialogComponent {
     selector: "td-dialog-close-button",
     templateUrl: "dialog-close-button.component.html",
     styleUrls: ["./dialog-close-button.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogCloseButtonComponent {}

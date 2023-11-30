@@ -1,47 +1,30 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { GenericPage, SanityGenericPage, TechnicolorBlock, TitleBodyIllustrationSection } from "typedb-web-schema";
+import { map } from "rxjs";
+import {
+    GenericPage,
+    SanityDataset,
+    SanityGenericPage,
+    TechnicolorBlock,
+    TitleBodyIllustrationSection,
+} from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { StandardPageComponent } from "../standard-page.component";
 
 @Component({
     selector: "td-generic-page",
     templateUrl: "./generic-page.component.html",
     styleUrls: ["./generic-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GenericPageComponent implements OnInit {
-    page?: GenericPage;
-
-    constructor(
-        private router: Router,
-        private _activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            this._activatedRoute.data.subscribe((routeData) => {
-                const sanityCloudPage = data.getDocumentByID(routeData["documentID"]) as SanityGenericPage;
-                if (sanityCloudPage) {
-                    this.page = new GenericPage(sanityCloudPage, data);
-                    this.metaTags.register(this.page.metaTags);
-                    this._analytics.hubspot.trackPageView();
-                    setTimeout(() => {
-                        this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
-                }
-            });
-        });
+export class GenericPageComponent extends StandardPageComponent<GenericPage> {
+    protected override getPage(data: SanityDataset) {
+        return this.activatedRoute.data.pipe(
+            map((routeData) => {
+                const page = data.getDocumentByID<SanityGenericPage>(routeData["documentID"]);
+                return page ? new GenericPage(page, data) : null;
+            }),
+        );
     }
 
     get isCloudPage(): boolean {
@@ -51,8 +34,14 @@ export class GenericPageComponent implements OnInit {
 
 @Component({
     selector: "td-generic-page-technicolor-block",
-    template:
-        "<td-technicolor-block [block]=\"block\" [index]=\"index + 1\" contentWidth='narrow' [noUpperLine]='index === 0' [noBody]='true' />",
+    template: `<td-technicolor-block
+        [block]="block"
+        [index]="index + 1"
+        contentWidth="narrow"
+        [noUpperLine]="index === 0"
+        [noBody]="true"
+    />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenericPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: TitleBodyIllustrationSection;

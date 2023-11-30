@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { blogCategories, BlogCategoryID, BlogPost } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { blogCategories, BlogCategoryID, BlogPost } from "typedb-web-schema";
     selector: "td-blog-category-chips",
     templateUrl: "./blog-category-chips.component.html",
     styleUrls: ["./blog-category-chips.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogCategoryChipsComponent {
     @Input() post!: BlogPost;

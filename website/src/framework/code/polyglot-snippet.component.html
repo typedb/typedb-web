@@ -4,7 +4,7 @@
       <a
         *ngFor="let snippet of polyglotSnippet.snippets"
         class="ft-tab"
-        [ngClass]="{ 'ft-tab-selected': selectedSnippet === snippet }"
+        [ngClass]="{ 'ft-tab-selected': (selectedSnippet$ | async) === snippet }"
         [id]="snippetTabID(snippet)"
         [href]="'#' + snippetTabID(snippet)"
         (click)="onSnippetTabClick(snippet, $event)"
@@ -16,7 +16,7 @@
   <div
     *ngFor="let snippet of polyglotSnippet.snippets"
     class="ft-snippet-container"
-    [hidden]="selectedSnippet !== snippet"
+    [hidden]="(selectedSnippet$ | async) !== snippet"
   >
     <td-code-snippet [snippet]="snippet" />
   </div>

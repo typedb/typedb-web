@@ -1,50 +1,27 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable, tap } from "rxjs";
-import { SanityServicesPage, ServicesPage, servicesPageSchemaName, TechnicolorBlock } from "typedb-web-schema";
+import { of } from "rxjs";
+import {
+    SanityDataset,
+    SanityServicesPage,
+    ServicesPage,
+    servicesPageSchemaName,
+    TechnicolorBlock,
+} from "typedb-web-schema";
 
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
-import { AnalyticsService } from "src/service/analytics.service";
-import { ContentService } from "src/service/content.service";
-import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { StandardPageComponent } from "../standard-page.component";
 
 @Component({
     selector: "td-services-page",
     templateUrl: "./services-page.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServicesPageComponent implements OnInit {
-    page$!: Observable<ServicesPage | null>;
-
-    constructor(
-        private analytics: AnalyticsService,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private idleMonitor: IdleMonitorService,
-        private router: Router,
-    ) {}
-
-    ngOnInit() {
-        this.page$ = this.contentService.data.pipe(
-            map((data) => {
-                const sanityServicesPage = data.getDocumentByID(servicesPageSchemaName) as
-                    | SanityServicesPage
-                    | undefined;
-                return sanityServicesPage ? new ServicesPage(sanityServicesPage, data) : null;
-            }),
-            tap((page) => {
-                if (page) {
-                    this.analytics.hubspot.trackPageView();
-                    this.metaTags.register(page.metaTags);
-                    setTimeout(() => {
-                        this.idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
-                }
-            }),
-        );
+export class ServicesPageComponent extends StandardPageComponent<ServicesPage> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityServicesPage>(servicesPageSchemaName);
+        return of(page ? new ServicesPage(page, data) : null);
     }
 }
 
@@ -57,6 +34,7 @@ export class ServicesPageComponent implements OnInit {
         [noUpperLine]="index === 0"
         [longUpperLine]="block === page.contactSection"
     />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="features" planet="yellow_green">
-  <div *ngIf="page" class="article-content">
+  <div *ngIf="page$ | async as page" class="article-content">
     <div class="section">
       <td-title-body-actions-section
         [isIntroSection]="true"
@@ -7,8 +7,8 @@
         [body]="page.introSection.body"
       />
       <div class="card subsection-margin wp-primary-lecture">
-        <div *ngIf="!primaryLecture" class="wp-primary-placeholder"></div>
-        <ng-container *ngIf="primaryLecture">
+        <div *ngIf="!page?.introSection?.featuredLecture" class="wp-primary-placeholder"></div>
+        <ng-container *ngIf="page?.introSection?.featuredLecture as primaryLecture">
           <td-aspect-ratio ratio="16:9">
             <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
           </td-aspect-ratio>
@@ -29,15 +29,21 @@
         </ng-container>
       </div>
     </div>
-    <ng-container *ngIf="page.featuredLecturesSection && secondaryLectures && secondaryLectures.length">
+    <ng-container
+      *ngIf="
+        page.featuredLecturesSection &&
+        page.featuredLecturesSection.featuredLectures &&
+        page.featuredLecturesSection.featuredLectures.length
+      "
+    >
       <td-technicolor-block [block]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
-      <td-lecture-panels [lectures]="secondaryLectures" />
+      <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" />
     </ng-container>
     <ng-container *ngIf="page.exploreLecturesSection">
       <td-technicolor-block [block]="page.exploreLecturesSection" [index]="2" />
       <section class="card-appearance">
         <ul class="wp-lecture-list">
-          <li *ngFor="let lecture of allLectures" class="wp-lecture-list-item">
+          <li *ngFor="let lecture of allLectures$ | async" class="wp-lecture-list-item">
             <div class="wp-img-tertiary-container">
               <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
                 <img [src]="lecture.imageURL" class="wp-img" alt="" />

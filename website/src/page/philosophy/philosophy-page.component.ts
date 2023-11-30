@@ -1,57 +1,35 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
+import { of } from "rxjs";
 import {
     ConclusionSection,
     PhilosophyPage,
     philosophyPageSchemaName,
     PublicationSection,
+    SanityDataset,
     SanityPhilosophyPage,
 } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { StandardPageComponent } from "../standard-page.component";
 
 @Component({
     selector: "td-philosophy-page",
     templateUrl: "./philosophy-page.component.html",
     styleUrls: ["./philosophy-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhilosophyPageComponent implements OnInit {
-    page?: PhilosophyPage;
-
-    constructor(
-        private router: Router,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityIntroPage = data.getDocumentByID(philosophyPageSchemaName) as SanityPhilosophyPage;
-            if (sanityIntroPage) {
-                this.page = new PhilosophyPage(sanityIntroPage, data);
-                this.metaTags.register(this.page.metaTags);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-            } else {
-                this.router.navigate(["404"], { skipLocationChange: true });
-            }
-        });
+export class PhilosophyPageComponent extends StandardPageComponent<PhilosophyPage> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityPhilosophyPage>(philosophyPageSchemaName);
+        return of(page ? new PhilosophyPage(page, data) : null);
     }
 }
 
 @Component({
     selector: "td-philosophy-page-technicolor-block",
-    template: '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\' />',
+    template: `<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhilosophyPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: PublicationSection | ConclusionSection;

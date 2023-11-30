@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { CodeSnippet, ContentTextPanel } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { CodeSnippet, ContentTextPanel } from "typedb-web-schema";
     selector: "td-content-panel",
     templateUrl: "content-panel.component.html",
     styleUrls: ["content-panel.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;

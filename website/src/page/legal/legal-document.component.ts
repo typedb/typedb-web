@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
-import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { first, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { LegalDocument } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
@@ -15,6 +15,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     selector: "td-legal-document",
     templateUrl: "./legal-document.component.html",
     styleUrls: ["./legal-document.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;
@@ -30,13 +31,14 @@ export class LegalDocumentComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.document$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
-            map(([routeData, params]) => ({ slug: params.get("slug") })),
+        this.document$ = this.activatedRoute.paramMap.pipe(
+            map((params) => ({ slug: params.get("slug") })),
             switchMap(({ slug }) => (slug ? this.content.getLegalDocumentBySlug(slug) : of(null))),
+            first(),
             shareReplay(),
         );
-        this.document$.subscribe(
-            (doc) => {
+        this.document$.subscribe({
+            next: (doc) => {
                 if (doc) {
                     this.title.setTitle(doc.pageTitle());
                     this.metaTags.register(doc.metaTags);
@@ -52,9 +54,9 @@ export class LegalDocumentComponent implements OnInit {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
-            (_err) => {
+            error: () => {
                 this.router.navigate(["404"], { skipLocationChange: true });
             },
-        );
+        });
     }
 }

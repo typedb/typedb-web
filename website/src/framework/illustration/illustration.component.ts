@@ -1,7 +1,16 @@
-import { Component, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    Input,
+    NgZone,
+    OnInit,
+    ViewChild,
+} from "@angular/core";
 
 import interact from "interactjs";
-import { Subscription } from "rxjs";
+import { map, Observable } from "rxjs";
 import {
     CodeSnippet,
     GraphVisualisation,
@@ -19,6 +28,7 @@ import { MediaQueryService } from "../../service/media-query.service";
     selector: "td-illustration",
     templateUrl: "illustration.component.html",
     styleUrls: ["illustration.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
@@ -55,58 +65,50 @@ export class IllustrationComponent {
     selector: "td-split-pane-illustration",
     templateUrl: "split-pane-illustration.component.html",
     styleUrls: ["split-pane-illustration.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
+export class SplitPaneIllustrationComponent implements OnInit {
     @Input() panes!: SplitPaneIllustration;
     @Input() visible = false;
     @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
-    resizablePaneID = "";
-    isMobile = false;
 
-    private mediaQuerySubscription = Subscription.EMPTY;
+    readonly resizablePaneID: string;
+    readonly sliderImageSrc$: Observable<string>;
 
     constructor(
-        private _ngZone: NgZone,
-        private _mediaQuery: MediaQueryService,
-    ) {}
+        private ngZone: NgZone,
+        mediaQuery: MediaQueryService,
+    ) {
+        this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
+        this.sliderImageSrc$ = mediaQuery.isMobile.pipe(
+            map((isMobile) => `/assets/graphic/${isMobile ? "split-pane-slider-mobile.svg" : "split-pane-slider.svg"}`),
+        );
+    }
 
     ngOnInit() {
-        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
-            this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
-            this.isMobile = isMobile;
-            this._ngZone.runOutsideAngular(() => {
-                interact(`#${this.resizablePaneID}`)
-                    .resizable({
-                        edges: { right: true },
-                        listeners: {
-                            move: (event: Interact.InteractEvent) => {
-                                const scale =
-                                    event.target.getBoundingClientRect().width /
-                                    (event.target as HTMLElement).offsetWidth;
-                                let width = event.rect.width / scale;
-                                if (width < 50) width = 50;
-                                if (width > 600) width = 600;
-                                event.target.style.width = `${width}px`;
-                                this.sliderEl.nativeElement.style.left = `${width - 28}px`;
-                            },
+        this.ngZone.runOutsideAngular(() => {
+            interact(`#${this.resizablePaneID}`)
+                .resizable({
+                    edges: { right: true },
+                    listeners: {
+                        move: (event: Interact.InteractEvent) => {
+                            const scale =
+                                event.target.getBoundingClientRect().width / (event.target as HTMLElement).offsetWidth;
+                            let width = event.rect.width / scale;
+                            if (width < 50) width = 50;
+                            if (width > 600) width = 600;
+                            event.target.style.width = `${width}px`;
+                            this.sliderEl.nativeElement.style.left = `${width - 28}px`;
                         },
-                    })
-                    .on("resizestart", (event: Interact.InteractEvent) => {
-                        event.target.style.userSelect = "none";
-                    })
-                    .on("resizeend", (event: Interact.InteractEvent) => {
-                        event.target.style.userSelect = "text";
-                    });
-            });
+                    },
+                })
+                .on("resizestart", (event: Interact.InteractEvent) => {
+                    event.target.style.userSelect = "none";
+                })
+                .on("resizeend", (event: Interact.InteractEvent) => {
+                    event.target.style.userSelect = "text";
+                });
         });
-    }
-
-    ngOnDestroy(): void {
-        this.mediaQuerySubscription.unsubscribe();
-    }
-
-    get sliderImageSrc(): string {
-        return `/assets/graphic/${this.isMobile ? "split-pane-slider-mobile.svg" : "split-pane-slider.svg"}`;
     }
 }
 
@@ -114,6 +116,7 @@ export class SplitPaneIllustrationComponent implements OnInit, OnDestroy {
     selector: "td-captioned-illustration",
     templateUrl: "captioned-illustration.component.html",
     styleUrls: ["captioned-illustration.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaptionedIllustrationComponent {
     @Input() illustration!: Illustration;
