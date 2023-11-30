@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
-import { first, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { LegalDocument } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
@@ -34,7 +34,6 @@ export class LegalDocumentComponent implements OnInit {
         this.document$ = this.activatedRoute.paramMap.pipe(
             map((params) => ({ slug: params.get("slug") })),
             switchMap(({ slug }) => (slug ? this.content.getLegalDocumentBySlug(slug) : of(null))),
-            first(),
             shareReplay(),
         );
         this.document$.subscribe({
