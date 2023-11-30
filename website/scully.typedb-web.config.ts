@@ -11,6 +11,7 @@ import {
     genericPageRoute,
     lectureRoutes,
     staticPageRoute,
+    legalDocumentRoutes,
     whitePaperRoutes,
 } from "./scully/plugins/plugins";
 
@@ -42,6 +43,7 @@ export const config: ScullyConfig = {
         "/events/:slug": { type: eventRoutes },
         "/events": { type: staticPageRoute, schemaName: "eventsPage" },
         "/studio": { type: genericPageRoute, pageId: "studioPage" },
+        "/legal/:slug": { type: legalDocumentRoutes },
     },
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
