@@ -6,14 +6,14 @@ import { SanityDataset } from "typedb-web-schema";
 
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupportPageComponent extends StandardPageComponent<SupportPage> {
+export class SupportPageComponent extends PageComponentBase<SupportPage> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanitySupportPage>(supportPageSchemaName);
         return of(page ? new SupportPage(page, data) : null);

@@ -10,14 +10,14 @@ import {
 } from "typedb-web-schema";
 
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-deployment-page",
     templateUrl: "./deployment-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DeploymentPageComponent extends StandardPageComponent<DeploymentPage> {
+export class DeploymentPageComponent extends PageComponentBase<DeploymentPage> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityDeploymentPage>(deploymentPageSchemaName);
         return of(page ? new DeploymentPage(page, data) : null);

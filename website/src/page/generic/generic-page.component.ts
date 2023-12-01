@@ -9,7 +9,7 @@ import {
     TitleBodyIllustrationSection,
 } from "typedb-web-schema";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-generic-page",
@@ -17,7 +17,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./generic-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GenericPageComponent extends StandardPageComponent<GenericPage> {
+export class GenericPageComponent extends PageComponentBase<GenericPage> {
     protected override getPage(data: SanityDataset) {
         return this.activatedRoute.data.pipe(
             map((routeData) => {

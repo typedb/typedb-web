@@ -19,7 +19,7 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-white-paper-details-page",
@@ -27,7 +27,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./white-paper-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WhitePaperDetailsPageComponent extends StandardPageComponent<WhitePaper> {
+export class WhitePaperDetailsPageComponent extends PageComponentBase<WhitePaper> {
     readonly allWhitePapersHeading = new ParagraphWithHighlights({
         spans: [
             { text: "TypeDB ", highlight: false },

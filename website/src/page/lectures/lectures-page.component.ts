@@ -18,14 +18,14 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-lectures-page",
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
 })
-export class LecturesPageComponent extends StandardPageComponent<LecturesPage> {
+export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;
 
     constructor(

@@ -11,14 +11,14 @@ import {
 
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-services-page",
     templateUrl: "./services-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ServicesPageComponent extends StandardPageComponent<ServicesPage> {
+export class ServicesPageComponent extends PageComponentBase<ServicesPage> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityServicesPage>(servicesPageSchemaName);
         return of(page ? new ServicesPage(page, data) : null);

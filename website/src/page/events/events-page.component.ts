@@ -11,7 +11,7 @@ import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-events-page",
@@ -19,7 +19,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./events-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsPageComponent extends StandardPageComponent<EventsPage> {
+export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(
         private imageBuilder: ImageBuilder,
         activatedRoute: ActivatedRoute,

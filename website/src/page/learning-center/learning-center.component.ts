@@ -4,7 +4,7 @@ import { of } from "rxjs";
 import { LearningCenter, learningCenterSchemaName, SanityDataset, SanityLearningCenter } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-learning-center",
@@ -12,7 +12,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./learning-center.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LearningCenterComponent extends StandardPageComponent<LearningCenter> {
+export class LearningCenterComponent extends PageComponentBase<LearningCenter> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
         return of(page ? new LearningCenter(page, data) : null);

@@ -20,14 +20,14 @@ import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-home-page",
     templateUrl: "./home-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent extends StandardPageComponent<HomePage> {
+export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
 
     constructor(

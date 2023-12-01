@@ -13,7 +13,7 @@ import { FormService } from "src/service/form.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-request-tech-talk-page",
@@ -21,7 +21,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./request-tech-talk-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RequestTechTalkPageComponent extends StandardPageComponent<RequestTechTalkPage> {
+export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     readonly isSubmitting$: Observable<boolean>;
     private readonly isSubmittingSubject = new BehaviorSubject(false);
 

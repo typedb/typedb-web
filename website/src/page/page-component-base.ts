@@ -11,7 +11,8 @@ import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 @Component({ template: `` })
-export abstract class StandardPageComponent<T extends { metaTags: MetaTags }> implements OnInit {
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implements OnInit {
     readonly page$: Observable<T | null>;
 
     protected abstract getPage(contentData: SanityDataset): Observable<T | null>;

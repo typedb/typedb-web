@@ -11,7 +11,7 @@ import {
     whitePapersPageSchemaName,
 } from "typedb-web-schema";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-white-papers-page",
@@ -19,7 +19,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./white-papers-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WhitePapersPageComponent extends StandardPageComponent<WhitePapersPage> {
+export class WhitePapersPageComponent extends PageComponentBase<WhitePapersPage> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityWhitePapersPage>(whitePapersPageSchemaName);
         return of(page ? new WhitePapersPage(page, data) : null);

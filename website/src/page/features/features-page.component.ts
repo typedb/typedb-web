@@ -4,7 +4,7 @@ import { of } from "rxjs";
 import { FeaturesPage, featuresPageSchemaName, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-features-page",
@@ -12,7 +12,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeaturesPageComponent extends StandardPageComponent<FeaturesPage> {
+export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityFeaturesPage>(featuresPageSchemaName);
         return of(page ? new FeaturesPage(page, data) : null);

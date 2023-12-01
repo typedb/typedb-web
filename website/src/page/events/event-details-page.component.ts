@@ -12,7 +12,7 @@ import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-event-details-page",
@@ -20,7 +20,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./event-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventDetailsPageComponent extends StandardPageComponent<LiveEvent> {
+export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
         private imageBuilder: ImageBuilder,
         private plainTextPipe: PlainTextPipe,

@@ -4,7 +4,7 @@ import { map } from "rxjs";
 import { SanityDataset, SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { StandardPageComponent } from "../standard-page.component";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-solution-page",
@@ -12,7 +12,7 @@ import { StandardPageComponent } from "../standard-page.component";
     styleUrls: ["./solution-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SolutionPageComponent extends StandardPageComponent<SolutionPage> {
+export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
     protected override getPage(data: SanityDataset) {
         return this.activatedRoute.paramMap.pipe(
             map((params) => {
