@@ -1,6 +1,15 @@
 /* eslint-disable */
 import { BreakpointObserver } from "@angular/cdk/layout";
-import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, ViewChild } from "@angular/core";
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    Input,
+    NgZone,
+    OnDestroy,
+    ViewChild,
+} from "@angular/core";
 
 import * as d3 from "d3-force";
 import FontFaceObserver from "fontfaceobserver";
@@ -28,6 +37,7 @@ import VertexEncoding = GraphVisualisation.VertexEncoding;
     selector: "td-graph-visualisation",
     templateUrl: "graph-visualisation.component.html",
     styleUrls: ["graph-visualisation.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @Input() graph!: GraphVisualisation;

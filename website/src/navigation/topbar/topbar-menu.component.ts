@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { generateTopbar, setupTopbarListeners } from "typedb-web-common/lib";
@@ -12,6 +12,7 @@ import { TopbarMenuService } from "./topbar-menu.service";
     template: ``,
     styleUrls: ["./topbar-menu.component.scss"],
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopbarMenuComponent implements OnInit {
     constructor(

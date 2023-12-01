@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="studio" planet="pink">
-  <div *ngIf="whitePaper" class="article-content">
+  <div *ngIf="page$ | async as whitePaper" class="article-content">
     <section class="page-section nebula-section">
       <a tdLink="/white-papers">
         <td-heading-with-highlights [value]="allWhitePapersHeading" class="bp-site-title" level="h2" />
@@ -20,7 +20,7 @@
               By submitting your personal data, you consent to emails from Vaticle. See our
               <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
             </aside>
-            <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+            <mat-progress-bar *ngIf="isSubmitting$ | async" mode="indeterminate" />
           </div>
         </div>
         <td-rich-text class="subsection-margin wd-description" [value]="whitePaper.description" />

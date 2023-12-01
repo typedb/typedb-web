@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 import { AnalyticsService } from "../../service/analytics.service";
 
@@ -6,6 +6,7 @@ import { AnalyticsService } from "../../service/analytics.service";
     selector: "td-404-page",
     templateUrl: "./404-page.component.html",
     styleUrls: ["./404-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class _404PageComponent implements OnInit {
     constructor(private _analytics: AnalyticsService) {}

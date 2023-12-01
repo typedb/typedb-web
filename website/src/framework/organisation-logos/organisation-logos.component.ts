@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Organisation } from "typedb-web-schema";
 
@@ -7,6 +7,7 @@ import { Organisation } from "typedb-web-schema";
     selector: "td-organisation-logos",
     templateUrl: "organisation-logos.component.html",
     styleUrls: ["organisation-logos.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrganisationLogosComponent {
     @Input() organisations!: Organisation[];

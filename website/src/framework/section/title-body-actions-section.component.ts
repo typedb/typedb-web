@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { LinkButton, ParagraphWithHighlights, PortableText } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { LinkButton, ParagraphWithHighlights, PortableText } from "typedb-web-sc
     selector: "td-title-body-actions-section",
     templateUrl: "./title-body-actions-section.component.html",
     styleUrls: ["./title-body-actions-section.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;

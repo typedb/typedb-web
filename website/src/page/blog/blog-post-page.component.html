@@ -3,7 +3,12 @@
     <ng-container *ngIf="post$ | async as post">
       <section class="page-section nebula-section">
         <a tdLink="/blog">
-          <td-heading-with-highlights *ngIf="blog" [value]="blog.blogTitle" class="bp-site-title" level="h2" />
+          <td-heading-with-highlights
+            *ngIf="blog$ | async as blog"
+            [value]="blog.blogTitle"
+            class="bp-site-title"
+            level="h2"
+          />
         </a>
       </section>
 

@@ -1,51 +1,28 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
+import { of } from "rxjs";
 import {
     ButtonStyle,
     LinkButton,
+    SanityDataset,
     SanityWhitePapersPage,
     WhitePaper,
     WhitePapersPage,
     whitePapersPageSchemaName,
 } from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-white-papers-page",
     templateUrl: "./white-papers-page.component.html",
     styleUrls: ["./white-papers-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WhitePapersPageComponent implements OnInit {
-    page?: WhitePapersPage;
-
-    constructor(
-        private router: Router,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityWhitePapersPage = data.getDocumentByID(whitePapersPageSchemaName) as SanityWhitePapersPage;
-            if (sanityWhitePapersPage) {
-                this.page = new WhitePapersPage(sanityWhitePapersPage, data);
-                this.metaTags.register(this.page.metaTags);
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-            } else {
-                this.router.navigate(["white-papers"], { replaceUrl: true });
-            }
-        });
+export class WhitePapersPageComponent extends PageComponentBase<WhitePapersPage> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityWhitePapersPage>(whitePapersPageSchemaName);
+        return of(page ? new WhitePapersPage(page, data) : null);
     }
 
     accessResourceButton(whitePaper: WhitePaper, style: ButtonStyle, text: string): LinkButton {

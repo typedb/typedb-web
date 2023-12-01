@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="cloud" planet="blue_pink">
-  <div *ngIf="page" class="article-content">
+  <div *ngIf="page$ | async as page" class="article-content">
     <section class="page-section page-intro-section">
       <td-heading-with-highlights [value]="page.introTitle" level="h1" />
 
@@ -11,7 +11,7 @@
             By submitting your personal data, you consent to emails from Vaticle. See our
             <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
           </p>
-          <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+          <mat-progress-bar *ngIf="isSubmitting$ | async" mode="indeterminate" />
         </div>
         <div class="rt-details-text">
           <td-p-with-highlights [value]="page.details.title" class="rt-details-title" level="p1" />

@@ -1,50 +1,41 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable, tap } from "rxjs";
-import { EventsPage, eventsPageSchemaName, LiveEvent, SanityEventsPage } from "typedb-web-schema";
+import { of } from "rxjs";
+import { EventsPage, eventsPageSchemaName, LiveEvent, SanityDataset, SanityEventsPage } from "typedb-web-schema";
 
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { PageComponentBase } from "../page-component-base";
+
 @Component({
     selector: "td-events-page",
     templateUrl: "./events-page.component.html",
     styleUrls: ["./events-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsPageComponent implements OnInit {
-    page$!: Observable<EventsPage | null>;
-
+export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(
-        private analytics: AnalyticsService,
-        private contentService: ContentService,
-        private idleMonitor: IdleMonitorService,
         private imageBuilder: ImageBuilder,
-        private metaTags: MetaTagsService,
-        private router: Router,
-    ) {}
+        activatedRoute: ActivatedRoute,
+        analytics: AnalyticsService,
+        router: Router,
+        title: Title,
+        idleMonitor: IdleMonitorService,
+        metaTags: MetaTagsService,
+        contentService: ContentService,
+    ) {
+        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+    }
 
-    ngOnInit() {
-        this.page$ = this.contentService.data.pipe(
-            map((data) => {
-                const sanityEventsPage = data.getDocumentByID(eventsPageSchemaName) as SanityEventsPage | undefined;
-                return sanityEventsPage ? new EventsPage(sanityEventsPage, data) : null;
-            }),
-            tap((page) => {
-                if (page) {
-                    this.metaTags.register(page.metaTags);
-                    this.analytics.hubspot.trackPageView();
-                    setTimeout(() => {
-                        this.idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
-                }
-            }),
-        );
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityEventsPage>(eventsPageSchemaName);
+        return of(page ? new EventsPage(page, data) : null);
     }
 
     getEventListImageUrl(event: LiveEvent) {

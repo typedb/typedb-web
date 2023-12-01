@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
     selector: "td-feature-table",
     templateUrl: "feature-table.component.html",
     styleUrls: ["./feature-table.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;
@@ -15,6 +16,7 @@ export class FeatureTableComponent {
     selector: "td-feature-table-cell",
     templateUrl: "feature-table-cell.component.html",
     styleUrls: ["./feature-table-cell.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureTableCellComponent {
     @Input() cell!: FeatureTableCell;

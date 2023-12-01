@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ActionButton } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { ActionButton } from "typedb-web-schema";
     selector: "td-actions",
     templateUrl: "actions.component.html",
     styleUrls: ["./actions.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsComponent {
     @Input() actions?: ActionButton[];

@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="solutions" planet="pink">
-  <div *ngIf="page" class="article-content">
+  <div *ngIf="page$ | async as page" class="article-content">
     <section class="page-section page-intro-section" *ngIf="page.introSection">
       <td-heading-with-highlights [value]="page.introSection.title" class="narrow-section" level="h1" />
       <td-rich-text

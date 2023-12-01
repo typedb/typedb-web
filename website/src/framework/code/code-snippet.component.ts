@@ -1,19 +1,18 @@
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     Component,
     DestroyRef,
     ElementRef,
     Input,
     NgZone,
-    OnDestroy,
     OnInit,
     ViewChild,
 } from "@angular/core";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { Router, Event as RouterEvent, Scroll } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import Prism from "prismjs";
-import { filter, Observable, Subscription } from "rxjs";
+import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 
 import { MediaQueryService } from "src/service/media-query.service";
@@ -26,15 +25,14 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     selector: "td-code-snippet",
     templateUrl: "code-snippet.component.html",
     styleUrls: ["code-snippet.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CodeSnippetComponent implements AfterViewInit, OnInit {
+export class CodeSnippetComponent implements AfterViewInit {
     @Input() snippet!: CodeSnippet;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
 
-    lines!: number;
-    lineNumbers!: number[];
-    private isMobile$: Observable<boolean>;
+    lineNumbers$: Observable<number[]>;
 
     constructor(
         private destroyRef: DestroyRef,
@@ -42,17 +40,15 @@ export class CodeSnippetComponent implements AfterViewInit, OnInit {
         private mediaQuery: MediaQueryService,
         private ngZone: NgZone,
     ) {
-        this.isMobile$ = this.mediaQuery.isMobile.pipe(takeUntilDestroyed());
-    }
-
-    ngOnInit(): void {
-        this.isMobile$.subscribe((isMobile) => {
-            this.lines = Math.max(
-                (this.snippet.code.match(/\n/g) || []).length + 2,
-                DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
-            );
-            this.lineNumbers = [...Array(this.lines).keys()].map((n) => n + 1);
-        });
+        this.lineNumbers$ = this.mediaQuery.isMobile.pipe(
+            map((isMobile) => {
+                const lines = Math.max(
+                    (this.snippet.code.match(/\n/g) || []).length + 2,
+                    DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
+                );
+                return [...Array(lines).keys()].map((n) => n + 1);
+            }),
+        );
     }
 
     ngAfterViewInit() {
@@ -163,26 +159,46 @@ export class CodeSnippetComponent implements AfterViewInit, OnInit {
     selector: "td-polyglot-snippet",
     templateUrl: "polyglot-snippet.component.html",
     styleUrls: ["polyglot-snippet.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PolyglotSnippetComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("snippet") polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
-    lines!: number;
-    lineNumbers!: number[];
-    private _elementID!: string;
-    selectedSnippetTabID: string | undefined;
 
-    private mediaQuerySubscription = Subscription.EMPTY;
+    readonly selectedSnippet$: Observable<CodeSnippet>;
+    lineNumbers$: Observable<number[]>;
+    private readonly tabClick$: Subject<CodeSnippet> = new Subject();
+    private _elementID!: string;
+
+    get languageDisplayNames() {
+        return languages;
+    }
 
     constructor(
         private router: Router,
-        private _mediaQuery: MediaQueryService,
+        private mediaQuery: MediaQueryService,
         private _el: ElementRef,
+        activatedRoute: ActivatedRoute,
     ) {
-        router.events.pipe(filter((e: RouterEvent): e is Scroll => e instanceof Scroll)).subscribe((_e) => {
-            this.setSelectedTabFromWindowHash();
-        });
+        this.lineNumbers$ = this.mediaQuery.isMobile.pipe(
+            map((isMobile) => {
+                const lines = Math.max(
+                    ...this.polyglotSnippet.snippets.map((x) => (x.code.match(/\n/g) || []).length + 2),
+                    DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
+                );
+                return [...Array(lines).keys()].map((n) => n + 1);
+            }),
+        );
+        this.selectedSnippet$ = defer(() =>
+            merge(
+                activatedRoute.fragment.pipe(
+                    map((value) => this.polyglotSnippet.snippets.find((x) => this.snippetTabID(x) === value)),
+                    filter((v): v is CodeSnippet => !!v),
+                ),
+                this.tabClick$,
+            ).pipe(startWith(this.polyglotSnippet.snippets[0]), shareReplay(1)),
+        );
     }
 
     ngOnInit() {
@@ -190,33 +206,10 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit, OnDestro
             throw `${this.constructor.name}'s native HTML element must have an id set`;
         }
         this._elementID = this._el.nativeElement.id;
-        this.setSelectedTabFromWindowHash();
-        if (!this.selectedSnippetTabID) {
-            this.selectedSnippetTabID = this.snippetTabID(this.polyglotSnippet.snippets[0]);
-        }
-        this.mediaQuerySubscription = this._mediaQuery.isMobile.subscribe((isMobile) => {
-            this.lines = Math.max(
-                ...this.polyglotSnippet.snippets.map((x) => (x.code.match(/\n/g) || []).length + 2),
-                DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
-            );
-            this.lineNumbers = [...Array(this.lines).keys()].map((n) => n + 1);
-        });
     }
 
     ngAfterViewInit() {
         Prism.highlightAll();
-    }
-
-    ngOnDestroy(): void {
-        this.mediaQuerySubscription.unsubscribe();
-    }
-
-    get selectedSnippet(): CodeSnippet {
-        const selectedSnippet = this.polyglotSnippet.snippets.find(
-            (x) => this.snippetTabID(x) === this.selectedSnippetTabID,
-        );
-        if (selectedSnippet) return selectedSnippet;
-        else throw "Unreachable code: duck";
     }
 
     snippetTabID(tab: CodeSnippet): string {
@@ -228,27 +221,13 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit, OnDestro
         if (event.currentTarget instanceof HTMLElement) {
             event.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
         }
-        this.setSelectedTab(snippet);
-    }
+        this.tabClick$.next(snippet);
 
-    setSelectedTab(tab: CodeSnippet) {
-        this.selectedSnippetTabID = this.snippetTabID(tab);
         if (this.setWindowHashOnTabClick) {
             this.router.navigate([], {
-                fragment: this.snippetTabID(tab),
+                fragment: this.snippetTabID(snippet),
                 state: { preventScrollToAnchor: true },
             });
         }
-    }
-
-    setSelectedTabFromWindowHash() {
-        const targetedTab = this.polyglotSnippet.snippets.find(
-            (x) => this.snippetTabID(x) === window.location.hash.slice(1),
-        );
-        if (targetedTab) this.setSelectedTab(targetedTab);
-    }
-
-    get languageDisplayNames() {
-        return languages;
     }
 }

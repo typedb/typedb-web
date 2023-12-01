@@ -1,59 +1,43 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
+import { map } from "rxjs";
+import { SanityDataset, SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-solution-page",
     templateUrl: "./solution-page.component.html",
     styleUrls: ["./solution-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SolutionPageComponent implements OnInit {
-    page?: SolutionPage;
+export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
+    protected override getPage(data: SanityDataset) {
+        return this.activatedRoute.paramMap.pipe(
+            map((params) => {
+                const sanitySolutionPages = data.getDocumentsByType<SanitySolutionPage>(solutionPageSchemaName);
+                const page = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
+                return page ? new SolutionPage(page, data) : null;
+            }),
+        );
+    }
 
-    constructor(
-        private router: Router,
-        private _activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
-
-    ngOnInit() {
-        this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
-            this.contentService.data.subscribe((data) => {
-                const sanitySolutionPages = data.getDocumentsByType(solutionPageSchemaName) as SanitySolutionPage[];
-                const sanitySolutionPage = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
-                if (sanitySolutionPage) {
-                    this.page = new SolutionPage(sanitySolutionPage, data);
-                    this._title.setTitle(`TypeDB Solutions: ${this.page.title}`);
-                    this.metaTags.register(this.page.metaTags);
-                    this._analytics.hubspot.trackPageView();
-                    setTimeout(() => {
-                        this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
-                }
-            });
-        });
+    protected override onPageReady(page: SolutionPage): void {
+        super.onPageReady(page);
+        this.title.setTitle(`TypeDB Solutions: ${page.title}`);
     }
 }
 
 @Component({
     selector: "td-solution-page-technicolor-block",
-    template:
-        '<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]=\'index === 0\' [noTrailingLine]="noTrailingLine"></td-technicolor-block>',
+    template: `<td-technicolor-block
+        [block]="block"
+        [index]="index + 1"
+        [noUpperLine]="index === 0"
+        [noTrailingLine]="noTrailingLine"
+    ></td-technicolor-block>`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SolutionPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

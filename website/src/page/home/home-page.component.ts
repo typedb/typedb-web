@@ -1,61 +1,73 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
-import { HomePage, homePageSchemaName, Organisation, SanityHomePage } from "typedb-web-schema";
-import { SocialMediaLink, TechnicolorBlock } from "typedb-web-schema";
+import { combineLatest, map, Observable, of } from "rxjs";
+import {
+    HomePage,
+    homePageSchemaName,
+    Organisation,
+    SanityDataset,
+    SanityHomePage,
+    SocialMediaLink,
+} from "typedb-web-schema";
+import { TechnicolorBlock } from "typedb-web-schema";
 
+import { AnalyticsService } from "src/service/analytics.service";
+import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { AnalyticsService } from "../../service/analytics.service";
-import { ContentService } from "../../service/content.service";
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-home-page",
     templateUrl: "./home-page.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePageComponent implements OnInit {
-    page?: HomePage;
-    socialMediaLinks?: SocialMediaLink[];
+export class HomePageComponent extends PageComponentBase<HomePage> {
+    readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
 
     constructor(
-        private router: Router,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-    ) {}
+        activatedRoute: ActivatedRoute,
+        analytics: AnalyticsService,
+        router: Router,
+        title: Title,
+        idleMonitor: IdleMonitorService,
+        metaTags: MetaTagsService,
+        contentService: ContentService,
+    ) {
+        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+        this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
+            map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
+        );
+    }
 
-    ngOnInit() {
-        this.contentService.data.subscribe((data) => {
-            const sanityHomePage = data.getDocumentByID(homePageSchemaName) as SanityHomePage;
-            if (sanityHomePage) {
-                this.page = new HomePage(sanityHomePage, data);
-                this.title.setTitle(`TypeDB: ${this.page.introSection?.title.toPlainText() || "Home"}`);
-                this.metaTags.register(this.page.metaTags);
-                this.socialMediaLinks = this.page.communitySection?.socialMedias.map(
-                    (x) => new SocialMediaLink(x, data),
-                );
-                this._analytics.hubspot.trackPageView();
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-                Prism.highlightAll();
-            } else {
-                this.router.navigate(["404"], { skipLocationChange: true });
-            }
-        });
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanityHomePage>(homePageSchemaName);
+        return of(page ? new HomePage(page, data) : null);
+    }
+
+    protected override onPageReady(page: HomePage): void {
+        super.onPageReady(page);
+        this.title.setTitle(`TypeDB: ${page.introSection?.title.toPlainText() || "Home"}`);
+        Prism.highlightAll();
     }
 }
 
 @Component({
     selector: "td-home-page-technicolor-block",
-    template:
-        "<td-technicolor-block [block]='block' [index]='index' [level]='level' [noUpperLine]='index === 0' [longUpperLine]='variant === \"conclusion\"' [organisationLogos]='organisationLogos'></td-technicolor-block>",
+    template: `<td-technicolor-block
+        [block]="block"
+        [index]="index"
+        [level]="level"
+        [noUpperLine]="index === 0"
+        [longUpperLine]="variant === 'conclusion'"
+        [organisationLogos]="organisationLogos"
+    ></td-technicolor-block>`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

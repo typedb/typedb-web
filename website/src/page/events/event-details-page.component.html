@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="cloud" planet="blue_pink">
-  <div *ngIf="event$ | async; let event" class="article-content">
+  <div *ngIf="page$ | async as event" class="article-content">
     <section class="page-section page-intro-section">
       <td-heading-with-highlights [value]="event.title" level="h1" />
       <ul class="ed-subtitle text-p1">

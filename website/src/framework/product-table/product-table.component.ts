@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ProductPanel } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { ProductPanel } from "typedb-web-schema";
     selector: "td-product-table",
     templateUrl: "./product-table.component.html",
     styleUrls: ["./product-table.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductTableComponent {
     @Input() panels!: ProductPanel[];

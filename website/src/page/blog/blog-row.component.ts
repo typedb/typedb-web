@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
     selector: "td-blog-row",
     templateUrl: "./blog-row.component.html",
     styleUrls: ["./blog-row.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogRowComponent {
     @Input() row!: BlogRow;
