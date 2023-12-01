@@ -1,48 +1,22 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { map, Observable, tap } from "rxjs";
+import { of } from "rxjs";
 import { SanitySupportPage, SupportPage, supportPageSchemaName, TechnicolorBlock } from "typedb-web-schema";
+import { SanityDataset } from "typedb-web-schema";
 
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
-import { AnalyticsService } from "src/service/analytics.service";
-import { ContentService } from "src/service/content.service";
-import { MetaTagsService } from "src/service/meta-tags.service";
+
+import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupportPageComponent implements OnInit {
-    page$!: Observable<SupportPage | null>;
-
-    constructor(
-        private analytics: AnalyticsService,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private idleMonitor: IdleMonitorService,
-        private router: Router,
-    ) {}
-
-    ngOnInit() {
-        this.page$ = this.contentService.data.pipe(
-            map((data) => {
-                const sanitySupportPage = data.getDocumentByID(supportPageSchemaName) as SanitySupportPage | undefined;
-                return sanitySupportPage ? new SupportPage(sanitySupportPage, data) : null;
-            }),
-            tap((page) => {
-                if (page) {
-                    this.metaTags.register(page.metaTags);
-                    this.analytics.hubspot.trackPageView();
-                    setTimeout(() => {
-                        this.idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
-                }
-            }),
-        );
+export class SupportPageComponent extends PageComponentBase<SupportPage> {
+    protected override getPage(data: SanityDataset) {
+        const page = data.getDocumentByID<SanitySupportPage>(supportPageSchemaName);
+        return of(page ? new SupportPage(page, data) : null);
     }
 }
 
@@ -55,6 +29,7 @@ export class SupportPageComponent implements OnInit {
         [noUpperLine]="index === 0"
         [longUpperLine]="block === page.contactSection"
     />`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupportPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

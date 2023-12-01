@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import {
     Illustration,
@@ -12,6 +12,7 @@ import {
     selector: "td-publication-panel",
     templateUrl: "./publication-panel.component.html",
     styleUrls: ["./publication-panel.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicationPanelComponent {
     @Input() items!: PublicationPanelItem[];

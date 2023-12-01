@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { Person } from "typedb-web-schema";
 
@@ -8,6 +8,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     selector: "td-person-info",
     templateUrl: "./person-info.component.html",
     styleUrls: ["./person-info.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonInfoComponent {
     @Input() disableLink = false;
@@ -41,6 +42,7 @@ export class PersonInfoComponent {
     selector: "td-avatar",
     templateUrl: "./avatar.component.html",
     styleUrls: ["./avatar.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarComponent {
     @Input() person!: Person;
@@ -56,6 +58,7 @@ export class AvatarComponent {
     selector: "td-person-card",
     templateUrl: "./person-card.component.html",
     styleUrls: ["./person-card.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonCardComponent {
     @Input() person!: Person;

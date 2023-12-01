@@ -1,5 +1,5 @@
 <article tdPageBackground nebula="features" planet="blue_pink">
-  <div *ngIf="lecture" class="article-content">
+  <div *ngIf="lecture$ | async as lecture" class="article-content">
     <section class="page-section nebula-section">
       <a tdLink="/lectures">
         <td-heading-with-highlights [value]="allLecturesHeading" class="bp-site-title" level="h2" />
@@ -18,7 +18,7 @@
             <time *ngIf="!lecture.isFinished()" [dateTime]="lecture.datetime.toISOString()">
               {{ lecture.datetime | ordinalDate }},
               {{ lecture.datetime | date: "shortTime" }}
-              {{ localTimezoneAbbreviation }}
+              {{ localTimezoneAbbreviation(lecture) }}
             </time>
           </li>
           <li>
@@ -27,8 +27,8 @@
             {{ lecture.durationMins | eventDuration }}
           </li>
         </ul>
-        <td-actions *ngIf="downloadSlidesActions" [actions]="downloadSlidesActions" class="ld-download-slides" />
-        <td-aspect-ratio *ngIf="safeVideoURL" class="ld-video-container" ratio="16:9">
+        <td-actions *ngIf="downloadSlidesActions$ | async as actions" [actions]="actions" class="ld-download-slides" />
+        <td-aspect-ratio *ngIf="safeVideoURL$ | async as safeVideoURL" class="ld-video-container" ratio="16:9">
           <iframe
             class="ld-video-frame"
             [src]="safeVideoURL"
@@ -39,7 +39,7 @@
           ></iframe>
         </td-aspect-ratio>
         <div class="subsection-margin wd-details-area">
-          <div *ngIf="!safeVideoURL" class="card wd-form-card">
+          <div *ngIf="(safeVideoURL$ | async) === null" class="card wd-form-card">
             <h3>
               <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
             </h3>
@@ -48,10 +48,10 @@
               By submitting your personal data, you consent to emails from Vaticle. See our
               <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
             </aside>
-            <mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+            <mat-progress-bar *ngIf="isSubmitting$ | async" mode="indeterminate" />
           </div>
           <div>
-            <td-rich-text [value]="lecture.description" [class]="safeVideoURL ? 'ld-cols-2' : ''" />
+            <td-rich-text [value]="lecture.description" [class]="(safeVideoURL$ | async) !== null ? 'ld-cols-2' : ''" />
             <ul class="wd-speakers subsection-margin">
               <li *ngFor="let speaker of lecture.speakers">
                 <td-person-card [person]="speaker" />

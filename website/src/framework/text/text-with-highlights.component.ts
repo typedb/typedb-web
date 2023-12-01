@@ -1,10 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ParagraphWithHighlights } from "typedb-web-schema";
 
 @Component({
     selector: "td-heading-with-highlights",
     templateUrl: "heading-with-highlights.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadingWithHighlightsComponent {
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -30,6 +31,7 @@ export class HeadingWithHighlightsComponent {
     selector: "td-p-with-highlights",
     template:
         '<p [class]="rootClass"><span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span></p>\n',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;

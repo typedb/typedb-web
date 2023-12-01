@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
     Lecture,
@@ -28,20 +29,21 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     styleUrls: ["./lecture-details-page.component.scss"],
 })
 export class LectureDetailsPageComponent implements OnInit {
-    lecture?: Lecture;
-    isSubmitting = false;
-    allLecturesHeading = new ParagraphWithHighlights({
+    readonly allLecturesHeading = new ParagraphWithHighlights({
         spans: [
             { text: "TypeDB ", highlight: false },
             { text: "Lectures", highlight: true },
         ],
     });
-    downloadSlidesActions?: ActionButton[];
-    safeVideoURL?: SafeResourceUrl;
+    readonly isSubmitting$: Observable<boolean>;
+    readonly downloadSlidesActions$: Observable<ActionButton[] | null>;
+    readonly lecture$: Observable<Lecture | null>;
+    readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
+    private readonly isSubmittingSubject = new BehaviorSubject(false);
 
     constructor(
         private router: Router,
-        private _activatedRoute: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private contentService: ContentService,
         private metaTags: MetaTagsService,
         private _formService: FormService,
@@ -52,62 +54,77 @@ export class LectureDetailsPageComponent implements OnInit {
         private _idleMonitor: IdleMonitorService,
         private _plainTextPipe: PlainTextPipe,
         private sanitizer: DomSanitizer,
-    ) {}
-
-    ngOnInit() {
-        this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
-            this.contentService.data.subscribe((data) => {
+    ) {
+        this.isSubmitting$ = this.isSubmittingSubject.asObservable();
+        this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
+            map(([params, data]) => {
                 const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];
                 const sanityLecture = sanityLectures.find(
                     (x) => x.slug.current === params.get("slug") && !x.comingSoon,
                 );
-                if (sanityLecture) {
-                    this.lecture = Lecture.fromSanity(sanityLecture, data);
-                    this.downloadSlidesActions = this.lecture.lectureSlidesURL
-                        ? [
-                              new LinkButton({
-                                  style: "secondary",
-                                  text: "Subscribe to Lectures",
-                                  link: Link.fromAddress("?dialog=newsletter"),
-                                  comingSoon: false,
+                return sanityLecture ? Lecture.fromSanity(sanityLecture, data) : null;
+            }),
+            shareReplay(1),
+        );
+        this.downloadSlidesActions$ = this.lecture$.pipe(
+            map((lecture) => {
+                return lecture?.lectureSlidesURL
+                    ? [
+                          new LinkButton({
+                              style: "secondary",
+                              text: "Subscribe to Lectures",
+                              link: Link.fromAddress("?dialog=newsletter"),
+                              comingSoon: false,
+                          }),
+                          new LinkButton({
+                              style: "primary",
+                              text: "Download slides",
+                              link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
+                                  opensNewTab: false,
                               }),
-                              new LinkButton({
-                                  style: "primary",
-                                  text: "Download slides",
-                                  link: Object.assign(Link.fromAddress(this.lecture.lectureSlidesURL), {
-                                      opensNewTab: false,
-                                  }),
-                                  comingSoon: false,
-                                  download: { filename: this.lecture.lectureSlidesFileName },
-                              }),
-                          ]
-                        : undefined;
-                    this.safeVideoURL = this.lecture.onDemandVideoURL
-                        ? this.sanitizer.bypassSecurityTrustResourceUrl(this.lecture.onDemandVideoURL)
-                        : undefined;
-                    this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(this.lecture.title)}`);
-                    this.metaTags.register(this.lecture.metaTags);
-                    this._analytics.hubspot.trackPageView();
-                    setTimeout(() => {
-                        this._idleMonitor.fireManualMyAppReadyEvent();
-                    }, 20000);
-                    this._formService.embedHubspotForm(this.lecture.hubspotFormID as string, "hubspot-form-holder", {
-                        onLoadingChange: (val) => {
-                            this.isSubmitting = val;
-                        },
-                        onSuccess: (_formEl, values) => this.onSubmit(values),
-                    });
-                } else {
-                    this.router.navigate(["lectures"], { replaceUrl: true });
-                }
-            });
+                              comingSoon: false,
+                              download: { filename: lecture.lectureSlidesFileName },
+                          }),
+                      ]
+                    : null;
+            }),
+            shareReplay(1),
+        );
+        this.safeVideoURL$ = this.lecture$.pipe(
+            map((lecture) =>
+                lecture?.onDemandVideoURL
+                    ? this.sanitizer.bypassSecurityTrustResourceUrl(lecture.onDemandVideoURL)
+                    : null,
+            ),
+            shareReplay(1),
+        );
+    }
+
+    ngOnInit() {
+        this.lecture$.subscribe((lecture) => {
+            if (lecture) {
+                this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
+                this.metaTags.register(lecture.metaTags);
+                this._analytics.hubspot.trackPageView();
+                setTimeout(() => {
+                    this._idleMonitor.fireManualMyAppReadyEvent();
+                }, 20000);
+                this._formService.embedHubspotForm(lecture.hubspotFormID as string, "hubspot-form-holder", {
+                    onLoadingChange: (val) => {
+                        this.isSubmittingSubject.next(val);
+                    },
+                    onSuccess: (_formEl, values) => this.onSubmit(lecture, values),
+                });
+            } else {
+                this.router.navigate(["lectures"], { replaceUrl: true });
+            }
         });
     }
 
-    private onSubmit(values: Record<string, unknown>) {
+    private onSubmit(lecture: Lecture, values: Record<string, unknown>) {
         this._analytics.google.reportAdConversion("registerForLecture");
         this.airmeetService.register({
-            airmeetID: (this.lecture as Lecture).airmeetID as string,
+            airmeetID: lecture.airmeetID as string,
             firstName: `${values["firstname"]}`,
             lastName: `${values["lastname"]}`,
             email: `${values["email"]}`,
@@ -115,15 +132,13 @@ export class LectureDetailsPageComponent implements OnInit {
             jobTitle: `${values["job_function"]}`,
         });
 
-        const successMsg = (this.lecture as Lecture).isFinished()
+        const successMsg = lecture.isFinished()
             ? "A link to watch the lecture has been sent to your email inbox."
             : "A link to join the lecture has been sent to your email inbox.";
         this._popupNotificationService.success(successMsg);
     }
 
-    get localTimezoneAbbreviation(): string {
-        return (this.lecture as Lecture).datetime
-            .toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" })
-            .slice(4);
+    localTimezoneAbbreviation(lecture: Lecture): string {
+        return lecture.datetime.toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" }).slice(4);
     }
 }

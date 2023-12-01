@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
 import { Testimonial } from "typedb-web-schema";
 
@@ -8,6 +8,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     selector: "td-testimonials-carousel",
     templateUrl: "testimonials-carousel.component.html",
     styleUrls: ["./testimonials-carousel.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];

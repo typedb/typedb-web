@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { generateFooter } from "typedb-web-common/lib";
@@ -11,6 +11,7 @@ import { setupLinks } from "../setup-links";
     template: ``,
     styleUrls: ["./footer.component.scss"],
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent implements OnInit {
     constructor(

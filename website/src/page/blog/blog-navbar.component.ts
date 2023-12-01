@@ -1,20 +1,32 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
-import { blogCategories, blogCategoryList, BlogFilter, Link } from "typedb-web-schema";
-
-import { ContentService } from "../../service/content.service";
+import { blogCategories, blogCategoryList, Link } from "typedb-web-schema";
 
 @Component({
     selector: "td-blog-navbar, [td-blog-navbar]",
     templateUrl: "./blog-navbar.component.html",
     styleUrls: ["./blog-navbar.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogNavbarComponent {
     @Input() variant!: "listPage" | "postPage";
-    items: NavbarItem[];
-    activeFilter!: BlogFilter;
+    @HostBinding("class.bn-variant-post-page") get isPostPage() {
+        return this.variant === "postPage";
+    }
 
-    constructor(private content: ContentService) {
+    readonly items: NavbarItem[];
+    // activeFilter!: BlogFilter;
+
+    // get filter$() {
+    //     return this.content.blogFilter;
+    // }
+
+    get fontSizeClass() {
+        return this.variant === "listPage" ? "text-p1" : "text-p2";
+    }
+
+    constructor() {
+        // private content: ContentService
         this.items = [
             { text: "All Posts", link: new Link({ destination: "/blog", type: "route", opensNewTab: false }) },
             ...blogCategoryList.map((categorySlug) => ({
@@ -27,22 +39,10 @@ export class BlogNavbarComponent {
                 }),
             })),
         ];
-        // TODO: refactor
-        this.filter$.subscribe((filter) => {
-            this.activeFilter = filter;
-        });
-    }
-
-    get filter$() {
-        return this.content.blogFilter;
-    }
-
-    get fontSizeClass() {
-        return this.variant === "listPage" ? "text-p1" : "text-p2";
-    }
-
-    @HostBinding("class.bn-variant-post-page") get isPostPage() {
-        return this.variant === "postPage";
+        // // TODO: refactor
+        // this.filter$.subscribe((filter) => {
+        //     this.activeFilter = filter;
+        // });
     }
 }
 

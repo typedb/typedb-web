@@ -4,7 +4,7 @@
       <section class="page-section nebula-section">
         <a tdLink="/learn">
           <td-heading-with-highlights
-            *ngIf="learningCenter"
+            *ngIf="learningCenter$ | async as learningCenter"
             [value]="learningCenter.introSection.title"
             class="bp-site-title"
             level="h2"

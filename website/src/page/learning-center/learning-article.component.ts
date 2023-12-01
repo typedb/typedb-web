@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -27,10 +27,11 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     selector: "td-learning-article",
     templateUrl: "./learning-article.component.html",
     styleUrls: ["./learning-article.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LearningArticleComponent implements OnInit {
-    learningCenter?: LearningCenter;
     article$!: Observable<Article | null>;
+    learningCenter$!: Observable<LearningCenter | null>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
@@ -54,12 +55,12 @@ export class LearningArticleComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.content.data.subscribe((data) => {
-            const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
-            if (sanityLearningCenter) {
-                this.learningCenter = new LearningCenter(sanityLearningCenter, data);
-            }
-        });
+        this.learningCenter$ = this.content.data.pipe(
+            map((data) => {
+                const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
+                return sanityLearningCenter ? new LearningCenter(sanityLearningCenter, data) : null;
+            }),
+        );
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
             map(([routeData, params]) => ({ resourceType: routeData["resourceType"], slug: params.get("slug") })),
             switchMap(({ resourceType, slug }) => {
@@ -71,8 +72,8 @@ export class LearningArticleComponent implements OnInit {
             }),
             shareReplay(),
         );
-        this.article$.subscribe(
-            (post) => {
+        this.article$.subscribe({
+            next: (post) => {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
@@ -88,10 +89,10 @@ export class LearningArticleComponent implements OnInit {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
             },
-            (_err) => {
+            error: (_err) => {
                 this.router.navigate(["learn"], { replaceUrl: true });
             },
-        );
+        });
     }
 
     categoryDisplayName(category: BlogCategoryID) {

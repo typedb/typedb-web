@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
 
@@ -6,6 +6,7 @@ import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
     selector: "td-link-panels",
     templateUrl: "link-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
@@ -15,6 +16,7 @@ export class LinkPanelsComponent {
     selector: "td-resource-panels",
     templateUrl: "resource-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
@@ -25,6 +27,7 @@ export class ResourcePanelsComponent {
     selector: "td-resource-panels-cols-2",
     templateUrl: "link-panels-cols-2.component.html",
     styleUrls: ["link-panels-cols-2.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
@@ -34,6 +37,7 @@ export class LinkPanelsCols2Component {
     selector: "td-lecture-panels",
     templateUrl: "lecture-panels.component.html",
     styleUrls: ["lecture-panels.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];

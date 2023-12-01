@@ -1,6 +1,6 @@
 <article tdPageBackground nebula="solutions">
   <div class="article-content article-content-no-planet">
-    <section *ngIf="blog" class="page-section bp-title-section">
+    <section *ngIf="blog$ | async as blog" class="page-section bp-title-section">
       <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
       <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
     </section>
@@ -10,7 +10,7 @@
 
       <td-scroll-shadow class="section"><nav td-blog-navbar variant="listPage"></nav></td-scroll-shadow>
 
-      <section *ngIf="rows">
+      <section *ngIf="rows$ | async as rows">
         <td-blog-row *ngFor="let row of rows" [row]="row" />
       </section>
 

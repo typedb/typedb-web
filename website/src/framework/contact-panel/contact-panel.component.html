@@ -5,4 +5,4 @@
     <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
   </aside>
 </div>
-<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+<mat-progress-bar *ngIf="isSubmitting$ | async" mode="indeterminate" />
