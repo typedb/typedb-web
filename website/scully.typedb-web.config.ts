@@ -2,17 +2,7 @@ import { getSitemapPlugin, SitemapConfig } from "@gammastream/scully-plugin-site
 import { ScullyConfig, setPluginConfig } from "@scullyio/scully";
 import "@scullyio/scully-plugin-puppeteer";
 
-import {
-    applicationArticleRoutes,
-    blogCategoryRoutes,
-    blogPostRoutes,
-    eventRoutes,
-    fundamentalArticleRoutes,
-    genericPageRoute,
-    lectureRoutes,
-    legalDocumentRoutes,
-    staticPageRoute,
-} from "./scully/plugins/plugins";
+import { getWebsiteRoutes } from "./scully/get-website-routes";
 
 const SitemapPlugin = getSitemapPlugin();
 setPluginConfig<SitemapConfig>(SitemapPlugin, {
@@ -31,19 +21,8 @@ export const config: ScullyConfig = {
     projectRoot: "./src",
     projectName: "typedb-web",
     outDir: process.env["OUT_DIR"],
-    routes: {
-        "/fundamentals/:slug": { type: fundamentalArticleRoutes },
-        "/applications/:slug": { type: applicationArticleRoutes },
-        "/blog/category/:categorySlug": { type: blogCategoryRoutes },
-        "/blog/:slug": { type: blogPostRoutes },
-        // "/solutions/:route": { type: solutionRoutes },
-        "/lectures/:slug": { type: lectureRoutes },
-        // "/white-papers/:slug": { type: whitePaperRoutes },
-        "/events/:slug": { type: eventRoutes },
-        "/events": { type: staticPageRoute, schemaName: "eventsPage" },
-        "/studio": { type: genericPageRoute, pageId: "studioPage" },
-        "/legal/:slug": { type: legalDocumentRoutes },
-    },
+    extraRoutes: getWebsiteRoutes(),
+    routes: {},
     puppeteerLaunchOptions: {
         // executablePath: "/opt/homebrew/bin/chromium",
         args: ["--no-sandbox", "--disabled-setupid-sandbox"],

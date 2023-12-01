@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { Route, RouterModule, Routes } from "@angular/router";
 
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
@@ -19,37 +19,42 @@ import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
+import { dynamicPages, genericPages, staticPages } from "./website-routes";
+
+const staticPageExtra: Record<(typeof staticPages)[number]["path"], Route> = {
+    "": { component: HomePageComponent },
+    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
+    // "white-papers": { component: WhitePapersPageComponent, title: "TypeDB White Papers" },
+    blog: { component: BlogComponent, title: "TypeDB Blog" },
+    deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
+    events: { component: EventsPageComponent, title: "TypeDB Events" },
+    features: { component: FeaturesPageComponent },
+    learn: { component: LearningCenterComponent, title: "TypeDB Learning Center" },
+    lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
+    philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
+    support: { component: SupportPageComponent },
+};
+
+const dynamicPageExtra: Record<(typeof dynamicPages)[number]["path"], Route> = {
+    "blog/:slug": { component: BlogPostPageComponent },
+    "blog/category/:slug": { component: BlogComponent },
+    "events/:slug": { component: EventDetailsPageComponent },
+    "lectures/:slug": { component: LectureDetailsPageComponent },
+    "legal/:slug": { component: LegalDocumentComponent },
+    // "white-papers/:slug": { component: WhitePaperDetailsPageComponent },
+    "applications/:slug": { component: LearningArticleComponent, data: { resourceType: "applicationArticle" } },
+    "fundamentals/:slug": { component: LearningArticleComponent, data: { resourceType: "fundamentalArticle" } },
+};
 
 const routes: Routes = [
-    { path: "", component: HomePageComponent },
-    { path: "features", component: FeaturesPageComponent, title: "TypeDB Features" },
-    { path: "philosophy", component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
-    { path: "cloud", component: GenericPageComponent, data: { documentID: "cloudPage" }, title: "TypeDB Cloud" },
-    { path: "studio", component: GenericPageComponent, data: { documentID: "studioPage" }, title: "TypeDB Studio" },
-    { path: "deploy", component: DeploymentPageComponent, title: "TypeDB Deployments" },
-    { path: "learn", component: LearningCenterComponent, title: "TypeDB Learning Center" },
-    {
-        path: "fundamentals/:slug",
-        component: LearningArticleComponent,
-        data: { resourceType: "fundamentalArticle" },
-    },
-    {
-        path: "applications/:slug",
-        component: LearningArticleComponent,
-        data: { resourceType: "applicationArticle" },
-    },
-    { path: "blog", component: BlogComponent, title: "TypeDB Blog" },
-    { path: "blog/category/:categorySlug", component: BlogComponent },
-    { path: "blog/:slug", component: BlogPostPageComponent },
-    { path: "lectures/:slug", component: LectureDetailsPageComponent },
-    { path: "lectures", component: LecturesPageComponent, title: "TypeDB Lectures" },
-    { path: "legal/:slug", component: LegalDocumentComponent },
-    // { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
-    // { path: "white-papers", component: WhitePapersPageComponent, title: "TypeDB White Papers" },
-    { path: "events/:slug", component: EventDetailsPageComponent },
-    { path: "events", component: EventsPageComponent, title: "TypeDB Events" },
-    { path: "request-tech-talk", component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
-    { path: "support", component: SupportPageComponent },
+    ...staticPages.map(({ path }) => ({ path, ...staticPageExtra[path] })),
+    ...genericPages.map(({ documentID, path, title }) => ({
+        path,
+        component: GenericPageComponent,
+        data: { documentID },
+        title,
+    })),
+    ...dynamicPages.map(({ path }) => ({ path, ...dynamicPageExtra[path] })),
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
