@@ -35,6 +35,11 @@ const staticPageExtra: Record<(typeof staticPages)[number]["path"], Route> = {
     support: { component: SupportPageComponent },
 };
 
+const genericPageExtra: Record<(typeof genericPages)[number]["path"], Route> = {
+    cloud: { title: "TypeDB Cloud" },
+    studio: { title: "TypeDB Studio" },
+};
+
 const dynamicPageExtra: Record<(typeof dynamicPages)[number]["path"], Route> = {
     "blog/:slug": { component: BlogPostPageComponent },
     "blog/category/:slug": { component: BlogComponent },
@@ -47,14 +52,22 @@ const dynamicPageExtra: Record<(typeof dynamicPages)[number]["path"], Route> = {
 };
 
 const routes: Routes = [
-    ...staticPages.map(({ path }) => ({ path, ...staticPageExtra[path] })),
-    ...genericPages.map(({ documentID, path, title }) => ({
+    ...staticPages.map(({ path }) => ({
+        path,
+        ...staticPageExtra[path],
+    })),
+
+    ...genericPages.map(({ documentID, path }) => ({
         path,
         component: GenericPageComponent,
         data: { documentID },
-        title,
+        ...genericPageExtra[path],
     })),
-    ...dynamicPages.map(({ path }) => ({ path, ...dynamicPageExtra[path] })),
+
+    ...dynamicPages.map(({ path }) => ({
+        path,
+        ...dynamicPageExtra[path],
+    })),
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },

@@ -13,8 +13,8 @@ export const staticPages = [
 ] as const satisfies readonly StaticPage[];
 
 export const genericPages = [
-    { path: "cloud", documentID: "cloudPage", title: "TypeDB Cloud" },
-    { path: "studio", documentID: "studioPage", title: "TypeDB Studio" },
+    { path: "cloud", documentID: "cloudPage" },
+    { path: "studio", documentID: "studioPage" },
 ] as const satisfies readonly GenericPage[];
 
 export const dynamicPages = [
@@ -37,7 +37,6 @@ interface StaticPage {
 interface GenericPage {
     path: string;
     documentID: string;
-    title: string;
 }
 
 interface DynamicPageWithSchema {
