@@ -129,10 +129,6 @@ from = "/*"
 to = "/index.html"
 status = 200
 
-[[edge_functions]]
-function = "airmeet-register"
-path = "/api/airmeet/register"
-
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
