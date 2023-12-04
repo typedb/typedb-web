@@ -1,3 +1,6 @@
+@use "media";
+@use "mixins" as *;
+
 .hs-form {
     label {
         color: var(--body-heading-color);
