@@ -17,7 +17,6 @@ import {
 import { MetaTagsService } from "src/service/meta-tags.service";
 
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
-import { AirmeetService } from "../../service/airmeet.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
@@ -47,7 +46,6 @@ export class LectureDetailsPageComponent implements OnInit {
         private contentService: ContentService,
         private metaTags: MetaTagsService,
         private _formService: FormService,
-        private airmeetService: AirmeetService,
         private _popupNotificationService: PopupNotificationService,
         private _title: Title,
         private _analytics: AnalyticsService,
@@ -121,21 +119,9 @@ export class LectureDetailsPageComponent implements OnInit {
         });
     }
 
-    private onSubmit(lecture: Lecture, values: Record<string, unknown>) {
+    private onSubmit(_lecture: Lecture, _values: Record<string, unknown>) {
         this._analytics.google.reportAdConversion("registerForLecture");
-        this.airmeetService.register({
-            airmeetID: lecture.airmeetID as string,
-            firstName: `${values["firstname"]}`,
-            lastName: `${values["lastname"]}`,
-            email: `${values["email"]}`,
-            companyName: `${values["company"]}`,
-            jobTitle: `${values["job_function"]}`,
-        });
-
-        const successMsg = lecture.isFinished()
-            ? "A link to watch the lecture has been sent to your email inbox."
-            : "A link to join the lecture has been sent to your email inbox.";
-        this._popupNotificationService.success(successMsg);
+        this._popupNotificationService.success("We'll email you a link to watch the lecture.");
     }
 
     localTimezoneAbbreviation(lecture: Lecture): string {

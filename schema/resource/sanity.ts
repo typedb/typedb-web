@@ -76,7 +76,6 @@ export interface SanityLecture extends SanityEventBase {
     _type: typeof lectureSchemaName;
     datetime: string;
     durationMins: number;
-    airmeetID?: string;
     lectureSlides?: SanityFile;
     onDemandVideoURL?: string;
     comingSoon: boolean;
