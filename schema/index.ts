@@ -32,7 +32,7 @@ export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-pan
 export { TitleBodyIllustrationSection } from "./component/page-section";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export { type FormID, type SanityHubspotForms, formsSchemaName, type AirmeetRegistrationForm } from "./form";
+export { type FormID, type SanityHubspotForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
     ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
