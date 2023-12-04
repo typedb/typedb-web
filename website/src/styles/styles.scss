@@ -4,6 +4,7 @@
 
 @import "base";
 @import "fonts";
+@import "form";
 @import "prism";
 @import "vars";
 
@@ -172,29 +173,17 @@ table {
 }
 
 .hs_support_request__multi_check_box_ {
-    @media (min-width: media.$min-width-tablet) {
-        width: 50%;
-        float: left;
-    }
-
-    > label {
-        display: none;
-    }
-
     ul {
+        max-width: 500px;
         height: 160px;
     }
 }
 
 .hs_support_request__full_details_ div.input {
-    position: relative;
-
     > textarea {
-        position: absolute;
-        height: 264px;
+        height: 150px;
 
         @media (max-width: media.$max-width-mobile) {
-            margin-top: 200px;
             height: 124px;
         }
     }
@@ -202,17 +191,8 @@ table {
 
 td-contact-dialog,
 #hubspot-form-holder-contact-section {
-    .hs-submit {
-        @media (max-width: media.$max-width-mobile) {
-            margin-top: 100px;
-        }
-    }
-
-    input[type="submit"].hs-button {
-        @media (min-width: media.$min-width-tablet) {
-            width: 202px;
-            float: right;
-        }
+    form.hs-form .hs-form-field {
+        min-width: 300px;
     }
 }
 
