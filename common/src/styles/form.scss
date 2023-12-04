@@ -81,6 +81,10 @@ form.hs-form {
     .hs-form-field {
         margin-top: 16px;
         min-width: 200px;
+
+        .input.input.input .hs-input {
+            width: 100%;
+        }
     }
 
     > .hs-form-field:first-child {
@@ -103,10 +107,6 @@ form.hs-form {
                 margin-right: 0;
             }
 
-            .hs-form-field .input .hs-input {
-                width: 100%;
-            }
-
             .hs-form-field {
                 width: auto;
                 float: none;
@@ -121,10 +121,6 @@ form.hs-form {
         &.form-columns-1 {
             .input {
                 margin-right: 0;
-            }
-
-            .hs-form-field .input .hs-input {
-                width: 100%;
             }
         }
     }
