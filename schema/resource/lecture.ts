@@ -16,7 +16,7 @@ export class Lecture extends EventBase {
     readonly durationMins: number;
     readonly lectureSlidesURL?: string;
     readonly lectureSlidesFileName?: string;
-    readonly onDemandVideoURL?: string;
+    readonly youtubeVideoID?: string;
     readonly comingSoon: boolean;
 
     constructor(props: PropsOf<Lecture>) {
@@ -25,7 +25,7 @@ export class Lecture extends EventBase {
         this.durationMins = props.durationMins;
         this.lectureSlidesURL = props.lectureSlidesURL;
         this.lectureSlidesFileName = props.lectureSlidesFileName;
-        this.onDemandVideoURL = props.onDemandVideoURL;
+        this.youtubeVideoID = props.youtubeVideoID;
         this.comingSoon = props.comingSoon;
     }
 
@@ -39,7 +39,7 @@ export class Lecture extends EventBase {
             // parameter as a string, Safari replaces spaces with %20 when downloading the file.
             lectureSlidesURL: lectureSlides ? `${lectureSlides.url}?dl=` : undefined,
             lectureSlidesFileName: lectureSlides?.originalFilename,
-            onDemandVideoURL: data.onDemandVideoURL,
+            youtubeVideoID: data.youtubeVideoID,
             comingSoon: data.comingSoon,
         });
     }
@@ -115,9 +115,10 @@ const lectureSchema = defineType({
             type: "file",
         }),
         defineField({
-            name: "onDemandVideoURL",
-            title: "YouTube Video URL",
-            type: "url",
+            name: "youtubeVideoID",
+            title: "YouTube Video ID",
+            description: "Can be obtained from the URL - youtube.com/watch?v={VIDEO_ID}",
+            type: "string",
         }),
         Object.assign({}, comingSoonField, {
             description: "If set, the Register button will be disabled and show 'Coming soon!'",
