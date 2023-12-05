@@ -90,8 +90,10 @@ export class LectureDetailsPageComponent implements OnInit {
         );
         this.safeVideoURL$ = this.lecture$.pipe(
             map((lecture) =>
-                lecture?.onDemandVideoURL
-                    ? this.sanitizer.bypassSecurityTrustResourceUrl(lecture.onDemandVideoURL)
+                lecture?.youtubeVideoID
+                    ? this.sanitizer.bypassSecurityTrustResourceUrl(
+                          `https://youtube.com/embed/${lecture.youtubeVideoID}`,
+                      )
                     : null,
             ),
             shareReplay(1),
