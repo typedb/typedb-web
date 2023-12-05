@@ -19,8 +19,6 @@ import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
-import { WhitePaperDetailsPageComponent } from "./page/white-papers/white-paper-details-page.component";
-import { WhitePapersPageComponent } from "./page/white-papers/white-papers-page.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent },
@@ -46,8 +44,8 @@ const routes: Routes = [
     { path: "lectures/:slug", component: LectureDetailsPageComponent },
     { path: "lectures", component: LecturesPageComponent, title: "TypeDB Lectures" },
     { path: "legal/:slug", component: LegalDocumentComponent },
-    { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
-    { path: "white-papers", component: WhitePapersPageComponent, title: "TypeDB White Papers" },
+    // { path: "white-papers/:slug", component: WhitePaperDetailsPageComponent },
+    // { path: "white-papers", component: WhitePapersPageComponent, title: "TypeDB White Papers" },
     { path: "events/:slug", component: EventDetailsPageComponent },
     { path: "events", component: EventsPageComponent, title: "TypeDB Events" },
     { path: "request-tech-talk", component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
@@ -61,6 +59,8 @@ const routes: Routes = [
     { path: "solutions/:route", redirectTo: "philosophy" },
     { path: "webinars/:slug", redirectTo: "lectures/:slug" },
     { path: "webinars", redirectTo: "lectures" },
+    { path: "white-papers/:slug", redirectTo: "learn" },
+    { path: "white-papers", redirectTo: "learn" },
     { path: "privacy-policy", redirectTo: "legal/privacy-policy" },
 
     { path: "__fallback", component: FallbackPageComponent },
