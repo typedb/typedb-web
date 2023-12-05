@@ -10,9 +10,8 @@ import {
     fundamentalArticleRoutes,
     genericPageRoute,
     lectureRoutes,
-    staticPageRoute,
     legalDocumentRoutes,
-    whitePaperRoutes,
+    staticPageRoute,
 } from "./scully/plugins/plugins";
 
 const SitemapPlugin = getSitemapPlugin();
@@ -39,7 +38,7 @@ export const config: ScullyConfig = {
         "/blog/:slug": { type: blogPostRoutes },
         // "/solutions/:route": { type: solutionRoutes },
         "/lectures/:slug": { type: lectureRoutes },
-        "/white-papers/:slug": { type: whitePaperRoutes },
+        // "/white-papers/:slug": { type: whitePaperRoutes },
         "/events/:slug": { type: eventRoutes },
         "/events": { type: staticPageRoute, schemaName: "eventsPage" },
         "/studio": { type: genericPageRoute, pageId: "studioPage" },
