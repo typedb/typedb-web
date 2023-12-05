@@ -39,7 +39,7 @@
           ></iframe>
         </td-aspect-ratio>
         <div class="subsection-margin wd-details-area">
-          <div class="card wd-form-card">
+          <div *ngIf="(safeVideoURL$ | async) === null" class="card wd-form-card">
             <h3>
               <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Register for Lecture" }}</strong>
             </h3>
@@ -51,7 +51,7 @@
             <mat-progress-bar *ngIf="isSubmitting$ | async" mode="indeterminate" />
           </div>
           <div>
-            <td-rich-text [value]="lecture.description" />
+            <td-rich-text [value]="lecture.description" [class]="(safeVideoURL$ | async) !== null ? 'ld-cols-2' : ''" />
             <ul class="wd-speakers subsection-margin">
               <li *ngFor="let speaker of lecture.speakers">
                 <td-person-card [person]="speaker" />
