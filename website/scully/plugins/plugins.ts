@@ -90,7 +90,7 @@ registerPlugin("router", blogPostRoutes, blogPostRoutesPlugin, defaultValidator)
 registerPlugin("router", legalDocumentRoutes, legalDocumentRoutesPlugin, defaultValidator);
 // registerPlugin("router", solutionRoutes, solutionRoutesPlugin, defaultValidator);
 registerPlugin("router", lectureRoutes, lectureRoutesPlugin, defaultValidator);
-registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
+// registerPlugin("router", whitePaperRoutes, whitePaperRoutesPlugin, defaultValidator);
 registerPlugin("router", eventRoutes, eventRoutesPlugin, defaultValidator);
 registerPlugin("router", staticPageRoute, staticPagePlugin);
 registerPlugin("router", genericPageRoute, genericPagePlugin);
