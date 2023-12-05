@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { PortableText } from "typedb-web-schema";
@@ -11,14 +11,12 @@ import { HtmlPipe } from "./html.pipe";
     styleUrls: ["rich-text.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RichTextComponent implements OnInit {
+export class RichTextComponent {
     @Input() value!: string | PortableText;
-    @HostBinding("innerHtml") innerHtml!: SafeHtml;
+
+    @HostBinding("innerHtml") get innerHtml(): SafeHtml {
+        return typeof this.value === "string" ? this.value : new HtmlPipe(this.sanitizer).transform(this.value);
+    }
 
     constructor(private sanitizer: DomSanitizer) {}
-
-    ngOnInit() {
-        this.innerHtml =
-            typeof this.value === "string" ? this.value : new HtmlPipe(this.sanitizer).transform(this.value);
-    }
 }
