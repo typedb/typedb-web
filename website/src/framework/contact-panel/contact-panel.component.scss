@@ -11,9 +11,14 @@
 }
 
 .cp-contact-policy {
-    margin-top: 20px;
+    height: 0;
+    display: flex;
+    align-items: flex-end;
+    max-width: calc(100% - 202px - 16px);
 
     @media (max-width: media.$max-width-mobile) {
+        height: auto;
+        max-width: none;
         margin-top: 12px;
     }
 }

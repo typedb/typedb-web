@@ -28,13 +28,14 @@ td-p-with-highlights {
 :host.di-contact {
     .mdc-dialog__content {
         max-height: none;
-        min-height: 506px;
+        min-height: 462px;
     }
 
     aside {
         position: absolute;
         bottom: 24px;
         left: 24px;
+        right: calc(202px + 24px + 16px);
 
         @media (max-width: media.$max-width-mobile) {
             position: static;
