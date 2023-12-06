@@ -5,4 +5,4 @@ can be found in the `README` files of their respective directories:
 
 - [Angular frontend - README](./website/README.md)
 - [Content schema - README](./schema/README.md)
-- [Sanity CMS - README](./sanity/README.md)
+- [Sanity CMS - README](./cms/README.md)

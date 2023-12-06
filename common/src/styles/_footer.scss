@@ -190,18 +190,18 @@
         text-indent: 100%;
     }
 
-    .td-footer-code-icon {
+    .td-footer-icon-code {
         @include url-icon(url("#{$icon-path}/code.svg"), var(--color-green));
     }
 
-    .td-footer-heart-icon {
+    .td-footer-icon-heart {
         @include url-icon(url("#{$icon-path}/heart.svg"), var(--color-red));
     }
 
     $socials: discord, meetup, twitter, youtube, linkedin;
 
     @each $social in $socials {
-        .td-footer-#{$social}-icon {
+        .td-footer-icon-#{$social} {
             @include url-icon(url("#{$icon-path}/#{$social}-rectangle.svg"), var(--color-white));
         }
     }
@@ -210,10 +210,11 @@
         forum: "discourse-rectangle",
         discord: "discord-rectangle",
         contactForm: "mail",
+        feedbackForm: "bulb",
     );
 
     @each $name, $icon in $contactMedias {
-        .td-footer-#{$name}-icon {
+        .td-footer-icon-#{$name} {
             @include url-icon(url("#{$icon-path}/#{$icon}.svg"), var(--color-white));
         }
     }

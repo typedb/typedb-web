@@ -37,7 +37,7 @@ ng serve --open
 ```
 
 ℹ️ _If you need to develop the content model (CMS model), see the instructions in the
-[Sanity module README](../sanity/README.md)._
+[CMS module README](../cms/README.md)._
 
 ## Deployment - [Netlify](https://www.netlify.com/)
 
