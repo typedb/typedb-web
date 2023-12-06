@@ -44,7 +44,7 @@ td-illustration.cp-code-snippet {
     height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px);
 
     @media (max-width: media.$max-width-tablet) {
-        flex-basis: 476px;
+        flex: 1 0 476px;
     }
 
     @media (max-width: media.$max-width-mobile) {

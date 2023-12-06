@@ -40,7 +40,7 @@ const generateSocialSection = (params: GenerateParams) => {
                 youtube: "YouTube",
                 linkedin: "LinkedIn",
             };
-            const classes = ["td-footer-icon", `td-footer-${socialMedia}-icon`].join(" ");
+            const classes = ["td-footer-icon", `td-footer-icon-${socialMedia}`].join(" ");
             const content = `<span class="${classes}">${socialMedias[socialMedia]}</span>`;
             return generateLink({
                 content,
@@ -74,8 +74,9 @@ const generateNavSection = (params: GenerateParams) => {
                 forum: "Discuss on Forum",
                 discord: "Chat on Discord",
                 contactForm: "Contact Us",
+                feedbackForm: "Provide Feedback",
             };
-            const iconClasses = ["td-footer-icon", `td-footer-${contactMedia}-icon`].join(" ");
+            const iconClasses = ["td-footer-icon", `td-footer-icon-${contactMedia}`].join(" ");
             const icon = `<span class="${iconClasses}"></span>`;
             const text = `<p>${contactMedias[contactMedia]}</p>`;
             const link = generateLink({
@@ -114,10 +115,10 @@ const generateCopyrightSection = (params: GenerateParams) => {
     const copyrightLine2 = `Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd`;
     const copyright = `<aside>${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
 
-    const madeIcon = `<span class="td-footer-icon td-footer-code-icon"> Made </span>`;
-    const heartIcon = `<span class="td-footer-icon td-footer-heart-icon"> love </span>`;
+    const codeIcon = `<span class="td-footer-icon td-footer-icon-code"> Made </span>`;
+    const heartIcon = `<span class="td-footer-icon td-footer-icon-heart"> love </span>`;
     const logoImage = `<img src="${escapeHtml(urlPrefix)}/assets/logo/vaticle-text-only.svg" alt="Vaticle"/>`;
-    const credits = `<aside class="td-footer-credits">${madeIcon} with ${heartIcon} by ${logoImage}</aside>`;
+    const credits = `<aside class="td-footer-credits">${codeIcon} with ${heartIcon} by ${logoImage}</aside>`;
 
     return `<div class="td-footer-section td-footer-section-copyright">${copyright}${credits}</div>`;
 };
@@ -138,6 +139,8 @@ const getContactLink = (contactMedia: string, communityResources: Record<string,
                 type: "external",
                 opensNewTab: false,
             };
+        case "feedbackForm":
+            return { destination: { current: "?dialog=feedback" }, type: "route", opensNewTab: false };
     }
     return null;
 };

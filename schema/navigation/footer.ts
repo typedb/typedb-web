@@ -11,6 +11,7 @@ export const contactMedias = {
     forum: "Discuss on Forum",
     discord: "Chat on Discord",
     contactForm: "Contact Us",
+    feedbackForm: "Provide Feedback",
 } as const;
 
 export const contactMediaList = Object.keys(contactMedias);

@@ -35,17 +35,20 @@ td {
 
 th {
     font-weight: inherit;
-    padding: 0 24px;
+    padding: 12px 24px;
 
     @media (max-width: media.$max-width-mobile) {
-        padding: 0 4px;
+        padding: 8px 4px;
+
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
     }
 
     &:first-of-type {
         text-align: start;
 
         @media (max-width: media.$max-width-mobile) {
-            padding: 0 8px;
+            padding: 8px;
         }
     }
 }

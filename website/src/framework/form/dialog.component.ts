@@ -156,6 +156,7 @@ export class FeedbackDialogComponent {
         [isSubmitting]="isSubmitting$ | async"
         titleProp="Get in touch"
         [description]="description$ | async"
+        variant="contact"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

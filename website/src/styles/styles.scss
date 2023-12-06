@@ -193,6 +193,17 @@ td-contact-dialog,
 #hubspot-form-holder-contact-section {
     form.hs-form .hs-form-field {
         min-width: 300px;
+
+        @media (max-width: media.$max-width-mobile) {
+            min-width: 200px;
+        }
+    }
+
+    input[type="submit"].hs-button.hs-button {
+        @media (min-width: media.$min-width-tablet) {
+            width: 202px;
+            float: right;
+        }
     }
 }
 
