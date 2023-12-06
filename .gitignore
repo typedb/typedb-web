@@ -14,28 +14,13 @@ node_modules
 local
 dist
 
-target
-Cargo.lock
-Cargo.toml
-
-# Terraform and Terraform credentials
-infrastructure/credentials/*
-!infrastructure/credentials/.gitkeep
-**/.terraform
-**/terraform.tfstate*
-.local/**
-
-# Sanity
-sanity/data.json
-sanity/scripts/credentials/**/*
-!sanity/scripts/credentials/.gitkeep
+# CMS
+cms/data.json
+cms/scripts/credentials/**/*
+!cms/scripts/credentials/.gitkeep
 
 # Schema
 schema/**/*.js
-
-# Server
-server/Cargo.lock
-server/Cargo.toml
 
 # Website - Angular
 website/.angular
