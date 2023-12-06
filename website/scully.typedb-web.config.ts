@@ -15,6 +15,7 @@ setPluginConfig<SitemapConfig>(SitemapPlugin, {
         "/features": { priority: "0.7" },
         "/cloud": { priority: "0.6" },
     },
+    ignoredRoutes: ["/__fallback"],
 });
 
 export const config: ScullyConfig = {
