@@ -24,6 +24,7 @@ export const setupTopbarListeners = () => {
             hoveredMenuItem = null;
             updateMenuPanelVisibility();
             headerEl.classList.remove("td-topbar-open");
+            document.body.style.overflowY = "unset";
         })
     );
 
