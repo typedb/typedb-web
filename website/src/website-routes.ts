@@ -1,4 +1,4 @@
-export const staticPages = [
+export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
     { path: "blog", schemaName: "blog" },
     { path: "deploy", schemaName: "deploymentPage" },
@@ -12,12 +12,12 @@ export const staticPages = [
     // { path: "white-papers", schemaName: "whitePapersPage" },
 ] as const satisfies readonly StaticPage[];
 
-export const genericPages = [
+export const genericPageSchemas = [
     { path: "cloud", documentID: "cloudPage" },
     { path: "studio", documentID: "studioPage" },
 ] as const satisfies readonly GenericPage[];
 
-export const dynamicPages = [
+export const dynamicPageSchemas = [
     { path: "applications/:slug", schemaName: "applicationArticle" },
     { path: "blog/:slug", schemaName: "blogPost" },
     { path: "blog/category/:slug", slugs: ["announcements", "engineering", "applications", "philosophy", "tutorials"] },

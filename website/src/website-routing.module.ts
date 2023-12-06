@@ -19,9 +19,9 @@ import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
-import { dynamicPages, genericPages, staticPages } from "./website-routes";
+import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./website-routes";
 
-const staticPageExtra: Record<(typeof staticPages)[number]["path"], Route> = {
+const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
     // "white-papers": { component: WhitePapersPageComponent, title: "TypeDB White Papers" },
@@ -35,12 +35,12 @@ const staticPageExtra: Record<(typeof staticPages)[number]["path"], Route> = {
     support: { component: SupportPageComponent },
 };
 
-const genericPageExtra: Record<(typeof genericPages)[number]["path"], Route> = {
+const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
     cloud: { title: "TypeDB Cloud" },
     studio: { title: "TypeDB Studio" },
 };
 
-const dynamicPageExtra: Record<(typeof dynamicPages)[number]["path"], Route> = {
+const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {
     "blog/:slug": { component: BlogPostPageComponent },
     "blog/category/:slug": { component: BlogComponent },
     "events/:slug": { component: EventDetailsPageComponent },
@@ -52,21 +52,21 @@ const dynamicPageExtra: Record<(typeof dynamicPages)[number]["path"], Route> = {
 };
 
 const routes: Routes = [
-    ...staticPages.map(({ path }) => ({
+    ...staticPageSchemas.map(({ path }) => ({
         path,
-        ...staticPageExtra[path],
+        ...staticPages[path],
     })),
 
-    ...genericPages.map(({ documentID, path }) => ({
+    ...genericPageSchemas.map(({ documentID, path }) => ({
         path,
         component: GenericPageComponent,
         data: { documentID },
-        ...genericPageExtra[path],
+        ...genericPages[path],
     })),
 
-    ...dynamicPages.map(({ path }) => ({
+    ...dynamicPageSchemas.map(({ path }) => ({
         path,
-        ...dynamicPageExtra[path],
+        ...dynamicPages[path],
     })),
 
     // TODO: remember to clean up these redirects eventually

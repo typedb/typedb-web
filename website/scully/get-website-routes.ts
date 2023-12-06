@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { dynamicPages, genericPages, staticPages } from "../src/website-routes";
+import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "../src/website-routes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
@@ -27,9 +27,11 @@ const dynamicPageRoutes = async (route: string, schemaName: string, schemaSlugAc
 };
 
 export const getWebsiteRoutes = async () => {
-    const staticPageRoutePromises = staticPages.map(({ path, schemaName }) => staticPageRoute(path, schemaName));
-    const genericPageRoutePromises = genericPages.map(({ path, documentID }) => genericPageRoute(path, documentID));
-    const dynamicPageRoutePromises = dynamicPages.map((page) => {
+    const staticPageRoutePromises = staticPageSchemas.map(({ path, schemaName }) => staticPageRoute(path, schemaName));
+    const genericPageRoutePromises = genericPageSchemas.map(({ path, documentID }) =>
+        genericPageRoute(path, documentID),
+    );
+    const dynamicPageRoutePromises = dynamicPageSchemas.map((page) => {
         if ("slugs" in page) {
             return Promise.resolve(page.slugs.map((slug) => `/${page.path.replace(":slug", slug)}`));
         }
