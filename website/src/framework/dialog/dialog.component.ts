@@ -206,6 +206,7 @@ export class AddToCalendarDialogComponent implements OnInit {
     constructor(
         private calendarService: CalendarService,
         @Inject(MAT_DIALOG_DATA) public data: { event: EventBase },
+        private dialogRef: MatDialogRef<AddToCalendarDialogComponent>,
     ) {}
 
     ngOnInit() {
@@ -218,6 +219,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                     this.isLoading = true;
                     this.calendarService.getCalendarLink(this.data.event, "google").subscribe((resp) => {
                         window.open((resp as any)["redirectTo"], "_blank")!.focus();
+                        this.dialogRef.close();
                     });
                 },
             },
@@ -227,8 +229,8 @@ export class AddToCalendarDialogComponent implements OnInit {
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
-                    this.calendarService.getCalendarLink(this.data.event, "stream").subscribe((resp) => {
-                        console.log(resp);
+                    this.calendarService.getCalendarLink(this.data.event, "stream").subscribe((_resp) => {
+                        this.dialogRef.close();
                     });
                 },
             },

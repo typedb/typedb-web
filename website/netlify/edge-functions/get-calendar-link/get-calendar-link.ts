@@ -43,6 +43,8 @@ export default async (request: Request, context: Context) => {
         console.error(eventResponse);
         return internalServerError();
     }
+    const endTime = Date.now();
+    console.log("GET /event: completed in " + (endTime - startTime) + "ms");
     const isRedirected = await eventResponse.redirected;
     if (isRedirected) {
         return new Response(JSON.stringify({ redirectTo: eventResponse.url }), {
@@ -52,14 +54,5 @@ export default async (request: Request, context: Context) => {
             },
         });
     }
-    const eventResponseBody = await eventResponse.json();
-    const endTime = Date.now();
-    console.log("GET /event: completed in " + (endTime - startTime) + "ms");
-
-    return new Response(JSON.stringify(eventResponseBody), {
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-        },
-    });
+    return eventResponse;
 };
