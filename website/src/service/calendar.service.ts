@@ -21,12 +21,8 @@ export class CalendarService {
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        this.http
-            .get(
-                `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`,
-            )
-            .subscribe((resp) => {
-                console.log(resp);
-            });
+        return this.http.get(
+            `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`,
+        );
     }
 }
