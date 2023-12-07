@@ -72,7 +72,7 @@ export class Lecture extends EventBase {
     }
 
     override location(): string {
-        return this.youtubeVideoID ? `https://youtube.com/watch?v=${this.youtubeVideoID}` : `https://typedb.com/lectures/${this.slug}`;
+        return `https://typedb.com/lectures/${this.slug}`;
     }
 
     override startDate(): Date {

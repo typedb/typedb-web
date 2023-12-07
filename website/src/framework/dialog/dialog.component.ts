@@ -212,7 +212,7 @@ export class AddToCalendarDialogComponent implements OnInit {
         this.actions = [
             {
                 style: "secondary",
-                text: "Google Calendar",
+                text: "Google",
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
@@ -223,7 +223,7 @@ export class AddToCalendarDialogComponent implements OnInit {
             },
             {
                 style: "secondary",
-                text: "Other (download ICS)",
+                text: "Apple / Outlook",
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
