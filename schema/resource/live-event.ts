@@ -57,6 +57,18 @@ export class LiveEvent extends EventBase {
             comingSoon: false,
         });
     }
+
+    override location(): string {
+        return this.venue;
+    }
+
+    override startDate(): Date {
+        return this.dateOptions.startDate || new Date();
+    }
+
+    override getDurationMins(): number {
+        return this.dateOptions.startDate && this.dateOptions.endDate ? (this.dateOptions.endDate.getTime() - this.dateOptions.startDate.getTime()) / 60000 : 60;
+    }
 }
 
 export const liveEventSchema = defineType({

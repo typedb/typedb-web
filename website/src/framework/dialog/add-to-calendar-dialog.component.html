@@ -1,0 +1,8 @@
+<div mat-dialog-title>
+  <h1>Add to calendar</h1>
+  <td-dialog-close-button />
+</div>
+<div mat-dialog-content>
+  <td-actions [actions]="actions" />
+</div>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate" />

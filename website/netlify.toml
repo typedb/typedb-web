@@ -129,6 +129,10 @@ from = "/*"
 to = "/index.html"
 status = 200
 
+[[edge_functions]]
+function = "get-calendar-link"
+path = "/api/calendar-link"
+
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
