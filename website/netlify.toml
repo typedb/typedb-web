@@ -24,8 +24,8 @@ status = 301
 
 [[redirects]]
 from = "/meetup"
-to = "https://www.meetup.com/pro/typedb"
-status = 301
+to = "/lectures"
+status = 302
 
 [[redirects]]
 from = "/github"
