@@ -29,6 +29,8 @@ website/src/service/credentials/**/*
 
 # Website - Scully
 website/src/assets/scully-routes.json
+website/src/website-routes.js
+website/src/website-routes.js.map
 website/scully.log
 website/scully/**/*.js
 website/scully/**/*.js.map
