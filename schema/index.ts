@@ -71,6 +71,7 @@ export {
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";
 export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";
+export { EventBase, type GetCalendarLinkParams, type CalendarServiceName } from "./resource/event-base";
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {

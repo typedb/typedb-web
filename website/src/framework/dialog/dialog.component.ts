@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { map, Observable, ReplaySubject, Subject } from "rxjs";
-import { ParagraphWithHighlights } from "typedb-web-schema";
+import { ActionButton, EventBase, ParagraphWithHighlights } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
+import { CalendarService } from "../../service/calendar.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 
@@ -189,6 +190,45 @@ export class ContactDialogComponent {
         this.dialogRef.close();
         this.analyticsService.google.reportAdConversion("getInTouch");
         this.popupNotificationService.success("Your message has been sent!");
+    }
+}
+
+@Component({
+    selector: "td-add-to-calendar-dialog",
+    templateUrl: "add-to-calendar-dialog.component.html",
+    styleUrls: ["add-to-calendar-dialog.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AddToCalendarDialogComponent implements OnInit {
+    actions!: ActionButton[];
+    isLoading = false;
+
+    constructor(
+        private calendarService: CalendarService,
+        @Inject(MAT_DIALOG_DATA) public data: { event: EventBase },
+    ) {}
+
+    ngOnInit() {
+        this.actions = [
+            {
+                style: "secondary",
+                text: "Google Calendar",
+                comingSoon: false,
+                onClick: () => {
+                    this.isLoading = true;
+                    this.calendarService.getCalendarLink(this.data.event, "google");
+                },
+            },
+            {
+                style: "secondary",
+                text: "Other (download ICS)",
+                comingSoon: false,
+                onClick: () => {
+                    this.isLoading = true;
+                    this.calendarService.getCalendarLink(this.data.event, "stream");
+                },
+            },
+        ];
     }
 }
 

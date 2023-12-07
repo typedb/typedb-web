@@ -1,13 +1,14 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { atcb_action } from "add-to-calendar-button";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
+    EventBase,
     Lecture,
     lectureSchemaName,
     Link,
@@ -18,6 +19,7 @@ import {
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AddToCalendarDialogComponent } from "../../framework/dialog/dialog.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
@@ -54,6 +56,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private _idleMonitor: IdleMonitorService,
         private _plainTextPipe: PlainTextPipe,
         private sanitizer: DomSanitizer,
+        private dialog: MatDialog,
     ) {
         this.isSubmitting$ = this.isSubmittingSubject.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
@@ -82,21 +85,10 @@ export class LectureDetailsPageComponent implements OnInit {
                             style: "primary",
                             text: "Add to calendar",
                             onClick: () => {
-                                const config = {
-                                    name: lecture.title.toPlainText(),
-                                    location: `https://youtube.com/watch?v=${lecture.youtubeVideoID}`,
-                                    description: `Watch this lecture live at https://youtube.com/watch?v=${lecture.youtubeVideoID}`,
-                                    startDate: datePipe.transform(lecture.datetime, "yyyy-MM-dd")!,
-                                    startTime: lecture.datetime.toLocaleTimeString(),
-                                    endTime: new Date(
-                                        lecture.datetime.getTime() + lecture.durationMins * 60000,
-                                    ).toLocaleTimeString(),
-                                    options: ["Apple", "Google", "iCal"] as any[],
-                                    iCalFileName: lecture.title.toPlainText().toLowerCase().replace(/\s/g, "-"),
-                                    lightMode: "dark" as const,
-                                    styleDark: "--font: 'Titillium Web', sans-serif",
-                                };
-                                atcb_action(config);
+                                this.dialog.open<AddToCalendarDialogComponent, { event: EventBase }>(
+                                    AddToCalendarDialogComponent,
+                                    { width: "560px", maxWidth: "100vw", data: { event: lecture } },
+                                );
                             },
                             comingSoon: false,
                         }),

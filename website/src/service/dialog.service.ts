@@ -8,7 +8,7 @@ import {
     ContactDialogComponent,
     FeedbackDialogComponent,
     NewsletterDialogComponent,
-} from "../framework/form/dialog.component";
+} from "../framework/./dialog/dialog.component";
 
 @Injectable({
     providedIn: "root",
