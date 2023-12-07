@@ -8,7 +8,7 @@
     <div class="section-background-solid subsection-margin bp-blog-list">
       <hr class="bp-intro-hr" />
 
-      <td-scroll-shadow class="section"><nav td-blog-navbar variant="listPage"></nav></td-scroll-shadow>
+      <nav td-blog-navbar variant="listPage" class="section"></nav>
 
       <section *ngIf="rows$ | async as rows">
         <td-blog-row *ngFor="let row of rows" [row]="row" />

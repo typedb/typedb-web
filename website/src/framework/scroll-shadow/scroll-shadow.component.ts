@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, ViewChild } from "@angular/core";
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    Input,
+    NgZone,
+    ViewChild,
+} from "@angular/core";
 
 @Component({
     selector: "td-scroll-shadow",
@@ -7,11 +16,16 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollShadowComponent implements AfterViewInit {
+    @Input() color: "deep-purple" | "black-purple" = "deep-purple";
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowLeft") shadowLeftRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowTop") shadowTopRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowBottom") shadowBottomRef!: ElementRef<HTMLDivElement>;
+
+    @HostBinding("class") get classes() {
+        return this.color;
+    }
 
     constructor(private ngZone: NgZone) {}
 

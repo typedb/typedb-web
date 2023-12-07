@@ -44,6 +44,13 @@ export class BlogNavbarComponent {
         //     this.activeFilter = filter;
         // });
     }
+
+    itemClicked(ev: MouseEvent): void {
+        const item = ev.currentTarget;
+        if (item instanceof HTMLElement) {
+            item.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" });
+        }
+    }
 }
 
 type NavbarItem = { text: string; slug?: string; link: Link };

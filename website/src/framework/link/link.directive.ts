@@ -1,6 +1,14 @@
-import { Directive, ElementRef, HostBinding, Input, OnChanges } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { NavigationExtras, Router } from "@angular/router";
+import {
+    ChangeDetectorRef,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnChanges,
+    Output,
+} from "@angular/core";
+import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 
 import { Link } from "typedb-web-schema";
 
@@ -9,6 +17,7 @@ import { Link } from "typedb-web-schema";
 })
 export class LinkDirective implements OnChanges {
     @Input("tdLink") link?: Link | string;
+    @Output() clicked = new EventEmitter<MouseEvent>();
 
     @HostBinding("class.td-active")
     get activeClass(): boolean {
@@ -26,8 +35,11 @@ export class LinkDirective implements OnChanges {
     constructor(
         private el: ElementRef<HTMLAnchorElement>,
         private router: Router,
-        private sanitizer: DomSanitizer,
-    ) {}
+        activatedRoute: ActivatedRoute,
+        changeDet: ChangeDetectorRef,
+    ) {
+        activatedRoute.url.subscribe(() => changeDet.markForCheck());
+    }
 
     ngOnChanges() {
         if (!this.link) return;
@@ -61,6 +73,7 @@ export class LinkDirective implements OnChanges {
             }
             e.preventDefault();
             this.router.navigate(commands, navigationExtras);
+            this.clicked.emit(e);
         });
     }
 

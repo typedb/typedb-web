@@ -83,6 +83,10 @@ section,
 
     @media (max-width: media.$max-width-mobile) {
         margin-top: 48px;
+
+        td-website.has-banner & {
+            margin-top: calc(48px + var(--banner-height));
+        }
     }
 
     + article {
