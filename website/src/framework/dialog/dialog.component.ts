@@ -227,7 +227,9 @@ export class AddToCalendarDialogComponent implements OnInit {
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
-                    this.calendarService.getCalendarLink(this.data.event, "stream");
+                    this.calendarService.getCalendarLink(this.data.event, "stream").subscribe((resp) => {
+                        console.log(resp);
+                    });
                 },
             },
         ];
