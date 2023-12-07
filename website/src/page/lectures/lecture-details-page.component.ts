@@ -1,8 +1,10 @@
+import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
+import { atcb_action } from "add-to-calendar-button";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
@@ -35,7 +37,7 @@ export class LectureDetailsPageComponent implements OnInit {
         ],
     });
     readonly isSubmitting$: Observable<boolean>;
-    readonly downloadSlidesActions$: Observable<ActionButton[] | null>;
+    readonly actions$: Observable<ActionButton[] | null>;
     readonly lecture$: Observable<Lecture | null>;
     readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
     private readonly isSubmittingSubject = new BehaviorSubject(false);
@@ -64,27 +66,57 @@ export class LectureDetailsPageComponent implements OnInit {
             }),
             shareReplay(1),
         );
-        this.downloadSlidesActions$ = this.lecture$.pipe(
+        const subscribeButton = new LinkButton({
+            style: "secondary",
+            text: "Subscribe to lectures",
+            link: Link.fromAddress("?dialog=newsletter"),
+            comingSoon: false,
+        });
+        const datePipe = new DatePipe("en-US");
+        this.actions$ = this.lecture$.pipe(
             map((lecture) => {
-                return lecture?.lectureSlidesURL
-                    ? [
-                          new LinkButton({
-                              style: "secondary",
-                              text: "Subscribe to Lectures",
-                              link: Link.fromAddress("?dialog=newsletter"),
-                              comingSoon: false,
-                          }),
-                          new LinkButton({
-                              style: "primary",
-                              text: "Download slides",
-                              link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
-                                  opensNewTab: false,
-                              }),
-                              comingSoon: false,
-                              download: { filename: lecture.lectureSlidesFileName },
-                          }),
-                      ]
-                    : null;
+                if (lecture?.isFinished() === false) {
+                    return [
+                        subscribeButton,
+                        new ActionButton({
+                            style: "primary",
+                            text: "Add to calendar",
+                            onClick: () => {
+                                const config = {
+                                    name: lecture.title.toPlainText(),
+                                    location: `https://youtube.com/watch?v=${lecture.youtubeVideoID}`,
+                                    description: `Watch this lecture live at https://youtube.com/watch?v=${lecture.youtubeVideoID}`,
+                                    startDate: datePipe.transform(lecture.datetime, "yyyy-MM-dd")!,
+                                    startTime: lecture.datetime.toLocaleTimeString(),
+                                    endTime: new Date(
+                                        lecture.datetime.getTime() + lecture.durationMins * 60000,
+                                    ).toLocaleTimeString(),
+                                    options: ["Apple", "Google", "iCal"] as any[],
+                                    iCalFileName: lecture.title.toPlainText().toLowerCase().replace(/\s/g, "-"),
+                                    lightMode: "dark" as const,
+                                    styleDark: "--font: 'Titillium Web', sans-serif",
+                                };
+                                atcb_action(config);
+                            },
+                            comingSoon: false,
+                        }),
+                    ];
+                } else if (lecture?.lectureSlidesURL) {
+                    return [
+                        subscribeButton,
+                        new LinkButton({
+                            style: "primary",
+                            text: "Download slides",
+                            link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
+                                opensNewTab: false,
+                            }),
+                            comingSoon: false,
+                            download: { filename: lecture.lectureSlidesFileName },
+                        }),
+                    ];
+                } else {
+                    return [subscribeButton];
+                }
             }),
             shareReplay(1),
         );

@@ -27,7 +27,7 @@
             {{ lecture.durationMins | eventDuration }}
           </li>
         </ul>
-        <td-actions *ngIf="downloadSlidesActions$ | async as actions" [actions]="actions" class="ld-download-slides" />
+        <td-actions *ngIf="actions$ | async as actions" [actions]="actions" class="ld-download-slides" />
         <td-aspect-ratio *ngIf="safeVideoURL$ | async as safeVideoURL" class="ld-video-container" ratio="16:9">
           <iframe
             class="ld-video-frame"
