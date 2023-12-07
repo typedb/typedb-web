@@ -107,6 +107,9 @@ dependencies:
   '@scullyio/scully-plugin-puppeteer':
     specifier: 2.1.41
     version: 2.1.41(@angular/animations@16.1.7)(@angular/compiler@16.1.7)(@angular/platform-browser-dynamic@16.1.7)(@angular/platform-browser@16.1.7)(@scullyio/scully@2.1.41)(puppeteer@13.7.0)
+  add-to-calendar-button:
+    specifier: 2.4.3
+    version: 2.4.3
   cookieconsent:
     specifier: 3.1.1
     version: 3.1.1
@@ -4898,6 +4901,13 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /add-to-calendar-button@2.4.3:
+    resolution: {integrity: sha512-oIdWHG+6COZsxwBgB8uGfpMxb8177GbDdXx2Kb+SjftM3CkVp2VFJjBbOzklfW01zr1e9jIGObuhyp9+xiFiig==}
+    engines: {node: '>=16.18.1', npm: '>=8.19.2'}
+    dependencies:
+      timezones-ical-library: 1.7.2
+    dev: false
 
   /adjust-sourcemap-loader@4.0.0:
     resolution: {integrity: sha512-OXwN5b9pCUXNQHJpwwD2qP40byEmSgzj8B4ydSN0uMNYWiFmJ6x6KwUllMmfk8Rwu/HJDFR7U8ubsWBoN0Xp0A==}
@@ -10356,6 +10366,11 @@ packages:
   /thunky@1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}
     dev: true
+
+  /timezones-ical-library@1.7.2:
+    resolution: {integrity: sha512-QxZd7SowEZ5/Kg6ZJuBYI2BUqmyDj5HdI9RSWSQtzYm3UeVd5ziFpEBjw715zCzQca6V4xIiHc5j95tUzDTOyg==}
+    engines: {node: '>=14.20.0'}
+    dev: false
 
   /tmp@0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}

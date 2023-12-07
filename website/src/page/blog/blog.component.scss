@@ -19,6 +19,10 @@ hr {
 
     @media (max-width: media.$max-width-mobile) {
         margin-top: 54px;
+
+        :host-context(td-website.has-banner) & {
+            margin-top: calc(54px + var(--banner-height));
+        }
     }
 }
 

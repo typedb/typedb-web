@@ -1,11 +1,12 @@
 import { DOCUMENT, LocationStrategy, ViewportScroller } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Inject } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, Scroll } from "@angular/router";
 
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
+import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 
 import { AnalyticsService } from "./service/analytics.service";
 import { ContentService } from "./service/content.service";
@@ -21,10 +22,12 @@ const SITE_URL = "https://typedb.com";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebsiteComponent {
+    @HostBinding("class.has-banner") hasBanner = false;
     private _originBeforeNavigation: string = window.location.origin;
     private _pathnameBeforeNavigation: string = window.location.pathname;
 
     constructor(
+        changeDet: ChangeDetectorRef,
         contentService: ContentService,
         router: Router,
         location: LocationStrategy,
@@ -38,6 +41,10 @@ export class WebsiteComponent {
         _formService: FormService,
         @Inject(DOCUMENT) doc: Document,
     ) {
+        contentService.data.subscribe((data) => {
+            this.hasBanner = !!data.getDocumentByID<SanitySiteBanner>(siteBannerSchemaName)?.isEnabled;
+            changeDet.markForCheck();
+        });
         this.initScrollBehaviour(router, contentService, activatedRoute, location, viewportScroller);
         this.setCanonicalLinkOnNavigation(router, doc);
         analyticsService.google.loadScriptTag();

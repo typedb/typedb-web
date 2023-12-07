@@ -51,6 +51,7 @@
     "@scullyio/ng-lib": "2.1.41",
     "@scullyio/scully": "2.1.41",
     "@scullyio/scully-plugin-puppeteer": "2.1.41",
+    "add-to-calendar-button": "2.4.3",
     "cookieconsent": "3.1.1",
     "countable": "3.0.1",
     "d3-force": "3.0.0",

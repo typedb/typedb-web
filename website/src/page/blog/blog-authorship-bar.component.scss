@@ -3,10 +3,10 @@
 
 :host {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 16px;
+    gap: 8px 16px;
     margin-top: 16px;
 
     &[size="medium"] {

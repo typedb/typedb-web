@@ -210,7 +210,7 @@
         forum: "discourse-rectangle",
         discord: "discord-rectangle",
         contactForm: "mail",
-        feedbackForm: "bulb",
+        feedbackForm: "comment",
     );
 
     @each $name, $icon in $contactMedias {
