@@ -229,7 +229,9 @@ export class AddToCalendarDialogComponent implements OnInit {
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
-                    this.calendarService.getICS(this.data.event).subscribe((_resp) => {
+                    this.calendarService.getICS(this.data.event).subscribe((blob) => {
+                        const url = window.URL.createObjectURL(blob);
+                        window.open(url);
                         this.dialogRef.close();
                     });
                 },
