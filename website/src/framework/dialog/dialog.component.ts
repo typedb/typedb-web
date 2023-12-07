@@ -217,7 +217,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
-                    this.calendarService.getCalendarLink(this.data.event, "google").subscribe((resp) => {
+                    this.calendarService.getGoogleCalendarLink(this.data.event).subscribe((resp) => {
                         window.open((resp as any)["redirectTo"], "_blank")!.focus();
                         this.dialogRef.close();
                     });
@@ -229,7 +229,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                 comingSoon: false,
                 onClick: () => {
                     this.isLoading = true;
-                    this.calendarService.getCalendarLink(this.data.event, "stream").subscribe((_resp) => {
+                    this.calendarService.getICS(this.data.event).subscribe((_resp) => {
                         this.dialogRef.close();
                     });
                 },
