@@ -22,7 +22,7 @@ export default async (request: Request, context: Context) => {
     }
     const params = new URL(request.url).searchParams;
     const startTime = Date.now();
-    for (const param of ["title", "service", "startTime", "durationMins", "location"]) {
+    for (const param of ["title", "service", "startTime", "timezone", "durationMins", "location"]) {
         if (!params.has(param)) return badRequest(param);
     }
     const title = params.get("title")!;
@@ -32,7 +32,7 @@ export default async (request: Request, context: Context) => {
     return Response.redirect(
         `${CALNDR_API_URL}/?service=${params.get("service")}&start=${params.get("startTime")}&duration=${params.get(
             "durationMins",
-        )}&timezone=Europe/London&title=${title}&location=${params.get("location")}&calname=${icsName}`,
+        )}&timezone=${params.get("timezone")}&title=${title}&location=${params.get("location")}&calname=${icsName}`,
         302,
     );
 };
