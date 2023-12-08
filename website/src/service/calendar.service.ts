@@ -28,7 +28,7 @@ export class CalendarService {
         return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 
-    getICSFile(props: EventBase): Observable<Blob> {
+    getICSFile(props: EventBase): Observable<string> {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
@@ -39,7 +39,12 @@ export class CalendarService {
         };
         return this.http.get(
             `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`,
-            { responseType: "blob" },
+            {
+                responseType: "text",
+                headers: {
+                    Accept: "text-calendar",
+                },
+            },
         );
     }
 }
