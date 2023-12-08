@@ -33,6 +33,7 @@ export abstract class EventBase extends SiteResource {
 
 export interface GetCalendarLinkParams {
     title: string;
+    description?: string;
     startTime: string;
     durationMins: number;
     location: string;
