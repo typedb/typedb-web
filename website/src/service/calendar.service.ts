@@ -6,6 +6,8 @@ const apiURLs = {
     getCalendarLink: `/api/calendar-link`,
 };
 
+const TIME_ZONE = "Europe/London";
+
 @Injectable({
     providedIn: "root",
 })
@@ -14,21 +16,21 @@ export class CalendarService {
         const params: GetCalendarLinkParams = {
             service: "google",
             title: props.title.toPlainText(),
-            startTime: props.startDate().toLocaleString(),
+            startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`;
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 
     icsFileURL(props: EventBase): string {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
-            startTime: props.startDate().toLocaleString(),
+            startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`;
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 }
