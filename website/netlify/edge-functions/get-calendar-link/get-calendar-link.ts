@@ -7,6 +7,7 @@ const badRequest = (missingParamName: string) =>
         status: 400,
         headers: { "Access-Control-Allow-Origin": "*" },
     });
+const internalServerError = () => new Response(null, { status: 500, headers: { "Access-Control-Allow-Origin": "*" } });
 
 export default async (request: Request, context: Context) => {
     if (request.method.toLowerCase() === "options") {
@@ -29,12 +30,26 @@ export default async (request: Request, context: Context) => {
     const icsName = title.replace(/\s/g, "-").toLowerCase();
     const endTime = Date.now();
     console.log("GET /event: completed in " + (endTime - startTime) + "ms");
-    return Response.redirect(
-        `${CALNDR_API_URL}/?service=${params.get("service")}&start=${params.get("startTime")}&duration=${params.get(
-            "durationMins",
-        )}&timezone=${params.get("timezone")}&title=${title}&description=${
-            params.get("description") || title
-        }&location=${params.get("location")}&calname=${icsName}`,
-        302,
-    );
+    const calndrURL = `${CALNDR_API_URL}/?service=${params.get("service")}&start=${params.get(
+        "startTime",
+    )}&duration=${params.get("durationMins")}&timezone=${params.get("timezone")}&title=${title}&description=${
+        params.get("description") || title
+    }&location=${params.get("location")}&calname=${icsName}`;
+    if (params.get("service") === "google") {
+        return Response.redirect(calndrURL, 302);
+    }
+
+    const eventResponse = await fetch(calndrURL, { method: "GET" });
+    if (!eventResponse.ok) {
+        console.error(eventResponse);
+        return internalServerError();
+    }
+
+    return new Response(eventResponse.body, {
+        headers: {
+            "Content-Disposition": `attachment; filename=${icsName}.ics`,
+            "Content-Type": "text/calendar",
+            "Access-Control-Allow-Origin": "*",
+        },
+    });
 };
