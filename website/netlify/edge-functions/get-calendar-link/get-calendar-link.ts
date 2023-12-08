@@ -44,9 +44,8 @@ export default async (request: Request, context: Context) => {
         console.error(eventResponse);
         return internalServerError();
     }
-    const eventResponseBody = await eventResponse.json();
 
-    return new Response(JSON.stringify(eventResponseBody), {
+    return new Response(eventResponse.body, {
         headers: {
             "Content-Type": "text/calendar",
             "Access-Control-Allow-Origin": "*",
