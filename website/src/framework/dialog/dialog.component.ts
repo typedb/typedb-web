@@ -228,7 +228,10 @@ export class AddToCalendarDialogComponent implements OnInit {
                 onClick: () => {
                     this.isLoading = true;
                     this.calendarService.getICSFile(this.data.event).subscribe((blob) => {
-                        window.open(URL.createObjectURL(blob));
+                        const anchor = document.createElement("a");
+                        anchor.download = `${this.data.event.title.toSectionID()}.ics`;
+                        anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+                        anchor.click();
                         this.dialogRef.close();
                     });
                 },
