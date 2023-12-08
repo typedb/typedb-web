@@ -32,7 +32,7 @@ export default async (request: Request, context: Context) => {
     return Response.redirect(
         `${CALNDR_API_URL}/?service=${params.get("service")}&start=${params.get("startTime")}&duration=${params.get(
             "durationMins",
-        )}&title=${title}&location=${params.get("location")}&calname=${icsName}`,
+        )}&timezone=Europe/London&title=${title}&location=${params.get("location")}&calname=${icsName}`,
         302,
     );
 };
