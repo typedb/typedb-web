@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { EventBase, GetCalendarLinkParams } from "typedb-web-schema";
+import { EventBase, GetCalendarLinkParams, ParagraphWithHighlights } from "typedb-web-schema";
 
 const apiURLs = {
     getCalendarLink: `/api/calendar-link`,
@@ -16,21 +16,23 @@ export class CalendarService {
         const params: GetCalendarLinkParams = {
             service: "google",
             title: props.title.toPlainText(),
+            description: ParagraphWithHighlights.fromSanity(props.shortDescription).toPlainText(),
             startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 
     icsFileURL(props: EventBase): string {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
+            description: ParagraphWithHighlights.fromSanity(props.shortDescription).toPlainText(),
             startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 }
