@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnInit 
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { map, Observable, ReplaySubject, Subject } from "rxjs";
-import { ActionButton, EventBase, ParagraphWithHighlights } from "typedb-web-schema";
+import { ActionButton, EventBase, Link, LinkButton, ParagraphWithHighlights } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
 import { CalendarService } from "../../service/calendar.service";
@@ -211,33 +211,29 @@ export class AddToCalendarDialogComponent implements OnInit {
 
     ngOnInit() {
         this.actions = [
-            {
+            new LinkButton({
                 style: "secondary",
                 text: "Google",
                 comingSoon: false,
-                onClick: () => {
-                    this.isLoading = true;
-                    this.calendarService.getGoogleCalendarLink(this.data.event).subscribe((resp) => {
-                        window.open((resp as any)["redirectTo"], "_blank")!.focus();
-                        this.dialogRef.close();
-                    });
-                },
-            },
-            {
+                link: new Link({
+                    type: "external",
+                    opensNewTab: true,
+                    destination: this.calendarService.googleCalendarURL(this.data.event),
+                }),
+            }),
+            new LinkButton({
                 style: "secondary",
                 text: "Apple / Outlook",
                 comingSoon: false,
-                onClick: () => {
-                    this.isLoading = true;
-                    this.calendarService.getICS(this.data.event).subscribe((blob) => {
-                        const anchor = document.createElement("a");
-                        anchor.download = `${this.data.event.title.toSectionID()}.ics`;
-                        anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
-                        anchor.click();
-                        this.dialogRef.close();
-                    });
+                link: new Link({
+                    type: "external",
+                    opensNewTab: true,
+                    destination: this.calendarService.icsFileURL(this.data.event),
+                }),
+                download: {
+                    filename: `${this.data.event.title.toSectionID()}.ics`,
                 },
-            },
+            }),
         ];
     }
 }
