@@ -1,15 +1,14 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { descriptionField, descriptionFieldRichText, linkField, nameField, nameFieldName, requiredRule, titleField } from "../common-fields";
+import { linkField, nameField, nameFieldName, requiredRule, titleField } from "../common-fields";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
-import { PortableText } from "../text";
 import { PropsOf } from "../util";
 import { genericResourceSchemaName, SanityGenericResource } from "./sanity";
 
 export class GenericResource {
     readonly title: string;
-    readonly description: PortableText;
+    readonly description: string;
     readonly link: Link;
     readonly linkText: string;
 
@@ -38,7 +37,12 @@ export const genericResourceSchema = defineType({
     fields: [
         nameField,
         titleField,
-        Object.assign({}, descriptionFieldRichText, { validation: requiredRule }),
+        defineField({
+            name: "description",
+            title: "Description",
+            type: "text",
+            validation: requiredRule,
+        }),
         Object.assign({}, linkField, { validation: requiredRule }),
         defineField({
             name: "linkText",
