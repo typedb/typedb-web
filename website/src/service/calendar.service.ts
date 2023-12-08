@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { EventBase, GetCalendarLinkParams, ParagraphWithHighlights } from "typedb-web-schema";
+import { EventBase, GetCalendarLinkParams } from "typedb-web-schema";
 
 const apiURLs = {
     getCalendarLink: `/api/calendar-link`,
@@ -16,7 +16,7 @@ export class CalendarService {
         const params: GetCalendarLinkParams = {
             service: "google",
             title: props.title.toPlainText(),
-            description: ParagraphWithHighlights.fromSanity(props.shortDescription).toPlainText(),
+            description: props.shortDescription,
             startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
@@ -28,7 +28,7 @@ export class CalendarService {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
-            description: ParagraphWithHighlights.fromSanity(props.shortDescription).toPlainText(),
+            description: props.shortDescription,
             startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
             durationMins: props.getDurationMins(),
             location: props.location(),
