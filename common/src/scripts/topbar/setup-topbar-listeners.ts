@@ -46,5 +46,3 @@ export const setupTopbarListeners = () => {
 
     return headerEl;
 };
-
-setupTopbarListeners();
