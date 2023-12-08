@@ -1,7 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { Observable } from "rxjs";
 import { EventBase, GetCalendarLinkParams } from "typedb-web-schema";
 
 const apiURLs = {
@@ -12,9 +10,7 @@ const apiURLs = {
     providedIn: "root",
 })
 export class CalendarService {
-    constructor(private http: HttpClient) {}
-
-    getGoogleCalendarLink(props: EventBase): Observable<{ redirectTo: string }> {
+    googleCalendarURL(props: EventBase): string {
         const params: GetCalendarLinkParams = {
             service: "google",
             title: props.title.toPlainText(),
@@ -22,12 +18,10 @@ export class CalendarService {
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return this.http.get<{ redirectTo: string }>(
-            `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`,
-        );
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 
-    getICS(props: EventBase): Observable<Blob> {
+    icsFileURL(props: EventBase): string {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
@@ -35,11 +29,6 @@ export class CalendarService {
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return this.http.get(
-            `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`,
-            {
-                responseType: "blob",
-            },
-        );
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&startTime=${params.startTime}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 }
