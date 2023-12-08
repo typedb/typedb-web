@@ -4,6 +4,32 @@
     display: block;
     position: relative;
     overflow: hidden;
+    --shadow-size: 13px;
+
+    $colors: (
+        "deep-purple": colors.$deep-purple,
+        "black-purple": colors.$black-purple,
+    );
+
+    @each $name, $value in $colors {
+        &.#{$name} {
+            .ss-left {
+                background: linear-gradient(90deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-right {
+                background: linear-gradient(-90deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-top {
+                background: linear-gradient(180deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-bottom {
+                background: linear-gradient(0deg, $value 0%, rgba($value, 0) 100%);
+            }
+        }
+    }
 }
 
 .ss-container {
@@ -25,32 +51,28 @@
 .ss-right {
     top: 0;
     bottom: 0;
-    width: 13px;
+    width: var(--shadow-size);
 }
 
 .ss-top,
 .ss-bottom {
     left: 0;
     right: 0;
-    height: 13px;
+    height: var(--shadow-size);
 }
 
 .ss-left {
     left: 0;
-    background: linear-gradient(90deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-right {
     right: 0;
-    background: linear-gradient(-90deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-top {
     top: 0;
-    background: linear-gradient(180deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }
 
 .ss-bottom {
     bottom: 0;
-    background: linear-gradient(0deg, colors.$deep-purple 0%, rgba(colors.$deep-purple, 0) 100%);
 }

@@ -20,14 +20,14 @@ export interface SanitySiteResource extends SanityDocument {
     title: PortableText;
     description: PortableText;
     shortTitle: string;
-    shortDescription: PortableText;
+    shortDescription: string;
     furtherLearning?: SanityResourceSection;
 }
 
 export interface SanityGenericResource extends SanityDocument {
     _type: typeof genericResourceSchemaName;
     title: string;
-    description: PortableText;
+    description: string;
     link: SanityReference<SanityLink>;
     linkText: string;
 }

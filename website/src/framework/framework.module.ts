@@ -21,18 +21,19 @@ import { ContentTabsComponent } from "./content-tabs/content-tabs.component";
 import { EventDatePipe } from "./date/event-date.pipe";
 import { EventDurationPipe } from "./date/event-duration.pipe";
 import { OrdinalDatePipe } from "./date/ordinal-date.pipe";
-import { FeatureGridComponent } from "./feature-grid/feature-grid.component";
-import { TagChipsComponent } from "./feature-grid/tag-chips.component";
-import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
 import {
+    AddToCalendarDialogComponent,
     CloudWaitlistDialogComponent,
     ContactDialogComponent,
     DialogCloseButtonComponent,
     DialogComponent,
     FeedbackDialogComponent,
     NewsletterDialogComponent,
-} from "./form/dialog.component";
-import { OptionDirective } from "./form/option.directive";
+} from "./dialog/dialog.component";
+import { OptionDirective } from "./dialog/option.directive";
+import { FeatureGridComponent } from "./feature-grid/feature-grid.component";
+import { TagChipsComponent } from "./feature-grid/tag-chips.component";
+import { FeatureTableCellComponent, FeatureTableComponent } from "./feature-table/feature-table.component";
 import { FurtherLearningComponent } from "./further-learning/further-learning.component";
 import { GraphVisualisationComponent } from "./graph-visualisation/graph-visualisation.component";
 import {
@@ -78,6 +79,7 @@ const globalRippleConfig: RippleGlobalOptions = {
 @NgModule({
     declarations: [
         ActionsComponent,
+        AddToCalendarDialogComponent,
         AspectRatioComponent,
         AvatarComponent,
         ButtonComponent,
@@ -148,6 +150,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     ],
     exports: [
         ActionsComponent,
+        AddToCalendarDialogComponent,
         AspectRatioComponent,
         AvatarComponent,
         ButtonComponent,

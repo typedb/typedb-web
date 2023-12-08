@@ -1,4 +1,6 @@
+import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -6,6 +8,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
+    EventBase,
     Lecture,
     lectureSchemaName,
     Link,
@@ -16,6 +19,7 @@ import {
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AddToCalendarDialogComponent } from "../../framework/dialog/dialog.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
@@ -35,7 +39,7 @@ export class LectureDetailsPageComponent implements OnInit {
         ],
     });
     readonly isSubmitting$: Observable<boolean>;
-    readonly downloadSlidesActions$: Observable<ActionButton[] | null>;
+    readonly actions$: Observable<ActionButton[] | null>;
     readonly lecture$: Observable<Lecture | null>;
     readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
     private readonly isSubmittingSubject = new BehaviorSubject(false);
@@ -52,6 +56,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private _idleMonitor: IdleMonitorService,
         private _plainTextPipe: PlainTextPipe,
         private sanitizer: DomSanitizer,
+        private dialog: MatDialog,
     ) {
         this.isSubmitting$ = this.isSubmittingSubject.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
@@ -64,27 +69,46 @@ export class LectureDetailsPageComponent implements OnInit {
             }),
             shareReplay(1),
         );
-        this.downloadSlidesActions$ = this.lecture$.pipe(
+        const subscribeButton = new LinkButton({
+            style: "secondary",
+            text: "Subscribe to lectures",
+            link: Link.fromAddress("?dialog=newsletter"),
+            comingSoon: false,
+        });
+        const datePipe = new DatePipe("en-US");
+        this.actions$ = this.lecture$.pipe(
             map((lecture) => {
-                return lecture?.lectureSlidesURL
-                    ? [
-                          new LinkButton({
-                              style: "secondary",
-                              text: "Subscribe to Lectures",
-                              link: Link.fromAddress("?dialog=newsletter"),
-                              comingSoon: false,
-                          }),
-                          new LinkButton({
-                              style: "primary",
-                              text: "Download slides",
-                              link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
-                                  opensNewTab: false,
-                              }),
-                              comingSoon: false,
-                              download: { filename: lecture.lectureSlidesFileName },
-                          }),
-                      ]
-                    : null;
+                if (lecture?.isFinished() === false) {
+                    return [
+                        subscribeButton,
+                        new ActionButton({
+                            style: "primary",
+                            text: "Add to calendar",
+                            onClick: () => {
+                                this.dialog.open<AddToCalendarDialogComponent, { event: EventBase }>(
+                                    AddToCalendarDialogComponent,
+                                    { width: "560px", maxWidth: "100vw", data: { event: lecture } },
+                                );
+                            },
+                            comingSoon: false,
+                        }),
+                    ];
+                } else if (lecture?.lectureSlidesURL) {
+                    return [
+                        subscribeButton,
+                        new LinkButton({
+                            style: "primary",
+                            text: "Download slides",
+                            link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
+                                opensNewTab: false,
+                            }),
+                            comingSoon: false,
+                            download: { filename: lecture.lectureSlidesFileName },
+                        }),
+                    ];
+                } else {
+                    return [subscribeButton];
+                }
             }),
             shareReplay(1),
         );

@@ -1,0 +1,15 @@
+td-actions {
+    justify-content: center;
+    margin: 16px 0 !important; // overrides mdc-dialog-content
+}
+
+.mat-mdc-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mdc-dialog__content {
+    overflow: visible;
+}

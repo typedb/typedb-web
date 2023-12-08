@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnInit } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 import { map, Observable, ReplaySubject, Subject } from "rxjs";
-import { ParagraphWithHighlights } from "typedb-web-schema";
+import { ActionButton, EventBase, Link, LinkButton, ParagraphWithHighlights } from "typedb-web-schema";
 
 import { AnalyticsService } from "../../service/analytics.service";
+import { CalendarService } from "../../service/calendar.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 
@@ -189,6 +190,50 @@ export class ContactDialogComponent {
         this.dialogRef.close();
         this.analyticsService.google.reportAdConversion("getInTouch");
         this.popupNotificationService.success("Your message has been sent!");
+    }
+}
+
+@Component({
+    selector: "td-add-to-calendar-dialog",
+    templateUrl: "add-to-calendar-dialog.component.html",
+    styleUrls: ["add-to-calendar-dialog.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AddToCalendarDialogComponent implements OnInit {
+    actions!: ActionButton[];
+    isLoading = false;
+
+    constructor(
+        private calendarService: CalendarService,
+        @Inject(MAT_DIALOG_DATA) public data: { event: EventBase },
+        private dialogRef: MatDialogRef<AddToCalendarDialogComponent>,
+    ) {}
+
+    ngOnInit() {
+        this.actions = [
+            new LinkButton({
+                style: "secondary",
+                text: "Google",
+                comingSoon: false,
+                link: new Link({
+                    type: "external",
+                    opensNewTab: true,
+                    destination: this.calendarService.googleCalendarURL(this.data.event),
+                }),
+            }),
+            new ActionButton({
+                style: "secondary",
+                text: "Apple / Outlook",
+                comingSoon: false,
+                onClick: () => {
+                    this.isLoading = true;
+                    this.calendarService.getICSFile(this.data.event).subscribe((fileContent) => {
+                        window.open(`data:text/calendar;charset=utf8,${encodeURI(fileContent)}`);
+                        this.dialogRef.close();
+                    });
+                },
+            }),
+        ];
     }
 }
 

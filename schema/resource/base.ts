@@ -14,7 +14,7 @@ export abstract class SiteResource {
     readonly title: ParagraphWithHighlights;
     readonly description: PortableText;
     readonly shortTitle: string;
-    readonly shortDescription: PortableText;
+    readonly shortDescription: string;
     readonly furtherLearning?: ResourceSection;
 
     protected constructor(props: PropsOf<SiteResource>) {
@@ -35,7 +35,7 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
         title: ParagraphWithHighlights.fromSanity(data.title),
         description: data.description,
         shortTitle: data.shortTitle,
-        shortDescription: data.shortDescription || data.description,
+        shortDescription: data.shortDescription || "",
         furtherLearning: data.furtherLearning?.isVisible
             ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
             : undefined,
@@ -44,7 +44,7 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
 
 export class ResourceLink {
     readonly title: string;
-    readonly description: PortableText;
+    readonly description: string;
     readonly link?: Link;
     readonly linkText: string;
 

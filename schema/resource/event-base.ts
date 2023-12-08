@@ -23,4 +23,21 @@ export abstract class EventBase extends SiteResource {
             hubspotFormID: data.hubspotFormID,
         });
     }
+
+    abstract location(): string;
+
+    abstract startDate(): Date;
+
+    abstract getDurationMins(): number;
 }
+
+export interface GetCalendarLinkParams {
+    title: string;
+    description?: string;
+    startTime: string;
+    durationMins: number;
+    location: string;
+    service: CalendarServiceName;
+}
+
+export type CalendarServiceName = "apple" | "google" | "stream";

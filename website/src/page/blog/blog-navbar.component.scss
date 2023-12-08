@@ -3,6 +3,7 @@
 :host {
     height: 72px;
     margin-bottom: 8px;
+    border-bottom: 1px solid var(--content-border-color);
 
     @media (max-width: media.$max-width-mobile) {
         height: 54px;
@@ -19,21 +20,24 @@
     }
 }
 
+td-scroll-shadow {
+    height: 100%;
+    --shadow-size: 24px;
+}
+
 ul {
     display: flex;
     flex-direction: row;
-    gap: 10px;
     height: 100%;
     list-style: none;
-    border-bottom: 1px solid var(--content-border-color);
     white-space: nowrap;
 
-    @media (min-width: media.$min-width-tablet) {
-        justify-content: space-around;
+    @media (max-width: media.$max-width-mobile) {
+        padding: 0 8px;
     }
 
-    @media (max-width: media.$max-width-mobile) {
-        gap: 8px;
+    li {
+        flex: 1;
     }
 
     h3 {
@@ -47,6 +51,10 @@ a {
     justify-content: center;
     align-items: center;
     padding: 0 24px;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding: 0 16px;
+    }
 
     &:hover {
         color: var(--color-green);

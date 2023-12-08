@@ -73,8 +73,10 @@
     }
 }
 
-.pb-nebula-with-site-banner {
-    margin-top: var(--banner-height);
+:host-context(td-website.has-banner) {
+    .pb-nebula {
+        margin-top: var(--banner-height);
+    }
 }
 
 .pb-planet {

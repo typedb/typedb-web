@@ -1,10 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { map, Observable } from "rxjs";
-import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
-
-import { ContentService } from "../../service/content.service";
-
 @Component({
     selector: "td-page-background, [tdPageBackground]",
     templateUrl: "page-background.component.html",
@@ -16,26 +11,18 @@ export class PageBackgroundComponent {
     @Input() planet?: "blue_pink" | "green" | "pink_green" | "pink" | "yellow_green";
 
     // private readonly isMobile$: Observable<boolean>;
-    readonly hasBanner$: Observable<boolean>;
 
     // private readonly topOffset = 300;
     // private readonly bottomOffset = 300;
     // private readonly spaceSpeed = 0.2;
 
-    constructor(
-        // private elementRef: ElementRef<HTMLElement>,
-        // private ngZone: NgZone,
-        // mediaQuery: MediaQueryService,
-        private contentService: ContentService,
-    ) {
-        // this.isMobile$ = mediaQuery.isMobile.pipe(takeUntilDestroyed(), distinctUntilChanged());
-        this.hasBanner$ = this.contentService.data.pipe(
-            map((data) => {
-                const sanitySiteBanner = data.getDocumentByID(siteBannerSchemaName) as SanitySiteBanner;
-                return !!sanitySiteBanner?.isEnabled;
-            }),
-        );
-    }
+    // constructor(
+    //     private elementRef: ElementRef<HTMLElement>,
+    //     private ngZone: NgZone,
+    //     mediaQuery: MediaQueryService,
+    // ) {
+    //     this.isMobile$ = mediaQuery.isMobile.pipe(takeUntilDestroyed(), distinctUntilChanged());
+    // }
 
     // ngAfterViewInit(): void {
     //     this.ngZone.runOutsideAngular(() => {

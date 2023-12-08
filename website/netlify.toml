@@ -24,8 +24,8 @@ status = 301
 
 [[redirects]]
 from = "/meetup"
-to = "https://www.meetup.com/pro/typedb"
-status = 301
+to = "/lectures"
+status = 302
 
 [[redirects]]
 from = "/github"
@@ -128,6 +128,10 @@ status = 200
 from = "/*"
 to = "/index.html"
 status = 200
+
+[[edge_functions]]
+function = "get-calendar-link"
+path = "/api/calendar-link"
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"

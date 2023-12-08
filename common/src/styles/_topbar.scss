@@ -249,7 +249,7 @@
             width: 1em;
             height: 1em;
 
-            @include url-icon(var(--menu-icon-url), currentColor);
+            @include url-icon(var(--menu-icon-url), var(--color-white));
         }
     }
 

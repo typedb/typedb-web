@@ -14,14 +14,6 @@ hr {
     }
 }
 
-.bp-title-section {
-    margin-top: 160px;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 54px;
-    }
-}
-
 ::ng-deep .rt-reading-time {
     display: block;
     font-size: 14px;
