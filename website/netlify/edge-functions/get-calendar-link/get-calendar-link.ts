@@ -47,6 +47,7 @@ export default async (request: Request, context: Context) => {
 
     return new Response(eventResponse.body, {
         headers: {
+            "Content-Disposition": `attachment; filename=${icsName}.ics`,
             "Content-Type": "text/calendar",
             "Access-Control-Allow-Origin": "*",
         },
