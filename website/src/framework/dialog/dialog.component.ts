@@ -221,17 +221,21 @@ export class AddToCalendarDialogComponent implements OnInit {
                     destination: this.calendarService.googleCalendarURL(this.data.event),
                 }),
             }),
-            new LinkButton({
+            new ActionButton({
                 style: "secondary",
                 text: "Apple / Outlook",
                 comingSoon: false,
-                link: new Link({
-                    type: "external",
-                    opensNewTab: true,
-                    destination: this.calendarService.icsFileURL(this.data.event),
-                }),
-                download: {
-                    filename: `${this.data.event.title.toSectionID()}.ics`,
+                onClick: () => {
+                    this.isLoading = true;
+                    this.calendarService.getICSFile(this.data.event).subscribe((blob) => {
+                        const newWindow = window.open("/");
+                        if (newWindow) {
+                            newWindow.onload = () => {
+                                newWindow.location = URL.createObjectURL(blob);
+                            };
+                        }
+                        this.dialogRef.close();
+                    });
                 },
             }),
         ];

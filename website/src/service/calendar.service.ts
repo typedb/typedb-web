@@ -1,5 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
+import { Observable } from "rxjs";
 import { EventBase, GetCalendarLinkParams } from "typedb-web-schema";
 
 const apiURLs = {
@@ -12,6 +14,8 @@ const TIME_ZONE = "Europe/London";
     providedIn: "root",
 })
 export class CalendarService {
+    constructor(private http: HttpClient) {}
+
     googleCalendarURL(props: EventBase): string {
         const params: GetCalendarLinkParams = {
             service: "google",
@@ -24,7 +28,7 @@ export class CalendarService {
         return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
     }
 
-    icsFileURL(props: EventBase): string {
+    getICSFile(props: EventBase): Observable<Blob> {
         const params: GetCalendarLinkParams = {
             service: "stream",
             title: props.title.toPlainText(),
@@ -33,6 +37,9 @@ export class CalendarService {
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
-        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
+        return this.http.get(
+            `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`,
+            { responseType: "blob" },
+        );
     }
 }
