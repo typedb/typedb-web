@@ -18,11 +18,7 @@ import {
     sectionIconField,
     resourcesField,
 } from "../common-fields";
-import {
-    SanityTitledContentTextPanel,
-    TitledContentTextPanel,
-    titledContentTextPanelSchemaName,
-} from "../component/content-text-panel";
+import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityResourceSection } from "../resource/sanity";
@@ -69,11 +65,11 @@ interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     userLogos: SanityReference<SanityOrganisation>[];
     displayUserLogos: boolean;
-    contentTabs: SanityTitledContentTextPanel[];
+    contentTabs: SanityContentTextTab[];
 }
 
 interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
-    impactTabs: SanityTitledContentTextPanel[];
+    impactTabs: SanityContentTextTab[];
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
@@ -135,7 +131,7 @@ export class HomePage extends Page {
 
 class IntroSection extends TechnicolorBlock {
     readonly userLogos: Organisation[];
-    readonly contentTabs: TitledContentTextPanel[];
+    readonly contentTabs: ContentTextTab[];
 
     constructor(props: PropsOf<IntroSection>) {
         super(props);
@@ -149,14 +145,14 @@ class IntroSection extends TechnicolorBlock {
                 userLogos: data.displayUserLogos
                     ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
                     : [],
-                contentTabs: data.contentTabs.map((x) => new TitledContentTextPanel(x, db)),
+                contentTabs: data.contentTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
 }
 
 class ImpactSection extends TechnicolorBlock {
-    readonly impactTabs: TitledContentTextPanel[];
+    readonly impactTabs: ContentTextTab[];
 
     constructor(props: PropsOf<ImpactSection>) {
         super(props);
@@ -166,7 +162,7 @@ class ImpactSection extends TechnicolorBlock {
     static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
         return new ImpactSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                impactTabs: data.impactTabs.map((x) => new TitledContentTextPanel(x, db)),
+                impactTabs: data.impactTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
@@ -272,7 +268,7 @@ const sectionSchemas = [
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{ type: titledContentTextPanelSchemaName }],
+            of: [{ type: contentTextTabSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,
@@ -284,7 +280,7 @@ const sectionSchemas = [
             name: "impactTabs",
             title: "Impact Tabs",
             type: "array",
-            of: [{ type: titledContentTextPanelSchemaName }],
+            of: [{ type: contentTextTabSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,

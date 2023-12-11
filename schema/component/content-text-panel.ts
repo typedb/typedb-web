@@ -9,7 +9,7 @@ export interface SanityContentTextPanel extends SanityIllustrationField, SanityB
     learnMoreLink?: SanityReference<SanityLink>;
 }
 
-export interface SanityTitledContentTextPanel extends SanityContentTextPanel, SanityTitleField {}
+export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitleField {}
 
 export class ContentTextPanel implements BodyTextField {
     readonly body: PortableText;
@@ -23,17 +23,17 @@ export class ContentTextPanel implements BodyTextField {
     }
 }
 
-export class TitledContentTextPanel extends ContentTextPanel {
+export class ContentTextTab extends ContentTextPanel {
     readonly title: string;
 
-    constructor(data: SanityTitledContentTextPanel, db: SanityDataset) {
+    constructor(data: SanityContentTextTab, db: SanityDataset) {
         super(data, db);
         this.title = data.title;
     }
 }
 
 export const contentTextPanelSchemaName = "contentTextPanel";
-export const titledContentTextPanelSchemaName = "titledContentTextPanel";
+export const contentTextTabSchemaName = "contentTextTab";
 
 const contentTextPanelSchema = defineType({
     name: contentTextPanelSchemaName,
@@ -51,10 +51,10 @@ const contentTextPanelSchema = defineType({
     ],
 });
 
-const titledContentTextPanelSchema = defineType({
+const contentTextTabSchema = defineType({
     ...contentTextPanelSchema,
-    name: titledContentTextPanelSchemaName,
+    name: contentTextTabSchemaName,
     fields: [titleField, ...contentTextPanelSchema.fields],
 });
 
-export const contentTextPanelSchemas = [contentTextPanelSchema, titledContentTextPanelSchema];
+export const contentTextPanelSchemas = [contentTextPanelSchema, contentTextTabSchema];

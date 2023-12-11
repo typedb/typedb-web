@@ -47,7 +47,7 @@ export {
     polyglotSnippetSchemaName,
 } from "./code";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
-export { ContentTextPanel, TitledContentTextPanel } from "./component/content-text-panel";
+export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
     type FeatureGridLayout,
     FeatureGridSection,
