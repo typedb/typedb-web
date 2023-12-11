@@ -5,15 +5,12 @@
       [title]="page.introSection.title"
       [body]="page.introSection.body"
       [actions]="page.introSection.actions"
-    ></td-title-body-actions-section>
+    />
     <ng-container *ngFor="let section of page.coreSections; index as idx">
       <td-generic-page-technicolor-block [section]="section" [index]="idx" />
-      <td-captioned-illustration [illustration]="section.illustration" [caption]="section.body" />
+      <td-content-panel [panel]="section.panel" />
     </ng-container>
-    <td-features-page-technicolor-block
-      [section]="page.finalSection"
-      [index]="page.coreSections.length"
-    ></td-features-page-technicolor-block>
-    <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
+    <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.coreSections.length" />
+    <td-conclusion-panel [panel]="page.finalSection.panel" />
   </div>
 </article>
