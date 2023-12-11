@@ -12,7 +12,6 @@ export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
     @Input() index!: number;
     @Input() level: "h1" | "h2" = "h2";
-    @Input() contentWidth: "narrow" | "wide" = "wide";
     @Input() @HostBinding("class.tb-no-upper") noUpperLine?: boolean;
     @Input() noBody?: boolean;
     @Input() @HostBinding("class.tb-long-upper") longUpperLine?: boolean;

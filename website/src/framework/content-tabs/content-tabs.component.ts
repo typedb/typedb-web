@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from "@
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
-import { ContentTextPanel } from "typedb-web-schema";
+import { TitledContentTextPanel } from "typedb-web-schema";
 
 import { sanitiseHtmlID } from "../util";
 
@@ -13,12 +13,12 @@ import { sanitiseHtmlID } from "../util";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentTabsComponent implements OnInit {
-    @Input() tabs!: ContentTextPanel[];
+    @Input() tabs!: TitledContentTextPanel[];
     @Input() setWindowHashOnTabClick = false;
 
-    readonly selectedTab$: Observable<ContentTextPanel>;
+    readonly selectedTab$: Observable<TitledContentTextPanel>;
     private _elementID!: string;
-    private readonly tabClick$: Subject<ContentTextPanel> = new Subject();
+    private readonly tabClick$: Subject<TitledContentTextPanel> = new Subject();
 
     constructor(
         private router: Router,
@@ -29,7 +29,7 @@ export class ContentTabsComponent implements OnInit {
             merge(
                 activatedRoute.fragment.pipe(
                     map((value) => this.tabs.find((x) => this.tabID(x) === value)),
-                    filter((v): v is ContentTextPanel => !!v),
+                    filter((v): v is TitledContentTextPanel => !!v),
                 ),
                 this.tabClick$,
             ).pipe(startWith(this.tabs[0]), shareReplay(1)),
@@ -43,11 +43,11 @@ export class ContentTabsComponent implements OnInit {
         this._elementID = this._el.nativeElement.id;
     }
 
-    tabID(tab: ContentTextPanel): string {
+    tabID(tab: TitledContentTextPanel): string {
         return `${this._elementID}-${sanitiseHtmlID(tab.title)}`;
     }
 
-    onTabClick(tab: ContentTextPanel, event: Event) {
+    onTabClick(tab: TitledContentTextPanel, event: Event) {
         event.preventDefault();
         if (event.currentTarget instanceof HTMLElement) {
             event.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
