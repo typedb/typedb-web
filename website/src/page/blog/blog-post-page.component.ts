@@ -20,6 +20,7 @@ import {
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
+import { CanonicalLinkService } from "src/service/canonical-link.service";
 
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
@@ -44,6 +45,7 @@ export class BlogPostPageComponent implements OnInit {
     });
 
     constructor(
+        private canonicalLink: CanonicalLinkService,
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private content: ContentService,
@@ -102,6 +104,9 @@ export class BlogPostPageComponent implements OnInit {
                     document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                         el.setAttribute("rel", "noopener");
                     });
+                    if (post.canonicalUrl) {
+                        this.canonicalLink.setCanonical(post.canonicalUrl);
+                    }
                 } else {
                     this.router.navigate(["blog"], { replaceUrl: true });
                 }
