@@ -14,7 +14,7 @@ command = "pnpm run style:verify && ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify && ENV=development pnpm run build"
+command = "pnpm run style:verify; ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [[redirects]]

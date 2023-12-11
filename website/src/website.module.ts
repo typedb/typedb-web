@@ -12,7 +12,7 @@ import { NavigationModule } from "./navigation/navigation.module";
 import { PageModule } from "./page/page.module";
 import { ServiceModule } from "./service/service.module";
 import { WebsiteRoutingModule } from "./website-routing.module";
-import { WebsiteComponent } from "./website.component";
+import { WebsiteComponent } from "./website.component"; 
 
 const cookieConfig: NgcCookieConsentConfig = {
     enabled: !isScullyRunning(),
