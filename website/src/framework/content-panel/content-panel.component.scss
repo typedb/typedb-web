@@ -19,7 +19,7 @@
 }
 
 $number-of-lines: 20;
-$number-of-lines-mobile: 10;
+$number-of-lines-mobile: 12;
 
 td-aspect-ratio {
     flex: 0 0 calc((var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px) * 16 / 9);
