@@ -39,9 +39,9 @@
           ></iframe>
         </td-aspect-ratio>
         <div class="subsection-margin wd-details-area">
-          <div *ngIf="!lecture.isFinished() || (safeVideoURL$ | async) === null" class="card wd-form-card">
+          <div *ngIf="!lecture.isStarted() || (safeVideoURL$ | async) === null" class="card wd-form-card">
             <h3>
-              <strong>{{ lecture.isFinished() ? "Watch Lecture" : "Get notified for event" }}</strong>
+              <strong>{{ lecture.isStarted() ? "Watch Lecture" : "Get notified for event" }}</strong>
             </h3>
             <div id="hubspot-form-holder"></div>
             <aside>
@@ -53,7 +53,7 @@
           <div>
             <td-rich-text
               [value]="lecture.description"
-              [class]="!lecture.isFinished() || (safeVideoURL$ | async) === null ? '' : 'ld-cols-2'"
+              [class]="!lecture.isStarted() || (safeVideoURL$ | async) === null ? '' : 'ld-cols-2'"
             />
             <ul class="wd-speakers subsection-margin">
               <li *ngFor="let speaker of lecture.speakers">
