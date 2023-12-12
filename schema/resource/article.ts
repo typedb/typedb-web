@@ -9,9 +9,18 @@ import { PropsOf } from "../util";
 import { SiteResource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
 import {
-    applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName,
-    fundamentalArticleSchemaName, isApplicationArticle, isBlogPost, isFundamentalArticle, SanityApplicationArticle,
-    SanityArticle, SanityBlogPost, SanityFundamentalArticle
+    applicationArticleSchemaName,
+    blogPostBackupHeroImageURL,
+    BlogPostLevel,
+    blogPostSchemaName,
+    fundamentalArticleSchemaName,
+    isApplicationArticle,
+    isBlogPost,
+    isFundamentalArticle,
+    SanityApplicationArticle,
+    SanityArticle,
+    SanityBlogPost,
+    SanityFundamentalArticle,
 } from "./sanity";
 
 export interface WordpressPosts {
@@ -36,10 +45,14 @@ export class BlogPostLink extends ResourceLink {
     }
 
     static override fromSanity(data: SanityBlogPost, db: SanityDataset): BlogPostLink {
-        return new BlogPostLink(Object.assign(super.fromSanity(data, db), {
-            author: Person.fromSanity(db.resolveRef(data.author), db),
-            imageURL: data.image ? db.resolveRef(data.image.asset).url : blogPostBackupHeroImageURL(data.slug.current),
-        }));
+        return new BlogPostLink(
+            Object.assign(super.fromSanity(data, db), {
+                author: Person.fromSanity(db.resolveRef(data.author), db),
+                imageURL: data.image
+                    ? db.resolveRef(data.image.asset).url
+                    : blogPostBackupHeroImageURL(data.slug.current),
+            })
+        );
     }
 }
 
@@ -54,27 +67,35 @@ export type BlogNullFilter = {};
 
 export const blogNullFilter: () => BlogNullFilter = () => ({});
 
-export type BlogCategoryFilter = { categorySlug: string }
+export type BlogCategoryFilter = { categorySlug: string };
 
 export abstract class Article extends SiteResource {
     readonly contentHtml: string;
+    readonly canonicalUrl?: string;
 
     protected constructor(props: PropsOf<Article>) {
         super(props);
         this.contentHtml = props.contentHtml;
+        this.canonicalUrl = props.canonicalUrl;
     }
 
     abstract pageTitle(): string;
 }
 
 function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
-    return Object.assign(resourcePropsFromSanity(data, db), {
+    return {
+        ...resourcePropsFromSanity(data, db),
         contentHtml: wordpressPost.content,
-    });
+        canonicalUrl: data.canonicalUrl,
+    };
 }
 
 export class FundamentalArticle extends Article {
-    static fromApi(data: SanityFundamentalArticle, db: SanityDataset, wordpressPost: WordpressPost): FundamentalArticle {
+    static fromApi(
+        data: SanityFundamentalArticle,
+        db: SanityDataset,
+        wordpressPost: WordpressPost
+    ): FundamentalArticle {
         return new FundamentalArticle(articlePropsFromApi(data, db, wordpressPost));
     }
 
@@ -84,7 +105,11 @@ export class FundamentalArticle extends Article {
 }
 
 export class ApplicationArticle extends Article {
-    static fromApi(data: SanityApplicationArticle, db: SanityDataset, wordpressPost: WordpressPost): ApplicationArticle {
+    static fromApi(
+        data: SanityApplicationArticle,
+        db: SanityDataset,
+        wordpressPost: WordpressPost
+    ): ApplicationArticle {
         return new ApplicationArticle(articlePropsFromApi(data, db, wordpressPost));
     }
 
@@ -110,13 +135,15 @@ export class BlogPost extends Article {
     }
 
     static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
-        return new BlogPost(Object.assign(articlePropsFromApi(data, db, wordpressPost), {
-            level: data.level,
-            author: Person.fromSanity(db.resolveRef(data.author), db),
-            categories: data.categories,
-            date: new Date(data.date),
-            imageURL: data.image && db.resolveRef(data.image.asset).url,
-        }));
+        return new BlogPost(
+            Object.assign(articlePropsFromApi(data, db, wordpressPost), {
+                level: data.level,
+                author: Person.fromSanity(db.resolveRef(data.author), db),
+                categories: data.categories,
+                date: new Date(data.date),
+                imageURL: data.image && db.resolveRef(data.image.asset).url,
+            })
+        );
     }
 
     readPostLink(): Link {
@@ -151,25 +178,26 @@ async function wordpressPostSlugs(): Promise<string[]> {
     if (!(window as any)["wordpressData"]) {
         (window as any)["wordpressData"] = { postSlugs: [], lastUpdated: 0 };
     }
-    const wordpressData = (window as any)["wordpressData"] as { postSlugs: string[], lastUpdated: number };
+    const wordpressData = (window as any)["wordpressData"] as { postSlugs: string[]; lastUpdated: number };
     if (Date.now() - wordpressData.lastUpdated < BLOG_POSTS_MIN_REFRESH_INTERVAL_MS) {
         return wordpressData.postSlugs;
     }
     wordpressData.lastUpdated = Date.now();
-    const { data } = await axios.get<{ found: number, posts: { slug: string }[] }>(BLOG_POSTS_URL, {
-        params: { "fields": "slug" },
+    const { data } = await axios.get<{ found: number; posts: { slug: string }[] }>(BLOG_POSTS_URL, {
+        params: { fields: "slug" },
     });
-    wordpressData.postSlugs = data.posts.map(x => x.slug);
+    wordpressData.postSlugs = data.posts.map((x) => x.slug);
     return wordpressData.postSlugs;
 }
 
 export const wordpressSlugField = Object.assign({}, slugField, {
     description: "Must match the post's slug in WordPress. Content is pulled from WordPress",
-    validation: (rule: SlugRule) => rule.custom(async (value) => {
-        if (!value?.current) return "Required";
-        const slugs = await wordpressPostSlugs();
-        return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
-    }),
+    validation: (rule: SlugRule) =>
+        rule.custom(async (value) => {
+            if (!value?.current) return "Required";
+            const slugs = await wordpressPostSlugs();
+            return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
+        }),
 });
 
 const articleSchemaBase = defineType({
@@ -177,6 +205,11 @@ const articleSchemaBase = defineType({
     type: "document",
     fields: [
         wordpressSlugField,
+        defineField({
+            name: "canonicalUrl",
+            title: "Canonical URL",
+            type: "url",
+        }),
         ...resourceCommonFields,
     ],
 });
@@ -226,7 +259,7 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
             name: "categories",
             title: "Categories",
             type: "array",
-            of: [{type: "string"}],
+            of: [{ type: "string" }],
             options: {
                 layout: "grid",
                 list: Object.entries(blogCategories).map(([id, title]) => ({ value: id, title: title })),

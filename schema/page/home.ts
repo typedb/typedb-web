@@ -9,14 +9,16 @@ import {
     collapsibleOptions,
     isVisibleField,
     optionalActionsField,
-
     titleBodyIconFields,
     SanityVisibleToggle,
     requiredRule,
     keyPointsWithIconsField,
-    titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
+    titleFieldWithHighlights,
+    bodyFieldRichText,
+    sectionIconField,
+    resourcesField,
 } from "../common-fields";
-import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "../component/content-text-panel";
+import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityResourceSection } from "../resource/sanity";
@@ -63,11 +65,11 @@ interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     userLogos: SanityReference<SanityOrganisation>[];
     displayUserLogos: boolean;
-    contentTabs: SanityContentTextPanel[];
+    contentTabs: SanityContentTextTab[];
 }
 
 interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
-    impactTabs: SanityContentTextPanel[];
+    impactTabs: SanityContentTextTab[];
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
@@ -129,7 +131,7 @@ export class HomePage extends Page {
 
 class IntroSection extends TechnicolorBlock {
     readonly userLogos: Organisation[];
-    readonly contentTabs: ContentTextPanel[];
+    readonly contentTabs: ContentTextTab[];
 
     constructor(props: PropsOf<IntroSection>) {
         super(props);
@@ -143,14 +145,14 @@ class IntroSection extends TechnicolorBlock {
                 userLogos: data.displayUserLogos
                     ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
                     : [],
-                contentTabs: data.contentTabs.map((x) => new ContentTextPanel(x, db)),
+                contentTabs: data.contentTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
 }
 
 class ImpactSection extends TechnicolorBlock {
-    readonly impactTabs: ContentTextPanel[];
+    readonly impactTabs: ContentTextTab[];
 
     constructor(props: PropsOf<ImpactSection>) {
         super(props);
@@ -160,7 +162,7 @@ class ImpactSection extends TechnicolorBlock {
     static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
         return new ImpactSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                impactTabs: data.impactTabs.map((x) => new ContentTextPanel(x, db)),
+                impactTabs: data.impactTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
@@ -248,7 +250,9 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 
 const sectionSchemas = [
     sectionSchema("intro", [
-        Object.assign({}, titleFieldWithHighlights, { description: "For the Home Page, this gets automatically added to the web page title" }),
+        Object.assign({}, titleFieldWithHighlights, {
+            description: "For the Home Page, this gets automatically added to the web page title",
+        }),
         bodyFieldRichText,
         sectionIconField,
         optionalActionsField,
@@ -264,7 +268,7 @@ const sectionSchemas = [
             name: "contentTabs",
             title: "Content Tabs",
             type: "array",
-            of: [{ type: contentTextPanelSchemaName }],
+            of: [{ type: contentTextTabSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,
@@ -276,17 +280,12 @@ const sectionSchemas = [
             name: "impactTabs",
             title: "Impact Tabs",
             type: "array",
-            of: [{ type: contentTextPanelSchemaName }],
+            of: [{ type: contentTextTabSchemaName }],
             validation: requiredRule,
         }),
         isVisibleField,
     ]),
-    sectionSchema("resources", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        resourcesField,
-        isVisibleField,
-    ]),
+    sectionSchema("resources", [...titleBodyIconFields, optionalActionsField, resourcesField, isVisibleField]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
         optionalActionsField,
@@ -311,18 +310,8 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("cloud", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        keyPointsWithIconsField(5),
-        isVisibleField,
-    ]),
-    sectionSchema("community", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        socialMediaLinksField,
-        isVisibleField,
-    ]),
+    sectionSchema("cloud", [...titleBodyIconFields, optionalActionsField, keyPointsWithIconsField(5), isVisibleField]),
+    sectionSchema("community", [...titleBodyIconFields, optionalActionsField, socialMediaLinksField, isVisibleField]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,

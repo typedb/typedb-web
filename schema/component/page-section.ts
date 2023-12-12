@@ -3,49 +3,57 @@ import { SanityOptionalActions } from "../button";
 import {
     bodyFieldRichText,
     isVisibleField,
-    optionalActionsField, resourcesFieldOptional,
-    SanityVisibleToggle, sectionIconField,
-    titleBodyIconFields, titleFieldWithHighlights,
+    optionalActionsField,
+    resourcesFieldOptional,
+    SanityVisibleToggle,
+    sectionIconField,
+    titleBodyIconFields,
+    titleFieldWithHighlights,
 } from "../common-fields";
-import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { SanityDataset } from "../sanity-core";
 import { SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
+import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 
 // TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
 export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
 
-export type SanityTitleBodyIllustrationSection = SanityTechnicolorBlock & SanityIllustrationField & SanityVisibleToggle;
+export interface SanityTitleBodyPanelSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+    panel: SanityContentTextPanel;
+}
 
-export class TitleBodyIllustrationSection extends TechnicolorBlock {
-    readonly illustration: Illustration;
+export class TitleBodyPanelSection extends TechnicolorBlock {
+    readonly panel: ContentTextPanel;
 
-    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
+    constructor(props: PropsOf<TitleBodyPanelSection>) {
         super(props);
-        this.illustration = props.illustration;
+        this.panel = props.panel;
     }
 
-    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
-        return new TitleBodyIllustrationSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                illustration: illustrationFromSanity(db.resolveRef(data.illustration), db),
-            })
-        );
+    static override fromSanity(data: SanityTitleBodyPanelSection, db: SanityDataset) {
+        return new TitleBodyPanelSection({
+            ...TechnicolorBlock.fromSanity(data, db),
+            panel: new ContentTextPanel(data.panel, db),
+        });
     }
 }
 
-export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
+export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
 
-const titleBodyIllustrationSectionSchema = defineType({
-    name: titleBodyIllustrationSectionSchemaName,
-    title: "Title, Body & Illustration",
+const titleBodyPanelSectionSchema = defineType({
+    name: titleBodyPanelSectionSchemaName,
+    title: "Title, Body & Panel",
     type: "document",
     fields: [
         titleFieldWithHighlights,
         bodyFieldRichText,
         sectionIconField,
-        illustrationField,
+        {
+            title: "Panel",
+            name: "panel",
+            type: contentTextPanelSchemaName,
+        },
         isVisibleField,
     ],
 });
@@ -56,12 +64,7 @@ const resourceSectionSchema = defineType({
     name: resourceSectionSchemaName,
     title: "Resources Section",
     type: "object",
-    fields: [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        resourcesFieldOptional,
-        isVisibleField,
-    ],
+    fields: [...titleBodyIconFields, optionalActionsField, resourcesFieldOptional, isVisibleField],
 });
 
-export const pageSectionSchemas = [resourceSectionSchema, titleBodyIllustrationSectionSchema];
+export const pageSectionSchemas = [resourceSectionSchema, titleBodyPanelSectionSchema];

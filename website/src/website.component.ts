@@ -1,14 +1,15 @@
-import { DOCUMENT, LocationStrategy, ViewportScroller } from "@angular/common";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Inject } from "@angular/core";
+import { LocationStrategy, ViewportScroller } from "@angular/common";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, Scroll } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, Event as RouterEvent, Scroll } from "@angular/router";
 
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 
 import { AnalyticsService } from "./service/analytics.service";
+import { CanonicalLinkService } from "./service/canonical-link.service";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { FormService } from "./service/form.service";
@@ -27,6 +28,7 @@ export class WebsiteComponent {
     private _pathnameBeforeNavigation: string = window.location.pathname;
 
     constructor(
+        canonicalLink: CanonicalLinkService,
         changeDet: ChangeDetectorRef,
         contentService: ContentService,
         router: Router,
@@ -39,29 +41,26 @@ export class WebsiteComponent {
         matIconRegistry: MatIconRegistry,
         analyticsService: AnalyticsService,
         _formService: FormService,
-        @Inject(DOCUMENT) doc: Document,
     ) {
         contentService.data.subscribe((data) => {
             this.hasBanner = !!data.getDocumentByID<SanitySiteBanner>(siteBannerSchemaName)?.isEnabled;
             changeDet.markForCheck();
         });
         this.initScrollBehaviour(router, contentService, activatedRoute, location, viewportScroller);
-        this.setCanonicalLinkOnNavigation(router, doc);
+        this.setCanonicalLinkOnNavigation(router, canonicalLink);
         analyticsService.google.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);
     }
 
-    private setCanonicalLinkOnNavigation(router: Router, doc: Document) {
-        router.events.pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd)).subscribe((e) => {
-            const existingCanonicalLink = doc.head.querySelector("link[rel='canonical']");
-            if (existingCanonicalLink) {
-                doc.head.removeChild(existingCanonicalLink);
+    private setCanonicalLinkOnNavigation(router: Router, canonicalLink: CanonicalLinkService) {
+        router.events.subscribe((e) => {
+            if (e instanceof NavigationStart) {
+                canonicalLink.removeCanonical();
             }
-            const canonicalLink = doc.createElement("link");
-            canonicalLink.setAttribute("rel", "canonical");
-            canonicalLink.setAttribute("href", `${SITE_URL}${e.url.split(/[#?]/)[0]}`);
-            doc.head.appendChild(canonicalLink);
+            if (e instanceof NavigationEnd) {
+                canonicalLink.setCanonical(`${SITE_URL}${e.url.split(/[#?]/)[0]}`);
+            }
         });
     }
 

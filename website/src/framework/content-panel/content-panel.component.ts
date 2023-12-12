@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
-import { CodeSnippet, ContentTextPanel } from "typedb-web-schema";
+import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
 
 @Component({
     selector: "td-content-panel",
@@ -21,6 +21,7 @@ export class ContentPanelComponent {
             section: true,
             card: true,
             "cp-root": true,
+            "cp-in-tab": this.panel instanceof ContentTextTab,
         };
     }
 

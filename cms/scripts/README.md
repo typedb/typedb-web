@@ -30,13 +30,14 @@ You can run any script in this directory using
 sanity exec scripts/{SCRIPT_NAME}.js
 ```
 
-### Update a document's ID
+### Update a singleton document
 
-Updating a document's ID is non-trivial. The most straightforward way to do it is:
+One of the most common use cases is updating a type name in the schema. When it's a type that's only used in a small
+number of documents (such as singleton documents) the most straightforward way to is:
 ```shell
 sanity documents get {CURRENT_ID} > data.json
 ```
-Then update `data.json` to use the new ID. Then:
+Then update `data.json` with the changes desired. Then:
 ```shell
 sanity documents create data.json
 sanity documents delete {CURRENT_ID}

@@ -17,33 +17,82 @@ import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
-    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
-    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...textSchemas, testimonialSchema,
+    ...actionSchemas,
+    ...codeSchemas,
+    ...linkSchemas,
+    ...componentSchemas,
+    ...formSchemas,
+    ...keyPointSchemas,
+    ...illustrationSchemas,
+    ...imageSchemas,
+    ...navigationSchemas,
+    ...organisationSchemas,
+    ...pageSchemas,
+    ...personSchemas,
+    referenceMaterialSchema,
+    ...resourceSchemas,
+    ...socialMediaSchemas,
+    ...textSchemas,
+    testimonialSchema,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
-export { languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName } from "./code";
+export {
+    languages,
+    PolyglotSnippet,
+    CodeSnippet,
+    CodeSnippetShort,
+    codeSnippetShortSchemaName,
+    codeSnippetSchemaName,
+    polyglotSnippetSchemaName,
+} from "./code";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
-export { ContentTextPanel } from "./component/content-text-panel";
-export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName } from "./component/feature-grid";
+export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
+export {
+    type FeatureGridLayout,
+    FeatureGridSection,
+    FeatureGridCell,
+    featureGridSchemaName,
+} from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
-export { TitleBodyIllustrationSection } from "./component/page-section";
-export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
+export { TitleBodyPanelSection } from "./component/page-section";
+export {
+    PublicationSection,
+    type PublicationPanelItem,
+    PublicationContentRow,
+    type PublicationContentRowItem,
+} from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
 export { type FormID, type SanityHubspotForms, formsSchemaName } from "./form";
 export {
-    imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
-    ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
-    type SplitPaneIllustrationContent
+    imageIllustrationSchemaName,
+    videoEmbedSchemaName,
+    graphVisualisationSchemaName,
+    splitPaneIllustrationSchemaName,
+    ImageIllustration,
+    VideoEmbed,
+    GraphVisualisation,
+    SplitPaneIllustration,
+    type Illustration,
+    type SplitPaneIllustrationContent,
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
 export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
-export { type SanityTopbar, Topbar, type TopbarColumn, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel, topbarSchemaName, TopbarVideoColumn, TopbarSpotlightColumn } from "./navigation/topbar";
+export {
+    type SanityTopbar,
+    Topbar,
+    type TopbarColumn,
+    TopbarListColumn,
+    TopbarListColumnItem,
+    TopbarMenuPanel,
+    topbarSchemaName,
+    TopbarVideoColumn,
+    TopbarSpotlightColumn,
+} from "./navigation/topbar";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
 export { Page, type SanityPage } from "./page/common";
@@ -56,7 +105,11 @@ export { LearningCenter, learningCenterSchemaName, type SanityLearningCenter } f
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
-export { type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName } from "./page/request-tech-talk";
+export {
+    type SanityRequestTechTalkPage,
+    RequestTechTalkPage,
+    requestTechTalkPageSchemaName,
+} from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
@@ -66,8 +119,18 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
-    type WordpressPosts, type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
-    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost, articleFromApi,
+    type WordpressPosts,
+    type WordpressPost,
+    type RelatedBlogPosts,
+    type BlogFilter,
+    type BlogCategoryFilter,
+    type BlogNullFilter,
+    blogNullFilter,
+    Article,
+    FundamentalArticle,
+    ApplicationArticle,
+    BlogPost,
+    articleFromApi,
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";
 export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";
@@ -75,16 +138,34 @@ export { EventBase, type GetCalendarLinkParams, type CalendarServiceName } from 
 export { LiveEvent, liveEventSchema } from "./resource/live-event";
 export { EventDate, type SanityEventDate } from "./resource/live-event-details";
 export {
-    applicationArticleSchemaName, blogPostSchemaName, fundamentalArticleSchemaName, genericResourceSchemaName,
-    liveEventSchemaName, lectureSchemaName, whitePaperSchemaName, type SanityBlogPost,
-    type SanityWhitePaper, type SanityLiveEvent, type SanityFundamentalArticle, type SanityLecture, type SanityArticle,
-    type SanityApplicationArticle, type SanityGenericResource, type BlogPostLevel,
+    applicationArticleSchemaName,
+    blogPostSchemaName,
+    fundamentalArticleSchemaName,
+    genericResourceSchemaName,
+    liveEventSchemaName,
+    lectureSchemaName,
+    whitePaperSchemaName,
+    type SanityBlogPost,
+    type SanityWhitePaper,
+    type SanityLiveEvent,
+    type SanityFundamentalArticle,
+    type SanityLecture,
+    type SanityArticle,
+    type SanityApplicationArticle,
+    type SanityGenericResource,
+    type BlogPostLevel,
 } from "./resource/sanity";
 export { Lecture } from "./resource/lecture";
 export { ResourceSection } from "./resource/section";
 export { WhitePaper } from "./resource/white-paper";
 export { Document, SanityDataset } from "./sanity-core";
-export { type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink, socialMedias } from "./social-media";
+export {
+    type SanityCommunityResources,
+    communityResourcesSchemaName,
+    type SocialMediaID,
+    SocialMediaLink,
+    socialMedias,
+} from "./social-media";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
 export { groupBy, associateBy } from "./util";

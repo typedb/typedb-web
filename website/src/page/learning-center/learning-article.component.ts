@@ -18,6 +18,7 @@ import {
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
+import { CanonicalLinkService } from "src/service/canonical-link.service";
 
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
@@ -41,6 +42,7 @@ export class LearningArticleComponent implements OnInit {
     });
 
     constructor(
+        private canonicalLink: CanonicalLinkService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private content: ContentService,
@@ -82,6 +84,9 @@ export class LearningArticleComponent implements OnInit {
                     document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                         el.setAttribute("rel", "noopener");
                     });
+                    if (post.canonicalUrl) {
+                        this.canonicalLink.setCanonical(post.canonicalUrl);
+                    }
                 } else {
                     this.router.navigate(["learn"], { replaceUrl: true });
                 }

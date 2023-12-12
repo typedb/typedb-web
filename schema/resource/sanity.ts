@@ -32,7 +32,9 @@ export interface SanityGenericResource extends SanityDocument {
     linkText: string;
 }
 
-export interface SanityArticle extends SanitySiteResource {}
+export interface SanityArticle extends SanitySiteResource {
+    canonicalUrl?: string;
+}
 
 export interface SanityFundamentalArticle extends SanityArticle {
     _type: typeof fundamentalArticleSchemaName;

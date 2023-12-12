@@ -4,8 +4,6 @@
     display: flex;
     flex-flow: row wrap;
     gap: 40px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 
     @media (max-width: media.$max-width-tablet) {
         padding: 32px;
@@ -16,10 +14,15 @@
         padding: 12px;
         gap: 20px;
     }
+
+    &.cp-in-tab {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 }
 
 $number-of-lines: 20;
-$number-of-lines-mobile: 10;
+$number-of-lines-mobile: 12;
 
 td-aspect-ratio {
     flex: 0 0 calc((var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px) * 16 / 9);
