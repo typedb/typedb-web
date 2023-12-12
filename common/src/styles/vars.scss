@@ -129,6 +129,8 @@
         --line-height-p2: #{typography.$height-p2-mobile};
         --font-size-aside: #{typography.$aside-mobile};
         --line-height-aside: #{typography.$height-aside-mobile};
+        --font-size-code: #{typography.$code-mobile};
+        --line-height-code: #{typography.$height-code-mobile};
 
         --card-padding: #{$card-padding-mobile};
     }

@@ -6,7 +6,7 @@ import {
     SanityDataset,
     SanityGenericPage,
     TechnicolorBlock,
-    TitleBodyIllustrationSection,
+    TitleBodyPanelSection,
 } from "typedb-web-schema";
 
 import { PageComponentBase } from "../page-component-base";
@@ -34,17 +34,11 @@ export class GenericPageComponent extends PageComponentBase<GenericPage> {
 
 @Component({
     selector: "td-generic-page-technicolor-block",
-    template: `<td-technicolor-block
-        [block]="block"
-        [index]="index + 1"
-        contentWidth="narrow"
-        [noUpperLine]="index === 0"
-        [noBody]="true"
-    />`,
+    template: `<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenericPageTechnicolorBlockComponent implements OnInit {
-    @Input() section!: TitleBodyIllustrationSection;
+    @Input() section!: TitleBodyPanelSection;
     @Input() index!: number;
 
     block!: TechnicolorBlock;
