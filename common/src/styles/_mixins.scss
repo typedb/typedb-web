@@ -161,4 +161,6 @@
     background: $color;
     mask-image: $url;
     -webkit-mask-image: $url;
+    mask-size: 100%;
+    -webkit-mask-size: 100%;
 }
