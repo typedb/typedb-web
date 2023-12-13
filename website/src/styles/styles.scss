@@ -44,23 +44,15 @@ article {
         position: relative;
 
         &.article-content-no-planet {
-            padding-bottom: 0;
+            padding-bottom: 5em;
         }
 
         @media (max-width: media.$max-width-tablet) {
             padding-bottom: 315px;
-
-            &.article-content-no-planet {
-                padding-bottom: 0;
-            }
         }
 
         @media (max-width: media.$max-width-mobile) {
             padding-bottom: 250px;
-
-            &.article-content-no-planet {
-                padding-bottom: 0;
-            }
         }
     }
 }
