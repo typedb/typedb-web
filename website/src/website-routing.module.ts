@@ -23,16 +23,16 @@ import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./web
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
-    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
+    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     // "white-papers": { component: WhitePapersPageComponent, title: "TypeDB White Papers" },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
     deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
     events: { component: EventsPageComponent, title: "TypeDB Events" },
-    features: { component: FeaturesPageComponent },
+    features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     learn: { component: LearningCenterComponent, title: "TypeDB Learning Center" },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
-    support: { component: SupportPageComponent },
+    support: { component: SupportPageComponent, title: "TypeDB Support" },
 };
 
 const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {

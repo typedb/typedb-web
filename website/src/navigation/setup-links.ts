@@ -4,7 +4,7 @@ export const setupLinks = (el: HTMLElement | null, router: Router) => {
     const links = el?.querySelectorAll("a");
     links?.forEach((link) =>
         link.addEventListener("click", (ev) => {
-            if (link.dataset["type"] === "external") {
+            if (ev.ctrlKey || ev.metaKey || link.dataset["type"] === "external") {
                 return;
             }
             const href = link.getAttribute("href");
