@@ -23,7 +23,7 @@ import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./web
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
-    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB: Request a Tech Talk" },
+    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     // "white-papers": { component: WhitePapersPageComponent, title: "TypeDB White Papers" },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
     deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
