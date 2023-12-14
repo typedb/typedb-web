@@ -28,11 +28,11 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     blog: { component: BlogComponent, title: "TypeDB Blog" },
     deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
     events: { component: EventsPageComponent, title: "TypeDB Events" },
-    features: { component: FeaturesPageComponent },
+    features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     learn: { component: LearningCenterComponent, title: "TypeDB Learning Center" },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
-    support: { component: SupportPageComponent },
+    support: { component: SupportPageComponent, title: "TypeDB Support" },
 };
 
 const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
