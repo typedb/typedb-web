@@ -91,22 +91,22 @@ status = 301
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
-to = "https://typedb-docs2.netlify.app/:splat"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://live-temp.typedb.com/docs/*"
-to = "https://typedb-docs2.netlify.app/:splat"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://master.typedb.com/docs/*"
-to = "https://typedb-docs2.netlify.app/:splat"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://development.typedb.com/docs/*"
-to = "https://development--typedb-docs2.netlify.app/:splat"
+to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
