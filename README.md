@@ -1,4 +1,4 @@
-# TypeDB Web - Main
+# TypeDB Website
 
 Main repository for the TypeDB Web project. Details of each module, including local development instructions,
 can be found in the `README` files of their respective directories:
