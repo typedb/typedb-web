@@ -1,7 +1,0 @@
-@use "media";
-
-:host {
-    @media (max-width: media.$max-width-mobile) {
-        display: none;
-    }
-}

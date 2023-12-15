@@ -322,12 +322,14 @@ pre code {
     }
 
     @media (max-width: media.$max-width-mobile) {
-        top: 100%;
-        transform: rotate(-90deg) translate(100%, -100%);
+        display: none;
 
-        > * {
-            padding: 5px 15px;
-        }
+        // top: 100%;
+        // transform: rotate(-90deg) translate(100%, -100%);
+
+        // > * {
+        //     padding: 5px 15px;
+        // }
     }
 }
 
