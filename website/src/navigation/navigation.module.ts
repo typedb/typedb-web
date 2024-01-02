@@ -10,8 +10,16 @@ import { FooterComponent } from "./footer/footer.component";
 import { TopbarMenuComponent } from "./topbar/topbar-menu.component";
 
 @NgModule({
-    declarations: [FeedbackButtonComponent, FooterComponent, TopbarMenuComponent],
-    imports: [BrowserModule, FormsModule, FrameworkModule, HttpClientModule, RouterModule],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        FrameworkModule,
+        HttpClientModule,
+        RouterModule,
+        FeedbackButtonComponent,
+        FooterComponent,
+        TopbarMenuComponent,
+    ],
     providers: [],
     exports: [FeedbackButtonComponent, FooterComponent, TopbarMenuComponent],
 })

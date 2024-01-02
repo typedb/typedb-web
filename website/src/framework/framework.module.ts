@@ -77,7 +77,16 @@ const globalRippleConfig: RippleGlobalOptions = {
 };
 
 @NgModule({
-    declarations: [
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatSnackBarModule,
+        RouterModule,
         ActionsComponent,
         AddToCalendarDialogComponent,
         AspectRatioComponent,
@@ -136,17 +145,6 @@ const globalRippleConfig: RippleGlobalOptions = {
         TitleBodyActionsSectionComponent,
         TooltipComponent,
         LecturePanelsComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatIconModule,
-        MatProgressBarModule,
-        MatSnackBarModule,
-        RouterModule,
     ],
     exports: [
         ActionsComponent,

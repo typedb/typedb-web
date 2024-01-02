@@ -37,7 +37,11 @@ import { WhitePaperDetailsPageComponent } from "./white-papers/white-paper-detai
 import { WhitePapersPageComponent } from "./white-papers/white-papers-page.component";
 
 @NgModule({
-    declarations: [
+    imports: [
+        BrowserModule,
+        CommonModule,
+        FormsModule,
+        FrameworkModule,
         BlogAuthorshipBarComponent,
         BlogCategoryChipsComponent,
         BlogComponent,
@@ -72,7 +76,6 @@ import { WhitePapersPageComponent } from "./white-papers/white-papers-page.compo
         WhitePaperDetailsPageComponent,
         WhitePapersPageComponent,
     ],
-    imports: [BrowserModule, CommonModule, FormsModule, FrameworkModule],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

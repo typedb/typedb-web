@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -19,13 +20,37 @@ import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
+import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.component";
+import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
+import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
+import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-home-page",
     templateUrl: "./home-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        forwardRef(() => HomePageTechnicolorBlockComponent),
+        ContentTabsComponent,
+        NgFor,
+        ResourcePanelsComponent,
+        LinkPanelsComponent,
+        FeatureGridComponent,
+        KeyPointTableComponent,
+        SocialMediaPanelsComponent,
+        TestimonialsCarouselComponent,
+        ConclusionPanelComponent,
+        AsyncPipe,
+    ],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
@@ -68,6 +93,8 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         [organisationLogos]="organisationLogos"
     ></td-technicolor-block>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TechnicolorBlockComponent],
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

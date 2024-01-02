@@ -1,4 +1,6 @@
+import { AsyncPipe, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -20,6 +22,12 @@ import {
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { CanonicalLinkService } from "src/service/canonical-link.service";
 
+import { ButtonComponent } from "../../framework/button/button.component";
+import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
+import { LinkDirective } from "../../framework/link/link.directive";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
@@ -29,6 +37,18 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     templateUrl: "./learning-article.component.html",
     styleUrls: ["./learning-article.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        RichTextComponent,
+        MatIconModule,
+        ButtonComponent,
+        FurtherLearningComponent,
+        AsyncPipe,
+    ],
 })
 export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;

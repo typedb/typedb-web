@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { AsyncPipe, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 
 import { of } from "rxjs";
 import {
@@ -11,12 +12,27 @@ import {
 
 import { TechnicolorBlockComponent } from "src/framework/technicolor-block/technicolor-block.component";
 
+import { ContactPanelComponent } from "../../framework/contact-panel/contact-panel.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { ServicesTableComponent } from "../../framework/services-table/services-table.component";
+import { TechnicolorBlockComponent as TechnicolorBlockComponent_1 } from "../../framework/technicolor-block/technicolor-block.component";
+import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-services-page",
     templateUrl: "./services-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        forwardRef(() => ServicesPageTechnicolorBlockComponent),
+        ServicesTableComponent,
+        TestimonialsCarouselComponent,
+        ContactPanelComponent,
+        AsyncPipe,
+    ],
 })
 export class ServicesPageComponent extends PageComponentBase<ServicesPage> {
     protected override getPage(data: SanityDataset) {
@@ -35,6 +51,8 @@ export class ServicesPageComponent extends PageComponentBase<ServicesPage> {
         [longUpperLine]="block === page.contactSection"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TechnicolorBlockComponent_1],
 })
 export class ServicesPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

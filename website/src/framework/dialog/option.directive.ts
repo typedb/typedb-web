@@ -2,6 +2,7 @@ import { Directive, ElementRef, Input, OnInit } from "@angular/core";
 
 @Directive({
     selector: "[tdOption]",
+    standalone: true,
 })
 export class OptionDirective implements OnInit {
     @Input("tdOption") option?: string;

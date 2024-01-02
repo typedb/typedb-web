@@ -1,12 +1,18 @@
+import { NgClass, NgIf, NgStyle } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ActionButton, LinkButton } from "typedb-web-schema";
+
+import { LinkDirective } from "../link/link.directive";
+import { TooltipComponent } from "../tooltip/tooltip.component";
 
 @Component({
     selector: "td-button",
     templateUrl: "button.component.html",
     styleUrls: ["./button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, TooltipComponent, NgClass, LinkDirective, NgStyle],
 })
 export class ButtonComponent {
     @Input() button!: ActionButton;

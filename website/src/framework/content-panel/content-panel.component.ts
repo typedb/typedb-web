@@ -1,12 +1,20 @@
+import { NgClass, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
+
+import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { IllustrationComponent } from "../illustration/illustration.component";
+import { LinkDirective } from "../link/link.directive";
+import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
     selector: "td-content-panel",
     templateUrl: "content-panel.component.html",
     styleUrls: ["content-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass, NgIf, IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective],
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;

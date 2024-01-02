@@ -1,4 +1,6 @@
+import { AsyncPipe, NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -12,6 +14,15 @@ import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../../framework/button/button.component";
+import { EventDatePipe } from "../../framework/date/event-date.pipe";
+import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
+import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { PersonInfoComponent } from "../../framework/person/person.component";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -19,6 +30,24 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./event-details-page.component.html",
     styleUrls: ["./event-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        HeadingWithHighlightsComponent,
+        MatIconModule,
+        NgSwitch,
+        NgSwitchCase,
+        AspectRatioComponent,
+        ButtonComponent,
+        RichTextComponent,
+        NgFor,
+        PersonInfoComponent,
+        FurtherLearningComponent,
+        AsyncPipe,
+        EventDatePipe,
+        EventDurationPipe,
+    ],
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
