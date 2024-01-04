@@ -1,5 +1,6 @@
 {
     "include": ["src"],
+    "exclude": ["src/components"],
     "compilerOptions": {
         "target": "ES2022",
         "moduleResolution": "node",
