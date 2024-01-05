@@ -38,6 +38,7 @@ import VertexEncoding = GraphVisualisation.VertexEncoding;
     templateUrl: "graph-visualisation.component.html",
     styleUrls: ["graph-visualisation.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @Input() graph!: GraphVisualisation;

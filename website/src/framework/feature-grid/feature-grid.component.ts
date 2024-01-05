@@ -1,3 +1,4 @@
+import { NgFor, NgIf } from "@angular/common";
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
 
 import Prism from "prismjs";
@@ -14,11 +15,27 @@ import {
     VideoEmbed,
 } from "typedb-web-schema";
 
+import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { IllustrationComponent } from "../illustration/illustration.component";
+import { LinkDirective } from "../link/link.directive";
+import { RichTextComponent } from "../text/rich-text.component";
+import { TagChipsComponent } from "./tag-chips.component";
+
 @Component({
     selector: "td-feature-grid",
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgFor,
+        NgIf,
+        TagChipsComponent,
+        RichTextComponent,
+        LinkDirective,
+        AspectRatioComponent,
+        IllustrationComponent,
+    ],
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() layout!: FeatureGridLayout;

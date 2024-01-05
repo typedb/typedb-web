@@ -1,14 +1,36 @@
+import { NgSwitch, NgSwitchCase, NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 
 import { Person } from "typedb-web-schema";
 
 import { ImageBuilder } from "src/service/image-builder.service";
 
 @Component({
+    selector: "td-avatar",
+    templateUrl: "./avatar.component.html",
+    styleUrls: ["./avatar.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatIconModule],
+})
+export class AvatarComponent {
+    @Input() person!: Person;
+
+    constructor(private imageBuilder: ImageBuilder) {}
+
+    getPersonImage(): string {
+        return this.imageBuilder.image(this.person.headshotURL).width(88).url();
+    }
+}
+
+@Component({
     selector: "td-person-info",
     templateUrl: "./person-info.component.html",
     styleUrls: ["./person-info.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgSwitch, NgSwitchCase, NgTemplateOutlet, AvatarComponent],
 })
 export class PersonInfoComponent {
     @Input() disableLink = false;
@@ -39,26 +61,12 @@ export class PersonInfoComponent {
 }
 
 @Component({
-    selector: "td-avatar",
-    templateUrl: "./avatar.component.html",
-    styleUrls: ["./avatar.component.scss"],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class AvatarComponent {
-    @Input() person!: Person;
-
-    constructor(private imageBuilder: ImageBuilder) {}
-
-    getPersonImage(): string {
-        return this.imageBuilder.image(this.person.headshotURL).width(88).url();
-    }
-}
-
-@Component({
     selector: "td-person-card",
     templateUrl: "./person-card.component.html",
     styleUrls: ["./person-card.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [PersonInfoComponent],
 })
 export class PersonCardComponent {
     @Input() person!: Person;

@@ -1,3 +1,4 @@
+import { AsyncPipe, NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -11,6 +12,13 @@ import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../../framework/button/button.component";
+import { EventDatePipe } from "../../framework/date/event-date.pipe";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -18,6 +26,21 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./events-page.component.html",
     styleUrls: ["./events-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        TitleBodyActionsSectionComponent,
+        AspectRatioComponent,
+        NgSwitch,
+        NgSwitchCase,
+        RichTextComponent,
+        ButtonComponent,
+        NgFor,
+        AsyncPipe,
+        EventDatePipe,
+        PlainTextPipe,
+    ],
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(

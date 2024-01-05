@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { AsyncPipe, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 
 import { of } from "rxjs";
 import {
@@ -9,6 +10,11 @@ import {
     TechnicolorBlock,
 } from "typedb-web-schema";
 
+import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
+import { FeatureTableComponent } from "../../framework/feature-table/feature-table.component";
+import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { ProductTableComponent } from "../../framework/product-table/product-table.component";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { PageComponentBase } from "../page-component-base";
 
@@ -16,6 +22,17 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-deployment-page",
     templateUrl: "./deployment-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        forwardRef(() => DeploymentPageTechnicolorBlockComponent),
+        ProductTableComponent,
+        FeatureTableComponent,
+        LinkPanelsComponent,
+        ConclusionPanelComponent,
+        AsyncPipe,
+    ],
 })
 export class DeploymentPageComponent extends PageComponentBase<DeploymentPage> {
     protected override getPage(data: SanityDataset) {
@@ -33,6 +50,8 @@ export class DeploymentPageComponent extends PageComponentBase<DeploymentPage> {
         [noUpperLine]="index === 0"
     ></td-technicolor-block>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TechnicolorBlockComponent],
 })
 export class DeploymentPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

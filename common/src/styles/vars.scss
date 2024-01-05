@@ -2,7 +2,6 @@
 @use "media";
 @use "shapes" as *;
 @use "typography";
-@use "@fontsource/titillium-web/scss/metadata" as TitilliumWebMetadata;
 
 :root {
     /* colors */
@@ -63,7 +62,7 @@
 
     --font-size-base: var(--font-size-p2);
     --body-letter-spacing: 0.016em;
-    --default-font-family: #{TitilliumWebMetadata.$family}, sans-serif;
+    --default-font-family: "Titillium Web", sans-serif;
     --code-font-family: "Monaco", monospace;
 
     --font-size-h1: #{typography.$h1};

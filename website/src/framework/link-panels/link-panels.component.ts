@@ -1,12 +1,21 @@
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
+
+import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../button/button.component";
+import { LinkDirective } from "../link/link.directive";
+import { PlainTextPipe } from "../text/plain-text.pipe";
+import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
     selector: "td-link-panels",
     templateUrl: "link-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, LinkDirective, NgIf, RichTextComponent],
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
@@ -17,6 +26,8 @@ export class LinkPanelsComponent {
     templateUrl: "resource-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgSwitch, NgSwitchCase, NgFor, LinkDirective, NgIf, RichTextComponent],
 })
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
@@ -28,6 +39,8 @@ export class ResourcePanelsComponent {
     templateUrl: "link-panels-cols-2.component.html",
     styleUrls: ["link-panels-cols-2.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, LinkDirective, RichTextComponent],
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
@@ -38,6 +51,8 @@ export class LinkPanelsCols2Component {
     templateUrl: "lecture-panels.component.html",
     styleUrls: ["lecture-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, LinkDirective, NgIf, AspectRatioComponent, ButtonComponent, PlainTextPipe],
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];

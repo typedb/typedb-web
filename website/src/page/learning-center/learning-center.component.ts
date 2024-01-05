@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 
 import { of } from "rxjs";
 import { LearningCenter, learningCenterSchemaName, SanityDataset, SanityLearningCenter } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
+import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
+import { LinkPanelsCols2Component } from "../../framework/link-panels/link-panels.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -11,6 +17,17 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./learning-center.component.html",
     styleUrls: ["./learning-center.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        TitleBodyActionsSectionComponent,
+        NgFor,
+        forwardRef(() => LearningCenterBlockComponent),
+        LinkPanelsCols2Component,
+        ConclusionPanelComponent,
+        AsyncPipe,
+    ],
 })
 export class LearningCenterComponent extends PageComponentBase<LearningCenter> {
     protected override getPage(data: SanityDataset) {
@@ -23,6 +40,8 @@ export class LearningCenterComponent extends PageComponentBase<LearningCenter> {
     selector: "td-learning-center-block",
     template: `<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TechnicolorBlockComponent],
 })
 export class LearningCenterBlockComponent {
     @Input() section!: TechnicolorBlock;

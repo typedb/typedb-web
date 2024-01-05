@@ -1,4 +1,6 @@
+import { AsyncPipe, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -13,6 +15,12 @@ import { FormService } from "src/service/form.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
+import {
+    HeadingWithHighlightsComponent,
+    ParagraphWithHighlightsComponent,
+} from "../../framework/text/text-with-highlights.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -20,6 +28,16 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./request-tech-talk-page.component.html",
     styleUrls: ["./request-tech-talk-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        HeadingWithHighlightsComponent,
+        MatProgressBarModule,
+        ParagraphWithHighlightsComponent,
+        RichTextComponent,
+        AsyncPipe,
+    ],
 })
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     readonly isSubmitting$: Observable<boolean>;

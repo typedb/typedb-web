@@ -1,3 +1,4 @@
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -18,15 +19,35 @@ import {
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
+import { LinkDirective } from "../../framework/link/link.directive";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import {
+    HeadingWithHighlightsComponent,
+    ParagraphWithHighlightsComponent,
+} from "../../framework/text/text-with-highlights.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
+import { BlogNavbarComponent } from "./blog-navbar.component";
+import { BlogRowComponent } from "./blog-row.component";
 
 @Component({
     selector: "td-blog-list-page",
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        ParagraphWithHighlightsComponent,
+        BlogNavbarComponent,
+        NgFor,
+        BlogRowComponent,
+        AsyncPipe,
+    ],
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
