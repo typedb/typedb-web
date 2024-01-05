@@ -1,4 +1,6 @@
+import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -16,6 +18,16 @@ import {
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../../framework/button/button.component";
+import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
+import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
+import { LecturePanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PageComponentBase } from "../page-component-base";
@@ -24,6 +36,24 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-lectures-page",
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        TitleBodyActionsSectionComponent,
+        AspectRatioComponent,
+        RichTextComponent,
+        ButtonComponent,
+        TechnicolorBlockComponent,
+        LecturePanelsComponent,
+        NgFor,
+        MatIconModule,
+        AsyncPipe,
+        DatePipe,
+        EventDurationPipe,
+        OrdinalDatePipe,
+        PlainTextPipe,
+    ],
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;

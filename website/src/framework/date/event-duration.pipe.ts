@@ -4,6 +4,7 @@ import { EventDate } from "typedb-web-schema";
 
 @Pipe({
     name: "eventDuration",
+    standalone: true,
 })
 export class EventDurationPipe implements PipeTransform {
     transform(val: number | EventDate): string {

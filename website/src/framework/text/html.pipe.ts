@@ -4,7 +4,10 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { toHTML } from "@portabletext/to-html";
 import { PortableText } from "typedb-web-schema";
 
-@Pipe({ name: "html" })
+@Pipe({
+    name: "html",
+    standalone: true,
+})
 export class HtmlPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {}
 

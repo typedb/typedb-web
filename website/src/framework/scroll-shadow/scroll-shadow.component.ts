@@ -14,6 +14,7 @@ import {
     templateUrl: "./scroll-shadow.component.html",
     styleUrls: ["./scroll-shadow.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class ScrollShadowComponent implements AfterViewInit {
     @Input() color: "deep-purple" | "black-purple" = "deep-purple";

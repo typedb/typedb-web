@@ -1,3 +1,4 @@
+import { AsyncPipe, NgClass, NgFor, NgIf } from "@angular/common";
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -17,6 +18,7 @@ import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 
 import { MediaQueryService } from "src/service/media-query.service";
 
+import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
 import { sanitiseHtmlID } from "../util";
 
 const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
@@ -26,6 +28,8 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "code-snippet.component.html",
     styleUrls: ["code-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, NgFor, AsyncPipe],
 })
 export class CodeSnippetComponent implements AfterViewInit {
     @Input() snippet!: CodeSnippet;
@@ -62,6 +66,8 @@ export class CodeSnippetComponent implements AfterViewInit {
     templateUrl: "polyglot-snippet.component.html",
     styleUrls: ["polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ScrollShadowComponent, NgFor, NgClass, CodeSnippetComponent, AsyncPipe],
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename

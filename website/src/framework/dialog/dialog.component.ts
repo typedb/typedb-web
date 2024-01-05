@@ -1,5 +1,15 @@
+import { AsyncPipe, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnInit } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import {
+    MAT_DIALOG_DATA,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogRef,
+    MatDialogTitle,
+} from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { map, Observable, ReplaySubject, Subject } from "rxjs";
 import { ActionButton, EventBase, Link, LinkButton, ParagraphWithHighlights } from "typedb-web-schema";
@@ -8,12 +18,33 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { CalendarService } from "../../service/calendar.service";
 import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
+import { ActionsComponent } from "../actions/actions.component";
+import { ParagraphWithHighlightsComponent } from "../text/text-with-highlights.component";
+
+@Component({
+    selector: "td-dialog-close-button",
+    templateUrl: "dialog-close-button.component.html",
+    styleUrls: ["./dialog-close-button.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatButtonModule, MatDialogClose, MatIconModule],
+})
+export class DialogCloseButtonComponent {}
 
 @Component({
     selector: "td-dialog",
     templateUrl: "dialog.component.html",
     styleUrls: ["./dialog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        DialogCloseButtonComponent,
+        MatDialogContent,
+        NgIf,
+        ParagraphWithHighlightsComponent,
+        MatProgressBarModule,
+    ],
 })
 export class DialogComponent {
     @Input() isSubmitting: boolean | null = null;
@@ -34,6 +65,8 @@ export class DialogComponent {
         [description]="description$ | async"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [DialogComponent, AsyncPipe],
 })
 export class CloudWaitlistDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;
@@ -77,6 +110,8 @@ export class CloudWaitlistDialogComponent {
         [description]="description$ | async"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [DialogComponent, AsyncPipe],
 })
 export class NewsletterDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;
@@ -118,6 +153,8 @@ export class NewsletterDialogComponent {
         [description]="description$ | async"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [DialogComponent, AsyncPipe],
 })
 export class FeedbackDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;
@@ -160,6 +197,8 @@ export class FeedbackDialogComponent {
         variant="contact"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [DialogComponent, AsyncPipe],
 })
 export class ContactDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;
@@ -198,6 +237,15 @@ export class ContactDialogComponent {
     templateUrl: "add-to-calendar-dialog.component.html",
     styleUrls: ["add-to-calendar-dialog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        DialogCloseButtonComponent,
+        MatDialogContent,
+        ActionsComponent,
+        NgIf,
+        MatProgressBarModule,
+    ],
 })
 export class AddToCalendarDialogComponent implements OnInit {
     actions!: ActionButton[];
@@ -236,11 +284,3 @@ export class AddToCalendarDialogComponent implements OnInit {
         ];
     }
 }
-
-@Component({
-    selector: "td-dialog-close-button",
-    templateUrl: "dialog-close-button.component.html",
-    styleUrls: ["./dialog-close-button.component.scss"],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class DialogCloseButtonComponent {}

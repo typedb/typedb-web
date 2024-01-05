@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 
 import { of } from "rxjs";
 import { FeaturesPage, featuresPageSchemaName, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
 
+import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
+import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -11,6 +17,17 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./features-page.component.html",
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        TitleBodyActionsSectionComponent,
+        NgFor,
+        forwardRef(() => FeaturesPageTechnicolorBlockComponent),
+        FeatureGridComponent,
+        ConclusionPanelComponent,
+        AsyncPipe,
+    ],
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     protected override getPage(data: SanityDataset) {
@@ -23,6 +40,8 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     selector: "td-features-page-technicolor-block",
     template: `<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TechnicolorBlockComponent],
 })
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;

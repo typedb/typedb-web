@@ -1,3 +1,4 @@
+import { NgFor, NgIf, NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import {
@@ -8,11 +9,17 @@ import {
     PublicationPanelItem,
 } from "typedb-web-schema";
 
+import { FeatureGridComponent } from "../feature-grid/feature-grid.component";
+import { IllustrationComponent } from "../illustration/illustration.component";
+import { RichTextComponent } from "../text/rich-text.component";
+
 @Component({
     selector: "td-publication-panel",
     templateUrl: "./publication-panel.component.html",
     styleUrls: ["./publication-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, NgIf, NgTemplateOutlet, FeatureGridComponent, RichTextComponent, IllustrationComponent],
 })
 export class PublicationPanelComponent {
     @Input() items!: PublicationPanelItem[];

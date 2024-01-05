@@ -10,6 +10,7 @@ import { HtmlPipe } from "./html.pipe";
     template: ``,
     styleUrls: ["rich-text.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class RichTextComponent {
     @Input() value!: string | PortableText;

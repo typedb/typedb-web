@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
@@ -7,6 +8,8 @@ import { AnalyticsService } from "../../service/analytics.service";
     templateUrl: "./404-page.component.html",
     styleUrls: ["./404-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [PageBackgroundComponent],
 })
 export class _404PageComponent implements OnInit {
     constructor(private _analytics: AnalyticsService) {}
