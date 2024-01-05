@@ -21,7 +21,7 @@ export class CalendarService {
             service: "google",
             title: props.title.toPlainText(),
             description: props.shortDescription,
-            startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
+            startTime: this.serializeDate(props.startDate()),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
@@ -33,7 +33,7 @@ export class CalendarService {
             service: "stream",
             title: props.title.toPlainText(),
             description: props.shortDescription,
-            startTime: props.startDate().toLocaleString("en-GB", { timeZone: TIME_ZONE }),
+            startTime: this.serializeDate(props.startDate()),
             durationMins: props.getDurationMins(),
             location: props.location(),
         };
@@ -46,5 +46,10 @@ export class CalendarService {
                 },
             },
         );
+    }
+
+    private serializeDate(date: Date): string {
+        // calndr.link requires ISO format; sv-SE (Sweden) uses it
+        return date.toLocaleString("sv-SE", { timeZone: TIME_ZONE });
     }
 }
