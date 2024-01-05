@@ -48,6 +48,18 @@ export class CalendarService {
         );
     }
 
+    icsFileURL(props: EventBase): string {
+        const params: GetCalendarLinkParams = {
+            service: "stream",
+            title: props.title.toPlainText(),
+            description: props.shortDescription,
+            startTime: this.serializeDate(props.startDate()),
+            durationMins: props.getDurationMins(),
+            location: props.location(),
+        };
+        return `${apiURLs.getCalendarLink}?service=${params.service}&title=${params.title}&description=${params.description}&startTime=${params.startTime}&timezone=${TIME_ZONE}&durationMins=${params.durationMins}&location=${params.location}`;
+    }
+
     private serializeDate(date: Date): string {
         // calndr.link requires ISO format; sv-SE (Sweden) uses it
         return date.toLocaleString("sv-SE", { timeZone: TIME_ZONE });
