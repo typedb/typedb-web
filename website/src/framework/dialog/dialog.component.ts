@@ -279,6 +279,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                     opensNewTab: true,
                     destination: this.calendarService.icsFileURL(this.data.event),
                 }),
+                // TODO: this code used to open the file automatically in Safari, but that stopped working in Jan 2024
                 // onClick: () => {
                 //     this.isLoading = true;
                 //     this.calendarService.getICSFile(this.data.event).subscribe((fileContent) => {
