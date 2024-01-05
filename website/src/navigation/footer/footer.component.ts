@@ -12,6 +12,7 @@ import { setupLinks } from "../setup-links";
     styleUrls: ["./footer.component.scss"],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class FooterComponent implements OnInit {
     constructor(

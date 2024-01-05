@@ -1,9 +1,12 @@
+import { AsyncPipe, NgClass, NgFor } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { ContentTextTab } from "typedb-web-schema";
 
+import { ContentPanelComponent } from "../content-panel/content-panel.component";
+import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
 import { sanitiseHtmlID } from "../util";
 
 @Component({
@@ -11,6 +14,8 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "content-tabs.component.html",
     styleUrls: ["content-tabs.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ScrollShadowComponent, NgFor, NgClass, ContentPanelComponent, AsyncPipe],
 })
 export class ContentTabsComponent implements OnInit {
     @Input() tabs!: ContentTextTab[];

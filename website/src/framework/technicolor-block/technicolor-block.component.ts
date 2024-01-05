@@ -1,12 +1,28 @@
+import { NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { Organisation, TechnicolorBlock } from "typedb-web-schema";
+
+import { ActionsComponent } from "../actions/actions.component";
+import { LinkDirective } from "../link/link.directive";
+import { OrganisationLogosComponent } from "../organisation-logos/organisation-logos.component";
+import { RichTextComponent } from "../text/rich-text.component";
+import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
 
 @Component({
     selector: "td-technicolor-block",
     templateUrl: "technicolor-block.component.html",
     styleUrls: ["./technicolor-block.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        NgIf,
+        RichTextComponent,
+        ActionsComponent,
+        OrganisationLogosComponent,
+    ],
 })
 export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

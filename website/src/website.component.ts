@@ -2,7 +2,7 @@ import { LocationStrategy, ViewportScroller } from "@angular/common";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router, Event as RouterEvent, Scroll } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, Event as RouterEvent, Scroll, RouterOutlet } from "@angular/router";
 
 import { NgcCookieConsentService } from "ngx-cookieconsent";
 import { filter } from "rxjs";
@@ -13,6 +13,9 @@ import { CanonicalLinkService } from "./service/canonical-link.service";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { FormService } from "./service/form.service";
+import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
+import { FooterComponent } from "./navigation/footer/footer.component";
+import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
 
 const SITE_URL = "https://typedb.com";
 
@@ -21,6 +24,8 @@ const SITE_URL = "https://typedb.com";
     templateUrl: "./website.component.html",
     styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [TopbarMenuComponent, RouterOutlet, FooterComponent, FeedbackButtonComponent],
 })
 export class WebsiteComponent {
     @HostBinding("class.has-banner") hasBanner = false;

@@ -41,5 +41,5 @@ interface Window {
 
     _hsq: string[][];
 
-    gtag: (arg0: string, arg1: string, arg2: any) => any;
+    gtag: (arg0: string, arg1: string, arg2: object) => unknown;
 }

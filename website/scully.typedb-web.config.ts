@@ -25,7 +25,7 @@ export const config: ScullyConfig = {
     extraRoutes: getWebsiteRoutes(),
     routes: {},
     puppeteerLaunchOptions: {
-        // executablePath: "/opt/homebrew/bin/chromium",
+        executablePath: "/opt/homebrew/bin/chromium",
         args: ["--no-sandbox", "--disabled-setupid-sandbox"],
     },
 };

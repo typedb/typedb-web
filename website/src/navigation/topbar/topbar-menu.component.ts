@@ -13,6 +13,7 @@ import { TopbarMenuService } from "./topbar-menu.service";
     styleUrls: ["./topbar-menu.component.scss"],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class TopbarMenuComponent implements OnInit {
     constructor(

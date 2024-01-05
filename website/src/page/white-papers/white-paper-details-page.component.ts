@@ -1,4 +1,6 @@
+import { AsyncPipe, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -14,7 +16,13 @@ import {
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
+import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
+import { LinkDirective } from "../../framework/link/link.directive";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { FormService } from "../../service/form.service";
@@ -26,6 +34,18 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./white-paper-details-page.component.html",
     styleUrls: ["./white-paper-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        AspectRatioComponent,
+        MatProgressBarModule,
+        RichTextComponent,
+        FurtherLearningComponent,
+        AsyncPipe,
+    ],
 })
 export class WhitePaperDetailsPageComponent extends PageComponentBase<WhitePaper> {
     readonly allWhitePapersHeading = new ParagraphWithHighlights({

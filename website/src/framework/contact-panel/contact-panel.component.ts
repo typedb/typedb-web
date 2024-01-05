@@ -1,4 +1,6 @@
+import { AsyncPipe, NgIf } from "@angular/common";
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { BehaviorSubject, Observable } from "rxjs";
 
@@ -10,6 +12,8 @@ import { PopupNotificationService } from "src/service/popup-notification.service
     templateUrl: "contact-panel.component.html",
     styleUrls: ["contact-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, MatProgressBarModule, AsyncPipe],
 })
 export class ContactPanelComponent implements AfterViewInit {
     @HostBinding("class") readonly className = "section card";

@@ -222,11 +222,7 @@ export class ContentService {
         return this.listArticles(applicationArticleSchemaName);
     }
 
-    private listArticles<T extends SanityArticle, U extends Article>(
-        schemaName: string,
-        limit = 100,
-        offset = 0,
-    ): Observable<U[]> {
+    private listArticles<T extends SanityArticle, U extends Article>(schemaName: string): Observable<U[]> {
         return combineLatest([this.data, this.wordpressPosts]).pipe(
             map(([data, wpPosts]) => {
                 return data

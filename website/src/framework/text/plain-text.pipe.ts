@@ -4,6 +4,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
 
 @Pipe({
     name: "plainText",
+    standalone: true,
 })
 export class PlainTextPipe implements PipeTransform {
     transform(value: ParagraphWithHighlights): string {

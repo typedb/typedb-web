@@ -14,6 +14,7 @@ import { Link } from "typedb-web-schema";
 
 @Directive({
     selector: "[tdLink]",
+    standalone: true,
 })
 export class LinkDirective implements OnChanges {
     @Input("tdLink") link?: Link | string;

@@ -1,4 +1,6 @@
+import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
@@ -22,15 +24,42 @@ import {
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 import { CanonicalLinkService } from "src/service/canonical-link.service";
 
+import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../../framework/button/button.component";
+import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
+import { LinkDirective } from "../../framework/link/link.directive";
+import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
+import { BlogAuthorshipBarComponent } from "./blog-authorship-bar.component";
+import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
+import { BlogNavbarComponent } from "./blog-navbar.component";
 
 @Component({
     selector: "td-blog-post-page",
     templateUrl: "./blog-post-page.component.html",
     styleUrls: ["./blog-post-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        PageBackgroundComponent,
+        NgIf,
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        BlogNavbarComponent,
+        BlogCategoryChipsComponent,
+        RichTextComponent,
+        BlogAuthorshipBarComponent,
+        MatIconModule,
+        ButtonComponent,
+        NgFor,
+        AspectRatioComponent,
+        FurtherLearningComponent,
+        AsyncPipe,
+    ],
 })
 export class BlogPostPageComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;

@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from "@angular/material/snack-bar";
 
 export interface SnackbarData {
@@ -10,6 +12,8 @@ export interface SnackbarData {
     templateUrl: "snackbar.component.html",
     styleUrls: ["./snackbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatIconModule, MatButtonModule],
 })
 export class SnackbarComponent {
     message: string;
