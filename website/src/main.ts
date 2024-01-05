@@ -3,6 +3,7 @@ import { enableProdMode, importProvidersFrom } from "@angular/core";
 import "typedb-web-common/lib/prism";
 
 import { environment } from "./environment/environment";
+import { PlainTextPipe } from "./framework/text/plain-text.pipe";
 
 import { WebsiteComponent } from "./website.component";
 import { WebsiteRoutingModule } from "./website-routing.module";
@@ -45,6 +46,7 @@ bootstrapApplication(WebsiteComponent, {
             ScullyLibModule.forRoot({ useTransferState: true, alwaysMonitor: false, manualIdle: true }),
             WebsiteRoutingModule,
         ),
+        PlainTextPipe,
         { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
