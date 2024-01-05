@@ -35,21 +35,24 @@ export default async (request: Request, context: Context) => {
     )}&duration=${params.get("durationMins")}&timezone=${params.get("timezone")}&title=${title}&description=${
         params.get("description") || title
     }&location=${params.get("location")}&calname=${icsName}`;
-    if (params.get("service") === "google") {
-        return Response.redirect(calndrURL, 302);
-    }
 
-    const eventResponse = await fetch(calndrURL, { method: "GET" });
-    if (!eventResponse.ok) {
-        console.error(eventResponse);
-        return internalServerError();
-    }
+    return Response.redirect(calndrURL, 302);
 
-    return new Response(eventResponse.body, {
-        headers: {
-            "Content-Disposition": `attachment; filename=${icsName}.ics`,
-            "Content-Type": "text/calendar",
-            "Access-Control-Allow-Origin": "*",
-        },
-    });
+    // if (params.get("service") === "google") {
+    //     return Response.redirect(calndrURL, 302);
+    // }
+    //
+    // const eventResponse = await fetch(calndrURL, { method: "GET" });
+    // if (!eventResponse.ok) {
+    //     console.error(eventResponse);
+    //     return internalServerError();
+    // }
+    //
+    // return new Response(eventResponse.body, {
+    //     headers: {
+    //         "Content-Disposition": `attachment; filename=${icsName}.ics`,
+    //         "Content-Type": "text/calendar",
+    //         "Access-Control-Allow-Origin": "*",
+    //     },
+    // });
 };
