@@ -28,6 +28,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
+import { sanitiseHtmlID } from "../../framework/util";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
@@ -101,11 +102,8 @@ export class LearningArticleComponent implements OnInit {
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
-                        Prism.highlightAll();
+                        this.decoratePost();
                     }, 0);
-                    document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
-                        el.setAttribute("rel", "noopener");
-                    });
                     if (post.canonicalUrl) {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
@@ -119,6 +117,23 @@ export class LearningArticleComponent implements OnInit {
             error: (_err) => {
                 this.router.navigate(["learn"], { replaceUrl: true });
             },
+        });
+    }
+
+    private decoratePost() {
+        Prism.highlightAll();
+        document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+            el.setAttribute("rel", "noopener");
+        });
+        let anchorIndex = 0;
+        document.querySelectorAll("article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])").forEach((el) => {
+            const sectionID = `${sanitiseHtmlID(el.textContent || "section")}-${anchorIndex}`;
+            el.id = sectionID;
+            const anchorEl = document.createElement("a");
+            anchorEl.classList.add("anchor");
+            anchorEl.href = `${window.location.origin}${window.location.pathname}#${sectionID}`;
+            el.appendChild(anchorEl);
+            anchorIndex++;
         });
     }
 
