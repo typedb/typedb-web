@@ -11,9 +11,33 @@
     }
 
     /* prettier-ignore */
-    h1, h2, h3, h4 {
+    h1, h2, h3, h4, h5, h6 {
         font-weight: var(--font-weight-bold);
-        margin: 1.5em 0 1em;
+        margin: 1.5em 0 1em -0.66em;
+        padding-left: 0.66em;
+        position: relative;
+
+        > a.anchor {
+            /* copied from Antora */
+            position: absolute;
+            visibility: hidden;
+            left: 0;
+            font-size: 0.8em;
+            font-weight: normal;
+            line-height: normal;
+
+            &::before {
+                content: "§";
+            }
+        }
+
+        &:hover a.anchor {
+            visibility: visible;
+        }
+    }
+
+    h2 > a.anchor {
+        margin-top: -0.1em;
     }
 
     /* prettier-ignore */
