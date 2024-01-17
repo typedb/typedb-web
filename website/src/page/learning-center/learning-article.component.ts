@@ -100,7 +100,9 @@ export class LearningArticleComponent implements OnInit {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
                     this._analytics.hubspot.trackPageView();
-                    Prism.highlightAll();
+                    setTimeout(() => {
+                        Prism.highlightAll();
+                    }, 0);
                     document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                         el.setAttribute("rel", "noopener");
                     });

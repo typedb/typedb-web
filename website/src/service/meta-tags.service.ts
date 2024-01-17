@@ -11,14 +11,20 @@ export class MetaTagsService {
 
     register(metaTags: MetaTags) {
         const metaDefinitions: MetaDefinition[] = [];
+        if (metaTags.title) {
+            metaDefinitions.push({ property: "og:title", content: metaTags.title });
+            metaDefinitions.push({ name: "twitter:title", content: metaTags.title });
+        }
         if (metaTags.description) {
             metaDefinitions.push({ name: "description", content: metaTags.description });
+            metaDefinitions.push({ name: "twitter:description", content: metaTags.description });
         }
         if (metaTags.keywords?.length) {
             metaDefinitions.push({ name: "keywords", content: metaTags.keywords });
         }
         if (metaTags.ogImage) {
             metaDefinitions.push({ property: "og:image", content: metaTags.ogImage });
+            metaDefinitions.push({ name: "twitter:image", content: metaTags.ogImage });
         }
         metaTags.custom.forEach(({ property, content }) => metaDefinitions.push({ property, content }));
 

@@ -4,6 +4,7 @@ import { SanityDataset, SanityImage } from "../sanity-core";
 import { PropsOf } from "../util";
 
 export interface SanityMetaTags {
+    title?: string;
     description?: string;
     keywords?: string;
     ogImage?: SanityImage;
@@ -11,12 +12,14 @@ export interface SanityMetaTags {
 }
 
 export class MetaTags {
+    readonly title?: string;
     readonly description?: string;
     readonly keywords?: string;
     readonly ogImage?: string;
     readonly custom: { property: string; content: string }[];
 
     protected constructor(data: PropsOf<MetaTags>) {
+        this.title = data.title;
         this.description = data.description;
         this.keywords = data.keywords;
         this.ogImage = data.ogImage;
@@ -25,6 +28,7 @@ export class MetaTags {
 
     static fromSanity(data: SanityMetaTags, db: SanityDataset) {
         return new MetaTags({
+            title: data.title,
             description: data.description,
             keywords: data.keywords,
             ogImage: data.ogImage && db.resolveRef(data.ogImage.asset).url,
@@ -64,6 +68,7 @@ export const metaTagsField = defineField({
     name: metaTagsFieldName,
     type: "object",
     fields: [
+        { name: "title", type: "string" },
         { name: "description", type: "text" },
         { name: "keywords", type: "string", description: "Comma-separated list" },
         { name: "ogImage", title: "Image", type: "image" },
