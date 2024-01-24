@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import {
@@ -38,12 +38,8 @@ export class DialogCloseButtonComponent {}
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        MatDialogTitle,
-        DialogCloseButtonComponent,
-        MatDialogContent,
-        NgIf,
-        ParagraphWithHighlightsComponent,
-        MatProgressBarModule,
+        MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ParagraphWithHighlightsComponent,
+        MatProgressBarModule
     ],
 })
 export class DialogComponent {
@@ -239,13 +235,12 @@ export class ContactDialogComponent {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        MatDialogTitle,
-        DialogCloseButtonComponent,
-        MatDialogContent,
-        ActionsComponent,
-        NgIf,
-        MatProgressBarModule,
-    ],
+    MatDialogTitle,
+    DialogCloseButtonComponent,
+    MatDialogContent,
+    ActionsComponent,
+    MatProgressBarModule
+],
 })
 export class AddToCalendarDialogComponent implements OnInit {
     actions!: ActionButton[];

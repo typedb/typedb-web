@@ -1,16 +1,20 @@
 <div class="section cp-root">
   <div class="cp-main-area">
     <h3>{{ panel.title }}</h3>
-    <td-rich-text *ngIf="panel.body" [value]="panel.body" />
+    @if (panel.body) {
+      <td-rich-text [value]="panel.body" />
+    }
     <div class="flex"></div>
     <td-actions [actions]="panel.actions" />
   </div>
   <div class="cp-resources-area">
     <h4>{{ panel.resourceListTitle }}</h4>
     <ul>
-      <li *ngFor="let resource of panel.resources">
-        <a [tdLink]="resource" class="link-tertiary">{{ resource.text }}</a>
-      </li>
+      @for (resource of panel.resources; track resource) {
+        <li>
+          <a [tdLink]="resource" class="link-tertiary">{{ resource.text }}</a>
+        </li>
+      }
     </ul>
   </div>
 </div>

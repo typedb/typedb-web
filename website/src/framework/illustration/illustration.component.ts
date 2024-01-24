@@ -1,27 +1,11 @@
-import { AsyncPipe, NgIf } from "@angular/common";
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    forwardRef,
-    HostBinding,
-    Input,
-    NgZone,
-    OnInit,
-    ViewChild,
-} from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 
 import interact from "interactjs";
 import { map, Observable } from "rxjs";
 import {
-    CodeSnippet,
-    GraphVisualisation,
-    Illustration,
-    ImageIllustration,
-    PolyglotSnippet,
-    PortableText,
-    SplitPaneIllustration,
-    VideoEmbed,
+    CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, PortableText,
+    SplitPaneIllustration, VideoEmbed,
 } from "typedb-web-schema";
 
 import { MediaQueryService } from "../../service/media-query.service";
@@ -37,12 +21,11 @@ import { RichTextComponent } from "../text/rich-text.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        NgIf,
-        CodeSnippetComponent,
-        PolyglotSnippetComponent,
-        GraphVisualisationComponent,
-        forwardRef(() => SplitPaneIllustrationComponent),
-    ],
+    CodeSnippetComponent,
+    PolyglotSnippetComponent,
+    GraphVisualisationComponent,
+    forwardRef(() => SplitPaneIllustrationComponent)
+],
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
@@ -134,7 +117,7 @@ export class SplitPaneIllustrationComponent implements OnInit {
     styleUrls: ["captioned-illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [AspectRatioComponent, IllustrationComponent, NgIf, RichTextComponent],
+    imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent],
 })
 export class CaptionedIllustrationComponent {
     @Input() illustration!: Illustration;

@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
@@ -15,7 +15,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, LinkDirective, NgIf, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent],
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
@@ -27,7 +27,7 @@ export class LinkPanelsComponent {
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgSwitch, NgSwitchCase, NgFor, LinkDirective, NgIf, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent],
 })
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
@@ -40,7 +40,7 @@ export class ResourcePanelsComponent {
     styleUrls: ["link-panels-cols-2.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent],
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
@@ -52,7 +52,7 @@ export class LinkPanelsCols2Component {
     styleUrls: ["lecture-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, LinkDirective, NgIf, AspectRatioComponent, ButtonComponent, PlainTextPipe],
+    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe],
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];

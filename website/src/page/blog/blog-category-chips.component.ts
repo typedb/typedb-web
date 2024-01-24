@@ -1,4 +1,4 @@
-import { NgFor } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { blogCategories, BlogCategoryID, BlogPost } from "typedb-web-schema";
@@ -11,7 +11,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
     styleUrls: ["./blog-category-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, LinkDirective],
+    imports: [LinkDirective],
 })
 export class BlogCategoryChipsComponent {
     @Input() post!: BlogPost;

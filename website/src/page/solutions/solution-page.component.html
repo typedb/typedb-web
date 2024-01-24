@@ -1,29 +1,34 @@
 <article tdPageBackground nebula="solutions" planet="pink">
-  <div *ngIf="page$ | async as page" class="article-content">
-    <section class="page-section page-intro-section" *ngIf="page.introSection">
-      <td-heading-with-highlights [value]="page.introSection.title" class="narrow-section" level="h1" />
-      <td-rich-text
-        *ngIf="page.introSection.body"
-        [value]="page.introSection.body"
-        class="text-p1 sp-intro-section-body"
-      />
-      <td-link-panels class="subsection-margin" [panels]="page.introSection.links" [cols]="3" />
-    </section>
-    <ng-container *ngIf="page.useCasesSection">
-      <td-solution-page-technicolor-block [block]="page.useCasesSection" [page]="page" />
-      <td-key-point-panels-2x2 [keyPoints]="page.useCasesSection.keyPoints" />
-    </ng-container>
-    <ng-container *ngIf="page.challengesSection">
-      <td-solution-page-technicolor-block [block]="page.challengesSection" [page]="page" />
-      <td-key-point-panels-2x2 [keyPoints]="page.challengesSection.keyPoints" />
-    </ng-container>
-    <ng-container *ngIf="page.solutionSection">
-      <td-solution-page-technicolor-block [block]="page.solutionSection" [page]="page" />
-      <td-key-point-table [keyPoints]="page.solutionSection.keyPoints" />
-    </ng-container>
-    <ng-container *ngIf="page.furtherReadingSection">
-      <td-solution-page-technicolor-block [block]="page.furtherReadingSection" [page]="page" />
-      <td-link-panels [panels]="page.furtherReadingSection.links" [cols]="3" />
-    </ng-container>
-  </div>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      @if (page.introSection) {
+        <section class="page-section page-intro-section">
+          <td-heading-with-highlights [value]="page.introSection.title" class="narrow-section" level="h1" />
+          @if (page.introSection.body) {
+            <td-rich-text
+              [value]="page.introSection.body"
+              class="text-p1 sp-intro-section-body"
+              />
+          }
+          <td-link-panels class="subsection-margin" [panels]="page.introSection.links" [cols]="3" />
+        </section>
+      }
+      @if (page.useCasesSection) {
+        <td-solution-page-technicolor-block [block]="page.useCasesSection" [page]="page" />
+        <td-key-point-panels-2x2 [keyPoints]="page.useCasesSection.keyPoints" />
+      }
+      @if (page.challengesSection) {
+        <td-solution-page-technicolor-block [block]="page.challengesSection" [page]="page" />
+        <td-key-point-panels-2x2 [keyPoints]="page.challengesSection.keyPoints" />
+      }
+      @if (page.solutionSection) {
+        <td-solution-page-technicolor-block [block]="page.solutionSection" [page]="page" />
+        <td-key-point-table [keyPoints]="page.solutionSection.keyPoints" />
+      }
+      @if (page.furtherReadingSection) {
+        <td-solution-page-technicolor-block [block]="page.furtherReadingSection" [page]="page" />
+        <td-link-panels [panels]="page.furtherReadingSection.links" [cols]="3" />
+      }
+    </div>
+  }
 </article>

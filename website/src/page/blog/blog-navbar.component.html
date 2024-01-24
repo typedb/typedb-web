@@ -1,7 +1,9 @@
 <td-scroll-shadow color="black-purple">
   <ul [class]="fontSizeClass">
-    <li *ngFor="let item of items">
-      <a [tdLink]="item.link" [innerHtml]="item.text" (clicked)="itemClicked($event)"></a>
-    </li>
+    @for (item of items; track item) {
+      <li>
+        <a [tdLink]="item.link" [innerHtml]="item.text" (clicked)="itemClicked($event)"></a>
+      </li>
+    }
   </ul>
 </td-scroll-shadow>

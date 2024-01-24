@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -40,16 +40,15 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        RichTextComponent,
-        MatIconModule,
-        ButtonComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    LinkDirective,
+    HeadingWithHighlightsComponent,
+    RichTextComponent,
+    MatIconModule,
+    ButtonComponent,
+    FurtherLearningComponent,
+    AsyncPipe
+],
 })
 export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;

@@ -1,14 +1,5 @@
-import { AsyncPipe, NgClass, NgFor, NgIf } from "@angular/common";
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    Input,
-    NgZone,
-    OnInit,
-    ViewChild,
-} from "@angular/core";
+import { AsyncPipe, NgClass } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import Prism from "prismjs";
@@ -29,7 +20,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     styleUrls: ["code-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgIf, NgFor, AsyncPipe],
+    imports: [AsyncPipe],
 })
 export class CodeSnippetComponent implements AfterViewInit {
     @Input() snippet!: CodeSnippet;
@@ -67,7 +58,7 @@ export class CodeSnippetComponent implements AfterViewInit {
     styleUrls: ["polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [ScrollShadowComponent, NgFor, NgClass, CodeSnippetComponent, AsyncPipe],
+    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe],
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename

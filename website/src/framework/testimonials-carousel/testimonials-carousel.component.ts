@@ -1,4 +1,4 @@
-import { NgFor } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
 import { Testimonial } from "typedb-web-schema";
@@ -11,7 +11,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     styleUrls: ["./testimonials-carousel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor],
+    imports: [],
 })
 export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];

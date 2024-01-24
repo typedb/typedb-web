@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -32,22 +32,18 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        HeadingWithHighlightsComponent,
-        MatIconModule,
-        NgSwitch,
-        NgSwitchCase,
-        AspectRatioComponent,
-        ButtonComponent,
-        RichTextComponent,
-        NgFor,
-        PersonInfoComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
-        EventDatePipe,
-        EventDurationPipe,
-    ],
+    PageBackgroundComponent,
+    HeadingWithHighlightsComponent,
+    MatIconModule,
+    AspectRatioComponent,
+    ButtonComponent,
+    RichTextComponent,
+    PersonInfoComponent,
+    FurtherLearningComponent,
+    AsyncPipe,
+    EventDatePipe,
+    EventDurationPipe
+],
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(

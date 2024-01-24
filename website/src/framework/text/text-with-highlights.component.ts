@@ -1,4 +1,4 @@
-import { NgFor, NgStyle, NgSwitch, NgSwitchCase, NgTemplateOutlet } from "@angular/common";
+import { NgStyle, NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ParagraphWithHighlights } from "typedb-web-schema";
@@ -8,7 +8,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
     templateUrl: "heading-with-highlights.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgSwitch, NgSwitchCase, NgTemplateOutlet, NgFor, NgStyle],
+    imports: [NgTemplateOutlet, NgStyle],
 })
 export class HeadingWithHighlightsComponent {
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -33,10 +33,10 @@ export class HeadingWithHighlightsComponent {
 @Component({
     selector: "td-p-with-highlights",
     template:
-        '<p [class]="rootClass"><span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span></p>\n',
+        '<p [class]="rootClass">@for (span of value.spans; track span) {<span [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span>}</p>\n',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, NgStyle],
+    imports: [NgStyle],
 })
 export class ParagraphWithHighlightsComponent {
     @Input() value!: ParagraphWithHighlights;

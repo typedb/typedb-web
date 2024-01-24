@@ -1,24 +1,37 @@
-<ng-container *ngFor="let item of items">
-  <div *ngIf="isContentRow(item)" class="pp-content-row">
-    <div *ngIf="item.title">
-      <h3>{{ item.title }}</h3>
+@for (item of items; track item) {
+  @if (isContentRow(item)) {
+    <div class="pp-content-row">
+      @if (item.title) {
+        <div>
+          <h3>{{ item.title }}</h3>
+        </div>
+      }
+      @if (item.item1 || item.item2) {
+        <div class="pp-content-row-body">
+          <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
+          <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
+        </div>
+      }
     </div>
-    <div class="pp-content-row-body" *ngIf="item.item1 || item.item2">
-      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item1 }" />
-      <ng-container *ngTemplateOutlet="contentRow; context: { item: item.item2 }" />
-    </div>
-  </div>
-  <td-feature-grid
-    *ngIf="!isContentRow(item)"
-    [disableCardAppearance]="true"
-    [featureRows]="item.features"
-    [layout]="item.featureGridLayout"
-    [illustration]="item.illustration"
-  />
-</ng-container>
+  }
+  @if (!isContentRow(item)) {
+    <td-feature-grid
+      [disableCardAppearance]="true"
+      [featureRows]="item.features"
+      [layout]="item.featureGridLayout"
+      [illustration]="item.illustration"
+    />
+  }
+}
 
 <ng-template #contentRow let-item="item">
-  <div *ngIf="!item"></div>
-  <td-rich-text *ngIf="isPortableText(item)" [value]="item" />
-  <td-illustration *ngIf="isIllustration(item)" [illustration]="item" />
+  @if (!item) {
+    <div></div>
+  }
+  @if (isPortableText(item)) {
+    <td-rich-text [value]="item" />
+  }
+  @if (isIllustration(item)) {
+    <td-illustration [illustration]="item" />
+  }
 </ng-template>

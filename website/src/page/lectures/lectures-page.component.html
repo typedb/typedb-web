@@ -1,87 +1,96 @@
 <article tdPageBackground nebula="features" planet="yellow_green">
-  <div *ngIf="page$ | async as page" class="article-content">
-    <div class="section">
-      <td-title-body-actions-section
-        [isIntroSection]="true"
-        [title]="page.introSection.title"
-        [body]="page.introSection.body"
-      />
-      <div class="card subsection-margin wp-primary-lecture">
-        <div *ngIf="!page?.introSection?.featuredLecture" class="wp-primary-placeholder"></div>
-        <ng-container *ngIf="page?.introSection?.featuredLecture as primaryLecture">
-          <td-aspect-ratio ratio="16:9">
-            <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
-          </td-aspect-ratio>
-          <div class="wp-primary-lecture-summary">
-            <h3 class="wp-lecture-title-container">
-              <span class="wp-lecture-title">{{ primaryLecture.title | plainText }}</span>
-              <span class="wp-title-separator">|</span>
-              <span *ngIf="primaryLecture.isFinished()">On-Demand</span>
-              <time *ngIf="!primaryLecture.isFinished()" [dateTime]="primaryLecture.datetime.toISOString()">
-                {{ primaryLecture.datetime | ordinalDate }}
-              </time>
-            </h3>
-            <div class="wp-lecture-text-container">
-              <td-rich-text class="wp-lecture-description" [value]="primaryLecture.description" />
-              <td-button [button]="primaryLecture.registrationButton()" />
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <div class="section">
+        <td-title-body-actions-section
+          [isIntroSection]="true"
+          [title]="page.introSection.title"
+          [body]="page.introSection.body"
+          />
+        <div class="card subsection-margin wp-primary-lecture">
+          @if (!page?.introSection?.featuredLecture) {
+            <div class="wp-primary-placeholder"></div>
+          }
+          @if (page?.introSection?.featuredLecture; as primaryLecture) {
+            <td-aspect-ratio ratio="16:9">
+              <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
+            </td-aspect-ratio>
+            <div class="wp-primary-lecture-summary">
+              <h3 class="wp-lecture-title-container">
+                <span class="wp-lecture-title">{{ primaryLecture.title | plainText }}</span>
+                @if (!primaryLecture.isFinished()) {
+                  <span class="wp-title-separator">|</span>
+                  <time [dateTime]="primaryLecture.datetime.toISOString()">
+                    {{ primaryLecture.datetime | ordinalDate }}
+                  </time>
+                }
+              </h3>
+              <div class="wp-lecture-text-container">
+                <td-rich-text class="wp-lecture-description" [value]="primaryLecture.description" />
+                <td-button [button]="primaryLecture.registrationButton()" />
+              </div>
             </div>
-          </div>
-        </ng-container>
+          }
+        </div>
       </div>
-    </div>
-    <ng-container
-      *ngIf="
+      @if (
         page.featuredLecturesSection &&
         page.featuredLecturesSection.featuredLectures &&
         page.featuredLecturesSection.featuredLectures.length
-      "
-    >
-      <td-technicolor-block [block]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
-      <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" />
-    </ng-container>
-    <ng-container *ngIf="page.exploreLecturesSection">
-      <td-technicolor-block [block]="page.exploreLecturesSection" [index]="2" />
-      <section class="card-appearance">
-        <ul class="wp-lecture-list">
-          <li *ngFor="let lecture of allLectures$ | async" class="wp-lecture-list-item">
-            <div class="wp-img-tertiary-container">
-              <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
-                <img [src]="lecture.imageURL" class="wp-img" alt="" />
-              </td-aspect-ratio>
-              <h3 class="wp-lecture-title hide-gt-mobile">{{ lecture.title | plainText }}</h3>
-            </div>
-            <div class="wp-lecture-text">
-              <h3 class="wp-lecture-title hide-mobile">{{ lecture.title | plainText }}</h3>
-              <p class="wp-speaker">
-                <span *ngFor="let speaker of lecture.speakers">
-                  <span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}
-                </span>
-              </p>
-              <aside class="wp-timing">
-                <span class="wp-lecture-datetime">
-                  <mat-icon svgIcon="calendar" />
-                  <span class="cdk-visually-hidden">Date/Time:</span>
-                  <ng-container *ngIf="lecture.isFinished()">On-Demand</ng-container>
-                  <ng-container *ngIf="!lecture.isFinished()">
-                    <time [dateTime]="lecture.datetime.toISOString()">
-                      {{ lecture.datetime | ordinalDate }},
-                      {{ lecture.datetime | date: "shortTime" }}
-                      {{ localTimezoneAbbreviation(lecture) }}
-                    </time>
-                  </ng-container>
-                </span>
-                <span>
-                  <mat-icon svgIcon="time" />
-                  <span class="cdk-visually-hidden">Duration:</span>
-                  {{ lecture.durationMins | eventDuration }}
-                </span>
-              </aside>
-            </div>
-            <div class="hide-mobile flex"></div>
-            <td-button [button]="lecture.registrationButton()" buttonWidth="100%" size="small"></td-button>
-          </li>
-        </ul>
-      </section>
-    </ng-container>
-  </div>
+        ) {
+        <td-technicolor-block [block]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
+        <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" />
+      }
+      @if (page.exploreLecturesSection) {
+        <td-technicolor-block [block]="page.exploreLecturesSection" [index]="2" />
+        <section class="card-appearance">
+          <ul class="wp-lecture-list">
+            @for (lecture of allLectures$ | async; track lecture) {
+              <li class="wp-lecture-list-item">
+                <div class="wp-img-tertiary-container">
+                  <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
+                    <img [src]="lecture.imageURL" class="wp-img" alt="" />
+                  </td-aspect-ratio>
+                  <h3 class="wp-lecture-title hide-gt-mobile">{{ lecture.title | plainText }}</h3>
+                </div>
+                <div class="wp-lecture-text">
+                  <h3 class="wp-lecture-title hide-mobile">{{ lecture.title | plainText }}</h3>
+                  <p class="wp-speaker">
+                    @for (speaker of lecture.speakers; track speaker) {
+                      <span>
+                        <span class="text-important">{{ speaker.name }}, </span>{{ speaker.jobDescription() }}
+                      </span>
+                    }
+                  </p>
+                  <aside class="wp-timing">
+                    <span class="wp-lecture-datetime">
+                      <mat-icon svgIcon="calendar" />
+                      <span class="cdk-visually-hidden">Date/Time:</span>
+                      @if (lecture.isFinished()) {
+                        On-Demand
+                      }
+                      @if (!lecture.isFinished()) {
+                        <time [dateTime]="lecture.datetime.toISOString()">
+                          {{ lecture.datetime | ordinalDate }},
+                          {{ lecture.datetime | date: "shortTime" }}
+                          {{ localTimezoneAbbreviation(lecture) }}
+                        </time>
+                      }
+                    </span>
+                    <span>
+                      <mat-icon svgIcon="time" />
+                      <span class="cdk-visually-hidden">Duration:</span>
+                      {{ lecture.durationMins | eventDuration }}
+                    </span>
+                  </aside>
+                </div>
+                <div class="hide-mobile flex"></div>
+                <td-button [button]="lecture.registrationButton()" buttonWidth="100%" size="small"></td-button>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+  }
 </article>

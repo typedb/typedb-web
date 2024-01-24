@@ -1,6 +1,8 @@
 <div class="section kpp-root">
-  <div *ngFor="let keyPoint of keyPoints" class="card kpp-panel">
-    <h3>{{ keyPoint.title }}</h3>
-    <td-rich-text [value]="keyPoint.body" />
-  </div>
+  @for (keyPoint of keyPoints; track keyPoint) {
+    <div class="card kpp-panel">
+      <h3>{{ keyPoint.title }}</h3>
+      <td-rich-text [value]="keyPoint.body" />
+    </div>
+  }
 </div>

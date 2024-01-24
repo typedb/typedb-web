@@ -1,23 +1,28 @@
 <div class="st-table section">
-  <div *ngFor="let keyPoint of keyPoints" class="st-row">
-    <div class="st-cell-icon">
-      <img [src]="keyPoint.iconURL" alt="" />
-    </div>
-    <div class="st-cell-text">
-      <div class="st-title-description">
-        <h3>{{ keyPoint.title }}</h3>
-        <td-rich-text [value]="keyPoint.body" />
+  @for (keyPoint of keyPoints; track keyPoint) {
+    <div class="st-row">
+      <div class="st-cell-icon">
+        <img [src]="keyPoint.iconURL" alt="" />
       </div>
-      <ul
-        *ngIf="keyPoint.checklist.length"
-        class="st-check-list"
-        [class.st-check-list-two-columns]="keyPoint.checklist.length === 4"
-      >
-        <li *ngFor="let checkText of keyPoint.checklist" class="st-check-item">
-          <mat-icon svgIcon="check" />
-          {{ checkText }}
-        </li>
-      </ul>
+      <div class="st-cell-text">
+        <div class="st-title-description">
+          <h3>{{ keyPoint.title }}</h3>
+          <td-rich-text [value]="keyPoint.body" />
+        </div>
+        @if (keyPoint.checklist.length) {
+          <ul
+            class="st-check-list"
+            [class.st-check-list-two-columns]="keyPoint.checklist.length === 4"
+            >
+            @for (checkText of keyPoint.checklist; track checkText) {
+              <li class="st-check-item">
+                <mat-icon svgIcon="check" />
+                {{ checkText }}
+              </li>
+            }
+          </ul>
+        }
+      </div>
     </div>
-  </div>
+  }
 </div>

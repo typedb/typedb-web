@@ -1,4 +1,4 @@
-import { NgClass, NgIf } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
@@ -14,7 +14,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["content-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgClass, NgIf, IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective],
+    imports: [NgClass, IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective],
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;

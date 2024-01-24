@@ -1,4 +1,4 @@
-import { NgClass, NgFor, NgIf } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -13,7 +13,7 @@ import { InfoButtonComponent } from "../info-button/info-button.component";
     styleUrls: ["./feature-table-cell.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgClass, NgIf, MatIconModule, ButtonComponent],
+    imports: [NgClass, MatIconModule, ButtonComponent],
 })
 export class FeatureTableCellComponent {
     @Input() cell!: FeatureTableCell;
@@ -37,7 +37,7 @@ export class FeatureTableCellComponent {
     styleUrls: ["./feature-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, NgIf, InfoButtonComponent, FeatureTableCellComponent],
+    imports: [InfoButtonComponent, FeatureTableCellComponent],
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;

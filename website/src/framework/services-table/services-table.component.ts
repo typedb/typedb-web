@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -12,7 +12,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["./services-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, RichTextComponent, NgIf, MatIconModule],
+    imports: [RichTextComponent, MatIconModule],
 })
 export class ServicesTableComponent {
     @Input() keyPoints!: ServicesKeyPoint[];

@@ -1,27 +1,30 @@
 <div class="section wp-root">
-  <a
-    *ngFor="let lecture of lectures"
-    class="card wp-card"
-    [class]="lecture.comingSoon ? '' : 'hoverable'"
-    [tdLink]="lecture.registrationButton().link"
-    (mouseenter)="setPanelHovered(lecture, true)"
-    (mouseleave)="setPanelHovered(lecture, false)"
-  >
-    <aside *ngIf="lecture.registrationButton().comingSoon" class="lp-coming-soon">coming soon</aside>
-    <td-aspect-ratio ratio="16:9"><img [src]="lecture.imageURL" alt="" /></td-aspect-ratio>
-    <div>
-      <h3>{{ lecture.title | plainText }}</h3>
-      <p class="wp-speakers">
-        <strong class="text-important">{{ lecture.listSpeakers() }}</strong>
-      </p>
-      <aside class="text-quiet">{{ lecture.listSpeakerJobs() }}</aside>
-    </div>
-    <td-button
-      [button]="lecture.registrationButton()"
-      size="small"
-      buttonWidth="100%"
-      [noComingSoonTooltip]="true"
-      [containerHovered]="isPanelHovered(lecture)"
-    />
-  </a>
+  @for (lecture of lectures; track lecture) {
+    <a
+      class="card wp-card"
+      [class]="lecture.comingSoon ? '' : 'hoverable'"
+      [tdLink]="lecture.registrationButton().link"
+      (mouseenter)="setPanelHovered(lecture, true)"
+      (mouseleave)="setPanelHovered(lecture, false)"
+      >
+      @if (lecture.registrationButton().comingSoon) {
+        <aside class="lp-coming-soon">coming soon</aside>
+      }
+      <td-aspect-ratio ratio="16:9"><img [src]="lecture.imageURL" alt="" /></td-aspect-ratio>
+      <div>
+        <h3>{{ lecture.title | plainText }}</h3>
+        <p class="wp-speakers">
+          <strong class="text-important">{{ lecture.listSpeakers() }}</strong>
+        </p>
+        <aside class="text-quiet">{{ lecture.listSpeakerJobs() }}</aside>
+      </div>
+      <td-button
+        [button]="lecture.registrationButton()"
+        size="small"
+        buttonWidth="100%"
+        [noComingSoonTooltip]="true"
+        [containerHovered]="isPanelHovered(lecture)"
+      />
+    </a>
+  }
 </div>

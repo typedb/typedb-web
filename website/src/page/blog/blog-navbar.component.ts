@@ -1,4 +1,4 @@
-import { NgFor } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { blogCategories, blogCategoryList, Link } from "typedb-web-schema";
@@ -12,7 +12,7 @@ import { ScrollShadowComponent } from "../../framework/scroll-shadow/scroll-shad
     styleUrls: ["./blog-navbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [ScrollShadowComponent, NgFor, LinkDirective],
+    imports: [ScrollShadowComponent, LinkDirective],
 })
 export class BlogNavbarComponent {
     @Input() variant!: "listPage" | "postPage";

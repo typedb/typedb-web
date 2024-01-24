@@ -5,4 +5,6 @@
 <div mat-dialog-content>
   <td-actions [actions]="actions" />
 </div>
-<mat-progress-bar *ngIf="isLoading" mode="indeterminate" />
+@if (isLoading) {
+  <mat-progress-bar mode="indeterminate" />
+}

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 
 import { of } from "rxjs";
@@ -25,14 +25,13 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        forwardRef(() => ServicesPageTechnicolorBlockComponent),
-        ServicesTableComponent,
-        TestimonialsCarouselComponent,
-        ContactPanelComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    forwardRef(() => ServicesPageTechnicolorBlockComponent),
+    ServicesTableComponent,
+    TestimonialsCarouselComponent,
+    ContactPanelComponent,
+    AsyncPipe
+],
 })
 export class ServicesPageComponent extends PageComponentBase<ServicesPage> {
     protected override getPage(data: SanityDataset) {

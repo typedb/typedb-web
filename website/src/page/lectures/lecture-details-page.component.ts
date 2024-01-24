@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
@@ -44,23 +44,21 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     styleUrls: ["./lecture-details-page.component.scss"],
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        MatIconModule,
-        ActionsComponent,
-        AspectRatioComponent,
-        MatProgressBarModule,
-        RichTextComponent,
-        NgFor,
-        PersonCardComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
-        DatePipe,
-        EventDurationPipe,
-        OrdinalDatePipe,
-    ],
+    PageBackgroundComponent,
+    LinkDirective,
+    HeadingWithHighlightsComponent,
+    MatIconModule,
+    ActionsComponent,
+    AspectRatioComponent,
+    MatProgressBarModule,
+    RichTextComponent,
+    PersonCardComponent,
+    FurtherLearningComponent,
+    AsyncPipe,
+    DatePipe,
+    EventDurationPipe,
+    OrdinalDatePipe
+],
 })
 export class LectureDetailsPageComponent implements OnInit {
     readonly allLecturesHeading = new ParagraphWithHighlights({

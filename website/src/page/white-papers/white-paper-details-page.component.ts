@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
@@ -36,16 +36,15 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        AspectRatioComponent,
-        MatProgressBarModule,
-        RichTextComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    LinkDirective,
+    HeadingWithHighlightsComponent,
+    AspectRatioComponent,
+    MatProgressBarModule,
+    RichTextComponent,
+    FurtherLearningComponent,
+    AsyncPipe
+],
 })
 export class WhitePaperDetailsPageComponent extends PageComponentBase<WhitePaper> {
     readonly allWhitePapersHeading = new ParagraphWithHighlights({

@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { Organisation, TechnicolorBlock } from "typedb-web-schema";
@@ -16,12 +16,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        NgIf,
-        RichTextComponent,
-        ActionsComponent,
-        OrganisationLogosComponent,
+        LinkDirective, HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, OrganisationLogosComponent
     ],
 })
 export class TechnicolorBlockComponent {

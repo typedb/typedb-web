@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -37,20 +37,18 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        forwardRef(() => HomePageTechnicolorBlockComponent),
-        ContentTabsComponent,
-        NgFor,
-        ResourcePanelsComponent,
-        LinkPanelsComponent,
-        FeatureGridComponent,
-        KeyPointTableComponent,
-        SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent,
-        ConclusionPanelComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    forwardRef(() => HomePageTechnicolorBlockComponent),
+    ContentTabsComponent,
+    ResourcePanelsComponent,
+    LinkPanelsComponent,
+    FeatureGridComponent,
+    KeyPointTableComponent,
+    SocialMediaPanelsComponent,
+    TestimonialsCarouselComponent,
+    ConclusionPanelComponent,
+    AsyncPipe
+],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;

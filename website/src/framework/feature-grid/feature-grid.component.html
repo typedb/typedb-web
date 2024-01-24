@@ -1,44 +1,61 @@
-<div *ngFor="let feature of featureRows.flat()" class="fg-grid-item card-padding">
-  <div class="fg-grid-item-text">
-    <div *ngIf="feature.title" class="fg-feature-title-section">
-      <img *ngIf="feature.iconURL" [src]="feature.iconURL" alt="" />
-      <h3>{{ feature.title }}</h3>
-      <td-tag-chips [tags]="feature.tags" />
+@for (feature of featureRows.flat(); track feature) {
+  <div class="fg-grid-item card-padding">
+    <div class="fg-grid-item-text">
+      @if (feature.title) {
+        <div class="fg-feature-title-section">
+          @if (feature.iconURL) {
+            <img [src]="feature.iconURL" alt="" />
+          }
+          <h3>{{ feature.title }}</h3>
+          <td-tag-chips [tags]="feature.tags" />
+        </div>
+      }
+      @if (feature.body) {
+        <td-rich-text [value]="feature.body" />
+      }
+      @if (feature.links?.length) {
+        <div class="fg-links-section">
+          @for (link of feature.links; track link) {
+            <a class="link-tertiary" [tdLink]="link">{{ link.text }}</a>
+          }
+        </div>
+      }
     </div>
-
-    <td-rich-text *ngIf="feature.body" [value]="feature.body" />
-
-    <div *ngIf="feature.links?.length" class="fg-links-section">
-      <a *ngFor="let link of feature.links" class="link-tertiary" [tdLink]="link">{{ link.text }}</a>
-    </div>
+    @if (hasMediaIllustration(feature)) {
+      <td-aspect-ratio ratio="16:9">
+        <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
+      </td-aspect-ratio>
+    }
+    @if (hasShortCodeSnippet(feature)) {
+      <div class="fg-code-short-container">
+        <pre
+          class="fg-code-short"
+          [class.fg-blur]="feature.isIllustrationBlurred"
+        ><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
+        @if (!feature.isIllustrationBlurred) {
+          <button
+            class="fg-copy-button"
+            title="Copy to clipboard"
+            (click)="writeToClipboard($event, $any(feature.illustration).code)"
+          >
+            <div class="fg-copy-icon"></div>
+            <span class="fg-copy-toast">Copied!</span>
+          </button>
+        }
+      </div>
+    }
+    @if (hasCodeSnippetIllustration(feature)) {
+      <td-illustration
+        class="fg-code-snippet fg-code-snippet-short"
+        [illustration]="$any(feature.illustration)"
+        [isBlurred]="feature.isIllustrationBlurred"
+      />
+    }
   </div>
+}
 
-  <td-aspect-ratio *ngIf="hasMediaIllustration(feature)" ratio="16:9">
-    <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
-  </td-aspect-ratio>
-  <div *ngIf="hasShortCodeSnippet(feature)" class="fg-code-short-container">
-    <pre
-      class="fg-code-short"
-      [class.fg-blur]="feature.isIllustrationBlurred"
-    ><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
-    <button
-      *ngIf="!feature.isIllustrationBlurred"
-      class="fg-copy-button"
-      title="Copy to clipboard"
-      (click)="writeToClipboard($event, $any(feature.illustration).code)"
-    >
-      <div class="fg-copy-icon"></div>
-      <span class="fg-copy-toast">Copied!</span>
-    </button>
+@if (illustration) {
+  <div class="fg-illustration-row card-padding">
+    <td-illustration [illustration]="illustration" />
   </div>
-  <td-illustration
-    class="fg-code-snippet fg-code-snippet-short"
-    *ngIf="hasCodeSnippetIllustration(feature)"
-    [illustration]="$any(feature.illustration)"
-    [isBlurred]="feature.isIllustrationBlurred"
-  />
-</div>
-
-<div *ngIf="illustration" class="fg-illustration-row card-padding">
-  <td-illustration [illustration]="illustration" />
-</div>
+}
