@@ -1,61 +1,73 @@
 <article tdPageBackground nebula="cloud" planet="green">
-  <div *ngIf="page$ | async; let page" class="article-content">
-    <div class="section">
-      <td-title-body-actions-section
-        [isIntroSection]="true"
-        [title]="page.introSection.title"
-        [body]="page.introSection.body"
-      />
-
-      <div *ngIf="page.featuredEvent" class="subsection-margin card ep-primary-event">
-        <td-aspect-ratio ratio="16:9">
-          <img [src]="page.featuredEvent.imageURL" class="ep-img" alt="" />
-        </td-aspect-ratio>
-        <div class="ep-primary-event-summary">
-          <h3 class="ep-event-title-container">
-            <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
-            <span class="ep-title-separator">|</span>
-            <ng-container
-              [ngSwitch]="!page.featuredEvent.dateOptions.dateTBC && !!page.featuredEvent.dateOptions.startDate"
-            >
-              <time *ngSwitchCase="true" [dateTime]="page.featuredEvent.dateOptions.startDate!.toISOString()">
-                {{ page.featuredEvent.dateOptions | eventDate }}
-              </time>
-              <span *ngSwitchCase="false">{{ page.featuredEvent.dateOptions | eventDate }}</span>
-            </ng-container>
-            <span class="ep-title-separator">|</span>
-            <span>{{ page.featuredEvent.venue }}</span>
-          </h3>
-          <div class="ep-event-text-container">
-            <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
-            <td-button [button]="page.featuredEvent.registrationButton()" />
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="page.eventsList" class="subsection-margin card-appearance ep-grid">
-        <div *ngFor="let event of page.eventsList" class="ep-grid-item">
-          <div class="ep-img-and-text">
-            <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">
-              <img [src]="getEventListImageUrl(event)" class="ep-img" alt="" />
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <div class="section">
+        <td-title-body-actions-section
+          [isIntroSection]="true"
+          [title]="page.introSection.title"
+          [body]="page.introSection.body"
+          />
+        @if (page.featuredEvent) {
+          <div class="subsection-margin card ep-primary-event">
+            <td-aspect-ratio ratio="16:9">
+              <img [src]="page.featuredEvent.imageURL" class="ep-img" alt="" />
             </td-aspect-ratio>
-            <div>
-              <h3 class="ep-grid-item-title">{{ event.title | plainText }}</h3>
+            <div class="ep-primary-event-summary">
+              <h3 class="ep-event-title-container">
+                <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
+                <span class="ep-title-separator">|</span>
+                @switch (!page.featuredEvent.dateOptions.dateTBC && !!page.featuredEvent.dateOptions.startDate) {
+                  @case (true) {
+                    <time [dateTime]="page.featuredEvent.dateOptions.startDate!.toISOString()">
+                      {{ page.featuredEvent.dateOptions | eventDate }}
+                    </time>
+                  }
+                  @case (false) {
+                    <span>{{ page.featuredEvent.dateOptions | eventDate }}</span>
+                  }
+                }
+                <span class="ep-title-separator">|</span>
+                <span>{{ page.featuredEvent.venue }}</span>
+              </h3>
+              <div class="ep-event-text-container">
+                <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
+                <td-button [button]="page.featuredEvent.registrationButton()" />
+              </div>
             </div>
           </div>
-          <div class="ep-grid-item-description">
-            <ng-container [ngSwitch]="!event.dateOptions.dateTBC && !!event.dateOptions.startDate">
-              <time *ngSwitchCase="true" [dateTime]="event.dateOptions.startDate!.toISOString()">
-                {{ event.dateOptions | eventDate }}
-              </time>
-              <span *ngSwitchCase="false">{{ event.dateOptions | eventDate }}</span>
-            </ng-container>
-            <span>|</span>
-            <span>{{ event.venue }}</span>
+        }
+        @if (page.eventsList) {
+          <div class="subsection-margin card-appearance ep-grid">
+            @for (event of page.eventsList; track event) {
+              <div class="ep-grid-item">
+                <div class="ep-img-and-text">
+                  <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">
+                    <img [src]="getEventListImageUrl(event)" class="ep-img" alt="" />
+                  </td-aspect-ratio>
+                  <div>
+                    <h3 class="ep-grid-item-title">{{ event.title | plainText }}</h3>
+                  </div>
+                </div>
+                <div class="ep-grid-item-description">
+                  @switch (!event.dateOptions.dateTBC && !!event.dateOptions.startDate) {
+                    @case (true) {
+                      <time [dateTime]="event.dateOptions.startDate!.toISOString()">
+                        {{ event.dateOptions | eventDate }}
+                      </time>
+                    }
+                    @case (false) {
+                      <span>{{ event.dateOptions | eventDate }}</span>
+                    }
+                  }
+                  <span>|</span>
+                  <span>{{ event.venue }}</span>
+                </div>
+                <td-button [button]="event.registrationButton()" size="small" buttonWidth="100%"></td-button>
+              </div>
+            }
           </div>
-          <td-button [button]="event.registrationButton()" size="small" buttonWidth="100%"></td-button>
-        </div>
+        }
       </div>
     </div>
-  </div>
+  }
 </article>

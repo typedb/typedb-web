@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { of } from "rxjs";
@@ -27,16 +27,14 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        TitleBodyActionsSectionComponent,
-        AspectRatioComponent,
-        RichTextComponent,
-        ButtonComponent,
-        NgFor,
-        AsyncPipe,
-        PlainTextPipe,
-    ],
+    PageBackgroundComponent,
+    TitleBodyActionsSectionComponent,
+    AspectRatioComponent,
+    RichTextComponent,
+    ButtonComponent,
+    AsyncPipe,
+    PlainTextPipe
+],
 })
 export class WhitePapersPageComponent extends PageComponentBase<WhitePapersPage> {
     protected override getPage(data: SanityDataset) {

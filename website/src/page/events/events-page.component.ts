@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -28,19 +28,15 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        TitleBodyActionsSectionComponent,
-        AspectRatioComponent,
-        NgSwitch,
-        NgSwitchCase,
-        RichTextComponent,
-        ButtonComponent,
-        NgFor,
-        AsyncPipe,
-        EventDatePipe,
-        PlainTextPipe,
-    ],
+    PageBackgroundComponent,
+    TitleBodyActionsSectionComponent,
+    AspectRatioComponent,
+    RichTextComponent,
+    ButtonComponent,
+    AsyncPipe,
+    EventDatePipe,
+    PlainTextPipe
+],
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(

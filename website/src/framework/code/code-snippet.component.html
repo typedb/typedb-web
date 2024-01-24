@@ -1,9 +1,13 @@
 <div class="cs-root cs-root-resizable text-code">
-  <div *ngIf="snippet.language !== 'typedb-console'" class="cs-line-numbers">
-    <ol>
-      <li *ngFor="let lineNumber of lineNumbers$ | async">{{ lineNumber }}</li>
-    </ol>
-  </div>
+  @if (snippet.language !== 'typedb-console') {
+    <div class="cs-line-numbers">
+      <ol>
+        @for (lineNumber of lineNumbers$ | async; track lineNumber) {
+          <li>{{ lineNumber }}</li>
+        }
+      </ol>
+    </div>
+  }
   <div class="cs-code-area">
     <pre><code [class]="'language-' + snippet.language">{{ snippet.code }}</code></pre>
   </div>

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
@@ -30,14 +30,13 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        HeadingWithHighlightsComponent,
-        MatProgressBarModule,
-        ParagraphWithHighlightsComponent,
-        RichTextComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    HeadingWithHighlightsComponent,
+    MatProgressBarModule,
+    ParagraphWithHighlightsComponent,
+    RichTextComponent,
+    AsyncPipe
+],
 })
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     readonly isSubmitting$: Observable<boolean>;

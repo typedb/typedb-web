@@ -1,38 +1,41 @@
 <div class="section tc-root">
   <div class="tc-carousel">
-    <div *ngFor="let testimonial of testimonials; index as idx" class="tc-card" [style.transform]="cardTransform(idx)">
-      <div class="tc-card-content">
-        <p>
-          <em>{{ testimonial.body }}</em>
-        </p>
-        <div class="tc-details">
-          <div class="tc-person">
-            <img [src]="getHeadshotUrl(testimonial)" alt="" />
-            <div>
-              <p class="text-p1">
-                <strong>{{ testimonial.author.name }}</strong>
-              </p>
-              <aside class="tc-person-job">
-                {{ testimonial.author.jobTitle }},
-                {{ testimonial.author.organisation.name }}
-              </aside>
+    @for (testimonial of testimonials; track testimonial; let idx = $index) {
+      <div class="tc-card" [style.transform]="cardTransform(idx)">
+        <div class="tc-card-content">
+          <p>
+            <em>{{ testimonial.body }}</em>
+          </p>
+          <div class="tc-details">
+            <div class="tc-person">
+              <img [src]="getHeadshotUrl(testimonial)" alt="" />
+              <div>
+                <p class="text-p1">
+                  <strong>{{ testimonial.author.name }}</strong>
+                </p>
+                <aside class="tc-person-job">
+                  {{ testimonial.author.jobTitle }},
+                  {{ testimonial.author.organisation.name }}
+                </aside>
+              </div>
             </div>
+            <img class="tc-logo" [src]="getLogoUrl(testimonial)" alt="" />
           </div>
-          <img class="tc-logo" [src]="getLogoUrl(testimonial)" alt="" />
         </div>
       </div>
-    </div>
+    }
   </div>
   <div class="tc-control-panel">
     <button class="tc-controls-btn" (click)="previous()">
       <img src="/assets/image/chevron-left.svg" alt="<" />
     </button>
     <div class="tc-beads">
-      <div
-        *ngFor="let _ of testimonials; index as idx"
-        class="tc-bead"
-        [class.tc-bead-focused]="idx === focusedIndex"
-      ></div>
+      @for (_ of testimonials; track _; let idx = $index) {
+        <div
+          class="tc-bead"
+          [class.tc-bead-focused]="idx === focusedIndex"
+        ></div>
+      }
     </div>
     <button class="tc-controls-btn" (click)="next()">
       <img src="/assets/image/chevron-right.svg" alt=">" />

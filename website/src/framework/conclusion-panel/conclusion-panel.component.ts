@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ConclusionPanel } from "typedb-web-schema";
@@ -13,7 +13,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["conclusion-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgIf, RichTextComponent, ActionsComponent, NgFor, LinkDirective],
+    imports: [RichTextComponent, ActionsComponent, LinkDirective],
 })
 export class ConclusionPanelComponent {
     @Input() panel!: ConclusionPanel;

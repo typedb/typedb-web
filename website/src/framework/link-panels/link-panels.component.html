@@ -1,11 +1,13 @@
 <div class="section lc-root-cols-3">
-  <ng-container *ngFor="let panel of panels">
+  @for (panel of panels; track panel) {
     <a
       class="card lc-card lc-card-cols-3 lc-icon-card"
       [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
       [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
     >
-      <aside *ngIf="panel.button.comingSoon" class="lp-coming-soon">coming soon</aside>
+      @if (panel.button.comingSoon) {
+        <aside class="lp-coming-soon">coming soon</aside>
+      }
       <div><img class="lc-icon" [src]="panel.iconURL" alt="" /></div>
       <div class="lc-flex-container">
         <h3 class="lc-title">{{ panel.title }}</h3>
@@ -13,5 +15,5 @@
         <p class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
       </div>
     </a>
-  </ng-container>
+  }
 </div>

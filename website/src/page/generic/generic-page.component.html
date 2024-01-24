@@ -1,16 +1,18 @@
 <article tdPageBackground nebula="cloud" [planet]="isCloudPage ? 'blue_pink' : 'pink'">
-  <div *ngIf="page$ | async as page" class="article-content">
-    <td-title-body-actions-section
-      [isIntroSection]="true"
-      [title]="page.introSection.title"
-      [body]="page.introSection.body"
-      [actions]="page.introSection.actions"
-    />
-    <ng-container *ngFor="let section of page.coreSections; index as idx">
-      <td-generic-page-technicolor-block [section]="section" [index]="idx" />
-      <td-content-panel [panel]="section.panel" />
-    </ng-container>
-    <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.coreSections.length" />
-    <td-conclusion-panel [panel]="page.finalSection.panel" />
-  </div>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="page.introSection.title"
+        [body]="page.introSection.body"
+        [actions]="page.introSection.actions"
+        />
+      @for (section of page.coreSections; track section; let idx = $index) {
+        <td-generic-page-technicolor-block [section]="section" [index]="idx" />
+        <td-content-panel [panel]="section.panel" />
+      }
+      <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.coreSections.length" />
+      <td-conclusion-panel [panel]="page.finalSection.panel" />
+    </div>
+  }
 </article>

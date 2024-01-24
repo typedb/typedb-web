@@ -1,5 +1,11 @@
 <div class="ftc-root" [ngClass]="{ 'ftc-unchecked': booleanValue === false }">
-  <mat-icon *ngIf="booleanValue === true" svgIcon="check" class="td-icon-large" />
-  <span *ngIf="stringValue">{{ stringValue }}</span>
-  <td-button *ngIf="buttonValue" [button]="buttonValue" buttonWidth="100%"></td-button>
+  @if (booleanValue === true) {
+    <mat-icon svgIcon="check" class="td-icon-large" />
+  }
+  @if (stringValue) {
+    <span>{{ stringValue }}</span>
+  }
+  @if (buttonValue) {
+    <td-button [button]="buttonValue" buttonWidth="100%"/>
+  }
 </div>

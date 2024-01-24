@@ -1,3 +1,5 @@
-<aside *ngFor="let category of post.categories">
-  <a [tdLink]="'/blog/category/' + category">{{ displayName(category) }}</a>
-</aside>
+@for (category of post.categories; track category) {
+  <aside>
+    <a [tdLink]="'/blog/category/' + category">{{ displayName(category) }}</a>
+  </aside>
+}

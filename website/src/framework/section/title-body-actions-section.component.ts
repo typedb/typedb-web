@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { LinkButton, ParagraphWithHighlights, PortableText } from "typedb-web-schema";
@@ -13,7 +13,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     styleUrls: ["./title-body-actions-section.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [HeadingWithHighlightsComponent, NgIf, RichTextComponent, ActionsComponent],
+    imports: [HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent],
 })
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;

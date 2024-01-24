@@ -1,4 +1,4 @@
-import { NgSwitch, NgSwitchCase, NgTemplateOutlet } from "@angular/common";
+import { NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -30,7 +30,7 @@ export class AvatarComponent {
     styleUrls: ["./person-info.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgSwitch, NgSwitchCase, NgTemplateOutlet, AvatarComponent],
+    imports: [NgTemplateOutlet, AvatarComponent],
 })
 export class PersonInfoComponent {
     @Input() disableLink = false;

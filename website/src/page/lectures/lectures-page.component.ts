@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -38,22 +38,20 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./lectures-page.component.scss"],
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        TitleBodyActionsSectionComponent,
-        AspectRatioComponent,
-        RichTextComponent,
-        ButtonComponent,
-        TechnicolorBlockComponent,
-        LecturePanelsComponent,
-        NgFor,
-        MatIconModule,
-        AsyncPipe,
-        DatePipe,
-        EventDurationPipe,
-        OrdinalDatePipe,
-        PlainTextPipe,
-    ],
+    PageBackgroundComponent,
+    TitleBodyActionsSectionComponent,
+    AspectRatioComponent,
+    RichTextComponent,
+    ButtonComponent,
+    TechnicolorBlockComponent,
+    LecturePanelsComponent,
+    MatIconModule,
+    AsyncPipe,
+    DatePipe,
+    EventDurationPipe,
+    OrdinalDatePipe,
+    PlainTextPipe
+],
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;

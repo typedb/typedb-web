@@ -1,18 +1,24 @@
 <article tdPageBackground nebula="solutions">
   <div class="article-content article-content-no-planet">
-    <section *ngIf="blog$ | async as blog" class="page-section bp-title-section">
-      <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
-      <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
-    </section>
+    @if (blog$ | async; as blog) {
+      <section class="page-section bp-title-section">
+        <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
+        <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
+      </section>
+    }
 
     <div class="section-background-solid subsection-margin bp-blog-list">
       <hr class="bp-intro-hr" />
 
       <nav td-blog-navbar variant="listPage" class="section"></nav>
 
-      <section *ngIf="rows$ | async as rows">
-        <td-blog-row *ngFor="let row of rows" [row]="row" />
-      </section>
+      @if (rows$ | async; as rows) {
+        <section>
+          @for (row of rows; track row) {
+            <td-blog-row [row]="row" />
+          }
+        </section>
+      }
 
       <div class="subsection-margin"></div>
     </div>

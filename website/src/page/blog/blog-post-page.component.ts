@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -46,21 +46,19 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        BlogNavbarComponent,
-        BlogCategoryChipsComponent,
-        RichTextComponent,
-        BlogAuthorshipBarComponent,
-        MatIconModule,
-        ButtonComponent,
-        NgFor,
-        AspectRatioComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    LinkDirective,
+    HeadingWithHighlightsComponent,
+    BlogNavbarComponent,
+    BlogCategoryChipsComponent,
+    RichTextComponent,
+    BlogAuthorshipBarComponent,
+    MatIconModule,
+    ButtonComponent,
+    AspectRatioComponent,
+    FurtherLearningComponent,
+    AsyncPipe
+],
 })
 export class BlogPostPageComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;

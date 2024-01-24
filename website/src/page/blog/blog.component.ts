@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -38,16 +38,14 @@ import { BlogRowComponent } from "./blog-row.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent,
-        NgIf,
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        ParagraphWithHighlightsComponent,
-        BlogNavbarComponent,
-        NgFor,
-        BlogRowComponent,
-        AsyncPipe,
-    ],
+    PageBackgroundComponent,
+    LinkDirective,
+    HeadingWithHighlightsComponent,
+    ParagraphWithHighlightsComponent,
+    BlogNavbarComponent,
+    BlogRowComponent,
+    AsyncPipe
+],
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
