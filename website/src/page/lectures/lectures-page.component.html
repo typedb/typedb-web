@@ -18,11 +18,8 @@
             <div class="wp-primary-lecture-summary">
               <h3 class="wp-lecture-title-container">
                 <span class="wp-lecture-title">{{ primaryLecture.title | plainText }}</span>
-                <span class="wp-title-separator">|</span>
-                @if (primaryLecture.isFinished()) {
-                  <span>On-Demand</span>
-                }
                 @if (!primaryLecture.isFinished()) {
+                  <span class="wp-title-separator">|</span>
                   <time [dateTime]="primaryLecture.datetime.toISOString()">
                     {{ primaryLecture.datetime | ordinalDate }}
                   </time>
