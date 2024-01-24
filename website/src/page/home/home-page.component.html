@@ -1,45 +1,47 @@
 <article tdPageBackground nebula="home" planet="green">
-  <div *ngIf="page$ | async as page" class="article-content">
-    <ng-container *ngIf="page.introSection">
-      <td-home-page-technicolor-block
-        [block]="page.introSection"
-        [page]="page"
-        variant="intro"
-        [organisationLogos]="page.introSection.userLogos"
-      />
-      <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
-    </ng-container>
-    <ng-container *ngFor="let impactSection of page.impactSections; index as idx">
-      <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
-      <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
-    </ng-container>
-    <ng-container *ngIf="page.resourcesSection">
-      <td-home-page-technicolor-block [block]="page.resourcesSection" [page]="page" />
-      <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" />
-    </ng-container>
-    <ng-container *ngIf="page.toolingSection">
-      <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
-      <td-link-panels [panels]="page.toolingSection.panels" />
-    </ng-container>
-    <ng-container *ngIf="page.driversSection">
-      <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />
-      <td-feature-grid [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features" />
-    </ng-container>
-    <ng-container *ngIf="page.cloudSection">
-      <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
-      <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />
-    </ng-container>
-    <ng-container *ngIf="page.communitySection">
-      <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />
-      <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" />
-    </ng-container>
-    <ng-container *ngIf="page.testimonialsSection">
-      <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
-    </ng-container>
-    <ng-container *ngIf="page.conclusionSection">
-      <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion" />
-      <td-conclusion-panel [panel]="page.conclusionSection.panel" />
-    </ng-container>
-  </div>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      @if (page.introSection) {
+        <td-home-page-technicolor-block
+          [block]="page.introSection"
+          [page]="page"
+          variant="intro"
+          [organisationLogos]="page.introSection.userLogos"
+          />
+        <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
+      }
+      @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
+        <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
+        <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
+      }
+      @if (page.resourcesSection) {
+        <td-home-page-technicolor-block [block]="page.resourcesSection" [page]="page" />
+        <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" />
+      }
+      @if (page.toolingSection) {
+        <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
+        <td-link-panels [panels]="page.toolingSection.panels" />
+      }
+      @if (page.driversSection) {
+        <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />
+        <td-feature-grid [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features" />
+      }
+      @if (page.cloudSection) {
+        <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
+        <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />
+      }
+      @if (page.communitySection) {
+        <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />
+        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" />
+      }
+      @if (page.testimonialsSection) {
+        <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
+        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
+      }
+      @if (page.conclusionSection) {
+        <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion" />
+        <td-conclusion-panel [panel]="page.conclusionSection.panel" />
+      }
+    </div>
+  }
 </article>

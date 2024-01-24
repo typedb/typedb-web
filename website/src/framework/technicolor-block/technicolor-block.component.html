@@ -5,20 +5,17 @@
     <a class="tb-icon-bg-halo" [tdLink]="'#' + block.sectionId">&nbsp;</a>
     <img class="tb-icon" [src]="block.iconURL" alt="" />
   </div>
-  <td-heading-with-highlights
-    [value]="block.title"
-    [id]="block.sectionId"
-    [themeColorHex]="themeColorHex"
-    [level]="level"
-  />
+  <td-heading-with-highlights [value]="block.title" [id]="block.sectionId" [themeColorHex]="themeColorHex" [level]="level"/>
   <div></div>
   <div>
-    <td-rich-text *ngIf="block.body && !noBody" [value]="block.body" class="text-p1" />
-    <td-actions *ngIf="block.actions" [actions]="block.actions" />
-    <td-organisation-logos
-      *ngIf="organisationLogos?.length"
-      appearance="transparent"
-      [organisations]="organisationLogos!"
-    />
+    @if (block.body && !noBody) {
+      <td-rich-text [value]="block.body" class="text-p1" />
+    }
+    @if (block.actions) {
+      <td-actions [actions]="block.actions" />
+    }
+    @if (organisationLogos?.length) {
+      <td-organisation-logos appearance="transparent" [organisations]="organisationLogos!"/>
+    }
   </div>
 </div>

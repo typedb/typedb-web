@@ -1,4 +1,3 @@
-import { NgFor } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { ProductPanel } from "typedb-web-schema";
@@ -12,7 +11,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["./product-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, RichTextComponent, ButtonComponent],
+    imports: [RichTextComponent, ButtonComponent],
 })
 export class ProductTableComponent {
     @Input() panels!: ProductPanel[];

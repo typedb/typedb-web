@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from "@angular/common";
+import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -21,7 +21,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     styleUrls: ["./legal-document.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [PageBackgroundComponent, NgIf, HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe],
+    imports: [PageBackgroundComponent, HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe],
 })
 export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;

@@ -1,4 +1,4 @@
-import { NgFor } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -12,7 +12,7 @@ import { LinkDirective } from "../link/link.directive";
     styleUrls: ["./social-media-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor, LinkDirective, MatIconModule],
+    imports: [LinkDirective, MatIconModule],
 })
 export class SocialMediaPanelsComponent {
     @Input() socialMediaLinks!: SocialMediaLink[];

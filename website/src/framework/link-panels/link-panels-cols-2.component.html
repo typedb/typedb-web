@@ -1,6 +1,8 @@
 <div class="section kpp-root">
-  <a *ngFor="let resource of resources" class="card hoverable kpp-panel" [tdLink]="resource.link">
-    <h3>{{ resource.title }}</h3>
-    <td-rich-text [value]="resource.description" />
-  </a>
+  @for (resource of resources; track resource) {
+    <a class="card hoverable kpp-panel" [tdLink]="resource.link">
+      <h3>{{ resource.title }}</h3>
+      <td-rich-text [value]="resource.description" />
+    </a>
+  }
 </div>

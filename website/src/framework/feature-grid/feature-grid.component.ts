@@ -1,18 +1,10 @@
-import { NgFor, NgIf } from "@angular/common";
+
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
 
 import Prism from "prismjs";
 import {
-    CodeSnippet,
-    CodeSnippetShort,
-    FeatureGridCell,
-    FeatureGridLayout,
-    GraphVisualisation,
-    Illustration,
-    ImageIllustration,
-    PolyglotSnippet,
-    SplitPaneIllustration,
-    VideoEmbed,
+    CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridLayout, GraphVisualisation, Illustration,
+    ImageIllustration, PolyglotSnippet, SplitPaneIllustration, VideoEmbed,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
@@ -27,15 +19,7 @@ import { TagChipsComponent } from "./tag-chips.component";
     styleUrls: ["./feature-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [
-        NgFor,
-        NgIf,
-        TagChipsComponent,
-        RichTextComponent,
-        LinkDirective,
-        AspectRatioComponent,
-        IllustrationComponent,
-    ],
+    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent],
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() layout!: FeatureGridLayout;

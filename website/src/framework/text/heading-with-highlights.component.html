@@ -1,20 +1,29 @@
-<ng-container [ngSwitch]="level">
-  <h1 *ngSwitchCase="'h1'" [id]="id">
-    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
-  </h1>
-  <h2 *ngSwitchCase="'h2'" [id]="id">
-    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
-  </h2>
-  <h3 *ngSwitchCase="'h3'" [id]="id">
-    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
-  </h3>
-  <h4 *ngSwitchCase="'h4'" [id]="id">
-    <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
-  </h4>
-</ng-container>
+
+@switch (level) {
+  @case ('h1') {
+    <h1 [id]="id">
+      <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+    </h1>
+  }
+  @case ('h2') {
+    <h2 [id]="id">
+      <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+    </h2>
+  }
+  @case ('h3') {
+    <h3 [id]="id">
+      <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+    </h3>
+  }
+  @case ('h4') {
+    <h4 [id]="id">
+      <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
+    </h4>
+  }
+}
 
 <ng-template #content>
-  <span *ngFor="let span of value.spans" [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">{{
-    span.text
-  }}</span>
+  @for (span of value.spans; track span) {
+    <span [ngStyle]="span.highlight ? { color: themeColorHex } : undefined">{{ span.text }}</span>
+  }
 </ng-template>

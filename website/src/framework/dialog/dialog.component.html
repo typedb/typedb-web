@@ -3,11 +3,15 @@
   <td-dialog-close-button />
 </div>
 <div mat-dialog-content>
-  <td-p-with-highlights *ngIf="description" [value]="description" level="p2" />
+  @if (description) {
+    <td-p-with-highlights [value]="description" level="p2" />
+  }
   <div id="popup-hubspot-form-holder"></div>
   <aside>
     By submitting personal data, you consent to emails from Vaticle. See our
     <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
   </aside>
 </div>
-<mat-progress-bar *ngIf="isSubmitting" mode="indeterminate" />
+@if (isSubmitting) {
+  <mat-progress-bar mode="indeterminate" />
+}

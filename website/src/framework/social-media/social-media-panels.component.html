@@ -1,6 +1,8 @@
 <section class="sm-root">
-  <a *ngFor="let link of socialMediaLinks" class="sm-panel" [tdLink]="link.link">
-    <mat-icon [svgIcon]="link.svgIcon" />
-    <p class="hide-mobile">{{ link.text }}</p>
-  </a>
+  @for (link of socialMediaLinks; track link) {
+    <a class="sm-panel" [tdLink]="link.link">
+      <mat-icon [svgIcon]="link.svgIcon" />
+      <p class="hide-mobile">{{ link.text }}</p>
+    </a>
+  }
 </section>

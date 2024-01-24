@@ -1,22 +1,24 @@
 <article tdPageBackground nebula="intro" planet="pink">
-  <div *ngIf="page$ | async as page" class="article-content">
-    <td-title-body-actions-section
-      [isIntroSection]="true"
-      [title]="page.introSection.title"
-      [body]="page.introSection.body"
-      [actions]="page.introSection.actions"
-    />
-    <ng-container *ngFor="let section of page.coreSections; index as idx">
-      <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
-      <td-publication-panel [items]="section.panelItems" />
-    </ng-container>
-    <ng-container *ngIf="page.finalSection">
-      <td-philosophy-page-technicolor-block
-        [section]="page.finalSection"
-        [page]="page"
-        [index]="page.coreSections.length"
-      />
-      <td-conclusion-panel [panel]="page.finalSection.panel" />
-    </ng-container>
-  </div>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="page.introSection.title"
+        [body]="page.introSection.body"
+        [actions]="page.introSection.actions"
+        />
+      @for (section of page.coreSections; track section; let idx = $index) {
+        <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
+        <td-publication-panel [items]="section.panelItems" />
+      }
+      @if (page.finalSection) {
+        <td-philosophy-page-technicolor-block
+          [section]="page.finalSection"
+          [page]="page"
+          [index]="page.coreSections.length"
+          />
+        <td-conclusion-panel [panel]="page.finalSection.panel" />
+      }
+    </div>
+  }
 </article>

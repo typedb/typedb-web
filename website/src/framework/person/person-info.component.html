@@ -1,11 +1,15 @@
-<ng-container [ngSwitch]="displayAsLink">
-  <a *ngSwitchCase="true" [href]="person.linkedInURL" target="_blank" class="pi-person">
-    <ng-container *ngTemplateOutlet="content" />
-  </a>
-  <div *ngSwitchCase="false" class="pi-person">
-    <ng-container *ngTemplateOutlet="content" />
-  </div>
-</ng-container>
+@switch (displayAsLink) {
+  @case (true) {
+    <a [href]="person.linkedInURL" target="_blank" class="pi-person">
+      <ng-container *ngTemplateOutlet="content" />
+    </a>
+  }
+  @case (false) {
+    <div class="pi-person">
+      <ng-container *ngTemplateOutlet="content" />
+    </div>
+  }
+}
 
 <ng-template #content>
   <td-avatar [person]="person" [class]="avatarClass" />

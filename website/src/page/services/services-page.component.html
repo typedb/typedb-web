@@ -1,16 +1,18 @@
 <article tdPageBackground nebula="studio" planet="green">
-  <div *ngIf="page$ | async; let page" class="article-content">
-    <ng-container *ngIf="page.introSection">
-      <td-services-page-technicolor-block [block]="page.introSection" [page]="page" />
-      <td-services-table [keyPoints]="page.introSection.keyPoints" />
-    </ng-container>
-    <ng-container *ngIf="page.testimonialsSection">
-      <td-services-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
-    </ng-container>
-    <ng-container *ngIf="page.contactSection">
-      <td-services-page-technicolor-block [block]="page.contactSection" [page]="page" />
-      <td-contact-panel />
-    </ng-container>
-  </div>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      @if (page.introSection) {
+        <td-services-page-technicolor-block [block]="page.introSection" [page]="page" />
+        <td-services-table [keyPoints]="page.introSection.keyPoints" />
+      }
+      @if (page.testimonialsSection) {
+        <td-services-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
+        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
+      }
+      @if (page.contactSection) {
+        <td-services-page-technicolor-block [block]="page.contactSection" [page]="page" />
+        <td-contact-panel />
+      }
+    </div>
+  }
 </article>

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgFor } from "@angular/common";
+import { AsyncPipe, NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -15,7 +15,7 @@ import { sanitiseHtmlID } from "../util";
     styleUrls: ["content-tabs.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [ScrollShadowComponent, NgFor, NgClass, ContentPanelComponent, AsyncPipe],
+    imports: [ScrollShadowComponent, NgClass, ContentPanelComponent, AsyncPipe],
 })
 export class ContentTabsComponent implements OnInit {
     @Input() tabs!: ContentTextTab[];

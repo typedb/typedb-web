@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from "@angular/common";
+
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
@@ -19,19 +19,15 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        NgIf,
-        NgSwitch,
-        NgSwitchCase,
-        LinkDirective,
-        AspectRatioComponent,
-        BlogCategoryChipsComponent,
-        RichTextComponent,
-        BlogAuthorshipBarComponent,
-        NgFor,
-        HeadingWithHighlightsComponent,
-        ResourcePanelsComponent,
-        PlainTextPipe,
-    ],
+    LinkDirective,
+    AspectRatioComponent,
+    BlogCategoryChipsComponent,
+    RichTextComponent,
+    BlogAuthorshipBarComponent,
+    HeadingWithHighlightsComponent,
+    ResourcePanelsComponent,
+    PlainTextPipe
+],
 })
 export class BlogRowComponent {
     @Input() row!: BlogRow;
