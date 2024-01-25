@@ -30,6 +30,8 @@ export const languages = {
     "java": "Java",
     "python": "Python",
     "typescript": "TypeScript",
+    "cpp": "C++",
+    "csharp": "C#",
 } as const;
 
 export type Language = keyof typeof languages;
@@ -157,15 +159,7 @@ const polyglotSnippetSchema = defineType({
             title: "Snippets",
             type: "array",
             of: [{ type: codeSnippetSchemaName }],
-            validation: (rule: ArrayRule<SanityCodeSnippet[]>) => rule.custom((snippets) => {
-                if (!snippets) return "Required";
-                const langs = new Set<string>();
-                for (const snippet of snippets) {
-                    if (langs.has(snippet.language)) return `Language '${snippet.language}' is used more than once`;
-                    langs.add(snippet.language);
-                }
-                return true;
-            }),
+            validation: requiredRule,
         }),
     ],
 });
