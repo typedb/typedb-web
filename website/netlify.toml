@@ -17,10 +17,40 @@ publish = "dist/dynamic"
 command = "pnpm run style:verify; ENV=development pnpm run build"
 publish = "dist/dynamic"
 
+# ALIASES
+# Keep indefinitely
+# N.B. the semantically correct status code is 303, but this code is not supported by Netlify
+
 [[redirects]]
 from = "/discord"
 to = "https://discord.com/invite/typedb"
 status = 301
+
+[[redirects]]
+from = "/github"
+to = "https://github.com/vaticle/typedb"
+status = 301
+
+# PERMANENT RENAMES
+# Keep indefinitely as they will be used by old blog posts and other articles on the Web
+
+[[redirects]]
+from = "/webinars/*"
+to = "/lectures"
+status = 301
+
+[[redirects]]
+from = "/introduction"
+to = "/philosophy"
+status = 301
+
+# TEMPORARILY DISABLED PATHS
+# Keep until we re-enable their source path
+
+[[redirects]]
+from = "/white-papers/*"
+to = "/learn"
+status = 302
 
 [[redirects]]
 from = "/meetup"
@@ -28,11 +58,14 @@ to = "/lectures"
 status = 302
 
 [[redirects]]
-from = "/github"
-to = "https://github.com/vaticle/typedb"
-status = 301
+from = "/solutions/*"
+to = "/philosophy"
+status = 302
 
-# TODO: delete these redirects once the old URLs are no longer indexed by Google
+# ERRONEOUSLY INDEXED PATHS
+# Paths in this section exist due to bugs that were later fixed
+# Keep for one year, then delete. This gives time for search engines to delist them
+
 [[redirects]]
 from = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show-a795701af90e"
 to = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show"
@@ -62,6 +95,9 @@ status = 301
 from = "/lectures/polymoprhic-data-model"
 to = "/lectures/polymorphic-data-model"
 status = 301
+
+# DOCS BEHAVIOUR
+# Keep indefinitely. These redirects are required for Docs to behave correctly
 
 [[redirects]]
 from = "/docs"
@@ -108,6 +144,9 @@ status = 200
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
+
+# MAIN SITE BEHAVIOUR
+# Keep indefinitely. These redirects are required for the main site to behave correctly
 
 [[redirects]]
 from = "https://live-temp.typedb.com/*/data.json"
