@@ -130,6 +130,7 @@ $post-content-width: 800px;
 
 .bp-content {
     flex: 0 1 $post-content-width;
+    width: $post-content-width;
 
     td-rich-text {
         font-size: var(--font-size-p2);
