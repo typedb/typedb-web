@@ -44,7 +44,7 @@ Prism.languages["typeql"] = {
     },
     boolean: { // Note: a boolean can never start a line
         pattern: / (true|false)/,
-        alias: "annotation",
+        alias: "boolean",
     },
     constant: {
         pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
