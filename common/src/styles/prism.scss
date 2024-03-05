@@ -47,7 +47,8 @@ pre[class*="language-"] {
     color: $prism-pink;
 }
 
-.token.annotation {
+.token.annotation,
+.token.boolean {
     color: $prism-orange;
 }
 
