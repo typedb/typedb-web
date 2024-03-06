@@ -42,12 +42,8 @@ Prism.languages["typeql"] = {
         pattern: /((?<!-)\b| -)[0-9]+(\.[0-9][0-9]*)?\b/,
         alias: "number",
     },
-    // number: {
-        // pattern: /((?:(?![-a-zA-Z_0-9]|\$|\(|\/)).)| -|^|\s)[0-9]+(\.[0-9][0-9]*)?\b/,
-        // alias: "number",
-    // },
     boolean: {
-        pattern: /\b(true|false)\b/,
+        pattern: /((?<!-)\b)(true|false)((?!-)\b)/,
         alias: "boolean",
     },
     operator: {
