@@ -39,17 +39,12 @@ Prism.languages["typeql"] = {
         alias: "datetime",
     },
     number: {
-        pattern: /\b(-)?[0-9]+(\.[0-9][0-9]*)?/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)| -|^|\s)[0-9]+(\.[0-9][0-9]*)?\b/,
         alias: "number",
     },
     boolean: {
-        pattern: /\b(?:true|false)(;| )/,
+        pattern: /\b(true|false)\b/,
         alias: "boolean",
-        lookbehind: true,
-    },
-    constant: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
-        lookbehind: true,
     },
     operator: {
         pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
