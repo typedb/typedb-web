@@ -38,12 +38,12 @@ Prism.languages["typeql"] = {
         pattern: /\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(:\d{2})?)?)?/,
         alias: "datetime",
     },
-    number: { // Note: a number can never start a line
-        pattern: / (-)?[0-9]+(\.[0-9][0-9]*)?/,
+    number: {
+        pattern: /\b(-)?[0-9]+(\.[0-9][0-9]*)?/,
         alias: "number",
     },
-    boolean: { // Note: a boolean can never start a line
-        pattern: / (true|false)/,
+    boolean: {
+        pattern: /\b(true|false)(?:;| )/,
         alias: "boolean",
     },
     constant: {
@@ -54,7 +54,7 @@ Prism.languages["typeql"] = {
         pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
         alias: "operator",
     },
-    spaced_operator: {// Require space around - operator
+    spaced_operator: {
         pattern: / (-) /,
         alias: "operator",
     }
