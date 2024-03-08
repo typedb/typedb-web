@@ -12,7 +12,7 @@ Prism.languages["typeql"] = {
     },
     keyword: {
         pattern:
-            /((?<![-?$])\b)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)((?!-)\b)/,
+            /((?<![-?$])\b)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|is|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)((?!-)\b)/,
         alias: "keyword",
     },
     annotation: {
