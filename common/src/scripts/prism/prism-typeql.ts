@@ -12,23 +12,24 @@ Prism.languages["typeql"] = {
     },
     keyword: {
         pattern:
-            /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
-        lookbehind: true,
+            /((?<![-?$])\b)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)((?!-)\b)/,
+        alias: "keyword",
     },
     annotation: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(@key|@unique|@card)(?![-a-zA-Z_0-9])/,
-        lookbehind: true,
+        pattern: /((?<![-?$])\b)(@key|@unique|@card)((?!-)\b)/,
+        alias: "annotation",
     },
     type: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(entity|relation|attribute|thing)(?![-a-zA-Z_0-9])/,
-        lookbehind: true,
+        pattern: /((?<![-?$])\b)(entity|relation|attribute|thing)((?!-)\b)/,
+        alias: "type",
     },
     modifier: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
-        lookbehind: true,
+        pattern: /((?<![-?$])\b)(boolean|double|long|string|datetime)((?!-)\b)/,
+        alias: "modifier",
     },
     special: {
         pattern: /typeql>>|answers>>|\.\.\./,
+        alias: "special",
     },
     variable: {
         pattern: /[$?][-a-zA-Z_0-9]+/,
@@ -39,11 +40,11 @@ Prism.languages["typeql"] = {
         alias: "datetime",
     },
     number: {
-        pattern: /((?<!-)\b| -)[0-9]+(\.[0-9][0-9]*)?\b/,
+        pattern: /((?<![-?$])\b| -)[0-9]+(\.[0-9][0-9]*)?\b/,
         alias: "number",
     },
     constant: {
-        pattern: /((?<!-)\b)(true|false)((?!-)\b)/,
+        pattern: /((?<![-?$])\b)(true|false)((?!-)\b)/,
         alias: "constant",
     },
     operator: {
