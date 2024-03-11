@@ -73,6 +73,11 @@
 
     .td-topbar-logo-container {
         img {
+            @media (min-width: media.$min-width-desktop) {
+                height: 46px;
+                margin-bottom: 2px;
+            }
+
             @media (max-width: media.$max-width-tablet) {
                 height: 32px;
             }
