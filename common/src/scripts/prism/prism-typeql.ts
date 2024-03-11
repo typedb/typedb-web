@@ -43,8 +43,8 @@ Prism.languages["typeql"] = {
         alias: "number",
     },
     constant: {
-        pattern: /((?<!-)\b)(true|false)((?!-)\b)/,
-        alias: "constant",
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$).)|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     operator: {
         pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
