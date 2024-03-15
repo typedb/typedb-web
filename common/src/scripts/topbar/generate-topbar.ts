@@ -29,7 +29,7 @@ const generateNav = (params: GenerateParams) => {
 
 const generateLogo = (params: GenerateParams) => {
     const { urlPrefix } = params;
-    const logoImage = `<img src="${escapeHtml(urlPrefix)}/assets/image/vaticle-typedb.svg" alt="Vaticle TypeDB"/>`;
+    const logoImage = `<img src="${escapeHtml(urlPrefix)}/assets/logo/typedb.svg" alt="TypeDB"/>`;
     return `<a href="${escapeHtml(urlPrefix)}/" class="td-topbar-logo-container">${logoImage}</a>`;
 };
 
