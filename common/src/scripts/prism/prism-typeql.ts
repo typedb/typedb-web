@@ -12,24 +12,23 @@ Prism.languages["typeql"] = {
     },
     keyword: {
         pattern:
-            /((?<![-?$])\b)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|is|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)((?!-)\b)/,
-        alias: "keyword",
+            /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|label|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     annotation: {
-        pattern: /((?<![-?$])\b)(@key|@unique|@card)((?!-)\b)/,
-        alias: "annotation",
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@key|@unique|@card)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     type: {
-        pattern: /((?<![-?$])\b)(entity|relation|attribute|thing)((?!-)\b)/,
-        alias: "type",
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(entity|relation|attribute|thing)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     modifier: {
-        pattern: /((?<![-?$])\b)(boolean|double|long|string|datetime)((?!-)\b)/,
-        alias: "modifier",
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     special: {
         pattern: /typeql>>|answers>>|\.\.\./,
-        alias: "special",
     },
     variable: {
         pattern: /[$?][-a-zA-Z_0-9]+/,
@@ -40,12 +39,13 @@ Prism.languages["typeql"] = {
         alias: "datetime",
     },
     number: {
-        pattern: /((?<![-?$])\b| -)[0-9]+(\.[0-9][0-9]*)?\b/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)[0-9]+(\.[0-9][0-9]*)?/,
+        lookbehind: true,
         alias: "number",
     },
     constant: {
-        pattern: /((?<![-?$])\b)(true|false)((?!-)\b)/,
-        alias: "constant",
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
     },
     operator: {
         pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
