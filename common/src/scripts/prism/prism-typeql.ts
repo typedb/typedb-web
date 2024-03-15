@@ -40,13 +40,13 @@ Prism.languages["typeql"] = {
     },
     number: {
         // pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)[0-9]+(\.[0-9][0-9]*)?/,
-        pattern: /([^a-zA-Z0-9-_?$]|^|\s)[0-9]+(\.[0-9][0-9]*)?/,
+        pattern: /([^a-zA-Z0-9-_?$]|^|\s)[0-9]+(\.[0-9][0-9]*)?(?![a-zA-Z0-9_])/,
         lookbehind: true,
         alias: "number",
     },
     negated_number: {
         // pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)-[0-9]+(\.[0-9][0-9]*)?/,
-        pattern: /([^a-zA-Z0-9-_?$]|^|\s)-[0-9]+(\.[0-9][0-9]*)?/,
+        pattern: /([^a-zA-Z0-9-_?$]|^|\s)-[0-9]+(\.[0-9][0-9]*)?(?![a-zA-Z0-9_])/,
         lookbehind: true,
         alias: "number",
     },
