@@ -47,10 +47,10 @@ status = 301
 # TEMPORARILY DISABLED PATHS
 # Keep until we re-enable their source path
 
-[[redirects]]
-from = "/white-papers/*"
-to = "/learn"
-status = 302
+#[[redirects]]
+#from = "/white-papers/*"
+#to = "/learn"
+#status = 302
 
 [[redirects]]
 from = "/meetup"
