@@ -19,7 +19,7 @@
             <div class="wp-primary-paper-summary">
               <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
               <div class="flex"></div>
-              <td-button [button]="accessResourceButton(page.featuredPaper, 'primary', 'Read Now')"></td-button>
+              <td-button [button]="accessResourceButton(page.featuredPaper, 'primary', 'Download')"></td-button>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <td-rich-text class="wp-grid-item-description" [value]="paper.description" />
-              <td-button [button]="accessResourceButton(paper, 'secondary', 'Read')" size="small" buttonWidth="100%" />
+              <td-button [button]="accessResourceButton(paper, 'secondary', 'Download')" size="small" buttonWidth="100%" />
             </div>
           }
         </div>
