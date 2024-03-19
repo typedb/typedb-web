@@ -19,14 +19,14 @@ import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
-import { WhitePaperDetailsPageComponent } from "./page/white-papers/white-paper-details-page.component";
-import { WhitePapersPageComponent } from "./page/white-papers/white-papers-page.component";
+import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
+import { PapersPageComponent } from "./page/papers/papers-page.component";
 import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./website-routes";
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
-    "white-papers": { component: WhitePapersPageComponent, title: "TypeDB White Papers" },
+    papers: { component: PapersPageComponent, title: "TypeDB Papers" },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
     deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
     events: { component: EventsPageComponent, title: "TypeDB Events" },
@@ -48,7 +48,7 @@ const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> =
     "events/:slug": { component: EventDetailsPageComponent },
     "lectures/:slug": { component: LectureDetailsPageComponent },
     "legal/:slug": { component: LegalDocumentComponent },
-    "white-papers/:slug": { component: WhitePaperDetailsPageComponent },
+    "papers/:slug": { component: PaperDetailsPageComponent },
     "applications/:slug": { component: LearningArticleComponent, data: { resourceType: "applicationArticle" } },
     "fundamentals/:slug": { component: LearningArticleComponent, data: { resourceType: "fundamentalArticle" } },
 };
@@ -79,8 +79,8 @@ const routes: Routes = [
     { path: "solutions/:route", redirectTo: "philosophy" },
     { path: "webinars/:slug", redirectTo: "lectures/:slug" },
     { path: "webinars", redirectTo: "lectures" },
-    // { path: "white-papers/:slug", redirectTo: "learn" },
-    // { path: "white-papers", redirectTo: "learn" },
+    { path: "white-papers/:slug", redirectTo: "papers" },
+    { path: "white-papers", redirectTo: "papers" },
     { path: "privacy-policy", redirectTo: "legal/privacy-policy" },
 
     { path: "__fallback", component: FallbackPageComponent },
