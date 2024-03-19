@@ -12,3 +12,9 @@ You can configure any project to depend on your local build of `typedb-web-commo
 the `package.json` of that project. Then, use `pnpm i` to install the package.
 
 For `typedb-web` itself, a local path dependency is used by default.
+
+### Troubleshooting
+
+Q: Running `pnpm i` in `website` says it updates the version of `typedb-web-common`, but the changes aren't reflected
+when running `ng serve`.
+A: Try running `ng cache clean` in `website`.

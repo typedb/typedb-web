@@ -6,7 +6,7 @@ import { GenericResource, genericResourceSchema } from "./generic";
 import { LiveEvent, liveEventSchema } from "./live-event";
 import { Lecture, lectureSchemas } from "./lecture";
 import { sectionSchemas } from "./section";
-import { WhitePaper, whitePaperSchema } from "./white-paper";
+import { Paper, paperSchema } from "./paper";
 
 export type Resource = SiteResource | GenericResource;
 
@@ -37,7 +37,7 @@ function resourceUrl(resource: Resource): string {
     else if (resource instanceof ApplicationArticle) return `/applications/${resource.slug}`;
     else if (resource instanceof BlogPost) return `/blog/${resource.slug}`;
     else if (resource instanceof Lecture) return `/lectures/${resource.slug}`;
-    else if (resource instanceof WhitePaper) return `/white-papers/${resource.slug}`;
+    else if (resource instanceof Paper) return `/papers/${resource.slug}`;
     else if (resource instanceof LiveEvent) return `/events/${resource.slug}`;
     else if (resource instanceof GenericResource) return resource.link.destination;
     else return "";
@@ -55,10 +55,10 @@ function resourceLinkProp(resource: Resource): Link {
 function resourceLinkText(resource: Resource): string {
     if (resource instanceof Article) return `Read article`;
     else if (resource instanceof Lecture) return `Watch lecture`;
-    else if (resource instanceof WhitePaper) return `Get white paper`;
+    else if (resource instanceof Paper) return `Read paper`;
     else if (resource instanceof LiveEvent) return `Go to event`;
     else if (resource instanceof GenericResource) return resource.linkText;
     else return "";
 }
 
-export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, ...sectionSchemas, whitePaperSchema];
+export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, ...sectionSchemas, paperSchema];

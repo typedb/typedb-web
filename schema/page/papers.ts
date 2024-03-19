@@ -2,35 +2,35 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { collapsibleOptions } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
-import { WhitePaper } from "../resource/white-paper";
+import { Paper } from "../resource/paper";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
-import { SanityWhitePaper, whitePaperSchemaName } from "../resource/sanity";
+import { SanityPaper, paperSchemaName } from "../resource/sanity";
 
-export interface SanityWhitePapersPage extends SanityPage {
+export interface SanityPapersPage extends SanityPage {
     introSection: SanityTitleAndBody;
-    featuredWhitePaper: SanityReference<SanityWhitePaper>;
-    whitePapersList: SanityReference<SanityWhitePaper>[];
+    featuredPaper: SanityReference<SanityPaper>;
+    papersList: SanityReference<SanityPaper>[];
 }
 
-export class WhitePapersPage extends Page {
+export class PapersPage extends Page {
     readonly introSection: TitleAndBody;
-    readonly featuredWhitePaper: WhitePaper;
-    readonly whitePapersList: WhitePaper[];
+    readonly featuredPaper: Paper;
+    readonly papersList: Paper[];
 
-    constructor(data: SanityWhitePapersPage, db: SanityDataset) {
+    constructor(data: SanityPapersPage, db: SanityDataset) {
         super(data, db);
         this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
-        this.featuredWhitePaper = WhitePaper.fromSanity(db.resolveRef(data.featuredWhitePaper), db);
-        this.whitePapersList = data.whitePapersList.map((x) => WhitePaper.fromSanity(db.resolveRef(x), db));
+        this.featuredPaper = Paper.fromSanity(db.resolveRef(data.featuredPaper), db);
+        this.papersList = data.papersList.map((x) => Paper.fromSanity(db.resolveRef(x), db));
     }
 }
 
-export const whitePapersPageSchemaName = "whitePapersPage";
+export const papersPageSchemaName = "papersPage";
 
-export const whitePapersPageSchema = defineType({
-    name: whitePapersPageSchemaName,
-    title: "White Papers Page",
+export const papersPageSchema = defineType({
+    name: papersPageSchemaName,
+    title: "Papers Page",
     type: "document",
     fields: [
         metaTagsField,
@@ -41,17 +41,17 @@ export const whitePapersPageSchema = defineType({
             options: collapsibleOptions,
         }),
         defineField({
-            name: "featuredWhitePaper",
-            title: "Featured White Paper",
+            name: "featuredPaper",
+            title: "Featured Paper",
             type: "reference",
-            to: [{ type: whitePaperSchemaName }],
+            to: [{ type: paperSchemaName }],
         }),
         defineField({
-            name: "whitePapersList",
-            title: "White Papers List",
+            name: "papersList",
+            title: "Papers List",
             description: "Displayed as a tiled grid with 2 columns",
             type: "array",
-            of: [{ type: "reference", to: [{ type: whitePaperSchemaName }] }],
+            of: [{ type: "reference", to: [{ type: paperSchemaName }] }],
             validation: (rule: ArrayRule<any>) =>
                 rule.custom((value: any[] | undefined) => {
                     if (!value) return "Required";
@@ -61,6 +61,6 @@ export const whitePapersPageSchema = defineType({
         }),
     ],
     preview: {
-        prepare: (_selection) => ({ title: "White Papers Page" }),
+        prepare: (_selection) => ({ title: "Papers Page" }),
     },
 });

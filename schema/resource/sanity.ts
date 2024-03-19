@@ -10,7 +10,7 @@ import { PortableText } from "../text";
 import { BlogCategoryID } from "./blog-category";
 import { EventSignupMethod, SanityEventDate } from "./live-event-details";
 
-export type SanityResource = SanityGenericResource | SanityArticle | SanityLecture | SanityWhitePaper | SanityLiveEvent;
+export type SanityResource = SanityGenericResource | SanityArticle | SanityLecture | SanityPaper | SanityLiveEvent;
 
 // Because in Sanity every Resource can link to every other kind of Resource, they must all be declared
 // in the same file to avoid circular dependencies
@@ -83,14 +83,13 @@ export interface SanityLecture extends SanityEventBase {
     comingSoon: boolean;
 }
 
-export interface SanityWhitePaper extends SanitySiteResource {
-    _type: typeof whitePaperSchemaName;
+export interface SanityPaper extends SanitySiteResource {
+    _type: typeof paperSchemaName;
     file: SanityFile;
     tags: string[];
     portraitImage: SanityImage;
     landscapeImage: SanityImage;
     furtherLearning?: SanityResourceSection;
-    hubspotFormID: string;
     metaTags?: SanityMetaTags;
 }
 
@@ -112,7 +111,7 @@ export const fundamentalArticleSchemaName = "fundamentalArticle";
 export const applicationArticleSchemaName = "applicationArticle";
 export const blogPostSchemaName = "blogPost";
 export const lectureSchemaName = "lecture";
-export const whitePaperSchemaName = "whitePaper";
+export const paperSchemaName = "paper";
 export const liveEventSchemaName = "liveEvent";
 
 export function isGenericResource(data: SanityResource): data is SanityGenericResource {
@@ -135,8 +134,8 @@ export function isLecture(data: SanityArticle): data is SanityLecture {
     return data._type === lectureSchemaName;
 }
 
-export function isWhitePaper(data: SanityArticle): data is SanityWhitePaper {
-    return data._type === whitePaperSchemaName;
+export function isPaper(data: SanityArticle): data is SanityPaper {
+    return data._type === paperSchemaName;
 }
 
 export function isLiveEvent(data: SanityArticle): data is SanityLiveEvent {
