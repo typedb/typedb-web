@@ -1,9 +1,9 @@
-import createClient from "@sanity/client"
+import { createClient } from "@sanity/client";
 import token from "./credentials/token"
 import {config} from "../config"
 
-const OLD_TYPE = "webinar"
-const NEW_TYPE = "lecture"
+const OLD_TYPE = "whitePaper";
+const NEW_TYPE = "paper";
 
 // Run this script from within your project folder in your terminal with: `sanity exec scripts/migrateDocumentType.js`
 

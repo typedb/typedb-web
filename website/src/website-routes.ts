@@ -9,7 +9,7 @@ export const staticPageSchemas = [
     { path: "philosophy", schemaName: "philosophyPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
     { path: "support", schemaName: "supportPage" },
-    // { path: "white-papers", schemaName: "whitePapersPage" },
+    { path: "papers", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
 
 export const genericPageSchemas = [
@@ -26,7 +26,7 @@ export const dynamicPageSchemas = [
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
     // { path: "solutions/:slug", schemaName: "solutionPage", schemaSlugAccessor: "route.current" },
-    // { path: "white-papers/:slug", schemaName: "whitePaper" },
+    { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
 interface StaticPage {

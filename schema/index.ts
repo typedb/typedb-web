@@ -114,7 +114,7 @@ export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from ".
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
 export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
-export { type SanityWhitePapersPage, WhitePapersPage, whitePapersPageSchemaName } from "./page/white-papers";
+export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
@@ -144,9 +144,9 @@ export {
     genericResourceSchemaName,
     liveEventSchemaName,
     lectureSchemaName,
-    whitePaperSchemaName,
+    paperSchemaName,
     type SanityBlogPost,
-    type SanityWhitePaper,
+    type SanityPaper,
     type SanityLiveEvent,
     type SanityFundamentalArticle,
     type SanityLecture,
@@ -157,7 +157,7 @@ export {
 } from "./resource/sanity";
 export { Lecture } from "./resource/lecture";
 export { ResourceSection } from "./resource/section";
-export { WhitePaper } from "./resource/white-paper";
+export { Paper } from "./resource/paper";
 export { Document, SanityDataset } from "./sanity-core";
 export {
     type SanityCommunityResources,

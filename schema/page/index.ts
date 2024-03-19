@@ -13,7 +13,7 @@ import { servicesPageSchemas } from "./services";
 import { solutionPageSchemas } from "./solution";
 import { supportPageSchemas } from "./support";
 import { lecturesPageSchemas } from "./lectures";
-import { whitePapersPageSchema } from "./white-papers";
+import { papersPageSchema } from "./papers";
 import { metaTagsSchemas } from "./meta-tags";
 
 export const pageSchemas = [
@@ -32,6 +32,6 @@ export const pageSchemas = [
     ...supportPageSchemas,
     ...lecturesPageSchemas,
     requestTechTalkPageSchema,
-    whitePapersPageSchema,
+    papersPageSchema,
     ...metaTagsSchemas,
 ];

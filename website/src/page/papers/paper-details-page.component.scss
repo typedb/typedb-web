@@ -12,12 +12,15 @@
     }
 }
 
+.wd-actions {
+    justify-content: center;
+}
+
 .wd-form-card {
     position: relative;
     padding: 32px;
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
     gap: 12px 32px;
     text-align: start;
 
@@ -38,11 +41,6 @@
 
 .wd-description {
     text-align: start;
-    columns: 2;
-
-    @media (max-width: media.$max-width-mobile) {
-        columns: 1;
-    }
 }
 
 .wd-img {

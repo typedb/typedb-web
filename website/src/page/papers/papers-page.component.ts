@@ -6,10 +6,10 @@ import {
     ButtonStyle,
     LinkButton,
     SanityDataset,
-    SanityWhitePapersPage,
-    WhitePaper,
-    WhitePapersPage,
-    whitePapersPageSchemaName,
+    SanityPapersPage,
+    Paper,
+    PapersPage,
+    papersPageSchemaName,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
@@ -21,32 +21,27 @@ import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
-    selector: "td-white-papers-page",
-    templateUrl: "./white-papers-page.component.html",
-    styleUrls: ["./white-papers-page.component.scss"],
+    selector: "td-papers-page",
+    templateUrl: "./papers-page.component.html",
+    styleUrls: ["./papers-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    AspectRatioComponent,
-    RichTextComponent,
-    ButtonComponent,
-    AsyncPipe,
-    PlainTextPipe
-],
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        ButtonComponent, AsyncPipe, PlainTextPipe,
+    ],
 })
-export class WhitePapersPageComponent extends PageComponentBase<WhitePapersPage> {
+export class PapersPageComponent extends PageComponentBase<PapersPage> {
     protected override getPage(data: SanityDataset) {
-        const page = data.getDocumentByID<SanityWhitePapersPage>(whitePapersPageSchemaName);
-        return of(page ? new WhitePapersPage(page, data) : null);
+        const page = data.getDocumentByID<SanityPapersPage>(papersPageSchemaName);
+        return of(page ? new PapersPage(page, data) : null);
     }
 
-    accessResourceButton(whitePaper: WhitePaper, style: ButtonStyle, text: string): LinkButton {
+    accessResourceButton(paper: Paper, style: ButtonStyle, text: string): LinkButton {
         return new LinkButton({
             style: style,
             text: text,
-            link: whitePaper.detailsPageLink(),
+            link: paper.detailsPageLink(),
             comingSoon: false,
         });
     }
