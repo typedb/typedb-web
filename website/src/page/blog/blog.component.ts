@@ -122,7 +122,7 @@ export class BlogComponent implements OnInit {
             this.blog$.pipe(filter((blog): blog is Blog => !!blog)),
             this.route.paramMap.pipe(
                 map((params) => {
-                    const categorySlug = params.get("categorySlug");
+                    const categorySlug = params.get("slug");
                     return categorySlug ? { categorySlug } : blogNullFilter();
                 }),
             ),
