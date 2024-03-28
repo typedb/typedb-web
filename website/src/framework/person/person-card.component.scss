@@ -10,9 +10,6 @@
     @include card-padding;
     width: 560px;
     max-width: calc(100vw - 24px);
-    @media (max-width: media.$max-width-mobile) {
-        width: 375px;
-    }
 }
 
 .pc-summary {

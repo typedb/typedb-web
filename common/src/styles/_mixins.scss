@@ -14,11 +14,7 @@
         width: calc(100vw - $section-page-margin-tablet * 2 + $offset);
     }
 
-    @media (min-width: ($section-width-mobile + 24px)) and (max-width: media.$max-width-mobile) {
-        width: $section-width-mobile + $offset;
-    }
-
-    @media (max-width: ($section-width-mobile + 23px)) {
+    @media (max-width: media.$max-width-mobile) {
         width: calc(100vw - 24px + $offset);
     }
 }
