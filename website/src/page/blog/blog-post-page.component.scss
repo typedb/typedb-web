@@ -130,6 +130,7 @@ $post-content-width: 800px;
 .bp-content {
     flex: 0 1 $post-content-width;
     width: $post-content-width;
+    max-width: var(--section-max-width);
 
     td-rich-text {
         margin-top: 40px;
