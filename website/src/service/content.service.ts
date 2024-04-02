@@ -85,10 +85,12 @@ export class ContentService {
         });
         this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
         this.topbarData = this.getSanityResult<TopbarData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
-        this.wordpressPosts = this.transferState
-            .useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
+        this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
             .pipe(
-                filter((data) => !!data?.length),
+                switchMap((data) => {
+                    if (data?.length) return of(data);
+                    else return this.wordpress.listPosts(); // fall back to loading live. should patch away WP flakiness
+                }),
                 shareReplay(),
             );
         this.listPosts().subscribe((data) => {
