@@ -139,7 +139,7 @@ export class BlogPostPageComponent implements OnInit {
                 }
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
+                }, 60000);
             },
             error: (_err) => {
                 this.router.navigate(["blog"], { replaceUrl: true });

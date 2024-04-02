@@ -115,7 +115,7 @@ export class BlogComponent implements OnInit {
             }
             setTimeout(() => {
                 this._idleMonitor.fireManualMyAppReadyEvent();
-            }, 20000);
+            }, 60000);
         });
 
         combineLatest([
