@@ -13,18 +13,18 @@ const introSection = "introSection";
 const resourceSections = "resourceSections";
 const finalSection = "finalSection";
 
-export interface SanityLearningCenter extends SanityPage {
+export interface SanityResourceHub extends SanityPage {
     [introSection]: SanityTitleBodyActions;
     [resourceSections]: SanityResourceSection[];
     [finalSection]: SanityConclusionSection;
 }
 
-export class LearningCenter extends Page {
+export class ResourceHub extends Page {
     readonly [introSection]: TitleBodyActions;
     readonly [resourceSections]: ResourceSection[];
     readonly [finalSection]: ConclusionSection;
 
-    constructor(data: SanityLearningCenter, db: SanityDataset) {
+    constructor(data: SanityResourceHub, db: SanityDataset) {
         super(data, db);
         this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
         this.resourceSections = data.resourceSections.map((x) => ResourceSection.fromSanity(x, db));
@@ -32,11 +32,8 @@ export class LearningCenter extends Page {
     }
 }
 
-export const learningCenterSchemaName = "learningCenter";
-
-export const learningCenterSchema = defineType({
-    name: learningCenterSchemaName,
-    title: "Learning Center",
+const resourceHubSchemaBase = defineType({
+    name: "ABSTRACT",
     type: "document",
     fields: [
         metaTagsField,
@@ -62,5 +59,24 @@ export const learningCenterSchema = defineType({
             validation: requiredRule,
         }),
     ],
+});
+
+export const learningCenterSchemaName = "learningCenter";
+
+const learningCenterSchema = defineType({
+    ...resourceHubSchemaBase,
+    name: learningCenterSchemaName,
+    title: "Learning Center",
     preview: { prepare: (_selection) => ({ title: "Learning Center" }) },
 });
+
+export const fundamentalsPageSchemaName = "fundamentalsPage";
+
+const fundamentalsPageSchema = defineType({
+    ...resourceHubSchemaBase,
+    name: fundamentalsPageSchemaName,
+    title: "Fundamentals Page",
+    preview: { prepare: (_selection) => ({ title: "Fundamentals Page" }) },
+});
+
+export const learnPageSchemas = [learningCenterSchema, fundamentalsPageSchema];

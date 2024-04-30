@@ -12,11 +12,11 @@ import {
     blogCategories,
     BlogCategoryID,
     fundamentalArticleSchemaName,
-    LearningCenter,
+    ResourceHub,
     learningCenterSchemaName,
     Link,
     LinkButton,
-    SanityLearningCenter,
+    SanityResourceHub,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -40,19 +40,13 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    LinkDirective,
-    HeadingWithHighlightsComponent,
-    RichTextComponent,
-    MatIconModule,
-    ButtonComponent,
-    FurtherLearningComponent,
-    AsyncPipe
-],
+        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, RichTextComponent,
+        MatIconModule, ButtonComponent, FurtherLearningComponent, AsyncPipe
+    ],
 })
 export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;
-    learningCenter$!: Observable<LearningCenter | null>;
+    learningCenter$!: Observable<ResourceHub | null>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
@@ -79,8 +73,8 @@ export class LearningArticleComponent implements OnInit {
     ngOnInit() {
         this.learningCenter$ = this.content.data.pipe(
             map((data) => {
-                const sanityLearningCenter = data.getDocumentByID<SanityLearningCenter>(learningCenterSchemaName);
-                return sanityLearningCenter ? new LearningCenter(sanityLearningCenter, data) : null;
+                const sanityLearningCenter = data.getDocumentByID<SanityResourceHub>(learningCenterSchemaName);
+                return sanityLearningCenter ? new ResourceHub(sanityLearningCenter, data) : null;
             }),
         );
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
