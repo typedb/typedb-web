@@ -1,0 +1,18 @@
+<article tdPageBackground nebula="features" planet="yellow_green">
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <td-title-body-actions-section
+        [isIntroSection]="true"
+        [title]="page.introSection.title"
+        [body]="page.introSection.body"
+        [actions]="page.introSection.actions"
+        />
+      @for (section of page.resourceSections; track section; let idx = $index) {
+        <td-resources-block [section]="section" [index]="idx" />
+        <td-resource-panels-cols-2 [resources]="section.resources" />
+      }
+      <td-resources-block [section]="page.finalSection" [index]="page.resourceSections.length"/>
+      <td-conclusion-panel [panel]="page.finalSection.panel" />
+    </div>
+  }
+</article>
