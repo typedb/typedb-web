@@ -1,6 +1,6 @@
 import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
 import { Link } from "../link";
 import { Person } from "../person";
@@ -171,23 +171,21 @@ export function articleFromApi(data: SanityArticle, db: SanityDataset, wordpress
     else throw "Unreachable code";
 }
 
-const BLOG_POSTS_URL = "https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts";
-const BLOG_POSTS_MIN_REFRESH_INTERVAL_MS = 3000;
+const blogPostBySlugUrl = (slug: string) => `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts/slug:${slug}`;
 
-async function wordpressPostSlugs(): Promise<string[]> {
-    if (!(window as any)["wordpressData"]) {
-        (window as any)["wordpressData"] = { postSlugs: [], lastUpdated: 0 };
+async function wordpressPostExists(slug: string): Promise<boolean> {
+    try {
+        await axios.get<any>(blogPostBySlugUrl(slug), {
+            params: { fields: "slug" },
+        });
+        return true;
+    } catch (err) {
+        if (err instanceof AxiosError && err.response?.status === 404) {
+            return false;
+        } else {
+            throw err;
+        }
     }
-    const wordpressData = (window as any)["wordpressData"] as { postSlugs: string[]; lastUpdated: number };
-    if (Date.now() - wordpressData.lastUpdated < BLOG_POSTS_MIN_REFRESH_INTERVAL_MS) {
-        return wordpressData.postSlugs;
-    }
-    wordpressData.lastUpdated = Date.now();
-    const { data } = await axios.get<{ found: number; posts: { slug: string }[] }>(BLOG_POSTS_URL, {
-        params: { fields: "slug" },
-    });
-    wordpressData.postSlugs = data.posts.map((x) => x.slug);
-    return wordpressData.postSlugs;
 }
 
 export const wordpressSlugField = Object.assign({}, slugField, {
@@ -195,8 +193,8 @@ export const wordpressSlugField = Object.assign({}, slugField, {
     validation: (rule: SlugRule) =>
         rule.custom(async (value) => {
             if (!value?.current) return "Required";
-            const slugs = await wordpressPostSlugs();
-            return slugs.includes(value.current) || `WordPress post with slug '${value.current}' not found`;
+            const exists = await wordpressPostExists(value.current);
+            return exists ? true : `WordPress post with slug '${value.current}' not found`;
         }),
 });
 
