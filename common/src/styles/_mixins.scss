@@ -5,10 +5,7 @@
 @mixin section-width($offset) {
     // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
     width: $section-width + $offset;
-
-    @media (min-width: ($section-width-tablet + $section-page-margin-tablet * 2)) and (max-width: media.$max-width-tablet) {
-        width: $section-width-tablet + $offset;
-    }
+    max-width: var(--section-max-width);
 
     @media (min-width: media.$min-width-tablet) and (max-width: ($section-width-tablet + $section-page-margin-tablet * 2 - 1px)) {
         width: calc(100vw - $section-page-margin-tablet * 2 + $offset);

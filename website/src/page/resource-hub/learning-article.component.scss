@@ -129,9 +129,9 @@ $post-content-width: 700px;
 }
 
 .bp-content {
-    flex: 0 1 $post-content-width;
-    width: $post-content-width;
-    max-width: var(--section-max-width);
+    flex: 0 1 var(--blog-post-width);
+    width: var(--blog-post-width);
+    max-width: var(--blog-post-max-width);
 }
 
 .bp-sidebar {
