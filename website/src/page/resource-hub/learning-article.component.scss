@@ -117,6 +117,10 @@ $post-content-width: 700px;
     border-left: 1px solid var(--content-border-color);
 }
 
+section {
+    width: 1080px;
+}
+
 .bp-content-section {
     margin-top: 40px;
     display: flex;
