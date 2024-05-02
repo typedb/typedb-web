@@ -40,6 +40,8 @@
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
     --section-max-width: calc(100vw - var(--section-page-margin) * 2);
+    --blog-post-width: #{$blog-post-width};
+    --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
     --intro-section-margin: #{$intro-section-margin};
     --section-margin: #{$section-margin};
@@ -79,6 +81,8 @@
     --line-height-p1: #{typography.$height-p1};
     --font-size-p2: #{typography.$p2};
     --line-height-p2: #{typography.$height-p2};
+    --font-size-blog: #{typography.$blog};
+    --line-height-blog: #{typography.$height-blog};
     --font-size-aside: #{typography.$aside};
     --line-height-aside: #{typography.$height-aside};
     --font-size-code: #{typography.$code};
@@ -101,6 +105,7 @@
 
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
+        --blog-post-max-width: var(--section-max-width);
 
         --intro-section-margin: #{$intro-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
@@ -126,6 +131,8 @@
         --line-height-p1: #{typography.$height-p1-mobile};
         --font-size-p2: #{typography.$p2-mobile};
         --line-height-p2: #{typography.$height-p2-mobile};
+        --font-size-blog: #{typography.$blog-mobile};
+        --line-height-blog: #{typography.$height-blog-mobile};
         --font-size-aside: #{typography.$aside-mobile};
         --line-height-aside: #{typography.$height-aside-mobile};
         --font-size-code: #{typography.$code-mobile};

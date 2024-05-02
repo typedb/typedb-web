@@ -2,8 +2,8 @@
   <div class="article-content article-content-no-planet">
     @if (article$ | async; as article) {
       <section class="page-section nebula-section">
-        <a tdLink="/learn">
-          @if (learningCenter$ | async; as learningCenter) {
+        <a [tdLink]="resourceHubLink$ | async">
+          @if (resourceHub$ | async; as learningCenter) {
             <td-heading-with-highlights
               [value]="learningCenter.introSection.title"
               class="bp-site-title"
@@ -21,7 +21,7 @@
         </section>
         <section class="bp-content-section">
           <div class="bp-content">
-            <td-rich-text [value]="article.contentHtml" />
+            <td-rich-text class="text-blog" [value]="article.contentHtml" />
           </div>
           @if (article$ | async; as post) {
             <div class="bp-sidebar">

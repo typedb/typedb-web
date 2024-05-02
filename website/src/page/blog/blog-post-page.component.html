@@ -27,7 +27,7 @@
         <section class="bp-content-section">
           <div class="bp-content">
             <figure><img class="bp-featured-image" [src]="post.imageURL" alt="" /></figure>
-            <td-rich-text [value]="post.contentHtml" />
+            <td-rich-text class="text-blog" [value]="post.contentHtml" />
           </div>
           @if (post$ | async; as post) {
             <div class="bp-sidebar">
