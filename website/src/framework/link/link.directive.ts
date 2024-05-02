@@ -17,7 +17,7 @@ import { Link } from "typedb-web-schema";
     standalone: true,
 })
 export class LinkDirective implements OnChanges {
-    @Input("tdLink") link?: Link | string;
+    @Input("tdLink") link?: Link | string | null;
     @Output() clicked = new EventEmitter<MouseEvent>();
 
     @HostBinding("class.td-active")

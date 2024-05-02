@@ -16,7 +16,7 @@ import {
     learningCenterSchemaName,
     Link,
     LinkButton,
-    SanityResourceHub,
+    SanityResourceHub, fundamentalsPageSchemaName,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -46,7 +46,8 @@ import { MetaTagsService } from "../../service/meta-tags.service";
 })
 export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;
-    learningCenter$!: Observable<ResourceHub | null>;
+    resourceHub$!: Observable<ResourceHub | null>;
+    resourceHubLink$!: Observable<string>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "secondary",
@@ -71,11 +72,20 @@ export class LearningArticleComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.learningCenter$ = this.content.data.pipe(
-            map((data) => {
-                const sanityLearningCenter = data.getDocumentByID<SanityResourceHub>(learningCenterSchemaName);
-                return sanityLearningCenter ? new ResourceHub(sanityLearningCenter, data) : null;
+        this.resourceHub$ = combineLatest([this.activatedRoute.data, this.content.data]).pipe(
+            map(([routeData, db]) => {
+                let resourceHubSchemaName: string;
+                if (routeData["resourceType"] === fundamentalArticleSchemaName) resourceHubSchemaName = fundamentalsPageSchemaName;
+                else resourceHubSchemaName = learningCenterSchemaName;
+                const sanityResourceHub = db.getDocumentByID<SanityResourceHub>(resourceHubSchemaName);
+                return sanityResourceHub ? new ResourceHub(sanityResourceHub, db) : null;
             }),
+        );
+        this.resourceHubLink$ = this.activatedRoute.data.pipe(
+            map((routeData) => {
+                if (routeData["resourceType"] === fundamentalArticleSchemaName) return "/fundamentals";
+                else return "/learn";
+            })
         );
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
             map(([routeData, params]) => ({ resourceType: routeData["resourceType"], slug: params.get("slug") })),
