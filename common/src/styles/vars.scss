@@ -79,6 +79,8 @@
     --line-height-p1: #{typography.$height-p1};
     --font-size-p2: #{typography.$p2};
     --line-height-p2: #{typography.$height-p2};
+    --font-size-blog: #{typography.$blog};
+    --line-height-blog: #{typography.$height-blog};
     --font-size-aside: #{typography.$aside};
     --line-height-aside: #{typography.$height-aside};
     --font-size-code: #{typography.$code};
@@ -126,6 +128,8 @@
         --line-height-p1: #{typography.$height-p1-mobile};
         --font-size-p2: #{typography.$p2-mobile};
         --line-height-p2: #{typography.$height-p2-mobile};
+        --font-size-blog: #{typography.$blog-mobile};
+        --line-height-blog: #{typography.$height-blog-mobile};
         --font-size-aside: #{typography.$aside-mobile};
         --line-height-aside: #{typography.$height-aside-mobile};
         --font-size-code: #{typography.$code-mobile};

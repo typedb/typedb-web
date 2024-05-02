@@ -21,7 +21,7 @@
         </section>
         <section class="bp-content-section">
           <div class="bp-content">
-            <td-rich-text [value]="article.contentHtml" />
+            <td-rich-text class="text-blog" [value]="article.contentHtml" />
           </div>
           @if (article$ | async; as post) {
             <div class="bp-sidebar">
