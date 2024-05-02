@@ -52,6 +52,12 @@ p,
     line-height: var(--line-height-p2);
 }
 
+.text-blog,
+.text-blog p {
+    font-size: var(--font-size-blog);
+    line-height: var(--line-height-blog);
+}
+
 aside,
 .text-aside {
     font-size: var(--font-size-aside);

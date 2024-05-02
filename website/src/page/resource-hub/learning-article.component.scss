@@ -1,6 +1,6 @@
 @use "media";
 
-$post-content-width: 800px;
+$post-content-width: 700px;
 
 ::ng-deep .bp-site-title p {
     color: var(--body-heading-color);
@@ -117,10 +117,14 @@ $post-content-width: 800px;
     border-left: 1px solid var(--content-border-color);
 }
 
+section {
+    width: 1080px;
+}
+
 .bp-content-section {
     margin-top: 40px;
     display: flex;
-    gap: 48px;
+    gap: 125px;
 
     @media (max-width: media.$max-width-mobile) {
         margin-top: 24px;
@@ -129,23 +133,9 @@ $post-content-width: 800px;
 }
 
 .bp-content {
-    flex: 0 1 $post-content-width;
-    width: $post-content-width;
-    max-width: var(--section-max-width);
-
-    td-rich-text {
-        font-size: var(--font-size-p2);
-        line-height: var(--line-height-p2);
-        font-weight: var(--font-weight-light);
-
-        .rt-reading-time {
-            display: none;
-
-            + * {
-                margin-top: 0;
-            }
-        }
-    }
+    flex: 0 1 var(--blog-post-width);
+    width: var(--blog-post-width);
+    max-width: var(--blog-post-max-width);
 }
 
 .bp-sidebar {
