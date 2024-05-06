@@ -1,4 +1,4 @@
-import createClient from "@sanity/client";
+import { createClient } from "@sanity/client";
 import { token } from "./credentials/token";
 import { config } from "../config";
 

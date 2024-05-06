@@ -3,18 +3,19 @@ export const staticPageSchemas = [
     { path: "blog", schemaName: "blog" },
     { path: "deploy", schemaName: "deploymentPage" },
     { path: "events", schemaName: "eventsPage" },
-    { path: "learn", schemaName: "learningCenter" },
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
     { path: "philosophy", schemaName: "philosophyPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
     { path: "support", schemaName: "supportPage" },
-    // { path: "white-papers", schemaName: "whitePapersPage" },
+    { path: "papers", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
 
 export const genericPageSchemas = [
     { path: "cloud", documentID: "cloudPage" },
     { path: "studio", documentID: "studioPage" },
+    { path: "learn", documentID: "learningCenter" },
+    { path: "fundamentals", documentID: "fundamentalsPage" },
 ] as const satisfies readonly GenericPage[];
 
 export const dynamicPageSchemas = [
@@ -26,7 +27,7 @@ export const dynamicPageSchemas = [
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
     // { path: "solutions/:slug", schemaName: "solutionPage", schemaSlugAccessor: "route.current" },
-    // { path: "white-papers/:slug", schemaName: "whitePaper" },
+    { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
 interface StaticPage {

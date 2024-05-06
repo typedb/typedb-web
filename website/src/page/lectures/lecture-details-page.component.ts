@@ -71,7 +71,7 @@ export class LectureDetailsPageComponent implements OnInit {
     readonly actions$: Observable<ActionButton[] | null>;
     readonly lecture$: Observable<Lecture | null>;
     readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
-    private readonly isSubmittingSubject = new BehaviorSubject(false);
+    private readonly _isSubmitting$ = new BehaviorSubject(false);
 
     constructor(
         private router: Router,
@@ -87,7 +87,7 @@ export class LectureDetailsPageComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private dialog: MatDialog,
     ) {
-        this.isSubmitting$ = this.isSubmittingSubject.asObservable();
+        this.isSubmitting$ = this._isSubmitting$.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
             map(([params, data]) => {
                 const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];
@@ -163,7 +163,7 @@ export class LectureDetailsPageComponent implements OnInit {
                 }, 20000);
                 this._formService.embedHubspotForm(lecture.hubspotFormID as string, "hubspot-form-holder", {
                     onLoadingChange: (val) => {
-                        this.isSubmittingSubject.next(val);
+                        this._isSubmitting$.next(val);
                     },
                     onSuccess: (_formEl, values) => this.onSubmit(lecture, values),
                 });

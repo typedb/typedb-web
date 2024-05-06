@@ -5,7 +5,7 @@ import { eventsPageSchemas } from "./events";
 import { featuresPageSchemas } from "./features";
 import { genericPageSchemas } from "./generic";
 import { homePageSchemas } from "./home";
-import { learningCenterSchema } from "./learn";
+import { learnPageSchemas } from "./learn";
 import { legalDocumentSchema } from "./legal";
 import { philosophyPageSchemas } from "./philosophy";
 import { requestTechTalkPageSchema } from "./request-tech-talk";
@@ -13,7 +13,7 @@ import { servicesPageSchemas } from "./services";
 import { solutionPageSchemas } from "./solution";
 import { supportPageSchemas } from "./support";
 import { lecturesPageSchemas } from "./lectures";
-import { whitePapersPageSchema } from "./white-papers";
+import { papersPageSchema } from "./papers";
 import { metaTagsSchemas } from "./meta-tags";
 
 export const pageSchemas = [
@@ -24,7 +24,7 @@ export const pageSchemas = [
     ...genericPageSchemas,
     ...featuresPageSchemas,
     ...homePageSchemas,
-    learningCenterSchema,
+    ...learnPageSchemas,
     legalDocumentSchema,
     ...philosophyPageSchemas,
     ...servicesPageSchemas,
@@ -32,6 +32,6 @@ export const pageSchemas = [
     ...supportPageSchemas,
     ...lecturesPageSchemas,
     requestTechTalkPageSchema,
-    whitePapersPageSchema,
+    papersPageSchema,
     ...metaTagsSchemas,
 ];

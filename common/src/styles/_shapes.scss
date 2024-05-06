@@ -5,7 +5,10 @@ $section-width: 1200px - $section-page-margin * 2;
 $section-page-margin-tablet: 32px;
 $section-width-tablet: 1024px - $section-page-margin-tablet * 2;
 $section-page-margin-mobile: 12px;
-$section-width-mobile: 375px;
+$section-width-mobile: calc(100vw - $section-page-margin-mobile * 2);
+$blog-post-gap: 125px;
+$blog-post-sidebar-width: 208px;
+$blog-post-width: 700px;
 
 $intro-section-margin: 280px;
 $intro-section-margin-tablet: 224px;

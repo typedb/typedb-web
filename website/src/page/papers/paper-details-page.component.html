@@ -1,0 +1,28 @@
+<article tdPageBackground nebula="studio" planet="pink">
+  @if (page$ | async; as paper) {
+    <div class="article-content">
+      <section class="page-section nebula-section">
+        <a tdLink="/papers">
+          <td-heading-with-highlights [value]="allPapersHeading" class="bp-site-title" level="h2" />
+        </a>
+      </section>
+      <div class="resource-section">
+        <section>
+          <td-heading-with-highlights class="narrow-section" [value]="paper.title" level="h1" />
+          @if (actions$ | async; as actions) {
+            <td-actions [actions]="actions" class="wd-actions" />
+          }
+          <div class="section subsection-margin card wd-form-card">
+            <td-aspect-ratio ratio="17:22">
+              <img [src]="paper.portraitImageURL" class="wd-img" [alt]="paper.title" />
+            </td-aspect-ratio>
+            <td-rich-text class="wd-description" [value]="paper.description" />
+          </div>
+        </section>
+        @if (paper.furtherLearning) {
+          <td-further-learning [value]="paper.furtherLearning" />
+        }
+      </div>
+    </div>
+  }
+</article>

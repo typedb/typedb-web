@@ -1,9 +1,9 @@
 @use "media";
 @import "mixins";
 
-.wp-primary-whitepaper {
+.wp-primary-paper-details {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: flex-start;
     gap: 40px;
 
@@ -26,7 +26,7 @@
     }
 }
 
-.wp-primary-whitepaper-summary {
+.wp-primary-paper-summary {
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -45,17 +45,18 @@
     }
 }
 
-.wp-whitepaper-title {
+.wp-paper-title {
     font-weight: var(--font-weight-semi-bold);
 }
 
-.wp-primary-whitepaper-description {
-    margin-top: 16px;
-    font-weight: var(--font-weight-light);
+.wp-primary-paper-title {
+    margin-top: 8px;
+    margin-bottom: 40px;
+    text-align: center;
+}
 
-    @media (max-width: media.$max-width-tablet) {
-        margin-top: 8px;
-    }
+.wp-primary-paper-description {
+    font-weight: var(--font-weight-light);
 }
 
 .wp-img {
