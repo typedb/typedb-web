@@ -12,10 +12,10 @@ export const staticPageSchemas = [
 ] as const satisfies readonly StaticPage[];
 
 export const genericPageSchemas = [
-    { path: "cloud", documentID: "cloudPage" },
-    { path: "studio", documentID: "studioPage" },
-    { path: "learn", documentID: "learningCenter" },
-    { path: "fundamentals", documentID: "fundamentalsPage" },
+    { path: "cloud", schemaName: "genericPage", documentID: "cloudPage" },
+    { path: "studio", schemaName: "genericPage", documentID: "studioPage" },
+    { path: "learn", schemaName: "resourceHub", documentID: "learningCenter" },
+    { path: "fundamentals", schemaName: "resourceHub", documentID: "fundamentalsPage" },
 ] as const satisfies readonly GenericPage[];
 
 export const dynamicPageSchemas = [
@@ -37,6 +37,7 @@ interface StaticPage {
 
 interface GenericPage {
     path: string;
+    schemaName: string;
     documentID: string;
 }
 
