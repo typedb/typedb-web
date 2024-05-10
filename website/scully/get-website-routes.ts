@@ -5,16 +5,16 @@ import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "../sr
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
 
-const genericPageRoute = async (route: string, pageId: string) => {
+const staticPageRoute = async (route: string, schemaName: string) => {
     const { data } = await axios.get<{ result: boolean }>(SANITY_QUERY_URL, {
-        params: { query: `defined(*[_type == 'genericPage' && _id == '${pageId}'][0])` },
+        params: { query: `defined(*[_type == '${schemaName}'][0])` },
     });
     return data.result ? [`/${route}`] : [];
 };
 
-const staticPageRoute = async (route: string, schemaName: string) => {
+const genericPageRoute = async (route: string, schemaName: string, pageId: string) => {
     const { data } = await axios.get<{ result: boolean }>(SANITY_QUERY_URL, {
-        params: { query: `defined(*[_type == '${schemaName}'][0])` },
+        params: { query: `defined(*[_type == '${schemaName}' && _id == '${pageId}'][0])` },
     });
     return data.result ? [`/${route}`] : [];
 };
@@ -28,8 +28,8 @@ const dynamicPageRoutes = async (route: string, schemaName: string, schemaSlugAc
 
 export const getWebsiteRoutes = async () => {
     const staticPageRoutePromises = staticPageSchemas.map(({ path, schemaName }) => staticPageRoute(path, schemaName));
-    const genericPageRoutePromises = genericPageSchemas.map(({ path, documentID }) =>
-        genericPageRoute(path, documentID),
+    const genericPageRoutePromises = genericPageSchemas.map(({ path, schemaName, documentID }) =>
+        genericPageRoute(path, schemaName, documentID),
     );
     const dynamicPageRoutePromises = dynamicPageSchemas.map((page) => {
         if ("slugs" in page) {
