@@ -34,8 +34,8 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
-    learn: { component: ResourceHubComponent, title: "TypeDB Learning Center" },
-    fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals" },
+    learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
+    fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
 };
 
 const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
