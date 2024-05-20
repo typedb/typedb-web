@@ -1,7 +1,7 @@
 const SANITY_PROJECT_ID = `xndl14mc`;
-const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/`;
+const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io`;
 export const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
-const SANITY_CDN_URL = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io/`;
+const SANITY_CDN_URL = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io`;
 export const SANITY_CDN_QUERY_URL = `${SANITY_CDN_URL}/v2021-10-21/data/query/production`;
 // Read-only API token that must be provided to read draft content
 export const SANITY_TOKEN =
