@@ -10,6 +10,6 @@ export const platformUiBannerQuery = `
         text, marks
       }
     }
-  },
+  }
 }
 `;
