@@ -1,7 +1,7 @@
 import { escapeHtml, generateLink } from "../shared";
 import { SiteBannerData } from "./topbar-query";
 
-export const generateBanner = (banner: SiteBannerData, urlPrefix: string) => {
+export const generateBanner = (banner: SiteBannerData, urlPrefix: string = "") => {
     if (!banner.isEnabled) {
         return "";
     }
