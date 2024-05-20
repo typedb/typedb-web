@@ -21,7 +21,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -42,6 +42,7 @@ export default defineConfig({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
                     singletonListItem(s, siteBannerSchemaName, { title: "Site Banner", icon: SparklesIcon }),
+                    singletonListItem(s, platformUiBannerSchemaName, { title: "Platform UI Banner", icon: SparklesIcon }),
                     singletonListItem(s, topbarSchemaName, { title: "Topbar", icon: ThListIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
