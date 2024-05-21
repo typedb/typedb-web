@@ -37,6 +37,7 @@ npm_package(
 
 checkstyle_test(
     name = "checkstyle",
+    include = [],
     exclude = glob([
         "**/*",
     ]),
