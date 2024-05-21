@@ -8,6 +8,7 @@
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@vaticle_dependencies//tool/checkstyle:rules.bzl", "checkstyle_test")
 
 copy_to_bin(
     name = "srcs",
@@ -32,4 +33,12 @@ npm_package(
     name = "common",
     srcs = [":srcs", ":lib", "package.json"],
     visibility = ["//:__subpackages__"],
+)
+
+checkstyle_test(
+    name = "checkstyle",
+    exclude = glob([
+        "**/*",
+    ]),
+    license_type = "commercial-header",
 )
