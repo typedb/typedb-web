@@ -38,6 +38,12 @@ npm_package(
 checkstyle_test(
     name = "checkstyle",
     include = glob(["BUILD"]),
-    exclude = glob(["**/*"]),
+    exclude = glob([
+        "src",
+        ".gitignore",
+        "*.json",
+        "*.yaml",
+        "*.md",
+    ]),
     license_type = "commercial-header",
 )
