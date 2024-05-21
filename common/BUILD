@@ -37,9 +37,7 @@ npm_package(
 
 checkstyle_test(
     name = "checkstyle",
-    include = [],
-    exclude = glob([
-        "**/*",
-    ]),
+    include = glob(["BUILD"]),
+    exclude = glob(["**/*"]),
     license_type = "commercial-header",
 )
