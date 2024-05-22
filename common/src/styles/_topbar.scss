@@ -9,6 +9,7 @@
         left: 0;
         right: 0;
         z-index: 700;
+        font-size: var(--font-size-base);
 
         &::before {
             content: "";
