@@ -4,47 +4,14 @@ import { Injectable } from "@angular/core";
 import { SanityDocument } from "@sanity/types";
 import { TransferStateService } from "@scullyio/ng-lib";
 import {
-    BehaviorSubject,
-    combineLatest,
-    concat,
-    filter,
-    first,
-    iif,
-    map,
-    Observable,
-    of,
-    ReplaySubject,
-    shareReplay,
+    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay,
     switchMap,
 } from "rxjs";
+import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
 import {
-    FooterData,
-    footerQuery,
-    SANITY_QUERY_URL,
-    SANITY_TOKEN,
-    TopbarData,
-    topbarQuery,
-} from "typedb-web-common/lib";
-import {
-    ApplicationArticle,
-    applicationArticleSchemaName,
-    Article,
-    articleFromApi,
-    associateBy,
-    BlogCategoryID,
-    BlogFilter,
-    blogNullFilter,
-    BlogPost,
-    blogPostSchemaName,
-    FundamentalArticle,
-    fundamentalArticleSchemaName,
-    groupBy,
-    LegalDocument,
-    legalDocumentSchemaName,
-    SanityArticle,
-    SanityBlogPost,
-    SanityDataset,
-    SanityLegalDocument,
+    ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogCategoryID, BlogFilter,
+    blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
+    LegalDocument, legalDocumentSchemaName, SanityArticle, SanityBlogPost, SanityDataset, SanityLegalDocument,
     WordpressPost,
 } from "typedb-web-schema";
 
@@ -183,13 +150,8 @@ export class ContentService {
                 this.http.get<{ result: T }>(
                     SANITY_QUERY_URL,
                     environment.production
-                        ? {
-                              params: { query, perspective: "published" },
-                          }
-                        : {
-                              params: { query, perspective: "previewDrafts" },
-                              headers: { Authorization: `Bearer ${SANITY_TOKEN}` },
-                          },
+                        ? { params: { query, perspective: "published" } }
+                        : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
                 ),
             )
             .pipe(

@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { generateTopbar, setupTopbarListeners } from "typedb-web-common/lib";
+import { generateTopbar, setupLinks, setupTopbarListeners } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
-import { setupLinks } from "../setup-links";
 import { TopbarMenuService } from "./topbar-menu.service";
 
 @Component({
