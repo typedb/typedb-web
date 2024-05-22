@@ -97,7 +97,7 @@
     .td-topbar-button {
         margin: 0 20px;
         align-self: center;
-        width: 118px;
+        width: 118px !important; /* overrides media query */
     }
 
     .td-topbar-menu-panel {
