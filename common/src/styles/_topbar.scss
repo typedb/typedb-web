@@ -180,6 +180,8 @@
         padding-bottom: 8px;
         border-bottom: 1px solid var(--content-border-color);
         font-weight: var(--font-weight-semi-bold);
+        font-size: var(--font-size-h5);
+        line-height: var(--line-height-h5);
     }
 
     .td-topbar-github-icon {
@@ -221,6 +223,11 @@
         border: 1px solid var(--content-border-color);
         border-radius: var(--border-radius);
         transition: border-color 100ms ease;
+
+        h4 {
+            font-size: var(--font-size-h4);
+            line-height: var(--line-height-h4);
+        }
 
         &:hover {
             border-color: var(--color-green);
