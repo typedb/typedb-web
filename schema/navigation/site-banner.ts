@@ -32,7 +32,7 @@ export class SiteBanner {
 
 export const siteBannerSchemaName = "siteBanner";
 
-export const siteBannerSchema = defineType({
+const siteBannerSchema = defineType({
     name: siteBannerSchemaName,
     icon: SparklesIcon,
     title: "Site Banner",
@@ -55,3 +55,14 @@ export const siteBannerSchema = defineType({
     }),
     preview: { prepare: (_selection) => ({ title: "Site Banner" }) },
 });
+
+export const platformUiBannerSchemaName = "platformUiBanner";
+
+const platformUiBannerSchema = defineType({
+    ...siteBannerSchema,
+    name: platformUiBannerSchemaName,
+    title: "Platform UI Banner",
+    preview: { prepare: (_selection) => ({ title: "Platform UI Banner" }) },
+});
+
+export const siteBannerSchemas = [siteBannerSchema, platformUiBannerSchema];

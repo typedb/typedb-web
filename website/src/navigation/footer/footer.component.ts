@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { generateFooter } from "typedb-web-common/lib";
+import { generateFooter, setupLinks } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
-import { setupLinks } from "../setup-links";
 
 @Component({
     selector: "td-footer",

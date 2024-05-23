@@ -1,8 +1,4 @@
-export const linkProps = `{
-  type,
-  opensNewTab,
-  destination{current},
-}`;
+export const linkProps = `{ type, opensNewTab, destination{current} }`;
 
 export interface Link {
     destination: { current: string };

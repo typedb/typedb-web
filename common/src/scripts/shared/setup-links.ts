@@ -1,6 +1,8 @@
-import { Router } from "@angular/router";
+export interface AbstractRouter {
+    navigateByUrl: (url: string) => any;
+}
 
-export const setupLinks = (el: HTMLElement | null, router: Router) => {
+export const setupLinks = (el: HTMLElement | null, router: AbstractRouter) => {
     const links = el?.querySelectorAll("a");
     links?.forEach((link) =>
         link.addEventListener("click", (ev) => {
