@@ -11,6 +11,7 @@
         z-index: 700;
         font-size: var(--font-size-base);
         font-weight: var(--font-weight-light);
+        text-align: left;
 
         &::before {
             content: "";
