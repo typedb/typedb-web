@@ -12,7 +12,7 @@ Prism.languages["typeql"] = {
     },
     keyword: {
         pattern:
-            /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|match|with|fun|struct|return|reduce|get|filter|insert|delete|put|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
+            /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|match|with|fun|struct|return|reduce|get|filter|assert|insert|delete|put|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     constraint: {
@@ -58,8 +58,12 @@ Prism.languages["typeql"] = {
         pattern: /([^a-zA-Z0-9-_?$]|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
+    object_label: {
+        pattern: /<[^>]+>/,
+        alias: "grammar",
+    },
     operator: {
-        pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
+        pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=|->/,
         alias: "operator",
     },
     spaced_operator: {
