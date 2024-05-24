@@ -27,7 +27,8 @@ pre[class*="language-"] {
 
 .token.class-name,
 .token.number,
-.token.datetime {
+.token.datetime,
+.token.constant {
     color: $prism-blue;
 }
 
@@ -54,8 +55,7 @@ pre[class*="language-"] {
     color: $prism-grey;
 }
 
-.token.annotation,
-.token.constant {
+.token.annotation {
     color: $prism-orange;
 }
 
