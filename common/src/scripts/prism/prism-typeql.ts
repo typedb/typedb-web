@@ -11,12 +11,15 @@ Prism.languages["typeql"] = {
         pattern: /(".*?")|('.*?')/,
     },
     keyword: {
-        pattern:
-            /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|plays|value|match|isa!|isa|contains|regex|iid|is|define|undefine|get|insert|delete|aggregate|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs|or|not)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|match|with|fun|struct|return|reduce|get|filter|assert|insert|delete|put|std|median|mean|max|min|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
+    },
+    constraint: {
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|links|plays|value|isa!|isa|contains|regex|iid|is|or|not)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     annotation: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@key|@unique|@card)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@values|@key|@unique|@card|@distinct|@independent|@cascade|@debug|@replace)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     type: {
@@ -24,7 +27,7 @@ Prism.languages["typeql"] = {
         lookbehind: true,
     },
     modifier: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(boolean|double|long|string|datetime)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(boolean|double|long|int|string|datetime)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     special: {
@@ -53,8 +56,12 @@ Prism.languages["typeql"] = {
         pattern: /([^a-zA-Z0-9-_?$]|^|\s)(true|false)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
+    object_label: {
+        pattern: /<[^>]+>/,
+        alias: "grammar",
+    },
     operator: {
-        pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=/,
+        pattern: /=|;|\.|\+|\*|\/|\^|,|\(|\)|:|{|}|\[|]|!=|>|<|>=|<=|->|\?/,
         alias: "operator",
     },
     spaced_operator: {

@@ -245,6 +245,7 @@ export const authorField = defineField({
     title: "Author",
     type: "reference",
     to: [{type: "person"}],
+    validation: requiredRule,
 });
 
 export const resourcesFieldName = "resources";

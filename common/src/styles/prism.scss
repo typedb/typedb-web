@@ -35,7 +35,8 @@ pre[class*="language-"] {
     color: $prism-light-green;
 }
 
-.token.string {
+.token.string,
+.token.constant {
     color: $prism-yellow;
 }
 
@@ -46,8 +47,15 @@ pre[class*="language-"] {
     color: $prism-pink;
 }
 
-.token.annotation,
-.token.constant {
+.token.constraint {
+    color: $prism-purple;
+}
+
+.token.object_label {
+    color: $prism-grey;
+}
+
+.token.annotation {
     color: $prism-orange;
 }
 
