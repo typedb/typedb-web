@@ -17,22 +17,9 @@ import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas,
-    ...codeSchemas,
-    ...linkSchemas,
-    ...componentSchemas,
-    ...formSchemas,
-    ...keyPointSchemas,
-    ...illustrationSchemas,
-    ...imageSchemas,
-    ...navigationSchemas,
-    ...organisationSchemas,
-    ...pageSchemas,
-    ...personSchemas,
-    referenceMaterialSchema,
-    ...resourceSchemas,
-    ...socialMediaSchemas,
-    ...textSchemas,
+    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
+    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
+    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...textSchemas,
     testimonialSchema,
 ];
 
@@ -63,7 +50,9 @@ export { sectionIconSchemaName } from "./image";
 export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
-export { type SanitySiteBanner, SiteBanner, siteBannerSchemaName } from "./navigation/site-banner";
+export {
+    type SanitySiteBanner, SiteBanner, siteBannerSchemaName, platformUiBannerSchemaName
+} from "./navigation/site-banner";
 export {
     type SanityTopbar, Topbar, type TopbarColumn, TopbarListColumn, TopbarListColumnItem, TopbarMenuPanel,
     topbarSchemaName, TopbarVideoColumn, TopbarSpotlightColumn,

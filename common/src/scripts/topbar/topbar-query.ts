@@ -89,7 +89,7 @@ export interface TopbarMenuPanel {
     columns: TopbarColumn[];
 }
 
-export type SiteBanner =
+export type SiteBannerData =
     | { isEnabled: false }
     | {
           isEnabled: true;
@@ -109,6 +109,6 @@ export interface TopbarData {
             };
         };
     };
-    siteBanner: SiteBanner;
+    siteBanner: SiteBannerData;
     githubURL: string;
 }
