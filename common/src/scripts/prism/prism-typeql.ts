@@ -15,7 +15,7 @@ Prism.languages["typeql"] = {
         lookbehind: true,
     },
     constraint: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|links|plays|value|isa!|isa|contains|regex|iid|is|or|not)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|links|plays|value|isa!|isa|contains|regex|iid|is|or|try|not)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     annotation: {
