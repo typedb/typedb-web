@@ -7,6 +7,7 @@ import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } fr
 
 export interface SanityContentTextPanel extends SanityIllustrationField, SanityBodyTextField {
     learnMoreLink?: SanityReference<SanityLink>;
+    learnMoreLinkText?: string;
 }
 
 export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitleField {}
@@ -14,12 +15,14 @@ export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitl
 export class ContentTextPanel implements BodyTextField {
     readonly body: PortableText;
     readonly illustration: Illustration;
+    readonly learnMoreLinkText: string;
     readonly learnMoreLink?: Link;
 
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
         this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
         this.body = data.body;
         this.learnMoreLink = data.learnMoreLink ? Link.fromSanityLinkRef(data.learnMoreLink, db) : undefined;
+        this.learnMoreLinkText = data.learnMoreLinkText || "Learn more";
     }
 }
 
@@ -42,6 +45,13 @@ const contentTextPanelSchema = defineType({
     fields: [
         bodyFieldRichText,
         illustrationField,
+        defineField({
+            name: "learnMoreLinkText",
+            title: "'Learn More' link text",
+            description: "Defaults to the text 'Learn more'",
+            type: "string",
+            initialValue: "Learn more",
+        }),
         defineField({
             name: learnMoreLinkFieldName,
             title: "'Learn More' link",
