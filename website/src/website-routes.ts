@@ -6,6 +6,8 @@ export const staticPageSchemas = [
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
     { path: "philosophy", schemaName: "philosophyPage" },
+    { path: "learn", schemaName: "learningCenter" },
+    { path: "fundamentals", schemaName: "fundamentalsPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
     { path: "support", schemaName: "supportPage" },
     { path: "papers", schemaName: "papersPage" },
@@ -14,8 +16,6 @@ export const staticPageSchemas = [
 export const genericPageSchemas = [
     { path: "cloud", documentID: "cloudPage" },
     { path: "studio", documentID: "studioPage" },
-    { path: "learn", documentID: "learningCenter" },
-    { path: "fundamentals", documentID: "fundamentalsPage" },
 ] as const satisfies readonly GenericPage[];
 
 export const dynamicPageSchemas = [

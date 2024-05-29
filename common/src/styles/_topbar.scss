@@ -141,7 +141,7 @@
         }
 
         dl {
-            margin: 32px 0;
+            margin: 32px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
             grid-auto-columns: 280px;
@@ -178,7 +178,7 @@
 
     .td-topbar-column-title {
         color: var(--body-heading-color);
-        padding-bottom: 8px;
+        padding-bottom: 8px !important; // overrides stylesheets that reset browser styles
         border-bottom: 1px solid var(--content-border-color);
         font-weight: var(--font-weight-semi-bold);
         font-size: var(--font-size-h5);
