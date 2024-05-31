@@ -9,14 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
-    ActionButton,
-    EventBase,
-    Lecture,
-    lectureSchemaName,
-    Link,
-    LinkButton,
-    ParagraphWithHighlights,
-    SanityLecture,
+    ActionButton, EventBase, Lecture, lectureSchemaName, Link, LinkButton, ParagraphWithHighlights, SanityLecture,
 } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
@@ -44,28 +37,14 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     styleUrls: ["./lecture-details-page.component.scss"],
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    LinkDirective,
-    HeadingWithHighlightsComponent,
-    MatIconModule,
-    ActionsComponent,
-    AspectRatioComponent,
-    MatProgressBarModule,
-    RichTextComponent,
-    PersonCardComponent,
-    FurtherLearningComponent,
-    AsyncPipe,
-    DatePipe,
-    EventDurationPipe,
-    OrdinalDatePipe
-],
+        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, MatIconModule, ActionsComponent,
+        AspectRatioComponent, MatProgressBarModule, RichTextComponent, PersonCardComponent, FurtherLearningComponent,
+        AsyncPipe, DatePipe, EventDurationPipe, OrdinalDatePipe
+    ],
 })
 export class LectureDetailsPageComponent implements OnInit {
     readonly allLecturesHeading = new ParagraphWithHighlights({
-        spans: [
-            { text: "TypeDB ", highlight: false },
-            { text: "Lectures", highlight: true },
-        ],
+        spans: [{ text: "TypeDB ", highlight: false }, { text: "Lectures", highlight: true }],
     });
     readonly isSubmitting$: Observable<boolean>;
     readonly actions$: Observable<ActionButton[] | null>;
@@ -74,18 +53,11 @@ export class LectureDetailsPageComponent implements OnInit {
     private readonly _isSubmitting$ = new BehaviorSubject(false);
 
     constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService,
-        private _title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-        private _plainTextPipe: PlainTextPipe,
-        private sanitizer: DomSanitizer,
-        private dialog: MatDialog,
+        private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
+        private metaTags: MetaTagsService, private _formService: FormService,
+        private _popupNotificationService: PopupNotificationService, private _title: Title,
+        private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService,
+        private _plainTextPipe: PlainTextPipe, private sanitizer: DomSanitizer, private dialog: MatDialog,
     ) {
         this.isSubmitting$ = this._isSubmitting$.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(

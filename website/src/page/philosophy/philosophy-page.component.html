@@ -8,11 +8,11 @@
         [actions]="page.introSection.actions"
         />
       @for (section of page.coreSections; track section; let idx = $index) {
-        <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
+        <td-philosophy-page-core-section [section]="section" [page]="page" [index]="idx" />
         <td-publication-panel [items]="section.panelItems" />
       }
       @if (page.finalSection) {
-        <td-philosophy-page-technicolor-block
+        <td-philosophy-page-core-section
           [section]="page.finalSection"
           [page]="page"
           [index]="page.coreSections.length"

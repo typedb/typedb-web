@@ -1,0 +1,48 @@
+@use "media";
+@use "shapes";
+@import "mixins";
+
+:host {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+    }
+}
+
+.ff-cell {
+    @include card-padding;
+
+    &.text-h2 {
+        line-height: 27px;
+
+        @media (max-width: media.$max-width-mobile) {
+            line-height: 15px;
+            margin-bottom: 4px;
+        }
+    }
+}
+
+.ff-cell + .ff-cell {
+    @media (min-width: media.$min-width-tablet) {
+        border-left: 1px solid var(--content-border-color);
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        border-top: 1px solid var(--content-border-color);
+    }
+}
+
+td-rich-text {
+    margin-top: 24px;
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        margin-top: 16px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 12px;
+    }
+}

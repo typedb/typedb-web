@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, textLinkField } from "../common-fields";
+import { descriptionFieldRichText, required, textLinkField } from "../common-fields";
 import { SanityTextLink, TextLink } from "../link";
 import { SanityDataset } from "../sanity-core";
 import { PortableText } from "../text";
@@ -38,12 +38,12 @@ export const productLabelSchema = defineType({
     title: "Product Label",
     type: "object",
     fields: [
-        Object.assign({}, descriptionFieldRichText, { validation: requiredRule }),
+        Object.assign({}, descriptionFieldRichText, { validation: required }),
         defineField({
             name: "priceTag",
             type: "array",
             of: [{ type: "block" }],
-            validation: requiredRule,
+            validation: required,
         }),
         textLinkField,
     ],
@@ -53,5 +53,5 @@ export const productLabelField = defineField({
     name: productLabelSchemaName,
     title: "Product Label",
     type: productLabelSchemaName,
-    validation: requiredRule,
+    validation: required,
 });

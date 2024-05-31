@@ -1,6 +1,6 @@
 import { UserIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
-import { nameField, nameFieldName, requiredRule, titleFieldName } from "./common-fields";
+import { nameField, nameFieldName, required, titleFieldName } from "./common-fields";
 import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
@@ -70,19 +70,19 @@ const personSchema = defineType({
             title: "Organisation",
             type: "reference",
             to: [{type: organisationSchemaName}],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "jobTitle",
             title: "Job Title",
             type: "string",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "headshot",
             title: "Headshot",
             type: "image",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "linkedInURL",

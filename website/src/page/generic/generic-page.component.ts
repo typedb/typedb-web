@@ -1,38 +1,32 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
 import { map } from "rxjs";
-import {
-    GenericPage,
-    SanityDataset,
-    SanityGenericPage,
-    TechnicolorBlock,
-    TitleBodyPanelSection,
-} from "typedb-web-schema";
+import { GenericPage, SanityDataset, SanityGenericPage, SectionBase, TitleBodyPanelSection } from "typedb-web-schema";
 
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { FeaturesPageTechnicolorBlockComponent } from "../features/features-page.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/intro-section/title-body-actions-section.component";
+import { CoreSectionComponent } from "../../framework/section/core-section.component";
+import { FeaturesPageCoreSectionComponent } from "../features/features-page.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
-    selector: "td-generic-page-technicolor-block",
-    template: `<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
+    selector: "td-generic-page-core-section",
+    template: `<td-core-section [section]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [CoreSectionComponent],
 })
-export class GenericPageTechnicolorBlockComponent implements OnInit {
+export class GenericPageCoreSectionComponent implements OnInit {
     @Input() section!: TitleBodyPanelSection;
     @Input() index!: number;
 
-    block!: TechnicolorBlock;
+    block!: SectionBase;
 
     ngOnInit() {
-        this.block = new TechnicolorBlock(this.section);
+        this.block = new SectionBase(this.section);
     }
 }
 
@@ -43,8 +37,8 @@ export class GenericPageTechnicolorBlockComponent implements OnInit {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, GenericPageTechnicolorBlockComponent,
-        ContentPanelComponent, FeaturesPageTechnicolorBlockComponent, ConclusionPanelComponent, AsyncPipe
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, GenericPageCoreSectionComponent,
+        ContentPanelComponent, FeaturesPageCoreSectionComponent, ConclusionPanelComponent, AsyncPipe
     ],
 })
 export class GenericPageComponent extends PageComponentBase<GenericPage> {

@@ -5,9 +5,11 @@
         <div class="pp-cell-content">
           <h3>{{ panel.title }}</h3>
           <td-rich-text [value]="panel.body" class="pp-body-text" />
-          <div class="flex"></div>
-          <hr />
-          <td-rich-text [value]="panel.secondaryBody" />
+          @if (panel.secondaryBody?.length) {
+            <div class="flex"></div>
+            <hr />
+            <td-rich-text [value]="panel.secondaryBody!" />
+          }
         </div>
       </td>
     }
@@ -27,9 +29,11 @@
         <div class="pp-cell-content">
           <h3>{{ panel.title }}</h3>
           <td-rich-text [value]="panel.body" class="pp-body-text" />
-          <div class="flex"></div>
-          <hr />
-          <td-rich-text [value]="panel.secondaryBody" />
+          @if (panel.secondaryBody?.length) {
+            <div class="flex"></div>
+            <hr />
+            <td-rich-text [value]="panel.secondaryBody!" />
+          }
         </div>
       </td>
     </tr>

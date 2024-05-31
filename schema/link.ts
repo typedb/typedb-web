@@ -1,6 +1,6 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug, SlugRule } from "@sanity/types";
-import { comingSoonField, linkField, plainTextField, requiredRule, titleField, titleFieldName } from "./common-fields";
+import { comingSoonField, linkField, plainTextField, required, titleField, titleFieldName } from "./common-fields";
 import { SanityDataset, SanityReference } from "./sanity-core";
 
 export type LinkType = "route" | "external";
@@ -139,7 +139,7 @@ export const textLinkSchema = defineType({
     title: "Text Link",
     icon: LinkIcon,
     fields: [
-        Object.assign({}, plainTextField, { initialValue: "Learn more", validation: requiredRule }),
+        Object.assign({}, plainTextField, { initialValue: "Learn more", validation: required }),
         linkField,
         comingSoonField,
     ],

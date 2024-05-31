@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { map } from "rxjs";
 import { SanityDataset, SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
-import { TechnicolorBlock } from "typedb-web-schema";
+import { SectionBase } from "typedb-web-schema";
 
 import { PageComponentBase } from "../page-component-base";
 
@@ -30,26 +30,26 @@ export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
 }
 
 @Component({
-    selector: "td-solution-page-technicolor-block",
-    template: `<td-technicolor-block
-        [block]="block"
+    selector: "td-solution-page-core-section",
+    template: `<td-core-section
+        [section]="block"
         [index]="index + 1"
         [noUpperLine]="index === 0"
         [noTrailingLine]="noTrailingLine"
-    ></td-technicolor-block>`,
+    ></td-core-section>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SolutionPageTechnicolorBlockComponent {
-    @Input() block!: TechnicolorBlock;
+export class SolutionPageCoreSectionComponent {
+    @Input() block!: SectionBase;
     @Input() page!: SolutionPage;
 
-    get allBlocks(): TechnicolorBlock[] {
+    get allBlocks(): SectionBase[] {
         return [
             this.page.useCasesSection,
             this.page.challengesSection,
             this.page.solutionSection,
             this.page.furtherReadingSection,
-        ].filter((x) => !!x) as TechnicolorBlock[];
+        ].filter((x) => !!x) as SectionBase[];
     }
 
     get index() {

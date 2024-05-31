@@ -51,17 +51,6 @@
     background: var(--color-purple);
 }
 
-.ft-graphic {
-    flex: 1;
-}
-
-.ft-text-area {
-    width: 366px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 td-scroll-shadow {
     ::ng-deep .ss-container {
         height: calc(100% + 4px);

@@ -215,6 +215,12 @@ td-heading-with-highlights {
     }
 }
 
+td-rich-text ::ng-deep {
+    > h1:first-child, > h2:first-child, > h3:first-child, > h4:first-child, > h5:first-child, > h6:first-child {
+        margin-top: 0.5em;
+    }
+}
+
 td-organisation-logos {
     display: block;
     margin-top: 40px;

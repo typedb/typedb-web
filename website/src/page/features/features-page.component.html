@@ -2,21 +2,15 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       <td-title-body-actions-section
-        [isIntroSection]="true"
-        [title]="page.introSection.title"
-        [body]="page.introSection.body"
+        [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"
         [actions]="page.introSection.actions"
-      ></td-title-body-actions-section>
+      />
       @for (section of page.featureSections; track section; let idx = $index) {
-        <td-features-page-technicolor-block [section]="section" [index]="idx"></td-features-page-technicolor-block>
-        <td-feature-grid
-          [layout]="section.featureGridLayout"
-          [featureRows]="section.features"
-          [illustration]="section.illustration"
-          />
+        <td-features-page-core-section [section]="section" [index]="idx"/>
+        <td-feature-grid [layout]="section.featureGridLayout" [featureRows]="section.features" [illustration]="section.illustration"/>
       }
-      <td-features-page-technicolor-block [section]="page.finalSection" [index]="page.featureSections.length" />
-      <td-conclusion-panel [panel]="page.finalSection.panel"></td-conclusion-panel>
+      <td-features-page-core-section [section]="page.finalSection" [index]="page.featureSections.length"/>
+      <td-conclusion-panel [panel]="page.finalSection.panel"/>
     </div>
   }
 </article>

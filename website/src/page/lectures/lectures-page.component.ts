@@ -7,13 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map, Observable, of } from "rxjs";
 import {
-    Lecture,
-    lectureSchemaName,
-    LecturesPage,
-    lecturesPageSchemaName,
-    SanityDataset,
-    SanityLecture,
-    SanityLecturesPage,
+    Lecture, lectureSchemaName, LecturesPage, lecturesPageSchemaName, SanityDataset, SanityLecture, SanityLecturesPage,
 } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
@@ -24,8 +18,8 @@ import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { LecturePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/intro-section/title-body-actions-section.component";
+import { CoreSectionComponent } from "../../framework/section/core-section.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { AnalyticsService } from "../../service/analytics.service";
@@ -38,32 +32,17 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./lectures-page.component.scss"],
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    AspectRatioComponent,
-    RichTextComponent,
-    ButtonComponent,
-    TechnicolorBlockComponent,
-    LecturePanelsComponent,
-    MatIconModule,
-    AsyncPipe,
-    DatePipe,
-    EventDurationPipe,
-    OrdinalDatePipe,
-    PlainTextPipe
-],
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        ButtonComponent, CoreSectionComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
+        EventDurationPipe, OrdinalDatePipe, PlainTextPipe
+    ],
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;
 
     constructor(
-        activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
-        router: Router,
-        title: Title,
-        idleMonitor: IdleMonitorService,
-        metaTags: MetaTagsService,
-        contentService: ContentService,
+        activatedRoute: ActivatedRoute, analytics: AnalyticsService, router: Router, title: Title,
+        idleMonitor: IdleMonitorService, metaTags: MetaTagsService, contentService: ContentService,
     ) {
         super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
         this.allLectures$ = contentService.data.pipe(

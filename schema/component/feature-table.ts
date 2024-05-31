@@ -1,6 +1,6 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { buttonSchemaName, LinkButton, SanityButton } from "../button";
-import { descriptionField, plainTextField, requiredRule } from "../common-fields";
+import { descriptionField, plainTextField, required } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 
@@ -97,7 +97,7 @@ const booleanCellSchema = defineType({
             title: "Is Checked",
             type: "boolean",
             initialValue: true,
-            validation: requiredRule,
+            validation: required,
         }),
     ],
     preview: {
@@ -111,7 +111,7 @@ const textCellSchema = defineType({
     title: "Text",
     type: "object",
     fields: [
-        Object.assign({}, plainTextField, { validation: requiredRule }),
+        Object.assign({}, plainTextField, { validation: required }),
     ],
     preview: {
         select: { text: "text" },
@@ -128,7 +128,7 @@ const rowSchema = defineType({
             name: "heading",
             title: "Heading",
             type: "string",
-            validation: requiredRule,
+            validation: required,
         }),
         descriptionField,
         defineField({
@@ -157,14 +157,14 @@ const featureTableSchema = defineType({
             title: "Header Row",
             type: "array",
             of: [{type: "string"}],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "bodyRows",
             title: "Body Rows",
             type: "array",
             of: [{type: rowSchemaName}],
-            validation: requiredRule,
+            validation: required,
         }),
     ],
 });

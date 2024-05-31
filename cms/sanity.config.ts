@@ -1,10 +1,9 @@
 import "./styles.css";
 
 import {
-    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon,
-    PresentationIcon, SparklesIcon, ThListIcon
+    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, DocumentWordIcon,
+    SparklesIcon, ThListIcon
 } from "@sanity/icons";
-import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
@@ -21,7 +20,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, whyPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -49,6 +48,7 @@ export default defineConfig({
                 s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
                     s.divider(),
+                    singletonListItem(s, whyPageSchemaName, { title: "Why", icon: DocumentIcon }),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
                     singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
@@ -68,13 +68,13 @@ export default defineConfig({
                     s.divider(),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
-                s.listItem().title("Technical Articles").icon(BinaryDocumentIcon).child(s.list().title("Technical Articles").items([
+                s.listItem().title("Technical Articles").icon(DocumentWordIcon).child(s.list().title("Technical Articles").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
                     s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
                     s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
-                s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
+                s.listItem().title("Code & Illustrations").icon(BinaryDocumentIcon).child(s.list().title("Illustrations & Videos").items([
                     s.documentTypeListItem(splitPaneIllustrationSchemaName).title("Split Pane Illustrations"),
                     s.documentTypeListItem(imageIllustrationSchemaName).title("Images"),
                     s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
@@ -97,9 +97,6 @@ export default defineConfig({
                 s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
-        }),
-        presentationTool({
-            previewUrl: "https://development.typedb.com",
         }),
         media(),
         visionTool(),

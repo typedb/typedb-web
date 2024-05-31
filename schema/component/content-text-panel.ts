@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { Link, linkSchemaName, SanityLink } from "../link";
-import { bodyFieldRichText, learnMoreLinkFieldName, titleField } from "../common-fields";
+import { bodyFieldName, bodyFieldRichText, learnMoreLinkFieldName, required, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 
@@ -11,6 +11,22 @@ export interface SanityContentTextPanel extends SanityIllustrationField, SanityB
 }
 
 export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitleField {}
+
+export interface SanityContentProsConsTab extends SanityIllustrationField, SanityTitleField {
+    prosAndCons: ProCon[];
+}
+
+export type ProConType = "pro" | "con";
+
+export interface ProCon {
+    body: PortableText;
+    proConType: ProConType;
+}
+
+export interface SanityMultiComparisonTabs {
+    primaryTab: SanityContentProsConsTab;
+    secondaryTabs: SanityContentProsConsTab[];
+}
 
 export class ContentTextPanel implements BodyTextField {
     readonly body: PortableText;
@@ -35,8 +51,33 @@ export class ContentTextTab extends ContentTextPanel {
     }
 }
 
+export class ContentProsConsTab {
+    readonly title: string;
+    readonly prosAndCons: ProCon[];
+    readonly illustration: Illustration;
+
+    constructor(data: SanityContentProsConsTab, db: SanityDataset) {
+        this.title = data.title;
+        this.prosAndCons = data.prosAndCons;
+        this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
+    }
+}
+
+export class MultiComparisonTabs {
+    readonly primaryTab: ContentProsConsTab;
+    readonly secondaryTabs: ContentProsConsTab[];
+
+    constructor(data: SanityMultiComparisonTabs, db: SanityDataset) {
+        this.primaryTab = new ContentProsConsTab(data.primaryTab, db);
+        this.secondaryTabs = data.secondaryTabs.map(x => new ContentProsConsTab(x, db));
+    }
+}
+
 export const contentTextPanelSchemaName = "contentTextPanel";
 export const contentTextTabSchemaName = "contentTextTab";
+export const contentProsConsTabSchemaName = "contentProsConsTab";
+export const proConSchemaName = "proCon";
+export const multiComparisonTabsSchemaName = "multiComparisonTabs";
 
 const contentTextPanelSchema = defineType({
     name: contentTextPanelSchemaName,
@@ -67,4 +108,73 @@ const contentTextTabSchema = defineType({
     fields: [titleField, ...contentTextPanelSchema.fields],
 });
 
-export const contentTextPanelSchemas = [contentTextPanelSchema, contentTextTabSchema];
+const contentProsConsTabSchema = defineType({
+    name: contentProsConsTabSchemaName,
+    title: "Pros/Cons Panel",
+    type: "object",
+    fields: [
+        titleField,
+        defineField({
+            name: "prosAndCons",
+            title: "Pros/Cons",
+            type: "array",
+            of: [{ type: proConSchemaName }],
+            validation: required,
+        }),
+        illustrationField,
+    ]
+});
+
+const proConTypeFieldName = "proConType";
+
+const proConSchema = defineType({
+    name: proConSchemaName,
+    title: "Pro/Con",
+    type: "object",
+    fields: [
+        bodyFieldRichText,
+        defineField({
+            name: proConTypeFieldName,
+            title: "Type",
+            type: "string",
+            options: {
+                list: [{ title: "Pro", value: "pro" }, { title: "Con", value: "con" }],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            initialValue: "pro",
+            validation: required,
+        }),
+    ],
+    preview: {
+        select: { title: bodyFieldName, type: proConTypeFieldName },
+        prepare: (selection) => ({
+            title: `[${selection.type === "pro" ? "✔" : "✗"}] ${selection.title ? selection.title[0].children.filter((x: any) => x._type === "span").map((x: any) => x.text).join("") : ""}`,
+        }),
+    },
+});
+
+const multiComparisonTabsSchema = defineType({
+    name: multiComparisonTabsSchemaName,
+    title: "Multi-Comparison Tabs",
+    type: "object",
+    fields: [
+        defineField({
+            name: "primaryTab",
+            title: "Primary Tab",
+            type: contentProsConsTabSchemaName,
+            validation: required,
+        }),
+        defineField({
+            name: "secondaryTabs",
+            title: "Secondary Tabs",
+            type: "array",
+            of: [{ type: contentProsConsTabSchemaName }],
+            validation: required,
+        }),
+    ],
+});
+
+export const contentTextPanelSchemas = [
+    contentTextPanelSchema, contentTextTabSchema, contentProsConsTabSchema, proConSchema, multiComparisonTabsSchema,
+];

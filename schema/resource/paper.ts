@@ -1,6 +1,6 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { requiredRule, slugField } from "../common-fields";
+import { required, slugField } from "../common-fields";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -55,19 +55,19 @@ export const paperSchema = defineType({
             name: "file",
             title: "File",
             type: "file",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "portraitImage",
             title: "Portrait Image",
             type: "image",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "landscapeImage",
             title: "Landscape Image",
             type: "image",
-            validation: requiredRule,
+            validation: required,
         }),
     ],
 });

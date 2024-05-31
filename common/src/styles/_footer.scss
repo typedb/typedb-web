@@ -152,20 +152,6 @@
         }
     }
 
-    .td-footer-section-copyright {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        @media (max-width: media.$max-width-mobile) {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-        }
-    }
-
     .td-footer-credits {
         display: flex;
         flex-direction: row;
@@ -188,14 +174,6 @@
         display: inline-block;
         overflow: hidden;
         text-indent: 100%;
-    }
-
-    .td-footer-icon-code {
-        @include url-icon(url("#{$icon-path}/code.svg"), var(--color-green));
-    }
-
-    .td-footer-icon-heart {
-        @include url-icon(url("#{$icon-path}/heart.svg"), var(--color-red));
     }
 
     $socials: discord, meetup, twitter, youtube, linkedin;

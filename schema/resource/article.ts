@@ -1,7 +1,7 @@
 import { BulbOutlineIcon, DocumentTextIcon, PlugIcon } from "@sanity/icons";
 import { defineField, defineType, SlugRule } from "@sanity/types";
 import axios, { AxiosError } from "axios";
-import { authorField, imageFieldOptional, requiredRule, slugField } from "../common-fields";
+import { authorField, imageFieldOptional, required, slugField } from "../common-fields";
 import { Link } from "../link";
 import { Person } from "../person";
 import { SanityDataset } from "../sanity-core";
@@ -243,7 +243,7 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
                     { value: "tertiary", title: "Tertiary" },
                 ],
             },
-            validation: requiredRule,
+            validation: required,
             initialValue: "tertiary",
         }),
         authorField,
@@ -251,7 +251,7 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
             name: "date",
             title: "Published Date",
             type: "datetime",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "categories",
@@ -262,7 +262,7 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
                 layout: "grid",
                 list: Object.entries(blogCategories).map(([id, title]) => ({ value: id, title: title })),
             },
-            validation: requiredRule,
+            validation: required,
             initialValue: ["engineering"],
         }),
         imageFieldOptional,

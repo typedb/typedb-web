@@ -36,7 +36,8 @@ export class LegalDocument {
     }
 
     pageTitle(): string {
-        return `TypeDB ${this.title.toPlainText()}`;
+        const title = this.title.toPlainText();
+        return title.startsWith("TypeDB") ? title : `TypeDB ${title}`;
     }
 }
 

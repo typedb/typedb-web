@@ -57,7 +57,7 @@ export class TitleAndBody implements TitleWithHighlights, Partial<BodyTextField>
         this.body = props.body;
     }
 
-    static fromSanityTitleAndBody(data: SanityTitleAndBody) {
+    static fromSanity(data: SanityTitleAndBody, db: SanityDataset) {
         return new TitleAndBody({
             title: ParagraphWithHighlights.fromSanity(data.title),
             body: data.body,
@@ -73,9 +73,9 @@ export class TitleBodyActions extends TitleAndBody {
         this.actions = props.actions;
     }
 
-    static fromSanityTitleBodyActions(data: SanityTitleBodyActions, db: SanityDataset) {
+    static override fromSanity(data: SanityTitleBodyActions, db: SanityDataset) {
         return new TitleBodyActions(
-            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+            Object.assign(TitleAndBody.fromSanity(data, db), {
                 actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             })
         );

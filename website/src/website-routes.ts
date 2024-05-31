@@ -5,6 +5,7 @@ export const staticPageSchemas = [
     { path: "events", schemaName: "eventsPage" },
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
+    { path: "why", schemaName: "whyPage" },
     { path: "philosophy", schemaName: "philosophyPage" },
     { path: "learn", schemaName: "learningCenter" },
     { path: "fundamentals", schemaName: "fundamentalsPage" },

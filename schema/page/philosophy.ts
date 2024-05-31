@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions,  requiredRule } from "../common-fields";
+import { collapsible,  required } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { PublicationSection, publicationSectionSchemaName, SanityPublicationSection } from "../component/publication-panel";
 import { SanityDataset } from "../sanity-core";
@@ -20,7 +20,7 @@ export class PhilosophyPage extends Page {
 
     constructor(data: SanityPhilosophyPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = TitleBodyActions.fromSanity(data.introSection, db);
         this.coreSections = data.coreSections.map((x) => PublicationSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -38,22 +38,22 @@ const philosophyPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: titleBodyActionsSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "coreSections",
             title: "Core Sections",
             type: "array",
             of: [{ type: publicationSectionSchemaName }],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "finalSection",
             title: "Final Section",
             type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Philosophy Page" }) },

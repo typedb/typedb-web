@@ -14,19 +14,19 @@
         </section>
       }
       @if (page.useCasesSection) {
-        <td-solution-page-technicolor-block [block]="page.useCasesSection" [page]="page" />
+        <td-solution-page-core-section [block]="page.useCasesSection" [page]="page" />
         <td-key-point-panels-2x2 [keyPoints]="page.useCasesSection.keyPoints" />
       }
       @if (page.challengesSection) {
-        <td-solution-page-technicolor-block [block]="page.challengesSection" [page]="page" />
+        <td-solution-page-core-section [block]="page.challengesSection" [page]="page" />
         <td-key-point-panels-2x2 [keyPoints]="page.challengesSection.keyPoints" />
       }
       @if (page.solutionSection) {
-        <td-solution-page-technicolor-block [block]="page.solutionSection" [page]="page" />
+        <td-solution-page-core-section [block]="page.solutionSection" [page]="page" />
         <td-key-point-table [keyPoints]="page.solutionSection.keyPoints" />
       }
       @if (page.furtherReadingSection) {
-        <td-solution-page-technicolor-block [block]="page.furtherReadingSection" [page]="page" />
+        <td-solution-page-core-section [block]="page.furtherReadingSection" [page]="page" />
         <td-link-panels [panels]="page.furtherReadingSection.links" [cols]="3" />
       }
     </div>

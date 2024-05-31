@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { collapsibleOptions } from "../common-fields";
+import { collapsible } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
 import { Paper } from "../resource/paper";
@@ -20,7 +20,7 @@ export class PapersPage extends Page {
 
     constructor(data: SanityPapersPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.introSection = TitleAndBody.fromSanity(data.introSection, db);
         this.featuredPaper = Paper.fromSanity(db.resolveRef(data.featuredPaper), db);
         this.papersList = data.papersList.map((x) => Paper.fromSanity(db.resolveRef(x), db));
     }
@@ -38,7 +38,7 @@ export const papersPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: titleAndBodySchemaName,
-            options: collapsibleOptions,
+            options: collapsible,
         }),
         defineField({
             name: "featuredPaper",

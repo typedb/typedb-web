@@ -3,9 +3,10 @@ import { contentTextPanelSchemas } from "./content-text-panel";
 import { featureGridSchemas } from "./feature-grid";
 import { featureTableSchemas } from "./feature-table";
 import { linkPanelSchemas } from "./link-panel";
-import { pageSectionSchemas } from "./page-section";
+import { sectionSchemas } from "./section";
 import { productLabelSchema } from "./product-label";
 import { publicationSchemas } from "./publication-panel";
+import { tierSummaryTableSchemas } from "./tier-summary-table";
 
 export const componentSchemas = [
     ...conclusionPanelSchemas,
@@ -13,7 +14,8 @@ export const componentSchemas = [
     ...featureGridSchemas,
     ...featureTableSchemas,
     ...linkPanelSchemas,
-    ...pageSectionSchemas,
     productLabelSchema,
     ...publicationSchemas,
+    ...sectionSchemas,
+    ...tierSummaryTableSchemas,
 ];

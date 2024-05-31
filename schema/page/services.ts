@@ -1,14 +1,14 @@
 import { defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import {
-    collapsibleOptions,
+    collapsible,
     isVisibleField,
     optionalActionsField,
 
     titleBodyIconFields,
     SanityVisibleToggle,
 } from "../common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SectionBase } from "../component/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { SanityTitleBodyActions } from "../text";
@@ -31,22 +31,18 @@ export interface SanityServicesPage extends SanityPage {
     [sections.contact.id]: SanityCoreSection;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
-
-interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityIntroSection extends SanityCoreSection {
     keyPoints: SanityServicesKeyPoint[];
 }
 
-interface SanityTestimonialsSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityTestimonialsSection extends SanityCoreSection {
     testimonials: SanityReference<SanityTestimonial>[];
 }
 
 export class ServicesPage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.contact.id]?: TechnicolorBlock;
+    readonly [sections.contact.id]?: SectionBase;
 
     constructor(data: SanityServicesPage, db: SanityDataset) {
         super(data, db);
@@ -62,7 +58,7 @@ export class ServicesPage extends Page {
     }
 }
 
-class IntroSection extends TechnicolorBlock {
+class IntroSection extends SectionBase {
     readonly keyPoints: ServicesKeyPoint[];
 
     constructor(props: PropsOf<IntroSection>) {
@@ -78,7 +74,7 @@ class IntroSection extends TechnicolorBlock {
     }
 }
 
-class TestimonialsSection extends TechnicolorBlock {
+class TestimonialsSection extends SectionBase {
     readonly testimonials: Testimonial[];
 
     constructor(props: PropsOf<TestimonialsSection>) {
@@ -88,14 +84,14 @@ class TestimonialsSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
             })
         );
     }
 }
 
-class ContactSection extends TechnicolorBlock {}
+class ContactSection extends SectionBase {}
 
 export const servicesPageSchemaName = "servicesPage";
 
@@ -140,7 +136,7 @@ const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
         name: sections[key].id,
         title: `${sections[key].title} Section`,
         type: sectionSchemaName(key),
-        options: collapsibleOptions,
+        options: collapsible,
     })
 );
 

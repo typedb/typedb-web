@@ -2,31 +2,33 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       @if (page.introSection) {
-        <td-home-page-technicolor-block
+        <td-home-page-core-section
           [block]="page.introSection" [page]="page" variant="intro" [organisationLogos]="page.introSection.userLogos"
         />
         <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
       }
       @if (page.compareDBsSection) {
-        <td-home-page-technicolor-block [block]="page.compareDBsSection" [page]="page"/>
+        <td-home-page-core-section [block]="page.compareDBsSection" [page]="page"/>
+        <td-multi-comparison-tabs id="compare" [tabs]="page.compareDBsSection.comparisonTabs"/>
       }
       @if (page.quickLearnSection) {
-        <td-home-page-technicolor-block [block]="page.quickLearnSection" [page]="page"/>
+        <td-home-page-core-section [block]="page.quickLearnSection" [page]="page"/>
       }
       @if (page.cloudSection) {
-        <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
+        <td-home-page-core-section [block]="page.cloudSection" [page]="page"/>
+        <td-product-label [product]="page.cloudSection.productLabel"/>
       }
 <!--      @if (page.communitySection) {-->
-<!--        <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />-->
+<!--        <td-home-page-core-section [block]="page.communitySection" [page]="page" />-->
 <!--        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" />-->
 <!--      }-->
       @if (page.testimonialsSection) {
-        <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
-        <td-key-point-table [keyPoints]="page.testimonialsSection.keyPoints" />
+        <td-home-page-core-section [block]="page.testimonialsSection" [page]="page"/>
+        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials"/>
+        <td-key-point-table class="subsection-margin" [keyPoints]="page.testimonialsSection.keyPoints"/>
       }
       @if (page.conclusionSection) {
-        <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion" />
+        <td-home-page-core-section [block]="page.conclusionSection" [page]="page" variant="conclusion"/>
 <!--        <td-conclusion-panel [panel]="page.conclusionSection.panel" />-->
       }
     </div>

@@ -1,0 +1,36 @@
+<div class="section mc-root">
+  <div class="mc-primary-area">
+    <div class="mc-tabs-container">
+      <div class="mc-tabs">
+        <div class="mc-tab mc-tab-primary"><h5>{{ tabs.primaryTab.title }}</h5></div>
+      </div>
+    </div>
+    <div class="mc-illustration-container card">
+      <td-pros-cons [prosAndCons]="tabs.primaryTab.prosAndCons"/>
+      <td-illustration [illustration]="tabs.primaryTab.illustration"/>
+    </div>
+  </div>
+
+  <div class="mc-secondary-area">
+    <td-scroll-shadow class="mc-tabs-container">
+      <div class="mc-tabs">
+        @for (tab of tabs.secondaryTabs; track tab) {
+          <a
+            class="mc-tab" [ngClass]="{ 'mc-tab-selected': (selectedSecondaryTab$ | async) === tab }"
+            [id]="tabID(tab)" [href]="'#' + tabID(tab)" (click)="onTabClick(tab, $event)"
+          >
+            <h5>{{ tab.title }}</h5>
+          </a>
+        }
+      </div>
+    </td-scroll-shadow>
+    @for (tab of tabs.secondaryTabs; track tab) {
+      <div [hidden]="(selectedSecondaryTab$ | async) !== tab">
+        <div class="mc-illustration-container card">
+          <td-pros-cons [prosAndCons]="tab.prosAndCons"/>
+          <td-illustration [illustration]="tab.illustration"/>
+        </div>
+      </div>
+    }
+  </div>
+</div>

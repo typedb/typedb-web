@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 
-import { collapsibleOptions, isVisibleField, requiredRule } from "../common-fields";
+import { collapsible, isVisibleField, required } from "../common-fields";
 import { LiveEvent } from "../resource/live-event";
 import { liveEventSchemaName, SanityLiveEvent } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -26,7 +26,7 @@ export class EventsPage extends Page {
 
     constructor(data: SanityEventsPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.introSection = TitleAndBody.fromSanity(data.introSection, db);
         this.featuredEvent = data.featuredEvent && LiveEvent.fromSanity(db.resolveRef(data.featuredEvent), db);
         this.eventsList = data.eventsList.isVisible
             ? data.eventsList.events.map((x) => LiveEvent.fromSanity(db.resolveRef(x), db))
@@ -46,7 +46,7 @@ const eventsPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: titleAndBodySchemaName,
-            options: collapsibleOptions,
+            options: collapsible,
         }),
         defineField({
             name: "featuredEvent",
@@ -59,8 +59,8 @@ const eventsPageSchema = defineType({
             title: "Events List",
             description: "Displayed as a tiled grid with 2 columns",
             type: "object",
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
             fields: [
                 isVisibleField,
                 defineField({

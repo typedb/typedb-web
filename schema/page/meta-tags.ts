@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { collapsibleOptions, requiredRule } from "../common-fields";
+import { collapsible, required } from "../common-fields";
 import { SanityDataset, SanityImage } from "../sanity-core";
 import { PropsOf } from "../util";
 
@@ -43,8 +43,8 @@ export const customMetaTagFieldSchema = defineField({
     type: "object",
     name: customMetaTagFieldName,
     fields: [
-        { name: "property", type: "string", validation: requiredRule },
-        { name: "content", type: "string", validation: requiredRule },
+        { name: "property", type: "string", validation: required },
+        { name: "content", type: "string", validation: required },
     ],
     preview: {
         select: {
@@ -74,7 +74,7 @@ export const metaTagsField = defineField({
         { name: "ogImage", title: "Image", type: "image" },
         customMetaTagsField,
     ],
-    options: collapsibleOptions,
+    options: collapsible,
 });
 
 export const metaTagsSchemas = [customMetaTagFieldSchema];

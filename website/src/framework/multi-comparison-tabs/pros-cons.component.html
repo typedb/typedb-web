@@ -1,0 +1,12 @@
+<ul>
+  @for (proCon of prosAndCons; track proCon) {
+    <li>
+      @if (proCon.proConType === "pro") {
+        <mat-icon svgIcon="check" />
+      } @else {
+        <mat-icon svgIcon="close" />
+      }
+      <td-rich-text [value]="proCon.body"/>
+    </li>
+  }
+</ul>

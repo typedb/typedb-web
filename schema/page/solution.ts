@@ -1,12 +1,11 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton } from "../button";
-import { SanityCoreSection } from "../component/page-section";
-import { TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SectionBase } from "../component/section";
 import { SanityLink } from "../link";
 import {
     bodyFieldRichText,
-    collapsibleOptions,
+    collapsible,
     isVisibleField,
     keyPointsField,
     keyPointsWithIconsField,
@@ -129,7 +128,7 @@ class IntroSection extends TitleAndBody {
     }
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        const titleAndBody = TitleAndBody.fromSanityTitleAndBody(data);
+        const titleAndBody = TitleAndBody.fromSanity(data, db);
         return new IntroSection(
             Object.assign(titleAndBody, {
                 videoURL: data.videoURL,
@@ -139,7 +138,7 @@ class IntroSection extends TitleAndBody {
     }
 }
 
-class KeyPointsSection extends TechnicolorBlock {
+class KeyPointsSection extends SectionBase {
     readonly keyPoints: KeyPoint[];
 
     constructor(props: PropsOf<KeyPointsSection>) {
@@ -165,7 +164,7 @@ class KeyPointsSection extends TechnicolorBlock {
     }
 }
 
-class SolutionSection extends TechnicolorBlock {
+class SolutionSection extends SectionBase {
     readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<SolutionSection>) {
@@ -241,7 +240,7 @@ const sectionFields = [
             name: sections[key].id,
             title: `${sections[key].title} Section`,
             type: sectionSchemaName(key),
-            options: collapsibleOptions,
+            options: collapsible,
         })
     ),
     furtherLearningField,
