@@ -3,7 +3,7 @@ import axios from "axios";
 import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "../src/website-routes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
-const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
+const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/crisper-messaging`;
 
 const staticPageRoute = async (route: string, schemaName: string) => {
     const { data } = await axios.get<{ result: boolean }>(SANITY_QUERY_URL, {

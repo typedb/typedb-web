@@ -7,7 +7,7 @@ import {
     BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay,
     switchMap,
 } from "rxjs";
-import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
+import { FooterData, footerQuery, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
 import {
     ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogCategoryID, BlogFilter,
     blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
@@ -20,6 +20,7 @@ import { environment } from "src/environment/environment";
 import { WordpressService } from "./wordpress.service";
 
 const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts`;
+const SANITY_QUERY_URL = `https://xndl14mc.api.sanity.io/v2021-10-21/data/query/crisper-messaging`;
 
 @Injectable({
     providedIn: "root",

@@ -1,8 +1,8 @@
 import "./styles.css";
 
 import {
-    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, DocumentWordIcon,
-    SparklesIcon, ThListIcon
+    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon,
+    DocumentWordIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
@@ -13,14 +13,14 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
     schemaTypes, topbarSchemaName, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
-    communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
+    communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName, whyPageSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
     splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
     personSchemaName, lectureSchemaName, papersPageSchemaName, paperSchemaName, siteBannerSchemaName,
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, whyPageSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName,
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -31,7 +31,7 @@ const singletonTypes = new Set([topbarSchemaName, lecturesPageSchemaName]);
 
 export default defineConfig({
     name: "default",
-    title: "TypeDB Website CMS",
+    title: "TypeDB CMS Devsite [crisper-messaging]",
 
     projectId: config.projectId,
     dataset: config.dataset,

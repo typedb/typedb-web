@@ -32,7 +32,7 @@ export class ResourceSection extends SectionBase {
             }),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "https://cdn.sanity.io/images/xndl14mc/production/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
+            iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
             sectionId: "further-learning",
         });
