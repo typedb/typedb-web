@@ -36,10 +36,7 @@ import { PageComponentBase } from "../page-component-base";
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     readonly allPapersHeading = new ParagraphWithHighlights({
-        spans: [
-            { text: "TypeDB ", highlight: false },
-            { text: "Papers", highlight: true },
-        ],
+        spans: [{ text: "TypeDB ", highlight: false }, { text: "Papers", highlight: true }],
     });
     readonly isSubmitting$: Observable<boolean>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);

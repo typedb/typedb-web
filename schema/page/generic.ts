@@ -1,11 +1,11 @@
 import { defineField, defineType } from "@sanity/types";
-import { collapsibleOptions, requiredRule } from "../common-fields";
+import { collapsible, required } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import {
     SanityTitleBodyPanelSection,
     TitleBodyPanelSection,
     titleBodyPanelSectionSchemaName,
-} from "../component/page-section";
+} from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
@@ -24,7 +24,7 @@ export class GenericPage extends Page {
 
     constructor(data: SanityGenericPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = TitleBodyActions.fromSanity(data.introSection, db);
         this.coreSections = data.coreSections.map((x) => TitleBodyPanelSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -42,22 +42,22 @@ const genericPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: titleBodyActionsSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "coreSections",
             title: "Core Sections",
             type: "array",
             of: [{ type: titleBodyPanelSectionSchemaName }],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "finalSection",
             title: "Final Section",
             type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Page" }) },

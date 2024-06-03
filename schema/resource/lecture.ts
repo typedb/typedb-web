@@ -1,7 +1,7 @@
 import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
-import { comingSoonField, requiredRule, slugField } from "../common-fields";
+import { comingSoonField, required, slugField } from "../common-fields";
 import { hubspotFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
@@ -100,7 +100,7 @@ const lectureSchema = defineType({
             name: "datetime",
             title: "Date & Time",
             type: "datetime",
-            validation: requiredRule,
+            validation: required,
             options: {
                 timeStep: 5,
             },
@@ -115,14 +115,14 @@ const lectureSchema = defineType({
             name: "image",
             title: "Image",
             type: "image",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "speakers",
             title: "Speakers",
             type: "array",
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
-            validation: requiredRule,
+            validation: required,
         }),
         hubspotFormIDField,
         defineField({

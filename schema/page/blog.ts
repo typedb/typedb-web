@@ -1,5 +1,5 @@
 import { defineField, defineType, NumberRule, SanityDocument } from "@sanity/types";
-import { collapsibleOptions, requiredRule, resourcesFieldOptional, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
+import { collapsible, required, resourcesFieldOptional, SanityVisibleToggle, titleFieldWithHighlights } from "../common-fields";
 import { BlogPost } from "../resource/article";
 import { ResourceLink } from "../resource/base";
 import { blogCategories, BlogCategoryID, blogCategoryList } from "../resource/blog-category";
@@ -136,8 +136,8 @@ const blogTabField = (categoryID: BlogCategoryID | "all") => defineField({
     name: categoryID,
     title: categoryID === "all" ? "All Posts" : blogCategories[categoryID],
     type: blogTabSchemaName,
-    validation: requiredRule,
-    options: collapsibleOptions,
+    validation: required,
+    options: collapsible,
 });
 
 const blogTabsSchemaName = "blogTabs";
@@ -161,20 +161,20 @@ const blogSchema = defineType({
             title: "Blog Title",
             type: "array",
             of: [{type: "block"}],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "blogSubtitle",
             title: "Blog Subtitle",
             type: "array",
             of: [{type: "block"}],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "tabs",
             title: "Tabs",
             type: blogTabsSchemaName,
-            validation: requiredRule,
+            validation: required,
         }),
     ],
     preview: {

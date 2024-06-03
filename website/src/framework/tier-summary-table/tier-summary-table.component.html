@@ -1,0 +1,23 @@
+<table class="section">
+  <colgroup>
+  @for (header of table.headerRow; track header) {
+    <col />
+  }
+</colgroup>
+<thead>
+  <tr>
+    @for (header of table.headerRow; track header) {
+      <th class="text-p1">{{ header }}</th>
+    }
+  </tr>
+</thead>
+<tbody>
+  @for (row of table.bodyRows; track row) {
+    <tr>
+      @for (cell of row.cells; track cell) {
+        <td><td-rich-text [value]="cell"/></td>
+      }
+    </tr>
+  }
+</tbody>
+</table>

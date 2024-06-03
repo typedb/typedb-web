@@ -4,7 +4,7 @@ import { config } from "../config";
 
 const client = createClient({
     projectId: config.projectId,
-    dataset: 'production',
+    dataset: 'crisper-messaging',
     token: token,
 });
 

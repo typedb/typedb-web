@@ -1,0 +1,20 @@
+<article tdPageBackground nebula="intro" planet="blue_pink">
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <td-title-body-actions-section
+        [isIntroSection]="true" [title]="page.introSection.title" [body]="page.introSection.body"
+        [actions]="page.introSection.actions"
+      />
+
+      <td-why-page-core-section [section]="page.dbFusionSection" [index]="0"/>
+      <td-feature-fusion [features]="page.dbFusionSection.items"/>
+
+      @for (section of page.coreSections; track section; let idx = $index) {
+        <td-why-page-core-section [section]="section" [index]="idx + 1"/>
+      }
+
+<!--      <td-why-page-core-section [section]="page.finalSection" [index]="page.coreSections.length" />-->
+<!--      <td-conclusion-panel [panel]="page.finalSection.panel"/>-->
+    </div>
+  }
+</article>

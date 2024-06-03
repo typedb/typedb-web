@@ -1,0 +1,129 @@
+@use "media";
+
+.mc-root {
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.mc-primary-area, .mc-secondary-area {
+    width: 50%;
+
+    @media (max-width: media.$max-width-mobile) {
+        width: 100%;
+    }
+}
+
+.mc-primary-area {
+    .mc-tabs-container {
+        border-top-left-radius: var(--border-radius);
+    }
+
+    .mc-illustration-container {
+        border-bottom-right-radius: 0;
+    }
+}
+
+.mc-secondary-area {
+    display: flex;
+    flex-direction: column;
+
+    .mc-tabs-container {
+        border-top-right-radius: var(--border-radius);
+        border-left: none;
+    }
+
+    td-pros-cons {
+        border-left: none;
+    }
+
+    .mc-illustration-container {
+        border-left: none;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.mc-tabs-container {
+    border: 1px solid var(--content-border-color);
+    border-bottom: none;
+    background: var(--color-deep-purple);
+}
+
+.mc-tabs {
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 48px;
+    }
+}
+
+.mc-tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+
+    &:not(:first-child) {
+        border-left: 1px solid var(--content-border-color);
+    }
+
+    @media (hover: hover) {
+        &:hover:not(.mc-tab-primary) h5 {
+            color: var(--color-green);
+            text-decoration: underline;
+        }
+    }
+}
+
+.mc-tab-selected,
+.mc-tab-selected h5 {
+    color: var(--color-green);
+    background: var(--color-purple);
+}
+
+.mc-tab-primary,
+.mc-tab-primary h5 {
+    color: var(--color-white);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+td-pros-cons {
+    border-radius: 0;
+    border-bottom: none;
+    height: 84px;
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        height: 76px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 72px;
+    }
+}
+
+.mc-illustration-container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+$number-of-lines: 18;
+$number-of-lines-mobile: 13;
+
+td-illustration {
+    max-width: 100%;
+    height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines + 2px);
+
+    @media (max-width: media.$max-width-mobile) {
+        height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
+    }
+}

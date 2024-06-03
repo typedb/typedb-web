@@ -1,7 +1,7 @@
 import { SparklesIcon } from "@sanity/icons";
 import { defineField, defineType, DocumentRule, SanityDocument } from "@sanity/types";
 import { Link, SanityLink } from "../link";
-import { linkField, requiredRule, textFieldWithHighlights } from "../common-fields";
+import { linkField, required, textFieldWithHighlights } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
@@ -43,7 +43,7 @@ const siteBannerSchema = defineType({
             title: "Is Enabled",
             type: "boolean",
             initialValue: false,
-            validation: requiredRule,
+            validation: required,
         }),
         textFieldWithHighlights,
         linkField,

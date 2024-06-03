@@ -15,6 +15,7 @@ import { supportPageSchemas } from "./support";
 import { lecturesPageSchemas } from "./lectures";
 import { papersPageSchema } from "./papers";
 import { metaTagsSchemas } from "./meta-tags";
+import { whyPageSchemas } from "./why";
 
 export const pageSchemas = [
     ...basePageSchemas,
@@ -25,13 +26,14 @@ export const pageSchemas = [
     ...featuresPageSchemas,
     ...homePageSchemas,
     ...learnPageSchemas,
+    ...lecturesPageSchemas,
     legalDocumentSchema,
+    ...metaTagsSchemas,
+    papersPageSchema,
     ...philosophyPageSchemas,
+    requestTechTalkPageSchema,
     ...servicesPageSchemas,
     ...solutionPageSchemas,
     ...supportPageSchemas,
-    ...lecturesPageSchemas,
-    requestTechTalkPageSchema,
-    papersPageSchema,
-    ...metaTagsSchemas,
+    ...whyPageSchemas,
 ];

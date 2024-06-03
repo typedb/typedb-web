@@ -1,16 +1,19 @@
 <article tdPageBackground nebula="deploy" planet="yellow_green">
   @if (page$ | async; as page) {
     <div class="article-content">
-      <td-deployment-page-technicolor-block [block]="page.introSection" [index]="0" />
-      <td-product-table [panels]="page.introSection.productPanels" />
-      <td-deployment-page-technicolor-block [block]="page.featureTableSection" [index]="1" />
-      <td-feature-table [table]="page.featureTableSection.featureTable" />
+      <td-deployment-page-core-section [section]="page.introSection" [index]="0"/>
+      <td-product-table [panels]="page.introSection.productPanels"/>
+
+      <td-deployment-page-core-section [section]="page.featureTableSection" [index]="1"/>
+      <td-feature-table [table]="page.featureTableSection.featureTable"/>
+
       @if (page.linkPanelsSection) {
-        <td-deployment-page-technicolor-block [block]="page.linkPanelsSection" [index]="2" />
-        <td-link-panels [panels]="page.linkPanelsSection.panels" />
+        <td-deployment-page-core-section [section]="page.linkPanelsSection" [index]="2"/>
+        <td-link-panels [panels]="page.linkPanelsSection.panels"/>
       }
-      <td-deployment-page-technicolor-block [block]="page.finalSection" [index]="3" />
-      <td-conclusion-panel [panel]="page.finalSection.panel" />
+
+      <td-deployment-page-core-section [section]="page.finalSection" [index]="3"/>
+      <td-conclusion-panel [panel]="page.finalSection.panel"/>
     </div>
   }
 </article>

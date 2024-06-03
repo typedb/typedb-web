@@ -2,7 +2,7 @@ import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import {
     bodyFieldRichText,
-    collapsibleOptions,
+    collapsible,
     optionalActionsField,
 
     titleFieldWithHighlights,
@@ -51,7 +51,7 @@ class IntroSection extends TitleBodyActions {
     }
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        return Object.assign(TitleBodyActions.fromSanityTitleBodyActions(data, db), {
+        return Object.assign(TitleBodyActions.fromSanity(data, db), {
             userLogos: data.userLogos.map((x) => new Organisation(db.resolveRef(x), db)),
         });
     }
@@ -83,7 +83,7 @@ const featuresPageSchema = defineType({
             name: introSection,
             title: "Intro Section",
             type: introSectionSchemaName,
-            options: collapsibleOptions,
+            options: collapsible,
         }),
         defineField({
             name: featureSections,
@@ -95,7 +95,7 @@ const featuresPageSchema = defineType({
             name: finalSection,
             title: "Final Section",
             type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
+            options: collapsible,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Features Page" }) },

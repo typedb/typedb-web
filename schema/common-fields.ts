@@ -9,9 +9,9 @@ export interface SanityIconField {
     icon: SanityReference<SanityImageRef>;
 }
 
-export const requiredRule = (rule: RuleDef<any>) => rule.required();
+export const required = (rule: RuleDef<any>) => rule.required();
 
-export const collapsibleOptions = {
+export const collapsible = {
     collapsible: true,
     collapsed: true,
 };
@@ -24,7 +24,7 @@ export const nameFieldOptional = defineField({
     type: "string",
 });
 
-export const nameField = Object.assign({}, nameFieldOptional, { validation: requiredRule });
+export const nameField = Object.assign({}, nameFieldOptional, { validation: required });
 
 export const textFieldName = "text";
 
@@ -42,7 +42,7 @@ export const titleFieldOptional = defineField({
     type: "string",
 });
 
-export const titleField = Object.assign({}, titleFieldOptional, { validation: requiredRule });
+export const titleField = Object.assign({}, titleFieldOptional, { validation: required });
 
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,
@@ -90,7 +90,7 @@ export const slugField = defineField({
     title: "Slug",
     description: "URL fragment for this resource displayed in the browser's address bar",
     type: "slug",
-    validation: requiredRule,
+    validation: required,
 });
 
 export const iconFieldName = "icon";
@@ -104,7 +104,7 @@ export const sectionIconFieldOptional = defineField({
 });
 
 export const sectionIconField = Object.assign({}, sectionIconFieldOptional, {
-    validation: requiredRule,
+    validation: required,
 });
 
 export const titleBodyIconFields = [...titleAndBodyFields, sectionIconField];
@@ -131,7 +131,7 @@ export const buttonField = defineField({
     title: "Button",
     type: "button",
     icon: LinkIcon,
-    validation: requiredRule,
+    validation: required,
 });
 
 export const actionsFieldName = "actions";
@@ -150,7 +150,7 @@ export const routeField = defineField({
     title: "Route",
     type: "slug",
     description: "URL fragment for this page. e.g. typedb-studio",
-    validation: requiredRule,
+    validation: required,
 });
 
 export const linkFieldName = "link";
@@ -181,7 +181,7 @@ export const comingSoonField = defineField({
     description: "If set, this link will be disabled and 'Coming Soon' text will be shown",
     type: "boolean",
     initialValue: false,
-    validation: requiredRule,
+    validation: required,
 });
 
 export const imageFieldName = "image";
@@ -192,7 +192,7 @@ export const imageFieldOptional = defineField({
     type: "image",
 });
 
-export const imageField = Object.assign({}, imageFieldOptional, { validation: requiredRule });
+export const imageField = Object.assign({}, imageFieldOptional, { validation: required });
 
 export const videoEmbedFieldName = "videoEmbed";
 
@@ -201,7 +201,7 @@ export const videoEmbedField = defineField({
     title: "Video Embed",
     type: "reference",
     to: [{ type: "videoEmbed" }],
-    validation: requiredRule,
+    validation: required,
 });
 
 export const keyPointsFieldName = "keyPoints";
@@ -235,7 +235,7 @@ export const isVisibleField = defineField({
     title: "Is Visible",
     type: "boolean",
     initialValue: true,
-    validation: requiredRule,
+    validation: required,
 });
 
 export const authorFieldName = "author";
@@ -245,7 +245,7 @@ export const authorField = defineField({
     title: "Author",
     type: "reference",
     to: [{type: "person"}],
-    validation: requiredRule,
+    validation: required,
 });
 
 export const resourcesFieldName = "resources";
@@ -263,4 +263,4 @@ export const resourcesFieldOptional = defineField({
     }],
 });
 
-export const resourcesField = Object.assign({}, resourcesFieldOptional, { validation: requiredRule });
+export const resourcesField = Object.assign({}, resourcesFieldOptional, { validation: required });

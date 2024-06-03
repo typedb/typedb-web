@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, titleFieldWithHighlights } from "../common-fields";
+import { descriptionFieldRichText, required, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset } from "../sanity-core";
@@ -94,7 +94,7 @@ export function resourceLinkText(data: SanityResource): string {
 export const resourceCommonFields = [
     metaTagsField,
     titleFieldWithHighlights,
-    defineField({ ...descriptionFieldRichText, validation: requiredRule }),
+    defineField({ ...descriptionFieldRichText, validation: required }),
     defineField({
         name: "shortTitle",
         title: "Short Title",

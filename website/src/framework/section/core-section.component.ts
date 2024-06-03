@@ -1,7 +1,7 @@
 
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
-import { Organisation, TechnicolorBlock } from "typedb-web-schema";
+import { Organisation, SectionBase } from "typedb-web-schema";
 
 import { ActionsComponent } from "../actions/actions.component";
 import { LinkDirective } from "../link/link.directive";
@@ -10,17 +10,17 @@ import { RichTextComponent } from "../text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
 
 @Component({
-    selector: "td-technicolor-block",
-    templateUrl: "technicolor-block.component.html",
-    styleUrls: ["./technicolor-block.component.scss"],
+    selector: "td-core-section",
+    templateUrl: "core-section.component.html",
+    styleUrls: ["./core-section.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, OrganisationLogosComponent
     ],
 })
-export class TechnicolorBlockComponent {
-    @Input() block!: TechnicolorBlock;
+export class CoreSectionComponent {
+    @Input() section!: SectionBase;
     @Input() index!: number;
     @Input() level: "h1" | "h2" = "h2";
     @Input() @HostBinding("class.tb-no-upper") noUpperLine?: boolean;

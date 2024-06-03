@@ -1,7 +1,7 @@
 import { SanityDocument, Slug } from "@sanity/types";
 import { SanityButton } from "../button";
 import { SanityVisibleToggle } from "../common-fields";
-import { SanityTechnicolorBlock } from "../component/technicolor-block";
+import { SanitySectionBase } from "../component/section";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -102,7 +102,7 @@ export interface SanityLiveEvent extends SanityEventBase {
     externalUrlButton?: SanityButton;
 }
 
-export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityResourceSection extends SanitySectionBase, SanityVisibleToggle {
     resources?: SanityReference<SanityResource>[];
 }
 

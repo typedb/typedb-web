@@ -1,0 +1,65 @@
+@use "media";
+
+table {
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+col:first-of-type {
+    width: 359px;
+
+    @media (max-width: media.$max-width-tablet) {
+        width: 261px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        width: 114px;
+    }
+}
+
+thead {
+    background: var(--color-deep-purple);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+th,
+td {
+    height: 80px;
+
+    @media (max-width: media.$max-width-mobile) {
+        tr:last-of-type & {
+            height: 48px;
+        }
+    }
+}
+
+th {
+    font-weight: inherit;
+    padding: 12px 24px;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding: 8px 4px;
+
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
+    }
+
+    &:first-of-type {
+        text-align: start;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 8px;
+        }
+    }
+}
+
+.ft-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 4px;
+    }
+}

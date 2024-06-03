@@ -1,16 +1,16 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, nameField, required, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
+import { SanitySectionBase, SectionBase } from "./section";
 
-export interface SanityFeatureGridSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityFeatureGridSection extends SanitySectionBase, SanityVisibleToggle {
     featureGrid: SanityReference<SanityFeatureGrid>;
 }
 
@@ -98,7 +98,7 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
     }
 }
 
-export class FeatureGridSection extends TechnicolorBlock {
+export class FeatureGridSection extends SectionBase {
     readonly featureGridLayout: FeatureGridLayout;
     readonly features: FeatureGridCell[][];
     readonly illustration?: Illustration;
@@ -119,7 +119,7 @@ export class FeatureGridSection extends TechnicolorBlock {
             featureCells.push(chunk);
         }
         return new FeatureGridSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 featureGridLayout: featureGrid.featureGridLayout,
                 features: featureCells,
                 illustration: featureGrid.illustration
@@ -164,7 +164,7 @@ const featureGridCellSchema = defineType({
             title: "Blur Illustration?",
             type: "boolean",
             initialValue: false,
-            validation: requiredRule,
+            validation: required,
         }),
         isVisibleField,
     ],
@@ -191,7 +191,7 @@ const featureGridSchema = defineType({
                 ],
             },
             initialValue: "textBlocks",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "columnCount",
@@ -224,7 +224,7 @@ const featureGridSectionSchema = defineType({
             title: "Feature Grid",
             type: "reference",
             to: [{type: featureGridSchemaName}],
-            validation: requiredRule,
+            validation: required,
         }),
         isVisibleField,
     ],

@@ -16,7 +16,7 @@ import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.
 import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDatePipe } from "../../framework/date/event-date.pipe";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { TitleBodyActionsSectionComponent } from "../../framework/intro-section/title-body-actions-section.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { PageComponentBase } from "../page-component-base";
@@ -28,25 +28,14 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    AspectRatioComponent,
-    RichTextComponent,
-    ButtonComponent,
-    AsyncPipe,
-    EventDatePipe,
-    PlainTextPipe
-],
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe
+    ],
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(
-        private imageBuilder: ImageBuilder,
-        activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
-        router: Router,
-        title: Title,
-        idleMonitor: IdleMonitorService,
-        metaTags: MetaTagsService,
+        private imageBuilder: ImageBuilder, activatedRoute: ActivatedRoute, analytics: AnalyticsService,
+        router: Router, title: Title, idleMonitor: IdleMonitorService, metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
         super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);

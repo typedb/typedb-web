@@ -10,7 +10,7 @@ export const generateFooter = (data: FooterData, urlPrefix = ""): string => {
     const params: GenerateParams = { data, urlPrefix };
     const socialSection = generateSocialSection(params);
     const navSection = generateNavSection(params);
-    const copyrightSection = generateCopyrightSection(params);
+    const copyrightSection = generateCopyrightSection();
     return `<footer class="td-footer">${socialSection}${navSection}${copyrightSection}</footer>`;
 };
 
@@ -108,19 +108,13 @@ const generateNavSection = (params: GenerateParams) => {
     return `<nav class="td-footer-section td-footer-section-nav">${contact}${sitemap}</nav>`;
 };
 
-const generateCopyrightSection = (params: GenerateParams) => {
-    const { urlPrefix } = params;
+const generateCopyrightSection = () => {
     const copyrightYear = new Date().getFullYear();
     const copyrightLine1 = `© ${copyrightYear} Vaticle Ltd`;
     const copyrightLine2 = `Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd`;
     const copyright = `<aside>${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
 
-    const codeIcon = `<span class="td-footer-icon td-footer-icon-code"> Made </span>`;
-    const heartIcon = `<span class="td-footer-icon td-footer-icon-heart"> love </span>`;
-    const logoImage = `<img src="${escapeHtml(urlPrefix)}/assets/logo/vaticle-text-only.svg" alt="Vaticle"/>`;
-    const credits = `<aside class="td-footer-credits">${codeIcon} with ${heartIcon} by ${logoImage}</aside>`;
-
-    return `<div class="td-footer-section td-footer-section-copyright">${copyright}${credits}</div>`;
+    return `<div class="td-footer-section td-footer-section-copyright">${copyright}</div>`;
 };
 
 const getContactLink = (contactMedia: string, communityResources: Record<string, string>): Link | null => {

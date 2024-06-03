@@ -1,17 +1,17 @@
 import { defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import {
-    collapsibleOptions,
+    collapsible,
     isVisibleField,
     optionalActionsField,
 
     titleBodyIconFields,
     SanityVisibleToggle,
-    requiredRule,
+    required,
 } from "../common-fields";
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
 import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SectionBase } from "../component/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
 import { SanityTitleBodyActions } from "../text";
@@ -35,10 +35,6 @@ export interface SanitySupportPage extends SanityPage {
     [sections.contact.id]: SanityCoreSection;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
-
 interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
     panels: SanityLinkPanelWithIcon[];
 }
@@ -55,7 +51,7 @@ export class SupportPage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.featureTable.id]?: FeatureTableSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.contact.id]?: TechnicolorBlock;
+    readonly [sections.contact.id]?: SectionBase;
 
     constructor(data: SanitySupportPage, db: SanityDataset) {
         super(data, db);
@@ -74,7 +70,7 @@ export class SupportPage extends Page {
     }
 }
 
-class IntroSection extends TechnicolorBlock {
+class IntroSection extends SectionBase {
     readonly panels: LinkPanelWithIcon[];
 
     constructor(props: PropsOf<IntroSection>) {
@@ -90,7 +86,7 @@ class IntroSection extends TechnicolorBlock {
     }
 }
 
-class FeatureTableSection extends TechnicolorBlock {
+class FeatureTableSection extends SectionBase {
     readonly featureTable: FeatureTable;
 
     constructor(props: PropsOf<FeatureTableSection>) {
@@ -106,9 +102,9 @@ class FeatureTableSection extends TechnicolorBlock {
     }
 }
 
-class ContactSection extends TechnicolorBlock {}
+class ContactSection extends SectionBase {}
 
-class TestimonialsSection extends TechnicolorBlock {
+class TestimonialsSection extends SectionBase {
     readonly testimonials: Testimonial[];
 
     constructor(props: PropsOf<TestimonialsSection>) {
@@ -118,7 +114,7 @@ class TestimonialsSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
             })
         );
@@ -157,7 +153,7 @@ const sectionSchemas = [
             name: "featureTable",
             title: "Feature Table",
             type: featureTableSchemaName,
-            validation: requiredRule,
+            validation: required,
         }),
         isVisibleField,
     ]),
@@ -180,7 +176,7 @@ const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
         name: sections[key].id,
         title: `${sections[key].title} Section`,
         type: sectionSchemaName(key),
-        options: collapsibleOptions,
+        options: collapsible,
     })
 );
 

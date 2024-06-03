@@ -1,7 +1,7 @@
 import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
-import { requiredRule, slugField } from "../common-fields";
+import { required, slugField } from "../common-fields";
 import { resourceCommonFields } from "./base";
 import { EventBase } from "./event-base";
 import { EventDate, eventDateField, EventSignupMethod } from "./live-event-details";
@@ -83,27 +83,27 @@ export const liveEventSchema = defineType({
             name: "tag",
             title: "Tag",
             type: "string",
-            validation: requiredRule,
+            validation: required,
         }),
         eventDateField,
         defineField({
             name: "venue",
             title: "Venue",
             type: "string",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "image",
             title: "Image",
             type: "image",
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "speakers",
             title: "Speakers",
             type: "array",
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "signupMethod",
@@ -111,7 +111,7 @@ export const liveEventSchema = defineType({
             type: "string",
             initialValue: EventSignupMethod.externalURL,
             options: { list: [{ title: "External URL", value: EventSignupMethod.externalURL }] },
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: "externalUrlButton",

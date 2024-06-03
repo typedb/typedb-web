@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { collapsibleOptions,  requiredRule } from "../common-fields";
-import { resourceSectionSchemaName } from "../component/page-section";
+import { collapsible,  required } from "../common-fields";
+import { resourceSectionSchemaName } from "../component/section";
 import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset } from "../sanity-core";
@@ -26,7 +26,7 @@ export class ResourceHub extends Page {
 
     constructor(data: SanityResourceHub, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = TitleBodyActions.fromSanity(data.introSection, db);
         this.resourceSections = data.resourceSections.map((x) => ResourceSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -41,22 +41,22 @@ const resourceHubSchemaBase = defineType({
             name: introSection,
             title: "Intro Section",
             type: titleBodyActionsSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: resourceSections,
             title: "Resource Sections",
             type: "array",
             of: [{ type: resourceSectionSchemaName }],
-            validation: requiredRule,
+            validation: required,
         }),
         defineField({
             name: finalSection,
             title: "Final Section",
             type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
     ],
 });

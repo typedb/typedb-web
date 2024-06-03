@@ -32,18 +32,10 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    HeadingWithHighlightsComponent,
-    MatIconModule,
-    AspectRatioComponent,
-    ButtonComponent,
-    RichTextComponent,
-    PersonInfoComponent,
-    FurtherLearningComponent,
-    AsyncPipe,
-    EventDatePipe,
-    EventDurationPipe
-],
+        PageBackgroundComponent, HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
+        ButtonComponent, RichTextComponent, PersonInfoComponent, FurtherLearningComponent, AsyncPipe,
+        EventDatePipe, EventDurationPipe
+    ],
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(

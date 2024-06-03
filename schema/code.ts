@@ -1,6 +1,6 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
-import { requiredRule, titleField } from "./common-fields";
+import { required, titleField } from "./common-fields";
 import { Document } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -107,14 +107,14 @@ const languageField = defineField({
         list: Object.entries(languages).map(([id, displayName]) => ({ title: displayName, value: id })),
     },
     initialValue: "typeql",
-    validation: requiredRule,
+    validation: required,
 });
 
 const codeField = defineField({
     name: "code",
     title: "Code",
     type: "text",
-    validation: requiredRule,
+    validation: required,
 });
 
 const codeSnippetSchema = defineType({
@@ -159,7 +159,7 @@ const polyglotSnippetSchema = defineType({
             title: "Snippets",
             type: "array",
             of: [{ type: codeSnippetSchemaName }],
-            validation: requiredRule,
+            validation: required,
         }),
     ],
 });

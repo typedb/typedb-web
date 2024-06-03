@@ -1,12 +1,11 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { LinkButton } from "../button";
-import { SanityCoreSection } from "../component/page-section";
-import { TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SectionBase } from "../component/section";
 import { SanityLink } from "../link";
 import {
     bodyFieldRichText,
-    collapsibleOptions,
+    collapsible,
     isVisibleField,
     keyPointsField,
     keyPointsWithIconsField,
@@ -97,7 +96,7 @@ export class SolutionPage extends Page {
                 data: data.useCasesSection,
                 db: db,
                 title: new ParagraphWithHighlights({ spans: [{ text: "Requirements", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/production/ddb3754b63563cba578a2d5aa4c2de94468ef650-66x98.svg",
+                iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/ddb3754b63563cba578a2d5aa4c2de94468ef650-66x98.svg",
             });
         }
         if (data.challengesSection.isVisible) {
@@ -105,7 +104,7 @@ export class SolutionPage extends Page {
                 data: data.challengesSection,
                 db: db,
                 title: new ParagraphWithHighlights({ spans: [{ text: "Challenges", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/production/76cadf76e36fef7eac8a9b700a088a2e1ed10f1c-98x98.svg",
+                iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/76cadf76e36fef7eac8a9b700a088a2e1ed10f1c-98x98.svg",
             });
         }
         this.solutionSection = data.solutionSection.isVisible
@@ -129,7 +128,7 @@ class IntroSection extends TitleAndBody {
     }
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        const titleAndBody = TitleAndBody.fromSanityTitleAndBody(data);
+        const titleAndBody = TitleAndBody.fromSanity(data, db);
         return new IntroSection(
             Object.assign(titleAndBody, {
                 videoURL: data.videoURL,
@@ -139,7 +138,7 @@ class IntroSection extends TitleAndBody {
     }
 }
 
-class KeyPointsSection extends TechnicolorBlock {
+class KeyPointsSection extends SectionBase {
     readonly keyPoints: KeyPoint[];
 
     constructor(props: PropsOf<KeyPointsSection>) {
@@ -165,7 +164,7 @@ class KeyPointsSection extends TechnicolorBlock {
     }
 }
 
-class SolutionSection extends TechnicolorBlock {
+class SolutionSection extends SectionBase {
     readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<SolutionSection>) {
@@ -184,7 +183,7 @@ class SolutionSection extends TechnicolorBlock {
             }),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "https://cdn.sanity.io/images/xndl14mc/production/19628ad84b647bdbc783df17ce2ea89c8fd507a3-98x108.svg",
+            iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/19628ad84b647bdbc783df17ce2ea89c8fd507a3-98x108.svg",
             keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
             sectionId: "typedb-solution",
         });
@@ -241,7 +240,7 @@ const sectionFields = [
             name: sections[key].id,
             title: `${sections[key].title} Section`,
             type: sectionSchemaName(key),
-            options: collapsibleOptions,
+            options: collapsible,
         })
     ),
     furtherLearningField,

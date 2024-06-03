@@ -1,20 +1,15 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, forwardRef, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
-import { combineLatest, map, Observable, of } from "rxjs";
+import { of } from "rxjs";
 import {
-    HomePage,
-    homePageSchemaName,
-    Organisation,
-    SanityDataset,
-    SanityHomePage,
-    SocialMediaLink,
+    HomePage, homePageSchemaName, Organisation, SanityDataset, SanityHomePage,
 } from "typedb-web-schema";
-import { TechnicolorBlock } from "typedb-web-schema";
+import { SectionBase } from "typedb-web-schema";
 
 import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
@@ -25,11 +20,53 @@ import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
 import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { MultiComparisonTabsComponent } from "../../framework/multi-comparison-tabs/multi-comparison-tabs.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { ProductLabelComponent } from "../../framework/product-label/product-label.component";
+import { ProductTableComponent } from "../../framework/product-table/product-table.component";
 import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { CoreSectionComponent } from "../../framework/section/core-section.component";
 import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
 import { PageComponentBase } from "../page-component-base";
+
+@Component({
+    selector: "td-home-page-core-section",
+    template: `<td-core-section
+        [section]="block"
+        [index]="index"
+        [level]="level"
+        [noUpperLine]="index === 0"
+        [organisationLogos]="organisationLogos"
+    ></td-core-section>`,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CoreSectionComponent],
+})
+export class HomePageCoreSectionComponent {
+    @Input() block!: SectionBase;
+    @Input() page!: HomePage;
+    @Input() variant: "none" | "intro" | "conclusion" = "none";
+    @Input() organisationLogos?: Organisation[];
+
+    get allBlocks(): SectionBase[] {
+        return [
+            this.page.introSection,
+            this.page.compareDBsSection,
+            this.page.quickLearnSection,
+            this.page.cloudSection,
+            this.page.testimonialsSection,
+            this.page.conclusionSection,
+        ].filter((x) => !!x) as SectionBase[];
+    }
+
+    get level(): CoreSectionComponent["level"] {
+        return this.block === this.page.introSection ? "h1" : "h2";
+    }
+
+    get index() {
+        return this.allBlocks.indexOf(this.block);
+    }
+}
 
 @Component({
     selector: "td-home-page",
@@ -37,21 +74,13 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    forwardRef(() => HomePageTechnicolorBlockComponent),
-    ContentTabsComponent,
-    ResourcePanelsComponent,
-    LinkPanelsComponent,
-    FeatureGridComponent,
-    KeyPointTableComponent,
-    SocialMediaPanelsComponent,
-    TestimonialsCarouselComponent,
-    ConclusionPanelComponent,
-    AsyncPipe
-],
+        PageBackgroundComponent, HomePageCoreSectionComponent, ContentTabsComponent, ResourcePanelsComponent,
+        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
+        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe, MultiComparisonTabsComponent, ProductLabelComponent, ProductTableComponent
+    ],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
-    readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
+    // readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
 
     constructor(
         activatedRoute: ActivatedRoute,
@@ -63,9 +92,9 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         contentService: ContentService,
     ) {
         super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
-        this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
-            map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
-        );
+        // this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
+        //     map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
+        // );
     }
 
     protected override getPage(data: SanityDataset) {
@@ -77,48 +106,5 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         super.onPageReady(page);
         this.title.setTitle(`TypeDB: ${page.introSection?.title.toPlainText() || "Home"}`);
         Prism.highlightAll();
-    }
-}
-
-@Component({
-    selector: "td-home-page-technicolor-block",
-    template: `<td-technicolor-block
-        [block]="block"
-        [index]="index"
-        [level]="level"
-        [noUpperLine]="index === 0"
-        [longUpperLine]="variant === 'conclusion'"
-        [organisationLogos]="organisationLogos"
-    ></td-technicolor-block>`,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
-})
-export class HomePageTechnicolorBlockComponent {
-    @Input() block!: TechnicolorBlock;
-    @Input() page!: HomePage;
-    @Input() variant: "none" | "intro" | "conclusion" = "none";
-    @Input() organisationLogos?: Organisation[];
-
-    get allBlocks(): TechnicolorBlock[] {
-        return [
-            this.page.introSection,
-            ...this.page.impactSections,
-            this.page.resourcesSection,
-            this.page.toolingSection,
-            this.page.driversSection,
-            this.page.cloudSection,
-            this.page.communitySection,
-            this.page.testimonialsSection,
-            this.page.conclusionSection,
-        ].filter((x) => !!x) as TechnicolorBlock[];
-    }
-
-    get level(): TechnicolorBlockComponent["level"] {
-        return this.block === this.page.introSection ? "h1" : "h2";
-    }
-
-    get index() {
-        return this.allBlocks.indexOf(this.block);
     }
 }

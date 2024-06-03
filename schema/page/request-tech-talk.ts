@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 
 import { Page, SanityPage } from "./common";
-import { collapsibleOptions,  titleFieldWithHighlights } from "../common-fields";
+import { collapsible,  titleFieldWithHighlights } from "../common-fields";
 import { hubspotFormIDField } from "../form";
 import {
     ParagraphWithHighlights,
@@ -28,7 +28,7 @@ export class RequestTechTalkPage extends Page {
     constructor(data: SanityRequestTechTalkPage, db: SanityDataset) {
         super(data, db);
         this.introTitle = ParagraphWithHighlights.fromSanity(data.introTitle);
-        this.details = TitleAndBody.fromSanityTitleAndBody(data.details);
+        this.details = TitleAndBody.fromSanity(data.details, db);
         this.hubspotFormID = data.hubspotFormID;
     }
 }
@@ -46,7 +46,7 @@ export const requestTechTalkPageSchema = defineType({
             name: "details",
             title: "Details Section",
             type: titleAndBodySchemaName,
-            options: collapsibleOptions,
+            options: collapsible,
         }),
         hubspotFormIDField,
     ],

@@ -1,5 +1,5 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { requiredRule } from "./common-fields";
+import { required } from "./common-fields";
 import { PortableText } from "./text";
 
 export const forms = {
@@ -37,7 +37,7 @@ export const formsSchema = defineType({
                 name: id,
                 title: `${title} Form ID`,
                 type: "string",
-                validation: requiredRule,
+                validation: required,
             })
         ),
         ...Object.entries(forms).map(([id, title]) =>
@@ -68,7 +68,7 @@ export const hubspotFormIDField = defineField({
     name: hubspotFormIDFieldName,
     title: "Hubspot Form ID",
     type: "string",
-    validation: requiredRule,
+    validation: required,
 });
 
 export const formSchemas = [formsSchema];

@@ -4,7 +4,7 @@ import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { SanityVideoEmbed } from "../illustration";
 import { SanityImageRef } from "../image";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { comingSoonField, descriptionField, linkField, requiredRule, sectionIconField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
+import { comingSoonField, descriptionField, linkField, required, sectionIconField, titleField, titleFieldName, videoEmbedField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 
 export interface SanityTopbar extends SanityDocument {
@@ -154,7 +154,7 @@ const listColumnItemSchema = defineType({
     type: "object",
     fields: [
         titleField,
-        Object.assign({}, descriptionField, { validation: requiredRule }),
+        Object.assign({}, descriptionField, { validation: required }),
         linkField,
         comingSoonField,
     ],
@@ -209,7 +209,7 @@ const spotlightColumnSchema = defineType({
     fields: [
         titleField,
         sectionIconField,
-        Object.assign({}, linkField, { validation: requiredRule }),
+        Object.assign({}, linkField, { validation: required }),
     ],
 });
 

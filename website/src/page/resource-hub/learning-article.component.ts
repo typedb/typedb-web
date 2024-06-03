@@ -8,15 +8,8 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
-    Article,
-    blogCategories,
-    BlogCategoryID,
-    fundamentalArticleSchemaName,
-    ResourceHub,
-    learningCenterSchemaName,
-    Link,
-    LinkButton,
-    SanityResourceHub, fundamentalsPageSchemaName,
+    Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, ResourceHub, learningCenterSchemaName,
+    Link, LinkButton, SanityResourceHub, fundamentalsPageSchemaName,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";

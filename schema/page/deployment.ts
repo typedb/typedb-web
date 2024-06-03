@@ -1,29 +1,16 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
-import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    isVisibleField,
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleFieldWithHighlights,
-} from "../common-fields";
+import { collapsible, isVisibleField, required, titleBodyIconFields } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
 import {
-    LinkPanelWithIcon,
-    linkPanelWithIconSchemaName,
-    ProductPanel,
-    productPanelSchemaName,
-    SanityLinkPanelWithIcon,
-    SanityProductPanel,
+    LinkPanelWithIcon, linkPanelWithIconSchemaName, ProductPanel, productPanelSchemaName,
+    SanityLinkPanelWithIcon, SanityProductPanel,
 } from "../component/link-panel";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SanitySectionBase, SectionBase } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
-import { SanityTitleBodyActions } from "../text";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -32,17 +19,13 @@ export interface SanityDeploymentPage extends SanityPage {
     linkPanelsSection: SanityLinkPanelsSection;
 }
 
-export interface SanityIntroSection extends SanityTechnicolorBlock {
+export interface SanityIntroSection extends SanitySectionBase {
     productPanels: SanityProductPanel[];
 }
 
-export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
+export interface SanityFeatureTableSection extends SanitySectionBase {
     featureTable: SanityFeatureTable;
 }
-
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 
 interface SanityLinkPanelsSection extends SanityCoreSection {
     panels: SanityLinkPanelWithIcon[];
@@ -65,7 +48,7 @@ export class DeploymentPage extends Page {
     }
 }
 
-export class IntroSection extends TechnicolorBlock {
+export class IntroSection extends SectionBase {
     readonly productPanels: ProductPanel[];
 
     constructor(props: PropsOf<IntroSection>) {
@@ -75,14 +58,14 @@ export class IntroSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 productPanels: data.productPanels.map((x) => ProductPanel.fromSanity(x, db)),
             })
         );
     }
 }
 
-export class FeatureTableSection extends TechnicolorBlock {
+export class FeatureTableSection extends SectionBase {
     readonly featureTable: FeatureTable;
 
     constructor(props: PropsOf<FeatureTableSection>) {
@@ -92,14 +75,14 @@ export class FeatureTableSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
         return new FeatureTableSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 featureTable: FeatureTable.fromSanity(data.featureTable, db),
             })
         );
     }
 }
 
-export class LinkPanelsSection extends TechnicolorBlock {
+export class LinkPanelsSection extends SectionBase {
     readonly panels: LinkPanelWithIcon[];
 
     constructor(props: PropsOf<LinkPanelsSection>) {
@@ -126,9 +109,7 @@ const introSectionSchema = defineType({
     title: "Intro Section",
     type: "object",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
         defineField({
             name: "productPanels",
             title: "Product Panels",
@@ -144,14 +125,12 @@ const featureTableSectionSchema = defineType({
     title: "Feature Table Section",
     type: "object",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
         defineField({
             name: "featureTable",
             title: "Feature Table",
             type: featureTableSchemaName,
-            validation: requiredRule,
+            validation: required,
         }),
         isVisibleField,
     ],
@@ -162,9 +141,7 @@ const linkPanelsSectionSchema = defineType({
     title: "Link Panels Section",
     type: "object",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
         defineField({
             name: "panels",
             title: "Panels",
@@ -186,29 +163,29 @@ const deploymentPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: introSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "featureTableSection",
             title: "Feature Table Section",
             type: featureTableSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "linkPanelsSection",
             title: "Link Panels Section",
             type: linkPanelsSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "finalSection",
             title: "Final Section",
             type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
     ],
     preview: { prepare: (_selection) => ({ title: "Deployment Page" }) },
@@ -231,8 +208,5 @@ const deploymentPageSchema = defineType({
 });
 
 export const deploymentPageSchemas = [
-    introSectionSchema,
-    featureTableSectionSchema,
-    linkPanelsSectionSchema,
-    deploymentPageSchema,
+    introSectionSchema, featureTableSectionSchema, linkPanelsSectionSchema, deploymentPageSchema,
 ];

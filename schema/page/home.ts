@@ -2,31 +2,24 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
-import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "../component/link-panel";
-import { resourceSectionSchemaName } from "../component/page-section";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { LinkPanelWithIcon, linkPanelWithIconSchemaName, ProductPanel, productPanelSchemaName, SanityLinkPanelWithIcon, SanityProductPanel } from "../component/link-panel";
+import { resourceSectionSchemaName, SanityCoreSection, SectionBase } from "../component/section";
+import { ProductLabel, productLabelField, SanityProductLabel } from "../component/product-label";
 import {
-    collapsibleOptions,
-    isVisibleField,
-    optionalActionsField,
-    titleBodyIconFields,
-    SanityVisibleToggle,
-    requiredRule,
-    keyPointsWithIconsField,
-    titleFieldWithHighlights,
-    bodyFieldRichText,
-    sectionIconField,
+    collapsible, isVisibleField, optionalActionsField, titleBodyIconFields, SanityVisibleToggle,
+    required, keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField,
     resourcesField,
 } from "../common-fields";
-import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
+import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName, multiComparisonTabsSchemaName, MultiComparisonTabs, SanityMultiComparisonTabs } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
+import { SanityTextLink, TextLink } from "../link";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { SanityTitleBodyActions } from "../text";
+import { PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
 import { Page, SanityPage } from "./common";
@@ -34,13 +27,11 @@ import { metaTagsField } from "./meta-tags";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
-    impact: { id: "impactSection", title: "Impact" },
-    resources: { id: "resourcesSection", title: "Resources" },
-    tooling: { id: "toolingSection", title: "Tooling" },
-    drivers: { id: "driversSection", title: "Drivers" },
+    compareDBs: { id: "compareDBsSection", title: "DB Comparison" },
+    quickLearn: { id: "quickLearnSection", title: "Quick Learn" },
     cloud: { id: "cloudSection", title: "Cloud" },
-    community: { id: "communitySection", title: "Community" },
     testimonials: { id: "testimonialsSection", title: "Testimonials" },
+    conclusion: { id: "conclusionSection", title: "Conclusion" },
 } as const;
 
 type SectionKey = keyof typeof sections;
@@ -48,28 +39,29 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
-    impactSections: SanityImpactSection[];
-    [sections.resources.id]: SanityResourceSection;
-    [sections.tooling.id]: SanityToolingSection;
-    [sections.drivers.id]: SanityDriversSection;
-    [sections.cloud.id]: SanityKeyPointsSection;
-    [sections.community.id]: SanityCommunitySection;
+    [sections.compareDBs.id]: SanityMultiComparisonSection;
+    [sections.quickLearn.id]: SanityCoreSection;
+    [sections.cloud.id]: SanityProductLabelSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
-    conclusionSection: SanityConclusionSection;
+    conclusionSection: SanityCoreSection;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
-
-interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityIntroSection extends SanityCoreSection {
     userLogos: SanityReference<SanityOrganisation>[];
     displayUserLogos: boolean;
     contentTabs: SanityContentTextTab[];
 }
 
-interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityImpactSection extends SanityCoreSection {
     impactTabs: SanityContentTextTab[];
+}
+
+interface SanityMultiComparisonSection extends SanityCoreSection {
+    comparisonTabs: SanityMultiComparisonTabs;
+}
+
+interface SanityProductLabelSection extends SanityCoreSection {
+    productLabel: SanityProductLabel;
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
@@ -86,50 +78,38 @@ interface SanityCommunitySection extends SanityCoreSection {
     socialMediaLinks: SocialMediaID[];
 }
 
-interface SanityTestimonialsSection extends SanityCoreSection {
+interface SanityTestimonialsSection extends SanityKeyPointsSection {
     testimonials: SanityReference<SanityTestimonial>[];
 }
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
-    readonly impactSections: ImpactSection[];
-    readonly [sections.resources.id]?: ResourceSection;
-    readonly [sections.tooling.id]?: ToolingSection;
-    readonly [sections.drivers.id]?: FeatureGridSection;
-    readonly [sections.cloud.id]?: CloudSection;
-    readonly [sections.community.id]?: CommunitySection;
+    readonly [sections.compareDBs.id]?: MultiComparisonSection;
+    readonly [sections.quickLearn.id]?: SectionBase;
+    readonly [sections.cloud.id]?: ProductLabelSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly conclusionSection?: ConclusionSection;
+    readonly [sections.conclusion.id]?: SectionBase;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
-        this.impactSections = data.impactSections
-            .filter((x) => x.isVisible)
-            .map((x) => ImpactSection.fromSanity(x, db));
-        this.resourcesSection = data.resourcesSection.isVisible
-            ? ResourceSection.fromSanity(data.resourcesSection, db)
+        this.compareDBsSection = data.compareDBsSection.isVisible
+            ? MultiComparisonSection.fromSanity(data.compareDBsSection, db)
             : undefined;
-        this.toolingSection = data.toolingSection.isVisible
-            ? ToolingSection.fromSanity(data.toolingSection, db)
+        this.quickLearnSection = data.quickLearnSection.isVisible
+            ? SectionBase.fromSanity(data.quickLearnSection, db)
             : undefined;
-        this.driversSection = data.driversSection.isVisible
-            ? FeatureGridSection.fromSanity(data.driversSection, db)
-            : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
-        this.communitySection = data.communitySection.isVisible
-            ? CommunitySection.fromSanity(data.communitySection, db)
-            : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? ProductLabelSection.fromSanity(data.cloudSection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this.conclusionSection = data.conclusionSection.isVisible
-            ? ConclusionSection.fromSanity(data.conclusionSection, db)
+            ? SectionBase.fromSanity(data.conclusionSection, db)
             : undefined;
     }
 }
 
-class IntroSection extends TechnicolorBlock {
+class IntroSection extends SectionBase {
     readonly userLogos: Organisation[];
     readonly contentTabs: ContentTextTab[];
 
@@ -141,7 +121,7 @@ class IntroSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 userLogos: data.displayUserLogos
                     ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
                     : [],
@@ -151,7 +131,24 @@ class IntroSection extends TechnicolorBlock {
     }
 }
 
-class ImpactSection extends TechnicolorBlock {
+class MultiComparisonSection extends SectionBase {
+    readonly comparisonTabs: MultiComparisonTabs;
+
+    constructor(props: PropsOf<MultiComparisonSection>) {
+        super(props);
+        this.comparisonTabs = props.comparisonTabs;
+    }
+
+    static override fromSanity(data: SanityMultiComparisonSection, db: SanityDataset) {
+        return new MultiComparisonSection(
+            Object.assign(SectionBase.fromSanity(data, db), {
+                comparisonTabs: new MultiComparisonTabs(data.comparisonTabs, db),
+            }),
+        );
+    }
+}
+
+class ImpactSection extends SectionBase {
     readonly impactTabs: ContentTextTab[];
 
     constructor(props: PropsOf<ImpactSection>) {
@@ -161,14 +158,14 @@ class ImpactSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
         return new ImpactSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 impactTabs: data.impactTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
 }
 
-class ToolingSection extends TechnicolorBlock {
+class ToolingSection extends SectionBase {
     readonly panels: LinkPanelWithIcon[];
 
     constructor(props: PropsOf<ToolingSection>) {
@@ -178,14 +175,31 @@ class ToolingSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityToolingSection, db: SanityDataset) {
         return new ToolingSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
             })
         );
     }
 }
 
-class CloudSection extends TechnicolorBlock {
+class ProductLabelSection extends SectionBase {
+    readonly productLabel: ProductLabel;
+
+    constructor(props: PropsOf<ProductLabelSection>) {
+        super(props);
+        this.productLabel = props.productLabel;
+    }
+
+    static override fromSanity(data: SanityProductLabelSection, db: SanityDataset) {
+        return new ProductLabelSection(
+            Object.assign(SectionBase.fromSanity(data, db), {
+                productLabel: ProductLabel.fromSanity(data.productLabel, db),
+            })
+        );
+    }
+}
+
+class CloudSection extends SectionBase {
     readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<CloudSection>) {
@@ -195,14 +209,14 @@ class CloudSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
         return new CloudSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
             })
         );
     }
 }
 
-class CommunitySection extends TechnicolorBlock {
+class CommunitySection extends SectionBase {
     readonly socialMedias: SocialMediaID[];
 
     constructor(props: PropsOf<CommunitySection>) {
@@ -212,25 +226,28 @@ class CommunitySection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityCommunitySection, db: SanityDataset) {
         return new CommunitySection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 socialMedias: data.socialMediaLinks,
             })
         );
     }
 }
 
-class TestimonialsSection extends TechnicolorBlock {
+class TestimonialsSection extends SectionBase {
     readonly testimonials: Testimonial[];
+    readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<TestimonialsSection>) {
         super(props);
         this.testimonials = props.testimonials;
+        this.keyPoints = props.keyPoints;
     }
 
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
+                keyPoints: data.keyPoints.map(x => new KeyPointWithIcon(x, db)),
             })
         );
     }
@@ -261,7 +278,7 @@ const sectionSchemas = [
             title: "Display Organisation Logos?",
             type: "boolean",
             initialValue: false,
-            validation: requiredRule,
+            validation: required,
         }),
         Object.assign({}, organisationLogosField, { name: "userLogos" }),
         defineField({
@@ -269,49 +286,23 @@ const sectionSchemas = [
             title: "Content Tabs",
             type: "array",
             of: [{ type: contentTextTabSchemaName }],
-            validation: requiredRule,
+            validation: required,
         }),
         isVisibleField,
     ]),
-    sectionSchema("impact", [
+    sectionSchema("compareDBs", [
         ...titleBodyIconFields,
         optionalActionsField,
         defineField({
-            name: "impactTabs",
-            title: "Impact Tabs",
-            type: "array",
-            of: [{ type: contentTextTabSchemaName }],
-            validation: requiredRule,
+            name: "comparisonTabs",
+            title: "Comparison Tabs",
+            type: multiComparisonTabsSchemaName,
+            validation: required,
         }),
         isVisibleField,
     ]),
-    sectionSchema("resources", [...titleBodyIconFields, optionalActionsField, resourcesField, isVisibleField]),
-    sectionSchema("tooling", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        defineField({
-            name: "panels",
-            title: "Panels",
-            type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
-            validation: (rule: ArrayRule<any>) => rule.required().length(3),
-        }),
-        isVisibleField,
-    ]),
-    sectionSchema("drivers", [
-        ...titleBodyIconFields,
-        optionalActionsField,
-        defineField({
-            name: "featureGrid",
-            title: "Drivers",
-            type: "reference",
-            to: [{ type: featureGridSchemaName }],
-            validation: requiredRule,
-        }),
-        isVisibleField,
-    ]),
-    sectionSchema("cloud", [...titleBodyIconFields, optionalActionsField, keyPointsWithIconsField(5), isVisibleField]),
-    sectionSchema("community", [...titleBodyIconFields, optionalActionsField, socialMediaLinksField, isVisibleField]),
+    sectionSchema("quickLearn", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("cloud", [...titleBodyIconFields, optionalActionsField, productLabelField, isVisibleField]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
         optionalActionsField,
@@ -321,32 +312,27 @@ const sectionSchemas = [
             type: "array",
             of: [{ type: "reference", to: [{ type: testimonialSchemaName }] }],
         }),
+        keyPointsWithIconsField(5),
         isVisibleField,
     ]),
+    sectionSchema("conclusion", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
 ];
 
 const introSectionField = defineField({
     name: sections.intro.id,
     title: `${sections.intro.title} Section`,
     type: sectionSchemaName("intro"),
-    options: collapsibleOptions,
-});
-
-const impactSectionsField = defineField({
-    name: "impactSections",
-    title: "Impact Sections",
-    type: "array",
-    of: [{ type: sectionSchemaName("impact") }],
+    options: collapsible,
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "resources"].includes(key))
+    .filter((key) => !["intro"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
             title: `${sections[key].title} Section`,
             type: sectionSchemaName(key),
-            options: collapsibleOptions,
+            options: collapsible,
         })
     );
 
@@ -357,22 +343,7 @@ const homePageSchema = defineType({
     fields: [
         metaTagsField,
         introSectionField,
-        impactSectionsField,
-        defineField({
-            name: "resourcesSection",
-            title: "Resources Section",
-            type: resourceSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
-        }),
         ...otherSectionFields,
-        defineField({
-            name: "conclusionSection",
-            title: "Conclusion Section",
-            type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
-        }),
     ],
     preview: { prepare: (_selection) => ({ title: "Home Page" }) },
 });

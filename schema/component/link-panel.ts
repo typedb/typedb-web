@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
-import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
+import { bodyFieldRichText, buttonField, required, sectionIconField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
@@ -17,7 +17,7 @@ export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
 }
 
 export interface SanityProductPanel extends SanityLinkPanel {
-    secondaryBody: PortableText;
+    secondaryBody?: PortableText;
     button: SanityButton;
 }
 
@@ -57,7 +57,7 @@ export class LinkPanelWithIcon extends LinkPanel {
 }
 
 export class ProductPanel extends LinkPanel {
-    readonly secondaryBody: PortableText;
+    readonly secondaryBody?: PortableText;
     readonly button: LinkButton;
 
     constructor(props: PropsOf<ProductPanel>) {
@@ -103,7 +103,6 @@ const productPanelSchema = defineType({
             description: "Displayed under the primary body, separated by a horizontal rule",
             type: "array",
             of: [{ type: "block" }],
-            validation: requiredRule,
         }),
         buttonField,
     ],

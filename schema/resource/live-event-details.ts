@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { collapsibleOptions } from "../common-fields";
+import { collapsible } from "../common-fields";
 import { PropsOf } from "../util";
 
 export enum EventSignupMethod {
@@ -46,7 +46,7 @@ export const eventDateField = defineField({
     name: "dateOptions",
     title: "Date Options",
     type: "object",
-    options: collapsibleOptions,
+    options: collapsible,
     fields: [
         defineField({
             name: "dateTBC",

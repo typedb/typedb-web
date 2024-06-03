@@ -16,6 +16,7 @@ dist
 
 # CMS
 cms/data.json
+cms/production.tar.gz
 cms/scripts/credentials/**/*
 !cms/scripts/credentials/.gitkeep
 

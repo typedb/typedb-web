@@ -27,12 +27,8 @@ export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;
 
     constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private content: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        private _analytics: AnalyticsService,
+        private router: Router, private activatedRoute: ActivatedRoute, private content: ContentService,
+        private metaTags: MetaTagsService, private title: Title, private _analytics: AnalyticsService,
         private _idleMonitor: IdleMonitorService,
     ) {}
 

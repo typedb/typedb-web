@@ -1,14 +1,8 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions,
-    isVisibleField,
-
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleAndBodyFields,
+    collapsible, isVisibleField, required, titleAndBodyFields, titleBodyIconFields,
 } from "../common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection, SanitySectionBase, SectionBase } from "../component/section";
 import { SanityLecture, lectureSchemaName } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
@@ -27,11 +21,11 @@ export interface SanityIntroSection extends SanityTitleAndBody {
     featuredLecture?: SanityReference<SanityLecture>;
 }
 
-export interface SanityFeaturedLecturesSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityFeaturedLecturesSection extends SanityCoreSection {
     featuredLectures?: SanityReference<SanityLecture>[];
 }
 
-export interface SanityExploreLecturesSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
+export interface SanityExploreLecturesSection extends SanityCoreSection {}
 
 export class LecturesPage extends Page {
     readonly introSection: IntroSection;
@@ -60,7 +54,7 @@ export class IntroSection extends TitleAndBody {
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+            Object.assign(TitleAndBody.fromSanity(data, db), {
                 featuredLecture: data.featuredLecture
                     ? Lecture.fromSanity(db.resolveRef(data.featuredLecture), db)
                     : undefined,
@@ -69,7 +63,7 @@ export class IntroSection extends TitleAndBody {
     }
 }
 
-export class FeaturedLecturesSection extends TechnicolorBlock {
+export class FeaturedLecturesSection extends SectionBase {
     featuredLectures?: Lecture[];
 
     constructor(props: PropsOf<FeaturedLecturesSection>) {
@@ -79,7 +73,7 @@ export class FeaturedLecturesSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityFeaturedLecturesSection, db: SanityDataset) {
         return new FeaturedLecturesSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 featuredLectures: data.featuredLectures
                     ? data.featuredLectures.map((x) => Lecture.fromSanity(db.resolveRef(x), db))
                     : undefined,
@@ -88,13 +82,13 @@ export class FeaturedLecturesSection extends TechnicolorBlock {
     }
 }
 
-export class ExploreLecturesSection extends TechnicolorBlock {
+export class ExploreLecturesSection extends SectionBase {
     constructor(props: PropsOf<ExploreLecturesSection>) {
         super(props);
     }
 
-    static override fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
-        return new ExploreLecturesSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {}));
+    static override fromSanity(data: SanitySectionBase, db: SanityDataset) {
+        return new ExploreLecturesSection(Object.assign(SectionBase.fromSanity(data, db), {}));
     }
 }
 
@@ -126,8 +120,7 @@ const featuredLecturesSectionSchema = defineType({
     title: "Section",
     type: "object",
     fields: [
-        ...titleAndBodyFields,
-        sectionIconField,
+        ...titleBodyIconFields,
         defineField({
             name: "featuredLectures",
             title: "Featured Lectures",
@@ -144,7 +137,7 @@ const exploreLecturesSectionSchema = defineType({
     name: exploreLecturesSectionSchemaName,
     title: "Section",
     type: "object",
-    fields: [...titleAndBodyFields, sectionIconField, isVisibleField],
+    fields: [...titleBodyIconFields, isVisibleField],
 });
 
 const lecturesPageSchema = defineType({
@@ -158,24 +151,24 @@ const lecturesPageSchema = defineType({
             title: "Intro Section",
             description: "The primary featured lecture will be displayed in this section",
             type: introSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "featuredLecturesSection",
             title: "Featured Lectures Section",
             description: "The secondary featured lectures will be displayed in this section",
             type: featuredLecturesSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
         defineField({
             name: "exploreLecturesSection",
             title: "Explore Lectures Section",
             description: "A searchable list of all our lectures will be displayed in this section",
             type: exploreLecturesSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
+            options: collapsible,
+            validation: required,
         }),
     ],
     preview: {
@@ -184,8 +177,5 @@ const lecturesPageSchema = defineType({
 });
 
 export const lecturesPageSchemas = [
-    introSectionSchema,
-    featuredLecturesSectionSchema,
-    exploreLecturesSectionSchema,
-    lecturesPageSchema,
+    introSectionSchema, featuredLecturesSectionSchema, exploreLecturesSectionSchema, lecturesPageSchema,
 ];

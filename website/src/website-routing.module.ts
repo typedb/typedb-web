@@ -21,6 +21,7 @@ import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
 import { PapersPageComponent } from "./page/papers/papers-page.component";
+import { WhyPageComponent } from "./page/why/why-page.component";
 import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./website-routes";
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
@@ -32,6 +33,7 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     events: { component: EventsPageComponent, title: "TypeDB Events" },
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
+    why: { component: WhyPageComponent, title: "Why choose TypeDB?" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
