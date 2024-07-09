@@ -106,53 +106,8 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/home/_images/*"
-to = "/docs/home/_images/:splat"
-status = 302
-
-[[redirects]]
-from = "/manual/_images/*"
-to = "/docs/manual/_images/:splat"
-status = 302
-
-[[redirects]]
-from = "/drivers/_images/*"
-to = "/docs/drivers/_images/:splat"
-status = 302
-
-[[redirects]]
-from = "/typeql/_images/*"
-to = "/docs/typeql/_images/:splat"
-status = 302
-
-[[redirects]]
-from = "/academy/_images/*"
-to = "/docs/academy/_images/:splat"
-status = 302
-
-[[redirects]]
-from = "https://typedb.com/_/*"
-to = "https://typedb-docs.netlify.app/_/:splat"
-status = 200
-
-[[redirects]]
-from = "https://typedb.com/search-index.js"
-to = "https://typedb-docs.netlify.app/search-index.js"
-status = 200
-
-[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
-status = 200
-
-[[redirects]]
-from = "https://typedb.com/academy/*"
-to = "https://typedb-docs.netlify.app/academy/:splat"
-status = 200
-
-[[redirects]]
-from = "https://master.typedb.com/_/*"
-to = "https://typedb-docs.netlify.app/_/:splat"
 status = 200
 
 [[redirects]]
@@ -161,33 +116,8 @@ to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://master.typedb.com/academy/*"
-to = "https://typedb-docs.netlify.app/academy/:splat"
-status = 200
-
-[[redirects]]
-from = "https://master.typedb.com/search-index.js"
-to = "https://typedb-docs.netlify.app/search-index.js"
-status = 200
-
-[[redirects]]
-from = "https://development.typedb.com/_/*"
-to = "https://development--typedb-docs.netlify.app/_/:splat"
-status = 200
-
-[[redirects]]
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
-status = 200
-
-[[redirects]]
-from = "https://development.typedb.com/academy/*"
-to = "https://development--typedb-docs.netlify.app/academy/:splat"
-status = 200
-
-[[redirects]]
-from = "https://development.typedb.com/search-index.js"
-to = "https://development--typedb-docs.netlify.app/search-index.js"
 status = 200
 
 # MAIN SITE BEHAVIOUR
