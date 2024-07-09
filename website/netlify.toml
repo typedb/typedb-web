@@ -111,6 +111,11 @@ to = "https://typedb-docs.netlify.app/_/:splat"
 status = 200
 
 [[redirects]]
+from = "https://typedb.com/search-index.js"
+to = "https://typedb-docs.netlify.app/search-index.js"
+status = 200
+
+[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
@@ -136,6 +141,11 @@ to = "https://typedb-docs.netlify.app/academy/:splat"
 status = 200
 
 [[redirects]]
+from = "https://master.typedb.com/search-index.js"
+to = "https://typedb-docs.netlify.app/search-index.js"
+status = 200
+
+[[redirects]]
 from = "https://development.typedb.com/_/*"
 to = "https://development--typedb-docs.netlify.app/_/:splat"
 status = 200
@@ -148,6 +158,11 @@ status = 200
 [[redirects]]
 from = "https://development.typedb.com/academy/*"
 to = "https://development--typedb-docs.netlify.app/academy/:splat"
+status = 200
+
+[[redirects]]
+from = "https://development.typedb.com/search-index.js"
+to = "https://development--typedb-docs.netlify.app/search-index.js"
 status = 200
 
 # MAIN SITE BEHAVIOUR
