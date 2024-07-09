@@ -112,7 +112,7 @@ status = 200
 
 [[redirects]]
 from = "https://typedb.com/academy/*"
-to = "https://typedb-docs.netlify.app/docs/academy/:splat"
+to = "https://typedb-docs.netlify.app/academy/:splat"
 status = 200
 
 [[redirects]]
@@ -122,7 +122,7 @@ status = 200
 
 [[redirects]]
 from = "https://master.typedb.com/academy/*"
-to = "https://typedb-docs.netlify.app/docs/academy/:splat"
+to = "https://typedb-docs.netlify.app/academy/:splat"
 status = 200
 
 [[redirects]]
@@ -132,7 +132,7 @@ status = 200
 
 [[redirects]]
 from = "https://development.typedb.com/academy/*"
-to = "https://development--typedb-docs.netlify.app/docs/academy/:splat"
+to = "https://development--typedb-docs.netlify.app/academy/:splat"
 status = 200
 
 # MAIN SITE BEHAVIOUR
