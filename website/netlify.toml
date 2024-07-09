@@ -106,6 +106,31 @@ status = 301
 force = true
 
 [[redirects]]
+from = "/home/images/*"
+to = "/docs/home/images/:splat"
+status = 302
+
+[[redirects]]
+from = "/manual/images/*"
+to = "/docs/manual/images/:splat"
+status = 302
+
+[[redirects]]
+from = "/drivers/images/*"
+to = "/docs/drivers/images/:splat"
+status = 302
+
+[[redirects]]
+from = "/typeql/images/*"
+to = "/docs/typeql/images/:splat"
+status = 302
+
+[[redirects]]
+from = "/academy/images/*"
+to = "/docs/academy/images/:splat"
+status = 302
+
+[[redirects]]
 from = "https://typedb.com/_/*"
 to = "https://typedb-docs.netlify.app/_/:splat"
 status = 200
