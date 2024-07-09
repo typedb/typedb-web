@@ -106,13 +106,13 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/academy/*"
-to = "/docs/academy/:splat"
+from = "https://typedb.com/docs/*"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
-from = "https://typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat"
+from = "https://typedb.com/academy/*"
+to = "https://typedb-docs.netlify.app/docs/academy/:splat"
 status = 200
 
 [[redirects]]
@@ -121,8 +121,18 @@ to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
+from = "https://master.typedb.com/academy/*"
+to = "https://typedb-docs.netlify.app/docs/academy/:splat"
+status = 200
+
+[[redirects]]
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
+from = "https://development.typedb.com/academy/*"
+to = "https://development--typedb-docs.netlify.app/docs/academy/:splat"
 status = 200
 
 # MAIN SITE BEHAVIOUR
