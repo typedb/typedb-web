@@ -106,28 +106,28 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/home/images/*"
-to = "/docs/home/images/:splat"
+from = "/home/_images/*"
+to = "/docs/home/_images/:splat"
 status = 302
 
 [[redirects]]
-from = "/manual/images/*"
-to = "/docs/manual/images/:splat"
+from = "/manual/_images/*"
+to = "/docs/manual/_images/:splat"
 status = 302
 
 [[redirects]]
-from = "/drivers/images/*"
-to = "/docs/drivers/images/:splat"
+from = "/drivers/_images/*"
+to = "/docs/drivers/_images/:splat"
 status = 302
 
 [[redirects]]
-from = "/typeql/images/*"
-to = "/docs/typeql/images/:splat"
+from = "/typeql/_images/*"
+to = "/docs/typeql/_images/:splat"
 status = 302
 
 [[redirects]]
-from = "/academy/images/*"
-to = "/docs/academy/images/:splat"
+from = "/academy/_images/*"
+to = "/docs/academy/_images/:splat"
 status = 302
 
 [[redirects]]
