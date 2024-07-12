@@ -106,6 +106,12 @@ status = 301
 force = true
 
 [[redirects]]
+from = "/docs/academy"
+to = "/docs/academy/overview"
+status = 301
+force = true
+
+[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
