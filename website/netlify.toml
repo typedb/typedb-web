@@ -106,32 +106,13 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/docs/typedb/2.x/*"
-to = "/docs/typedb/:splat"
+from = "/docs/academy"
+to = "/docs/academy/overview"
 status = 301
-
-[[redirects]]
-from = "/docs/typeql/2.x/*"
-to = "/docs/typeql/:splat"
-status = 301
-
-[[redirects]]
-from = "/docs/clients/2.x/*"
-to = "/docs/clients/:splat"
-status = 301
-
-[[redirects]]
-from = "/docs/typedb/quickstart-guide"
-to = "/docs/home/quickstart"
-status = 301
+force = true
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat"
-status = 200
-
-[[redirects]]
-from = "https://live-temp.typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
@@ -147,11 +128,6 @@ status = 200
 
 # MAIN SITE BEHAVIOUR
 # Keep indefinitely. These redirects are required for the main site to behave correctly
-
-[[redirects]]
-from = "https://live-temp.typedb.com/*/data.json"
-to = "https://live-temp.typedb.com/data.json"
-status = 200
 
 [[redirects]]
 from = "https://typedb.com/*/data.json"

@@ -204,7 +204,7 @@ const featureGridSchema = defineType({
             title: "Features",
             type: "array",
             of: [{ type: featureGridCellSchemaName }],
-            validation: (rule: ArrayRule<any>) => rule.required().min(2),
+            validation: (rule: ArrayRule<any>) => rule.required(),
         }),
         illustrationFieldOptional,
     ],

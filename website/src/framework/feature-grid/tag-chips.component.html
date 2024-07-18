@@ -1,0 +1,8 @@
+<!-- TODO: remove 3.0 roadmap handling once 3.0 is out -->
+@for (tag of tags; track tag) {
+  @if (tag === '3.0 Roadmap') {
+    <aside><a href="/blog/typedb-3-roadmap" routerLink="/blog/typedb-3-roadmap">{{ tag }}</a></aside>
+  } @else {
+    <aside>{{ tag }}</aside>
+  }
+}

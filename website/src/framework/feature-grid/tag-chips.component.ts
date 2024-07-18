@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 @Component({
     selector: "td-tag-chips",
-    template: `@for (tag of tags; track tag) {<aside>{{ tag }}</aside>} `,
+    templateUrl: "./tag-chips.component.html",
     styleUrls: ["./tag-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
