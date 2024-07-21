@@ -30,7 +30,7 @@ export { type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGri
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TitleBodyPanelSection, SectionBase } from "./component/section";
-export { ProductLabel } from "./component/product-label";
+export { Brochure } from "./component/brochure";
 export { PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem } from "./component/publication-panel";
 export { TierSummaryTable, type SanityTierSummaryTable } from "./component/tier-summary-table";
 

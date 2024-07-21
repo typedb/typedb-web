@@ -1,25 +1,17 @@
-import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
-import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { defineField, defineType } from "@sanity/types";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
-import { LinkPanelWithIcon, linkPanelWithIconSchemaName, ProductPanel, productPanelSchemaName, SanityLinkPanelWithIcon, SanityProductPanel } from "../component/link-panel";
-import { resourceSectionSchemaName, SanityCoreSection, SectionBase } from "../component/section";
-import { ProductLabel, productLabelField, SanityProductLabel } from "../component/product-label";
+import { LinkPanelWithIcon, SanityLinkPanelWithIcon } from "../component/link-panel";
+import { SanityCoreSection, SectionBase } from "../component/section";
+import { Brochure, brochureField, brochureSchemaName, SanityBrochure } from "../component/brochure";
 import {
-    collapsible, isVisibleField, optionalActionsField, titleBodyIconFields, SanityVisibleToggle,
-    required, keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField,
-    resourcesField,
+    collapsible, isVisibleField, optionalActionsField,
+    required, keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, titleAndBodyFields,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName, multiComparisonTabsSchemaName, MultiComparisonTabs, SanityMultiComparisonTabs } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
-import { SanityTextLink, TextLink } from "../link";
-import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { SanityResourceSection } from "../resource/sanity";
-import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SocialMediaID, socialMediaLinksField } from "../social-media";
+import { SocialMediaID } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
 import { Page, SanityPage } from "./common";
@@ -40,15 +32,13 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.compareDBs.id]: SanityMultiComparisonSection;
-    [sections.quickLearn.id]: SanityCoreSection;
-    [sections.cloud.id]: SanityProductLabelSection;
+    [sections.quickLearn.id]: SanityFeatureGridSection;
+    [sections.cloud.id]: SanityCloudSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
     conclusionSection: SanityCoreSection;
 }
 
 interface SanityIntroSection extends SanityCoreSection {
-    userLogos: SanityReference<SanityOrganisation>[];
-    displayUserLogos: boolean;
     contentTabs: SanityContentTextTab[];
 }
 
@@ -57,11 +47,11 @@ interface SanityImpactSection extends SanityCoreSection {
 }
 
 interface SanityMultiComparisonSection extends SanityCoreSection {
-    comparisonTabs: SanityMultiComparisonTabs;
+    comparisons: SanityMultiComparisonTabs[];
 }
 
-interface SanityProductLabelSection extends SanityCoreSection {
-    productLabel: SanityProductLabel;
+interface SanityCloudSection extends SanityCoreSection {
+    offerings: SanityBrochure[];
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
@@ -85,8 +75,8 @@ interface SanityTestimonialsSection extends SanityKeyPointsSection {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.compareDBs.id]?: MultiComparisonSection;
-    readonly [sections.quickLearn.id]?: SectionBase;
-    readonly [sections.cloud.id]?: ProductLabelSection;
+    readonly [sections.quickLearn.id]?: FeatureGridSection;
+    readonly [sections.cloud.id]?: CloudSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly [sections.conclusion.id]?: SectionBase;
 
@@ -97,9 +87,9 @@ export class HomePage extends Page {
             ? MultiComparisonSection.fromSanity(data.compareDBsSection, db)
             : undefined;
         this.quickLearnSection = data.quickLearnSection.isVisible
-            ? SectionBase.fromSanity(data.quickLearnSection, db)
+            ? FeatureGridSection.fromSanity(data.quickLearnSection, db)
             : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? ProductLabelSection.fromSanity(data.cloudSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
@@ -110,21 +100,16 @@ export class HomePage extends Page {
 }
 
 class IntroSection extends SectionBase {
-    readonly userLogos: Organisation[];
     readonly contentTabs: ContentTextTab[];
 
     constructor(props: PropsOf<IntroSection>) {
         super(props);
-        this.userLogos = props.userLogos;
         this.contentTabs = props.contentTabs;
     }
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
             Object.assign(SectionBase.fromSanity(data, db), {
-                userLogos: data.displayUserLogos
-                    ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
-                    : [],
                 contentTabs: data.contentTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
@@ -132,17 +117,17 @@ class IntroSection extends SectionBase {
 }
 
 class MultiComparisonSection extends SectionBase {
-    readonly comparisonTabs: MultiComparisonTabs;
+    readonly comparisons: MultiComparisonTabs[];
 
     constructor(props: PropsOf<MultiComparisonSection>) {
         super(props);
-        this.comparisonTabs = props.comparisonTabs;
+        this.comparisons = props.comparisons;
     }
 
     static override fromSanity(data: SanityMultiComparisonSection, db: SanityDataset) {
         return new MultiComparisonSection(
             Object.assign(SectionBase.fromSanity(data, db), {
-                comparisonTabs: new MultiComparisonTabs(data.comparisonTabs, db),
+                comparisons: data.comparisons.map(x => new MultiComparisonTabs(x, db)),
             }),
         );
     }
@@ -182,35 +167,18 @@ class ToolingSection extends SectionBase {
     }
 }
 
-class ProductLabelSection extends SectionBase {
-    readonly productLabel: ProductLabel;
-
-    constructor(props: PropsOf<ProductLabelSection>) {
-        super(props);
-        this.productLabel = props.productLabel;
-    }
-
-    static override fromSanity(data: SanityProductLabelSection, db: SanityDataset) {
-        return new ProductLabelSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
-                productLabel: ProductLabel.fromSanity(data.productLabel, db),
-            })
-        );
-    }
-}
-
 class CloudSection extends SectionBase {
-    readonly keyPoints: KeyPointWithIcon[];
+    readonly offerings: Brochure[];
 
     constructor(props: PropsOf<CloudSection>) {
         super(props);
-        this.keyPoints = props.keyPoints;
+        this.offerings = props.offerings;
     }
 
-    static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
+    static override fromSanity(data: SanityCloudSection, db: SanityDataset) {
         return new CloudSection(
             Object.assign(SectionBase.fromSanity(data, db), {
-                keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
+                offerings: data.offerings.map(x => Brochure.fromSanity(x, db)),
             })
         );
     }
@@ -271,7 +239,6 @@ const sectionSchemas = [
             description: "For the Home Page, this gets automatically added to the web page title",
         }),
         bodyFieldRichText,
-        sectionIconField,
         optionalActionsField,
         defineField({
             name: "displayUserLogos",
@@ -280,7 +247,6 @@ const sectionSchemas = [
             initialValue: false,
             validation: required,
         }),
-        Object.assign({}, organisationLogosField, { name: "userLogos" }),
         defineField({
             name: "contentTabs",
             title: "Content Tabs",
@@ -291,20 +257,43 @@ const sectionSchemas = [
         isVisibleField,
     ]),
     sectionSchema("compareDBs", [
-        ...titleBodyIconFields,
+        ...titleAndBodyFields,
         optionalActionsField,
         defineField({
-            name: "comparisonTabs",
-            title: "Comparison Tabs",
-            type: multiComparisonTabsSchemaName,
+            name: "comparisons",
+            title: "Comparisons",
+            type: "array",
+            of: [{type: multiComparisonTabsSchemaName }],
             validation: required,
         }),
         isVisibleField,
     ]),
-    sectionSchema("quickLearn", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
-    sectionSchema("cloud", [...titleBodyIconFields, optionalActionsField, productLabelField, isVisibleField]),
+    sectionSchema("quickLearn", [
+        ...titleAndBodyFields,
+        optionalActionsField,
+        defineField({
+            name: featureGridSchemaName,
+            title: "Points",
+            type: "reference",
+            to: [{type: featureGridSchemaName}],
+            validation: required,
+        }),
+        isVisibleField
+    ]),
+    sectionSchema("cloud", [
+        ...titleAndBodyFields,
+        optionalActionsField,
+        defineField({
+            name: "offerings",
+            title: "Offerings",
+            type: "array",
+            of: [{ type: brochureSchemaName }],
+            validation: required,
+        }),
+        isVisibleField
+    ]),
     sectionSchema("testimonials", [
-        ...titleBodyIconFields,
+        ...titleAndBodyFields,
         optionalActionsField,
         defineField({
             name: "testimonials",
@@ -315,7 +304,7 @@ const sectionSchemas = [
         keyPointsWithIconsField(5),
         isVisibleField,
     ]),
-    sectionSchema("conclusion", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("conclusion", [...titleAndBodyFields, optionalActionsField, isVisibleField]),
 ];
 
 const introSectionField = defineField({

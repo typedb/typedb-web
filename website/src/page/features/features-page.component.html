@@ -6,10 +6,10 @@
         [actions]="page.introSection.actions"
       />
       @for (section of page.featureSections; track section; let idx = $index) {
-        <td-features-page-core-section [section]="section" [index]="idx"/>
+        <td-section-core [section]="section"/>
         <td-feature-grid [layout]="section.featureGridLayout" [featureRows]="section.features" [illustration]="section.illustration"/>
       }
-      <td-features-page-core-section [section]="page.finalSection" [index]="page.featureSections.length"/>
+      <td-section-core [section]="page.finalSection"/>
       <td-conclusion-panel [panel]="page.finalSection.panel"/>
     </div>
   }

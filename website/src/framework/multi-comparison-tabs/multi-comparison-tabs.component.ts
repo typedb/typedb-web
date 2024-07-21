@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
@@ -23,6 +23,7 @@ import { ProsConsComponent } from "./pros-cons.component";
 export class MultiComparisonTabsComponent implements OnInit {
     @Input() tabs!: MultiComparisonTabs;
     @Input() setWindowHashOnTabClick = false;
+    @HostBinding("class") clazz = "section";
 
     readonly selectedSecondaryTab$: Observable<ContentProsConsTab>;
     private _elementID!: string;

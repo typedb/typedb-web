@@ -1,0 +1,58 @@
+@use "media";
+@use "colors";
+@import "mixins";
+
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: var(--card-padding);
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+    }
+}
+
+.td-brochure {
+    @include card-appearance;
+    transition: border-color 150ms ease;
+    flex: 1;
+
+    &:hover {
+        border-color: var(--color-green);
+    }
+}
+
+.td-title-area {
+    padding: 20px 28px;
+}
+
+ul.td-key-points-area {
+    background: colors.$deep-purple;
+    border-bottom: 1px solid var(--content-border-color);
+    list-style: none;
+
+    li {
+        border-top: 1px solid var(--content-border-color);
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        mat-icon {
+            color: colors.$green;
+        }
+    }
+}
+
+.td-price-tag-area {
+    @include card-padding;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    td-rich-text ::ng-deep h4 {
+        margin: 0;
+        padding: 0;
+    }
+}

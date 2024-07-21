@@ -1,0 +1,20 @@
+@for (brochure of brochures; track brochure) {
+  <a class="td-brochure" [tdLink]="brochure.button?.link">
+    <div class="td-title-area">
+      <h3>{{ brochure.title }}</h3>
+    </div>
+
+    <ul class="td-key-points-area">
+      @for (keyPoint of brochure.keyPoints; track keyPoint) {
+        <li><mat-icon svgIcon="check" /> {{ keyPoint }}</li>
+      }
+    </ul>
+
+    <div class="td-price-tag-area">
+      <td-rich-text [value]="brochure.priceTag"/>
+      @if (brochure.button) {
+        <td-button [button]="brochure.button"/>
+      }
+    </div>
+  </a>
+}

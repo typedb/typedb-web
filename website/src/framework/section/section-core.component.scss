@@ -1,0 +1,126 @@
+@use "colors";
+@use "media";
+
+@mixin graphic-line-gradient($base-color) {
+    background: linear-gradient(
+        transparent 0%,
+        rgba($base-color, 0.1) 7%,
+        $base-color 20%,
+        $base-color 80%,
+        rgba($base-color, 0.1) 93%,
+        transparent 100%
+    );
+}
+
+:host {
+    &:first-of-type {
+        margin-top: 120px;
+
+        &.tb-level-h1 {
+            margin-top: 256px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 64px;
+
+            &.tb-level-h1 {
+                margin-top: 116px;
+            }
+        }
+    }
+
+    &:not(:first-of-type) {
+        padding-top: 144px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding-top: 64px;
+        }
+    }
+}
+
+.td-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--icon-size) / 2 - 1px);
+    width: 3px;
+    z-index: -1;
+
+    @media (max-width: media.$max-width-mobile) {
+        width: 2px;
+    }
+}
+
+.td-main {
+    display: block;
+    padding-bottom: 64px;
+
+    @media (max-width: media.$max-width-tablet) {
+        padding-bottom: 56px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        padding-bottom: 24px;
+    }
+
+    td-heading-with-highlights, td-rich-text {
+        max-width: 660px;
+    }
+}
+
+td-heading-with-highlights {
+    display: block;
+    margin: 24px 0;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin: 16px 0;
+    }
+}
+
+.td-section-core-body {
+    margin-top: 40px;
+}
+
+.td-actions-left .td-section-core-body {
+    display: flex;
+    gap: 40px;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: fit-content;
+
+    td-actions {
+        margin-top: 0;
+    }
+}
+
+.td-actions-right .td-section-core-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    td-actions {
+        margin-top: 0;
+    }
+}
+
+.td-actions-afterContent td-actions {
+    justify-content: center;
+}
+
+td-rich-text ::ng-deep {
+    > h1:first-child, > h2:first-child, > h3:first-child, > h4:first-child, > h5:first-child, > h6:first-child {
+        margin-top: 0.5em;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    td-heading-with-highlights,
+    td-rich-text {
+        padding-right: calc(var(--icon-size) / 2 - 1px);
+    }
+
+    td-actions {
+        padding-right: var(--graphic-area-width);
+    }
+}

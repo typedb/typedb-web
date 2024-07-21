@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { LinkButton, SanityButton } from "../button";
+import { LinkButton, SanityLinkButton } from "../button";
 import { SanityImageRef } from "../image";
 import { bodyFieldRichText, buttonField, required, sectionIconField, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -13,12 +13,12 @@ export interface SanityLinkPanel {
 
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
     icon: SanityReference<SanityImageRef>;
-    button: SanityButton;
+    button: SanityLinkButton;
 }
 
 export interface SanityProductPanel extends SanityLinkPanel {
     secondaryBody?: PortableText;
-    button: SanityButton;
+    button: SanityLinkButton;
 }
 
 export class LinkPanel implements BodyTextField {

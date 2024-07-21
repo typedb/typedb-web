@@ -4,7 +4,7 @@ import { featureGridSchemas } from "./feature-grid";
 import { featureTableSchemas } from "./feature-table";
 import { linkPanelSchemas } from "./link-panel";
 import { sectionSchemas } from "./section";
-import { productLabelSchema } from "./product-label";
+import { brochureSchema } from "./brochure";
 import { publicationSchemas } from "./publication-panel";
 import { tierSummaryTableSchemas } from "./tier-summary-table";
 
@@ -14,7 +14,7 @@ export const componentSchemas = [
     ...featureGridSchemas,
     ...featureTableSchemas,
     ...linkPanelSchemas,
-    productLabelSchema,
+    brochureSchema,
     ...publicationSchemas,
     ...sectionSchemas,
     ...tierSummaryTableSchemas,

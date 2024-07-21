@@ -1,17 +1,19 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { ResourceSection } from "typedb-web-schema";
 
 import { ResourcePanelsComponent } from "../link-panels/link-panels.component";
-import { CoreSectionComponent } from "../section/core-section.component";
+import { SectionCoreComponent } from "../section/section-core.component";
 
 @Component({
     selector: "td-further-learning",
     templateUrl: "./further-learning.component.html",
+    styles: [`:host { display: block; }`],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CoreSectionComponent, ResourcePanelsComponent],
+    imports: [SectionCoreComponent, ResourcePanelsComponent],
 })
 export class FurtherLearningComponent {
     @Input() value!: ResourceSection;
+    @HostBinding("class") clazz = "section section-margin";
 }

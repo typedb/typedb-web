@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
 import { Link, linkSchemaName, SanityLink } from "../link";
-import { bodyFieldName, bodyFieldRichText, learnMoreLinkFieldName, required, titleField } from "../common-fields";
+import { bodyFieldName, bodyFieldRichText, descriptionField, descriptionFieldName, learnMoreLinkFieldName, required, subtitleField, titleField, titleFieldName } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 
@@ -10,7 +10,9 @@ export interface SanityContentTextPanel extends SanityIllustrationField, SanityB
     learnMoreLinkText?: string;
 }
 
-export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitleField {}
+export interface SanityContentTextTab extends SanityContentTextPanel, SanityTitleField {
+    subtitle: string;
+}
 
 export interface SanityContentProsConsTab extends SanityIllustrationField, SanityTitleField {
     prosAndCons: ProCon[];
@@ -44,10 +46,12 @@ export class ContentTextPanel implements BodyTextField {
 
 export class ContentTextTab extends ContentTextPanel {
     readonly title: string;
+    readonly subtitle: string;
 
     constructor(data: SanityContentTextTab, db: SanityDataset) {
         super(data, db);
         this.title = data.title;
+        this.subtitle = data.subtitle;
     }
 }
 
@@ -105,7 +109,11 @@ const contentTextPanelSchema = defineType({
 const contentTextTabSchema = defineType({
     ...contentTextPanelSchema,
     name: contentTextTabSchemaName,
-    fields: [titleField, ...contentTextPanelSchema.fields],
+    fields: [
+        titleField,
+        subtitleField,
+        ...contentTextPanelSchema.fields
+    ],
 });
 
 const contentProsConsTabSchema = defineType({
@@ -159,6 +167,7 @@ const multiComparisonTabsSchema = defineType({
     title: "Multi-Comparison Tabs",
     type: "object",
     fields: [
+        descriptionField,
         defineField({
             name: "primaryTab",
             title: "Primary Tab",
@@ -173,6 +182,12 @@ const multiComparisonTabsSchema = defineType({
             validation: required,
         }),
     ],
+    preview: {
+        select: { title: descriptionFieldName },
+        prepare: (selection) => ({
+            title: selection.title,
+        }),
+    },
 });
 
 export const contentTextPanelSchemas = [

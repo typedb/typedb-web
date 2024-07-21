@@ -1,8 +1,9 @@
 @use "media";
 
-.mc-root {
+:host {
     display: flex;
     flex-direction: row;
+    gap: var(--card-padding);
 
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
@@ -11,44 +12,21 @@
 }
 
 .mc-primary-area, .mc-secondary-area {
-    width: 50%;
+    flex: 1;
 
     @media (max-width: media.$max-width-mobile) {
         width: 100%;
     }
 }
 
-.mc-primary-area {
-    .mc-tabs-container {
-        border-top-left-radius: var(--border-radius);
-    }
-
-    .mc-illustration-container {
-        border-bottom-right-radius: 0;
-    }
-}
-
 .mc-secondary-area {
     display: flex;
     flex-direction: column;
-
-    .mc-tabs-container {
-        border-top-right-radius: var(--border-radius);
-        border-left: none;
-    }
-
-    td-pros-cons {
-        border-left: none;
-    }
-
-    .mc-illustration-container {
-        border-left: none;
-        border-bottom-left-radius: 0;
-    }
 }
 
 .mc-tabs-container {
     border: 1px solid var(--content-border-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: none;
     background: var(--color-deep-purple);
 }
@@ -116,7 +94,7 @@ td-pros-cons {
     border-top-right-radius: 0;
 }
 
-$number-of-lines: 18;
+$number-of-lines: 15;
 $number-of-lines-mobile: 13;
 
 td-illustration {

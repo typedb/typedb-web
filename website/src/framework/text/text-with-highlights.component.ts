@@ -6,6 +6,7 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
 @Component({
     selector: "td-heading-with-highlights",
     templateUrl: "heading-with-highlights.component.html",
+    styleUrls: ["text-with-highlights.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [NgTemplateOutlet, NgStyle],
@@ -15,7 +16,6 @@ export class HeadingWithHighlightsComponent {
     @Input("id") inputId?: string;
     @Input() level: "h1" | "h2" | "h3" | "h4" = "h2";
     @Input() value!: ParagraphWithHighlights;
-    @Input() themeColorHex = "#02DAC9";
 
     get id(): string {
         return (

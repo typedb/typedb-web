@@ -1,5 +1,5 @@
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { LinkButton, SanityButton } from "../button";
+import { LinkButton, SanityLinkButton } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { titleField, titleFieldName } from "../common-fields";
 import { Document, SanityDataset } from "../sanity-core";
@@ -19,7 +19,7 @@ export const contactMediaList = Object.keys(contactMedias);
 export type ContactMediaID = keyof typeof contactMedias;
 
 export interface SanityFooter extends SanityDocument {
-    button: SanityButton;
+    button: SanityLinkButton;
     socialMediaLinks: SocialMediaID[];
     contactSectionTitle: string;
     contactMediaLinks: ContactMediaID[];

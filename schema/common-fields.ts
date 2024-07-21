@@ -44,6 +44,16 @@ export const titleFieldOptional = defineField({
 
 export const titleField = Object.assign({}, titleFieldOptional, { validation: required });
 
+export const subtitleFieldName = "subtitle";
+
+export const subtitleFieldOptional = defineField({
+    name: subtitleFieldName,
+    title: "Subtitle",
+    type: "string",
+});
+
+export const subtitleField = Object.assign({}, subtitleFieldOptional, { validation: required });
+
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,
     title: "Title",

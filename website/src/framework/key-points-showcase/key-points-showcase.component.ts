@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
@@ -10,16 +10,17 @@ import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component"
 import { sanitiseHtmlID } from "../util";
 
 @Component({
-    selector: "td-content-tabs",
-    templateUrl: "content-tabs.component.html",
-    styleUrls: ["content-tabs.component.scss"],
+    selector: "td-key-points-showcase",
+    templateUrl: "key-points-showcase.component.html",
+    styleUrls: ["key-points-showcase.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [ScrollShadowComponent, NgClass, ContentPanelComponent, AsyncPipe],
 })
-export class ContentTabsComponent implements OnInit {
+export class KeyPointsShowcaseComponent implements OnInit {
     @Input() tabs!: ContentTextTab[];
     @Input() setWindowHashOnTabClick = false;
+    @HostBinding("class.section") hasSectionClass = true;
 
     readonly selectedTab$: Observable<ContentTextTab>;
     private _elementID!: string;

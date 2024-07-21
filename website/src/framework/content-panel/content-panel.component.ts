@@ -1,9 +1,8 @@
-import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-
-import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { CodeSnippet, ContentTextPanel, LinkButton } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { ButtonComponent } from "../button/button.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
@@ -14,23 +13,20 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["content-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgClass, IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective],
+    imports: [IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective, ButtonComponent],
 })
 export class ContentPanelComponent {
-    @Input() hidden?: boolean;
+    @Input() @HostBinding("hidden") hidden?: boolean;
     @Input() panel!: ContentTextPanel;
+    @HostBinding("class") clazz = `card`;
 
-    get contentTextPanel(): ContentTextPanel | undefined {
-        return this.panel instanceof ContentTextPanel ? this.panel : undefined;
-    }
-
-    get rootNgClass(): { [clazz: string]: boolean | undefined } {
-        return {
-            section: true,
-            card: true,
-            "cp-root": true,
-            "cp-in-tab": this.panel instanceof ContentTextTab,
-        };
+    get actionButton(): LinkButton {
+        return new LinkButton({
+            link: this.panel.learnMoreLink,
+            style: "secondary",
+            text: this.panel.learnMoreLinkText,
+            comingSoon: false
+        });
     }
 
     illustrationIsCodeSnippet() {

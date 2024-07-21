@@ -1,5 +1,5 @@
 import { SanityDocument, Slug } from "@sanity/types";
-import { SanityButton } from "../button";
+import { SanityLinkButton } from "../button";
 import { SanityVisibleToggle } from "../common-fields";
 import { SanitySectionBase } from "../component/section";
 import { SanityLink } from "../link";
@@ -99,7 +99,7 @@ export interface SanityLiveEvent extends SanityEventBase {
     venue: string;
     dateOptions: SanityEventDate;
     signupMethod: EventSignupMethod;
-    externalUrlButton?: SanityButton;
+    externalUrlButton?: SanityLinkButton;
 }
 
 export interface SanityResourceSection extends SanitySectionBase, SanityVisibleToggle {

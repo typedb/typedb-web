@@ -1,72 +1,28 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { of } from "rxjs";
-import {
-    HomePage, homePageSchemaName, Organisation, SanityDataset, SanityHomePage,
-} from "typedb-web-schema";
-import { SectionBase } from "typedb-web-schema";
-
-import { AnalyticsService } from "src/service/analytics.service";
-import { ContentService } from "src/service/content.service";
-import { MetaTagsService } from "src/service/meta-tags.service";
+import { HomePage, homePageSchemaName, SanityDataset, SanityHomePage } from "typedb-web-schema";
 
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
-import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.component";
+import { KeyPointsShowcaseComponent } from "../../framework/key-points-showcase/key-points-showcase.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
 import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { MultiComparisonTabsComponent } from "../../framework/multi-comparison-tabs/multi-comparison-tabs.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { ProductLabelComponent } from "../../framework/product-label/product-label.component";
+import { BrochuresComponent } from "../../framework/brochures/brochures.component";
 import { ProductTableComponent } from "../../framework/product-table/product-table.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
-import { CoreSectionComponent } from "../../framework/section/core-section.component";
 import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
+import { AnalyticsService } from "../../service/analytics.service";
+import { ContentService } from "../../service/content.service";
+import { MetaTagsService } from "../../service/meta-tags.service";
 import { PageComponentBase } from "../page-component-base";
-
-@Component({
-    selector: "td-home-page-core-section",
-    template: `<td-core-section
-        [section]="block"
-        [index]="index"
-        [level]="level"
-        [noUpperLine]="index === 0"
-        [organisationLogos]="organisationLogos"
-    ></td-core-section>`,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [CoreSectionComponent],
-})
-export class HomePageCoreSectionComponent {
-    @Input() block!: SectionBase;
-    @Input() page!: HomePage;
-    @Input() variant: "none" | "intro" | "conclusion" = "none";
-    @Input() organisationLogos?: Organisation[];
-
-    get allBlocks(): SectionBase[] {
-        return [
-            this.page.introSection,
-            this.page.compareDBsSection,
-            this.page.quickLearnSection,
-            this.page.cloudSection,
-            this.page.testimonialsSection,
-            this.page.conclusionSection,
-        ].filter((x) => !!x) as SectionBase[];
-    }
-
-    get level(): CoreSectionComponent["level"] {
-        return this.block === this.page.introSection ? "h1" : "h2";
-    }
-
-    get index() {
-        return this.allBlocks.indexOf(this.block);
-    }
-}
 
 @Component({
     selector: "td-home-page",
@@ -74,14 +30,13 @@ export class HomePageCoreSectionComponent {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, HomePageCoreSectionComponent, ContentTabsComponent, ResourcePanelsComponent,
-        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe, MultiComparisonTabsComponent, ProductLabelComponent, ProductTableComponent
+        PageBackgroundComponent, KeyPointsShowcaseComponent, ResourcePanelsComponent, LinkPanelsComponent,
+        FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent, TestimonialsCarouselComponent,
+        ConclusionPanelComponent, AsyncPipe, MultiComparisonTabsComponent, BrochuresComponent, ProductTableComponent,
+        SectionCoreComponent
     ],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
-    // readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
-
     constructor(
         activatedRoute: ActivatedRoute,
         analytics: AnalyticsService,
@@ -92,9 +47,6 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         contentService: ContentService,
     ) {
         super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
-        // this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
-        //     map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
-        // );
     }
 
     protected override getPage(data: SanityDataset) {

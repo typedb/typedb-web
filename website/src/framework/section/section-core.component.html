@@ -1,0 +1,16 @@
+<div class="td-background"></div>
+<div [class]="'td-main td-actions-' + actionsPosition">
+  <td-heading-with-highlights [value]="section.title" [id]="section.sectionId" [level]="level"/>
+  <div class="td-section-core-body">
+    @if (section.body) {
+      <td-rich-text [value]="section.body" class="text-p1" />
+    }
+    @if (section.actions && actionsPosition !== "afterContent") {
+      <td-actions [actions]="section.actions" />
+    }
+  </div>
+  <ng-content/>
+  @if (section.actions && actionsPosition === "afterContent") {
+    <td-actions [actions]="section.actions" />
+  }
+</div>

@@ -1,6 +1,6 @@
 import { BlockElementIcon, MasterDetailIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { LinkButton, buttonSchemaName, SanityButton } from "../button";
+import { LinkButton, buttonSchemaName, SanityLinkButton } from "../button";
 import { SanityVideoEmbed } from "../illustration";
 import { SanityImageRef } from "../image";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -59,7 +59,7 @@ function isSpotlightColumn(data: SanityTopbarColumn): data is SanityTopbarSpotli
 
 interface SanityTopbarSecondaryArea {
     links: SanityTextLink[];
-    button: SanityButton;
+    button: SanityLinkButton;
 }
 
 export class Topbar extends Document {

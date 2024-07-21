@@ -2,20 +2,20 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       @if (page.introSection) {
-        <td-support-page-core-section [block]="page.introSection" [page]="page" />
+        <td-section-core [section]="page.introSection"/>
         <td-link-panels [panels]="page.introSection.panels" />
       }
       @if (page.featureTableSection) {
-        <td-support-page-core-section [block]="page.featureTableSection" [page]="page" />
+        <td-section-core [section]="page.featureTableSection"/>
         <td-feature-table [table]="page.featureTableSection.featureTable" />
       }
       @if (page.testimonialsSection) {
-        <td-support-page-core-section [block]="page.testimonialsSection" [page]="page" />
+        <td-section-core [section]="page.testimonialsSection"/>
         <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
       }
       @if (page.contactSection) {
-        <td-support-page-core-section [block]="page.contactSection" [page]="page" />
-        <td-contact-panel />
+        <td-section-core [section]="page.contactSection"/>
+        <td-contact-panel/>
       }
     </div>
   }

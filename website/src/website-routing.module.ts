@@ -9,20 +9,20 @@ import { EventDetailsPageComponent } from "./page/events/event-details-page.comp
 import { EventsPageComponent } from "./page/events/events-page.component";
 import { FallbackPageComponent } from "./page/fallback/fallback-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
-import { GenericPageComponent } from "./page/generic/generic-page.component";
+// import { GenericPageComponent } from "./page/generic/generic-page.component";
 import { HomePageComponent } from "./page/home/home-page.component";
 import { LearningArticleComponent } from "./page/resource-hub/learning-article.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
 import { LegalDocumentComponent } from "./page/legal/legal-document.component";
-import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
+// import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { ResourceHubComponent } from "./page/resource-hub/resource-hub.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
 import { PapersPageComponent } from "./page/papers/papers-page.component";
 import { WhyPageComponent } from "./page/why/why-page.component";
-import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./website-routes";
+import { dynamicPageSchemas, staticPageSchemas } from "./website-routes";
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
@@ -34,16 +34,16 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     why: { component: WhyPageComponent, title: "Why choose TypeDB?" },
-    philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
+    // philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
 };
 
-const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
-    cloud: { component: GenericPageComponent, title: "TypeDB Cloud" },
-    studio: { component: GenericPageComponent, title: "TypeDB Studio" },
-};
+// const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
+//     cloud: { component: GenericPageComponent, title: "TypeDB Cloud" },
+//     studio: { component: GenericPageComponent, title: "TypeDB Studio" },
+// };
 
 const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {
     "blog/:slug": { component: BlogPostPageComponent },
@@ -62,11 +62,11 @@ const routes: Routes = [
         ...staticPages[path],
     })),
 
-    ...genericPageSchemas.map(({ documentID, path }) => ({
-        path,
-        data: { documentID },
-        ...genericPages[path],
-    })),
+    // ...genericPageSchemas.map(({ documentID, path }) => ({
+    //     path,
+    //     data: { documentID },
+    //     ...genericPages[path],
+    // })),
 
     ...dynamicPageSchemas.map(({ path }) => ({
         path,
@@ -74,10 +74,11 @@ const routes: Routes = [
     })),
 
     // TODO: remember to clean up these redirects eventually
-    { path: "introduction", redirectTo: "philosophy" },
+    { path: "introduction", redirectTo: "why" },
+    { path: "philosophy", redirectTo: "why" },
     { path: "applications", redirectTo: "learn" },
     { path: "services", redirectTo: "support" },
-    { path: "solutions/:route", redirectTo: "philosophy" },
+    { path: "solutions/:route", redirectTo: "why" },
     { path: "webinars/:slug", redirectTo: "lectures/:slug" },
     { path: "webinars", redirectTo: "lectures" },
     { path: "white-papers/:slug", redirectTo: "papers" },

@@ -9,15 +9,15 @@ import { ConclusionPanelComponent } from "../../framework/conclusion-panel/concl
 import { LinkPanelsCols2Component } from "../../framework/link-panels/link-panels.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { TitleBodyActionsSectionComponent } from "../../framework/intro-section/title-body-actions-section.component";
-import { CoreSectionComponent } from "../../framework/section/core-section.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
     selector: "td-resources-block",
-    template: `<td-core-section [section]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
+    template: `<td-section-core [section]="section"/>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CoreSectionComponent],
+    imports: [SectionCoreComponent],
 })
 export class ResourcesBlockComponent {
     @Input() section!: SectionBase;

@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { buttonSchemaName, LinkButton, SanityButton } from "../button";
+import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
 import { bodyFieldRichText, descriptionField, plainTextField, required } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PortableText } from "../text";

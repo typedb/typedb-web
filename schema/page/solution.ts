@@ -96,7 +96,6 @@ export class SolutionPage extends Page {
                 data: data.useCasesSection,
                 db: db,
                 title: new ParagraphWithHighlights({ spans: [{ text: "Requirements", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/ddb3754b63563cba578a2d5aa4c2de94468ef650-66x98.svg",
             });
         }
         if (data.challengesSection.isVisible) {
@@ -104,7 +103,6 @@ export class SolutionPage extends Page {
                 data: data.challengesSection,
                 db: db,
                 title: new ParagraphWithHighlights({ spans: [{ text: "Challenges", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/76cadf76e36fef7eac8a9b700a088a2e1ed10f1c-98x98.svg",
             });
         }
         this.solutionSection = data.solutionSection.isVisible
@@ -150,14 +148,12 @@ class KeyPointsSection extends SectionBase {
         data: SanityKeyPointsSection;
         db: SanityDataset;
         title: ParagraphWithHighlights;
-        iconURL: string;
     }) {
-        const { data, db, title, iconURL } = props;
+        const { data, db, title } = props;
         return new KeyPointsSection({
             title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: iconURL,
             keyPoints: data.keyPoints.map((x) => new KeyPoint(x)),
             sectionId: title.toSectionID(),
         });
@@ -183,7 +179,6 @@ class SolutionSection extends SectionBase {
             }),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "https://cdn.sanity.io/images/xndl14mc/crisper-messaging/19628ad84b647bdbc783df17ce2ea89c8fd507a3-98x108.svg",
             keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
             sectionId: "typedb-solution",
         });

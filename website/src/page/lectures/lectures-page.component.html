@@ -34,18 +34,18 @@
         page.featuredLecturesSection.featuredLectures &&
         page.featuredLecturesSection.featuredLectures.length
         ) {
-        <td-core-section [section]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
-        <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" />
+        <td-section-core [section]="page.featuredLecturesSection"/>
+        <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures"/>
       }
       @if (page.exploreLecturesSection) {
-        <td-core-section [section]="page.exploreLecturesSection" [index]="2" />
+        <td-section-core [section]="page.exploreLecturesSection"/>
         <section class="card-appearance">
           <ul class="wp-lecture-list">
             @for (lecture of allLectures$ | async; track lecture) {
               <li class="wp-lecture-list-item">
                 <div class="wp-img-tertiary-container">
                   <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
-                    <img [src]="lecture.imageURL" class="wp-img" alt="" />
+                    <img [src]="lecture.imageURL" class="wp-img" alt=""/>
                   </td-aspect-ratio>
                   <h3 class="wp-lecture-title hide-gt-mobile">{{ lecture.title | plainText }}</h3>
                 </div>

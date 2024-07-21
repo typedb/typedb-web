@@ -1,18 +1,12 @@
-<div [ngClass]="rootNgClass" [hidden]="hidden">
-  @if (illustrationIsCodeSnippet()) {
-    <td-illustration class="cp-code-snippet" [illustration]="panel.illustration" [visible]="!hidden"/>
-  }
-  @if (!illustrationIsCodeSnippet()) {
-    <td-aspect-ratio ratio="16:9">
-      <td-illustration [illustration]="panel.illustration" [visible]="!hidden"/>
-    </td-aspect-ratio>
-  }
-  @if (contentTextPanel) {
-    <div class="cp-text-area">
-      <td-rich-text [value]="contentTextPanel.body"/>
-      @if (contentTextPanel.learnMoreLink) {
-        <a [tdLink]="contentTextPanel.learnMoreLink" class="cp-learn-more link-tertiary">{{ contentTextPanel.learnMoreLinkText }}</a>
-      }
-    </div>
-  }
+<div class="cp-text-area">
+  <td-rich-text [value]="panel.body"/>
+  @if (panel.learnMoreLink) {<td-button [button]="actionButton"/>}
 </div>
+@if (illustrationIsCodeSnippet()) {
+  <td-illustration class="cp-code-snippet" [illustration]="panel.illustration" [visible]="!hidden"/>
+}
+@if (!illustrationIsCodeSnippet()) {
+  <td-aspect-ratio ratio="16:9">
+    <td-illustration [illustration]="panel.illustration" [visible]="!hidden"/>
+  </td-aspect-ratio>
+}

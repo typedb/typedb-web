@@ -1,5 +1,5 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { buttonSchemaName, LinkButton, SanityButton } from "../button";
+import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
 import { descriptionField, plainTextField, required } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
@@ -23,7 +23,7 @@ interface SanityFeatureTableTextCell {
     text: string;
 }
 
-type SanityFeatureTableCell = SanityFeatureTableBooleanCell | SanityFeatureTableTextCell | SanityButton;
+type SanityFeatureTableCell = SanityFeatureTableBooleanCell | SanityFeatureTableTextCell | SanityLinkButton;
 
 function isBooleanCell(cell: SanityFeatureTableCell): cell is SanityFeatureTableBooleanCell {
     return "isChecked" in cell;
@@ -33,7 +33,7 @@ function isTextCell(cell: SanityFeatureTableCell): cell is SanityFeatureTableTex
     return !isBooleanCell(cell) && !isButtonCell(cell);
 }
 
-function isButtonCell(cell: SanityFeatureTableCell): cell is SanityButton {
+function isButtonCell(cell: SanityFeatureTableCell): cell is SanityLinkButton {
     return "link" in cell;
 }
 
