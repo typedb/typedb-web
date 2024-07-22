@@ -38,6 +38,10 @@ pre {
         font-size: var(--font-size-#{$tag});
         line-height: var(--line-height-#{$tag});
     }
+
+    #{$tag} code {
+        font-size: 75%;
+    }
 }
 
 .text-p1,
@@ -56,6 +60,12 @@ p,
 .text-blog p {
     font-size: var(--font-size-blog);
     line-height: var(--line-height-blog);
+}
+
+.text-blog {
+    p code, li code, table code {
+        font-size: 75%;
+    }
 }
 
 aside,
