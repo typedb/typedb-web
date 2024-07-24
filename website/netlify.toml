@@ -28,7 +28,7 @@ status = 301
 
 [[redirects]]
 from = "/github"
-to = "https://github.com/vaticle/typedb"
+to = "https://github.com/typedb"
 status = 301
 
 # PERMANENT RENAMES
