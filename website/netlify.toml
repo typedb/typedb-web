@@ -31,6 +31,16 @@ from = "/github"
 to = "https://github.com/typedb"
 status = 301
 
+[[redirects]]
+from = "/academy"
+to = "/docs/academy/overview"
+status = 302
+
+[[redirects]]
+from = "/crash-course"
+to = "/docs/home/crash-course/overview"
+status = 302
+
 # PERMANENT RENAMES
 # Keep indefinitely as they will be used by old blog posts and other articles on the Web
 
