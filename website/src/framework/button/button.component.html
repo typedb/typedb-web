@@ -3,9 +3,9 @@
 }
 
 <a
-  tabindex="0"
-  class="text-p2"
+  tabindex="0" class="text-p2"
   [ngClass]="rootNgClass"
+  [attr.id]="linkId"
   [attr.role]="isDisabled ? 'button' : undefined"
   [attr.aria-disabled]="isDisabled || undefined"
   [tdLink]="linkButton && !linkButton.comingSoon ? linkButton.link : undefined"

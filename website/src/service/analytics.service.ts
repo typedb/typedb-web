@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { googleAdsConversionIds } from "./marketing-tech-constants";
+import posthog from "posthog-js";
 
 /**
  * When building the 'production' configuration, this file is replaced with `analytics.service.prod.ts`.
@@ -12,6 +13,12 @@ export class AnalyticsService {
     /* Analytics scripts only run in production. */
     hubspot = {
         trackPageView: () => null,
+    };
+    posthog = {
+        // capturePageView: () => null,
+        capturePageView: () => {
+            posthog.capture("$pageview");
+        }
     };
     google = {
         loadScriptTag: () => null,

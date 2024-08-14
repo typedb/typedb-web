@@ -15,4 +15,5 @@ import { ButtonComponent } from "../button/button.component";
 })
 export class ActionsComponent {
     @Input() actions?: ActionButton[];
+    @Input() sectionId?: string;
 }
