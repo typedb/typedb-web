@@ -30,6 +30,7 @@ const cookieConfig: NgcCookieConsentConfig = {
 };
 
 if (!isScullyRunning() /* && environment.production */) {
+    (window as any).posthog = posthog;
     posthog.init(
         "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk",
         {
