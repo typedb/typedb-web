@@ -26,18 +26,15 @@
     }
   </div>
   <div class="tc-control-panel">
-    <button class="tc-controls-btn" (click)="previous()">
+    <button class="tc-controls-btn" (click)="previous()" [attr.id]="sectionId + '_carousel_previous'">
       <img src="/assets/image/chevron-left.svg" alt="<" />
     </button>
     <div class="tc-beads">
       @for (_ of testimonials; track _; let idx = $index) {
-        <div
-          class="tc-bead"
-          [class.tc-bead-focused]="idx === focusedIndex"
-        ></div>
+        <div class="tc-bead" [class.tc-bead-focused]="idx === focusedIndex"></div>
       }
     </div>
-    <button class="tc-controls-btn" (click)="next()">
+    <button class="tc-controls-btn" (click)="next()" [attr.id]="sectionId + '_carousel_next'">
       <img src="/assets/image/chevron-right.svg" alt=">" />
     </button>
   </div>

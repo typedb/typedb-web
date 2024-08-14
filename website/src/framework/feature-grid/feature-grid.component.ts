@@ -4,13 +4,14 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, 
 import Prism from "prismjs";
 import {
     CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridLayout, GraphVisualisation, Illustration,
-    ImageIllustration, PolyglotSnippet, SplitPaneIllustration, VideoEmbed,
+    ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
+import { sanitiseHtmlID } from "../util";
 import { TagChipsComponent } from "./tag-chips.component";
 
 @Component({
@@ -26,6 +27,7 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
+    @Input({ required: true }) sectionId!: string;
 
     @HostBinding("class") get classes() {
         return {
@@ -74,5 +76,9 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
                 /**/
             },
         );
+    }
+
+    linkId(feature: FeatureGridCell, link: TextLink): string {
+        return `${this.sectionId}_${sanitiseHtmlID(feature.title || "untitled")}_${sanitiseHtmlID(link.text)}`;
     }
 }

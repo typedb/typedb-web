@@ -34,7 +34,7 @@
             </ul>
           }
           @if (actions$ | async; as actions) {
-            <td-actions [actions]="actions" class="ld-download-slides" />
+            <td-actions [actions]="actions" class="ld-download-slides" sectionId="main" />
           }
           @if (safeVideoURL$ | async; as safeVideoURL) {
             <td-aspect-ratio class="ld-video-container" ratio="16:9">

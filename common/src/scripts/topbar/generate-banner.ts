@@ -17,6 +17,7 @@ export const generateBanner = (banner: SiteBannerData, urlPrefix: string = "") =
     return generateLink({
         content,
         link: banner.link,
+        id: `site-banner`,
         urlPrefix,
         attributes: { class: "td-topbar-banner" },
     });

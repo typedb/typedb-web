@@ -6,6 +6,7 @@
       [tdLink]="lecture.registrationButton().link"
       (mouseenter)="setPanelHovered(lecture, true)"
       (mouseleave)="setPanelHovered(lecture, false)"
+      [attr.id]="panelID(lecture)"
       >
       @if (lecture.registrationButton().comingSoon) {
         <aside class="lp-coming-soon">coming soon</aside>
@@ -20,10 +21,7 @@
       </div>
       <td-button
         [button]="lecture.registrationButton()"
-        size="small"
-        buttonWidth="100%"
-        [noComingSoonTooltip]="true"
-        [containerHovered]="isPanelHovered(lecture)"
+        size="small" buttonWidth="100%" [noComingSoonTooltip]="true" [containerHovered]="isPanelHovered(lecture)"
       />
     </a>
   }

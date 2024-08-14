@@ -10,7 +10,7 @@
         <section>
           <td-heading-with-highlights class="narrow-section" [value]="paper.title" level="h1" />
           @if (actions$ | async; as actions) {
-            <td-actions [actions]="actions" class="wd-actions" />
+            <td-actions [actions]="actions" class="wd-actions" sectionId="main" />
           }
           <div class="section subsection-margin card wd-form-card">
             <td-aspect-ratio ratio="17:22">

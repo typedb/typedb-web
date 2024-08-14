@@ -3,9 +3,8 @@
     <div class="article-content">
       <div class="section">
         <td-title-body-actions-section
-          [isIntroSection]="true"
-          [title]="page.introSection.title"
-          [body]="page.introSection.body"
+          [isIntroSection]="true" sectionId="intro"
+          [title]="page.introSection.title" [body]="page.introSection.body"
           />
         <div class="card subsection-margin wp-primary-lecture">
           @if (!page?.introSection?.featuredLecture) {
@@ -27,7 +26,7 @@
               </h3>
               <div class="wp-lecture-text-container">
                 <td-rich-text class="wp-lecture-description" [value]="primaryLecture.description" />
-                <td-button [button]="primaryLecture.registrationButton()" />
+                <td-button [button]="primaryLecture.registrationButton()" [linkId]="lectureDetailsButtonId(primaryLecture)"/>
               </div>
             </div>
           }
@@ -39,7 +38,10 @@
         page.featuredLecturesSection.featuredLectures.length
         ) {
         <td-technicolor-block [block]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
-        <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" />
+        <td-lecture-panels
+          [lectures]="page.featuredLecturesSection.featuredLectures"
+          [sectionId]="page.featuredLecturesSection.sectionId"
+        />
       }
       @if (page.exploreLecturesSection) {
         <td-technicolor-block [block]="page.exploreLecturesSection" [index]="2" />
@@ -85,7 +87,10 @@
                   </aside>
                 </div>
                 <div class="hide-mobile flex"></div>
-                <td-button [button]="lecture.registrationButton()" buttonWidth="100%" size="small"></td-button>
+                <td-button
+                  [button]="lecture.registrationButton()" buttonWidth="100%" size="small"
+                  [linkId]="lectureDetailsButtonId(lecture)"
+                />
               </li>
             }
           </ul>

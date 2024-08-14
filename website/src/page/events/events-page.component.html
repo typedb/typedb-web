@@ -3,9 +3,8 @@
     <div class="article-content">
       <div class="section">
         <td-title-body-actions-section
-          [isIntroSection]="true"
-          [title]="page.introSection.title"
-          [body]="page.introSection.body"
+          [isIntroSection]="true" sectionId="intro"
+          [title]="page.introSection.title" [body]="page.introSection.body"
           />
         @if (page.featuredEvent) {
           <div class="subsection-margin card ep-primary-event">
@@ -31,7 +30,7 @@
               </h3>
               <div class="ep-event-text-container">
                 <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
-                <td-button [button]="page.featuredEvent.registrationButton()" />
+                <td-button [button]="page.featuredEvent.registrationButton()" [linkId]="eventDetailsButtonId(page.featuredEvent)" />
               </div>
             </div>
           </div>
@@ -62,7 +61,10 @@
                   <span>|</span>
                   <span>{{ event.venue }}</span>
                 </div>
-                <td-button [button]="event.registrationButton()" size="small" buttonWidth="100%"></td-button>
+                <td-button
+                  [button]="event.registrationButton()" size="small" buttonWidth="100%"
+                  [linkId]="eventDetailsButtonId(event)"
+                />
               </div>
             }
           </div>

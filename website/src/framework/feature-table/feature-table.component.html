@@ -23,7 +23,7 @@
         </div>
       </th>
       @for (cell of row.cells; track cell) {
-        <td><td-feature-table-cell [cell]="cell" /></td>
+        <td><td-feature-table-cell [table]="table" [columnIndex]="$index" [cell]="cell" [sectionId]="sectionId" /></td>
       }
     </tr>
   }

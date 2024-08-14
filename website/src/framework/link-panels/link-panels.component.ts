@@ -8,6 +8,7 @@ import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
+import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-link-panels",
@@ -19,6 +20,11 @@ import { RichTextComponent } from "../text/rich-text.component";
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
+    @Input({ required: true }) sectionId!: string;
+
+    panelID(panel: LinkPanelWithIcon) {
+        return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
+    }
 }
 
 @Component({
@@ -32,6 +38,11 @@ export class LinkPanelsComponent {
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
     @Input() cols!: 3 | 4;
+    @Input({ required: true }) sectionId!: string;
+
+    panelID(resource: ResourceLink) {
+        return `${this.sectionId}_${sanitiseHtmlID(resource.title)}`;
+    }
 }
 
 @Component({
@@ -44,6 +55,11 @@ export class ResourcePanelsComponent {
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
+    @Input({ required: true }) sectionId!: string;
+
+    panelID(resource: ResourceLink) {
+        return `${this.sectionId}_${sanitiseHtmlID(resource.title)}`;
+    }
 }
 
 @Component({
@@ -56,6 +72,7 @@ export class LinkPanelsCols2Component {
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];
+    @Input({ required: true }) sectionId!: string;
 
     private _hoveredPanels = new Map<Lecture, boolean>();
 
@@ -65,5 +82,9 @@ export class LecturePanelsComponent {
 
     isPanelHovered(panel: Lecture) {
         return this._hoveredPanels.get(panel) === true;
+    }
+
+    panelID(lecture: Lecture) {
+        return `${this.sectionId}_${lecture.title.toSectionID()}`;
     }
 }

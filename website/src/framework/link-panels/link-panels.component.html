@@ -4,6 +4,7 @@
       class="card lc-card lc-card-cols-3 lc-icon-card"
       [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
       [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
+      [attr.id]="panelID(panel)"
     >
       @if (panel.button.comingSoon) {
         <aside class="lp-coming-soon">coming soon</aside>

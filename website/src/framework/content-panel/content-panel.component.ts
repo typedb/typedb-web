@@ -18,7 +18,8 @@ import { RichTextComponent } from "../text/rich-text.component";
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;
-    @Input() panel!: ContentTextPanel;
+    @Input({ required: true }) panel!: ContentTextPanel;
+    @Input({ required: true }) panelId!: string;
 
     get contentTextPanel(): ContentTextPanel | undefined {
         return this.panel instanceof ContentTextPanel ? this.panel : undefined;
@@ -31,6 +32,10 @@ export class ContentPanelComponent {
             "cp-root": true,
             "cp-in-tab": this.panel instanceof ContentTextTab,
         };
+    }
+
+    get learnMoreLinkId(): string | undefined {
+        return `${this.panelId}_learn-more`;
     }
 
     illustrationIsCodeSnippet() {

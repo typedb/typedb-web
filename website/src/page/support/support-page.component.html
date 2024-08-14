@@ -3,15 +3,17 @@
     <div class="article-content">
       @if (page.introSection) {
         <td-support-page-technicolor-block [block]="page.introSection" [page]="page" />
-        <td-link-panels [panels]="page.introSection.panels" />
+        <td-link-panels [panels]="page.introSection.panels" [sectionId]="page.introSection.sectionId" />
       }
       @if (page.featureTableSection) {
         <td-support-page-technicolor-block [block]="page.featureTableSection" [page]="page" />
-        <td-feature-table [table]="page.featureTableSection.featureTable" />
+        <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId" />
       }
       @if (page.testimonialsSection) {
         <td-support-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
+        <td-testimonials-carousel
+          [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"
+        />
       }
       @if (page.contactSection) {
         <td-support-page-technicolor-block [block]="page.contactSection" [page]="page" />

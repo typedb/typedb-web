@@ -5,6 +5,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { SocialMediaLink } from "typedb-web-schema";
 
 import { LinkDirective } from "../link/link.directive";
+import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-social-media-panels",
@@ -16,4 +17,9 @@ import { LinkDirective } from "../link/link.directive";
 })
 export class SocialMediaPanelsComponent {
     @Input() socialMediaLinks!: SocialMediaLink[];
+    @Input({ required: true }) sectionId!: string;
+
+    linkId(link: SocialMediaLink): string {
+        return sanitiseHtmlID(`${this.sectionId}_${link.text}`)
+    }
 }

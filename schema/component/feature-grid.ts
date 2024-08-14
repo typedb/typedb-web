@@ -17,6 +17,7 @@ export interface SanityFeatureGridSection extends SanityTechnicolorBlock, Sanity
 export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
 
 export interface SanityFeatureGrid extends SanityDocument {
+    name: string;
     featureGridLayout: FeatureGridLayout;
     features: SanityFeatureGridCell[];
     illustration?: SanityReference<SanityIllustration>;
@@ -71,11 +72,13 @@ export class FeatureGridCell implements Partial<BodyTextField> {
 }
 
 export class FeatureGrid { // not used in FeatureGridSection to flatten the structure, but used elsewhere
+    readonly name: string;
     readonly featureGridLayout: FeatureGridLayout;
     readonly features: FeatureGridCell[][];
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<FeatureGrid>) {
+        this.name = props.name;
         this.featureGridLayout = props.featureGridLayout;
         this.features = props.features;
         this.illustration = props.illustration;
@@ -89,6 +92,7 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
             featureCells.push(chunk);
         }
         return new FeatureGrid({
+            name: featureGrid.name,
             featureGridLayout: featureGrid.featureGridLayout,
             features: featureCells,
             illustration: featureGrid.illustration
