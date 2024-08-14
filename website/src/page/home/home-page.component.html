@@ -16,15 +16,20 @@
       }
       @if (page.resourcesSection) {
         <td-home-page-technicolor-block [block]="page.resourcesSection" [page]="page" />
-        <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" />
+        <td-resource-panels
+          [resources]="page.resourcesSection.resources" [cols]="4" [sectionId]="page.resourcesSection.sectionId"
+        />
       }
       @if (page.toolingSection) {
         <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
-        <td-link-panels [panels]="page.toolingSection.panels" />
+        <td-link-panels [panels]="page.toolingSection.panels" [sectionId]="page.toolingSection.sectionId" />
       }
       @if (page.driversSection) {
         <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />
-        <td-feature-grid [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features" />
+        <td-feature-grid
+          [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features"
+          [sectionId]="page.driversSection.sectionId"
+        />
       }
       @if (page.cloudSection) {
         <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
@@ -32,11 +37,15 @@
       }
       @if (page.communitySection) {
         <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />
-        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" />
+        <td-social-media-panels
+          [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"
+        />
       }
       @if (page.testimonialsSection) {
         <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
+        <td-testimonials-carousel
+          [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"
+        />
       }
       @if (page.conclusionSection) {
         <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion" />

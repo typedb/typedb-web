@@ -1,6 +1,6 @@
 <div class="section kpp-root">
   @for (resource of resources; track resource) {
-    <a class="card hoverable kpp-panel" [tdLink]="resource.link">
+    <a class="card hoverable kpp-panel" [tdLink]="resource.link" [attr.id]="panelID(resource)">
       <h3>{{ resource.title }}</h3>
       <td-rich-text [value]="resource.description" />
     </a>

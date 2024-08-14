@@ -11,7 +11,7 @@
     <div class="cp-text-area">
       <td-rich-text [value]="contentTextPanel.body"/>
       @if (contentTextPanel.learnMoreLink) {
-        <a [tdLink]="contentTextPanel.learnMoreLink" class="cp-learn-more link-tertiary">Learn more</a>
+        <a [attr.id]="learnMoreLinkId" [tdLink]="contentTextPanel.learnMoreLink" class="cp-learn-more link-tertiary">Learn more</a>
       }
     </div>
   }

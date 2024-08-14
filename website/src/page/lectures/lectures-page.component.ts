@@ -28,6 +28,7 @@ import { TitleBodyActionsSectionComponent } from "../../framework/section/title-
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { sanitiseHtmlID } from "../../framework/util";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PageComponentBase } from "../page-component-base";
@@ -86,5 +87,9 @@ export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
 
     localTimezoneAbbreviation(lecture: Lecture): string {
         return lecture.datetime.toLocaleDateString("en-US", { day: "2-digit", timeZoneName: "short" }).slice(4);
+    }
+
+    lectureDetailsButtonId(lecture: Lecture): string {
+        return sanitiseHtmlID(`${lecture.title.toSectionID()}_watch`);
     }
 }

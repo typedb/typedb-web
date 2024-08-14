@@ -18,6 +18,7 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { sanitiseHtmlID } from "../../framework/util";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -44,5 +45,9 @@ export class PapersPageComponent extends PageComponentBase<PapersPage> {
             link: paper.detailsPageLink(),
             comingSoon: false,
         });
+    }
+
+    downloadButtonId(paper: Paper): string {
+        return sanitiseHtmlID(`${paper.title.toSectionID()}_download`);
     }
 }
