@@ -28,6 +28,9 @@
     "paths": {
       "typedb-web-schema": [
         "../schema"
+      ],
+      "typedb-web-common": [
+        "../common"
       ]
     }
   },

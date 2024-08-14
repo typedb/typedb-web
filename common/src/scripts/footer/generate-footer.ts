@@ -109,12 +109,13 @@ const generateNavSection = (params: GenerateParams) => {
 };
 
 const generateCopyrightSection = () => {
-    const copyrightYear = new Date().getFullYear();
-    const copyrightLine1 = `© ${copyrightYear} Vaticle Ltd`;
-    const copyrightLine2 = `Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd`;
-    const copyright = `<aside>${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
+    // const copyrightYear = new Date().getFullYear();
+    // const copyrightLine1 = `© ${copyrightYear} Vaticle Ltd`;
+    // const copyrightLine2 = `Vaticle™, TypeDB™ and TypeQL™ are trademarks of Vaticle Ltd`;
+    // const copyright = `<aside>${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
 
-    return `<div class="td-footer-section td-footer-section-copyright">${copyright}</div>`;
+    // return `<div class="td-footer-section td-footer-section-copyright">${copyright}</div>`;
+    return `<div class="td-footer-section td-footer-section-copyright"></div>`;
 };
 
 const getContactLink = (contactMedia: string, communityResources: Record<string, string>): Link | null => {
