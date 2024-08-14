@@ -29,10 +29,11 @@ const cookieConfig: NgcCookieConsentConfig = {
     type: "info",
 };
 
-if (!isScullyRunning() /* && environment.production */) {
+if (!isScullyRunning()) {
     (window as any).posthog = posthog;
+    const posthogProjectApiKey = environment.production ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
     posthog.init(
-        "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk",
+        posthogProjectApiKey,
         {
             api_host: "https://us.i.posthog.com",
             person_profiles: "always",
