@@ -14,12 +14,10 @@
       }
     </div>
   }
-  @if (!isContentRow(item)) {
+  @if (isFeatureGrid(item)) {
     <td-feature-grid
-      [disableCardAppearance]="true"
-      [featureRows]="item.features"
-      [layout]="item.featureGridLayout"
-      [illustration]="item.illustration"
+      [disableCardAppearance]="true" [featureRows]="item.features" [layout]="item.featureGridLayout"
+      [illustration]="item.illustration" [sectionId]="featureGridId(item)"
     />
   }
 }

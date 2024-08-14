@@ -1,11 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
-import { Illustration, PortableText, PublicationContentRow, PublicationContentRowItem, PublicationPanelItem } from "typedb-web-schema";
+import { FeatureGrid, Illustration, PortableText, PublicationContentRow, PublicationContentRowItem, PublicationPanelItem } from "typedb-web-schema";
 
 import { FeatureGridComponent } from "../feature-grid/feature-grid.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { RichTextComponent } from "../text/rich-text.component";
+import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-publication-panel",
@@ -25,11 +26,19 @@ export class PublicationPanelComponent {
         return item instanceof PublicationContentRow;
     }
 
+    isFeatureGrid(item: PublicationPanelItem): item is FeatureGrid {
+        return item instanceof FeatureGrid;
+    }
+
     isPortableText(item: PublicationContentRowItem): item is PortableText {
         return item && "slice" in item;
     }
 
     isIllustration(item: PublicationContentRowItem): item is Illustration {
         return item && !this.isPortableText(item);
+    }
+
+    featureGridId(item: FeatureGrid): string {
+        return sanitiseHtmlID(item.name);
     }
 }

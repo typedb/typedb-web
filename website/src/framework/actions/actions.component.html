@@ -1,5 +1,5 @@
 @if (actions?.length) {
   @for (action of actions; track action) {
-    <td-button [button]="action"/>
+    <td-button [linkId]="linkId(action)" [button]="action"/>
   }
 }

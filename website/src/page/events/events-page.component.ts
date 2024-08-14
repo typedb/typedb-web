@@ -19,6 +19,7 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
+import { sanitiseHtmlID } from "../../framework/util";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -59,5 +60,9 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
 
     getEventListImageUrl(event: LiveEvent) {
         return this.imageBuilder.image(event.imageURL).width(731).url();
+    }
+
+    eventDetailsButtonId(event: LiveEvent): string {
+        return sanitiseHtmlID(`${event.title.toSectionID()}_view-details`);
     }
 }

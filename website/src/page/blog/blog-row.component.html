@@ -65,6 +65,8 @@
 @if (resourcePanelsRow) {
   <div class="bp-resource-panels-row">
     <td-heading-with-highlights level="h4" [value]="resourcePanelsRow.title" />
-    <td-resource-panels [cols]="3" [resources]="resourcePanelsRow.resources" />
+    <td-resource-panels
+      [cols]="3" [resources]="resourcePanelsRow.resources" [sectionId]="resourcePanelsRow.title.toPlainText()"
+    />
   </div>
 }

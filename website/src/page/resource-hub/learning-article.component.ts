@@ -165,4 +165,8 @@ export class LearningArticleComponent implements OnInit {
             window.location.href,
         )}&title=${post.title.toPlainText()}`;
     }
+
+    subscribeNewsletterLinkId(post: Article): string {
+        return sanitiseHtmlID(`${post.title.toSectionID()}_subscribe-to-newsletter`);
+    }
 }

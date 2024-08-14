@@ -51,7 +51,7 @@
               <div class="bp-newsletter-section">
                 <h4>TypeDB Newsletter</h4>
                 <p>Stay up to date with the latest TypeDB announcements and events.</p>
-                <td-button [button]="subscribeToNewsletterButton" />
+                <td-button [button]="subscribeToNewsletterButton" [linkId]="subscribeNewsletterLinkId(post)" />
               </div>
               @for (relatedPostGroup of relatedPostGroups$ | async; track relatedPostGroup) {
                 @if (relatedPostGroup.posts.length) {

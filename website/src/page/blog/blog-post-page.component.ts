@@ -8,6 +8,7 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
+    Article,
     Blog,
     blogCategories,
     BlogCategoryID,
@@ -188,5 +189,9 @@ export class BlogPostPageComponent implements OnInit {
         return `https://www.reddit.com/submit?url=${encodeURIComponent(
             window.location.href,
         )}&title=${post.title.toPlainText()}`;
+    }
+
+    subscribeNewsletterLinkId(post: Article): string {
+        return sanitiseHtmlID(`${post.title.toSectionID()}_subscribe-to-newsletter`);
     }
 }

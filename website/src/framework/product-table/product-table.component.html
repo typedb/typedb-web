@@ -15,7 +15,7 @@
   <tr class="pp-button-row">
     @for (panel of panels; track panel) {
       <td>
-        <td-button [button]="panel.button" size="small" buttonWidth="100%" />
+        <td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" />
       </td>
     }
   </tr>
@@ -34,7 +34,7 @@
       </td>
     </tr>
     <tr class="pp-button-row">
-      <td><td-button [button]="panel.button" size="small" buttonWidth="100%" /></td>
+      <td><td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" /></td>
     </tr>
   }
 </table>

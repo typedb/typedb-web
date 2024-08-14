@@ -15,6 +15,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
 })
 export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];
+    @Input({ required: true }) sectionId!: string;
     focusedIndex = 0;
 
     constructor(private imageBuilder: ImageBuilder) {}

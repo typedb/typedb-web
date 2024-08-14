@@ -1,4 +1,4 @@
-import { escapeHtml, generateLink } from "../shared";
+import { escapeHtml, generateLink, sanitiseHtmlID } from "../shared";
 import { generateBanner } from "./generate-banner";
 import { generateMenuPanel } from "./generate-menu-panel";
 import { TopbarData } from "./topbar-query";
@@ -30,7 +30,7 @@ const generateNav = (params: GenerateParams) => {
 const generateLogo = (params: GenerateParams) => {
     const { urlPrefix } = params;
     const logoImage = `<img src="${escapeHtml(urlPrefix)}/assets/logo/typedb.svg" alt="TypeDB"/>`;
-    return `<a href="${escapeHtml(urlPrefix)}/" class="td-topbar-logo-container">${logoImage}</a>`;
+    return `<a href="${escapeHtml(urlPrefix)}/" class="td-topbar-logo-container" id="topbar_typedb-logo">${logoImage}</a>`;
 };
 
 const generateMainArea = (params: GenerateParams) => {
@@ -47,6 +47,7 @@ const generateMainArea = (params: GenerateParams) => {
                 const linkEl = generateLink({
                     content: `${item.text}${icon}`,
                     link: item.comingSoon ? null : item.link,
+                    id: sanitiseHtmlID(`topbar_${item.text}`),
                     urlPrefix,
                     attributes: { class: "td-topbar-link" },
                 });
@@ -74,6 +75,7 @@ const generateSecondaryArea = (params: GenerateParams) => {
             const linkEl = generateLink({
                 content: text,
                 link: comingSoon ? null : link,
+                id: sanitiseHtmlID(`topbar_${text}`),
                 urlPrefix,
                 attributes: { class: "td-topbar-link" },
             });
@@ -85,13 +87,14 @@ const generateSecondaryArea = (params: GenerateParams) => {
     const button = generateLink({
         content: data.button.text,
         link: data.button.link,
+        id: sanitiseHtmlID(`topbar_${data.button.text}`),
         urlPrefix,
         attributes: { class: buttonClasses, tabindex: "0" },
     });
     const buttonItem = `<li>${button}</li>`;
 
     const githubIcon = `<div class="td-topbar-github-icon">GitHub</div>`;
-    const githubLink = `<a class="td-topbar-link" href="${escapeHtml(githubURL)}" target="_blank">${githubIcon}</a>`;
+    const githubLink = `<a class="td-topbar-link" href="${escapeHtml(githubURL)}" target="_blank" id="topbar_github">${githubIcon}</a>`;
     const githubItem = `<li>${githubLink}</li>`;
 
     return `<ul class="td-topbar-secondary-area">${listItems}${buttonItem}${githubItem}</ul>`;

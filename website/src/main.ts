@@ -15,6 +15,7 @@ import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
+import posthog from "posthog-js";
 
 const cookieConfig: NgcCookieConsentConfig = {
     enabled: !isScullyRunning(),
@@ -27,6 +28,20 @@ const cookieConfig: NgcCookieConsentConfig = {
     },
     type: "info",
 };
+
+if (!isScullyRunning()) {
+    (window as any).posthog = posthog;
+    const posthogProjectApiKey = environment.production ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
+    posthog.init(
+        posthogProjectApiKey,
+        {
+            api_host: "https://us.i.posthog.com",
+            person_profiles: "always",
+            capture_pageview: false,
+            capture_pageleave: true,
+        }
+    )
+}
 
 const globalRippleConfig: RippleGlobalOptions = {
     disabled: true,

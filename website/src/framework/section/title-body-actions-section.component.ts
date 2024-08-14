@@ -19,6 +19,7 @@ export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;
     @Input() body?: PortableText;
     @Input() actions?: LinkButton[];
+    @Input({ required: true }) sectionId!: string;
     @Input() isIntroSection = false;
 
     get sectionClasses(): string {
