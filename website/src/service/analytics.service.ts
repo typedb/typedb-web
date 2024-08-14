@@ -10,12 +10,11 @@ import posthog from "posthog-js";
     providedIn: "root",
 })
 export class AnalyticsService {
-    /* Analytics scripts only run in production. */
+    /* HubSpot and GA analytics scripts only run in production. */
     hubspot = {
         trackPageView: () => null,
     };
     posthog = {
-        // capturePageView: () => null,
         capturePageView: () => {
             posthog.capture("$pageview");
         }
