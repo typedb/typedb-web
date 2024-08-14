@@ -12,7 +12,7 @@
       <td-rich-text [value]="block.body" class="text-p1" />
     }
     @if (block.actions) {
-      <td-actions [actions]="block.actions" />
+      <td-actions [sectionId]="block.sectionId" [actions]="block.actions" />
     }
     @if (organisationLogos?.length) {
       <td-organisation-logos appearance="transparent" [organisations]="organisationLogos!"/>

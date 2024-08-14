@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-tag-chips",
@@ -11,4 +12,9 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 })
 export class TagChipsComponent {
     @Input() tags!: string[];
+    @Input({ required: true }) sectionId!: string;
+
+    chipId(tag: string): string {
+        return sanitiseHtmlID(`${this.sectionId}_${tag}`);
+    }
 }

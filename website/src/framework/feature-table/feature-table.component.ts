@@ -6,6 +6,7 @@ import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
 
 import { ButtonComponent } from "../button/button.component";
 import { InfoButtonComponent } from "../info-button/info-button.component";
+import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-feature-table-cell",
@@ -16,7 +17,10 @@ import { InfoButtonComponent } from "../info-button/info-button.component";
     imports: [NgClass, MatIconModule, ButtonComponent],
 })
 export class FeatureTableCellComponent {
-    @Input() cell!: FeatureTableCell;
+    @Input({ required: true }) table!: FeatureTable;
+    @Input({ required: true }) columnIndex!: number;
+    @Input({ required: true }) cell!: FeatureTableCell;
+    @Input({ required: true }) sectionId!: string;
 
     get booleanValue(): boolean | undefined {
         return typeof this.cell === "boolean" ? this.cell : undefined;
@@ -28,6 +32,10 @@ export class FeatureTableCellComponent {
 
     get buttonValue(): LinkButton | undefined {
         return this.cell instanceof LinkButton ? this.cell : undefined;
+    }
+
+    buttonId(): string {
+        return this.cell instanceof LinkButton ? sanitiseHtmlID(`${this.sectionId}_${this.table.headerRow[this.columnIndex + 1]}_${this.cell.text}`) : ``;
     }
 }
 
@@ -41,4 +49,5 @@ export class FeatureTableCellComponent {
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;
+    @Input({ required: true }) sectionId!: string;
 }

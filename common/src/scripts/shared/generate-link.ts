@@ -1,14 +1,10 @@
 import { Link } from "./link";
 import { escapeHtml } from "./utils";
 
-export const generateLink = ({
-    content,
-    link,
-    urlPrefix,
-    attributes = {},
-}: {
+export const generateLink = ({ content, link, id, urlPrefix, attributes = {} }: {
     link: Link | null;
     content: string;
+    id: string;
     urlPrefix: string;
     attributes?: Record<string, string>;
 }) => {
@@ -22,7 +18,7 @@ export const generateLink = ({
     const attributesPart = Object.entries(attributes)
         .map(([key, value]) => `${key}="${escapeHtml(value)}"`)
         .join(" ");
-    return `<a ${attributesPart}>${content}</a>`;
+    return `<a ${attributesPart} id="${id}">${content}</a>`;
 };
 
 const createHref = (link: Link, urlPrefix: string) => {

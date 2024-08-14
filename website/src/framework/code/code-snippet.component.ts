@@ -112,7 +112,7 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     }
 
     snippetTabID(tab: CodeSnippet): string {
-        return `${this._elementID}-${sanitiseHtmlID(tab.language)}`;
+        return sanitiseHtmlID(`${this._elementID}-${(tab.tabText || tab.language)}`);
     }
 
     onSnippetTabClick(snippet: CodeSnippet, event: Event) {

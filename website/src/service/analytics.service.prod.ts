@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-
 import { isScullyRunning } from "@scullyio/ng-lib";
-
 import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID, HUBSPOT_PORTAL_ID } from "./marketing-tech-constants";
+import posthog from "posthog-js";
 
 @Injectable({
     providedIn: "root",
@@ -26,6 +25,12 @@ export class AnalyticsService {
             }
         },
     };
+    posthog = {
+        capturePageView: () => {
+            if (isScullyRunning()) return;
+            posthog.capture("$pageview");
+        }
+    }
     google = {
         loadScriptTag: () => {
             if (isScullyRunning()) return;

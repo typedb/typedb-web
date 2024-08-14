@@ -7,7 +7,7 @@
             <img [src]="feature.iconURL" alt="" />
           }
           <h3>{{ feature.title }}</h3>
-          <td-tag-chips [tags]="feature.tags" />
+          <td-tag-chips [tags]="feature.tags" [sectionId]="sectionId" />
         </div>
       }
       @if (feature.body) {
@@ -16,7 +16,7 @@
       @if (feature.links?.length) {
         <div class="fg-links-section">
           @for (link of feature.links; track link) {
-            <a class="link-tertiary" [tdLink]="link">{{ link.text }}</a>
+            <a class="link-tertiary" [tdLink]="link" [attr.id]="linkId(feature, link)">{{ link.text }}</a>
           }
         </div>
       }

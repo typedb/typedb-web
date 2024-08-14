@@ -5,14 +5,14 @@
       <td-rich-text [value]="panel.body" />
     }
     <div class="flex"></div>
-    <td-actions [actions]="panel.actions" />
+    <td-actions [actions]="panel.actions" [sectionId]="sectionId" />
   </div>
   <div class="cp-resources-area">
     <h4>{{ panel.resourceListTitle }}</h4>
     <ul>
       @for (resource of panel.resources; track resource) {
         <li>
-          <a [tdLink]="resource" class="link-tertiary">{{ resource.text }}</a>
+          <a [tdLink]="resource" class="link-tertiary" [attr.id]="resourceLinkId(resource)">{{ resource.text }}</a>
         </li>
       }
     </ul>

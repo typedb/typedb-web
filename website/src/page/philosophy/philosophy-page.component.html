@@ -2,10 +2,8 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       <td-title-body-actions-section
-        [isIntroSection]="true"
-        [title]="page.introSection.title"
-        [body]="page.introSection.body"
-        [actions]="page.introSection.actions"
+        [isIntroSection]="true" sectionId="intro"
+        [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
         />
       @for (section of page.coreSections; track section; let idx = $index) {
         <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />

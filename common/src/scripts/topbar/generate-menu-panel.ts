@@ -1,4 +1,4 @@
-import { escapeHtml, generateLink } from "../shared";
+import { escapeHtml, generateLink, sanitiseHtmlID } from "../shared";
 import { TopbarColumn, TopbarMenuPanel } from "./topbar-query";
 
 export const generateMenuPanel = (panel: TopbarMenuPanel, urlPrefix: string) => {
@@ -32,6 +32,7 @@ const generateColumnContent = (column: TopbarColumn, urlPrefix: string) => {
                     return generateLink({
                         content,
                         link,
+                        id: sanitiseHtmlID(`topbar_${column.title}_${title}`),
                         urlPrefix,
                     });
                 })
@@ -47,6 +48,7 @@ const generateColumnContent = (column: TopbarColumn, urlPrefix: string) => {
             const link = generateLink({
                 content: `${icon}${title}`,
                 link: column.link,
+                id: sanitiseHtmlID(`topbar_${title}`),
                 urlPrefix,
                 attributes: { class: "td-topbar-spotlight" },
             });

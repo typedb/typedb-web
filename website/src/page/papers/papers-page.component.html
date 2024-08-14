@@ -3,10 +3,9 @@
     <div class="article-content">
       <div class="section">
         <td-title-body-actions-section
-          [isIntroSection]="true"
-          [title]="page.introSection.title"
-          [body]="page.introSection.body"
-          />
+          [isIntroSection]="true" sectionId="intro"
+          [title]="page.introSection.title" [body]="page.introSection.body"
+        />
         <div class="subsection-margin card wp-primary-paper">
           <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
           <div class="wp-primary-paper-details">
@@ -19,7 +18,10 @@
             <div class="wp-primary-paper-summary">
               <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
               <div class="flex"></div>
-              <td-button [button]="accessResourceButton(page.featuredPaper, 'primary', 'Download')"></td-button>
+              <td-button
+                [button]="accessResourceButton(page.featuredPaper, 'primary', 'Download')"
+                [linkId]="downloadButtonId(page.featuredPaper)"
+              />
             </div>
           </div>
         </div>
@@ -35,7 +37,10 @@
                 </div>
               </div>
               <td-rich-text class="wp-grid-item-description" [value]="paper.description" />
-              <td-button [button]="accessResourceButton(paper, 'secondary', 'Download')" size="small" buttonWidth="100%" />
+              <td-button
+                [button]="accessResourceButton(paper, 'secondary', 'Download')"
+                size="small" buttonWidth="100%" [linkId]="downloadButtonId(paper)"
+              />
             </div>
           }
         </div>

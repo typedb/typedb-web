@@ -53,9 +53,16 @@ export class WebsiteComponent {
         });
         this.initScrollBehaviour(router, contentService, activatedRoute, location, viewportScroller);
         this.setCanonicalLinkOnNavigation(router, canonicalLink);
+        this.capturePageViewOnNavigation(router, analyticsService);
         analyticsService.google.loadScriptTag();
         analyticsService.googleTagManager.loadScriptTag();
         this.registerIcons(domSanitizer, matIconRegistry);
+    }
+
+    private capturePageViewOnNavigation(router: Router, analytics: AnalyticsService) {
+        router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
+            analytics.posthog.capturePageView();
+        });
     }
 
     private setCanonicalLinkOnNavigation(router: Router, canonicalLink: CanonicalLinkService) {

@@ -31,7 +31,7 @@ export {
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
-    type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
+    FeatureGrid, type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";

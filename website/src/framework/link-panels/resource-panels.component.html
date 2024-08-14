@@ -1,4 +1,3 @@
-
 @switch (cols) {
   @case (3) {
     <div class="section lc-root-cols-3">
@@ -9,6 +8,7 @@
           [attr.aria-disabled]="resource.link ? undefined : true"
           [class.hoverable]="!!resource.link"
           [tdLink]="resource.link"
+          [attr.id]="panelID(resource)"
         >
           @if (!resource.link) {
             <aside class="lp-coming-soon">coming soon</aside>
@@ -27,6 +27,7 @@
           [tdLink]="resource.link"
           class="card lc-card lc-flex-container lc-card-cols-4"
           [class.hoverable]="!!resource.link"
+          [attr.id]="panelID(resource)"
         >
           @if (!resource.link) {
             <aside class="lp-coming-soon">coming soon</aside>

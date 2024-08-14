@@ -16,6 +16,7 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
 })
 export class ButtonComponent {
     @Input() button!: ActionButton;
+    @Input() linkId?: string;
     @Input() buttonWidth?: string;
     @Input() size: "medium" | "small" = "medium";
     @Input() noComingSoonTooltip = false;
