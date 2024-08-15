@@ -31,7 +31,7 @@ const cookieConfig: NgcCookieConsentConfig = {
 
 if (!isScullyRunning()) {
     (window as any).posthog = posthog;
-    const posthogProjectApiKey = environment.production ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
+    const posthogProjectApiKey = environment.env === "production" ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
     posthog.init(
         posthogProjectApiKey,
         {
@@ -47,7 +47,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     disabled: true,
 };
 
-if (environment.production) {
+if (["production", "staging"].includes(environment.env)) {
     enableProdMode();
 }
 
