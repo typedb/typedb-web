@@ -1,3 +1,3 @@
 export const environment = {
-    env: "production",
+    env: "staging",
 };

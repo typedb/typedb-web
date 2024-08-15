@@ -101,7 +101,7 @@
                             "fileReplacements": [
                                 {
                                     "replace": "src/environment/environment.ts",
-                                    "with": "src/environment/environment.prod.ts"
+                                    "with": "src/environment/environment.staging.ts"
                                 }
                             ],
                             "outputHashing": "all"
@@ -113,22 +113,43 @@
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true,
+                            "outputHashing": "all",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environment/environment.ts",
+                                    "with": "src/environment/environment.dev.ts"
+                                }
+                            ]
+                        },
+                        "local": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
                             "outputHashing": "all"
                         }
                     },
-                    "defaultConfiguration": "production"
+                    "defaultConfiguration": "development"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "typedb-web:build:production"
+                            "buildTarget": "typedb-web:build:production"
+                        },
+                        "staging": {
+                            "buildTarget": "typedb-web:build:staging"
                         },
                         "development": {
-                            "browserTarget": "typedb-web:build:development"
+                            "buildTarget": "typedb-web:build:development"
+                        },
+                        "local": {
+                            "buildTarget": "typedb-web:build:local"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "local"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
