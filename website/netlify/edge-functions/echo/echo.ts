@@ -5,7 +5,7 @@ import type { Context } from "https://edge.netlify.com";
 export default async (request: Request, context: Context) => {
     console.log("BODY");
     console.log(await request.json());
-    console.log("HEADERS");
-    console.log(JSON.stringify(request));
+    console.log("HEADERS['sanity-operation']");
+    console.log(request.headers.get("sanity-operation"));
     return new Response(null, { status: 202 });
 };
