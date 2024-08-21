@@ -6,6 +6,6 @@ export default async (request: Request, context: Context) => {
     console.log("BODY");
     console.log(await request.json());
     console.log("HEADERS");
-    console.log(JSON.stringify(request.headers));
+    console.log(JSON.stringify(request));
     return new Response(null, { status: 202 });
 };
