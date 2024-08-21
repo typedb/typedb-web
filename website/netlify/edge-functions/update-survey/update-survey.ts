@@ -19,7 +19,9 @@ export default async (request: Request, context: Context) => {
 
     const targetEnvs = (isDraft ? ["development"] : ["development", "production"]) as ("development" | "production")[];
 
+    console.log("Sending survey to PostHog ...");
     await sendSurveyToPosthog(body, targetEnvs);
+    console.log("Success");
 
     return new Response(null, { status: 202 });
 };
