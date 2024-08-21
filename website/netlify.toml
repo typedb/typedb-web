@@ -171,6 +171,10 @@ to = "/index.html"
 status = 200
 
 [[edge_functions]]
+function = "echo"
+path = "/api/echo"
+
+[[edge_functions]]
 function = "get-calendar-link"
 path = "/api/calendar-link"
 
