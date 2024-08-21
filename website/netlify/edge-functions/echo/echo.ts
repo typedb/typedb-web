@@ -3,9 +3,9 @@
 import type { Context } from "https://edge.netlify.com";
 
 export default async (request: Request, context: Context) => {
-    console.log("BODY");
+    console.log("Received request body:");
     console.log(await request.json());
-    console.log("HEADERS['sanity-operation']");
-    console.log(request.headers.get("sanity-operation"));
+
+    /* NOTE: Netlify refuses to print all headers for security reasons. To print a specific header, log request.headers.get("header-key"). */
     return new Response(null, { status: 202 });
 };

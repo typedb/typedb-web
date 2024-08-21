@@ -178,6 +178,10 @@ path = "/api/echo"
 function = "get-calendar-link"
 path = "/api/calendar-link"
 
+[[edge_functions]]
+function = "update-survey"
+path = "/api/update-survey"
+
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
