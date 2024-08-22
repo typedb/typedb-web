@@ -1,13 +1,28 @@
 /* This endpoint exists for debugging purposes - e.g. to view the payload of a webhook invocation. */
 
 import type { Context } from "https://edge.netlify.com";
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
 const POSTHOG_PROJECT_ID_DEV = 84216;
 
 const invalidId = (id: string) => new Response(`The value of _id [${id}] is invalid`, { status: 400 });
 
 export default async (request: Request, context: Context) => {
-    const body = await request.json();
+    const bodyRaw = await request.text();
+    const signature = request.headers.get(SIGNATURE_HEADER_NAME);
+    const secret = process.env["SANITY_WEBHOOK_SECRET"];
+
+    if (!secret) {
+        console.error(`The environment variable SANITY_WEBHOOK_SECRET is not set`);
+        return new Response(`Internal error`, { status: 500 });
+    }
+
+    if (!(await isValidSignature(bodyRaw, signature || "", secret))) {
+        console.warn(`Received survey update with invalid signature`);
+        return new Response(`Invalid signature`, { status: 403 });
+    }
+
+    const body = JSON.parse(bodyRaw);
     console.log("Received survey update:");
     console.log(body);
 
@@ -19,9 +34,9 @@ export default async (request: Request, context: Context) => {
 
     const targetEnvs = (isDraft ? ["development"] : ["development", "production"]) as ("development" | "production")[];
 
-    console.log("Sending survey to PostHog ...");
-    await sendSurveyToPosthog(body, targetEnvs);
-    console.log("Success");
+    // console.log("Sending survey to PostHog ...");
+    // await sendSurveyToPosthog(body, targetEnvs);
+    // console.log("Success");
 
     return new Response(null, { status: 202 });
 };
