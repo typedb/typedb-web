@@ -40,9 +40,9 @@ export default async (request: Request, context: Context) => {
 
     const targetEnvs = (isDraft ? ["development"] : ["development", "production"]) as ("development" | "production")[];
 
-    // console.log("Sending survey to PostHog ...");
-    // await sendSurveyToPosthog(body, targetEnvs);
-    // console.log("Success");
+    console.log("Sending survey to PostHog ...");
+    await sendSurveyToPosthog(body, targetEnvs);
+    console.log("Success");
 
     return new Response(null, { status: 202 });
 };
@@ -52,16 +52,23 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
     const surveyIdDev = data.posthogConfig.developmentId;
     const surveyIdProd = data.posthogConfig.productionId;
     for (const env of targetEnvs) {
-        if (env === "production") break; // TODO
+        if (env === "production") {
+            const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdProd}`;
+            const resp = await fetch(url, {
+                method: "PATCH",
+                headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_PROD")}` },
+                body: JSON.stringify(survey),
+            });
+            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+        }
         else {
-            await fetch(
-                `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`,
-                {
-                    method: "PATCH",
-                    headers: { "Authorization": `Bearer ${process.env["POSTHOG_API_KEY_DEV"]}` },
-                    body: JSON.stringify(survey),
-                },
-            );
+            const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
+            const resp = await fetch(url, {
+                method: "PATCH",
+                headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_DEV")}` },
+                body: JSON.stringify(survey),
+            });
+            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
         }
     }
 }
