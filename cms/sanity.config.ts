@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import {
-    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon,
+    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, OlistIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
@@ -21,7 +21,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -94,6 +94,7 @@ export default defineConfig({
                 s.divider(),
                 singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
+                s.documentTypeListItem(surveySchemaName).title("Surveys"),
                 s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),

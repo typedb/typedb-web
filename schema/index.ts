@@ -13,14 +13,15 @@ import { personSchemas } from "./person";
 import { referenceMaterialSchema } from "./reference-material";
 import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
+import { surveySchemas } from "./survey";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
     ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
     ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
-    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...textSchemas,
-    testimonialSchema,
+    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...surveySchemas,
+    ...textSchemas, testimonialSchema,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
@@ -106,6 +107,9 @@ export {
     type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink,
     socialMedias,
 } from "./social-media";
+export {
+    type SanitySurvey, type SurveyQuestion, type SurveyQuestionPresentation, Survey, surveySchemaName
+} from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
 export { groupBy, associateBy } from "./util";

@@ -196,6 +196,9 @@ devDependencies:
   '@sanity/types':
     specifier: 3.14.4
     version: 3.14.4
+  '@sanity/webhook':
+    specifier: 4.0.4
+    version: 4.0.4
   '@trivago/prettier-plugin-sort-imports':
     specifier: 4.2.0
     version: 4.2.0(prettier@3.0.1)
@@ -4325,6 +4328,11 @@ packages:
       '@types/react': 18.2.17
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@sanity/webhook@4.0.4:
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
     dev: true
 
   /@schematics/angular@17.0.8:

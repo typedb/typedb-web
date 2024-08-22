@@ -82,6 +82,7 @@
     "@angular/compiler-cli": "17.0.8",
     "@sanity/icons": "2.4.1",
     "@sanity/types": "3.14.4",
+    "@sanity/webhook": "4.0.4",
     "@trivago/prettier-plugin-sort-imports": "4.2.0",
     "@types/d3-force": "3.0.4",
     "@types/fontfaceobserver": "2.1.1",
