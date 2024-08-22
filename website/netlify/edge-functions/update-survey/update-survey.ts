@@ -40,9 +40,11 @@ export default async (request: Request, context: Context) => {
 
     const targetEnvs = (isDraft ? ["development"] : ["development", "production"]) as ("development" | "production")[];
 
-    console.log("Sending survey to PostHog ...");
-    await sendSurveyToPosthog(body, targetEnvs);
-    console.log("Success");
+    try {
+        await sendSurveyToPosthog(body, targetEnvs);
+    } catch (e) {
+        return new Response(`Internal error`, { status: 500 });
+    }
 
     return new Response(null, { status: 202 });
 };
@@ -59,7 +61,9 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
                 headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_PROD")}` },
                 body: JSON.stringify(survey),
             });
-            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
+            if (resp.ok) console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            else throw respSummary;
         }
         else {
             const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
@@ -68,7 +72,9 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
                 headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_DEV")}` },
                 body: JSON.stringify(survey),
             });
-            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
+            if (resp.ok) console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            else throw respSummary;
         }
     }
 }
