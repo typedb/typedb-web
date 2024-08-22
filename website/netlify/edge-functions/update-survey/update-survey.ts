@@ -1,7 +1,7 @@
 /* This endpoint exists for debugging purposes - e.g. to view the payload of a webhook invocation. */
 
 import type { Context } from "https://edge.netlify.com";
-import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
+// import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
 const POSTHOG_PROJECT_ID_DEV = 84216;
 
@@ -9,7 +9,7 @@ const invalidId = (id: string) => new Response(`The value of _id [${id}] is inva
 
 export default async (request: Request, context: Context) => {
     const bodyRaw = await request.text();
-    const signature = request.headers.get(SIGNATURE_HEADER_NAME);
+    // const signature = request.headers.get(SIGNATURE_HEADER_NAME);
     const secret = process.env["SANITY_WEBHOOK_SECRET"];
 
     if (!secret) {
@@ -17,9 +17,15 @@ export default async (request: Request, context: Context) => {
         return new Response(`Internal error`, { status: 500 });
     }
 
-    if (!(await isValidSignature(bodyRaw, signature || "", secret))) {
-        console.warn(`Received survey update with invalid signature`);
-        return new Response(`Invalid signature`, { status: 403 });
+    // if (!(await isValidSignature(bodyRaw, signature || "", secret))) {
+    //     console.warn(`Received survey update with invalid signature`);
+    //     return new Response(`Unauthenticated`, { status: 401 });
+    // }
+
+    // TODO: strengthen security by using Sanity's signature check once Netlify supports the @sanity/webhook module
+    if (request.headers.get("X-Secret") !== secret) {
+        console.warn(`Received survey update with missing or incorrect secret value`);
+        return new Response(`Unauthenticated`, { status: 401 });
     }
 
     const body = JSON.parse(bodyRaw);
