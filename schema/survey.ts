@@ -106,7 +106,7 @@ const questionSchema = defineType({
     ],
     validation: (rule: ObjectRule) => rule.custom((obj) => {
         if (!obj) return true;
-        if (obj.hasOpenEndedOption && obj.presentation !== "chips") return `An open-ended option is only supported when presentation is set to 'chips'`;
+        if (obj["hasOpenEndedOption"] && obj["presentation"] !== "chips") return `An open-ended option is only supported when presentation is set to 'chips'`;
         return true;
     }),
 });
