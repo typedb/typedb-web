@@ -18,6 +18,12 @@ copy_to_bin(
 ts_project(
     name = "lib",
     srcs = glob(["**/*.ts"]),
+    deps = [
+        "//:node_modules/@sanity/asset-utils",
+        "//:node_modules/@sanity/icons",
+        "//:node_modules/@sanity/types",
+        "//:node_modules/axios",
+    ],
     transpiler = "tsc",
     source_map = True,
     declaration = True,
