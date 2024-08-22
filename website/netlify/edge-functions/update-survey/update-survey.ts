@@ -10,7 +10,7 @@ const invalidId = (id: string) => new Response(`The value of _id [${id}] is inva
 export default async (request: Request, context: Context) => {
     const bodyRaw = await request.text();
     // const signature = request.headers.get(SIGNATURE_HEADER_NAME);
-    const secret = process.env["SANITY_WEBHOOK_SECRET"];
+    const secret = Netlify.env["SANITY_WEBHOOK_SECRET"];
 
     if (!secret) {
         console.error(`The environment variable SANITY_WEBHOOK_SECRET is not set`);
