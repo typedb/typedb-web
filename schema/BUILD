@@ -12,16 +12,16 @@ load("@vaticle_dependencies//tool/checkstyle:rules.bzl", "checkstyle_test")
 
 copy_to_bin(
     name = "srcs",
-    srcs = glob(["src/**/*"]),
+    srcs = glob(["**/*.ts"]),
 )
 
 ts_project(
     name = "lib",
-    srcs = glob(["src/**/*"]),
+    srcs = glob(["**/*.ts"]),
     transpiler = "tsc",
     source_map = True,
     declaration = True,
-    root_dir = "src/scripts",
+    root_dir = "src",
     out_dir = "lib",
 )
 
