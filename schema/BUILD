@@ -21,7 +21,7 @@ ts_project(
     transpiler = "tsc",
     source_map = True,
     declaration = True,
-    root_dir = "src",
+    root_dir = ".",
     out_dir = "lib",
 )
 
