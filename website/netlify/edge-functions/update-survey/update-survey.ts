@@ -40,14 +40,7 @@ export default async (request: Request, context: Context) => {
 
     const targetEnvs = (isDraft ? ["development"] : ["development", "production"]) as ("development" | "production")[];
 
-    try {
-        await sendSurveyToPosthog(body, targetEnvs);
-    } catch (e) {
-        console.error(e);
-        return new Response(`Internal error`, { status: 500 });
-    }
-
-    return new Response(null, { status: 202 });
+    return await sendSurveyToPosthog(body, targetEnvs);
 };
 
 async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "production")[]) {
@@ -65,9 +58,11 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
                 },
                 body: JSON.stringify(survey),
             });
-            const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
-            if (resp.ok) console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
-            else throw respSummary;
+            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            if (!resp.ok) {
+                console.error(resp.text());
+                return resp;
+            }
         }
         else {
             const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
@@ -79,11 +74,15 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
                 },
                 body: JSON.stringify(survey),
             });
-            const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
-            if (resp.ok) console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
-            else throw respSummary;
+            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+            if (!resp.ok) {
+                console.error(resp.text());
+                return resp;
+            }
         }
     }
+
+    return new Response(null, { status: 202 });
 }
 
 function surveyOf(data: any) {
