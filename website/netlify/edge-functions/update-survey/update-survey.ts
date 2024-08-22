@@ -59,7 +59,10 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
             const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdProd}`;
             const resp = await fetch(url, {
                 method: "PATCH",
-                headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_PROD")}` },
+                headers: {
+                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_PROD")}`,
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(survey),
             });
             const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
@@ -70,7 +73,10 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
             const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
             const resp = await fetch(url, {
                 method: "PATCH",
-                headers: { "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_DEV")}` },
+                headers: {
+                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_DEV")}`,
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(survey),
             });
             const respSummary = `PATCH ${url} - ${resp.status} ${resp.statusText}`;
