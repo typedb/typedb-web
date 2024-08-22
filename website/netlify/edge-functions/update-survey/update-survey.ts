@@ -60,7 +60,7 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
             const resp = await fetch(url, {
                 method: "PATCH",
                 headers: {
-                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_PROD")}`,
+                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY")}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(survey),
@@ -74,7 +74,7 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
             const resp = await fetch(url, {
                 method: "PATCH",
                 headers: {
-                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY_DEV")}`,
+                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY")}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(survey),
