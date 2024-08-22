@@ -13,6 +13,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "isolatedModules": true,
+    "sourceMap": true,
+    "declaration": true
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
