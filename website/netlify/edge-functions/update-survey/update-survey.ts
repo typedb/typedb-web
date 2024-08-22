@@ -47,38 +47,24 @@ async function sendSurveyToPosthog(data: any, targetEnvs: ("development" | "prod
     const survey = surveyOf(data);
     const surveyIdDev = data.posthogConfig.developmentId;
     const surveyIdProd = data.posthogConfig.productionId;
+
     for (const env of targetEnvs) {
-        if (env === "production") {
-            const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdProd}`;
-            const resp = await fetch(url, {
-                method: "PATCH",
-                headers: {
-                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY")}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(survey),
-            });
-            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
-            if (!resp.ok) {
-                console.error(resp.text());
-                return resp;
-            }
-        }
-        else {
-            const url = `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
-            const resp = await fetch(url, {
-                method: "PATCH",
-                headers: {
-                    "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY")}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(survey),
-            });
-            console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
-            if (!resp.ok) {
-                console.error(resp.text());
-                return resp;
-            }
+        const url = env === "production"
+            ? `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdProd}`
+            : `https://app.posthog.com/api/projects/${POSTHOG_PROJECT_ID_DEV}/surveys/${surveyIdDev}`;
+        const resp = await fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${Netlify.env.get("POSTHOG_API_KEY")}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(survey),
+        });
+        console.info(`PATCH ${url} - ${resp.status} ${resp.statusText}`);
+        if (!resp.ok) {
+            const responseText = await resp.text();
+            console.error(responseText);
+            return new Response(responseText, { status: resp.status, statusText: resp.statusText });
         }
     }
 
