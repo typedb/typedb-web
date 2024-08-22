@@ -43,6 +43,7 @@ export default async (request: Request, context: Context) => {
     try {
         await sendSurveyToPosthog(body, targetEnvs);
     } catch (e) {
+        console.error(e);
         return new Response(`Internal error`, { status: 500 });
     }
 
