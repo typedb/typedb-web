@@ -27,11 +27,13 @@ export type SurveyQuestionPresentation = "chips" | "dropdown";
 
 export class Survey {
     readonly questions: SurveyQuestion[];
-    readonly isMultiSelect: boolean;
 
     constructor(data: PropsOf<Survey>) {
         this.questions = data.questions;
-        this.isMultiSelect = data.isMultiSelect;
+    }
+
+    static fromSanity(data: SanitySurvey) {
+        return new Survey({ questions: data.questions });
     }
 }
 
