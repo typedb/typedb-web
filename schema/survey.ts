@@ -1,18 +1,23 @@
 import { OlistIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, ObjectRule, SanityDocument } from "@sanity/types";
-import { descriptionField, nameField, requiredRule } from "./common-fields";
+import { descriptionField, nameField, nameFieldOptional, requiredRule } from "./common-fields";
 import { PropsOf } from "./util";
 
 export interface SanitySurvey extends SanityDocument {
     name: string;
     description?: string;
     posthogConfig: SanityPosthogConfig;
-    questions: SurveyQuestion[];
+    sections: SurveySection[];
 }
 
 interface SanityPosthogConfig {
     developmentId: string;
     productionId: string;
+}
+
+export interface SurveySection {
+    name?: string;
+    questions: SurveyQuestion[];
 }
 
 export interface SurveyQuestion {
@@ -26,14 +31,14 @@ export interface SurveyQuestion {
 export type SurveyQuestionPresentation = "chips" | "dropdown";
 
 export class Survey {
-    readonly questions: SurveyQuestion[];
+    readonly sections: SurveySection[];
 
     constructor(data: PropsOf<Survey>) {
-        this.questions = data.questions;
+        this.sections = data.sections;
     }
 
     static fromSanity(data: SanitySurvey) {
-        return new Survey({ questions: data.questions });
+        return new Survey({ sections: data.sections });
     }
 }
 
@@ -113,6 +118,24 @@ const questionSchema = defineType({
     }),
 });
 
+const sectionSchemaName = "surveySection";
+
+const sectionSchema = defineType({
+    name: sectionSchemaName,
+    title: "Survey Section",
+    type: "object",
+    fields: [
+        nameFieldOptional,
+        defineField({
+            name: "questions",
+            title: "Questions",
+            type: "array",
+            of: [{ type: questionSchemaName }],
+            validation: requiredRule,
+        }),
+    ],
+});
+
 export const surveySchemaName = "survey";
 
 const surveySchema = defineType({
@@ -130,13 +153,13 @@ const surveySchema = defineType({
             validation: requiredRule,
         }),
         defineField({
-            name: "questions",
-            title: "Questions",
+            name: "sections",
+            title: "Sections",
             type: "array",
-            of: [{ type: questionSchemaName }],
+            of: [{ type: sectionSchemaName }],
             validation: requiredRule,
         }),
     ],
 });
 
-export const surveySchemas = [posthogConfigSchema, questionSchema, surveySchema];
+export const surveySchemas = [posthogConfigSchema, questionSchema, sectionSchema, surveySchema];
