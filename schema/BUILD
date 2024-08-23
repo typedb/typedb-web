@@ -22,6 +22,7 @@ ts_project(
         "//:node_modules/@sanity/asset-utils",
         "//:node_modules/@sanity/icons",
         "//:node_modules/@sanity/types",
+        "//:node_modules/@types/react",
         "//:node_modules/axios",
     ],
     transpiler = "tsc",
