@@ -108,7 +108,8 @@ export {
     socialMedias,
 } from "./social-media";
 export {
-    type SanitySurvey, type SurveyQuestion, type SurveyQuestionPresentation, Survey, surveySchemaName
+    type SanitySurvey, type SurveyQuestion, type SurveyQuestionOption, type SurveyQuestionPresentation,
+    Survey, surveySchemaName
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
