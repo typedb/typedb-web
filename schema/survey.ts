@@ -1,18 +1,12 @@
 import { OlistIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, ObjectRule, SanityDocument } from "@sanity/types";
+import { ArrayRule, defineField, defineType, ObjectRule, SanityDocument, StringRule } from "@sanity/types";
 import { descriptionField, nameField, nameFieldOptional, requiredRule } from "./common-fields";
 import { PropsOf } from "./util";
 
 export interface SanitySurvey extends SanityDocument {
     name: string;
     description?: string;
-    posthogConfig: SanityPosthogConfig;
     sections: SurveySection[];
-}
-
-interface SanityPosthogConfig {
-    developmentId: string;
-    productionId: string;
 }
 
 export interface SurveySection {
@@ -23,9 +17,15 @@ export interface SurveySection {
 export interface SurveyQuestion {
     body: string;
     isMultiSelect: boolean;
-    options: string[];
+    options: SurveyQuestionOption[];
     hasOpenEndedOption: boolean;
     presentation: SurveyQuestionPresentation;
+    posthogProperty: string;
+}
+
+export interface SurveyQuestionOption {
+    text: string;
+    posthogProperty: string;
 }
 
 export type SurveyQuestionPresentation = "chips" | "dropdown";
@@ -42,26 +42,35 @@ export class Survey {
     }
 }
 
-export const posthogConfigSchemaName = "surveyPosthogConfig";
+export const optionSchemaName = "surveyQuestionOption";
 
-const posthogConfigSchema = defineType({
-    name: posthogConfigSchemaName,
-    title: "PostHog Configuration",
+const optionSchema = defineType({
+    name: optionSchemaName,
+    title: "Option",
     type: "object",
     fields: [
         defineField({
-            name: "developmentId",
-            title: "ID (development)",
+            name: "text",
+            title: "Text",
             type: "string",
             validation: requiredRule,
         }),
         defineField({
-            name: "productionId",
-            title: "ID (production)",
+            name: "posthogProperty",
+            title: "PostHog Property",
+            description: "e.g. machine_learning",
             type: "string",
-            validation: requiredRule,
+            validation: (rule: StringRule) => rule.custom((value) => {
+                if (!value) return "Required";
+                if (!/^[a-z0-9_]*$/.test(value)) return "Must consist of lowercase letters, numbers and underscores";
+                return true;
+            }),
         }),
     ],
+    preview: {
+        select: { text: "text", posthogProperty: "posthogProperty" },
+        prepare: (selection) => ({ title: selection.text, subtitle: selection.posthogProperty || "" }),
+    },
 });
 
 export const questionSchemaName = "surveyQuestion";
@@ -88,7 +97,7 @@ const questionSchema = defineType({
             name: "options",
             title: "Options",
             type: "array",
-            of: [{ type: "string" }],
+            of: [{ type: optionSchemaName }],
             validation: (rule: ArrayRule<any>) => rule.required().min(2),
         }),
         defineField({
@@ -109,6 +118,17 @@ const questionSchema = defineType({
                 direction: "horizontal",
             },
             initialValue: "chips",
+        }),
+        defineField({
+            name: "posthogProperty",
+            title: "PostHog Property",
+            description: "e.g. cloud_onboarding_why_typedb_cloud",
+            type: "string",
+            validation: (rule: StringRule) => rule.custom((value) => {
+                if (!value) return "Required";
+                if (!/^[a-z0-9_]*$/.test(value)) return "Must consist of lowercase letters, numbers and underscores";
+                return true;
+            }),
         }),
     ],
     validation: (rule: ObjectRule) => rule.custom((obj) => {
@@ -147,12 +167,6 @@ const surveySchema = defineType({
         nameField,
         descriptionField,
         defineField({
-            name: "posthogConfig",
-            title: "PostHog Configuration",
-            type: posthogConfigSchemaName,
-            validation: requiredRule,
-        }),
-        defineField({
             name: "sections",
             title: "Sections",
             type: "array",
@@ -162,4 +176,4 @@ const surveySchema = defineType({
     ],
 });
 
-export const surveySchemas = [posthogConfigSchema, questionSchema, sectionSchema, surveySchema];
+export const surveySchemas = [optionSchema, questionSchema, sectionSchema, surveySchema];
