@@ -1,7 +1,7 @@
 /* This endpoint exists for debugging purposes - e.g. to view the payload of a webhook invocation. */
 
 import type { Context } from "https://edge.netlify.com";
-// import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
 const POSTHOG_PROJECT_ID_DEV = 84216;
 
