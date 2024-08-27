@@ -42,6 +42,10 @@ export class Survey {
     }
 }
 
+export function multiSelectOptionPosthogProperty(question: SurveyQuestion, option: SurveyQuestionOption) {
+    return `${question.posthogProperty}__${option.posthogProperty}`;
+}
+
 export const optionSchemaName = "surveyQuestionOption";
 
 const optionSchema = defineType({
