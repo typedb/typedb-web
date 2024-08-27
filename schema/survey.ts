@@ -46,6 +46,10 @@ export function multiSelectOptionPosthogProperty(question: SurveyQuestion, optio
     return `${question.posthogProperty}__${option.posthogProperty}`;
 }
 
+export function openEndedFieldPosthogProperty(value: string) {
+    return value.toLowerCase().replace(/[^a-z0-9]/g, "_").replace(/,/g, "").replace(/&/g, "");
+}
+
 export const optionSchemaName = "surveyQuestionOption";
 
 const optionSchema = defineType({
