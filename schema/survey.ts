@@ -1,6 +1,6 @@
 import { OlistIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, ObjectRule, SanityDocument, StringRule } from "@sanity/types";
-import { descriptionField, nameField, nameFieldOptional, requiredRule } from "./common-fields";
+import { descriptionField, nameField, requiredRule } from "./common-fields";
 import { PropsOf } from "./util";
 
 export interface SanitySurvey extends SanityDocument {
@@ -10,7 +10,7 @@ export interface SanitySurvey extends SanityDocument {
 }
 
 export interface SurveySection {
-    name?: string;
+    name: string;
     questions: SurveyQuestion[];
 }
 
@@ -153,7 +153,7 @@ const sectionSchema = defineType({
     title: "Survey Section",
     type: "object",
     fields: [
-        nameFieldOptional,
+        nameField,
         defineField({
             name: "questions",
             title: "Questions",
