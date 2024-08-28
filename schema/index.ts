@@ -108,8 +108,9 @@ export {
     socialMedias,
 } from "./social-media";
 export {
-    type SanitySurvey, type SurveyQuestion, type SurveyQuestionOption, type SurveyQuestionPresentation,
-    Survey, surveySchemaName, multiSelectOptionPosthogProperty, openEndedFieldPosthogProperty
+    type SanitySurvey, type SurveySection, type SurveyQuestion, type SurveyQuestionOption,
+    type SurveyQuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
+    openEndedFieldPosthogProperty
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
