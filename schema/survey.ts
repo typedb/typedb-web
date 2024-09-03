@@ -16,6 +16,7 @@ export interface SurveySection {
 export type SurveyQuestion = MultipleChoiceQuestion | CustomQuestion;
 
 export interface MultipleChoiceQuestion {
+    _type: typeof multipleChoiceQuestionSchemaName;
     body: string;
     isMultiSelect: boolean;
     options: QuestionOption[];
@@ -32,8 +33,17 @@ export interface QuestionOption {
 export type QuestionPresentation = "chips" | "dropdown";
 
 export interface CustomQuestion {
+    _type: typeof customQuestionSchemaName;
     body: string;
     customId: string;
+}
+
+export function isMultipleChoiceQuestion(question: SurveyQuestion): question is MultipleChoiceQuestion {
+    return question._type === multipleChoiceQuestionSchemaName;
+}
+
+export function isCustomQuestion(question: SurveyQuestion): question is CustomQuestion {
+    return question._type === customQuestionSchemaName;
 }
 
 export class Survey {
