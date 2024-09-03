@@ -3,7 +3,20 @@ import { defineField, defineType } from "@sanity/types";
 import { nameField, requiredRule } from "../common-fields";
 import { countrySchemaName } from "./geography";
 
-export const cloudProvidersQuery = ``; // TODO
+export const providerRegionsQuery =
+`*[_type == 'cloudProvider']{
+  name,
+  "id": id.current,
+  regions[] {
+    vendorId,
+    location,
+    country -> {
+      name,
+      code,
+      continent -> { name, ordinal }
+    }
+  }
+}`;
 
 export interface CloudProvider {
     id: string;
