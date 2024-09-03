@@ -18,7 +18,7 @@ export const providerRegionsQuery =
   }
 }`;
 
-export interface CloudProvider {
+export interface ProviderRegionInfo {
     id: string;
     regions: CloudRegion[];
 }
