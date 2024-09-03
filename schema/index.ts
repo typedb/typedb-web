@@ -1,4 +1,5 @@
 import { actionSchemas } from "./button";
+import { cloudPlatformSchemas } from "./cloud-platform";
 import { codeSchemas } from "./code";
 import { componentSchemas } from "./component";
 import { illustrationSchemas } from "./illustration";
@@ -18,13 +19,18 @@ import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
-    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
-    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...surveySchemas,
-    ...textSchemas, testimonialSchema,
+    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
+    ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
+    ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
+    ...surveySchemas, ...textSchemas, testimonialSchema,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
+export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
+export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
+export {
+    type CloudProvider, type CloudRegion, type Country, type Continent, cloudProvidersQuery, cloudProviderSchemaName
+} from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName,
@@ -108,8 +114,8 @@ export {
     socialMedias,
 } from "./social-media";
 export {
-    type SanitySurvey, type SurveySection, type SurveyQuestion, type SurveyQuestionOption,
-    type SurveyQuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
+    type SanitySurvey, type SurveySection, type SurveyQuestion, type MultipleChoiceQuestion, type CustomQuestion,
+    type QuestionOption, type QuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
     openEndedFieldPosthogProperty
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";

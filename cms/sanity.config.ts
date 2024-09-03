@@ -1,7 +1,8 @@
 import "./styles.css";
 
 import {
-    BinaryDocumentIcon, BlockElementIcon, ClipboardImageIcon, CommentIcon, DocumentIcon, DocumentsIcon, OlistIcon,
+    ArrowTopRightIcon,
+    BinaryDocumentIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, CommentIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, OlistIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
@@ -21,7 +22,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -46,7 +47,7 @@ export default defineConfig({
                     singletonListItem(s, topbarSchemaName, { title: "Topbar", icon: ThListIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
-                s.listItem().title("Pages").icon(DocumentsIcon).child(s.list().title("Pages").items([
+                s.listItem().title("Pages - Main Site").icon(DocumentsIcon).child(s.list().title("Pages - Main Site").items([
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
                     s.divider(),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
@@ -68,12 +69,23 @@ export default defineConfig({
                     s.divider(),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
-                s.listItem().title("Technical Articles").icon(BinaryDocumentIcon).child(s.list().title("Technical Articles").items([
+                s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
+                    singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
+                    s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
+                ])),
+                s.listItem().title("Learning Resources & Events").icon(BookIcon).child(s.list().title("Learning Resources & Events").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
                     s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
                     s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
+                    s.documentTypeListItem(lectureSchemaName).title("Lectures"),
+                    s.documentTypeListItem(paperSchemaName).title("Papers"),
+                    s.documentTypeListItem(liveEventSchemaName).title("Live Events"),
+                    s.documentTypeListItem(solutionPageSchemaName).title("Solutions"),
+                    s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
                 ])),
-                s.documentTypeListItem(linkSchemaName).title("Links"),
+                s.listItem().title("Structure").icon(ComponentIcon).child(s.list().title("Structure").items([
+                    s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
+                ])),
                 s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
                     s.documentTypeListItem(splitPaneIllustrationSchemaName).title("Split Pane Illustrations"),
                     s.documentTypeListItem(imageIllustrationSchemaName).title("Images"),
@@ -82,19 +94,18 @@ export default defineConfig({
                     s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Code Snippets"),
                     s.documentTypeListItem(graphVisualisationSchemaName).title("Graph Visualisations"),
                 ])),
-                s.documentTypeListItem(personSchemaName).title("People"),
-                s.documentTypeListItem(organisationSchemaName).title("Organisations"),
-                s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
-                s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
-                s.documentTypeListItem(lectureSchemaName).title("Lectures"),
-                s.documentTypeListItem(paperSchemaName).title("Papers"),
-                s.documentTypeListItem(solutionPageSchemaName).title("Solutions"),
-                s.documentTypeListItem(liveEventSchemaName).title("Events"),
-                s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
+                s.documentTypeListItem(linkSchemaName).title("Links"),
+                s.listItem().title("Objects").icon(CubeIcon).child(s.list().title("Objects").items([
+                    s.documentTypeListItem(personSchemaName).title("People"),
+                    s.documentTypeListItem(organisationSchemaName).title("Organisations"),
+                    s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
+                    s.documentTypeListItem(countrySchemaName).title("Countries"),
+                    s.documentTypeListItem(continentSchemaName).title("Continents"),
+                ])),
                 s.divider(),
-                singletonListItem(s, communityResourcesSchemaName, { title: "Community Resources", icon: CommentIcon }),
                 singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
                 s.documentTypeListItem(surveySchemaName).title("Surveys"),
+                singletonListItem(s, communityResourcesSchemaName, { title: "External Platforms", icon: ArrowTopRightIcon }),
                 s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),

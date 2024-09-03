@@ -1,11 +1,10 @@
 import { OlistIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, ObjectRule, SanityDocument, StringRule } from "@sanity/types";
-import { descriptionField, nameField, requiredRule } from "./common-fields";
+import { nameField, requiredRule } from "./common-fields";
 import { PropsOf } from "./util";
 
 export interface SanitySurvey extends SanityDocument {
     name: string;
-    description?: string;
     sections: SurveySection[];
 }
 
@@ -14,21 +13,28 @@ export interface SurveySection {
     questions: SurveyQuestion[];
 }
 
-export interface SurveyQuestion {
+export type SurveyQuestion = MultipleChoiceQuestion | CustomQuestion;
+
+export interface MultipleChoiceQuestion {
     body: string;
     isMultiSelect: boolean;
-    options: SurveyQuestionOption[];
+    options: QuestionOption[];
     hasOpenEndedOption: boolean;
-    presentation: SurveyQuestionPresentation;
+    presentation: QuestionPresentation;
     posthogProperty: string;
 }
 
-export interface SurveyQuestionOption {
+export interface QuestionOption {
     text: string;
     posthogProperty: string;
 }
 
-export type SurveyQuestionPresentation = "chips" | "dropdown";
+export type QuestionPresentation = "chips" | "dropdown";
+
+export interface CustomQuestion {
+    body: string;
+    customId: string;
+}
 
 export class Survey {
     readonly sections: SurveySection[];
@@ -42,7 +48,7 @@ export class Survey {
     }
 }
 
-export function multiSelectOptionPosthogProperty(question: SurveyQuestion, option: SurveyQuestionOption) {
+export function multiSelectOptionPosthogProperty(question: MultipleChoiceQuestion, option: QuestionOption) {
     return `${question.posthogProperty}__${option.posthogProperty}`;
 }
 
@@ -50,7 +56,7 @@ export function openEndedFieldPosthogProperty(value: string) {
     return value.toLowerCase().replace(/[^a-z0-9]/g, "_").replace(/,/g, "").replace(/&/g, "");
 }
 
-export const optionSchemaName = "surveyQuestionOption";
+export const optionSchemaName = "questionOption";
 
 const optionSchema = defineType({
     name: optionSchemaName,
@@ -81,11 +87,11 @@ const optionSchema = defineType({
     },
 });
 
-export const questionSchemaName = "surveyQuestion";
+export const multipleChoiceQuestionSchemaName = "multipleChoiceQuestion";
 
-const questionSchema = defineType({
-    name: questionSchemaName,
-    title: "Survey Question",
+const multipleChoiceQuestionSchema = defineType({
+    name: multipleChoiceQuestionSchemaName,
+    title: "Multiple Choice Question",
     type: "object",
     fields: [
         defineField({
@@ -130,7 +136,7 @@ const questionSchema = defineType({
         defineField({
             name: "posthogProperty",
             title: "PostHog Property",
-            description: "e.g. cloud_onboarding_why_typedb_cloud",
+            description: "e.g. job_title",
             type: "string",
             validation: (rule: StringRule) => rule.custom((value) => {
                 if (!value) return "Required";
@@ -144,6 +150,40 @@ const questionSchema = defineType({
         if (obj["hasOpenEndedOption"] && obj["presentation"] !== "chips") return `An open-ended option is only supported when presentation is set to 'chips'`;
         return true;
     }),
+    preview: {
+        select: { body: "body", isMultiSelect: "isMultiSelect" },
+        prepare: (selection) => ({
+            title: selection.body,
+            subtitle: selection.isMultiSelect ? "Multi-select" : "Single select"
+        }),
+    },
+});
+
+export const customQuestionSchemaName = "customQuestion";
+
+const customQuestionSchema = defineType({
+    name: customQuestionSchemaName,
+    title: "Custom Question",
+    type: "object",
+    fields: [
+        defineField({
+            name: "body",
+            title: "Body",
+            type: "string",
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "customId",
+            title: "Custom ID",
+            description: "Used by the Cloud Platform website to determine how to render this question",
+            type: "string",
+            validation: requiredRule,
+        }),
+    ],
+    preview: {
+        select: { body: "body", customId: "customId" },
+        prepare: (selection) => ({ title: selection.body, subtitle: `Custom (${selection.customId})` }),
+    },
 });
 
 const sectionSchemaName = "surveySection";
@@ -158,7 +198,7 @@ const sectionSchema = defineType({
             name: "questions",
             title: "Questions",
             type: "array",
-            of: [{ type: questionSchemaName }],
+            of: [{ type: multipleChoiceQuestionSchemaName }, { type: customQuestionSchemaName }],
             validation: requiredRule,
         }),
     ],
@@ -173,7 +213,6 @@ const surveySchema = defineType({
     icon: OlistIcon,
     fields: [
         nameField,
-        descriptionField,
         defineField({
             name: "sections",
             title: "Sections",
@@ -184,4 +223,4 @@ const surveySchema = defineType({
     ],
 });
 
-export const surveySchemas = [optionSchema, questionSchema, sectionSchema, surveySchema];
+export const surveySchemas = [optionSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
