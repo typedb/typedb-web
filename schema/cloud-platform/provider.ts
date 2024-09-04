@@ -48,7 +48,7 @@ export interface Country {
 
 export interface Continent {
     name: string;
-    ordinal: string;
+    ordinal: number;
 }
 
 export const cloudRegionSchemaName = "cloudRegion";
