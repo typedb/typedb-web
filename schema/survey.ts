@@ -185,7 +185,7 @@ const customQuestionSchema = defineType({
         defineField({
             name: "customId",
             title: "Custom ID",
-            description: "Used by the Cloud Platform website to determine how to render this question",
+            description: "Used by the Cloud Platform website to determine how to render this question. Also used as the PostHog property name.",
             type: "string",
             validation: requiredRule,
         }),

@@ -4,19 +4,30 @@ import { nameField, requiredRule } from "../common-fields";
 import { countrySchemaName } from "./geography";
 
 export const providerRegionsQuery =
-`*[_type == 'cloudProvider']{
-  name,
-  "id": id.current,
-  regions[] {
-    vendorId,
-    location,
-    country -> {
-      name,
-      code,
-      continent -> { name, ordinal }
+    `{
+  "providers": *[_type == 'cloudProvider']{
+    name,
+    "id": id.current,
+    regions[] {
+      vendorId,
+      location,
+      country -> {
+        name,
+        code,
+        "continent": continent -> name
+      }
     }
+  },
+  "continents": *[_type == 'continent']{
+    name,
+    ordinal
   }
 }`;
+
+export interface ProviderRegionData {
+    providers: ProviderRegionInfo[];
+    continents: Continent[];
+}
 
 export interface ProviderRegionInfo {
     id: string;
@@ -32,7 +43,7 @@ export interface CloudRegion {
 export interface Country {
     name: string;
     code: string;
-    continent: Continent;
+    continent: string;
 }
 
 export interface Continent {

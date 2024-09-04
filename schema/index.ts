@@ -29,7 +29,8 @@ export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
 export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
 export {
-    type ProviderRegionInfo, type CloudRegion, type Country, type Continent, providerRegionsQuery, cloudProviderSchemaName
+    type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
+    providerRegionsQuery, cloudProviderSchemaName
 } from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
