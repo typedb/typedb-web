@@ -42,7 +42,10 @@ checkstyle_test(
     name = "checkstyle",
     include = glob(["BUILD"]),
     exclude = glob([
-        "**/*",
+        "**/*.ts",
+        "*.yaml",
+        "*.json",
+        "*.md",
     ]),
     license_type = "commercial-header",
 )
