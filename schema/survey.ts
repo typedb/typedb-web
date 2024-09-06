@@ -62,8 +62,9 @@ export function multiSelectOptionPosthogProperty(question: MultipleChoiceQuestio
     return `${question.posthogProperty}__${option.posthogProperty}`;
 }
 
-export function multiSelectOpenEndedPosthogProperty(value: string) {
-    return value.toLowerCase().replace(/[^a-z0-9]/g, "_").replace(/,/g, "").replace(/&/g, "");
+export function multiSelectOtherOptionPosthogProperty(question: MultipleChoiceQuestion, otherOption: string) {
+    const sanitisedOption = otherOption.toLowerCase().replace(/[^a-z0-9]/g, "_").replace(/,/g, "").replace(/&/g, "");
+    return `${question.posthogProperty}__${sanitisedOption}`;
 }
 
 export const optionSchemaName = "questionOption";

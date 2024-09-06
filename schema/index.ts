@@ -117,7 +117,7 @@ export {
 export {
     type SanitySurvey, type SurveySection, type SurveyQuestion, type MultipleChoiceQuestion, type CustomQuestion,
     type QuestionOption, type QuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
-    multiSelectOpenEndedPosthogProperty, isMultipleChoiceQuestion, isCustomQuestion,
+    multiSelectOtherOptionPosthogProperty, isMultipleChoiceQuestion, isCustomQuestion,
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
