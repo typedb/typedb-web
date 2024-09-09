@@ -61,4 +61,4 @@ function resourceLinkText(resource: Resource): string {
     else return "";
 }
 
-export const resourceSchemas = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, ...sectionSchemas, paperSchema];
+export const resourceSchemas: any[] = [...articleSchemas, genericResourceSchema, liveEventSchema, ...lectureSchemas, ...sectionSchemas, paperSchema];

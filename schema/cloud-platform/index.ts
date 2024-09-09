@@ -2,7 +2,7 @@ import { onboardingSchemas } from "./onboarding";
 import { cloudProviderSchemas } from "./provider";
 import { geographySchemas } from "./geography";
 
-export const cloudPlatformSchemas = [
+export const cloudPlatformSchemas: any[] = [
     ...cloudProviderSchemas,
     ...geographySchemas,
     ...onboardingSchemas,

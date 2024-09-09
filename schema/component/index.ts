@@ -6,7 +6,7 @@ import { linkPanelSchemas } from "./link-panel";
 import { pageSectionSchemas } from "./page-section";
 import { publicationSchemas } from "./publication-panel";
 
-export const componentSchemas = [
+export const componentSchemas: any[] = [
     ...conclusionPanelSchemas,
     ...contentTextPanelSchemas,
     ...featureGridSchemas,

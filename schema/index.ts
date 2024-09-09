@@ -18,7 +18,7 @@ import { surveySchemas } from "./survey";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
-export const schemaTypes = [
+export const schemaTypes: any[] = [
     ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
     ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
     ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
