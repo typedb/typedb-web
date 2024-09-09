@@ -19,7 +19,7 @@ ts_project(
     name = "lib",
     srcs = glob(
         ["**/*.ts"],
-        exclude = ["lib"]
+        exclude = ["lib/**/*"]
     ),
     deps = [
         "//:node_modules/@sanity/asset-utils",
