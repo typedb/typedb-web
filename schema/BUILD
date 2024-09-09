@@ -17,7 +17,10 @@ copy_to_bin(
 
 ts_project(
     name = "lib",
-    srcs = glob(["**/*.ts"]),
+    srcs = glob(
+        ["**/*.ts"],
+        exclude = ["lib"]
+    ),
     deps = [
         "//:node_modules/@sanity/asset-utils",
         "//:node_modules/@sanity/icons",
