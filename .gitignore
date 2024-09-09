@@ -19,12 +19,15 @@ cms/data.json
 cms/scripts/credentials/**/*
 !cms/scripts/credentials/.gitkeep
 
+# Common
+common/lib
+
 # PostHog
 posthog/credential/*
 !posthog/credential/apiKey.template.mjs
 
 # Schema
-schema/**/*.js
+schema/lib
 
 # Website - Angular
 website/.angular

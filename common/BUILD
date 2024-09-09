@@ -40,7 +40,6 @@ checkstyle_test(
     include = glob(["BUILD"]),
     exclude = glob([
         "src/**/*",
-        ".gitignore",
         "*.json",
         "*.yaml",
         "*.md",
