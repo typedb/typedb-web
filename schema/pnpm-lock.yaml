@@ -24,8 +24,8 @@ devDependencies:
     specifier: 18.2.0
     version: 18.2.0
   typescript:
-    specifier: 4.7.4
-    version: 4.7.4
+    specifier: 5.2.2
+    version: 5.2.2
 
 packages:
 
@@ -351,9 +351,9 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /typescript@4.7.4:
-    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
-    engines: {node: '>=4.2.0'}
+  /typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
