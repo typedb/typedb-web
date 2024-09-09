@@ -138,8 +138,8 @@ dependencies:
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/mesh-extras@6.5.9)(@pixi/mesh@6.5.9)(@pixi/particle-container@6.5.9)(@pixi/prepare@6.5.9)(@pixi/settings@6.5.9)(@pixi/sprite-tiling@6.5.9)(@pixi/sprite@6.5.9)(@pixi/text@6.5.9)(@pixi/utils@6.5.9)
   posthog-js:
-    specifier: ^1.155.0
-    version: 1.155.0
+    specifier: 1.161.0
+    version: 1.161.0
   prismjs:
     specifier: 1.29.0
     version: 1.29.0
@@ -9714,8 +9714,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /posthog-js@1.155.0:
-    resolution: {integrity: sha512-gxi72Qcp7Vnq6efe5gNxsq84zyEFd33NUmoLSgcbMPhxU30qgc89Aw/N2mRB4mGrD3Mq0rCnDJUzGFdN59nR0g==}
+  /posthog-js@1.161.0:
+    resolution: {integrity: sha512-P17q2s77/p7QPWrIhp9uAXVaLT8SwrdNh6W2QOilAMllOYMxD6Lzj4C8JW3NeqlL+nGbViCPpLmkUWuvWnGVLQ==}
     dependencies:
       fflate: 0.4.8
       preact: 10.23.1
