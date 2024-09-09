@@ -11816,6 +11816,7 @@ packages:
   file:../schema:
     resolution: {directory: ../schema, type: directory}
     name: typedb-web-schema
+    requiresBuild: true
     dependencies:
       '@sanity/asset-utils': 1.3.0
     dev: false
