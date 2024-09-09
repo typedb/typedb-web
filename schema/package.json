@@ -6,7 +6,7 @@
     "license": "UNLICENSED",
     "devDependencies": {
         "@sanity/asset-utils": "1.3.0",
-        "@sanity/icons": "2.4.1",
+        "@sanity/icons": "3.3.1",
         "@sanity/types": "3.14.1",
         "@types/react": "18.0.28",
         "axios": "1.5.1",
