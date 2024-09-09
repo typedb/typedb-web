@@ -19,6 +19,10 @@ cms/data.json
 cms/scripts/credentials/**/*
 !cms/scripts/credentials/.gitkeep
 
+# PostHog
+posthog/credential/*
+!posthog/credential/apiKey.template.mjs
+
 # Schema
 schema/**/*.js
 

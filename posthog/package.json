@@ -1,0 +1,17 @@
+{
+    "name": "typedb-web-posthog",
+    "private": true,
+    "version": "1.0.0",
+    "main": "package.json",
+    "license": "UNLICENSED",
+    "scripts": {
+        "surveys:create": "node createSurvey.mjs",
+        "orgs:list": "node listOrgs.mjs",
+        "projects:list": "node listProjects.mjs",
+        "surveys:list": "node listSurveys.mjs",
+        "surveys:update": "node updateSurvey.mjs"
+    },
+    "devDependencies": {
+        "axios": "1.7.4"
+    }
+}
