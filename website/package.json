@@ -80,7 +80,7 @@
     "@angular-eslint/template-parser": "17.1.1",
     "@angular/cli": "17.0.8",
     "@angular/compiler-cli": "17.0.8",
-    "@sanity/icons": "2.4.1",
+    "@sanity/icons": "3.3.1",
     "@sanity/types": "3.14.4",
     "@sanity/webhook": "4.0.4",
     "@trivago/prettier-plugin-sort-imports": "4.2.0",

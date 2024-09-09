@@ -191,8 +191,8 @@ devDependencies:
     specifier: 17.0.8
     version: 17.0.8(@angular/compiler@17.0.8)(typescript@5.2.2)
   '@sanity/icons':
-    specifier: 2.4.1
-    version: 2.4.1(react@18.2.0)
+    specifier: 3.3.1
+    version: 3.3.1(react@18.2.0)
   '@sanity/types':
     specifier: 3.14.4
     version: 3.14.4
@@ -4307,11 +4307,11 @@ packages:
       eventsource: 2.0.2
     dev: true
 
-  /@sanity/icons@2.4.1(react@18.2.0):
-    resolution: {integrity: sha512-/yxcIT0k1RxStI/pP/oHM44fHI6Oxiygf0jPcdV06Ce0xfFo+51UEqJSfE8hQ3fh+uFkat8ZZObZjq5v1ceJzw==}
+  /@sanity/icons@3.3.1(react@18.2.0):
+    resolution: {integrity: sha512-5SYwRmqKpEVABUyLbSBC5Ffr21P2EvtWZtkqMCh3fiMpNMM3c56RFjdQBoPn2w1EuzJXSFit/ZTHMWAXMMlAwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      react: ^18
+      react: ^18.3 || >=19.0.0-rc
     dependencies:
       react: 18.2.0
     dev: true
