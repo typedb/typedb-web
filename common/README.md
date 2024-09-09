@@ -18,3 +18,4 @@ For `typedb-web` itself, a local path dependency is used by default.
 Q: Running `pnpm i` in `website` says it updates the version of `typedb-web-common`, but the changes aren't reflected
 when running `ng serve`.
 A: Try running `ng cache clean` in `website`. If that fails, try deleting `node_modules` in `website` and rerunning `pnpm i`.
+If that fails, try deleting both `node_modules` and `pnpm-lock.yaml` and rerunning `pnpm i`.

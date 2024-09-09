@@ -16,7 +16,7 @@ import { lecturesPageSchemas } from "./lectures";
 import { papersPageSchema } from "./papers";
 import { metaTagsSchemas } from "./meta-tags";
 
-export const pageSchemas = [
+export const pageSchemas: any[] = [
     ...basePageSchemas,
     ...blogSchemas,
     ...deploymentPageSchemas,

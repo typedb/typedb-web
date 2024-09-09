@@ -1,21 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "skipLibCheck": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "isolatedModules": true,
-    "sourceMap": true,
-    "declaration": true
-  },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
+    "include": ["**/*.ts"],
+    "exclude": ["lib", "node_modules"],
+    "compilerOptions": {
+        "target": "ES2022",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "outDir": "lib",
+        "skipLibCheck": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "sourceMap": true,
+        "declaration": true
+    },
 }
