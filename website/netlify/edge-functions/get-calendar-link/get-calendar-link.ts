@@ -11,7 +11,7 @@ const internalServerError = () => new Response(null, { status: 500, headers: { "
 
 export default async (request: Request, context: Context) => {
     if (request.method.toLowerCase() === "options") {
-        console.log("OPTIONS /api/airmeet/register");
+        console.log("OPTIONS /api/get-calendar-link");
         return new Response(null, {
             status: 200,
             headers: {
@@ -29,7 +29,7 @@ export default async (request: Request, context: Context) => {
     const title = params.get("title")!;
     const icsName = title.replace(/\s/g, "-").toLowerCase();
     const endTime = Date.now();
-    console.log("GET /event: completed in " + (endTime - startTime) + "ms");
+    console.log("GET /api/get-calendar-link: completed in " + (endTime - startTime) + "ms");
     const calndrURL = `${CALNDR_API_URL}/?service=${params.get("service")}&start=${params.get(
         "startTime",
     )}&duration=${params.get("durationMins")}&timezone=${params.get("timezone")}&title=${title}&description=${
@@ -37,22 +37,4 @@ export default async (request: Request, context: Context) => {
     }&location=${params.get("location")}&calname=${icsName}`;
 
     return Response.redirect(calndrURL, 302);
-
-    // if (params.get("service") === "google") {
-    //     return Response.redirect(calndrURL, 302);
-    // }
-    //
-    // const eventResponse = await fetch(calndrURL, { method: "GET" });
-    // if (!eventResponse.ok) {
-    //     console.error(eventResponse);
-    //     return internalServerError();
-    // }
-    //
-    // return new Response(eventResponse.body, {
-    //     headers: {
-    //         "Content-Disposition": `attachment; filename=${icsName}.ics`,
-    //         "Content-Type": "text/calendar",
-    //         "Access-Control-Allow-Origin": "*",
-    //     },
-    // });
 };

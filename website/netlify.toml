@@ -136,6 +136,22 @@ from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
+# POSTHOG REVERSE PROXY
+# Keep indefinitely. These reverse proxy configurations enable us to route data to PostHog through Netlify.
+[[redirects]]
+from = "/ingest/static/*"
+to = "https://us-assets.i.posthog.com/static/:splat"
+host = "us-assets.i.posthog.com"
+status = 200
+force = true
+
+[[redirects]]
+from = "/ingest/*"
+to = "https://us.i.posthog.com/:splat"
+host = "us.i.posthog.com"
+status = 200
+force = true
+
 # MAIN SITE BEHAVIOUR
 # Keep indefinitely. These redirects are required for the main site to behave correctly
 
@@ -153,6 +169,10 @@ status = 200
 from = "/*"
 to = "/index.html"
 status = 200
+
+[[edge_functions]]
+function = "echo"
+path = "/api/echo"
 
 [[edge_functions]]
 function = "get-calendar-link"
