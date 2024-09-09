@@ -56,7 +56,7 @@ export const communityResourcesSchemaName = "communityResources";
 
 export const communityResourcesSchema = defineType({
     name: communityResourcesSchemaName,
-    title: "Community Resources",
+    title: "External Platforms",
     type: "document",
     groups: [
         { name: "developerAndSupport", title: "Developer / Support Platforms" },
@@ -94,7 +94,7 @@ export const communityResourcesSchema = defineType({
             group: "socialMedia",
         })),
     ],
-    preview: { prepare: (_selection) => ({ title: "Community Resources" }) },
+    preview: { prepare: (_selection) => ({ title: "External Platforms" }) },
 });
 
 export const socialMediaSchemas = [communityResourcesSchema];

@@ -1,4 +1,5 @@
 import { actionSchemas } from "./button";
+import { cloudPlatformSchemas } from "./cloud-platform";
 import { codeSchemas } from "./code";
 import { componentSchemas } from "./component";
 import { illustrationSchemas } from "./illustration";
@@ -13,17 +14,24 @@ import { personSchemas } from "./person";
 import { referenceMaterialSchema } from "./reference-material";
 import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
+import { surveySchemas } from "./survey";
 import { testimonialSchema } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes = [
-    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...componentSchemas, ...formSchemas, ...keyPointSchemas,
-    ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas, ...pageSchemas,
-    ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas, ...textSchemas,
-    testimonialSchema,
+    ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
+    ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
+    ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
+    ...surveySchemas, ...textSchemas, testimonialSchema,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
+export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
+export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
+export {
+    type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
+    providerRegionsQuery, cloudProviderSchemaName
+} from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
     codeSnippetSchemaName, polyglotSnippetSchemaName,
@@ -106,6 +114,11 @@ export {
     type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink,
     socialMedias,
 } from "./social-media";
+export {
+    type SanitySurvey, type SurveySection, type SurveyQuestion, type MultipleChoiceQuestion, type CustomQuestion,
+    type QuestionOption, type QuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
+    multiSelectOtherOptionPosthogProperty, isMultipleChoiceQuestion, isCustomQuestion,
+} from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
 export { ParagraphWithHighlights, type PortableText, TitleAndBody } from "./text";
 export { groupBy, associateBy } from "./util";

@@ -47,7 +47,7 @@ export const titleField = Object.assign({}, titleFieldOptional, { validation: re
 export const titleFieldWithHighlights = defineField({
     name: titleFieldName,
     title: "Title",
-    description: "Text marked as 'bold' will instead be rendered in this section's theme color",
+    description: "Text marked as 'bold' will instead be rendered in the highlight color",
     type: "array",
     of: [{ type: "block" }],
     validation: (rule: ArrayRule<any>) =>
