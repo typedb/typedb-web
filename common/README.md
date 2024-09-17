@@ -15,7 +15,13 @@ For `typedb-web` itself, a local path dependency is used by default.
 
 ### Troubleshooting
 
-Q: Running `pnpm i` in `website` says it updates the version of `typedb-web-common`, but the changes aren't reflected
+Q: Running `pnpm i` in an Angular project that depends on `typedb-web-common` (or `typedb-web-schema`) says it updates the version of the library, but the changes aren't reflected
 when running `ng serve`.
-A: Try running `ng cache clean` in `website`. If that fails, try deleting `node_modules` in `website` and rerunning `pnpm i`.
+A:
+Use `readlink -f` to find the true location of the `node_modules/typedb-web-common` link. Delete both the true location, and the link. Then, rerun `pnpm i`.
+If that fails, try running `ng cache clean` in `website`.
+If that fails, try deleting `node_modules` in `website` and rerunning `pnpm i`.
 If that fails, try deleting both `node_modules` and `pnpm-lock.yaml` and rerunning `pnpm i`.
+
+Q: Running `pnpm i` in an Angular project that depends on `typedb-web-common` (or `typedb-web-schema`) shows an error on running `tsc` in the install script.
+A: A lot of the time, these are transitive dependencies that can be safely ignored (but it would be best to fix the error by upgrading dependency versions!)

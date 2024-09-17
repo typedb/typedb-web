@@ -12,3 +12,7 @@ In order to compile either Sanity or Angular, you'll need to install the `npm` d
 ```shell
 pnpm i
 ```
+
+## Troubleshooting
+
+See [common/README.md](../common/README.md).
