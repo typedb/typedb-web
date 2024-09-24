@@ -1,0 +1,11 @@
+<td-form-dialog
+  [isSubmitting]="isSubmitting$ | async"
+  titleProp="Subscribe to Newsletter" [description]="description$ | async"
+>
+  <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
+    <td-form-input [form]="form" field="first_name" label="First Name" autocomplete="given-name" [required]="true"/>
+    <td-form-input [form]="form" field="last_name" label="Last Name" autocomplete="family-name" [required]="true"/>
+    <td-form-input [form]="form" field="email" label="Email" autocomplete="email" [required]="true"/>
+    <td-form-actions buttonIdPrefix="subscribeToNewsletter" [isSubmitting]="isSubmitting$ | async" submitText="Subscribe"/>
+  </td-form>
+</td-form-dialog>

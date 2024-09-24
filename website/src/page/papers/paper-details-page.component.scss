@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 .resource-section {
     padding-top: 64px;
@@ -44,19 +45,11 @@
 }
 
 .wd-img {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 
     @media (max-width: media.$max-width-mobile) {
         max-width: 100%;
-    }
-}
-
-#hubspot-form-holder {
-    margin: 24px 0;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin: 20px 0;
     }
 }
 

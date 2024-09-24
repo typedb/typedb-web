@@ -11,7 +11,7 @@ Install the Sanity CLI globally:
 pnpm add --global @sanity/cli@latest
 ```
 
-Change directory to the `cms` folder to perform migrations.
+Change directory to the `sanity` folder to perform migrations.
 
 ## Authentication
 

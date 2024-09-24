@@ -1,0 +1,20 @@
+<td-form-dialog
+  [isSubmitting]="isSubmitting$ | async"
+  titleProp="Provide Feedback" [description]="description$ | async"
+>
+  <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
+    <label for="overall_rating_typedb">How would you rate TypeDB? (optional)</label>
+    <td-form-toggle-group [form]="form" field="overall_rating_typedb" [options]="ratingOptions"/>
+
+    <label for="overall_rating_page">How would you rate this page? (optional)</label>
+    <td-form-toggle-group [form]="form" field="overall_rating_page" [options]="ratingOptions"/>
+
+    <label for="feedback_text">Comments (optional)</label>
+    <td-form-textarea [form]="form" field="feedback_text"/>
+
+    <label for="email">Email (optional)</label>
+    <td-form-input [form]="form" field="email" autocomplete="email"/>
+
+    <td-form-actions buttonIdPrefix="provideFeedback" [isSubmitting]="isSubmitting$ | async" submitText="Submit" [submitDisabled]="!form.dirty"/>
+  </td-form>
+</td-form-dialog>

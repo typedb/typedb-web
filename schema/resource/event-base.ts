@@ -7,20 +7,20 @@ import { SanityEventBase } from "./sanity";
 export abstract class EventBase extends SiteResource {
     readonly imageURL: string;
     readonly speakers: Person[];
-    readonly hubspotFormID?: string;
+    readonly cioFormID?: string;
 
     protected constructor(props: PropsOf<EventBase>) {
         super(props);
         this.imageURL = props.imageURL;
         this.speakers = props.speakers;
-        this.hubspotFormID = props.hubspotFormID;
+        this.cioFormID = props.cioFormID;
     }
 
     static fromSanity(data: SanityEventBase, db: SanityDataset): PropsOf<EventBase> {
         return Object.assign(resourcePropsFromSanity(data, db), {
             imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),
-            hubspotFormID: data.hubspotFormID,
+            cioFormID: data.cioFormID,
         });
     }
 

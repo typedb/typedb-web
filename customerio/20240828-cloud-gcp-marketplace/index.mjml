@@ -1,0 +1,149 @@
+<mjml>
+    <mj-head>
+        <mj-title>TypeDB</mj-title>
+        <mj-font name="Titillium Web" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap"></mj-font>
+        <mj-attributes>
+            <mj-all font-family="Titillium Web, Helvetica, Arial, sans-serif"></mj-all>
+            <mj-section padding="20px 20px 0 20px"></mj-section>
+            <mj-column padding="0"></mj-column>
+            <mj-text font-weight="400" font-size="16px" color="#1A182A" line-height="26px" align="justify" padding="10px 0"></mj-text>
+            <mj-button background-color="#1D1354" font-size="16px" height="48px" color="#FFF" css-class="mj-button"></mj-button>
+            <mj-divider padding="40px 0 0" border-width="1px"></mj-divider>
+            <mj-social css-class="mj-social"></mj-social>
+            <mj-social-element background-color="#1D1354" css-class="mj-social-element"></mj-social-element>
+        </mj-attributes>
+        <mj-style>
+            h1 { font-size: 30px; line-height: 36px; font-weight: 600; }
+            a { color: #374E67; }
+            p a, p a[href] { color: #0cc7b8; font-weight: 600; }
+            ol, ul, li { margin: 0; padding: 0 0 0 1em; }
+            .td-actions { display: block; width: 100%; }
+            .td-actions > table { width: unset !important; }
+            .mj-button a { white-space: nowrap; display: block !important; }
+            .mj-button a:hover { box-shadow: 0 3px 26px 0 #1d135466; } /* NB box-shadow email client support is very poor */
+            @media only screen and (max-width: 479px) {
+                .mj-button { padding-left: 0 !important; padding-right: 0 !important; }
+                .mj-button table { width: 100%; }
+            }
+            .mj-social-element img { border: 1px solid #1D1354; }
+            @media only screen and (min-width: 480px) {
+                .mj-social { text-align: right; padding: 0 !important; }
+            }
+        </mj-style>
+    </mj-head>
+
+    <mj-body background-color="#f9f9f9">
+
+        <mj-section>
+            <mj-group>
+                <mj-column>
+                    <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726154930563_unnamed%20(1)_01J7KDKYE05KJ892JZTC8NC66H.png" alt="TypeDB" border="none" width="140px" padding="0px"></mj-image>
+                </mj-column>
+                <mj-column>
+                    <mj-text align="right" font-size="11px" line-height="17px" padding="0">
+                        <a href="{% view_in_browser_url %}">View this email in your browser</a>
+                    </mj-text>
+                </mj-column>
+            </mj-group>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+                    <h1>You can now subscribe to TypeDB Cloud through Google Cloud Marketplace</h1>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-image align="center" src="https://ci3.googleusercontent.com/meips/ADKq_NZpHjQTkeKn8IzzjA15U0pM5Mju9eTJ7O7L1wGf7PalnGQ5tviiosPh09xPinkFDrnR9FbOrNUKxPr9B8gMpYu6G4OHYruRtvd1xUkSj3tfWdEb-pLw5vhu8rH9L6I=s0-d-e1-ft#https://community.typedb.com/hubfs/Screenshot_2024-08-08_at_16.55.49.png"></mj-image>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-text>
+                    <p>We're pleased to announce that TypeDB Cloud now supports billing through <strong>Google Cloud Marketplace!</strong> You can now pay for your TypeDB Cloud deployments through an existing GCP billing account, including letting you use your GCP credits.</p>
+
+                    <p>The quickest way to set up your Google Cloud Marketplace integration is from the Marketplace Integrations section in your <a href="https://cloud.typedb.com">TypeDB Cloud organization settings:</a></p>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-image align="center" src="https://ci3.googleusercontent.com/meips/ADKq_NabpcNQMpcbqKGOO8UaBDSecS_C3xK17EB5n04SGvJKpBnaLXOJ8_49pj2HTk7kcX8XA2bxAnRQfeWE0rnN6dEIdVIxMHH3AGrhUFLkgsn296WuH0cJCPV1zEI6Z2uXMzdBdYNYEsQ7FWgvqcRu89Bo9Rrgrj7FAFRr3useKlcbkEXB3chnaj7JzR28I9a7vhrJtfOzDPTsdvpm4aTS-0RZLxILzTsVbz8eJPxRIPNSjs1HWL7TqgEMHDEVn8ko=s0-d-e1-ft#https://community.typedb.com/hs-fs/hubfs/Screenshot%202024-08-08%20at%2017.15.21.png?width=1120&height=894&upscale=true&name=Screenshot%202024-08-08%20at%2017.15.21.png" href="https://cloud.typedb.com"></mj-image>
+            </mj-column>
+        </mj-section>
+
+        <mj-section padding-top="0">
+            <mj-column>
+                <mj-text>
+                    <ol>
+                        <li>
+                            <p>Your organization administrator should open the&nbsp;<strong>Settings</strong> page for the organization.</p>
+                        </li>
+                        <li>
+                            <p>In the&nbsp;<strong>Marketplace Integrations</strong> section, select&nbsp;<strong>Google Cloud Marketplace</strong>.</p>
+                        </li>
+                        <li>
+                            <p>Follow the steps in GCP to connect your billing account to TypeDB Cloud.</p>
+                        </li>
+                        <li>
+                            <p>You'll now be able to pay for Google Cloud-hosted deployments using your GCP billing account!</p>
+                        </li>
+                    </ol>
+                    <p>For our&nbsp;<strong>Microsoft Azure&nbsp;</strong>and&nbsp;<strong>Amazon Web Services (AWS)&nbsp;</strong>users, stay tuned - we're in the process of building the integrations for Azure Marketplace and AWS Marketplace, which will allow you to connect billing accounts from these providers to pay for TypeDB Cloud deployments.</p>
+                    <p>
+                        Got any feedback, issue reports, or requests for features you'd like to see in TypeDB Cloud? Drop 						a message on our Discord chat server, or simply reply to this email.
+                    </p>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+        <mj-section css-class="td-actions">
+            <mj-column>
+                <mj-button href="https://cloud.typedb.com">Deploy TypeDB</mj-button>
+            </mj-column>
+            <mj-column>
+                <mj-button href="https://typedb.com/?dialog=contact">Contact us</mj-button>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-divider></mj-divider>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726154930563_unnamed%20(1)_01J7KDKYE05KJ892JZTC8NC66H.png" alt="TypeDB" border="none" width="140px" padding="0px"></mj-image>
+            </mj-column>
+            <mj-column>
+                <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="25px 10px 0">
+                    <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668493619_discord-rectangle_01J82QCMWAWNWD763G950T16P2.png" href="https://typedb.com/discord"></mj-social-element>
+                    <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494602_twitter-rectangle_01J82QCNTRTYZN0R0S0FHCS992.png" href="https://x.com/typedb_"></mj-social-element>
+                    <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668495078_youtube-rectangle_01J82QCP9NCHQ0A5D8T83SFFW5.png" href="https://youtube.com/@typedb"></mj-social-element>
+                    <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494132_linkedin-rectangle_01J82QCNC24PJX23H6PRR86TV3.png" href="https://www.linkedin.com/company/typedb/"></mj-social-element>
+                </mj-social>
+            </mj-column>
+        </mj-section>
+
+        <mj-section>
+            <mj-column>
+                <mj-text align="left" color="#9B9B9B" font-size="11px" line-height="17px">
+                    <p>
+                        Copyright © 2024 Vaticle Ltd<br/>
+                        TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
+                        All rights reserved.
+                    <p>
+                        <a href="{% view_in_browser_url %}">View this email in your browser</a>. If you want to unsubscribe from all future emails, <a href="{% unsubscribe_url %}">please click here</a>.
+                    </p>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+
+    </mj-body>
+</mjml>

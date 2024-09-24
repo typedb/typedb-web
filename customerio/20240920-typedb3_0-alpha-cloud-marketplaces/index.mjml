@@ -1,0 +1,176 @@
+<mjml>
+  <mj-head>
+    <mj-title>TypeDB</mj-title>
+    <mj-font name="Titillium Web" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Titillium Web, Helvetica, Arial, sans-serif"></mj-all>
+      <mj-section padding="20px 20px 0 20px"></mj-section>
+      <mj-column padding="0"></mj-column>
+      <mj-text font-weight="400" font-size="16px" color="#1A182A" line-height="26px" align="justify" padding="10px 0"></mj-text>
+      <mj-button background-color="#1D1354" font-size="16px" height="48px" color="#FFF" css-class="mj-button"></mj-button>
+      <mj-divider padding="40px 0 0" border-width="1px"></mj-divider>
+      <mj-social css-class="mj-social"></mj-social>
+      <mj-social-element background-color="#1D1354" css-class="mj-social-element"></mj-social-element>
+    </mj-attributes>
+    <mj-style>
+      h1 { font-size: 30px; line-height: 36px; font-weight: 600; }
+      a { color: #374E67; }
+      p a, p a[href], li a, li a[href] { color: #0cc7b8; font-weight: 600; }
+      ol, ul, li { margin: 0; padding: 0 0 0 1em; }
+      code { font-size: 90%; }
+      img { border-radius: 5px; }
+      .td-actions { display: block; width: 100%; }
+      .td-actions > table { width: unset !important; }
+      .mj-button a { white-space: nowrap; display: block !important; }
+      .mj-button a:hover { box-shadow: 0 3px 26px 0 #1d135466; } /* NB box-shadow email client support is very poor */
+      @media only screen and (max-width: 479px) {
+        .mj-button { padding-left: 0 !important; padding-right: 0 !important; }
+        .mj-button table { width: 100%; }
+      }
+      .mj-social-element img { border: 1px solid #1D1354; }
+      @media only screen and (min-width: 480px) {
+        .mj-social { text-align: right; padding: 0 !important; }
+      }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f9f9f9">
+
+    <mj-section>
+      <mj-group>
+        <mj-column>
+          <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-text align="right" font-size="11px" line-height="17px" padding="0">
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>We've rewritten TypeDB in Rust</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1726836706408_880fea017f7884299450209b077c9fce6021512d-1792x1024_01J87QT36FFZS0TG96M2Y3MW79.png"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>You've been increasingly asking for early access to the new TypeDB written in Rust, and today we're thrilled to announce: <em>we're rolling out 3.0 Alpha releases!</em></p>
+
+          <p>We're incredibly excited with the direction TypeDB and TypeQL have taken in the last months, and hope you will be too. Some top highlights:</p>
+
+          <ol>
+            <li>⚡️ Multi-stage query pipelines. Expressive Functions in place of Rules. Constraints. Lists. Structs. Many additional data types. It's way too much to pack into an email, so the curious reader can see the finer details in <a href="https://typedb.com/blog/typedb-3-roadmap">The TypeDB 3.0 Roadmap</a>.</li>
+            <li>🚀 Server rewritten in Rust. Built for safety and performance, the Rust language shares many of TypeDB's core principles. It's gaining popularity along many fronts, seeing increasing adoption, for example, in the development of the Linux kernel. Expect new performance and scalability profiles.</li>
+            <li>⚙️ Driver API that gets rid of Sessions and simplifies all query methods down to a simple <code>transaction.query("...")</code> interface. No more Concept API.</li>
+          </ol>
+
+          <p>
+            Consider TypeDB 3.0 Alpha to be a "prototype". Do <strong>not</strong> use it in production systems yet (please!). The storage layer is subject to change as we optimize and stabilize, so there won't be compatibility. Do experiment and try the new features. Get a feel for the new <a href="https://typedb.com/fundamentals/constraints-3-0">constraint language</a>.
+            Try creating complex DB workflows with <a href="https://typedb.com/fundamentals/pipelines-3-0">pipelines</a>.
+            And tell us what's missing (this email address is monitored).
+          </p>
+
+          <p>
+            TypeDB 3.0-alpha releases will be rolling approximately every week, bringing new features incrementally until the 3.0 roadmap is complete.
+            That will then initiate the 3.0-beta phase, where we'll process your bug reports, stabilise and optimize performance, until the first full 3.0 release!
+          </p>
+
+          <p>In the meantime, we'll be posting <strong>new Driver API snippets</strong> in our Discord <a href="https://typedb.com/discord">Chat Server</a>. <code>3.0-alpha-0</code> supports query pipelines and cardinality constraints.</p>
+
+          <p>We're sure you'll love the new language, server, and drivers as much as we do, and look forward to hearing from everyone in the community.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://typedb.com">Try TypeDB 3.0</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>The AWS and Azure Marketplaces now offer TypeDB Cloud</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1726842412710_Screenshot%202024-09-20%20at%2015.26.30_01J87X87QQD52ZYY1SPWRZZ53J.png" href="https://cloud.typedb.com"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section padding-top="0">
+      <mj-column>
+        <mj-text>
+          <p>
+            Last month, Google Cloud became the first major cloud provider to offer TypeDB Cloud through its marketplace. We're delighted to announce that Amazon AWS and Microsoft Azure now have their own TypeDB Cloud offerings as well!
+          </p>
+          <p>
+            Connect your existing TypeDB Cloud organization to your desired marketplace by following these steps:
+          </p>
+          <ol>
+            <li>Your organization administrator should open the&nbsp;<strong>Settings</strong> page for the organization.</li>
+            <li>Select your provider from the&nbsp;<strong>Marketplace Integrations</strong> section. You'll be taken to your provider's marketplace page, allowing you to subscribe to TypeDB Cloud.</li>
+            <li>You'll now be able to pay for TypeDB Cloud deployments with that provider through the linked billing account.</li>
+          </ol>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://cloud.typedb.com">Open TypeDB Cloud</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-divider></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+      </mj-column>
+      <mj-column>
+        <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="25px 10px 0">
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668493619_discord-rectangle_01J82QCMWAWNWD763G950T16P2.png" href="https://typedb.com/discord"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494602_twitter-rectangle_01J82QCNTRTYZN0R0S0FHCS992.png" href="https://x.com/typedb_"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668495078_youtube-rectangle_01J82QCP9NCHQ0A5D8T83SFFW5.png" href="https://youtube.com/@typedb"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494132_linkedin-rectangle_01J82QCNC24PJX23H6PRR86TV3.png" href="https://www.linkedin.com/company/typedb/"></mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="left" color="#9B9B9B" font-size="11px" line-height="17px">
+          <p>
+            Copyright © 2024 Vaticle Ltd<br/>
+            TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
+            All rights reserved.
+          <p>
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>. We'd love to keep you in the loop, but if you'd rather not, you can <a href="{% unsubscribe_url %}">unsubscribe</a>.
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

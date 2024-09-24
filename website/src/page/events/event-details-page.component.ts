@@ -9,7 +9,6 @@ import { map } from "rxjs";
 import { LiveEvent, liveEventSchemaName, SanityDataset, SanityLiveEvent } from "typedb-web-schema";
 
 import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
-import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
@@ -32,32 +31,18 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    HeadingWithHighlightsComponent,
-    MatIconModule,
-    AspectRatioComponent,
-    ButtonComponent,
-    RichTextComponent,
-    PersonInfoComponent,
-    FurtherLearningComponent,
-    AsyncPipe,
-    EventDatePipe,
-    EventDurationPipe
-],
+        PageBackgroundComponent, HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
+        ButtonComponent, RichTextComponent, PersonInfoComponent, FurtherLearningComponent, AsyncPipe,
+        EventDatePipe, EventDurationPipe
+    ],
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
-        private imageBuilder: ImageBuilder,
-        private plainTextPipe: PlainTextPipe,
-        activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
-        router: Router,
-        title: Title,
-        idleMonitor: IdleMonitorService,
-        metaTags: MetaTagsService,
+        private imageBuilder: ImageBuilder, private plainTextPipe: PlainTextPipe, activatedRoute: ActivatedRoute,
+        router: Router, title: Title, idleMonitor: IdleMonitorService, metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {

@@ -7,13 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map, Observable, of } from "rxjs";
 import {
-    Lecture,
-    lectureSchemaName,
-    LecturesPage,
-    lecturesPageSchemaName,
-    SanityDataset,
-    SanityLecture,
-    SanityLecturesPage,
+    Lecture, lectureSchemaName, LecturesPage, lecturesPageSchemaName, SanityDataset, SanityLecture, SanityLecturesPage,
 } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
@@ -29,7 +23,6 @@ import { TechnicolorBlockComponent } from "../../framework/technicolor-block/tec
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { sanitiseHtmlID } from "../../framework/util";
-import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PageComponentBase } from "../page-component-base";
 
@@ -39,34 +32,19 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./lectures-page.component.scss"],
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    AspectRatioComponent,
-    RichTextComponent,
-    ButtonComponent,
-    TechnicolorBlockComponent,
-    LecturePanelsComponent,
-    MatIconModule,
-    AsyncPipe,
-    DatePipe,
-    EventDurationPipe,
-    OrdinalDatePipe,
-    PlainTextPipe
-],
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        ButtonComponent, TechnicolorBlockComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
+        EventDurationPipe, OrdinalDatePipe, PlainTextPipe
+    ],
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;
 
     constructor(
-        activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
-        router: Router,
-        title: Title,
-        idleMonitor: IdleMonitorService,
-        metaTags: MetaTagsService,
-        contentService: ContentService,
+        activatedRoute: ActivatedRoute, router: Router, title: Title, idleMonitor: IdleMonitorService,
+        metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
         this.allLectures$ = contentService.data.pipe(
             map((data) => {
                 const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];

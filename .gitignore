@@ -14,17 +14,20 @@ node_modules
 local
 dist
 
-# CMS
-cms/data.json
-cms/scripts/credentials/**/*
-!cms/scripts/credentials/.gitkeep
-
 # Common
 common/lib
+
+# Customer.io
+customerio/**/*.html
 
 # PostHog
 posthog/credential/*
 !posthog/credential/apiKey.template.mjs
+
+# Sanity
+sanity/data.json
+sanity/scripts/credentials/**/*
+!sanity/scripts/credentials/.gitkeep
 
 # Schema
 schema/lib

@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 .ci-root {
     display: flex;
@@ -20,7 +21,7 @@
     .ci-illustration-header,
     .ci-illustration-footer {
         background: var(--color-purple);
-        border: 1px solid var(--content-border-color);
+        border: shapes.$border;
         height: 13px;
     }
 

@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { AnalyticsService } from "../../service/analytics.service";
 
 @Component({
     selector: "td-404-page",
@@ -11,10 +10,5 @@ import { AnalyticsService } from "../../service/analytics.service";
     standalone: true,
     imports: [PageBackgroundComponent],
 })
-export class _404PageComponent implements OnInit {
-    constructor(private _analytics: AnalyticsService) {}
-
-    ngOnInit() {
-        this._analytics.hubspot.trackPageView();
-    }
+export class _404PageComponent {
 }
