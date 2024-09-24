@@ -64,8 +64,8 @@
 
     --font-size-base: var(--font-size-p2);
     --body-letter-spacing: 0.016em;
-    --default-font-family: "Titillium Web", sans-serif;
-    --code-font-family: "Monaco", monospace;
+    --default-font-family: #{typography.$font-family-default};
+    --code-font-family: #{typography.$font-family-code};
 
     --font-size-h1: #{typography.$h1};
     --line-height-h1: #{typography.$height-h1};

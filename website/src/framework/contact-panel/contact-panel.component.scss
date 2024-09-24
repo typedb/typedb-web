@@ -1,15 +1,5 @@
 @use "media";
 
-:host {
-    display: block;
-    padding: 32px;
-    position: relative;
-
-    ::ng-deep .submitted-message {
-        margin-bottom: 50px;
-    }
-}
-
 .cp-contact-policy {
     height: 0;
     display: flex;
@@ -28,4 +18,23 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.field-multi-checkbox {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    height: 160px;
+}
+
+td-form-actions {
+    margin-top: 40px;
+    align-self: flex-end;
+    width: unset;
+}
+
+aside {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
 }

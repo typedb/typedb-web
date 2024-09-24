@@ -2,7 +2,7 @@ import { PresentationIcon } from "@sanity/icons";
 import { defineField, defineType, NumberRule } from "@sanity/types";
 import { LinkButton } from "../button";
 import { comingSoonField, requiredRule, slugField } from "../common-fields";
-import { hubspotFormIDField } from "../form";
+import { cioFormIDField } from "../form";
 import { Link } from "../link";
 import { personSchemaName } from "../person";
 import { SanityDataset } from "../sanity-core";
@@ -124,7 +124,7 @@ const lectureSchema = defineType({
             of: [{ type: "reference", to: [{ type: personSchemaName }] }],
             validation: requiredRule,
         }),
-        hubspotFormIDField,
+        cioFormIDField,
         defineField({
             name: "lectureSlides",
             title: "Lecture Slides",

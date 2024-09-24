@@ -1,8 +1,9 @@
 @use "media";
+@use "shapes";
 @import "mixins";
 
 :host > * + * {
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
 }
 
 $number-of-lines: 20;

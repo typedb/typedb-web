@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: 17.0.8
     version: 17.0.8(@angular/common@17.0.8)(@angular/core@17.0.8)(@angular/platform-browser@17.0.8)(rxjs@7.8.1)
+  '@fortawesome/angular-fontawesome':
+    specifier: 0.14.1
+    version: 0.14.1(@angular/core@17.0.8)(@fortawesome/fontawesome-svg-core@6.6.0)
   '@gammastream/scully-plugin-sitemap':
     specifier: 1.0.7
     version: 1.0.7(@scullyio/scully@2.1.41)(fast-xml-parser@3.21.1)(path-to-regexp@0.1.7)(xmlbuilder@13.0.2)
@@ -138,8 +141,8 @@ dependencies:
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/mesh-extras@6.5.9)(@pixi/mesh@6.5.9)(@pixi/particle-container@6.5.9)(@pixi/prepare@6.5.9)(@pixi/settings@6.5.9)(@pixi/sprite-tiling@6.5.9)(@pixi/sprite@6.5.9)(@pixi/text@6.5.9)(@pixi/utils@6.5.9)
   posthog-js:
-    specifier: 1.161.0
-    version: 1.161.0
+    specifier: 1.164.2
+    version: 1.164.2
   prismjs:
     specifier: 1.29.0
     version: 1.29.0
@@ -2612,6 +2615,29 @@ packages:
     resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
     engines: {node: '>=14'}
     dev: true
+
+  /@fortawesome/angular-fontawesome@0.14.1(@angular/core@17.0.8)(@fortawesome/fontawesome-svg-core@6.6.0):
+    resolution: {integrity: sha512-Yb5HLiEOAxjSLEcaOM51CKIrzdfvoDafXVJERm9vufxfZkVZPZJgrZRgqwLVpejgq4/Ez6TqHZ6SqmJwdtRF6g==}
+    peerDependencies:
+      '@angular/core': ^17.0.0
+      '@fortawesome/fontawesome-svg-core': ~1.2.27 || ~1.3.0-beta2 || ^6.1.0
+    dependencies:
+      '@angular/core': 17.0.8(rxjs@7.8.1)(zone.js@0.14.2)
+      '@fortawesome/fontawesome-svg-core': 6.6.0
+      tslib: 2.6.2
+    dev: false
+
+  /@fortawesome/fontawesome-common-types@6.6.0:
+    resolution: {integrity: sha512-xyX0X9mc0kyz9plIyryrRbl7ngsA9jz77mCZJsUkLl+ZKs0KWObgaEBoSgQiYWAsSmjz/yjl0F++Got0Mdp4Rw==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /@fortawesome/fontawesome-svg-core@6.6.0:
+    resolution: {integrity: sha512-KHwPkCk6oRT4HADE7smhfsKudt9N/9lm6EJ5BVg0tD1yPA5hht837fB87F8pn15D8JfTqQOjhKTktwmLMiD7Kg==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.6.0
+    dev: false
 
   /@gammastream/scully-plugin-sitemap@1.0.7(@scullyio/scully@2.1.41)(fast-xml-parser@3.21.1)(path-to-regexp@0.1.7)(xmlbuilder@13.0.2):
     resolution: {integrity: sha512-YhNHcEaRaEV5aKF581Oafaf2o+lsuuJwczPAbYvldaUBxX/isHTTrIbXQblR+wi+Uf/UV2ntBjBcEzS87jst3w==}
@@ -9714,8 +9740,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /posthog-js@1.161.0:
-    resolution: {integrity: sha512-P17q2s77/p7QPWrIhp9uAXVaLT8SwrdNh6W2QOilAMllOYMxD6Lzj4C8JW3NeqlL+nGbViCPpLmkUWuvWnGVLQ==}
+  /posthog-js@1.164.2:
+    resolution: {integrity: sha512-WyoVJS0rZHGafyIXuXBihVtxR6ZhrIuN378SuziJWzYOXFheSUi5cjG4Mxu8XRc8/NBXpSAMY/9MZvLF+MzDuA==}
     dependencies:
       fflate: 0.4.8
       preact: 10.23.1
@@ -11016,7 +11042,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: true
 
   /tuf-js@2.1.0:
     resolution: {integrity: sha512-eD7YPPjVlMzdggrOeE8zwoegUaG/rt6Bt3jwoQPunRiNVzgcCE009UDFJKJjG+Gk9wFu6W/Vi+P5d/5QpdD9jA==}

@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 ul.ed-subtitle {
     margin-top: 32px;
@@ -96,6 +97,6 @@ ul.ed-speakers {
 }
 
 .ed-img {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 }

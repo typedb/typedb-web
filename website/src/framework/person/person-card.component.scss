@@ -1,5 +1,6 @@
 @use "colors";
 @use "media";
+@use "shapes";
 @import "mixins";
 
 :host {
@@ -20,7 +21,7 @@
 }
 
 .pc-bio {
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
     padding-top: 20px;
     margin-top: 20px;
 

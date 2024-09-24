@@ -2,7 +2,7 @@ import { defineField, defineType } from "@sanity/types";
 
 import { Page, SanityPage } from "./common";
 import { collapsibleOptions,  titleFieldWithHighlights } from "../common-fields";
-import { hubspotFormIDField } from "../form";
+import { cioFormIDField } from "../form";
 import {
     ParagraphWithHighlights,
     PortableText,
@@ -17,19 +17,19 @@ import { metaTagsField } from "./meta-tags";
 export interface SanityRequestTechTalkPage extends SanityPage {
     introTitle: PortableText;
     details: SanityTitleAndBody;
-    hubspotFormID: string;
+    cioFormID: string;
 }
 
 export class RequestTechTalkPage extends Page {
     readonly introTitle: ParagraphWithHighlights;
     readonly details: TitleBodyActions;
-    readonly hubspotFormID: string;
+    readonly cioFormID: string;
 
     constructor(data: SanityRequestTechTalkPage, db: SanityDataset) {
         super(data, db);
         this.introTitle = ParagraphWithHighlights.fromSanity(data.introTitle);
         this.details = TitleAndBody.fromSanityTitleAndBody(data.details);
-        this.hubspotFormID = data.hubspotFormID;
+        this.cioFormID = data.cioFormID;
     }
 }
 
@@ -48,7 +48,7 @@ export const requestTechTalkPageSchema = defineType({
             type: titleAndBodySchemaName,
             options: collapsibleOptions,
         }),
-        hubspotFormIDField,
+        cioFormIDField,
     ],
     preview: {
         prepare: (_selection) => ({ title: "Request Tech Talk Page" }),

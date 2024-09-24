@@ -6,7 +6,6 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import { Observable, shareReplay, switchMap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 
-import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
@@ -19,7 +18,6 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
 
     constructor(
         protected activatedRoute: ActivatedRoute,
-        protected analytics: AnalyticsService,
         protected router: Router,
         protected title: Title,
         private idleMonitor: IdleMonitorService,
@@ -48,7 +46,6 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
 
     protected onPageReady(page: T): void {
         this.metaTags.register(page.metaTags);
-        this.analytics.hubspot.trackPageView();
         setTimeout(() => {
             this.idleMonitor.fireManualMyAppReadyEvent();
         }, 20000);

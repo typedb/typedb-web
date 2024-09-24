@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 @import "mixins";
 
 .ep-primary-event {
@@ -10,7 +11,7 @@
 }
 
 .ep-img {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 }
 

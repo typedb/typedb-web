@@ -1,10 +1,37 @@
-<div [id]="formHolderId"></div>
-<div class="cp-contact-policy">
-  <aside>
-    By submitting your personal data, you consent to emails from TypeDB. See our
-    <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
-  </aside>
-</div>
-@if (isSubmitting$ | async) {
-  <mat-progress-bar mode="indeterminate" />
-}
+<td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
+  <div class="form-row">
+    <td-form-input [form]="form" field="first_name" label="First Name" autocomplete="given-name" [required]="true"/>
+    <td-form-input [form]="form" field="last_name" label="Last Name" autocomplete="family-name" [required]="true"/>
+  </div>
+
+  <div class="form-row">
+    <td-form-input [form]="form" field="email" label="Email" autocomplete="email" [required]="true"/>
+    <td-form-input [form]="form" field="company" label="Company Name" autocomplete="organization"/>
+  </div>
+
+  <div class="form-row">
+    <td-form-input [form]="form" field="job_function" label="Job Function" autocomplete="organization-title"/>
+    <td-form-input [form]="form" field="country" label="Country" autocomplete="country-name"/>
+  </div>
+
+  <div class="form-row">
+    <div class="field-multi-checkbox">
+      @for (topic of topics; track topic) {
+        <div class="field-multi-checkbox-option" (click)="$any(form).value[topic.value] = !$any(form).value[topic.value]">
+          <mat-checkbox [formControl]="$any(form).controls[topic.value]" (click)="$event.stopPropagation()" color="primary"/>
+          <span>{{ topic.viewValue }}</span>
+        </div>
+      }
+    </div>
+
+    <td-form-textarea [form]="form" field="contact_request_body" placeholder="Tell us more about how we can help" [rows]="4"/>
+  </div>
+
+  @if (showPersonalDataNotice) {
+    <aside>
+      By submitting personal data, you consent to emails from TypeDB. See our
+      <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
+    </aside>
+  }
+  <td-form-actions buttonIdPrefix="provideFeedback" [isSubmitting]="isSubmitting$ | async" submitText="Submit" [submitDisabled]="!form.dirty"/>
+</td-form>

@@ -1,8 +1,9 @@
 @use "media";
+@use "shapes";
 
 .st-table {
     border-radius: var(--border-radius);
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
 }
 
 .st-row {
@@ -13,13 +14,13 @@
     }
 
     & + & {
-        border-top: 1px solid var(--content-border-color);
+        border-top: shapes.$border;
     }
 }
 
 .st-cell-icon {
     flex: 0 0 268px;
-    border-right: 1px solid var(--content-border-color);
+    border-right: shapes.$border;
     background: var(--color-deep-purple);
     display: flex;
     align-items: center;

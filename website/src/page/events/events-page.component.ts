@@ -7,7 +7,6 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import { of } from "rxjs";
 import { EventsPage, eventsPageSchemaName, LiveEvent, SanityDataset, SanityEventsPage } from "typedb-web-schema";
 
-import { AnalyticsService } from "src/service/analytics.service";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
@@ -29,28 +28,21 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    AspectRatioComponent,
-    RichTextComponent,
-    ButtonComponent,
-    AsyncPipe,
-    EventDatePipe,
-    PlainTextPipe
-],
+        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe
+    ],
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(
         private imageBuilder: ImageBuilder,
         activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
         router: Router,
         title: Title,
         idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {
