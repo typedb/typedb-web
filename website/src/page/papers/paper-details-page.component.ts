@@ -64,10 +64,10 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     constructor(
         private plainTextPipe: PlainTextPipe,
         private popupNotificationService: PopupNotificationService, activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService, router: Router, title: Title, idleMonitor: IdleMonitorService,
+        private analytics: AnalyticsService, router: Router, title: Title, idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
         this.isSubmitting$ = this._isSubmitting$.asObservable();
     }
 

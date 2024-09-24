@@ -6,7 +6,14 @@
         <div class="rt-details subsection-margin">
           <div class="card rt-form-card">
             <h3><strong>Tell us about your organization</strong></h3>
-            <div id="hubspot-form-holder"></div>
+            <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
+              <td-form-input [form]="form" field="first_name" label="First Name" autocomplete="given-name"/>
+              <td-form-input [form]="form" field="last_name" label="Last Name" autocomplete="family-name"/>
+              <td-form-input [form]="form" field="email" label="Business Email" autocomplete="email" [required]="true"/>
+              <td-form-input [form]="form" field="company" label="Company" autocomplete="organization"/>
+              <td-form-textarea [form]="form" field="tech_talk_request_detail" placeholder="Any specifics about your tech request, e.g. topics, audience type (technical or business), audience seniority"/>
+              <td-form-actions buttonIdPrefix="subscribeToNewsletter" [isSubmitting]="isSubmitting$ | async" submitText="Submit"/>
+            </td-form>
             <p>
               By submitting your personal data, you consent to emails from TypeDB. See our
               <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.

@@ -8,15 +8,8 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
-    Article,
-    blogCategories,
-    BlogCategoryID,
-    fundamentalArticleSchemaName,
-    ResourceHub,
-    learningCenterSchemaName,
-    Link,
-    LinkButton,
-    SanityResourceHub, fundamentalsPageSchemaName,
+    Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, ResourceHub,
+    learningCenterSchemaName, Link, LinkButton, SanityResourceHub, fundamentalsPageSchemaName,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -29,7 +22,6 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { sanitiseHtmlID } from "../../framework/util";
-import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 
@@ -57,16 +49,9 @@ export class LearningArticleComponent implements OnInit {
     });
 
     constructor(
-        private canonicalLink: CanonicalLinkService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private content: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-        destroyRef: DestroyRef,
-        topbarMenuService: TopbarMenuService,
+        private canonicalLink: CanonicalLinkService, private router: Router, private activatedRoute: ActivatedRoute,
+        private content: ContentService, private metaTags: MetaTagsService, private title: Title,
+        private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
     }
@@ -103,7 +88,6 @@ export class LearningArticleComponent implements OnInit {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
-                    this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.decoratePost();
                     }, 0);

@@ -11,7 +11,6 @@ import { LegalDocument } from "typedb-web-schema";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
-import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 
@@ -27,13 +26,8 @@ export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;
 
     constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private content: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
+        private router: Router, private activatedRoute: ActivatedRoute, private content: ContentService,
+        private metaTags: MetaTagsService, private title: Title, private _idleMonitor: IdleMonitorService,
     ) {}
 
     ngOnInit() {
@@ -47,7 +41,6 @@ export class LegalDocumentComponent implements OnInit {
                 if (doc) {
                     this.title.setTitle(doc.pageTitle());
                     this.metaTags.register(doc.metaTags);
-                    this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         Prism.highlightAll();
                     }, 0);

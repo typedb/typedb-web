@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 :host {
     display: flex;
@@ -8,7 +9,7 @@
 
 .fg-grid-item,
 .fg-illustration-row {
-    border: 0 solid var(--content-border-color);
+    border: shapes.$border;
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
 }
@@ -148,7 +149,7 @@ td-aspect-ratio,
     overflow: auto;
     padding: 1.25rem 3rem 1.25rem 1.25rem;
     border-radius: var(--border-radius);
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     background: var(--color-black-purple);
     hyphens: none;
 

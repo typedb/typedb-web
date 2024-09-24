@@ -16,6 +16,7 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import posthog from "posthog-js";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 const cookieConfig: NgcCookieConsentConfig = {
     enabled: !isScullyRunning(),
@@ -64,6 +65,7 @@ bootstrapApplication(WebsiteComponent, {
         ),
         PlainTextPipe,
         { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "outline" } },
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
     ]

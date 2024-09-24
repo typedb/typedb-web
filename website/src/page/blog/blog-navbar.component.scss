@@ -1,9 +1,10 @@
 @use "media";
+@use "shapes";
 
 :host {
     height: 72px;
     margin-bottom: 8px;
-    border-bottom: 1px solid var(--content-border-color);
+    border-bottom: shapes.$border;
 
     @media (max-width: media.$max-width-mobile) {
         height: 54px;

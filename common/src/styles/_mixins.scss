@@ -1,14 +1,14 @@
 @use "colors";
 @use "media";
-@use "shapes" as *;
+@use "shapes";
 
 @mixin section-width($offset) {
     // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
-    width: $section-width + $offset;
+    width: shapes.$section-width + $offset;
     max-width: var(--section-max-width);
 
-    @media (min-width: media.$min-width-tablet) and (max-width: ($section-width-tablet + $section-page-margin-tablet * 2 - 1px)) {
-        width: calc(100vw - $section-page-margin-tablet * 2 + $offset);
+    @media (min-width: media.$min-width-tablet) and (max-width: (shapes.$section-width-tablet + shapes.$section-page-margin-tablet * 2 - 1px)) {
+        width: calc(100vw - #{shapes.$section-page-margin-tablet} * 2 + $offset);
     }
 
     @media (max-width: media.$max-width-mobile) {
@@ -93,7 +93,7 @@
 @mixin card-appearance {
     border-radius: var(--border-radius);
     background-color: var(--color-purple);
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
 }
 
 @mixin card-padding {
@@ -107,7 +107,7 @@
     overflow: hidden;
 
     > * > tr {
-        border-bottom: 1px solid var(--content-border-color);
+        border-bottom: shapes.$border;
 
         > * {
             padding: 0.75rem 1.25rem;
@@ -138,7 +138,7 @@
     }
 
     > colgroup col:not(:first-of-type) {
-        border-left: 1px solid var(--content-border-color);
+        border-left: shapes.$border;
     }
 
     > tbody > tr:last-child {

@@ -1,5 +1,10 @@
 @use "media";
 
+h1 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+}
+
 td-button {
     margin-top: 30px;
 }

@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 .resource-section {
     padding-top: 64px;
@@ -101,7 +102,7 @@ ul.wd-speakers {
 .ld-video-container {
     margin-top: var(--subsection-margin);
     width: 100%;
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 }
 

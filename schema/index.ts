@@ -48,7 +48,7 @@ export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
 export { TechnicolorBlock } from "./component/technicolor-block";
-export { type FormID, type SanityHubspotForms, formsSchemaName } from "./form";
+export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
     ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,

@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 .ft-root {
     display: flex;
@@ -6,7 +7,7 @@
 }
 
 .ft-tabs-container {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-bottom: none;
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
@@ -34,7 +35,7 @@
     white-space: nowrap;
 
     &:not(:first-child) {
-        border-left: 1px solid var(--content-border-color);
+        border-left: shapes.$border;
     }
 
     @media (hover: hover) {

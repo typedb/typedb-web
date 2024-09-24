@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 $post-content-width: 700px;
 
@@ -57,14 +58,14 @@ $post-content-width: 700px;
 
 .bp-author-section-hr {
     margin-top: 24px;
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
 }
 
 .bp-featured-image {
     width: 100%;
     display: block;
     border-radius: var(--border-radius);
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
 }
 
 .bp-author-title {
@@ -102,7 +103,7 @@ $post-content-width: 700px;
     display: block;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 
     @media (max-width: media.$max-width-mobile) {
@@ -113,7 +114,7 @@ $post-content-width: 700px;
 
 .bp-authored-date {
     padding: 4px 0 4px 32px;
-    border-left: 1px solid var(--content-border-color);
+    border-left: shapes.$border;
 }
 
 section {
@@ -190,7 +191,7 @@ section {
     color: var(--body-font-color);
     font-weight: var(--font-weight-semi-bold);
     padding-bottom: 8px;
-    border-bottom: 1px solid var(--content-border-color);
+    border-bottom: shapes.$border;
 }
 
 .bp-related-post {
@@ -200,7 +201,7 @@ section {
     gap: 12px;
 
     & + .bp-related-post {
-        border-top: 1px solid var(--content-border-color);
+        border-top: shapes.$border;
     }
 }
 
@@ -219,7 +220,7 @@ section {
 }
 
 td-aspect-ratio {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
     overflow: hidden;
 }

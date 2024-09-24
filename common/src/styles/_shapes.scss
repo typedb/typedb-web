@@ -1,4 +1,7 @@
+@use "colors";
+
 $border-radius: 5px;
+$border: 1px solid colors.$light-purple;
 
 $section-page-margin: 20px;
 $section-width: 1200px - $section-page-margin * 2;
@@ -37,3 +40,8 @@ $scroll-padding-mobile: 64px;
 $card-padding: 28px;
 $card-padding-tablet: 20px;
 $card-padding-mobile: 12px;
+
+@mixin standard-border {
+    border-radius: $border-radius;
+    border: $border;
+}

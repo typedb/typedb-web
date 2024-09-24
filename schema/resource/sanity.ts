@@ -70,7 +70,7 @@ export function blogPostBackupHeroImageURL(slug: string) {
 export interface SanityEventBase extends SanitySiteResource {
     image: SanityImage;
     speakers: SanityReference<SanityPerson>[];
-    hubspotFormID?: string;
+    cioFormID?: string;
     metaTags?: SanityMetaTags;
 }
 

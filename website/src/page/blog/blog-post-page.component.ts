@@ -8,18 +8,8 @@ import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
-    Article,
-    Blog,
-    blogCategories,
-    BlogCategoryID,
-    BlogPost,
-    blogPostLinkOf,
-    blogPostSchemaName,
-    blogSchemaName,
-    Link,
-    LinkButton,
-    RelatedBlogPosts,
-    SanityBlog,
+    Article, Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, blogPostSchemaName, blogSchemaName,
+    Link, LinkButton, RelatedBlogPosts, SanityBlog,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -33,7 +23,6 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { sanitiseHtmlID } from "../../framework/util";
-import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogAuthorshipBarComponent } from "./blog-authorship-bar.component";
@@ -47,19 +36,10 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    LinkDirective,
-    HeadingWithHighlightsComponent,
-    BlogNavbarComponent,
-    BlogCategoryChipsComponent,
-    RichTextComponent,
-    BlogAuthorshipBarComponent,
-    MatIconModule,
-    ButtonComponent,
-    AspectRatioComponent,
-    FurtherLearningComponent,
-    AsyncPipe
-],
+        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, BlogNavbarComponent,
+        BlogCategoryChipsComponent, RichTextComponent, BlogAuthorshipBarComponent, MatIconModule,
+        ButtonComponent, AspectRatioComponent, FurtherLearningComponent, AsyncPipe
+    ],
 })
 export class BlogPostPageComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
@@ -74,16 +54,9 @@ export class BlogPostPageComponent implements OnInit {
     });
 
     constructor(
-        private canonicalLink: CanonicalLinkService,
-        private router: Router,
-        private _activatedRoute: ActivatedRoute,
-        private content: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-        destroyRef: DestroyRef,
-        topbarMenuService: TopbarMenuService,
+        private canonicalLink: CanonicalLinkService, private router: Router, private _activatedRoute: ActivatedRoute,
+        private content: ContentService, private metaTags: MetaTagsService, private title: Title,
+        private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -128,7 +101,6 @@ export class BlogPostPageComponent implements OnInit {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
-                    this._analytics.hubspot.trackPageView();
                     setTimeout(() => {
                         this.decoratePost();
                     }, 0);

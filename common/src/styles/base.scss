@@ -1,7 +1,7 @@
 @use "colors";
 @use "media";
 @use "mixins" as *;
-@use "shapes" as *;
+@use "shapes";
 
 @import "material";
 
@@ -107,7 +107,7 @@ textarea {
 
 hr {
     border: 0;
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
 }
 
 /* prettier-ignore */
@@ -215,7 +215,7 @@ code {
     color: var(--code-font-color);
     background: var(--code-background);
     border-radius: var(--border-radius);
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     padding: 6px 6px 3px;
 }
 
@@ -225,6 +225,18 @@ pre code {
     border-radius: 0;
     border: none;
     padding: 0;
+}
+
+form,
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+button, td-button {
+    font-weight: var(--font-weight-semi-bold);
 }
 
 ::file-selector-button {
@@ -298,6 +310,20 @@ pre code {
     @include button-secondary;
 }
 
+td-form-actions, .td-form-actions {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    column-gap: 14px;
+    row-gap: 8px;
+    margin-top: 20px;
+
+    button, td-button {
+        flex: 1;
+    }
+}
+
 .td-feedback-button {
     position: fixed;
     top: 50%;
@@ -321,7 +347,7 @@ pre code {
         color: var(--body-font-color);
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
-        border: 1px solid var(--content-border-color);
+        border: shapes.$border;
         box-shadow: 0 3px 26px 0 rgba(colors.$purple, 0.4);
 
         &:hover {
@@ -340,6 +366,15 @@ pre code {
         // > * {
         //     padding: 5px 15px;
         // }
+    }
+}
+
+td-form .form-row {
+    display: flex;
+    gap: 16px;
+
+    > * {
+        flex: 1;
     }
 }
 

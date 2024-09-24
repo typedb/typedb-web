@@ -9,13 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
-    ActionButton,
-    EventBase,
-    Lecture,
-    lectureSchemaName,
-    Link,
-    LinkButton,
-    ParagraphWithHighlights,
+    ActionButton, EventBase, Lecture, lectureSchemaName, Link, LinkButton, ParagraphWithHighlights,
     SanityLecture,
 } from "typedb-web-schema";
 
@@ -25,7 +19,7 @@ import { ActionsComponent } from "../../framework/actions/actions.component";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
-import { AddToCalendarDialogComponent } from "../../framework/dialog/dialog.component";
+import { AddToCalendarDialogComponent } from "../../framework/dialog/form-dialog.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
@@ -35,7 +29,6 @@ import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
-import { FormService } from "../../service/form.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 
 @Component({
@@ -44,21 +37,10 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     styleUrls: ["./lecture-details-page.component.scss"],
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    LinkDirective,
-    HeadingWithHighlightsComponent,
-    MatIconModule,
-    ActionsComponent,
-    AspectRatioComponent,
-    MatProgressBarModule,
-    RichTextComponent,
-    PersonCardComponent,
-    FurtherLearningComponent,
-    AsyncPipe,
-    DatePipe,
-    EventDurationPipe,
-    OrdinalDatePipe
-],
+        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, MatIconModule,
+        ActionsComponent, AspectRatioComponent, MatProgressBarModule, RichTextComponent, PersonCardComponent,
+        FurtherLearningComponent, AsyncPipe, DatePipe, EventDurationPipe, OrdinalDatePipe
+    ],
 })
 export class LectureDetailsPageComponent implements OnInit {
     readonly allLecturesHeading = new ParagraphWithHighlights({
@@ -74,18 +56,10 @@ export class LectureDetailsPageComponent implements OnInit {
     private readonly _isSubmitting$ = new BehaviorSubject(false);
 
     constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private contentService: ContentService,
-        private metaTags: MetaTagsService,
-        private _formService: FormService,
-        private _popupNotificationService: PopupNotificationService,
-        private _title: Title,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-        private _plainTextPipe: PlainTextPipe,
-        private sanitizer: DomSanitizer,
-        private dialog: MatDialog,
+        private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
+        private metaTags: MetaTagsService, private _popupNotificationService: PopupNotificationService,
+        private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService,
+        private _plainTextPipe: PlainTextPipe, private sanitizer: DomSanitizer, private dialog: MatDialog,
     ) {
         this.isSubmitting$ = this._isSubmitting$.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
@@ -157,16 +131,11 @@ export class LectureDetailsPageComponent implements OnInit {
             if (lecture) {
                 this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
                 this.metaTags.register(lecture.metaTags);
-                this._analytics.hubspot.trackPageView();
                 setTimeout(() => {
                     this._idleMonitor.fireManualMyAppReadyEvent();
                 }, 20000);
-                this._formService.embedHubspotForm(lecture.hubspotFormID as string, "hubspot-form-holder", {
-                    onLoadingChange: (val) => {
-                        this._isSubmitting$.next(val);
-                    },
-                    onSuccess: (_formEl, values) => this.onSubmit(lecture, values),
-                });
+
+                // TODO: lead capture form / registration form?
             } else {
                 this.router.navigate(["lectures"], { replaceUrl: true });
             }

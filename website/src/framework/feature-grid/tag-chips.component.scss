@@ -1,3 +1,5 @@
+@use "shapes";
+
 :host {
     font-weight: var(--font-weight-semi-bold);
     display: flex;
@@ -7,7 +9,7 @@
     aside {
         padding: 2px 8px;
         background: var(--color-purple);
-        border: 1px solid var(--content-border-color);
+        border: shapes.$border;
         border-radius: var(--border-radius);
         color: var(--color-secondary-pink);
     }
