@@ -1,6 +1,7 @@
 @use "@angular/material" as mat;
 @use "media";
 @use "mixins" as *;
+@use "shapes";
 
 @import "base";
 @import "fonts";
@@ -85,7 +86,7 @@ section,
 
     + article {
         margin-top: 40px;
-        border-top: 1px solid var(--content-border-color);
+        border-top: shapes.$border;
 
         section:first-of-type {
             margin-top: 64px;
@@ -99,7 +100,7 @@ section,
 
 .resource-section {
     margin-top: 40px;
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
     background: var(--color-black-purple);
 
     @media (max-width: media.$max-width-mobile) {
@@ -127,13 +128,13 @@ table {
 
     thead + tbody,
     tr:not(:first-child) {
-        border-top: 1px solid var(--content-border-color);
+        border-top: shapes.$border;
     }
 
     th,
     td {
         &:not(:first-child) {
-            border-left: 1px solid var(--content-border-color);
+            border-left: shapes.$border;
         }
     }
 }
@@ -170,44 +171,9 @@ table {
     background-color: var(--color-black-purple);
 }
 
-.hs_support_request__multi_check_box_ {
-    ul {
-        max-width: 500px;
-        height: 160px;
-    }
-}
-
-.hs_support_request__full_details_ div.input {
-    > textarea {
-        height: 150px;
-
-        @media (max-width: media.$max-width-mobile) {
-            height: 124px;
-        }
-    }
-}
-
-td-contact-dialog,
-#hubspot-form-holder-contact-section {
-    form.hs-form .hs-form-field {
-        min-width: 300px;
-
-        @media (max-width: media.$max-width-mobile) {
-            min-width: 200px;
-        }
-    }
-
-    input[type="submit"].hs-button.hs-button {
-        @media (min-width: media.$min-width-tablet) {
-            width: 202px;
-            float: right;
-        }
-    }
-}
-
 .cc-window {
     background: var(--color-purple);
-    border-top: 1px solid var(--content-border-color);
+    border-top: shapes.$border;
     font-family: inherit;
     transition-duration: 150ms;
 

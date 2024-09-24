@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 
 .ol-root {
     border-radius: var(--border-radius);
@@ -20,7 +21,7 @@
 
     &.ol-root-panel {
         padding: 48px 72px;
-        border: 1px solid var(--content-border-color);
+        border: shapes.$border;
         background: var(--color-purple);
 
         @media (max-width: media.$max-width-tablet) {

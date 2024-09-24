@@ -1,34 +1,34 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { isScullyRunning } from "@scullyio/ng-lib";
-import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID, HUBSPOT_PORTAL_ID } from "./marketing-tech-constants";
-import posthog from "posthog-js";
+import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID } from "./marketing-tech-constants";
+import posthog, { Properties } from "posthog-js";
 
 @Injectable({
     providedIn: "root",
 })
 export class AnalyticsService {
-    private _hubspotTrackingCodeLoaded = false;
-    hubspot = {
-        trackPageView: () => {
-            if (isScullyRunning()) return;
-            // HubSpot tracking code
-            const _hsq = (window._hsq = window._hsq || []);
-            _hsq.push(["setPath", this._router.url]);
-            if (this._hubspotTrackingCodeLoaded) {
-                _hsq.push(["trackPageView"]);
-            } else {
-                const scriptEl = document.createElement("script");
-                scriptEl.src = `//js.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`;
-                document.head.appendChild(scriptEl);
-                this._hubspotTrackingCodeLoaded = true;
-            }
-        },
-    };
     posthog = {
+        alias: (newId: string, existingId?: string) => {
+            if (isScullyRunning()) return;
+            posthog.alias(newId, existingId);
+        },
         capturePageView: () => {
             if (isScullyRunning()) return;
             posthog.capture("$pageview");
+        },
+        captureFormSubmission: (formId: string, submission: { email: string; } & Record<string, string>) => {
+            if (isScullyRunning()) return;
+            posthog.alias(submission.email);
+            posthog.capture("form_submit", { form_id: formId, ...submission }, { $set: submission });
+        },
+        reset: () => {
+            if (isScullyRunning()) return;
+            posthog.reset();
+        },
+        set: (userPropertiesToSet: Properties) => {
+            if (isScullyRunning()) return;
+            posthog.setPersonProperties(userPropertiesToSet);
         }
     }
     google = {

@@ -2,13 +2,9 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-
 import {
-    CloudWaitlistDialogComponent,
-    ContactDialogComponent,
-    FeedbackDialogComponent,
-    NewsletterDialogComponent,
-} from "../framework/./dialog/dialog.component";
+    ContactDialogComponent, FeedbackDialogComponent, NewsletterDialogComponent,
+} from "../framework/dialog/form-dialog.component";
 
 @Injectable({
     providedIn: "root",
@@ -26,9 +22,6 @@ export class DialogService {
                 const searchParams = new URLSearchParams(window.location.search);
                 const dialogParam = searchParams.get("dialog");
                 switch (dialogParam) {
-                    case "cloud-waitlist":
-                        this.openCloudWaitlistFormDialog();
-                        break;
                     case "contact":
                         this.openContactDialog();
                         break;
@@ -63,10 +56,6 @@ export class DialogService {
         this.current = undefined;
     }
 
-    openCloudWaitlistFormDialog() {
-        this.open(CloudWaitlistDialogComponent, { width: "560px", maxWidth: "100vw", autoFocus: "input" });
-    }
-
     openNewsletterDialog() {
         this.open(NewsletterDialogComponent, { width: "560px", maxWidth: "100vw", autoFocus: "input" });
     }
@@ -77,10 +66,7 @@ export class DialogService {
 
     openContactDialog() {
         this.open(ContactDialogComponent, {
-            width: "1088px",
-            maxWidth: "100vw",
-            maxHeight: "100vh",
-            autoFocus: "input",
+            width: "1088px", maxWidth: "100vw", maxHeight: "100vh", autoFocus: "input",
         });
     }
 }

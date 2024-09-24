@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 @import "mixins";
 
 .wp-primary-paper-details {
@@ -60,7 +61,7 @@
 }
 
 .wp-img {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 }
 

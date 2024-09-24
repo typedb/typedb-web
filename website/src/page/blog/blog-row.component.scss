@@ -1,4 +1,5 @@
 @use "media";
+@use "shapes";
 @import "mixins";
 
 hr {
@@ -22,12 +23,12 @@ hr {
 
 .bp-posts-row {
     padding: 40px 0;
-    border-bottom: 1px solid var(--content-border-color);
+    border-bottom: shapes.$border;
 }
 
 .bp-resource-panels-row {
     padding: 24px 0 40px;
-    border-bottom: 1px solid var(--content-border-color);
+    border-bottom: shapes.$border;
 }
 
 .bp-primary-post {
@@ -105,7 +106,7 @@ hr {
     display: block;
     width: 40px;
     height: 40px;
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
 
     @media (max-width: media.$max-width-mobile) {
@@ -115,7 +116,7 @@ hr {
 }
 
 td-aspect-ratio {
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
     overflow: hidden;
 }

@@ -5,7 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IdleMonitorService } from "@scullyio/ng-lib";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { of, Subject } from "rxjs";
 import { RequestTechTalkPage, requestTechTalkPageSchemaName, SanityRequestTechTalkPage } from "typedb-web-schema";
 import { SanityDataset } from "typedb-web-schema";
 
@@ -14,6 +14,7 @@ import { ContentService } from "src/service/content.service";
 import { FormService } from "src/service/form.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
+import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../../framework/form";
 
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
@@ -22,6 +23,8 @@ import {
     ParagraphWithHighlightsComponent,
 } from "../../framework/text/text-with-highlights.component";
 import { PageComponentBase } from "../page-component-base";
+import { FormBuilder } from "@angular/forms";
+import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
 
 @Component({
     selector: "td-request-tech-talk-page",
@@ -30,31 +33,33 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    HeadingWithHighlightsComponent,
-    MatProgressBarModule,
-    ParagraphWithHighlightsComponent,
-    RichTextComponent,
-    AsyncPipe
-],
+        PageBackgroundComponent, HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
+        RichTextComponent, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent
+    ],
 })
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
-    readonly isSubmitting$: Observable<boolean>;
-    private readonly isSubmittingSubject = new BehaviorSubject(false);
+    formId!: string;
+    readonly isSubmitting$ = new Subject<boolean>;
+    readonly form = this.formBuilder.group({
+        first_name: ["", []],
+        last_name: ["", []],
+        email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
+        company: ["", []],
+        tech_talk_request_detail: ["", []],
+    });
 
     constructor(
-        private formService: FormService,
-        private popupNotificationService: PopupNotificationService,
-        activatedRoute: ActivatedRoute,
-        analytics: AnalyticsService,
-        router: Router,
-        title: Title,
-        idleMonitor: IdleMonitorService,
-        metaTags: MetaTagsService,
-        contentService: ContentService,
+        private formService: FormService, private popupNotificationService: PopupNotificationService,
+        activatedRoute: ActivatedRoute, private analytics: AnalyticsService, router: Router, title: Title,
+        idleMonitor: IdleMonitorService, metaTags: MetaTagsService, contentService: ContentService,
+        private formBuilder: FormBuilder,
     ) {
-        super(activatedRoute, analytics, router, title, idleMonitor, metaTags, contentService);
-        this.isSubmitting$ = this.isSubmittingSubject.asObservable();
+        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        this.page$.subscribe((page) => {
+            if (page) {
+                this.formId = page.cioFormID;
+            }
+        });
     }
 
     protected override getPage(data: SanityDataset) {
@@ -64,16 +69,10 @@ export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechT
 
     protected override onPageReady(page: RequestTechTalkPage): void {
         super.onPageReady(page);
-
-        this.formService.embedHubspotForm(page.hubspotFormID, "hubspot-form-holder", {
-            onLoadingChange: (val) => {
-                this.isSubmittingSubject.next(val);
-            },
-            onSuccess: () => this.onSubmit(),
-        });
     }
 
-    private onSubmit() {
+    onSubmit() {
+        this.analytics.posthog.captureFormSubmission(this.formId, this.form.getRawValue());
         this.analytics.google.reportAdConversion("requestTechTalk");
         this.popupNotificationService.success("Your request has been submitted!");
     }

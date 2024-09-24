@@ -1,7 +1,7 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { requiredRule, slugField } from "../common-fields";
-import { hubspotFormIDField } from "../form";
+import { cioFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";

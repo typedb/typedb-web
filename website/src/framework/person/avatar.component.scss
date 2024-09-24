@@ -1,11 +1,12 @@
 @use "colors";
 @use "media";
+@use "shapes";
 
 :host {
     display: block;
     position: relative;
     flex-shrink: 0;
-    border: 1px solid var(--content-border-color);
+    border: shapes.$border;
     border-radius: var(--border-radius);
     overflow: hidden;
 

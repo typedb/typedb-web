@@ -6,14 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
-    Blog,
-    blogCategories,
-    BlogCategoryID,
-    blogCategoryList,
-    blogNullFilter,
-    BlogPostsRow,
-    BlogRow,
-    blogSchemaName,
+    Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
     SanityBlog,
 } from "typedb-web-schema";
 
@@ -25,7 +18,6 @@ import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
 } from "../../framework/text/text-with-highlights.component";
-import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
@@ -38,28 +30,17 @@ import { BlogRowComponent } from "./blog-row.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
-    LinkDirective,
-    HeadingWithHighlightsComponent,
-    ParagraphWithHighlightsComponent,
-    BlogNavbarComponent,
-    BlogRowComponent,
-    AsyncPipe
-],
+        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
+        BlogNavbarComponent, BlogRowComponent, AsyncPipe
+    ],
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
     readonly rows$: Observable<BlogRow[]>;
 
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private content: ContentService,
-        private title: Title,
-        private metaTags: MetaTagsService,
-        private _analytics: AnalyticsService,
-        private _idleMonitor: IdleMonitorService,
-        destroyRef: DestroyRef,
+        private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
+        private metaTags: MetaTagsService, private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef,
         topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
@@ -138,7 +119,6 @@ export class BlogComponent implements OnInit {
                     this.title.setTitle(`TypeDB Blog`);
                 }
                 this.metaTags.register(blog.tabs[categorySlug].metaTags);
-                this._analytics.hubspot.trackPageView();
             },
             error: () => {
                 this.router.navigate(["404"], { skipLocationChange: true });

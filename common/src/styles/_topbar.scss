@@ -1,6 +1,7 @@
 @use "colors";
 @use "media";
 @use "mixins" as *;
+@use "shapes";
 
 @mixin styles($icon-path) {
     .td-topbar {
@@ -137,7 +138,7 @@
         padding: 32px 40px;
 
         &:not(:first-of-type) {
-            border-left: 1px solid var(--content-border-color);
+            border-left: shapes.$border;
         }
 
         dl {
@@ -179,7 +180,7 @@
     .td-topbar-column-title {
         color: var(--body-heading-color);
         padding-bottom: 8px !important; // overrides stylesheets that reset browser styles
-        border-bottom: 1px solid var(--content-border-color);
+        border-bottom: shapes.$border;
         font-weight: var(--font-weight-semi-bold);
         font-size: var(--font-size-h5);
         line-height: var(--line-height-h5);
@@ -221,7 +222,7 @@
         gap: 32px;
         padding: 32px;
         background: var(--color-purple);
-        border: 1px solid var(--content-border-color);
+        border: shapes.$border;
         border-radius: var(--border-radius);
         transition: border-color 100ms ease;
 
@@ -388,7 +389,7 @@
         }
 
         .td-topbar-secondary-area {
-            border-top: 1px solid var(--content-border-color);
+            border-top: shapes.$border;
             padding: 24px 0 32px;
             display: flex;
             align-items: center;
@@ -425,7 +426,7 @@
 
         .td-topbar-panel-column {
             padding: 16px 0;
-            border-top: 1px solid var(--content-border-color);
+            border-top: shapes.$border;
 
             &:first-of-type {
                 padding-top: 0;
