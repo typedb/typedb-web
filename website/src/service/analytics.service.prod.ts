@@ -17,10 +17,13 @@ export class AnalyticsService {
             if (isScullyRunning()) return;
             posthog.capture("$pageview");
         },
-        captureFormSubmission: (formId: string, submission: { email: string; } & Record<string, string>) => {
+        captureFormSubmission: (formId: string, submission: Record<string, unknown>) => {
             if (isScullyRunning()) return;
-            posthog.alias(submission.email);
-            posthog.capture("form_submit", { form_id: formId, ...submission }, { $set: submission });
+            if (submission["email"]) {
+                posthog.alias(submission["email"] as string);
+            }
+            const props = Object.fromEntries(Object.entries(submission).filter(([_, v]) => v != null));
+            posthog.capture("form_submit", { form_id: formId, ...props }, { $set: props });
         },
         reset: () => {
             if (isScullyRunning()) return;
