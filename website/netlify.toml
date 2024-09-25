@@ -161,6 +161,13 @@ host = "cdp.customer.io"
 status = 200
 force = true
 
+[[redirects]]
+from = "/forms/*"
+to = "https://track.customer.io/api/v1/forms/:splat"
+host = "track.customer.io"
+status = 200
+force = true
+
 # MAIN SITE BEHAVIOUR
 # Keep indefinitely. These redirects are required for the main site to behave correctly
 
