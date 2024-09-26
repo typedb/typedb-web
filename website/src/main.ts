@@ -42,7 +42,7 @@ if (!isScullyRunning()) {
             capture_pageview: false,
             capture_pageleave: true,
         }
-    )
+    );
 }
 
 const globalRippleConfig: RippleGlobalOptions = {

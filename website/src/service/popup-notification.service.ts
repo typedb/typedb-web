@@ -15,4 +15,11 @@ export class PopupNotificationService {
             duration: 4000,
         });
     }
+
+    error(message: string) {
+        this.snackbar.openFromComponent<SnackbarComponent, SnackbarData>(SnackbarComponent, {
+            data: { message },
+            duration: 10000,
+        });
+    }
 }

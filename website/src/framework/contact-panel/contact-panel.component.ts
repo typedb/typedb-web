@@ -43,7 +43,7 @@ export class ContactPanelComponent {
     formId!: string;
     readonly isSubmitting$ = new Subject<boolean>();
 
-    readonly form = this.formBuilder.group({
+    readonly form = this.formBuilder.nonNullable.group({
         first_name: ["", [patternValidator(namePattern, namePatternErrorText), requiredValidator]],
         last_name: ["", [patternValidator(namePattern, namePatternErrorText), requiredValidator]],
         email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
@@ -68,10 +68,19 @@ export class ContactPanelComponent {
     }
 
     onSubmit() {
-        this.analyticsService.posthog.captureFormSubmission(this.formId, this.form.getRawValue());
-        this.submitDone.emit();
-        this.analyticsService.google.reportAdConversion("getInTouch");
-        this.popupNotificationService.success("Your message has been sent!");
+        this.isSubmitting$.next(true);
+        this.formService.submit(this.formId, this.form.getRawValue() as { email: string }).subscribe({
+            next: () => {
+                this.isSubmitting$.next(false);
+                this.analyticsService.google.reportAdConversion("getInTouch");
+                this.popupNotificationService.success("Your message has been sent!");
+                this.submitDone.emit();
+            },
+            error: () => {
+                this.isSubmitting$.next(false);
+                this.popupNotificationService.error("There was an error submitting the form - please try again");
+            },
+        });
     }
 
     readonly topics = contactFormTopics;
