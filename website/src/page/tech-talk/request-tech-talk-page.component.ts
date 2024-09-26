@@ -40,7 +40,7 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     formId!: string;
     readonly isSubmitting$ = new Subject<boolean>;
-    readonly form = this.formBuilder.group({
+    readonly form = this.formBuilder.nonNullable.group({
         first_name: ["", []],
         last_name: ["", []],
         email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
@@ -49,7 +49,7 @@ export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechT
     });
 
     constructor(
-        private formService: FormService, private popupNotificationService: PopupNotificationService,
+        private forms: FormService, private popupNotificationService: PopupNotificationService,
         activatedRoute: ActivatedRoute, private analytics: AnalyticsService, router: Router, title: Title,
         idleMonitor: IdleMonitorService, metaTags: MetaTagsService, contentService: ContentService,
         private formBuilder: FormBuilder,
@@ -72,8 +72,16 @@ export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechT
     }
 
     onSubmit() {
-        this.analytics.posthog.captureFormSubmission(this.formId, this.form.getRawValue());
-        this.analytics.google.reportAdConversion("requestTechTalk");
-        this.popupNotificationService.success("Your request has been submitted!");
+        this.forms.submit(this.formId, this.form.getRawValue() as { email: string }).subscribe({
+            next: () => {
+                this.isSubmitting$.next(false);
+                this.analytics.google.reportAdConversion("requestTechTalk");
+                this.popupNotificationService.success("Your request has been submitted!");
+            },
+            error: () => {
+                this.isSubmitting$.next(false);
+                this.popupNotificationService.error("There was an error submitting the form - please try again");
+            },
+        });
     }
 }

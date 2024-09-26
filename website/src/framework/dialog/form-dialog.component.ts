@@ -75,7 +75,7 @@ export class NewsletterDialogComponent {
         private dialogRef: MatDialogRef<NewsletterDialogComponent>,
         private _popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
-        formService: FormService, private formBuilder: FormBuilder
+        private formService: FormService, private formBuilder: FormBuilder
     ) {
         this.description$ = formService.forms.pipe(
             tap((forms) => { this.formId = forms.newsletter; }),
@@ -86,10 +86,18 @@ export class NewsletterDialogComponent {
     }
 
     onSubmit() {
-        this.analyticsService.posthog.captureFormSubmission(this.formId, this.form.getRawValue());
-        this.dialogRef.close();
-        this.analyticsService.google.reportAdConversion("subscribeToNewsletter");
-        this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
+        this.isSubmitting$.next(true);
+        this.formService.submit(this.formId, this.form.getRawValue()).subscribe({
+            next: () => {
+                this.dialogRef.close();
+                this.analyticsService.google.reportAdConversion("subscribeToNewsletter");
+                this._popupNotificationService.success("Your email is now subscribed to our newsletter!");
+            },
+            error: () => {
+                this.isSubmitting$.next(false);
+                this._popupNotificationService.error("There was an error subscribing to the newsletter - please try again");
+            }
+        });
     }
 }
 
@@ -111,7 +119,7 @@ export class FeedbackDialogComponent {
         overall_rating_typedb: [null as number | null, []],
         overall_rating_page: [null as number | null, []],
         feedback_text: ["", []],
-        email: ["", [patternValidator(emailPattern, emailPatternErrorText)]],
+        email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
     });
     readonly ratingOptions: FormOption<number>[] = [1, 2, 3, 4, 5].map(x => ({ value: x, viewValue: x.toString() }));
 
@@ -119,7 +127,7 @@ export class FeedbackDialogComponent {
         private analyticsService: AnalyticsService,
         private dialogRef: MatDialogRef<FeedbackDialogComponent>,
         private popupNotificationService: PopupNotificationService,
-        formService: FormService, private formBuilder: FormBuilder
+        private formService: FormService, private formBuilder: FormBuilder
     ) {
         this.description$ = formService.forms.pipe(
             tap((forms) => { this.formId = forms.feedback; }),
@@ -130,10 +138,18 @@ export class FeedbackDialogComponent {
     }
 
     onSubmit() {
-        this.analyticsService.posthog.captureFormSubmission(this.formId, this.form.getRawValue());
-        this.dialogRef.close();
-        this.analyticsService.google.reportAdConversion("sendFeedback");
-        this.popupNotificationService.success("Your feedback has been submitted. Thank you!");
+        this.isSubmitting$.next(true);
+        this.formService.submit(this.formId, this.form.getRawValue() as { email: string }).subscribe({
+            next: () => {
+                this.dialogRef.close();
+                this.analyticsService.google.reportAdConversion("sendFeedback");
+                this.popupNotificationService.success("Your feedback has been submitted. Thank you!");
+            },
+            error: () => {
+                this.isSubmitting$.next(false);
+                this.popupNotificationService.error("There was an error submitting feedback - please try again");
+            },
+        });
     }
 }
 
