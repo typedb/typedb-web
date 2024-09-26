@@ -62,6 +62,7 @@ export class WebsiteComponent {
     private capturePageViewOnNavigation(router: Router, analytics: AnalyticsService) {
         router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
             analytics.posthog.capturePageView();
+            analytics.cio.page();
         });
     }
 

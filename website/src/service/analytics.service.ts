@@ -3,13 +3,13 @@ import { isScullyRunning } from "@scullyio/ng-lib";
 import { environment } from "../environment/environment";
 import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID } from "./marketing-tech-constants";
 import posthog, { Properties } from "posthog-js";
-// import { AnalyticsBrowser, ID as cioID, UserTraits } from "@customerio/cdp-analytics-browser";
+import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
 
 @Injectable({
     providedIn: "root",
 })
 export class AnalyticsService {
-    // private _cio = AnalyticsBrowser.load({ writeKey: "5fed4032be64c59cf336" });
+    private _cio = AnalyticsBrowser.load({ writeKey: "5fed4032be64c59cf336" });
 
     // Google Ads and Google Analytics scripts only run in production
     posthog = {
@@ -34,15 +34,15 @@ export class AnalyticsService {
     cio = {
         identify: (id: string, traits?: object) => {
             if (isScullyRunning()) return;
-            // this._cio.identify(id, traits);
+            this._cio.identify(id, traits);
         },
         page: () => {
             if (isScullyRunning()) return;
-            // this._cio.page();
+            this._cio.page();
         },
         reset: () => {
             if (isScullyRunning()) return;
-            // this._cio.reset();
+            this._cio.reset();
         },
     };
 
