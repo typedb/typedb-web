@@ -52,7 +52,7 @@
     <mj-section>
       <mj-column>
         <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
-          <h1>We've rewritten TypeDB in Rust</h1>
+          <h1>We have launched the alpha for TypeDB 3.0: re-built in Rust</h1>
         </mj-text>
       </mj-column>
     </mj-section>
@@ -66,7 +66,11 @@
     <mj-section>
       <mj-column>
         <mj-text>
-          <p>You've been increasingly asking for early access to the new TypeDB written in Rust, and today we're thrilled to announce: <em>we're rolling out 3.0 Alpha releases!</em></p>
+          <p>This first release represents an early alpha launch of our rebuild in Rust. This gives us a lot more speed, stability, and scalability. In practice, that means we’d love to see you sandbox it and give us feedback, but it is not ready yet to be used in a production environment. </p>
+
+          <p>Over the coming weeks, we’re going to be regularly deploying new features to take it to parity with 2.x. That will then initiate the 3.0-beta phase, where we'll process your bug reports, stabilise and optimize performance, until the first full 3.0 release.</p>
+
+          <p><em>I personally cannot articulate how much incredible work has gone in from our team, because I joined this week. Apparently, it’s a lot. They’re very pleased.</em></p>
 
           <p>We're incredibly excited with the direction TypeDB and TypeQL have taken in the last months, and hope you will be too. Some top highlights:</p>
 
@@ -77,17 +81,12 @@
           </ol>
 
           <p>
-            Consider TypeDB 3.0 Alpha to be a "prototype". Do <strong>not</strong> use it in production systems yet (please!). The storage layer is subject to change as we optimize and stabilize, so there won't be compatibility. Do experiment and try the new features. Get a feel for the new <a href="https://typedb.com/fundamentals/constraints-3-0">constraint language</a>.
+            Adding a second reminder to consider TypeDB 3.0 Alpha to be a "prototype". Do <strong>not</strong> use it in production systems yet (please!). The storage layer is subject to change as we optimize and stabilize, so there won't be compatibility. Do experiment and try the new features. Get a feel for the new <a href="https://typedb.com/fundamentals/constraints-3-0">constraint language</a>.
             Try creating complex DB workflows with <a href="https://typedb.com/fundamentals/pipelines-3-0">pipelines</a>.
             And tell us what's missing (this email address is monitored).
           </p>
 
-          <p>
-            TypeDB 3.0-alpha releases will be rolling approximately every week, bringing new features incrementally until the 3.0 roadmap is complete.
-            That will then initiate the 3.0-beta phase, where we'll process your bug reports, stabilise and optimize performance, until the first full 3.0 release!
-          </p>
-
-          <p>In the meantime, we'll be posting <strong>new Driver API snippets</strong> in our Discord <a href="https://typedb.com/discord">Chat Server</a>. <code>3.0-alpha-0</code> supports query pipelines and cardinality constraints.</p>
+          <p>We'll be posting <strong>new Driver API snippets</strong> in our Discord <a href="https://typedb.com/discord">Chat Server</a>.</p>
 
           <p>We're sure you'll love the new language, server, and drivers as much as we do, and look forward to hearing from everyone in the community.</p>
         </mj-text>
@@ -96,7 +95,7 @@
 
     <mj-section css-class="td-actions">
       <mj-column>
-        <mj-button href="https://typedb.com">Try TypeDB 3.0</mj-button>
+        <mj-button href="https://github.com/typedb/typedb/releases/tag/3.0.0-alpha-1">Try TypeDB 3.0</mj-button>
       </mj-column>
     </mj-section>
 

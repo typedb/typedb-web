@@ -9,7 +9,17 @@ import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
     providedIn: "root",
 })
 export class AnalyticsService {
-    private _cio = AnalyticsBrowser.load({ writeKey: "5fed4032be64c59cf336" });
+    private _cio = AnalyticsBrowser.load({
+        writeKey: "5fed4032be64c59cf336",
+        cdnURL: "https://typedb.com/platform",
+    }, {
+        integrations: {
+            "Customer.io Data Pipelines": {
+                apiHost: "typedb.com/platform/v1",
+                protocol: "https",
+            },
+        },
+    });
 
     // Google Ads and Google Analytics scripts only run in production
     posthog = {
