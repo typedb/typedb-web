@@ -152,6 +152,22 @@ host = "us.i.posthog.com"
 status = 200
 force = true
 
+# CUSTOMER.IO REVERSE PROXY
+# Keep indefinitely. These reverse proxy configurations enable us to route data to Customer.io through Netlify.
+[[redirects]]
+from = "/platform/*"
+to = "https://cdp.customer.io/:splat"
+host = "cdp.customer.io"
+status = 200
+force = true
+
+[[redirects]]
+from = "/forms/*"
+to = "https://track.customer.io/api/v1/forms/:splat"
+host = "track.customer.io"
+status = 200
+force = true
+
 # MAIN SITE BEHAVIOUR
 # Keep indefinitely. These redirects are required for the main site to behave correctly
 
