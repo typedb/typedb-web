@@ -2,11 +2,16 @@ import { Injectable } from "@angular/core";
 
 import { map, Observable, of, ReplaySubject, shareReplay } from "rxjs";
 import { formsSchemaName, SanityCustomerIoForms } from "typedb-web-schema";
+import { environment } from "../environment/environment";
 import { AnalyticsService } from "./analytics.service";
 
 import { ContentService } from "./content.service";
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { HttpClient } from "@angular/common/http";
+
+const authToken = environment.env === "production"
+    ? `MmY2YjZmNWM1ZWYyOTNhY2ZiZjA6MzQ3NTUwNjZiOGZmYjlmYjdhNTY=`
+    : `ZTVjMDIzODRiNTk1ZTUzYzYyNWY6ZDcyYmI5ZmRlMDQyZTY5MWE4MzE=`;
 
 @Injectable({
     providedIn: "root",
@@ -35,7 +40,7 @@ export class FormService {
         this.analytics.cio.identify(data.email, props);
         return this.http.post(`https://typedb.com/forms/${formId}/submit`, { data }, {
             headers: {
-                "Authorization": `Basic ZTVjMDIzODRiNTk1ZTUzYzYyNWY6ZDcyYmI5ZmRlMDQyZTY5MWE4MzE=`,
+                "Authorization": `Basic ${authToken}`,
                 "Content-Type": "application/json",
             },
         });
