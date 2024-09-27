@@ -10,7 +10,7 @@ import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
 })
 export class AnalyticsService {
     private _cio = AnalyticsBrowser.load({
-        writeKey: "5fed4032be64c59cf336",
+        writeKey: environment.env === "production" ? "13252ebf8d339959b5b9" : "5fed4032be64c59cf336",
         cdnURL: "https://typedb.com/platform",
     }, {
         integrations: {
