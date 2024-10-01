@@ -16,6 +16,7 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
 import posthog from "posthog-js";
+import Intercom from "@intercom/messenger-js-sdk";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -43,6 +44,8 @@ if (!isScullyRunning()) {
             capture_pageleave: true,
         }
     );
+
+    Intercom({ app_id: "zof896ic" });
 }
 
 const globalRippleConfig: RippleGlobalOptions = {
