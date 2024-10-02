@@ -2,13 +2,12 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Output, EventEmitter, Input } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 
-import { map, Observable, Subject, tap } from "rxjs";
+import { Subject } from "rxjs";
 
 import { FormService } from "src/service/form.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../form";
-import { ParagraphWithHighlights } from "typedb-web-schema";
 import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { emailPattern, emailPatternErrorText, namePattern, namePatternErrorText } from "typedb-web-common/lib";
 import { MatCheckboxModule } from "@angular/material/checkbox";
@@ -39,7 +38,6 @@ export class ContactPanelComponent {
     @Input() showPersonalDataNotice = false;
     @Output() readonly submitDone = new EventEmitter();
 
-    description$: Observable<ParagraphWithHighlights | null>;
     formId!: string;
     readonly isSubmitting$ = new Subject<boolean>();
 
@@ -59,12 +57,11 @@ export class ContactPanelComponent {
         private popupNotificationService: PopupNotificationService,
         private analyticsService: AnalyticsService,
     ) {
-        this.description$ = formService.forms.pipe(
-            tap((forms) => { this.formId = forms.contact; }),
-            map((forms) =>
-                forms.contactDescription ? ParagraphWithHighlights.fromSanity(forms.contactDescription) : null,
-            ),
-        );
+        formService.forms.subscribe({
+            next: (forms) => {
+                this.formId = forms.contact;
+            }
+        });
     }
 
     onSubmit() {

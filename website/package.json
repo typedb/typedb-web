@@ -30,7 +30,7 @@
     "@customerio/cdp-analytics-browser": "0.2.0",
     "@fortawesome/angular-fontawesome": "0.14.1",
     "@gammastream/scully-plugin-sitemap": "1.0.7",
-    "@intercom/messenger-js-sdk": "^0.0.14",
+    "@intercom/messenger-js-sdk": "0.0.14",
     "@pixi/constants": "6.5.9",
     "@pixi/core": "6.5.9",
     "@pixi/display": "6.5.9",

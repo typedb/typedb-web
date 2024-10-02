@@ -164,6 +164,7 @@
             Copyright © 2024 Vaticle Ltd<br/>
             TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
             All rights reserved.
+          </p>
           <p>
             <a href="{% view_in_browser_url %}">View this email in your browser</a>. We'd love to keep you in the loop, but if you'd rather not, you can <a href="{% unsubscribe_url %}">unsubscribe</a>.
           </p>
