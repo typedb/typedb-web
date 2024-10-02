@@ -1,0 +1,225 @@
+<mjml>
+  <mj-head>
+    <mj-title>TypeDB</mj-title>
+    <mj-font name="Titillium Web" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Titillium Web, Helvetica, Arial, sans-serif"></mj-all>
+      <mj-section padding="20px 20px 0 20px"></mj-section>
+      <mj-column padding="0"></mj-column>
+      <mj-text font-weight="400" font-size="16px" color="#1A182A" line-height="26px" align="justify" padding="10px 0"></mj-text>
+      <mj-button background-color="#1D1354" font-size="16px" height="48px" color="#FFF" css-class="mj-button"></mj-button>
+      <mj-divider padding="40px 0 0" border-width="1px"></mj-divider>
+      <mj-social css-class="mj-social"></mj-social>
+      <mj-social-element background-color="#1D1354" css-class="mj-social-element"></mj-social-element>
+    </mj-attributes>
+    <mj-style>
+      html, body { font-family: 'Titillium Web', Helvetica, Arial, sans-serif; }
+      h1 { font-size: 30px; line-height: 36px; }
+      h2 { font-size: 24px; line-height: 32px; }
+      h3 { font-size: 20px; line-height: 28px; }
+      h1, h2, h3 { font-weight: 600; color: #1A182A; }
+      a { color: #0cc7b8; text-decoration: none; }
+      a:hover { text-decoration: underline !important; }
+      p { color: #1A182A; font-size: 16px; line-height: 26px; text-align: justify; }
+      p a, p a[href], li a, li a[href], aside a, aside a[href], .td-fake-link { color: #0cc7b8; font-weight: 600; }
+      ol, ul { margin: 13px 0; font-size: 16px; padding: 0 0 0 1em; }
+      li { margin: 6px 0; padding: 0 0 0 1em; }
+      code { font-size: 90%; }
+      img { border-radius: 5px; }
+      .td-actions { display: block; width: 100%; }
+      .td-actions > table { width: unset !important; }
+      .mj-button a { white-space: nowrap; display: block !important; }
+      .mj-button a:hover { box-shadow: 0 3px 26px 0 #1d135466; } /* NB box-shadow email client support is very poor */
+      @media only screen and (max-width: 479px) {
+        .mj-button { padding-left: 0 !important; padding-right: 0 !important; }
+        .mj-button table { width: 100%; }
+      }
+      .mj-social-element img { border: 1px solid #1D1354; }
+      @media only screen and (min-width: 480px) {
+        .mj-social { text-align: right; padding: 0 !important; }
+      }
+      .td-full-width { width: 100%; }
+      .td-hoverable-card { background: #FEFEFE; border-radius:5px; border:1px solid #EFF1F3; transition: border-color 100ms ease; display: block; margin:auto; padding:10px 28px 14px; border-spacing: 0; }
+      .td-hoverable-card:hover, a.td-hoverable-card:hover { border-color: #0cc7b8 !important; text-decoration: none !important; }
+      .td-fake-link:hover { text-decoration: underline; }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f9f9f9">
+
+    <mj-section>
+      <mj-group>
+        <mj-column>
+          <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-text align="right" font-size="11px" line-height="17px" padding="0">
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1727866216683_welcome-to-typedb-cloud_01J96DM8ECP14PH6FNE09F9B5H.png" href="https://cloud.typedb.com"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>Welcome to <a href="https://cloud.typedb.com">TypeDB Cloud</a>, the scalable, fully-managed version of TypeDB!</p>
+
+          <p>You can choose to deploy with any cloud provider - GCP, AWS or Azure - and manage access across your teams and organization. You have access to advanced TypeDB functionality including clustering and user authentication.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>Getting Started</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="https://cloud.typedb.com" target="_blank" class="td-hoverable-card">
+            <h3>Create your first TypeDB Deployment</h3>
+            <p><span class="td-fake-link">Login to TypeDB Cloud</span> and create your first deployment instantly from the Deployments page. TypeDB Cloud has a free tier, so you won't need any payment information to get started.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="https://typedb.com/docs/home/quickstart" target="_blank" class="td-hoverable-card">
+            <h3>Start now with the Quickstart Guide</h3>
+            <p>Follow the <span class="td-fake-link">TypeDB Quickstart Guide</span> to connect to your deployment from TypeDB Studio, update your default admin password, and start writing queries against TypeDB.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="https://typedb.com/docs/home/crash-course" target="_blank" class="td-hoverable-card">
+            <h3>Learn TypeDB with the Crash Course</h3>
+            <p>The <span class="td-fake-link">TypeDB Crash Course</span> is a concise hands-on overview of TypeDB's key functionality for building applications, that you can directly experience from your new TypeDB Cloud deployment.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="https://typedb.com/docs/academy/overview" target="_blank" class="td-hoverable-card">
+            <h3>Master TypeDB with TypeDB Academy</h3>
+            <p>The <span class="td-fake-link">TypeDB Academy</span> is an end-to-end learning experience suitable for users of all levels, whether you are looking to learn the basics of TypeDB, or take a deep dive into the advanced features.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="https://typedb.com/docs/drivers/overview" target="_blank" class="td-hoverable-card">
+            <h3>Connect your application to TypeDB</h3>
+            <p>Connect your application to your TypeDB Cloud deployment using TypeDB's robust and programmatic <span class="td-fake-link">language-native drivers</span>, available in Rust, Python, Node.js, Java, C#, C++, and C.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>Getting support for TypeDB Cloud</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <div class="td-hoverable-card">
+            <h3>Join the developer community</h3>
+            <p>Open collaboration is a core value of the TypeDB community, and members actively discuss solutions on Discord and make contributions on GitHub. New faces are always welcome, and we hope to see you soon.</p>
+            <ul>
+              <li><a href="https://typedb.com/discord" target="_blank">Chat on Discord</a></li>
+              <li><a href="https://forum.typedb.com/" target="_blank">Discuss on Forum</a></li>
+              <li><a href="https://github.com/typedb/typedb" target="_blank">Contribute on GitHub</a></li>
+            </ul>
+          </div>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="mailto:support@typedb.com?subject=TypeDB%20Cloud%20Support" target="_blank" class="td-hoverable-card">
+            <h3>Get in touch</h3>
+            <p>If any issue arises with your deployment, email us any time, any day at <span class="td-fake-link">support@typedb.com.</span> We're committed to ensuring your development journey on TypeDB Cloud is as smooth as possible.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-raw>
+          <a href="mailto:cloud@typedb.com?subject=TypeDB%20Cloud%20Feedback" target="_blank" class="td-hoverable-card">
+            <h3>Share your feedback</h3>
+            <p>TypeDB Cloud goes through rapid iterations of improvements and we'll be launching many features on a weekly basis. If there's anything missing from the current offering, or simply something you'd like improved, please do write to us at <span class="td-fake-link">cloud@typedb.com</span>. We would love to hear from you about your experience with TypeDB Cloud.</p>
+          </a>
+        </mj-raw>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-divider></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+      </mj-column>
+      <mj-column>
+        <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="25px 10px 0">
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668493619_discord-rectangle_01J82QCMWAWNWD763G950T16P2.png" href="https://typedb.com/discord"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494602_twitter-rectangle_01J82QCNTRTYZN0R0S0FHCS992.png" href="https://x.com/typedb_"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668495078_youtube-rectangle_01J82QCP9NCHQ0A5D8T83SFFW5.png" href="https://youtube.com/@typedb"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494132_linkedin-rectangle_01J82QCNC24PJX23H6PRR86TV3.png" href="https://www.linkedin.com/company/typedb/"></mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="left" color="#9B9B9B" font-size="11px" line-height="17px">
+          <aside>
+            Copyright © 2024 Vaticle Ltd<br/>
+            TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
+            All rights reserved.
+          </aside>
+          <br/>
+          <aside>
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>. If you hate these emails, you can <a href="{% unsubscribe_url %}">unsubscribe</a>.
+          </aside>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
