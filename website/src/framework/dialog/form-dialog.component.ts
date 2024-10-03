@@ -139,7 +139,7 @@ export class FeedbackDialogComponent {
 
     onSubmit() {
         this.isSubmitting$.next(true);
-        this.formService.submit(this.formId, this.form.getRawValue() as { email: string }).subscribe({
+        this.formService.submit(this.formId, Object.assign({}, this.form.getRawValue() as { email: string }, { feedback_page_url: window.location.href.split("?")[0] })).subscribe({
             next: () => {
                 this.dialogRef.close();
                 this.analyticsService.google.reportAdConversion("sendFeedback");
