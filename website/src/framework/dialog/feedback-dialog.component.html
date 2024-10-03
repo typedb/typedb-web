@@ -12,7 +12,7 @@
     <label for="feedback_text">Comments (optional)</label>
     <td-form-textarea [form]="form" field="feedback_text"/>
 
-    <label for="email">Email (optional)</label>
+    <label for="email">Email</label>
     <td-form-input [form]="form" field="email" autocomplete="email"/>
 
     <td-form-actions buttonIdPrefix="provideFeedback" [isSubmitting]="isSubmitting$ | async" submitText="Submit" [submitDisabled]="!form.dirty"/>
