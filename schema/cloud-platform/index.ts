@@ -1,3 +1,4 @@
+import { loginSchemas } from "./login";
 import { onboardingSchemas } from "./onboarding";
 import { cloudProviderSchemas } from "./provider";
 import { geographySchemas } from "./geography";
@@ -5,5 +6,6 @@ import { geographySchemas } from "./geography";
 export const cloudPlatformSchemas: any[] = [
     ...cloudProviderSchemas,
     ...geographySchemas,
+    ...loginSchemas,
     ...onboardingSchemas,
 ];
