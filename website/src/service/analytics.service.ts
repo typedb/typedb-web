@@ -23,13 +23,23 @@ export class AnalyticsService {
 
     // Google Ads and Google Analytics scripts only run in production
     posthog = {
-        alias: (newId: string, existingId?: string) => {
+        alias: (alias: string, original?: string) => {
             if (isScullyRunning()) return;
-            posthog.alias(newId, existingId);
+            posthog.alias(alias, original);
         },
         capturePageView: () => {
             if (isScullyRunning()) return;
             posthog.capture("$pageview");
+        },
+        getDistinctId: () => posthog.get_distinct_id(),
+        identify: (id: string) => {
+            if (isScullyRunning()) return;
+            posthog.identify(id);
+        },
+        isIdentified: () => posthog._isIdentified(),
+        mergeDangerously: (alias: string) => {
+            if (isScullyRunning()) return;
+            posthog.capture("$merge_dangerously", { alias });
         },
         reset: () => {
             if (isScullyRunning()) return;
@@ -38,7 +48,7 @@ export class AnalyticsService {
         set: (userPropertiesToSet: Properties) => {
             if (isScullyRunning()) return;
             posthog.setPersonProperties(userPropertiesToSet);
-        }
+        },
     };
 
     cio = {
