@@ -35,8 +35,7 @@ export class FormService {
     submit(formId: string, data: { email: string } & Record<string, unknown>): Observable<unknown> {
         if (isScullyRunning()) return of(null);
         const props = Object.fromEntries(Object.entries(data).filter(([_, v]) => v != null && v.toString().trim().length).map(([k, v]) => [k, v!.toString()]));
-        this.analytics.posthog.identify(data.email);
-        this.analytics.posthog.set(props);
+        this.analytics.posthog.identify(data.email, props);
         this.analytics.cio.identify(data.email, props);
         return this.http.post(`https://typedb.com/forms/${formId}/submit`, { data: props }, {
             headers: {

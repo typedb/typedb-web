@@ -32,9 +32,9 @@ export class AnalyticsService {
             posthog.capture("$pageview");
         },
         getDistinctId: () => posthog.get_distinct_id(),
-        identify: (id: string) => {
+        identify: (id: string, userPropertiesToSet?: Properties) => {
             if (isScullyRunning()) return;
-            posthog.identify(id);
+            posthog.identify(id, userPropertiesToSet);
         },
         isIdentified: () => posthog._isIdentified(),
         mergeDangerously: (alias: string) => {
