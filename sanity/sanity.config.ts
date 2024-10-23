@@ -1,8 +1,9 @@
 import "./styles.css";
 
 import {
+    AddUserIcon,
     ArrowTopRightIcon,
-    BinaryDocumentIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, CommentIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, OlistIcon,
+    BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
@@ -22,7 +23,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -70,6 +71,7 @@ export default defineConfig({
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
                 s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
+                    singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
                     s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
                 ])),

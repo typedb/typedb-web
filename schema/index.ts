@@ -27,6 +27,7 @@ export const schemaTypes: any[] = [
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
+export { cloudLoginPortalSchemaName, type CloudLoginPortal } from "./cloud-platform/login";
 export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
 export {
     type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
