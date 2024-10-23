@@ -76,7 +76,7 @@
     }
 
     .td-topbar-logo-container {
-        img {
+        svg {
             margin-bottom: 2px;
 
             @media (min-width: media.$min-width-desktop) {
@@ -90,7 +90,19 @@
             @media (max-width: media.$max-width-mobile) {
                 height: 32px;
             }
+
+            .tp-right-eye {
+                animation: 90s linear 0s infinite winkWink;
+                transform-origin: center;
+            }
         }
+    }
+
+    @keyframes winkWink {
+        0% { transform: scaleY(1); }
+        99.8% { transform: scaleY(1); }
+        99.9% { transform: translateY(20px) scaleY(0.01); }
+        100% { transform: scaleY(1); }
     }
 
     .td-topbar-main-area,
