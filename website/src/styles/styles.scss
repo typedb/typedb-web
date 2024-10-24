@@ -5,7 +5,6 @@
 
 @import "base";
 @import "fonts";
-@import "form";
 @import "material";
 @import "prism";
 @import "reset";
@@ -119,6 +118,19 @@ section,
         color: var(--color-green);
         text-decoration: underline;
     }
+}
+
+input[type="email"],
+select {
+    padding: 0 8px;
+    background-color: var(--color-purple);
+    color: var(--body-font-color);
+    border: shapes.$border;
+    caret-color: var(--body-font-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    line-height: 46px;
+    height: 48px;
 }
 
 table {
