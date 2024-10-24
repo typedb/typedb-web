@@ -8,9 +8,9 @@
  */
 
 @use "@angular/material" as mat;
-@use "colors";
-@use "shapes";
-@use "typography";
+@use "../../../common/src/styles/colors";
+@use "../../../common/src/styles/shapes";
+@use "../../../common/src/styles/typography";
 
 @include mat.core();
 $purple-palette: (
