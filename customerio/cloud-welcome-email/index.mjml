@@ -88,8 +88,8 @@
       <mj-column>
         <mj-raw>
           <a href="https://cloud.typedb.com" target="_blank" class="td-hoverable-card">
-            <h3>Create your first TypeDB Deployment</h3>
-            <p><span class="td-fake-link">Login to TypeDB Cloud</span> and create your first deployment instantly from the Deployments page. TypeDB Cloud has a free tier, so you won't need any payment information to get started.</p>
+            <h3>Deploy your first TypeDB Cluster</h3>
+            <p><span class="td-fake-link">Login to TypeDB Cloud</span> and deploy your first cluster instantly from the Clusters page. TypeDB Cloud has a free tier (which is genuinely free forever!), so you won't need payment info to get started.</p>
           </a>
         </mj-raw>
       </mj-column>
@@ -100,7 +100,7 @@
         <mj-raw>
           <a href="https://typedb.com/docs/home/quickstart" target="_blank" class="td-hoverable-card">
             <h3>Start now with the Quickstart Guide</h3>
-            <p>Follow the <span class="td-fake-link">TypeDB Quickstart Guide</span> to connect to your deployment from TypeDB Studio, update your default admin password, and start writing queries against TypeDB.</p>
+            <p>Follow the <span class="td-fake-link">TypeDB Quickstart Guide</span> to connect to your cluster from TypeDB Studio, update your default admin password, and start writing queries against TypeDB.</p>
           </a>
         </mj-raw>
       </mj-column>
@@ -111,7 +111,7 @@
         <mj-raw>
           <a href="https://typedb.com/docs/home/crash-course" target="_blank" class="td-hoverable-card">
             <h3>Learn TypeDB with the Crash Course</h3>
-            <p>The <span class="td-fake-link">TypeDB Crash Course</span> is a concise hands-on overview of TypeDB's key functionality for building applications, that you can directly experience from your new TypeDB Cloud deployment.</p>
+            <p>The <span class="td-fake-link">TypeDB Crash Course</span> is a concise hands-on overview of TypeDB's key functionality for building applications, that you can directly experience from your new TypeDB cluster.</p>
           </a>
         </mj-raw>
       </mj-column>
@@ -133,7 +133,7 @@
         <mj-raw>
           <a href="https://typedb.com/docs/drivers/overview" target="_blank" class="td-hoverable-card">
             <h3>Connect your application to TypeDB</h3>
-            <p>Connect your application to your TypeDB Cloud deployment using TypeDB's robust and programmatic <span class="td-fake-link">language-native drivers</span>, available in Rust, Python, Node.js, Java, C#, C++, and C.</p>
+            <p>Connect your application to your TypeDB cluster using TypeDB's robust and programmatic <span class="td-fake-link">language-native drivers</span>, available in Rust, Python, Node.js, Java, C#, C++, and C.</p>
           </a>
         </mj-raw>
       </mj-column>
@@ -168,7 +168,7 @@
         <mj-raw>
           <a href="mailto:support@typedb.com?subject=TypeDB%20Cloud%20Support" target="_blank" class="td-hoverable-card">
             <h3>Get in touch</h3>
-            <p>If any issue arises with your deployment, email us any time, any day at <span class="td-fake-link">support@typedb.com.</span> We're committed to ensuring your development journey on TypeDB Cloud is as smooth as possible.</p>
+            <p>Email us any time, any day at <span class="td-fake-link">support@typedb.com.</span> We're committed to ensuring your development journey on TypeDB Cloud is as smooth as possible.</p>
           </a>
         </mj-raw>
       </mj-column>
