@@ -111,7 +111,13 @@ status = 301
 
 [[redirects]]
 from = "/docs"
-to = "/docs/home/overview"
+to = "/docs/home/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/home"
+to = "/docs/home/"
 status = 301
 force = true
 
