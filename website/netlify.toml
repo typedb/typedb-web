@@ -119,12 +119,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/docs/home"
-to = "/docs/home/"
-status = 301
-force = true
-
-[[redirects]]
 from = "/docs/academy"
 to = "/docs/academy/overview"
 status = 301
