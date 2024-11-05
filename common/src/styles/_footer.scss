@@ -68,16 +68,13 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
-        gap: 32px 104px;
+        gap: 32px;
 
-        ul,
-        li {
+        ul, li {
             list-style: none;
         }
 
-        a,
-        a:visited,
-        a p {
+        a, a:visited, a p {
             color: var(--body-heading-color);
 
             &:hover,
@@ -87,8 +84,7 @@
             }
         }
 
-        a:hover p,
-        a:focus p {
+        a:hover p, a:focus p {
             color: var(--color-green);
         }
     }
