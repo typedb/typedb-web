@@ -141,10 +141,6 @@
         border-left: shapes.$border;
     }
 
-    > tbody > tr:last-child {
-        border-bottom-width: 0;
-    }
-
     > tfoot {
         background: var(--table-footer-background);
     }
