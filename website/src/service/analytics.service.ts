@@ -25,29 +25,29 @@ export class AnalyticsService {
     posthog = {
         alias: (alias: string, original?: string) => {
             if (isScullyRunning()) return;
-            posthog.alias(alias, original);
+            // posthog.alias(alias, original);
         },
         capturePageView: () => {
             if (isScullyRunning()) return;
-            posthog.capture("$pageview");
+            // posthog.capture("$pageview");
         },
         getDistinctId: () => posthog.get_distinct_id(),
         identify: (id: string, userPropertiesToSet?: Properties) => {
             if (isScullyRunning()) return;
-            posthog.identify(id, userPropertiesToSet);
+            // posthog.identify(id, userPropertiesToSet);
         },
         isIdentified: () => posthog._isIdentified(),
         mergeDangerously: (alias: string) => {
             if (isScullyRunning()) return;
-            posthog.capture("$merge_dangerously", { alias });
+            // posthog.capture("$merge_dangerously", { alias });
         },
         reset: () => {
             if (isScullyRunning()) return;
-            posthog.reset();
+            // posthog.reset();
         },
         set: (userPropertiesToSet: Properties) => {
             if (isScullyRunning()) return;
-            posthog.setPersonProperties(userPropertiesToSet);
+            // posthog.setPersonProperties(userPropertiesToSet);
         },
     };
 
