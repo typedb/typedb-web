@@ -15,7 +15,7 @@ import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from "@angular/material/core";
-// import posthog from "posthog-js";
+import posthog from "posthog-js";
 import Intercom from "@intercom/messenger-js-sdk";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 
@@ -32,18 +32,18 @@ const cookieConfig: NgcCookieConsentConfig = {
 };
 
 if (!isScullyRunning()) {
-    // (window as any).posthog = posthog;
-    // const posthogProjectApiKey = environment.env === "production" ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
-    // posthog.init(
-    //     posthogProjectApiKey,
-    //     {
-    //         api_host: "https://typedb.com/ingest",
-    //         ui_host: "https://us.posthog.com",
-    //         person_profiles: "always",
-    //         capture_pageview: false,
-    //         capture_pageleave: true,
-    //     }
-    // );
+    (window as any).posthog = posthog;
+    const posthogProjectApiKey = environment.env === "production" ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
+    posthog.init(
+        posthogProjectApiKey,
+        {
+            api_host: "https://typedb.com/ingest",
+            ui_host: "https://us.posthog.com",
+            person_profiles: "always",
+            capture_pageview: false,
+            capture_pageleave: true,
+        }
+    );
 
     Intercom({ app_id: "zof896ic" });
 }
