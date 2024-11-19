@@ -1,0 +1,120 @@
+<mjml>
+  <mj-head>
+    <mj-title>TypeDB</mj-title>
+    <mj-font name="Titillium Web" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Titillium Web, Helvetica, Arial, sans-serif"></mj-all>
+      <mj-section padding="20px 20px 0 20px"></mj-section>
+      <mj-column padding="0"></mj-column>
+      <mj-text font-weight="400" font-size="16px" color="#1A182A" line-height="26px" align="justify" padding="10px 0"></mj-text>
+      <mj-button background-color="#1D1354" font-size="16px" height="48px" color="#FFF" css-class="mj-button"></mj-button>
+      <mj-divider padding="40px 0 0" border-width="1px"></mj-divider>
+      <mj-social css-class="mj-social"></mj-social>
+      <mj-social-element background-color="#1D1354" css-class="mj-social-element"></mj-social-element>
+    </mj-attributes>
+    <mj-style>
+      h1 { font-size: 30px; line-height: 36px; font-weight: 600; }
+      a { color: #374E67; }
+      p a, p a[href], li a, li a[href] { color: #0cc7b8; font-weight: 600; }
+      ol, ul, li { margin: 0; padding: 0 0 0 1em; }
+      code { font-size: 90%; }
+      img { border-radius: 5px; }
+      .td-actions { display: block; width: 100%; }
+      .td-actions > table { width: unset !important; }
+      .mj-button a { white-space: nowrap; display: block !important; }
+      .mj-button a:hover { box-shadow: 0 3px 26px 0 #1d135466; } /* NB box-shadow email client support is very poor */
+      @media only screen and (max-width: 479px) {
+        .mj-button { padding-left: 0 !important; padding-right: 0 !important; }
+        .mj-button table { width: 100%; }
+      }
+      .mj-social-element img { border: 1px solid #1D1354; }
+      @media only screen and (min-width: 480px) {
+        .mj-social { text-align: right; padding: 0 !important; }
+      }
+      .td-img-caption div { text-align: center !important; font-style: italic; } /* overrides mj-text inline style */
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f9f9f9">
+
+    <mj-section>
+      <mj-group>
+        <mj-column>
+          <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-text align="right" font-size="11px" line-height="17px" padding="0">
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1731954551420_nurture-refactoring_01JD08JANP6E7K0EK3R7VTTGAG.png" href="https://cloud.typedb.com"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>Hi there,</p>
+          <p>For this email, I wanted to share our favourite super power. Remember how much you love refactoring databases? How it takes months to years and then you find you have to do it again, and it becomes a living nightmare? Ah, fond memories.</p>
+          <p>TypeDB is designed to be adaptable on the fly. It is the first database you can tweak more easily than your back-end code. With powerful features like type inheritance, everything just builds together naturally and can be moved around as needed. Pretty powerful stuff.</p>
+          <p>If you want to see how or learn more about that, here’s this week’s link.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://typedb.com/#modify-your-data-model-without-refactoring-or-migrating">Refactoring TypeDB</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>Cal<br/>TypeDB</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-divider></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+      </mj-column>
+      <mj-column>
+        <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="25px 10px 0">
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668493619_discord-rectangle_01J82QCMWAWNWD763G950T16P2.png" href="https://typedb.com/discord"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494602_twitter-rectangle_01J82QCNTRTYZN0R0S0FHCS992.png" href="https://x.com/typedb_"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668495078_youtube-rectangle_01J82QCP9NCHQ0A5D8T83SFFW5.png" href="https://youtube.com/@typedb"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494132_linkedin-rectangle_01J82QCNC24PJX23H6PRR86TV3.png" href="https://www.linkedin.com/company/typedb/"></mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="left" color="#9B9B9B" font-size="11px" line-height="17px">
+          <p>
+            Copyright © 2024 Vaticle Ltd<br/>
+            TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
+            All rights reserved.
+          </p>
+          <p>
+            Have another <a href="{% unsubscribe_url %}">unsubscribe</a> link you rascal.
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
