@@ -1,60 +1,62 @@
 //$font-family-default: "Titillium Web", sans-serif;
 //$font-family-default: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 //$font-family-default: Roboto, sans-serif;
-$font-family-default: "Open Sans", sans-serif;
+$font-family-default: "Darkmode", sans-serif;
 $font-family-code: "Monaco", monospace;
 
-$bold: 600;
-$semi-bold: 400;
-$regular: 300;
-$light: 200;
+$bold: 700;
+$semi-bold: 600;
+$medium: 500;
+$regular: 400;
+$light: 300;
+$thin: 200;
 
-$h1: 51px;
-$height-h1: calc(59px / $h1);
-$h1-mobile: 31px;
-$height-h1-mobile: calc(39px / $h1-mobile);
+$h1: 48px;
+$height-h1: calc(58px / $h1);
+$h1-mobile: 28px;
+$height-h1-mobile: calc(38px / $h1-mobile);
 
-$h2: 39px;
-$height-h2: calc(47px / $h2);
-$h2-mobile: 25px;
-$height-h2-mobile: calc(33px / $h2-mobile);
+$h2: 36px;
+$height-h2: calc(46px / $h2);
+$h2-mobile: 22px;
+$height-h2-mobile: calc(32px / $h2-mobile);
 
-$h3: 25px;
-$height-h3: calc(33px / $h3);
-$h3-mobile: 19px;
-$height-h3-mobile: calc(27px / $h3-mobile);
+$h3: 24px;
+$height-h3: calc(34px / $h3);
+$h3-mobile: 18px;
+$height-h3-mobile: calc(28px / $h3-mobile);
 
-$h4: 21px;
-$height-h4: calc(29px / $h4);
-$h4-mobile: 17px;
-$height-h4-mobile: calc(25px / $h4-mobile);
+$h4: 20px;
+$height-h4: calc(30px / $h4);
+$h4-mobile: 16px;
+$height-h4-mobile: calc(26px / $h4-mobile);
 
-$h5: 17px;
-$height-h5: calc(25px / $h5);
-$h5-mobile: 15px;
-$height-h5-mobile: calc(23px / $h5-mobile);
+$h5: 16px;
+$height-h5: calc(26px / $h5);
+$h5-mobile: 14px;
+$height-h5-mobile: calc(24px / $h5-mobile);
 
-$p1: 21px;
-$height-p1: calc(29px / $p1);
-$p1-mobile: 17px;
-$height-p1-mobile: calc(25px / $p1-mobile);
+$p1: 20px;
+$height-p1: calc(30px / $p1);
+$p1-mobile: 16px;
+$height-p1-mobile: calc(26px / $p1-mobile);
 
-$p2: 17px;
-$height-p2: calc(25px / $p2);
-$p2-mobile: 15px;
-$height-p2-mobile: calc(23px / $p2-mobile);
+$p2: 16px;
+$height-p2: calc(26px / $p2);
+$p2-mobile: 14px;
+$height-p2-mobile: calc(24px / $p2-mobile);
 
-$blog: 19px;
-$height-blog: calc(29px / $blog);
-$blog-mobile: 17px;
-$height-blog-mobile: calc(27px / $blog-mobile);
+$blog: 18px;
+$height-blog: calc(28px / $blog);
+$blog-mobile: 16px;
+$height-blog-mobile: calc(26px / $blog-mobile);
 
-$aside: 15px;
-$height-aside: calc(23px / $aside);
-$aside-mobile: 13px;
-$height-aside-mobile: calc(21px / $aside-mobile);
+$aside: 14px;
+$height-aside: calc(24px / $aside);
+$aside-mobile: 12px;
+$height-aside-mobile: calc(22px / $aside-mobile);
 
-$code: 13px;
-$height-code: calc(21px / $code);
-$code-mobile: 11px;
-$height-code-mobile: calc(18px / $code-mobile);
+$code: 12px;
+$height-code: calc(22px / $code);
+$code-mobile: 10px;
+$height-code-mobile: calc(20px / $code-mobile);

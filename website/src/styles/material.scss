@@ -264,6 +264,7 @@ body {
         --mdc-dialog-container-color: #{colors.$purple};
         --mdc-dialog-subhead-color: #{colors.$white};
         --mdc-dialog-supporting-text-color: #{colors.$white};
+        --mdc-dialog-supporting-text-weight: var(--font-weight-light);
         --mdc-dialog-supporting-text-tracking: var(--body-letter-spacing);
 
         .mdc-dialog__surface {
@@ -308,6 +309,7 @@ body {
     .mat-mdc-form-field {
         --mat-form-field-container-text-tracking: var(--body-letter-spacing);
         --mdc-outlined-text-field-label-text-size: 15px;
+        --mdc-outlined-text-field-label-text-weight: var(--font-weight-light);
         --mdc-outlined-text-field-label-text-tracking: var(--body-letter-spacing);
         --mat-form-field-subscript-text-tracking: var(--body-letter-spacing);
         font-size: 15px;
