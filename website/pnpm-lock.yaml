@@ -147,8 +147,8 @@ dependencies:
     specifier: 6.5.9
     version: 6.5.9(@pixi/constants@6.5.9)(@pixi/core@6.5.9)(@pixi/display@6.5.9)(@pixi/graphics@6.5.9)(@pixi/math@6.5.9)(@pixi/mesh-extras@6.5.9)(@pixi/mesh@6.5.9)(@pixi/particle-container@6.5.9)(@pixi/prepare@6.5.9)(@pixi/settings@6.5.9)(@pixi/sprite-tiling@6.5.9)(@pixi/sprite@6.5.9)(@pixi/text@6.5.9)(@pixi/utils@6.5.9)
   posthog-js:
-    specifier: 1.164.2
-    version: 1.164.2
+    specifier: 1.187.2
+    version: 1.187.2
   prismjs:
     specifier: 1.29.0
     version: 1.29.0
@@ -7246,6 +7246,11 @@ packages:
       browserslist: 4.22.2
     dev: true
 
+  /core-js@3.39.0:
+    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
+    requiresBuild: true
+    dev: false
+
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -10898,9 +10903,10 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /posthog-js@1.164.2:
-    resolution: {integrity: sha512-WyoVJS0rZHGafyIXuXBihVtxR6ZhrIuN378SuziJWzYOXFheSUi5cjG4Mxu8XRc8/NBXpSAMY/9MZvLF+MzDuA==}
+  /posthog-js@1.187.2:
+    resolution: {integrity: sha512-IGKsZ7M4AYACm5I6gGGFrv9kR/MOnVYw11XFYCLk363n0nq+ghwenoW1jJVL9gZLGKiMsConUR8rG2DD2OMKyg==}
     dependencies:
+      core-js: 3.39.0
       fflate: 0.4.8
       preact: 10.23.1
       web-vitals: 4.2.3
