@@ -15,10 +15,10 @@
         // TODO: for some reason @include section-width($offset: 0px) doesn't work here
         width: var(--section-width);
         max-width: var(--section-max-width);
-        padding: 40px 0;
+        padding: 40px 12px;
 
         @media (max-width: media.$max-width-mobile) {
-            padding: 24px 0;
+            padding: 24px 12px;
         }
 
         &:not(:first-child) {
@@ -48,7 +48,7 @@
         height: 48px;
 
         @media (max-width: media.$max-width-mobile) {
-            align-self: stretch;
+            align-self: center;
             justify-content: center;
             height: 32px;
         }

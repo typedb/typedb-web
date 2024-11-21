@@ -420,7 +420,6 @@
 
         .td-topbar-button {
             margin: 0;
-            flex: 1;
         }
 
         .td-topbar-link {
@@ -482,6 +481,12 @@
                 width: 48px;
                 height: 48px;
             }
+        }
+    }
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        .td-topbar-button {
+            flex: 1;
         }
     }
 
