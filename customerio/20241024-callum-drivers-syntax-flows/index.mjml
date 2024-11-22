@@ -1,0 +1,230 @@
+<mjml>
+  <mj-head>
+    <mj-title>TypeDB</mj-title>
+    <mj-font name="Titillium Web" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400&display=swap"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Titillium Web, Helvetica, Arial, sans-serif"></mj-all>
+      <mj-section padding="20px 20px 0 20px"></mj-section>
+      <mj-column padding="0"></mj-column>
+      <mj-text font-weight="400" font-size="16px" color="#1A182A" line-height="26px" align="justify" padding="10px 0"></mj-text>
+      <mj-button background-color="#1D1354" font-size="16px" height="48px" color="#FFF" css-class="mj-button"></mj-button>
+      <mj-divider padding="40px 0 0" border-width="1px"></mj-divider>
+      <mj-social css-class="mj-social"></mj-social>
+      <mj-social-element background-color="#1D1354" css-class="mj-social-element"></mj-social-element>
+    </mj-attributes>
+    <mj-style>
+      h1 { font-size: 30px; line-height: 36px; font-weight: 600; }
+      a { color: #374E67; }
+      p a, p a[href], li a, li a[href] { color: #0cc7b8; font-weight: 600; }
+      ol, ul, li { margin: 0; padding: 0 0 0 1em; }
+      code { font-size: 90%; }
+      img { border-radius: 5px; }
+      .td-actions { display: block; width: 100%; }
+      .td-actions > table { width: unset !important; }
+      .mj-button a { white-space: nowrap; display: block !important; }
+      .mj-button a:hover { box-shadow: 0 3px 26px 0 #1d135466; } /* NB box-shadow email client support is very poor */
+      @media only screen and (max-width: 479px) {
+        .mj-button { padding-left: 0 !important; padding-right: 0 !important; }
+        .mj-button table { width: 100%; }
+      }
+      .mj-social-element img { border: 1px solid #1D1354; }
+      @media only screen and (min-width: 480px) {
+        .mj-social { text-align: right; padding: 0 !important; }
+      }
+      .td-img-caption div { text-align: center !important; font-style: italic; } /* overrides mj-text inline style */
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f9f9f9">
+
+    <mj-section>
+      <mj-group>
+        <mj-column>
+          <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-text align="right" font-size="11px" line-height="17px" padding="0">
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>
+          </mj-text>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>We've expanded our leadership team</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1729869507234_callum-v3_01JB243TXYEE1PZ4ZV5GJF7Q93.png" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>We recently welcomed Cal Hemsley onboard as our new Chief Operations Officer. Cal is a veteran of the start-up industry, with experience scaling companies across over a decade.</p>
+          <p>His mission is to supercharge our customer growth and evolve how we communicate TypeDB to the world; through our website, general content, and documentation. 🎉</p>
+          <p>Say hi on <a href="https://typedb.com/discord">Discord</a> or <a href="https://www.linkedin.com/in/callumhemsley/">LinkedIn</a> if you’d like to learn more about our plans at TypeDB, or to share your experiences.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://typedb.com/discord">Join Chat Server</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>3.0 language features</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1729853306773_so-fetch-v2_01JB1MNDYW250WAYBR2GF96D57.png"></mj-image>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>In the month since we released the TypeDB 3.0 alpha, we have made significant progress in adding new capabilities to the language. Below are the latest implementations...</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <ul>
+            <li>⚙️ <strong>Fetch clause</strong>: TypeDB is now able to emit JSON document streams natively, with more customisation than ever before and a new super-simple <code>*</code> operator to retrieve all attributes at once. Fetch clauses are a special final clause at the end of a query pipeline that turn the standard stream of rows, into streams of documents.</li>
+            <li>⚙️ <strong>Negations</strong>: You can now use <code>not</code> in queries to filter within a <code>match</code> clause: for example, query for Orders that are do not have an Invoice. Like other modern languages, TypeDB doesn't have <code>NULL</code>s. <code>not</code>s are your way to achieve the same thing in a more principled and predictable way.</li>
+            <li>⚙️ <strong>Full query pipelines</strong>: TypeDB 3.0 queries have evolved into full streaming pipelines, with arbitrarily composable clauses. Think of queries like Streams or Iterators in your favourite language, but instead of using <code>map</code> or <code>filter</code>, you can build pipelines with sequences <code>match, insert, delete, reduce, sort, offset, limit,</code> or <code>select</code>.</li>
+            <li>⚙️ <strong>Reduce operators</strong>: implement aggregations and group-aggregations within your query pipeline. Similar to reducing a stream or iterator in programming, TypeDB lets you take counts, sums, averages at any point in your query pipeline and leverage those computations to perform further operations in subsequence pipeline clauses - be they matches, inserts, or deletes.</li>
+          </ul>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://github.com/typedb/typedb/releases/tag/3.0.0-alpha-6">Try TypeDB 3.0</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>3.0 new drivers</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1729853305751_driver-v2-crop_01JB1MND2XY87H2H76MPE3S3CM.png" href="https://github.com/typedb/typedb-driver"></mj-image>
+        <mj-text css-class="td-img-caption">Here is a stock image of a robot driving a car. This is not the type of driver we’ve been releasing lately.</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>We have now released three new drivers for TypeDB 3.0:</p>
+
+          <ul>
+            <li>⚡️ <a href="https://github.com/typedb/typedb-driver/blob/development/rust/README.md">Rust driver</a> - available in both synchronous and asynchronous flavors. Get it as a Crate with zero effort.</li>
+            <li>⚡️ <a href="https://github.com/typedb/typedb-driver/blob/development/java/README.md">Java driver</a> - available as a Maven artifact. Just add it to your <code>pom.xml</code>!</li>
+            <li>⚡️ <a href="https://github.com/typedb/typedb-driver/blob/development/python/README.md">Python driver</a> - get it using Pip (Python versions use the <code>3.0.0-a-6</code> format, matching the TypeDB drivers <code>3.0.0-alpha-6</code> release!)</li>
+          </ul>
+
+          <p>Next up on our roadmap: TypeScript, then C, then C++! If your language isn't listed here, request it on GitHub using the following link:</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://github.com/typedb/typedb-driver/issues/new?assignees=&amp;labels=&amp;projects=&amp;template=LANGUAGE_DRIVER_REQUEST.md">Request a language</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-weight="300" padding="30px 0 10px 0" font-size="32px" line-height="40px">
+          <h1>Dedicated squirrels 🐿</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="center" src="https://userimg-assets.customeriomail.com/images/client-env-168018/1729853308594_dedicated-squirrel-v2_01JB1MNFQS2P0PHCB8XDE0TW6A.png" href="https://cloud.typedb.com">
+        </mj-image>
+        <mj-text css-class="td-img-caption">Image of the new cluster deployment flow. Coming soon..</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <p>A big focus of ours now is making everything easier and more accessible. We’ve started with the sign-up (live last week) and cluster deployment flows (going live in the next week), and will be working through the website, crash course and documentation.</p>
+          <p>Our objective here is to make it not just easier, but also actively fun for you to discover what you need.</p>
+          <p>Part of that is cleaning up content and flows, part of it is introducing whimsical easter eggs here and there (let us know if you spot any!). The most important thing though is to ensure clarity and accessibility throughout.</p>
+          <p>Next week, we are even introducing a random name generator for new clusters - which - if we’re honest, has already joyfully distracted our team far more than we anticipated.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section css-class="td-actions">
+      <mj-column>
+        <mj-button href="https://cloud.typedb.com">Deploy TypeDB</mj-button>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-divider></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-image align="left" src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726674956909_typedb-logo_01J82XHWQY0FX4E6DZKXR4QB15.png" alt="TypeDB" href="https://typedb.com" border="none" width="140px" padding="0px"></mj-image>
+      </mj-column>
+      <mj-column>
+        <mj-social font-size="15px" icon-size="30px" mode="horizontal" padding="25px 10px 0">
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668493619_discord-rectangle_01J82QCMWAWNWD763G950T16P2.png" href="https://typedb.com/discord"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494602_twitter-rectangle_01J82QCNTRTYZN0R0S0FHCS992.png" href="https://x.com/typedb_"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668495078_youtube-rectangle_01J82QCP9NCHQ0A5D8T83SFFW5.png" href="https://youtube.com/@typedb"></mj-social-element>
+          <mj-social-element src="https://userimg-assets.customeriomail.com/images/client-env-167726/1726668494132_linkedin-rectangle_01J82QCNC24PJX23H6PRR86TV3.png" href="https://www.linkedin.com/company/typedb/"></mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text align="left" color="#9B9B9B" font-size="11px" line-height="17px">
+          <p>
+            Copyright © 2024 Vaticle Ltd<br/>
+            TypeDB Labs, 90 High Holborn, London WC1V 6LJ, United Kingdom<br/>
+            All rights reserved.
+          </p>
+          <p>
+            <a href="{% view_in_browser_url %}">View this email in your browser</a>. We keep our newsletter infrequent to avoid spamming our users, but if it's still too much, you can <a href="{% unsubscribe_url %}">unsubscribe</a>.
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

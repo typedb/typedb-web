@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { environment } from "../environment/environment";
 import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID } from "./marketing-tech-constants";
-import posthog, { Properties } from "posthog-js";
+import posthog, { Properties } from "posthog-js/dist/module.no-external";
 import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
 
 @Injectable({

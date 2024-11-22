@@ -1,7 +1,7 @@
 @use "shapes";
 
 :host {
-    font-weight: var(--font-weight-semi-bold);
+    font-weight: var(--font-weight-regular);
     display: flex;
     flex-direction: row;
     gap: 8px;

@@ -36,8 +36,8 @@ dependencies:
     specifier: 17.0.8
     version: 17.0.8(@angular/common@17.0.8)(@angular/core@17.0.8)(@angular/platform-browser@17.0.8)(rxjs@7.8.1)
   '@customerio/cdp-analytics-browser':
-    specifier: 0.2.0
-    version: 0.2.0
+    specifier: 0.2.3
+    version: 0.2.3
   '@fortawesome/angular-fontawesome':
     specifier: 0.14.1
     version: 0.14.1(@angular/core@17.0.8)(@fortawesome/fontawesome-svg-core@6.6.0)
@@ -2179,15 +2179,15 @@ packages:
     engines: {node: '>=0.1.90'}
     dev: true
 
-  /@customerio/cdp-analytics-browser@0.2.0:
-    resolution: {integrity: sha512-8xd+RzWJK+tQCLf1TGKgEAOwohWXCrL56IA4rfI83SSOReeDeeYAtMPgFYqmPEQ+p4qdfPt4gsBVta/pNdSsTA==}
+  /@customerio/cdp-analytics-browser@0.2.3:
+    resolution: {integrity: sha512-YcdLWKU3Z/FB1xay5KymFQrRBIoXgkq3Aay84PGR4FOTxhXMuZGvemTi0IvvEUPM3Asem9fVgyIt+hVLc1RpjQ==}
     dependencies:
-      '@customerio/cdp-analytics-core': 0.2.0
+      '@customerio/cdp-analytics-core': 0.2.3
       '@lukeed/uuid': 2.0.1
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.10
       '@segment/tsub': 1.0.1
-      customerio-gist-web: 3.11.0
+      customerio-gist-web: 3.11.3
       dset: 3.1.4
       js-cookie: 3.0.1
       node-fetch: 2.6.7
@@ -2200,8 +2200,8 @@ packages:
       - supports-color
     dev: false
 
-  /@customerio/cdp-analytics-core@0.2.0:
-    resolution: {integrity: sha512-kOdH7h5KQ1sylcZtK4zyu0PP0Alw1mY/yzkxgwyue+JYgwXfy8wigaR7QxmqmjUZPsig7YILATPZ9pcL/8urdA==}
+  /@customerio/cdp-analytics-core@0.2.3:
+    resolution: {integrity: sha512-UOFvVguxjnEoazH8aCVfOiL/u87Y2eZgFsyDV7TszdmFQNbDfx11/XuD2daKztMbSvawYu2t+syLYTBY19k4EQ==}
     dependencies:
       '@lukeed/uuid': 2.0.1
       dset: 3.1.4
@@ -7374,8 +7374,8 @@ packages:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
     dev: true
 
-  /customerio-gist-web@3.11.0:
-    resolution: {integrity: sha512-fFHHakGjv4sEZhU+TvHqPaIqgm+GlvWZ+rUZ2gJxozyDlgumN2Sa/Ql9MAlLPXR4gTX5hyT+rLWrLIAIDznQ/g==}
+  /customerio-gist-web@3.11.3:
+    resolution: {integrity: sha512-hiexh8M7FDMOQFPbYA4g/fXOk0NqGKDxnYKU3zDmZVd2x/s2CIK8hKhE5PBPNRBNnBW2X+HYXxXJgbLHfnH/4g==}
     dependencies:
       axios: 0.28.1
       uuid: 8.3.2

@@ -5,3 +5,7 @@
         width: 100%;
     }
 }
+
+:host ::ng-deep h1 {
+    font-weight: var(--font-weight-bold);
+}

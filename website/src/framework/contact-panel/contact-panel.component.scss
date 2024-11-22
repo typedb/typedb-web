@@ -25,6 +25,13 @@
     display: flex;
     flex-flow: column wrap;
     height: 160px;
+    gap: 2px;
+}
+
+.field-multi-checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 td-form-actions {
