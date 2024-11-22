@@ -53,8 +53,10 @@
 
     --font-weight-bold: #{typography.$bold};
     --font-weight-semi-bold: #{typography.$semi-bold};
+    --font-weight-medium: #{typography.$medium};
     --font-weight-regular: #{typography.$regular};
     --font-weight-light: #{typography.$light};
+    --font-weight-thin: #{typography.$thin};
 
     --topbar-height: #{$topbar-height};
     --banner-height: #{$banner-height};
@@ -63,7 +65,7 @@
     /* typography */
 
     --font-size-base: var(--font-size-p2);
-    --body-letter-spacing: 0.016em;
+    --body-letter-spacing: 0.02em;
     --default-font-family: #{typography.$font-family-default};
     --code-font-family: #{typography.$font-family-code};
 

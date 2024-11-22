@@ -62,7 +62,7 @@ hr {
 }
 
 .bp-post-title {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semi-bold);
     margin-top: 12px;
 
     &.bp-primary-post-title {
@@ -87,7 +87,7 @@ hr {
     }
 
     h3 {
-        font-weight: var(--font-weight-semi-bold);
+        font-weight: var(--font-weight-regular);
     }
 }
 
@@ -152,7 +152,7 @@ td-aspect-ratio {
 }
 
 .bp-secondary-post-description {
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-thin);
     margin-top: 16px;
     @include line-clamp(4);
 }
@@ -206,7 +206,7 @@ td-aspect-ratio {
     }
 
     .bp-tertiary-post-description {
-        font-weight: var(--font-weight-light);
+        font-weight: var(--font-weight-thin);
         margin-top: 12px;
         @include line-clamp(3);
     }

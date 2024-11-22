@@ -5,7 +5,7 @@ $post-content-width: 700px;
 
 ::ng-deep .bp-site-title p {
     color: var(--body-heading-color);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semi-bold);
 }
 
 .bp-intro-hr {
@@ -91,7 +91,7 @@ $post-content-width: 700px;
     }
 
     h3 {
-        font-weight: var(--font-weight-semi-bold);
+        font-weight: var(--font-weight-regular);
     }
 }
 
@@ -189,7 +189,7 @@ section {
 .bp-newsletter-section h4,
 .bp-related-post-group-heading {
     color: var(--body-font-color);
-    font-weight: var(--font-weight-semi-bold);
+    font-weight: var(--font-weight-regular);
     padding-bottom: 8px;
     border-bottom: shapes.$border;
 }
@@ -210,7 +210,7 @@ section {
 
     a {
         color: #fff;
-        font-weight: var(--font-weight-bold);
+        font-weight: var(--font-weight-semi-bold);
 
         &:hover {
             color: var(--color-green);
@@ -234,5 +234,5 @@ td-aspect-ratio {
 }
 
 .bp-related-post-author {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semi-bold);
 }

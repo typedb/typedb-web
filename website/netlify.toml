@@ -1,6 +1,9 @@
 [build]
 ignore = "/bin/false"
 
+[build.processing.html]
+pretty_urls = true
+
 [context.production]
 command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
@@ -33,12 +36,12 @@ status = 301
 
 [[redirects]]
 from = "/academy"
-to = "/docs/academy/overview"
+to = "/docs/academy/"
 status = 302
 
 [[redirects]]
 from = "/crash-course"
-to = "/docs/home/crash-course/overview"
+to = "/docs/home/crash-course/"
 status = 302
 
 # PERMANENT RENAMES
@@ -111,13 +114,7 @@ status = 301
 
 [[redirects]]
 from = "/docs"
-to = "/docs/home/overview"
-status = 301
-force = true
-
-[[redirects]]
-from = "/docs/academy"
-to = "/docs/academy/overview"
+to = "/docs/home/"
 status = 301
 force = true
 

@@ -9,7 +9,7 @@ body {
     background-color: var(--body-background);
     color: var(--body-font-color);
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-thin);
     line-height: var(--line-height-p2);
     letter-spacing: var(--body-letter-spacing);
 
@@ -70,7 +70,7 @@ aside,
 .text-aside {
     font-size: var(--font-size-aside);
     line-height: var(--line-height-aside);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-light);
 }
 
 pre,
@@ -127,12 +127,12 @@ aside {
 
 /* prettier-ignore */
 h1, h2 {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semi-bold);
 }
 
 /* prettier-ignore */
 h3, h4 {
-  font-weight: var(--font-weight-semi-bold);
+  font-weight: var(--font-weight-medium);
 }
 
 /* prettier-ignore */
@@ -141,18 +141,28 @@ h5, h6 {
 }
 
 dd {
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-light);
 }
 
-b,
-dt,
-strong,
-th {
-    font-weight: var(--font-weight-bold);
+b, dt, strong, th {
+    font-weight: var(--font-weight-semi-bold);
 }
 
-sub,
-sup {
+//h1 {
+//    animation: 1000ms ease-in-out 0s fadeIn;
+//}
+//
+//@keyframes fadeIn {
+//    0% { opacity: 0; }
+//    40% { opacity: 0; }
+//    100% { opacity: 1; }
+//}
+
+//h1:hover {
+//    text-shadow: 1px 1px 1px 1px #fff;
+//}
+
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -191,10 +201,8 @@ a {
     }
 }
 
-p,
-aside {
-    a,
-    a:visited {
+p, aside {
+    a, a:visited {
         color: var(--color-green);
 
         &:hover,
@@ -234,7 +242,7 @@ form,
 }
 
 button, td-button {
-    font-weight: var(--font-weight-semi-bold);
+    font-weight: var(--font-weight-regular);
 }
 
 ::file-selector-button {
@@ -334,7 +342,7 @@ td-form-actions, .td-form-actions {
     > * {
         display: block;
         border: none;
-        font-weight: var(--font-weight-semi-bold);
+        font-weight: var(--font-weight-regular);
         font-size: var(--font-size-aside);
         transition: background-color 200ms ease-out, transform 200ms ease-out, box-shadow 200ms ease-out;
         transform: translateY(3px);
