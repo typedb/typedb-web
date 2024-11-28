@@ -155,14 +155,13 @@ export const routeField = defineField({
 
 export const linkFieldName = "link";
 
-export const linkField = defineField({
+export const linkFieldOptional = defineField({
     name: linkFieldName,
     type: "reference",
     to: [{ type: "link" }],
-    // TODO: should be required - but isn't in certain cases. Rethink
 });
 
-export const textLinkField = defineField({
+export const textLinkFieldOptional = defineField({
     name: linkFieldName,
     title: "Link",
     type: "textLink",
@@ -170,7 +169,7 @@ export const textLinkField = defineField({
 
 export const learnMoreLinkFieldName = "learnMoreLink";
 
-export const learnMoreLinkField = Object.assign({}, linkField, {
+export const learnMoreLinkFieldOptional = Object.assign({}, linkFieldOptional, {
     name: learnMoreLinkFieldName,
     title: "'Learn More' link",
 });

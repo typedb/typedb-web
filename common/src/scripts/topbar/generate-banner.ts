@@ -1,7 +1,7 @@
-import { escapeHtml, generateLink } from "../shared";
-import { SiteBannerData } from "./topbar-query";
+import { escapeHtml, linkHtml } from "../shared";
+import { SiteBanner } from "./schema";
 
-export const generateBanner = (banner: SiteBannerData, urlPrefix: string = "") => {
+export const generateBanner = (banner: SiteBanner, urlPrefix: string = "") => {
     if (!banner.isEnabled) {
         return "";
     }
@@ -14,7 +14,7 @@ export const generateBanner = (banner: SiteBannerData, urlPrefix: string = "") =
         .join("");
     const content = `<p class="text-aside">${spans}</p>`;
 
-    return generateLink({
+    return linkHtml({
         content,
         link: banner.link,
         id: `site-banner`,

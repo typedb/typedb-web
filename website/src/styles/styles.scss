@@ -108,14 +108,20 @@ section,
     }
 }
 
-.link-tertiary,
-.link-tertiary:visited {
-    color: var(--color-white);
+.link-tertiary, .link-tertiary:visited {
+    color: var(--color-secondary-blue);
     font-weight: var(--font-weight-regular);
 
-    &:hover,
-    &:focus {
-        color: var(--color-green);
+    &::after {
+        margin-left: 6px;
+        content: "";
+        font-family: "Font Awesome 6 Pro";
+        font-size: 14px;
+        user-select: none;
+        display: inline-block;
+    }
+
+    &:hover, &:focus {
         text-decoration: underline;
     }
 }

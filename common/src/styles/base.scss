@@ -131,12 +131,11 @@ h1, h2 {
 }
 
 /* prettier-ignore */
-h3, h4 {
+h3, h4, h5 {
   font-weight: var(--font-weight-medium);
 }
 
-/* prettier-ignore */
-h5, h6 {
+h6 {
   font-weight: var(--font-weight-regular);
 }
 
@@ -292,8 +291,7 @@ button, td-button {
         border-color: var(--color-green);
 
         .link-tertiary {
-            color: var(--color-green);
-            text-decoration: underline;
+            color: var(--color-secondary-blue);
         }
     }
 }

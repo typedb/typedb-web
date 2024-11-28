@@ -99,7 +99,7 @@
 }
 
 .tb-main {
-    display: grid;
+    max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 64px;
 

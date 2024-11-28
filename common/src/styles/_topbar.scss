@@ -13,6 +13,7 @@
         font-size: var(--font-size-base);
         font-weight: var(--font-weight-thin);
         text-align: left;
+        background: var(--color-purple);
 
         &::before {
             content: "";
@@ -62,17 +63,11 @@
         color: var(--body-heading-color);
     }
 
-    .td-topbar-panel-header,
-    .td-topbar-link {
-        &:hover,
-        &:focus {
+    .td-topbar-panel-header, .td-topbar-link {
+        cursor: pointer;
+        &:hover, &:focus {
             color: var(--color-green);
-            text-decoration: underline;
         }
-    }
-
-    .td-topbar-panel-header {
-        cursor: default;
     }
 
     .td-topbar-logo-container {
@@ -113,72 +108,84 @@
     .td-topbar-button {
         margin: 0 20px;
         align-self: center;
-        width: 118px !important; /* overrides media query */
+        width: unset !important; /* overrides media query */
+        padding: 0 12px;
     }
 
     .td-topbar-menu-panel {
         position: absolute;
-        top: var(--topbar-height);
-        left: 0;
-        right: 0;
+        top: 72px;
+        //left: 0;
+        //right: 0;
         z-index: 700;
 
-        border-bottom: 1px solid var(--color-secondary-deep-grey);
-        background-color: rgba(colors.$purple, 0.8);
+        border: 1px solid var(--color-secondary-deep-grey);
+        background-color: #232135;
+        border-radius: var(--border-radius-large);
 
         &::before {
             content: "";
             position: absolute;
             inset: 0;
             z-index: -1;
+            border-radius: inherit;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
 
-        border-top: 1px solid var(--color-secondary-deep-grey);
-        box-shadow: 0 8px 30px rgba(colors.$black-purple, 0.58);
-        padding-left: 186px;
-        display: flex;
+        //padding-left: 186px;
+        display: none;
         flex-direction: row;
+    }
 
-        li:not(.td-topbar-panel-hovered) & {
-            display: none;
+    .td-topbar-chevron {
+        margin-left: 8px;
+        font-size: 12px;
+        color: var(--color-secondary-light-grey);
+        transition: transform 100ms;
+    }
+
+    .td-topbar-panel-opened {
+        .td-topbar-chevron {
+            transform: rotate(180deg);
+        }
+
+        .td-topbar-menu-panel, &.td-topbar-menu-panel {
+            display: flex;
         }
     }
 
     .td-topbar-panel-column {
-        padding: 32px 40px;
-
-        &:not(:first-of-type) {
-            border-left: shapes.$border;
-        }
+        padding: 14px 20px;
 
         dl {
-            margin: 32px 0 !important; // overrides stylesheets that reset browser styles
+            margin: 20px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
-            grid-auto-columns: 280px;
-            gap: 32px;
+            grid-auto-columns: 320px;
+            gap: 20px;
         }
 
-        dt {
-            color: var(--body-heading-color);
-            font-weight: inherit;
-            display: flex;
-            align-items: center;
-        }
-
-        dd {
-            color: var(--color-secondary-light-grey);
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
 
         a {
             color: var(--body-heading-color);
             font-weight: var(--font-weight-light);
+            display: flex;
+            gap: 20px;
+
+            .td-icon-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                flex: 0 0 40px;
+                color: var(--color-secondary-blue);
+
+                i {
+                    font-size: 40px;
+                }
+            }
+
             &:hover,
             &:focus {
                 dt {
@@ -187,15 +194,78 @@
                 }
             }
         }
+
+        dt {
+            color: var(--body-heading-color);
+            font-weight: var(--font-weight-medium);
+            display: flex;
+            align-items: center;
+        }
+
+        dd {
+            color: var(--color-secondary-light-grey);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     .td-topbar-column-title {
         color: var(--body-heading-color);
-        padding-bottom: 8px !important; // overrides stylesheets that reset browser styles
-        border-bottom: shapes.$border;
+        padding-bottom: 0 !important; // overrides stylesheets that reset browser styles
         font-weight: var(--font-weight-regular);
-        font-size: var(--font-size-h5);
-        line-height: var(--line-height-h5);
+        font-size: var(--font-size-aside);
+        line-height: var(--line-height-aside);
+        text-transform: uppercase;
+        letter-spacing: 0.035em;
+    }
+
+    .td-topbar-product-groups {
+        display: flex;
+        flex-flow: column wrap;
+        height: 410px;
+        padding: 16px;
+    }
+
+    .td-topbar-bottom-links {
+        border-top: 1px solid var(--color-light-purple);
+        display: flex;
+
+        a {
+            display: block;
+            padding: 12px 36px;
+        }
+
+        a + a {
+            border-left: 1px solid var(--color-light-purple);
+        }
+    }
+
+    .td-topbar-menu-panel-ctas {
+        width: 260px;
+        border-left: 1px solid var(--color-light-purple);
+        display: flex;
+        flex-direction: column;
+
+        li {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 28px;
+
+            h5 {
+                font-weight: var(--font-weight-medium);
+            }
+
+            a {
+                margin-top: 12px;
+            }
+        }
+
+        li + li {
+            border-top: 1px solid var(--color-light-purple);
+        }
     }
 
     .td-topbar-github-icon {
@@ -391,7 +461,7 @@
             }
 
             &,
-            li:not(.td-topbar-panel-hovered) & {
+            li:not(.td-topbar-panel-opened) & {
                 display: block;
             }
 
@@ -436,7 +506,7 @@
         }
 
         .td-topbar-panel-column {
-            padding: 16px 0;
+            padding: 15px 20px;
             border-top: shapes.$border;
 
             &:first-of-type {
@@ -453,8 +523,8 @@
             }
 
             dl {
-                margin: var(--text-margin-s) 0 0;
-                gap: var(--text-margin-s);
+                margin: 20px 0 0;
+                gap: 20px;
                 grid-auto-columns: initial;
             }
 
