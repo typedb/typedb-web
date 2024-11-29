@@ -3,15 +3,30 @@
 @use "mixins" as *;
 @use "shapes";
 
+@mixin nav-dt {
+    color: var(--body-heading-color);
+    font-weight: var(--font-weight-light);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin nav-dd {
+    color: var(--color-secondary-light-grey);
+    font-size: 12px;
+    margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @mixin styles($icon-path) {
     .td-topbar {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        inset: 0 0 auto 0;
         z-index: 700;
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-thin);
+        font-size: 14px;
+        font-weight: var(--font-weight-light);
         text-align: left;
         background: var(--color-purple);
 
@@ -20,7 +35,7 @@
             position: absolute;
             inset: 0;
             background-color: var(--color-purple);
-            border-bottom: 1px solid var(--color-secondary-deep-grey);
+            border-bottom: 1px solid var(--content-border-color);
             transition: opacity 100ms;
             z-index: -1;
         }
@@ -53,20 +68,17 @@
         justify-content: space-between;
     }
 
-    .td-topbar-panel-header,
-    .td-topbar-logo-container,
-    .td-topbar-link,
-    .td-topbar-link:visited {
+    .td-topbar-panel-header, .td-topbar-logo-container, .td-topbar-link, .td-topbar-link:visited {
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: var(--body-heading-color);
-    }
-
-    .td-topbar-panel-header, .td-topbar-link {
+        color: var(--color-white);
+        transition: opacity 100ms;
         cursor: pointer;
+        opacity: 0.8;
+
         &:hover, &:focus {
-            color: var(--color-green);
+            opacity: 1;
         }
     }
 
@@ -75,15 +87,15 @@
             margin-bottom: 2px;
 
             @media (min-width: media.$min-width-desktop) {
-                height: 46px;
+                height: 42px;
             }
 
             @media (max-width: media.$max-width-tablet) {
-                height: 40px;
+                height: 36px;
             }
 
             @media (max-width: media.$max-width-mobile) {
-                height: 32px;
+                height: 28px;
             }
 
             .tp-right-eye {
@@ -100,8 +112,7 @@
         100% { transform: scaleY(1); }
     }
 
-    .td-topbar-main-area,
-    .td-topbar-secondary-area {
+    .td-topbar-main-area, .td-topbar-secondary-area {
         display: flex;
     }
 
@@ -114,14 +125,14 @@
 
     .td-topbar-menu-panel {
         position: absolute;
-        top: 72px;
-        //left: 0;
-        //right: 0;
+        top: 60px;
         z-index: 700;
-
-        border: 1px solid var(--color-secondary-deep-grey);
+        border: 1px solid var(--content-border-color);
         background-color: #232135;
         border-radius: var(--border-radius-large);
+        display: none;
+        flex-direction: row;
+        overflow: hidden;
 
         &::before {
             content: "";
@@ -133,9 +144,13 @@
             -webkit-backdrop-filter: blur(20px);
         }
 
-        //padding-left: 186px;
-        display: none;
-        flex-direction: row;
+        dt {
+            @include nav-dt;
+        }
+
+        dd {
+            @include nav-dd;
+        }
     }
 
     .td-topbar-chevron {
@@ -155,59 +170,54 @@
         }
     }
 
+    .td-topbar-product-groups {
+        display: flex;
+        flex-flow: column wrap;
+        max-height: 360px;
+        padding: 16px;
+    }
+
     .td-topbar-panel-column {
-        padding: 14px 20px;
+        padding: 8px 12px;
 
         dl {
-            margin: 20px 0 !important; // overrides stylesheets that reset browser styles
+            margin: 8px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
-            grid-auto-columns: 320px;
-            gap: 20px;
+            grid-auto-columns: 250px;
+            gap: 6px;
         }
-
 
         a {
             color: var(--body-heading-color);
             font-weight: var(--font-weight-light);
             display: flex;
-            gap: 20px;
+            gap: 16px;
+            padding: 4px 8px;
+            margin-left: -8px;
+            border-radius: 5px;
+            transition: background-color 100ms;
 
             .td-icon-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 40px;
-                flex: 0 0 40px;
+                width: 24px;
+                flex: 0 0 24px;
                 color: var(--color-secondary-blue);
 
                 i {
-                    font-size: 40px;
+                    font-size: 24px;
                 }
             }
 
-            &:hover,
-            &:focus {
-                dt {
-                    color: var(--color-green);
-                    text-decoration: underline;
-                }
+            &:hover, &:focus {
+                background: var(--color-light-purple);
+                //dt {
+                //    color: var(--color-green);
+                //    text-decoration: underline;
+                //}
             }
-        }
-
-        dt {
-            color: var(--body-heading-color);
-            font-weight: var(--font-weight-medium);
-            display: flex;
-            align-items: center;
-        }
-
-        dd {
-            color: var(--color-secondary-light-grey);
-            margin-top: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
     }
 
@@ -215,17 +225,10 @@
         color: var(--body-heading-color);
         padding-bottom: 0 !important; // overrides stylesheets that reset browser styles
         font-weight: var(--font-weight-regular);
-        font-size: var(--font-size-aside);
-        line-height: var(--line-height-aside);
+        font-size: 12px;
+        line-height: 22px;
         text-transform: uppercase;
         letter-spacing: 0.035em;
-    }
-
-    .td-topbar-product-groups {
-        display: flex;
-        flex-flow: column wrap;
-        height: 410px;
-        padding: 16px;
     }
 
     .td-topbar-bottom-links {
@@ -233,17 +236,32 @@
         display: flex;
 
         a {
+            flex: 1;
             display: block;
-            padding: 12px 36px;
+            padding: 12px 28px;
+            transition: background-color 100ms;
+
+            &:hover, &:focus {
+                background: var(--color-light-purple);
+            }
         }
 
         a + a {
             border-left: 1px solid var(--color-light-purple);
         }
+
+        dt::after {
+            margin-left: 6px;
+            content: "";
+            font-family: "Font Awesome 6 Pro";
+            font-size: 90%;
+            user-select: none;
+            display: inline-block;
+        }
     }
 
     .td-topbar-menu-panel-ctas {
-        width: 260px;
+        width: 212px;
         border-left: 1px solid var(--color-light-purple);
         display: flex;
         flex-direction: column;
@@ -252,14 +270,15 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 28px;
+            padding: 24px;
 
             h5 {
-                font-weight: var(--font-weight-medium);
+                @include nav-dt;
             }
 
             a {
-                margin-top: 12px;
+                font-size: 12px;
+                margin-top: 4px;
             }
         }
 
@@ -268,62 +287,18 @@
         }
     }
 
-    .td-topbar-github-icon {
-        overflow: hidden;
-        text-indent: 100%;
-        @include url-icon(url("#{$icon-path}/github.svg"), var(--color-white));
-        width: 40px;
-        height: 40px;
-    }
-
     .td-topbar-external-icon {
         text-indent: 100%;
         @include url-icon(url("#{$icon-path}/link.svg"), currentColor);
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         margin-left: 4px;
         margin-right: -24px;
-        visibility: hidden;
+        opacity: 0;
+        transition: opacity 100ms;
 
-        a:hover &,
-        a:focus & {
-            visibility: visible;
-        }
-    }
-
-    .td-topbar-spotlight-column {
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .td-topbar-spotlight {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        padding: 32px;
-        background: var(--color-purple);
-        border: shapes.$border;
-        border-radius: var(--border-radius);
-        transition: border-color 100ms ease;
-
-        h4 {
-            font-size: var(--font-size-h4);
-            line-height: var(--line-height-h4);
-        }
-
-        &:hover {
-            border-color: var(--color-green);
-
-            h4 {
-                color: var(--color-green);
-            }
-        }
-
-        img {
-            width: 72px;
-            height: 72px;
+        a:hover &, a:focus & {
+            opacity: 1;
         }
     }
 
@@ -332,7 +307,6 @@
         background: none;
         border: none;
         outline: none;
-
         font-size: 24px;
         padding: 0.25em;
         margin: -0.25em;
@@ -340,7 +314,6 @@
         align-self: center;
         cursor: pointer;
         display: none;
-
         --menu-icon-url: url("#{$icon-path}/burger-tablet.svg");
 
         &::before {
@@ -358,11 +331,16 @@
         align-items: center;
         justify-content: center;
         height: var(--banner-height);
-        border-bottom: 1px solid var(--color-secondary-deep-grey);
+        border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
         background-color: var(--color-secondary-purple);
         text-align: center;
+
+        p {
+            font-size: 12px;
+            line-height: 18px;
+        }
 
         strong {
             color: var(--color-green);
@@ -391,7 +369,7 @@
             flex-direction: column;
             justify-content: space-between;
             background-color: var(--color-purple);
-            border: 1px solid var(--color-secondary-deep-grey);
+            border: 1px solid var(--content-border-color);
 
             .td-topbar.td-topbar-has-banner & {
                 top: calc(var(--topbar-height) + var(--banner-height));
@@ -460,8 +438,7 @@
                 content: none;
             }
 
-            &,
-            li:not(.td-topbar-panel-opened) & {
+            &, li:not(.td-topbar-panel-opened) & {
                 display: block;
             }
 
@@ -496,10 +473,8 @@
             padding: 0;
         }
 
-        .td-topbar-panel-header,
-        .td-topbar-link {
-            &:hover,
-            &:focus {
+        .td-topbar-panel-header, .td-topbar-link {
+            &:hover, &:focus {
                 color: var(--body-heading-color);
                 text-decoration: none;
             }

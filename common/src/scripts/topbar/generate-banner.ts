@@ -12,7 +12,7 @@ export const generateBanner = (banner: SiteBanner, urlPrefix: string = "") => {
             return `<${tag}>${escapeHtml(text)}</${tag}>`;
         })
         .join("");
-    const content = `<p class="text-aside">${spans}</p>`;
+    const content = `<p>${spans}</p>`;
 
     return linkHtml({
         content,
