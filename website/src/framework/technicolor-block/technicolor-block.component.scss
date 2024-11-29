@@ -28,16 +28,8 @@
     &.tb-no-upper {
         margin-top: 120px;
 
-        &.tb-level-h1 {
-            margin-top: 256px;
-        }
-
         @media (max-width: media.$max-width-mobile) {
             margin-top: 64px;
-
-            &.tb-level-h1 {
-                margin-top: 116px;
-            }
         }
     }
 

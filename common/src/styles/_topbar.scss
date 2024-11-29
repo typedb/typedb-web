@@ -22,38 +22,20 @@
 
 @mixin styles($icon-path) {
     .td-topbar {
-        position: fixed;
         inset: 0 0 auto 0;
         z-index: 700;
         font-size: 14px;
         font-weight: var(--font-weight-light);
         text-align: left;
-        background: var(--color-purple);
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: var(--color-purple);
-            border-bottom: 1px solid var(--content-border-color);
-            transition: opacity 100ms;
-            z-index: -1;
-        }
 
         nav {
             height: var(--topbar-height);
-            padding: 0 30px;
+            margin: 0 auto;
+            padding: 0 8px;
             display: flex;
             justify-content: space-between;
             position: relative;
-
-            @media (max-width: media.$max-width-tablet) {
-                padding: 0 12px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                padding: 0;
-            }
+            max-width: 1216px;
         }
 
         li {
@@ -85,18 +67,7 @@
     .td-topbar-logo-container {
         svg {
             margin-bottom: 2px;
-
-            @media (min-width: media.$min-width-desktop) {
-                height: 42px;
-            }
-
-            @media (max-width: media.$max-width-tablet) {
-                height: 36px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                height: 28px;
-            }
+            height: 42px;
 
             .tp-right-eye {
                 animation: 90s linear 0s infinite winkWink;
@@ -125,7 +96,7 @@
 
     .td-topbar-menu-panel {
         position: absolute;
-        top: 60px;
+        top: 68px;
         z-index: 700;
         border: 1px solid var(--content-border-color);
         background-color: #232135;
@@ -154,19 +125,21 @@
     }
 
     .td-topbar-chevron {
-        margin-left: 8px;
+        margin: 0 -8px 0 8px;
         font-size: 12px;
         color: var(--color-secondary-light-grey);
         transition: transform 100ms;
     }
 
     .td-topbar-panel-opened {
-        .td-topbar-chevron {
-            transform: rotate(180deg);
-        }
+        @media (min-width: 900px) {
+            .td-topbar-chevron {
+                transform: rotate(180deg);
+            }
 
-        .td-topbar-menu-panel, &.td-topbar-menu-panel {
-            display: flex;
+            .td-topbar-menu-panel, &.td-topbar-menu-panel {
+                display: flex;
+            }
         }
     }
 
@@ -202,8 +175,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 24px;
-                flex: 0 0 24px;
+                width: 32px;
+                flex: 0 0 32px;
                 color: var(--color-secondary-blue);
 
                 i {
@@ -348,40 +321,58 @@
         }
     }
 
-    @media (max-width: media.$max-width-tablet) {
+    @media (max-width: 899px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
 
+        .td-topbar-open nav {
+            background: var(--color-purple);
+        }
+
+        .td-topbar-logo-container {
+            padding: 0 12px;
+        }
+
         .td-topbar-menu-button {
             display: initial;
+            --menu-icon-url: url("#{$icon-path}/burger-mobile.svg");
+            margin-right: 12px;
+
+            .td-topbar.td-topbar-open & {
+                --menu-icon-url: url("#{$icon-path}/close.svg");
+            }
         }
 
         .td-topbar-content {
             position: fixed;
-            bottom: 0;
-            right: 0;
-            top: var(--topbar-height);
-
-            width: 530px;
-            padding: 0 32px;
+            inset: var(--topbar-height) 0 84px auto;
+            z-index: 700;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             background-color: var(--color-purple);
-            border: 1px solid var(--content-border-color);
+            width: 100%;
+            padding: 0 20px;
+            overflow-y: auto;
+            border: none;
+            border-top: 1px solid var(--color-light-purple);
 
             .td-topbar.td-topbar-has-banner & {
                 top: calc(var(--topbar-height) + var(--banner-height));
             }
         }
 
+        .td-topbar-chevron {
+            display: none;
+        }
+
         .td-topbar-main-area {
-            margin: 0 -32px;
-            padding: 32px 32px 24px;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            margin: 0;
+            padding: 16px 0;
+            overflow-y: visible;
             gap: 24px;
 
             li {
@@ -389,36 +380,44 @@
             }
         }
 
-        .td-topbar-panel-header {
-            font-weight: var(--font-weight-regular);
-            margin: 0 -32px;
-            padding: 8px 32px;
+        .td-topbar-panel-header, .td-topbar-link {
+            font-size: 16px;
+            font-weight: var(--font-weight-medium);
             box-sizing: content-box;
             width: 100%;
             display: flex;
             justify-content: space-between;
-            gap: 10px;
             align-items: center;
             color: var(--body-heading-color);
             cursor: pointer;
+            margin: 0;
+            padding: 0;
+            gap: 16px;
 
-            &::after {
-                content: "";
-                display: block;
-                width: 20px;
-                height: 20px;
-
-                @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
+            &:hover, &:focus {
+                color: var(--body-heading-color);
+                text-decoration: none;
             }
 
             li.td-topbar-panel-expanded & {
-                color: var(--color-green);
-                text-decoration: underline;
+                text-decoration: initial;
+            }
+
+            li.td-topbar-panel-expanded & {
+                color: var(--color-white);
 
                 &::after {
                     transform: rotate(180deg);
                 }
             }
+        }
+
+        .td-topbar-panel-header::after {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 20px;
+            @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
         }
 
         .td-topbar-menu-panel {
@@ -427,12 +426,10 @@
             left: initial;
             right: initial;
             z-index: initial;
-            border: solid var(--content-border-color);
-            border-width: 0 0 0 1px;
+            border: 0;
             background-color: initial;
             box-shadow: initial;
-            padding-left: 16px;
-            margin-top: 24px;
+            margin-top: 16px;
 
             &::before {
                 content: none;
@@ -448,41 +445,40 @@
         }
 
         .td-topbar-secondary-area {
-            border-top: shapes.$border;
-            padding: 24px 0 32px;
+            border: 0;
             display: flex;
-            align-items: center;
-            gap: 40px;
-
-            li:nth-last-of-type(2) {
-                flex: 1;
-                order: -1;
-                margin-right: 8px;
-            }
+            flex-direction: column;
+            padding: 8px 0 24px;
+            gap: 24px;
+            flex: 1;
 
             li:last-of-type {
-                margin-left: 8px;
+                position: fixed;
+                inset: auto 0 0 0;
+                height: 84px;
+                border-top: 1px solid var(--color-light-purple);
+                justify-content: center;
+                align-items: center;
+                background: var(--color-purple);
             }
         }
 
         .td-topbar-button {
-            margin: 0;
+            margin: 0 auto;
+            align-self: unset;
         }
 
         .td-topbar-link {
             padding: 0;
         }
 
-        .td-topbar-panel-header, .td-topbar-link {
-            &:hover, &:focus {
-                color: var(--body-heading-color);
-                text-decoration: none;
-            }
+        .td-topbar-product-groups {
+            max-height: unset;
+            padding: 16px 0 0;
         }
 
         .td-topbar-panel-column {
-            padding: 15px 20px;
-            border-top: shapes.$border;
+            padding: 16px 0;
 
             &:first-of-type {
                 padding-top: 0;
@@ -499,92 +495,50 @@
 
             dl {
                 margin: 20px 0 0;
-                gap: 20px;
+                gap: 16px;
                 grid-auto-columns: initial;
             }
 
             dd {
                 white-space: initial;
             }
+
+            a {
+                margin-left: 0;
+                padding: 0;
+            }
         }
 
         .td-topbar-column-title {
-            border-bottom: none;
             padding-bottom: 0;
             font-weight: var(--font-weight-semi-bold);
         }
 
-        .td-topbar-external-icon {
-            visibility: visible;
-        }
-
-        .td-topbar-spotlight {
-            gap: 20px;
-            padding: 16px;
-
-            img {
-                width: 48px;
-                height: 48px;
-            }
-        }
-    }
-
-    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
-        .td-topbar-button {
-            flex: 1;
-        }
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        .td-topbar-menu-button {
-            --menu-icon-url: url("#{$icon-path}/burger-mobile.svg");
-            margin-right: 12px;
-
-            .td-topbar.td-topbar-open & {
-                --menu-icon-url: url("#{$icon-path}/close.svg");
-            }
-        }
-
-        .td-topbar-content {
-            width: 100%;
-            padding: 0 20px;
-            overflow-y: auto;
-            border: none;
-        }
-
-        .td-topbar-main-area {
-            @media (max-width: media.$max-width-mobile) {
-                margin: 0 -20px;
-                padding: 16px 20px;
-                overflow-y: visible;
-                gap: 16px;
-            }
-        }
-
-        .td-topbar-panel-header {
-            margin: 0 -20px;
-            padding: 0 20px;
-            gap: 16px;
-
-            li.td-topbar-panel-expanded & {
-                text-decoration: initial;
-            }
-        }
-
-        .td-topbar-menu-panel {
+        .td-topbar-bottom-links {
+            display: none;
             margin-top: 16px;
+            border: 0;
+
+            a {
+                padding: 12px 0;
+            }
         }
 
-        .td-topbar-secondary-area {
-            padding: 16px 0;
-            gap: 20px;
+        .td-topbar-menu-panel-ctas {
+            display: none;
+            width: unset;
+            border: 0;
 
-            li:nth-last-of-type(2) {
-                margin-right: -4px;
+            li {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: baseline;
+                padding: 12px 0;
             }
 
-            li:last-of-type {
-                margin-left: -4px;
+            li + li {
+                border: 0;
             }
         }
     }

@@ -4,7 +4,8 @@ export const setupTopbarListeners = () => {
         return;
     }
 
-    headerEl.querySelectorAll(".td-topbar-panel-header").forEach((el) =>
+    const panelHeaders = [...headerEl.querySelectorAll(".td-topbar-panel-header")];
+    panelHeaders.forEach((el) =>
         el.addEventListener("click", () => {
             el.closest("li")?.classList.toggle("td-topbar-panel-expanded");
         })
