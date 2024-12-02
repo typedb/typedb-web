@@ -35,7 +35,7 @@ export class FeatureTableCellComponent {
     }
 
     buttonId(): string {
-        return this.cell instanceof LinkButton ? sanitiseHtmlID(`${this.sectionId}_${this.table.headerRow[this.columnIndex + 1]}_${this.cell.text}`) : ``;
+        return this.cell instanceof LinkButton ? sanitiseHtmlID(`${this.sectionId}_${this.table.products[this.columnIndex]}_${this.cell.text}`) : ``;
     }
 }
 
@@ -45,7 +45,7 @@ export class FeatureTableCellComponent {
     styleUrls: ["./feature-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [InfoButtonComponent, FeatureTableCellComponent],
+    imports: [InfoButtonComponent, FeatureTableCellComponent, ButtonComponent],
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;

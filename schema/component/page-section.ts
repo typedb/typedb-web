@@ -1,25 +1,15 @@
 import { defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
 import {
-    bodyFieldRichText,
-    isVisibleField,
-    optionalActionsField,
-    resourcesFieldOptional,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleBodyIconFields,
-    titleFieldWithHighlights,
+    isVisibleField, optionalActionsField, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 
-// TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
-export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
+export interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
 
-export interface SanityTitleBodyPanelSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityTitleBodyPanelSection extends SanityCoreSection {
     panel: SanityContentTextPanel;
 }
 
@@ -39,6 +29,15 @@ export class TitleBodyPanelSection extends TechnicolorBlock {
     }
 }
 
+export const coreSectionSchemaName = "coreSection";
+
+const coreSectionSchema = defineType({
+    name: coreSectionSchemaName,
+    title: "Section",
+    type: "document",
+    fields: [...titleBodyIconFields, isVisibleField],
+});
+
 export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
 
 const titleBodyPanelSectionSchema = defineType({
@@ -46,9 +45,7 @@ const titleBodyPanelSectionSchema = defineType({
     title: "Title, Body & Panel",
     type: "document",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
         {
             title: "Panel",
             name: "panel",
@@ -67,4 +64,4 @@ const resourceSectionSchema = defineType({
     fields: [...titleBodyIconFields, optionalActionsField, resourcesFieldOptional, isVisibleField],
 });
 
-export const pageSectionSchemas = [resourceSectionSchema, titleBodyPanelSectionSchema];
+export const pageSectionSchemas = [coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema];

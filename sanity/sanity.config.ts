@@ -23,7 +23,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -64,6 +64,7 @@ export default defineConfig({
                     singletonListItem(s, blogSchemaName, { title: "Blog", icon: DocumentIcon }),
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     s.divider(),
+                    singletonListItem(s, pricingPageSchemaName, { title: "Pricing", icon: DocumentIcon }),
                     singletonListItem(s, servicesPageSchemaName, { title: "Services", icon: DocumentIcon }),
                     singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Tech Talk", icon: DocumentIcon }),

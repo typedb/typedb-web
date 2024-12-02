@@ -1,8 +1,10 @@
 @use "media";
 
 table {
-    overflow: hidden;
     table-layout: fixed;
+    position: relative;
+    box-shadow: none;
+    background: none;
 }
 
 col:first-of-type {
@@ -18,13 +20,58 @@ col:first-of-type {
 }
 
 thead {
-    background: var(--color-deep-purple);
     font-weight: var(--font-weight-regular);
+    border: none;
+
+    tr {
+        border: none;
+    }
+
+    th {
+        position: sticky;
+        border: none;
+        top: 0;
+        background: var(--color-black-purple);
+        z-index: 50;
+        padding: 0;
+
+        .td-cell-spacer {
+            height: calc(100% - 1px);
+        }
+
+        div {
+            padding: 12px 24px;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        td-button {
+            display: block;
+            margin-bottom: 16px;
+        }
+    }
+
+    .td-product-price-tag aside {
+        margin-bottom: 8px;
+    }
+
+    + tbody {
+        border-top-width: 0;
+    }
 }
 
-th,
-td {
+tbody tr:not(:first-child) {
+    border-top-color: var(--color-deep-purple);
+}
+
+th, td {
     height: 80px;
+
+    &, &:not(:first-child) {
+        border-left: none;
+    }
 
     @media (max-width: media.$max-width-mobile) {
         tr:last-of-type & {

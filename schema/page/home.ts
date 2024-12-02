@@ -1,22 +1,12 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
 import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "../component/link-panel";
-import { resourceSectionSchemaName } from "../component/page-section";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { resourceSectionSchemaName, SanityCoreSection } from "../component/page-section";
+import { TechnicolorBlock } from "../component/technicolor-block";
 import {
-    collapsibleOptions,
-    isVisibleField,
-    optionalActionsField,
-    titleBodyIconFields,
-    SanityVisibleToggle,
-    requiredRule,
-    keyPointsWithIconsField,
-    titleFieldWithHighlights,
-    bodyFieldRichText,
-    sectionIconField,
-    resourcesField,
+    collapsibleOptions, isVisibleField, optionalActionsField, titleBodyIconFields, requiredRule,
+    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
@@ -26,7 +16,6 @@ import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 
 import { Page, SanityPage } from "./common";
@@ -58,17 +47,13 @@ export interface SanityHomePage extends SanityPage {
     conclusionSection: SanityConclusionSection;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
-
-interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityIntroSection extends SanityCoreSection {
     userLogos: SanityReference<SanityOrganisation>[];
     displayUserLogos: boolean;
     contentTabs: SanityContentTextTab[];
 }
 
-interface SanityImpactSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityImpactSection extends SanityCoreSection {
     impactTabs: SanityContentTextTab[];
 }
 

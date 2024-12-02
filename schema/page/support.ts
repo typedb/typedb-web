@@ -1,20 +1,13 @@
 import { defineField, defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
 import {
-    collapsibleOptions,
-    isVisibleField,
-    optionalActionsField,
-
-    titleBodyIconFields,
-    SanityVisibleToggle,
-    requiredRule,
+    collapsibleOptions, isVisibleField, optionalActionsField, titleBodyIconFields, requiredRule,
 } from "../common-fields";
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
 import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanityCoreSection } from "../component/page-section";
+import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
@@ -35,19 +28,15 @@ export interface SanitySupportPage extends SanityPage {
     [sections.contact.id]: SanityCoreSection;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
-
-interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityIntroSection extends SanityCoreSection {
     panels: SanityLinkPanelWithIcon[];
 }
 
-interface SanityFeatureTableSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityFeatureTableSection extends SanityCoreSection {
     featureTable: SanityFeatureTable;
 }
 
-interface SanityTestimonialsSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityTestimonialsSection extends SanityCoreSection {
     testimonials: SanityReference<SanityTestimonial>[];
 }
 
@@ -69,7 +58,7 @@ export class SupportPage extends Page {
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this[sections.contact.id] = data.contactSection.isVisible
-            ? ContactSection.fromSanity(data.contactSection, db)
+            ? TechnicolorBlock.fromSanity(data.contactSection, db)
             : undefined;
     }
 }
@@ -105,8 +94,6 @@ class FeatureTableSection extends TechnicolorBlock {
         });
     }
 }
-
-class ContactSection extends TechnicolorBlock {}
 
 class TestimonialsSection extends TechnicolorBlock {
     readonly testimonials: Testimonial[];

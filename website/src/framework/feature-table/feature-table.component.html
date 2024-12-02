@@ -1,18 +1,30 @@
 <table class="section">
   <colgroup>
-  @for (header of table.headerRow; track header) {
-    <col />
+    <col/>
+  @for (header of table.products; track header) {
+    <col/>
   }
 </colgroup>
 <thead>
   <tr>
-    @for (header of table.headerRow; track header) {
-      <th class="text-p1">{{ header }}</th>
+    <th>
+      <div class="td-cell-spacer"></div>
+      <hr/>
+    </th>
+    @for (product of table.products; track product) {
+      <th>
+        <div class="td-product-price-tag">
+          <p>{{ product.name }}</p>
+          <aside class="text-quiet">{{ product.priceString }}</aside>
+          <td-button [button]="product.button"/>
+        </div>
+        <hr/>
+      </th>
     }
   </tr>
 </thead>
 <tbody>
-  @for (row of table.bodyRows; track row) {
+  @for (row of table.rows; track row) {
     <tr>
       <th>
         <div class="ft-row-header">

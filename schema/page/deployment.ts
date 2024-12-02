@@ -1,29 +1,20 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
 import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    isVisibleField,
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
+    bodyFieldRichText, collapsibleOptions, isVisibleField, requiredRule, sectionIconField,
     titleFieldWithHighlights,
 } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
 import {
-    LinkPanelWithIcon,
-    linkPanelWithIconSchemaName,
-    ProductPanel,
-    productPanelSchemaName,
-    SanityLinkPanelWithIcon,
-    SanityProductPanel,
+    LinkPanelWithIcon, linkPanelWithIconSchemaName, ProductPanel, productPanelSchemaName,
+    SanityLinkPanelWithIcon, SanityProductPanel,
 } from "../component/link-panel";
+import { SanityCoreSection } from "../component/page-section";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
-import { SanityTitleBodyActions } from "../text";
 
 export interface SanityDeploymentPage extends SanityPage {
     introSection: SanityIntroSection;
@@ -39,10 +30,6 @@ export interface SanityIntroSection extends SanityTechnicolorBlock {
 export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
     featureTable: SanityFeatureTable;
 }
-
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanityTechnicolorBlock {}
 
 interface SanityLinkPanelsSection extends SanityCoreSection {
     panels: SanityLinkPanelWithIcon[];

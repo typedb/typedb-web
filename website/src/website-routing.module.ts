@@ -11,6 +11,7 @@ import { FallbackPageComponent } from "./page/fallback/fallback-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { GenericPageComponent } from "./page/generic/generic-page.component";
 import { HomePageComponent } from "./page/home/home-page.component";
+import { PricingPageComponent } from "./page/pricing/pricing-page.component";
 import { LearningArticleComponent } from "./page/resource-hub/learning-article.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
@@ -33,6 +34,7 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
+    pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },

@@ -5,18 +5,9 @@ import { SanityCoreSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityLink } from "../link";
 import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    isVisibleField,
-    keyPointsField,
-    keyPointsWithIconsField,
-    learnMoreLinkFieldOptional,
-     resourcesFieldOptional,
-    routeField,
-    SanityVisibleToggle,
-    titleAndBodyFields,
-    titleField,
-    videoEmbedField,
+    bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, keyPointsWithIconsField,
+    learnMoreLinkFieldOptional, resourcesFieldOptional, routeField, SanityVisibleToggle,
+    titleAndBodyFields, titleField, videoEmbedField,
 } from "../common-fields";
 import { LinkPanel, SanityLinkPanel } from "../component/link-panel";
 import { KeyPoint, KeyPointWithIcon, SanityKeyPoint, SanityKeyPointWithIcon } from "../key-point";
@@ -24,11 +15,7 @@ import { SanityResourceSection } from "../resource/sanity";
 import { furtherLearningField, ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import {
-    ParagraphWithHighlights,
-    SanityBodyTextField,
-    SanityTitleField,
-    SanityTitleWithHighlights,
-    TitleAndBody,
+    ParagraphWithHighlights, SanityBodyTextField, SanityTitleField, SanityTitleWithHighlights, TitleAndBody,
 } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";

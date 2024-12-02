@@ -45,6 +45,7 @@ export {
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/page-section";
+export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
@@ -80,6 +81,7 @@ export {
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
+export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {
     type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName,
 } from "./page/request-tech-talk";
