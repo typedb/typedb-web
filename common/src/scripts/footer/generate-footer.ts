@@ -1,5 +1,4 @@
-import { escapeHtml, generateLink, Link } from "../shared";
-import { sanitiseHtmlID } from "../shared/sanitise-html-id";
+import { escapeHtml, linkHtml, Link, sanitiseHtmlID } from "../shared";
 import { FooterData } from "./footer-query";
 
 interface GenerateParams {
@@ -25,7 +24,7 @@ const generateSocialSection = (params: GenerateParams) => {
     } = params;
 
     const buttonClasses = [`button-${button.style}`, "text-p2"].join(" ");
-    const buttonEl = generateLink({
+    const buttonEl = linkHtml({
         content: button.text,
         link: button.link,
         id: sanitiseHtmlID(`footer_${button.text}`),
@@ -44,7 +43,7 @@ const generateSocialSection = (params: GenerateParams) => {
             };
             const classes = ["td-footer-icon", `td-footer-icon-${socialMedia}`].join(" ");
             const content = `<span class="${classes}">${socialMedias[socialMedia]}</span>`;
-            return generateLink({
+            return linkHtml({
                 content,
                 link: {
                     destination: { current: communityResources[`${socialMedia}URL`] },
@@ -82,13 +81,13 @@ const generateNavSection = (params: GenerateParams) => {
             const iconClasses = ["td-footer-icon", `td-footer-icon-${contactMedia}`].join(" ");
             const icon = `<span class="${iconClasses}"></span>`;
             const text = `<p>${contactMedias[contactMedia]}</p>`;
-            const link = generateLink({
+            const link_ = linkHtml({
                 content: `${icon}${text}`,
                 link: getContactLink(contactMedia, communityResources),
                 id: sanitiseHtmlID(`footer_${contactSectionTitle}_${contactMedias[contactMedia]}`),
                 urlPrefix,
             });
-            return `<li>${link}</li>`;
+            return `<li>${link_}</li>`;
         })
         .join("");
     const contactList = `<ul>${contactItems}</ul>`;
@@ -98,7 +97,7 @@ const generateNavSection = (params: GenerateParams) => {
         .map(({ items, title }) => {
             const columnTitle = `<h3>${escapeHtml(title)}</h3>`;
             const columnItems = items
-                .map(({ link, text }) => generateLink({
+                .map(({ link, text }) => linkHtml({
                     content: escapeHtml(text),
                     link,
                     id: sanitiseHtmlID(`footer_${title}_${text}`),

@@ -7,7 +7,7 @@ import {
     BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay,
     switchMap,
 } from "rxjs";
-import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopbarData, topbarQuery } from "typedb-web-common/lib";
+import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
 import {
     ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogCategoryID, BlogFilter,
     blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
@@ -35,7 +35,7 @@ export class ContentService {
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
     private readonly footerData: Observable<FooterData>;
-    private readonly topbarData: Observable<TopbarData>;
+    private readonly topnavData: Observable<TopnavData>;
 
     constructor(
         private http: HttpClient,
@@ -51,7 +51,7 @@ export class ContentService {
             );
         });
         this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
-        this.topbarData = this.getSanityResult<TopbarData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
+        this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
         this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
             .pipe(
                 switchMap((data) => {
@@ -90,7 +90,7 @@ export class ContentService {
     }
 
     getTopbarData() {
-        return this.topbarData;
+        return this.topnavData;
     }
 
     getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {

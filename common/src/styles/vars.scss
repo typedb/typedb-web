@@ -22,7 +22,7 @@
     --color-secondary-pink: #{colors.$secondary-pink};
     --color-secondary-blue: #{colors.$secondary-blue};
 
-    --content-border-color: var(--color-secondary-deep-grey);
+    --content-border-color: var(--color-light-purple);
 
     --body-background: var(--color-black-purple);
     --body-heading-color: var(--color-white);
@@ -36,6 +36,7 @@
 
     /* sizes */
     --border-radius: #{$border-radius};
+    --border-radius-large: #{$border-radius-large};
 
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};

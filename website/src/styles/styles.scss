@@ -42,19 +42,15 @@ article {
     > .article-content {
         display: flex;
         flex-direction: column;
-        padding-bottom: 584px;
+        padding-bottom: 144px;
         position: relative;
 
         &.article-content-no-planet {
             padding-bottom: 5em;
         }
 
-        @media (max-width: media.$max-width-tablet) {
-            padding-bottom: 315px;
-        }
-
         @media (max-width: media.$max-width-mobile) {
-            padding-bottom: 250px;
+            padding-bottom: 64px;
         }
     }
 }
@@ -108,14 +104,20 @@ section,
     }
 }
 
-.link-tertiary,
-.link-tertiary:visited {
-    color: var(--color-white);
+.link-tertiary, .link-tertiary:visited {
+    color: var(--color-secondary-blue);
     font-weight: var(--font-weight-regular);
 
-    &:hover,
-    &:focus {
-        color: var(--color-green);
+    &::after {
+        margin-left: 6px;
+        content: "";
+        font-family: "Font Awesome 6 Pro";
+        font-size: 90%;
+        user-select: none;
+        display: inline-block;
+    }
+
+    &:hover, &:focus {
         text-decoration: underline;
     }
 }

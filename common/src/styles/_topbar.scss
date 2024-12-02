@@ -3,41 +3,39 @@
 @use "mixins" as *;
 @use "shapes";
 
+@mixin nav-dt {
+    color: var(--body-heading-color);
+    font-weight: var(--font-weight-light);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin nav-dd {
+    color: var(--color-secondary-light-grey);
+    font-size: 12px;
+    margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @mixin styles($icon-path) {
     .td-topbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        inset: 0 0 auto 0;
         z-index: 700;
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-thin);
+        font-size: 14px;
+        font-weight: var(--font-weight-light);
         text-align: left;
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: var(--color-purple);
-            border-bottom: 1px solid var(--color-secondary-deep-grey);
-            transition: opacity 100ms;
-            z-index: -1;
-        }
 
         nav {
             height: var(--topbar-height);
-            padding: 0 30px;
+            margin: 0 auto;
+            padding: 0 8px;
             display: flex;
             justify-content: space-between;
             position: relative;
-
-            @media (max-width: media.$max-width-tablet) {
-                padding: 0 12px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                padding: 0;
-            }
+            max-width: 1216px;
         }
 
         li {
@@ -52,44 +50,23 @@
         justify-content: space-between;
     }
 
-    .td-topbar-panel-header,
-    .td-topbar-logo-container,
-    .td-topbar-link,
-    .td-topbar-link:visited {
+    .td-topbar-panel-header, .td-topbar-logo-container, .td-topbar-link, .td-topbar-link:visited {
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: var(--body-heading-color);
-    }
+        color: #ccc;
+        transition: color 100ms;
+        cursor: pointer;
 
-    .td-topbar-panel-header,
-    .td-topbar-link {
-        &:hover,
-        &:focus {
-            color: var(--color-green);
-            text-decoration: underline;
+        &:hover, &:focus {
+            color: var(--color-white);
         }
-    }
-
-    .td-topbar-panel-header {
-        cursor: default;
     }
 
     .td-topbar-logo-container {
         svg {
             margin-bottom: 2px;
-
-            @media (min-width: media.$min-width-desktop) {
-                height: 46px;
-            }
-
-            @media (max-width: media.$max-width-tablet) {
-                height: 40px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                height: 32px;
-            }
+            height: 42px;
 
             .tp-right-eye {
                 animation: 90s linear 0s infinite winkWink;
@@ -105,155 +82,195 @@
         100% { transform: scaleY(1); }
     }
 
-    .td-topbar-main-area,
-    .td-topbar-secondary-area {
+    .td-topbar-main-area, .td-topbar-secondary-area {
         display: flex;
     }
 
     .td-topbar-button {
         margin: 0 20px;
         align-self: center;
-        width: 118px !important; /* overrides media query */
+        width: unset !important; /* overrides media query */
+        padding: 0 12px;
     }
 
     .td-topbar-menu-panel {
         position: absolute;
-        top: var(--topbar-height);
-        left: 0;
-        right: 0;
+        top: 64px;
         z-index: 700;
-
-        border-bottom: 1px solid var(--color-secondary-deep-grey);
-        background-color: rgba(colors.$purple, 0.8);
+        border: 1px solid var(--content-border-color);
+        background-color: #232135;
+        border-radius: var(--border-radius-large);
+        display: none;
+        flex-direction: row;
+        overflow: hidden;
 
         &::before {
             content: "";
             position: absolute;
             inset: 0;
             z-index: -1;
+            border-radius: inherit;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
 
-        border-top: 1px solid var(--color-secondary-deep-grey);
-        box-shadow: 0 8px 30px rgba(colors.$black-purple, 0.58);
-        padding-left: 186px;
-        display: flex;
-        flex-direction: row;
-
-        li:not(.td-topbar-panel-hovered) & {
-            display: none;
-        }
-    }
-
-    .td-topbar-panel-column {
-        padding: 32px 40px;
-
-        &:not(:first-of-type) {
-            border-left: shapes.$border;
-        }
-
-        dl {
-            margin: 32px 0 !important; // overrides stylesheets that reset browser styles
-            display: grid;
-            grid-auto-flow: dense;
-            grid-auto-columns: 280px;
-            gap: 32px;
-        }
-
         dt {
-            color: var(--body-heading-color);
-            font-weight: inherit;
-            display: flex;
-            align-items: center;
+            @include nav-dt;
         }
 
         dd {
-            color: var(--color-secondary-light-grey);
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            @include nav-dd;
+        }
+    }
+
+    .td-topbar-chevron {
+        margin: 0 -8px 0 8px;
+        font-size: 12px;
+        color: var(--color-secondary-light-grey);
+        transition: transform 100ms;
+    }
+
+    .td-topbar-panel-opened {
+        @media (min-width: 900px) {
+            .td-topbar-chevron {
+                transform: rotate(180deg);
+            }
+
+            .td-topbar-menu-panel, &.td-topbar-menu-panel {
+                display: flex;
+            }
+        }
+    }
+
+    .td-topbar-product-groups {
+        display: flex;
+        flex-flow: column wrap;
+        max-height: 380px;
+        padding: 16px;
+    }
+
+    .td-topbar-panel-column {
+        padding: 8px 12px;
+
+        dl {
+            margin: 8px 0 !important; // overrides stylesheets that reset browser styles
+            display: grid;
+            grid-auto-flow: dense;
+            grid-auto-columns: 260px;
+            gap: 6px;
         }
 
         a {
             color: var(--body-heading-color);
             font-weight: var(--font-weight-light);
-            &:hover,
-            &:focus {
-                dt {
-                    color: var(--color-green);
-                    text-decoration: underline;
+            display: flex;
+            gap: 16px;
+            padding: 6px 12px;
+            margin-left: -12px;
+            border-radius: 5px;
+            transition: background-color 100ms;
+
+            .td-icon-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                flex: 0 0 32px;
+                color: var(--color-secondary-blue);
+
+                i {
+                    font-size: 24px;
                 }
+            }
+
+            &:hover, &:focus {
+                background: var(--color-light-purple);
+                //dt {
+                //    color: var(--color-green);
+                //    text-decoration: underline;
+                //}
             }
         }
     }
 
     .td-topbar-column-title {
         color: var(--body-heading-color);
-        padding-bottom: 8px !important; // overrides stylesheets that reset browser styles
-        border-bottom: shapes.$border;
+        padding-bottom: 0 !important; // overrides stylesheets that reset browser styles
         font-weight: var(--font-weight-regular);
-        font-size: var(--font-size-h5);
-        line-height: var(--line-height-h5);
+        font-size: 12px;
+        line-height: 22px;
+        text-transform: uppercase;
+        letter-spacing: 0.035em;
     }
 
-    .td-topbar-github-icon {
-        overflow: hidden;
-        text-indent: 100%;
-        @include url-icon(url("#{$icon-path}/github.svg"), var(--color-white));
-        width: 40px;
-        height: 40px;
+    .td-topbar-bottom-links {
+        border-top: 1px solid var(--color-light-purple);
+        display: flex;
+
+        a {
+            flex: 1;
+            display: block;
+            padding: 12px 28px;
+            transition: background-color 100ms;
+
+            &:hover, &:focus {
+                background: var(--color-light-purple);
+            }
+        }
+
+        a + a {
+            border-left: 1px solid var(--color-light-purple);
+        }
+
+        dt::after {
+            margin-left: 6px;
+            content: "";
+            font-family: "Font Awesome 6 Pro";
+            font-size: 90%;
+            user-select: none;
+            display: inline-block;
+        }
+    }
+
+    .td-topbar-menu-panel-ctas {
+        width: 212px;
+        border-left: 1px solid var(--color-light-purple);
+        display: flex;
+        flex-direction: column;
+
+        li {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+
+            h5 {
+                @include nav-dt;
+            }
+
+            a {
+                font-size: 12px;
+                margin-top: 4px;
+            }
+        }
+
+        li + li {
+            border-top: 1px solid var(--color-light-purple);
+        }
     }
 
     .td-topbar-external-icon {
         text-indent: 100%;
         @include url-icon(url("#{$icon-path}/link.svg"), currentColor);
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         margin-left: 4px;
         margin-right: -24px;
-        visibility: hidden;
+        opacity: 0;
+        transition: opacity 100ms;
 
-        a:hover &,
-        a:focus & {
-            visibility: visible;
-        }
-    }
-
-    .td-topbar-spotlight-column {
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .td-topbar-spotlight {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        padding: 32px;
-        background: var(--color-purple);
-        border: shapes.$border;
-        border-radius: var(--border-radius);
-        transition: border-color 100ms ease;
-
-        h4 {
-            font-size: var(--font-size-h4);
-            line-height: var(--line-height-h4);
-        }
-
-        &:hover {
-            border-color: var(--color-green);
-
-            h4 {
-                color: var(--color-green);
-            }
-        }
-
-        img {
-            width: 72px;
-            height: 72px;
+        a:hover &, a:focus & {
+            opacity: 1;
         }
     }
 
@@ -262,7 +279,6 @@
         background: none;
         border: none;
         outline: none;
-
         font-size: 24px;
         padding: 0.25em;
         margin: -0.25em;
@@ -270,7 +286,6 @@
         align-self: center;
         cursor: pointer;
         display: none;
-
         --menu-icon-url: url("#{$icon-path}/burger-tablet.svg");
 
         &::before {
@@ -288,11 +303,16 @@
         align-items: center;
         justify-content: center;
         height: var(--banner-height);
-        border-bottom: 1px solid var(--color-secondary-deep-grey);
+        border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
         background-color: var(--color-secondary-purple);
         text-align: center;
+
+        p {
+            font-size: 12px;
+            line-height: 18px;
+        }
 
         strong {
             color: var(--color-green);
@@ -300,40 +320,58 @@
         }
     }
 
-    @media (max-width: media.$max-width-tablet) {
+    @media (max-width: 899px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
 
+        .td-topbar-open nav {
+            background: var(--color-purple);
+        }
+
+        .td-topbar-logo-container {
+            padding: 0 12px;
+        }
+
         .td-topbar-menu-button {
             display: initial;
+            --menu-icon-url: url("#{$icon-path}/burger-mobile.svg");
+            margin-right: 12px;
+
+            .td-topbar.td-topbar-open & {
+                --menu-icon-url: url("#{$icon-path}/close.svg");
+            }
         }
 
         .td-topbar-content {
             position: fixed;
-            bottom: 0;
-            right: 0;
-            top: var(--topbar-height);
-
-            width: 530px;
-            padding: 0 32px;
+            inset: var(--topbar-height) 0 84px auto;
+            z-index: 700;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             background-color: var(--color-purple);
-            border: 1px solid var(--color-secondary-deep-grey);
+            width: 100%;
+            padding: 0 20px;
+            overflow-y: auto;
+            border: none;
+            border-top: 1px solid var(--color-light-purple);
 
             .td-topbar.td-topbar-has-banner & {
                 top: calc(var(--topbar-height) + var(--banner-height));
             }
         }
 
+        .td-topbar-chevron {
+            display: none;
+        }
+
         .td-topbar-main-area {
-            margin: 0 -32px;
-            padding: 32px 32px 24px;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            margin: 0;
+            padding: 16px 0;
+            overflow-y: visible;
             gap: 24px;
 
             li {
@@ -341,36 +379,44 @@
             }
         }
 
-        .td-topbar-panel-header {
-            font-weight: var(--font-weight-regular);
-            margin: 0 -32px;
-            padding: 8px 32px;
+        .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
+            font-size: 16px;
+            font-weight: var(--font-weight-medium);
             box-sizing: content-box;
             width: 100%;
             display: flex;
             justify-content: space-between;
-            gap: 10px;
             align-items: center;
             color: var(--body-heading-color);
             cursor: pointer;
+            margin: 0;
+            padding: 0;
+            gap: 16px;
 
-            &::after {
-                content: "";
-                display: block;
-                width: 20px;
-                height: 20px;
-
-                @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
+            &:hover, &:focus {
+                color: var(--body-heading-color);
+                text-decoration: none;
             }
 
             li.td-topbar-panel-expanded & {
-                color: var(--color-green);
-                text-decoration: underline;
+                text-decoration: initial;
+            }
+
+            li.td-topbar-panel-expanded & {
+                color: var(--color-white);
 
                 &::after {
                     transform: rotate(180deg);
                 }
             }
+        }
+
+        .td-topbar-panel-header::after {
+            content: "";
+            display: block;
+            width: 20px;
+            height: 20px;
+            @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
         }
 
         .td-topbar-menu-panel {
@@ -379,19 +425,16 @@
             left: initial;
             right: initial;
             z-index: initial;
-            border: solid var(--content-border-color);
-            border-width: 0 0 0 1px;
+            border: 0;
             background-color: initial;
             box-shadow: initial;
-            padding-left: 16px;
-            margin-top: 24px;
+            margin-top: 16px;
 
             &::before {
                 content: none;
             }
 
-            &,
-            li:not(.td-topbar-panel-hovered) & {
+            &, li:not(.td-topbar-panel-opened) & {
                 display: block;
             }
 
@@ -401,43 +444,40 @@
         }
 
         .td-topbar-secondary-area {
-            border-top: shapes.$border;
-            padding: 24px 0 32px;
+            border: 0;
             display: flex;
-            align-items: center;
-            gap: 40px;
-
-            li:nth-last-of-type(2) {
-                flex: 1;
-                order: -1;
-                margin-right: 8px;
-            }
+            flex-direction: column;
+            padding: 8px 0 24px;
+            gap: 24px;
+            flex: 1;
 
             li:last-of-type {
-                margin-left: 8px;
+                position: fixed;
+                inset: auto 0 0 0;
+                height: 84px;
+                border-top: 1px solid var(--color-light-purple);
+                justify-content: center;
+                align-items: center;
+                background: var(--color-purple);
             }
         }
 
         .td-topbar-button {
-            margin: 0;
+            margin: 0 auto;
+            align-self: unset;
         }
 
         .td-topbar-link {
             padding: 0;
         }
 
-        .td-topbar-panel-header,
-        .td-topbar-link {
-            &:hover,
-            &:focus {
-                color: var(--body-heading-color);
-                text-decoration: none;
-            }
+        .td-topbar-product-groups {
+            max-height: unset;
+            padding: 16px 0 0;
         }
 
         .td-topbar-panel-column {
             padding: 16px 0;
-            border-top: shapes.$border;
 
             &:first-of-type {
                 padding-top: 0;
@@ -453,93 +493,51 @@
             }
 
             dl {
-                margin: var(--text-margin-s) 0 0;
-                gap: var(--text-margin-s);
+                margin: 20px 0 0;
+                gap: 16px;
                 grid-auto-columns: initial;
             }
 
             dd {
                 white-space: initial;
             }
+
+            a {
+                margin-left: 0;
+                padding: 0;
+            }
         }
 
         .td-topbar-column-title {
-            border-bottom: none;
             padding-bottom: 0;
             font-weight: var(--font-weight-semi-bold);
         }
 
-        .td-topbar-external-icon {
-            visibility: visible;
-        }
-
-        .td-topbar-spotlight {
-            gap: 20px;
-            padding: 16px;
-
-            img {
-                width: 48px;
-                height: 48px;
-            }
-        }
-    }
-
-    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
-        .td-topbar-button {
-            flex: 1;
-        }
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        .td-topbar-menu-button {
-            --menu-icon-url: url("#{$icon-path}/burger-mobile.svg");
-            margin-right: 12px;
-
-            .td-topbar.td-topbar-open & {
-                --menu-icon-url: url("#{$icon-path}/close.svg");
-            }
-        }
-
-        .td-topbar-content {
-            width: 100%;
-            padding: 0 20px;
-            overflow-y: auto;
-            border: none;
-        }
-
-        .td-topbar-main-area {
-            @media (max-width: media.$max-width-mobile) {
-                margin: 0 -20px;
-                padding: 16px 20px;
-                overflow-y: visible;
-                gap: 16px;
-            }
-        }
-
-        .td-topbar-panel-header {
-            margin: 0 -20px;
-            padding: 0 20px;
-            gap: 16px;
-
-            li.td-topbar-panel-expanded & {
-                text-decoration: initial;
-            }
-        }
-
-        .td-topbar-menu-panel {
+        .td-topbar-bottom-links {
+            display: none;
             margin-top: 16px;
+            border: 0;
+
+            a {
+                padding: 12px 0;
+            }
         }
 
-        .td-topbar-secondary-area {
-            padding: 16px 0;
-            gap: 20px;
+        .td-topbar-menu-panel-ctas {
+            display: none;
+            width: unset;
+            border: 0;
 
-            li:nth-last-of-type(2) {
-                margin-right: -4px;
+            li {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                align-items: baseline;
+                padding: 12px 0;
             }
 
-            li:last-of-type {
-                margin-left: -4px;
+            li + li {
+                border: 0;
             }
         }
     }
