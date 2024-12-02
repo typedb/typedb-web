@@ -54,13 +54,12 @@
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: var(--color-white);
-        transition: opacity 100ms;
+        color: #ccc;
+        transition: color 100ms;
         cursor: pointer;
-        opacity: 0.8;
 
         &:hover, &:focus {
-            opacity: 1;
+            color: var(--color-white);
         }
     }
 
@@ -96,7 +95,7 @@
 
     .td-topbar-menu-panel {
         position: absolute;
-        top: 68px;
+        top: 64px;
         z-index: 700;
         border: 1px solid var(--content-border-color);
         background-color: #232135;
@@ -146,7 +145,7 @@
     .td-topbar-product-groups {
         display: flex;
         flex-flow: column wrap;
-        max-height: 360px;
+        max-height: 380px;
         padding: 16px;
     }
 
@@ -157,7 +156,7 @@
             margin: 8px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
-            grid-auto-columns: 250px;
+            grid-auto-columns: 260px;
             gap: 6px;
         }
 
@@ -166,8 +165,8 @@
             font-weight: var(--font-weight-light);
             display: flex;
             gap: 16px;
-            padding: 4px 8px;
-            margin-left: -8px;
+            padding: 6px 12px;
+            margin-left: -12px;
             border-radius: 5px;
             transition: background-color 100ms;
 
@@ -380,7 +379,7 @@
             }
         }
 
-        .td-topbar-panel-header, .td-topbar-link {
+        .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
             font-size: 16px;
             font-weight: var(--font-weight-medium);
             box-sizing: content-box;
