@@ -1,11 +1,11 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
-import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "../component/link-panel";
-import { resourceSectionSchemaName, SanityCoreSection } from "../component/page-section";
+import { LinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
+import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import {
-    collapsibleOptions, isVisibleField, optionalActionsField, titleBodyIconFields, requiredRule,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
     keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
@@ -39,7 +39,7 @@ export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     impactSections: SanityImpactSection[];
     [sections.resources.id]: SanityResourceSection;
-    [sections.tooling.id]: SanityToolingSection;
+    [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
     [sections.cloud.id]: SanityKeyPointsSection;
     [sections.community.id]: SanityCommunitySection;
@@ -58,10 +58,6 @@ interface SanityImpactSection extends SanityCoreSection {
 }
 
 type SanityDriversSection = SanityFeatureGridSection;
-
-interface SanityToolingSection extends SanityCoreSection {
-    panels: SanityLinkPanelWithIcon[];
-}
 
 interface SanityKeyPointsSection extends SanityCoreSection {
     keyPoints: SanityKeyPointWithIcon[];
@@ -161,7 +157,7 @@ class ToolingSection extends TechnicolorBlock {
         this.panels = props.panels;
     }
 
-    static override fromSanity(data: SanityToolingSection, db: SanityDataset) {
+    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new ToolingSection(
             Object.assign(TechnicolorBlock.fromSanity(data, db), {
                 panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
@@ -240,7 +236,7 @@ const sectionSchemas = [
         }),
         bodyFieldRichText,
         sectionIconField,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "displayUserLogos",
             title: "Display Organisation Logos?",
@@ -260,7 +256,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("impact", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "impactTabs",
             title: "Impact Tabs",
@@ -270,10 +266,10 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("resources", [...titleBodyIconFields, optionalActionsField, resourcesField, isVisibleField]),
+    sectionSchema("resources", [...titleBodyIconFields, actionsFieldOptional, resourcesField, isVisibleField]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "panels",
             title: "Panels",
@@ -285,7 +281,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("drivers", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "featureGrid",
             title: "Drivers",
@@ -295,11 +291,11 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("cloud", [...titleBodyIconFields, optionalActionsField, keyPointsWithIconsField(5), isVisibleField]),
-    sectionSchema("community", [...titleBodyIconFields, optionalActionsField, socialMediaLinksField, isVisibleField]),
+    sectionSchema("cloud", [...titleBodyIconFields, actionsFieldOptional, keyPointsWithIconsField(5), isVisibleField]),
+    sectionSchema("community", [...titleBodyIconFields, actionsFieldOptional, socialMediaLinksField, isVisibleField]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "testimonials",
             title: "Testimonials",

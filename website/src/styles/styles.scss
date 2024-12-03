@@ -55,8 +55,7 @@ article {
     }
 }
 
-section,
-.section {
+section, .section {
     position: relative;
     z-index: 1;
     @include section-width($offset: 0px);
@@ -68,8 +67,7 @@ section,
     max-width: 870px;
 }
 
-.nebula-section,
-.page-section.nebula-section {
+.nebula-section, .page-section.nebula-section {
     margin-top: 120px;
 
     @media (max-width: media.$max-width-mobile) {
@@ -122,8 +120,7 @@ section,
     }
 }
 
-input[type="email"],
-select {
+input[type="email"], select {
     padding: 0 8px;
     background-color: var(--color-purple);
     color: var(--body-font-color);
@@ -141,13 +138,11 @@ table {
     border-collapse: collapse;
     box-shadow: 0 0 0 1px var(--content-border-color);
 
-    thead + tbody,
-    tr:not(:first-child) {
+    thead + tbody, tr:not(:first-child) {
         border-top: shapes.$border;
     }
 
-    th,
-    td {
+    th, td {
         &:not(:first-child) {
             border-left: shapes.$border;
         }
@@ -159,14 +154,9 @@ table {
     flex-direction: column;
     align-items: center;
     text-align: center;
-
-    &.page-intro-section {
-        margin-top: var(--intro-section-margin);
-    }
 }
 
-.page-section,
-.section-margin {
+.page-section, .section-margin {
     margin-top: var(--section-margin);
 }
 

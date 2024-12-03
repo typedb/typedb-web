@@ -1,9 +1,11 @@
-import { defineType } from "@sanity/types";
+import { defineField, defineType } from "@sanity/types";
 import {
-    isVisibleField, optionalActionsField, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields,
+    bodyFieldRichText,
+    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, sectionIconField, titleBodyIconFields, titleFieldWithHighlights,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
+import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "./link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 
@@ -11,6 +13,10 @@ export interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisible
 
 export interface SanityTitleBodyPanelSection extends SanityCoreSection {
     panel: SanityContentTextPanel;
+}
+
+export interface SanityLinkPanelsSection extends SanityCoreSection {
+    panels: SanityLinkPanelWithIcon[];
 }
 
 export class TitleBodyPanelSection extends TechnicolorBlock {
@@ -25,6 +31,22 @@ export class TitleBodyPanelSection extends TechnicolorBlock {
         return new TitleBodyPanelSection({
             ...TechnicolorBlock.fromSanity(data, db),
             panel: new ContentTextPanel(data.panel, db),
+        });
+    }
+}
+
+export class LinkPanelsSection extends TechnicolorBlock {
+    readonly panels: LinkPanelWithIcon[];
+
+    constructor(props: PropsOf<LinkPanelsSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
+        return new LinkPanelsSection({
+            ...super.fromSanity(data, db),
+            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
         });
     }
 }
@@ -46,6 +68,7 @@ const titleBodyPanelSectionSchema = defineType({
     type: "document",
     fields: [
         ...titleBodyIconFields,
+        actionsFieldOptional,
         {
             title: "Panel",
             name: "panel",
@@ -61,7 +84,28 @@ const resourceSectionSchema = defineType({
     name: resourceSectionSchemaName,
     title: "Resources Section",
     type: "object",
-    fields: [...titleBodyIconFields, optionalActionsField, resourcesFieldOptional, isVisibleField],
+    fields: [...titleBodyIconFields, actionsFieldOptional, resourcesFieldOptional, isVisibleField],
 });
 
-export const pageSectionSchemas = [coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema];
+export const linkPanelsSectionSchemaName = `linkPanelsSection`;
+
+const linkPanelsSectionSchema = defineType({
+    name: linkPanelsSectionSchemaName,
+    title: "Link Panels Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        bodyFieldRichText,
+        sectionIconField,
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{ type: linkPanelWithIconSchemaName }],
+            validation: (rule) => rule.required().length(3),
+        }),
+        isVisibleField,
+    ],
+});
+
+export const pageSectionSchemas = [coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema, linkPanelsSectionSchema];

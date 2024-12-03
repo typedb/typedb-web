@@ -25,7 +25,8 @@
     --content-border-color: var(--color-light-purple);
 
     --body-background: var(--color-black-purple);
-    --body-heading-color: var(--color-white);
+    --body-heading-color: #ccc;
+    --body-heading-hovered-state-color: var(--color-white);
     --body-font-color: var(--color-dark-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);
@@ -44,7 +45,6 @@
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
-    --intro-section-margin: #{$intro-section-margin};
     --section-margin: #{$section-margin};
     --subsection-margin: #{$subsection-margin};
     --subtitle-margin-l: #{$subtitle-margin-l};
@@ -97,7 +97,6 @@
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};
 
-        --intro-section-margin: #{$intro-section-margin-tablet};
         --subsection-margin: #{$subsection-margin-tablet};
 
         --card-padding: #{$card-padding-tablet};
@@ -110,7 +109,6 @@
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
 
-        --intro-section-margin: #{$intro-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
         --subsection-margin: #{$subsection-margin-mobile};
         --subtitle-margin-l: #{$subtitle-margin-mobile};

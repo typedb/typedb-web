@@ -1,6 +1,6 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { bodyFieldRichText, optionalActionsField, titleFieldWithHighlights } from "./common-fields";
+import { bodyFieldRichText, actionsFieldOptional, titleFieldWithHighlights } from "./common-fields";
 import { SanityDataset } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -97,7 +97,7 @@ const titleBodyActionsSectionSchema = defineType({
     name: titleBodyActionsSectionSchemaName,
     title: "Title, Body & Actions",
     type: "document",
-    fields: [titleFieldWithHighlights, bodyFieldRichText, optionalActionsField],
+    fields: [titleFieldWithHighlights, bodyFieldRichText, actionsFieldOptional],
 });
 
 export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema];

@@ -2,19 +2,35 @@
 
 :host {
     display: flex;
-    align-items: flex-start;
     gap: 32px;
-
-    @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-    }
+    flex-direction: column;
 }
 
 table {
     overflow: hidden;
     table-layout: fixed;
-    text-align: center;
+    text-align: start;
     height: 0; // trick to make div fill cell height
+    border-collapse: separate;
+    border-spacing: 20px 0;
+    background: none;
+    box-shadow: none;
+}
+
+tr td {
+    background: var(--color-deep-purple);
+    border: 1px solid var(--color-light-purple);
+    border-width: 0 1px;
+}
+
+tr:first-of-type td {
+    border-top-width: 1px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+tr:last-of-type td {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-bottom-width: 1px;
 }
 
 td {
@@ -22,6 +38,10 @@ td {
 
     @media (max-width: media.$max-width-mobile) {
         padding: 12px;
+    }
+
+    &:nth-of-type(2) h3 {
+        color: var(--color-green);
     }
 }
 
@@ -38,7 +58,7 @@ hr {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .pp-body-text {
@@ -50,13 +70,31 @@ hr {
 }
 
 .pp-button-row {
-    background: var(--color-deep-purple);
-
     td {
         padding: 16px 24px;
 
         @media (max-width: media.$max-width-mobile) {
             padding: 12px;
         }
+    }
+}
+
+.td-key-points {
+    td {
+        vertical-align: top;
+    }
+
+    ul {
+        list-style: none;
+        text-align: start;
+    }
+
+    li + li {
+        margin-top: 4px;
+    }
+
+    i {
+        color: var(--color-secondary-light-grey);
+        margin-right: 8px;
     }
 }

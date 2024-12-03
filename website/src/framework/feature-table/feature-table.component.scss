@@ -68,6 +68,7 @@ tbody tr:not(:first-child) {
 
 th, td {
     height: 80px;
+    color: #ccc;
 
     &, &:not(:first-child) {
         border-left: none;

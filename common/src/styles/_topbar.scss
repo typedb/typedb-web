@@ -4,7 +4,7 @@
 @use "shapes";
 
 @mixin nav-dt {
-    color: var(--body-heading-color);
+    color: var(--color-white);
     font-weight: var(--font-weight-light);
     font-size: 14px;
     display: flex;
@@ -103,6 +103,7 @@
         display: none;
         flex-direction: row;
         overflow: hidden;
+        margin-left: -64px;
 
         &::before {
             content: "";
@@ -121,6 +122,14 @@
         dd {
             @include nav-dd;
         }
+
+        @media (min-width: 960px) and (max-width: 1039px) {
+            margin-left: -164px;
+        }
+
+        @media (min-width: 1040px) and (max-width: 1120px) {
+            margin-left: -112px;
+        }
     }
 
     .td-topbar-chevron {
@@ -131,7 +140,7 @@
     }
 
     .td-topbar-panel-opened {
-        @media (min-width: 900px) {
+        @media (min-width: 960px) {
             .td-topbar-chevron {
                 transform: rotate(180deg);
             }
@@ -147,6 +156,7 @@
         flex-flow: column wrap;
         max-height: 380px;
         padding: 16px;
+        column-gap: 8px;
     }
 
     .td-topbar-panel-column {
@@ -156,16 +166,15 @@
             margin: 8px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
-            grid-auto-columns: 260px;
             gap: 6px;
         }
 
         a {
-            color: var(--body-heading-color);
+            color: var(--color-white);
             font-weight: var(--font-weight-light);
             display: flex;
             gap: 16px;
-            padding: 6px 12px;
+            padding: 6px 14px;
             margin-left: -12px;
             border-radius: 5px;
             transition: background-color 100ms;
@@ -194,7 +203,7 @@
     }
 
     .td-topbar-column-title {
-        color: var(--body-heading-color);
+        color: var(--color-white);
         padding-bottom: 0 !important; // overrides stylesheets that reset browser styles
         font-weight: var(--font-weight-regular);
         font-size: 12px;
@@ -320,7 +329,7 @@
         }
     }
 
-    @media (max-width: 899px) {
+    @media (max-width: 959px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
@@ -387,14 +396,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--body-heading-color);
+            color: var(--color-white);
             cursor: pointer;
             margin: 0;
             padding: 0;
             gap: 16px;
 
             &:hover, &:focus {
-                color: var(--body-heading-color);
+                color: var(--color-white);
                 text-decoration: none;
             }
 

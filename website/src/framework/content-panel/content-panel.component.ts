@@ -20,6 +20,7 @@ export class ContentPanelComponent {
     @Input() hidden?: boolean;
     @Input({ required: true }) panel!: ContentTextPanel;
     @Input({ required: true }) panelId!: string;
+    @Input() appearance: "unadorned" | "card" = "unadorned";
 
     get contentTextPanel(): ContentTextPanel | undefined {
         return this.panel instanceof ContentTextPanel ? this.panel : undefined;
@@ -28,7 +29,7 @@ export class ContentPanelComponent {
     get rootNgClass(): { [clazz: string]: boolean | undefined } {
         return {
             section: true,
-            card: true,
+            card: this.appearance === "card",
             "cp-root": true,
             "cp-in-tab": this.panel instanceof ContentTextTab,
         };

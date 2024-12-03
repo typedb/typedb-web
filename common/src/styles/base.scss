@@ -109,13 +109,12 @@ hr {
 }
 
 /* prettier-ignore */
-h1, h2, h3, h4, th {
+h1, h2, h3, h4, h5, h6, th {
     color: var(--body-heading-color);
-}
 
-/* prettier-ignore */
-h5, h6 {
-    color: var(--body-font-color);
+    &:hover, &:focus {
+        color: var(--body-heading-hovered-state-color);
+    }
 }
 
 aside {
@@ -285,10 +284,10 @@ button, td-button {
 .card {
     @include card-appearance;
     @include card-padding;
-    transition: border-color 150ms ease;
+    transition: border-color 100ms;
 
     &.hoverable:hover {
-        border-color: var(--color-green);
+        border-color: var(--color-secondary-light-grey);
 
         .link-tertiary {
             color: var(--color-secondary-blue);

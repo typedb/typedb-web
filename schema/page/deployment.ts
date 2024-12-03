@@ -9,7 +9,7 @@ import {
     LinkPanelWithIcon, linkPanelWithIconSchemaName, ProductPanel, productPanelSchemaName,
     SanityLinkPanelWithIcon, SanityProductPanel,
 } from "../component/link-panel";
-import { SanityCoreSection } from "../component/page-section";
+import { LinkPanelsSection, linkPanelsSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection } from "../component/page-section";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
@@ -29,10 +29,6 @@ export interface SanityIntroSection extends SanityTechnicolorBlock {
 
 export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
     featureTable: SanityFeatureTable;
-}
-
-interface SanityLinkPanelsSection extends SanityCoreSection {
-    panels: SanityLinkPanelWithIcon[];
 }
 
 export class DeploymentPage extends Page {
@@ -86,27 +82,10 @@ export class FeatureTableSection extends TechnicolorBlock {
     }
 }
 
-export class LinkPanelsSection extends TechnicolorBlock {
-    readonly panels: LinkPanelWithIcon[];
-
-    constructor(props: PropsOf<LinkPanelsSection>) {
-        super(props);
-        this.panels = props.panels;
-    }
-
-    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
-        return new LinkPanelsSection({
-            ...super.fromSanity(data, db),
-            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
-        });
-    }
-}
-
 export const deploymentPageSchemaName = "deploymentPage";
 
 const introSectionSchemaName = `${deploymentPageSchemaName}_introSection`;
 const featureTableSectionSchemaName = `${deploymentPageSchemaName}_featureTableSection`;
-const linkPanelsSectionSchemaName = `${deploymentPageSchemaName}_linkPanelsSection`;
 
 const introSectionSchema = defineType({
     name: introSectionSchemaName,
@@ -139,25 +118,6 @@ const featureTableSectionSchema = defineType({
             title: "Feature Table",
             type: featureTableSchemaName,
             validation: requiredRule,
-        }),
-        isVisibleField,
-    ],
-});
-
-const linkPanelsSectionSchema = defineType({
-    name: linkPanelsSectionSchemaName,
-    title: "Link Panels Section",
-    type: "object",
-    fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
-        defineField({
-            name: "panels",
-            title: "Panels",
-            type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
-            validation: (rule) => rule.required().length(3),
         }),
         isVisibleField,
     ],
@@ -217,9 +177,4 @@ const deploymentPageSchema = defineType({
         }),
 });
 
-export const deploymentPageSchemas = [
-    introSectionSchema,
-    featureTableSectionSchema,
-    linkPanelsSectionSchema,
-    deploymentPageSchema,
-];
+export const deploymentPageSchemas = [introSectionSchema, featureTableSectionSchema, deploymentPageSchema];

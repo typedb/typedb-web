@@ -1,7 +1,7 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
 import { collapsibleOptions, isVisibleField, requiredRule, titleBodyIconFields } from "../common-fields";
 import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
-import { coreSectionSchemaName, SanityCoreSection } from "../component/page-section";
+import { coreSectionSchemaName, SanityCoreSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/page-section";
 import { PricingPanel, pricingPanelSchemaName, SanityPricingPanel } from "../component/pricing-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset } from "../sanity-core";
@@ -11,12 +11,13 @@ import { metaTagsField } from "./meta-tags";
 
 export interface SanityPricingPage extends SanityPage {
     introSection: SanityIntroSection;
+    providersSection: SanityTitleBodyPanelSection;
     featureTableSection: SanityFeatureTableSection;
     contactSection: SanityCoreSection;
 }
 
 export interface SanityIntroSection extends SanityTechnicolorBlock {
-    panelsCaption: string;
+    panelsCaption?: string;
     panels: SanityPricingPanel[];
 }
 
@@ -26,19 +27,21 @@ export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
 
 export class PricingPage extends Page {
     readonly introSection: IntroSection;
+    readonly providersSection: TitleBodyPanelSection;
     readonly featureTableSection: FeatureTableSection;
     readonly contactSection: TechnicolorBlock;
 
     constructor(data: SanityPricingPage, db: SanityDataset) {
         super(data, db);
         this.introSection = IntroSection.fromSanity(data.introSection, db);
+        this.providersSection = TitleBodyPanelSection.fromSanity(data.providersSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this.contactSection = TechnicolorBlock.fromSanity(data.contactSection, db);
     }
 }
 
 export class IntroSection extends TechnicolorBlock {
-    readonly panelsCaption: string;
+    readonly panelsCaption?: string;
     readonly panels: PricingPanel[];
 
     constructor(props: PropsOf<IntroSection>) {
@@ -89,7 +92,6 @@ const introSectionSchema = defineType({
             name: "panelsCaption",
             title: "Pricing Panels Caption",
             type: "string",
-            validation: requiredRule,
         }),
         defineField({
             name: "panels",
@@ -127,6 +129,13 @@ const pricingPageSchema = defineType({
             name: "introSection",
             title: "Intro Section",
             type: introSectionSchemaName,
+            options: collapsibleOptions,
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "providersSection",
+            title: "Providers Section",
+            type: titleBodyPanelSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

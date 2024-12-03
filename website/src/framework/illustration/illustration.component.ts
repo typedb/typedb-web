@@ -21,11 +21,9 @@ import { RichTextComponent } from "../text/rich-text.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    CodeSnippetComponent,
-    PolyglotSnippetComponent,
-    GraphVisualisationComponent,
-    forwardRef(() => SplitPaneIllustrationComponent)
-],
+        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
+        forwardRef(() => SplitPaneIllustrationComponent)
+    ],
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;

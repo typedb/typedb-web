@@ -1,10 +1,10 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions, isVisibleField, optionalActionsField, titleBodyIconFields, requiredRule,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
 } from "../common-fields";
 import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
-import { LinkPanelWithIcon, SanityLinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
-import { SanityCoreSection } from "../component/page-section";
+import { linkPanelWithIconSchemaName } from "../component/link-panel";
+import { LinkPanelsSection, SanityCoreSection, SanityLinkPanelsSection } from "../component/page-section";
 import { TechnicolorBlock } from "../component/technicolor-block";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
@@ -22,14 +22,10 @@ const sections = {
 type SectionKey = keyof typeof sections;
 
 export interface SanitySupportPage extends SanityPage {
-    [sections.intro.id]: SanityIntroSection;
+    [sections.intro.id]: SanityLinkPanelsSection;
     [sections.featureTable.id]: SanityFeatureTableSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
     [sections.contact.id]: SanityCoreSection;
-}
-
-interface SanityIntroSection extends SanityCoreSection {
-    panels: SanityLinkPanelWithIcon[];
 }
 
 interface SanityFeatureTableSection extends SanityCoreSection {
@@ -41,7 +37,7 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 }
 
 export class SupportPage extends Page {
-    readonly [sections.intro.id]?: IntroSection;
+    readonly [sections.intro.id]?: LinkPanelsSection;
     readonly [sections.featureTable.id]?: FeatureTableSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly [sections.contact.id]?: TechnicolorBlock;
@@ -49,7 +45,7 @@ export class SupportPage extends Page {
     constructor(data: SanitySupportPage, db: SanityDataset) {
         super(data, db);
         this[sections.intro.id] = data.introSection.isVisible
-            ? IntroSection.fromSanity(data.introSection, db)
+            ? LinkPanelsSection.fromSanity(data.introSection, db)
             : undefined;
         this[sections.featureTable.id] = data.featureTableSection.isVisible
             ? FeatureTableSection.fromSanity(data.featureTableSection, db)
@@ -60,22 +56,6 @@ export class SupportPage extends Page {
         this[sections.contact.id] = data.contactSection.isVisible
             ? TechnicolorBlock.fromSanity(data.contactSection, db)
             : undefined;
-    }
-}
-
-class IntroSection extends TechnicolorBlock {
-    readonly panels: LinkPanelWithIcon[];
-
-    constructor(props: PropsOf<IntroSection>) {
-        super(props);
-        this.panels = props.panels;
-    }
-
-    static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection({
-            ...super.fromSanity(data, db),
-            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
-        });
     }
 }
 
@@ -127,7 +107,7 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 const sectionSchemas = [
     sectionSchema("intro", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "panels",
             title: "Panels",
@@ -139,7 +119,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("featureTable", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -150,7 +130,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "testimonials",
             title: "Testimonials",
@@ -159,7 +139,7 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("contact", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>

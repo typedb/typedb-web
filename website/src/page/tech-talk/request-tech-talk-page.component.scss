@@ -45,6 +45,10 @@
     @media (max-width: media.$max-width-mobile) {
         margin-bottom: 24px;
     }
+
+    &:hover, &:focus {
+        color: var(--body-heading-hovered-state-color);
+    }
 }
 
 .mat-mdc-progress-bar {

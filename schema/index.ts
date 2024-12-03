@@ -78,8 +78,10 @@ export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from ".
 export {
     ResourceHub, learningCenterSchemaName, type SanityResourceHub, fundamentalsPageSchemaName,
 } from "./page/learn";
+export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {
@@ -87,9 +89,8 @@ export {
 } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
+export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
-export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
-export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";

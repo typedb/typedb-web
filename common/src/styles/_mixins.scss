@@ -64,23 +64,6 @@
 }
 
 @mixin button-primary {
-    border-color: transparent;
-    background: var(--color-green);
-    color: var(--color-purple);
-
-    &:not(.td-button-disabled) {
-        &:hover,
-        &.container-hover {
-            box-shadow: 0 3px 26px 0 rgba(colors.$green, 0.4);
-        }
-
-        &:active {
-            background-color: mix(colors.$green, colors.$purple);
-        }
-    }
-}
-
-@mixin button-secondary {
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
@@ -90,6 +73,20 @@
         &.container-hover {
             background-color: var(--color-green);
             color: var(--color-purple);
+        }
+    }
+}
+
+@mixin button-secondary {
+    border-color: #ccc;
+    background: transparent;
+    color: #ccc;
+
+    &:not(.td-button-disabled) {
+        &:hover,
+        &.container-hover {
+            border-color: var(--color-white);
+            color: var(--color-white);
         }
     }
 }
