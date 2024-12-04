@@ -34,6 +34,7 @@ export class PricingPageTechnicolorBlockComponent {
 @Component({
     selector: "td-pricing-page",
     templateUrl: "./pricing-page.component.html",
+    styleUrls: ["./pricing-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
