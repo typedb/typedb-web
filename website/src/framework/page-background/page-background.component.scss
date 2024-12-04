@@ -26,7 +26,7 @@
 
 .pb-nebula,
 .pb-planet {
-    width: 1920px;
+    width: 100%;
     flex-grow: 1;
     position: relative;
 
@@ -43,6 +43,12 @@
         width: 100%;
         left: 0;
         right: 0;
+    }
+
+    video {
+        position: absolute;
+        width: 100%;
+        inset: auto 0;
     }
 }
 
@@ -73,11 +79,11 @@
     }
 }
 
-:host-context(td-website.has-banner) {
-    .pb-nebula {
-        margin-top: var(--banner-height);
-    }
-}
+//:host-context(td-website.has-banner) {
+//    .pb-nebula {
+//        margin-top: var(--banner-height);
+//    }
+//}
 
 .pb-planet {
     img {

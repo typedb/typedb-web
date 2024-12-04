@@ -38,8 +38,8 @@
   </tr>
 </table>
 
-<table role="presentation" class="section hide-gt-mobile">
-  @for (panel of panels; track panel) {
+@for (panel of panels; track panel) {
+  <table role="presentation" class="section hide-gt-mobile">
     <tr>
       <td>
         <div class="pp-cell-content">
@@ -55,17 +55,15 @@
       <td><td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" /></td>
     </tr>
     <tr class="td-key-points">
-      @for (panel of panels; track panel) {
-        <td>
-          <ul>
-            @for (keyPoint of panel.keyPoints; track keyPoint) {
-              <li>
-                <i class="fa-light fa-check"></i> {{ keyPoint }}
-              </li>
-            }
-          </ul>
-        </td>
-      }
+      <td>
+        <ul>
+          @for (keyPoint of panel.keyPoints; track keyPoint) {
+            <li>
+              <i class="fa-light fa-check"></i> {{ keyPoint }}
+            </li>
+          }
+        </ul>
+      </td>
     </tr>
-  }
-</table>
+  </table>
+}

@@ -1,7 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    bodyFieldRichText,
-    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, sectionIconField, titleBodyIconFields, titleFieldWithHighlights,
+    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
@@ -94,9 +93,8 @@ const linkPanelsSectionSchema = defineType({
     title: "Link Panels Section",
     type: "object",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
+        actionsFieldOptional,
         defineField({
             name: "panels",
             title: "Panels",

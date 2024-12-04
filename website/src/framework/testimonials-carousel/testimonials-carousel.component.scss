@@ -95,7 +95,7 @@
 .tc-controls-btn {
     width: 45px;
     height: 45px;
-    border: 1px solid var(--color-green);
+    border: 1px solid var(--color-secondary-light-grey);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -121,7 +121,7 @@
 
     &.tc-bead-focused {
         transform: scale(1.5);
-        background: var(--color-green);
+        background: var(--color-secondary-light-grey);
     }
 }
 

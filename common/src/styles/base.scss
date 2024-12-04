@@ -111,10 +111,6 @@ hr {
 /* prettier-ignore */
 h1, h2, h3, h4, h5, h6, th {
     color: var(--body-heading-color);
-
-    &:hover, &:focus {
-        color: var(--body-heading-hovered-state-color);
-    }
 }
 
 aside {
@@ -378,6 +374,10 @@ td-form .form-row {
 
     > * {
         flex: 1;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
     }
 }
 

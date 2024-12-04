@@ -39,10 +39,11 @@
     transition-duration: 100ms;
     transition-timing-function: ease;
     text-decoration: none !important; // overrides various styles that set an underline on anchors
+    padding: 4px 8px;
 
     @media (min-width: media.$min-width-tablet) {
         height: 48px;
-        width: 202px;
+        min-width: 202px;
     }
 
     @media (max-width: media.$max-width-mobile) {

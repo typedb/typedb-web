@@ -25,15 +25,17 @@
     --content-border-color: var(--color-light-purple);
 
     --body-background: var(--color-black-purple);
-    --body-heading-color: #ccc;
-    --body-heading-hovered-state-color: var(--color-white);
     --body-font-color: var(--color-dark-white);
+    --body-heading-color: var(--color-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);
     --pre-font-color: #{colors.$prism-white};
     --table-header-background: var(--color-deep-purple);
     --table-body-background: var(--color-purple);
     --table-footer-background: var(--color-purple);
+
+    --link-muted-color: #ccc;
+    --link-hovered-color: var(--color-white);
 
     /* sizes */
     --border-radius: #{$border-radius};

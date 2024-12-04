@@ -49,8 +49,6 @@
 @media (hover: hover) {
     :host:hover a.pi-person,
     a.pi-person:hover {
-        color: var(--body-heading-hovered-state-color);
-
         .pi-person-name {
             color: inherit;
         }

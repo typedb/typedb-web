@@ -1,5 +1,5 @@
 import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
 import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
@@ -50,4 +50,5 @@ export class FeatureTableCellComponent {
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;
     @Input({ required: true }) sectionId!: string;
+    @HostBinding("class") clazz = "section";
 }

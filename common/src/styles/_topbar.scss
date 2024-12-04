@@ -89,7 +89,7 @@
     .td-topbar-button {
         margin: 0 20px;
         align-self: center;
-        width: unset !important; /* overrides media query */
+        min-width: unset !important; /* overrides media query */
         padding: 0 12px;
     }
 
@@ -129,6 +129,10 @@
 
         @media (min-width: 1040px) and (max-width: 1120px) {
             margin-left: -112px;
+        }
+
+        @media (max-width: 959px) {
+            margin-left: 0;
         }
     }
 

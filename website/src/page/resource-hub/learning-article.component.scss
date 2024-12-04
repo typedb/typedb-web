@@ -6,10 +6,6 @@ $post-content-width: 700px;
 ::ng-deep .bp-site-title p {
     color: var(--body-heading-color);
     font-weight: var(--font-weight-semi-bold);
-
-    &:hover, &:focus {
-        color: var(--body-heading-hovered-state-color);
-    }
 }
 
 .bp-intro-hr {

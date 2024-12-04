@@ -1,17 +1,17 @@
 @if (nebula) {
   <div class="pb-container">
     <div class="pb-nebula" [ngClass]="getNebulaClass()">
-      <picture>
-        <source
-          media="(max-width: 767px)"
-          [srcset]="getNebulaSrc('mobile') + ', ' + getNebulaSrc('mobile', true) + ' 2x'"
-        />
-        <source
-          media="(max-width: 1199px)"
-          [srcset]="getNebulaSrc('tablet') + ', ' + getNebulaSrc('tablet', true) + ' 2x'"
-        />
-        <img [src]="getNebulaSrc('desktop')" [srcset]="getNebulaSrc('desktop', true) + ' 2x'" alt="" />
-      </picture>
+      <video autoplay loop muted>
+<!--        <source-->
+<!--          media="(max-width: 767px)"-->
+<!--          [srcset]="getNebulaSrc('mobile') + ', ' + getNebulaSrc('mobile', true) + ' 2x'"-->
+<!--        />-->
+<!--        <source-->
+<!--          media="(max-width: 1199px)"-->
+<!--          [srcset]="getNebulaSrc('tablet') + ', ' + getNebulaSrc('tablet', true) + ' 2x'"-->
+<!--        />-->
+        <source [src]="getNebulaSrc('desktop')" [srcset]="getNebulaSrc('desktop', true) + ' 2x'" alt="" />
+      </video>
     </div>
   </div>
 }

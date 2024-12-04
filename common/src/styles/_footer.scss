@@ -75,15 +75,15 @@
         }
 
         a, a:visited, a p {
-            color: var(--body-heading-color);
+            color: var(--link-muted-color);
 
             &:hover, &:focus {
-                color: var(--body-heading-hovered-state-color);
+                color: var(--link-hovered-color);
             }
         }
 
         a:hover p, a:focus p {
-            color: var(--body-heading-hovered-state-color);
+            color: var(--link-hovered-color);
         }
     }
 

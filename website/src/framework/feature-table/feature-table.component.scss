@@ -15,7 +15,7 @@ col:first-of-type {
     }
 
     @media (max-width: media.$max-width-mobile) {
-        width: 114px;
+        width: 0;
     }
 }
 
@@ -66,18 +66,16 @@ tbody tr:not(:first-child) {
     border-top-color: var(--color-deep-purple);
 }
 
+tbody tr {
+    position: relative;
+}
+
 th, td {
     height: 80px;
     color: #ccc;
 
     &, &:not(:first-child) {
         border-left: none;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        tr:last-of-type & {
-            height: 48px;
-        }
     }
 }
 
@@ -106,8 +104,18 @@ th {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+}
 
-    @media (max-width: media.$max-width-mobile) {
+@media (max-width: media.$max-width-mobile) {
+    thead th div {
+        padding: 0 4px;
+    }
+
+    .ft-row-header {
+        position: absolute;
+        top: 2px;
         gap: 4px;
+        font-size: var(--font-size-aside);
+        color: var(--color-secondary-light-grey);
     }
 }

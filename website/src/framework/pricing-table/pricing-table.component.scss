@@ -36,10 +36,6 @@ tr:last-of-type td {
 td {
     padding: 24px;
 
-    @media (max-width: media.$max-width-mobile) {
-        padding: 12px;
-    }
-
     &:nth-of-type(2) h3 {
         color: var(--color-green);
     }
@@ -48,10 +44,6 @@ td {
 hr {
     width: 100%;
     margin: 16px 0;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin: 8px 0;
-    }
 }
 
 .pp-cell-content {
@@ -63,20 +55,10 @@ hr {
 
 .pp-body-text {
     margin-top: 24px;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 12px;
-    }
 }
 
-.pp-button-row {
-    td {
-        padding: 16px 24px;
-
-        @media (max-width: media.$max-width-mobile) {
-            padding: 12px;
-        }
-    }
+.pp-button-row td {
+    padding: 16px 24px;
 }
 
 .td-key-points {
@@ -96,5 +78,31 @@ hr {
     i {
         color: var(--color-secondary-light-grey);
         margin-right: 8px;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    table {
+        border-collapse: collapse;
+
+        tr:not(:first-child) {
+            border-top-width: 0;
+        }
+    }
+
+    td {
+        padding: 12px;
+    }
+
+    hr {
+        margin: 8px 0;
+    }
+
+    .pp-body-text {
+        margin-top: 12px;
+    }
+
+    .pp-button-row td {
+        padding: 12px;
     }
 }

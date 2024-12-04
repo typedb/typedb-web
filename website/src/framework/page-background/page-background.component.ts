@@ -75,8 +75,9 @@ export class PageBackgroundComponent {
     }
 
     getNebulaSrc(size: "desktop" | "tablet" | "mobile", density2x?: boolean): string {
-        const densityPart = density2x ? `-2x` : "";
-        return `/assets/background/${size}/nebula-${this.nebula}${densityPart}.webp`;
+        const densityPart = "";
+        // const densityPart = density2x ? `-2x` : "";
+        return `/assets/background/${size}/nebula-${this.nebula}${densityPart}.webm`;
     }
 
     getPlanetSrc(size: "desktop" | "tablet" | "mobile", density2x?: boolean): string {
