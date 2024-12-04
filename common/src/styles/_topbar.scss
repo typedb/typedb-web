@@ -4,7 +4,6 @@
 @use "shapes";
 
 @mixin nav-dt {
-    color: var(--color-white);
     font-weight: var(--font-weight-light);
     font-size: 14px;
     display: flex;
@@ -89,7 +88,7 @@
     .td-topbar-button {
         margin: 0 20px;
         align-self: center;
-        min-width: unset !important; /* overrides media query */
+        width: unset !important; /* overrides media query */
         padding: 0 12px;
     }
 
@@ -181,7 +180,8 @@
             padding: 6px 14px;
             margin-left: -12px;
             border-radius: 5px;
-            transition: background-color 100ms;
+            transition: opacity 100ms;
+            opacity: 0.8;
 
             .td-icon-container {
                 display: flex;
@@ -189,7 +189,6 @@
                 justify-content: center;
                 width: 32px;
                 flex: 0 0 32px;
-                color: var(--color-secondary-blue);
 
                 i {
                     font-size: 24px;
@@ -197,11 +196,7 @@
             }
 
             &:hover, &:focus {
-                background: var(--color-light-purple);
-                //dt {
-                //    color: var(--color-green);
-                //    text-decoration: underline;
-                //}
+                opacity: 1;
             }
         }
     }

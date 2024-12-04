@@ -71,13 +71,22 @@ hr {
         text-align: start;
     }
 
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
     li + li {
-        margin-top: 4px;
+        margin-top: 6px;
     }
 
     i {
         color: var(--color-secondary-light-grey);
-        margin-right: 8px;
+    }
+
+    td:nth-of-type(2) i {
+        color: var(--color-green);
     }
 }
 

@@ -14,11 +14,15 @@
     }
 }
 
-.mat-icon.td-icon-large {
-    color: var(--color-green);
+i {
+    font-size: 20px;
 
-    @media (max-width: media.$max-width-mobile) {
-        font-size: 24px;
+    &.fa-check {
+        color: var(--color-green);
+    }
+
+    &.fa-xmark {
+        color: var(--color-secondary-light-grey);
     }
 }
 

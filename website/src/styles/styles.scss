@@ -103,7 +103,7 @@ section, .section {
 }
 
 .link-tertiary, .link-tertiary:visited {
-    color: var(--color-secondary-blue);
+    color: var(--link-muted-color);
     font-weight: var(--font-weight-regular);
 
     &::after {
@@ -116,6 +116,7 @@ section, .section {
     }
 
     &:hover, &:focus {
+        color: var(--link-hovered-color);
         text-decoration: underline;
     }
 }
