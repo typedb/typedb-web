@@ -72,8 +72,8 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            background-color: var(--color-green);
-            color: var(--color-purple);
+            border-color: #81EDE4;
+            color: #81EDE4;
         }
     }
 }

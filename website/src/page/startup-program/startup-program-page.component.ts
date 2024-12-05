@@ -35,11 +35,13 @@ export class StartupProgramPageTechnicolorBlockComponent {
 @Component({
     selector: "td-startup-program-page",
     templateUrl: "./startup-program-page.component.html",
+    styleUrls: ["./startup-program-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, StartupProgramPageTechnicolorBlockComponent, ProductTableComponent, FeatureTableComponent,
-        LinkPanelsComponent, AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent, GenericPageTechnicolorBlockComponent, ConclusionPanelComponent,
+        PageBackgroundComponent, StartupProgramPageTechnicolorBlockComponent, ProductTableComponent,
+        FeatureTableComponent, LinkPanelsComponent, AsyncPipe, PricingTableComponent, ContactPanelComponent,
+        ContentPanelComponent, GenericPageTechnicolorBlockComponent, ConclusionPanelComponent,
     ],
 })
 export class StartupProgramPageComponent extends PageComponentBase<StartupProgramPage> {
