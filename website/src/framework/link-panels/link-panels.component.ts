@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
 
@@ -21,6 +21,7 @@ import { sanitiseHtmlID } from "../util";
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
     @Input({ required: true }) sectionId!: string;
+    @HostBinding("class") clazz = "section";
 
     panelID(panel: LinkPanelWithIcon) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
@@ -30,7 +31,7 @@ export class LinkPanelsComponent {
 @Component({
     selector: "td-resource-panels",
     templateUrl: "resource-panels.component.html",
-    styleUrls: ["link-panels.component.scss"],
+    styleUrls: ["resource-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [LinkDirective, RichTextComponent],

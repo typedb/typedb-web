@@ -1,20 +1,12 @@
-<div class="section lc-root-cols-3">
-  @for (panel of panels; track panel) {
-    <a
-      class="card lc-card lc-card-cols-3 lc-icon-card"
-      [class.hoverable]="!!panel.button.link && !panel.button.comingSoon"
-      [tdLink]="panel.button.comingSoon ? undefined : panel.button.link"
-      [attr.id]="panelID(panel)"
-    >
-      @if (panel.button.comingSoon) {
-        <aside class="lp-coming-soon">coming soon</aside>
+@for (panel of panels; track panel) {
+  <div class="lc-card lc-icon-card" [attr.id]="panelID(panel)">
+    <div><img class="lc-icon" [src]="panel.iconURL" alt="" /></div>
+    <div class="lc-flex-container">
+      <h3 class="lc-title">{{ panel.title }}</h3>
+      <td-rich-text [value]="panel.body" class="flex" />
+      @if (panel.link) {
+        <a class="link-tertiary lc-cta-weak" [tdLink]="panel.link">{{ panel.link.text }}</a>
       }
-      <div><img class="lc-icon" [src]="panel.iconURL" alt="" /></div>
-      <div class="lc-flex-container">
-        <h3 class="lc-title">{{ panel.title }}</h3>
-        <td-rich-text [value]="panel.body" class="flex" />
-        <p class="link-tertiary lc-cta-weak">{{ panel.button.text }}</p>
-      </div>
-    </a>
-  }
-</div>
+    </div>
+  </div>
+}
