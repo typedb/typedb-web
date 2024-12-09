@@ -66,11 +66,10 @@ p,
     }
 }
 
-aside,
-.text-aside {
+aside, .text-aside {
     font-size: var(--font-size-aside);
     line-height: var(--line-height-aside);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-thin);
 }
 
 pre,

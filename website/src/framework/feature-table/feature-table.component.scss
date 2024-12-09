@@ -1,4 +1,5 @@
 @use "media";
+@import "mixins";
 
 table {
     table-layout: fixed;
@@ -36,7 +37,7 @@ thead {
         padding: 0;
 
         .td-cell-spacer {
-            height: calc(100% - 1px);
+            height: calc(100% - 2px);
         }
 
         div {
@@ -45,11 +46,31 @@ thead {
 
         hr {
             margin: 0;
+            border-color: var(--color-light-purple);
         }
 
         td-button {
             display: block;
             margin-bottom: 16px;
+        }
+
+        &:nth-of-type(3) {
+            p {
+                color: var(--color-green);
+            }
+        }
+
+        &:nth-of-type(4) {
+            p {
+                @include color-gradient(#F96480, #FDD257);
+            }
+
+            td-button ::ng-deep a {
+                height: 41px;
+                position: relative;
+                overflow: hidden;
+                @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+            }
         }
     }
 
@@ -60,10 +81,6 @@ thead {
     + tbody {
         border-top-width: 0;
     }
-}
-
-tbody tr:not(:first-child) {
-    border-top-color: var(--color-deep-purple);
 }
 
 tbody tr {

@@ -41,6 +41,31 @@
     text-decoration: none !important; // overrides various styles that set an underline on anchors
     padding: 4px 8px;
 
+    span {
+        position: relative;
+    }
+
+    span::after {
+        content: "";
+        font-family: "Font Awesome 6 Pro";
+        font-size: 75%;
+        user-select: none;
+        display: inline-block;
+        position: absolute;
+        inset: auto auto auto 100%;
+        line-height: 18px;
+        margin-left: 2px;
+        opacity: 0;
+        transform: scaleX(0.5);
+        transition: opacity 100ms ease-out, margin-left 100ms ease-out, transform 100ms ease-out;
+    }
+
+    &:hover span::after {
+        opacity: 1;
+        margin-left: 8px;
+        transform: scaleX(1);
+    }
+
     @media (min-width: media.$min-width-tablet) {
         height: 48px;
         width: 212px;
@@ -81,12 +106,12 @@
 @mixin button-secondary {
     border-color: #ccc;
     background: transparent;
-    color: #ccc;
+    color: var(--body-font-color);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            border-color: var(--color-white);
+            //border-color: var(--color-white);
             color: var(--color-white);
         }
     }
@@ -154,4 +179,114 @@
     -webkit-mask-image: $url;
     mask-size: 100%;
     -webkit-mask-size: 100%;
+}
+
+@mixin color-gradient($color1, $color2) {
+    background: linear-gradient(105deg, #{$color1} 0%, #{$color2} 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin border-gradient($color1, $color2, $bg-color) {
+    animation: spin 1s infinite linear paused;
+    background:
+        linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
+        conic-gradient(from var(--bg-angle), $color2, $color1, $color2) border-box;
+    border: 1px solid transparent;
+    color: var(--link-muted-color);
+
+    &:hover {
+        animation-play-state: running;
+        color: var(--link-hovered-color);
+    }
+
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //padding: 12px;
+    //height: 400px;
+    //width: 400px;
+    //border: 1px solid #0000;
+    //border-radius: 12px;
+    //background: linear-gradient(#131219, #131219) padding-box, linear-gradient(
+    //        var(--angle),
+    //        #070707,
+    //        #687aff
+    //) border-box;
+    //animation: 8s rotate linear infinite;
+    //
+    //@keyframes rotate {
+    //    to {
+    //        --angle: 360deg;
+    //    }
+    //}
+
+    //--border-width: 1px;
+    //--radius: 24px;
+    //--bg-color: #0F0620;
+    //
+    //border: var(--border-width) solid transparent;
+    //border-radius: var(--radius);
+    //background-image: linear-gradient(var(--bg-color) 0 0),
+    //conic-gradient(#381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
+    //background-clip: padding-box, border-box;
+    //background-origin: padding-box, border-box;
+
+    //border: none;
+    //height: 41px;
+    //position: relative;
+    //overflow: hidden;
+    //
+
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+        height: 43px;
+
+        /* classic 9-slide-scaling with 2px border 4px rounded corners. change `rx` and `ry` parameters to adjust border-radius */
+        --box--border__top-left: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='1' y='1' width='18' height='18' rx='4' ry='4' stroke='black' stroke-width='1' /></svg>");
+        --box--border__top: url("data:image/svg+xml,<svg preserveAspectRatio='none' width='100' height='10' viewBox='0 0 100 10' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='-1' y1='1' x2='101' y2='1' stroke='black' stroke-width='1'/></svg>");
+        --box--border__top-right: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='-9' y='1' width='18' height='18' rx='4' ry='4' stroke='black' stroke-width='1' /></svg>");
+        --box--border__left: url("data:image/svg+xml,<svg preserveAspectRatio='none' width='10' height='100' viewBox='0 0 10 100' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='1' y1='-1' x2='1' y2='101' stroke='black' stroke-width='1'/></svg>");
+        --box--border__right: url("data:image/svg+xml,<svg preserveAspectRatio='none' width='10' height='100' viewBox='0 0 10 100' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='9' y1='-1' x2='9' y2='101' stroke='black' stroke-width='1'/></svg>");
+        --box--border__bottom-left: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='1' y='-9' width='18' height='18' rx='4' ry='4' stroke='black' stroke-width='1' /></svg>");
+        --box--border__bottom: url("data:image/svg+xml,<svg preserveAspectRatio='none' width='100' height='10' viewBox='0 0 100 10' fill='none' xmlns='http://www.w3.org/2000/svg'><line x1='-1' y1='9' x2='101' y2='9' stroke='black' stroke-width='1'/></svg>");
+        --box--border__bottom-right: url("data:image/svg+xml,<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='-9' y='-9' width='18' height='18' rx='4' ry='4' stroke='black' stroke-width='1' /></svg>");
+
+        &::before {
+            --angle: 105deg;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(var(--angle), #{$color1} 0%, #{$color2} 100%);
+            animation: 1s rotate linear infinite;
+            mask: var(--box--border__top-left) 0 0 / .625rem .625rem,
+            var(--box--border__top) .625rem 0 / calc(100% - 1.25rem) .625rem,
+            var(--box--border__top-right) 100% 0 / .625rem .625rem,
+            var(--box--border__left) 0 .625rem / .625rem calc(100% - 1.25rem),
+            var(--box--border__right) 100% .625rem / .625rem calc(100% - 1.25rem),
+            var(--box--border__bottom-left) 0 100% / .625rem .625rem,
+            var(--box--border__bottom) .625rem 100% / calc(100% - 1.25rem) .625rem,
+            var(--box--border__bottom-right) 100% 100% / .625rem .625rem;
+            mask-repeat: no-repeat;
+        }
+    }
+    //
+    //&:hover {
+    //    --angle: 285deg;
+    //    //--box-border--border: linear-gradient(105deg, #{mix($color1, #FFF, 50%)} 0%, #{mix($color2, #FFF, 50%)} 100%);
+    //}
+    //
+    //@keyframes rotate {
+    //    0% { --angle: 0deg; }
+    //    12.5% { --angle: 75deg; }
+    //    25% { --angle: 90deg; }
+    //    37.5% { --angle: 105deg; }
+    //    50% { --angle: 180deg; }
+    //    62.5% { --angle: 255deg; }
+    //    75% { --angle: 270deg; }
+    //    87.5% { --angle: 285deg; }
+    //    100% { --angle: 360deg; }
+    //}
 }

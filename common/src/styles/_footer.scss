@@ -75,7 +75,7 @@
         }
 
         a, a:visited, a p {
-            color: var(--link-muted-color);
+            color: var(--body-font-color);
 
             &:hover, &:focus {
                 color: var(--link-hovered-color);

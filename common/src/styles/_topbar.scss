@@ -4,14 +4,13 @@
 @use "shapes";
 
 @mixin nav-dt {
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-regular);
     font-size: 14px;
     display: flex;
     align-items: center;
 }
 
 @mixin nav-dd {
-    color: var(--color-secondary-light-grey);
     font-size: 12px;
     margin-top: 0;
     white-space: nowrap;
@@ -49,16 +48,17 @@
         justify-content: space-between;
     }
 
-    .td-topbar-panel-header, .td-topbar-logo-container, .td-topbar-link, .td-topbar-link:visited {
+    .td-topbar-logo-container, .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: #ccc;
-        transition: color 100ms;
+        color: var(--color-dark-white);
         cursor: pointer;
+        transition: color 100ms;
+        font-weight: var(--font-weight-regular);
 
-        &:hover, &:focus {
-            color: var(--color-white);
+        &:hover, .td-topbar-panel-opened & {
+            color: var(--link-muted-color);
         }
     }
 
@@ -97,9 +97,10 @@
         top: 64px;
         z-index: 700;
         border: 1px solid var(--content-border-color);
-        background-color: #232135;
+        background-color: var(--color-deep-purple);
         border-radius: var(--border-radius-large);
         display: none;
+        //opacity: 0;
         flex-direction: row;
         overflow: hidden;
         margin-left: -64px;
@@ -138,7 +139,7 @@
     .td-topbar-chevron {
         margin: 0 -8px 0 8px;
         font-size: 12px;
-        color: var(--color-secondary-light-grey);
+        color: var(--link-muted-color);
         transition: transform 100ms;
     }
 
@@ -150,6 +151,12 @@
 
             .td-topbar-menu-panel, &.td-topbar-menu-panel {
                 display: flex;
+                //animation: fadeIn 200ms ease-out 1 normal forwards;
+                //
+                //@keyframes fadeIn {
+                //    0% { opacity: 0; }
+                //    100% { opacity: 1; }
+                //}
             }
         }
     }
@@ -179,9 +186,8 @@
             gap: 16px;
             padding: 6px 14px;
             margin-left: -12px;
-            border-radius: 5px;
-            transition: opacity 100ms;
-            opacity: 0.8;
+            border-radius: var(--border-radius);
+            transition: background-color 100ms;
 
             .td-icon-container {
                 display: flex;
@@ -195,8 +201,23 @@
                 }
             }
 
+            //dt::after {
+            //    margin-left: 8px;
+            //    content: "";
+            //    font-family: "Font Awesome 6 Pro";
+            //    font-size: 75%;
+            //    user-select: none;
+            //    display: inline-block;
+            //    opacity: 0;
+            //    transition: opacity 100ms;
+            //}
+
             &:hover, &:focus {
-                opacity: 1;
+                background: var(--color-light-purple);
+
+                //dt::after {
+                //    opacity: 1;
+                //}
             }
         }
     }

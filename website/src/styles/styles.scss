@@ -103,7 +103,7 @@ section, .section {
 }
 
 .link-tertiary, .link-tertiary:visited {
-    color: var(--link-muted-color);
+    color: var(--color-dark-white);
     font-weight: var(--font-weight-regular);
 
     &::after {
@@ -139,8 +139,12 @@ table {
     border-collapse: collapse;
     box-shadow: 0 0 0 1px var(--content-border-color);
 
-    thead + tbody, tr:not(:first-child) {
-        border-top: shapes.$border;
+    thead + tbody {
+        border-top: 1px solid var(--color-light-purple);
+    }
+
+    tr:not(:first-child) {
+        border-top: 1px solid var(--color-purple);
     }
 
     th, td {
@@ -205,4 +209,16 @@ table {
 
 .atcb-list {
     font-family: var(--default-font-family);
+}
+
+@property --bg-angle {
+    inherits: false;
+    initial-value: 120deg;
+    syntax: "<angle>";
+}
+
+@keyframes spin {
+    to {
+        --bg-angle: 480deg;
+    }
 }
