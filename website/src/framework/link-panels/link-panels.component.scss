@@ -11,11 +11,6 @@
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 64px;
     }
-
-    @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        gap: 16px;
-    }
 }
 
 .lc-card {
@@ -33,11 +28,6 @@
     img {
         width: 72px;
         height: 72px;
-
-        @media (max-width: media.$max-width-mobile) {
-            width: 36px;
-            height: 36px;
-        }
     }
 
     &.lc-card-cols-3 {
@@ -69,27 +59,6 @@
             td-rich-text {
                 @include line-clamp(7);
                 max-height: 24px * 7;
-            }
-        }
-
-        @media (max-width: media.$max-width-mobile) {
-            h3 {
-                height: auto;
-            }
-
-            td-rich-text {
-                margin-top: 8px;
-            }
-        }
-    }
-
-    &.lc-icon-card {
-        @media (max-width: media.$max-width-mobile) {
-            flex-direction: row;
-            gap: 12px;
-
-            td-rich-text {
-                margin-top: 0;
             }
         }
     }
@@ -142,5 +111,40 @@ td-button {
     .button-secondary {
         margin-top: 8px;
         width: unset;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    :host {
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .lc-card img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .lc-card.lc-card-cols-4 {
+        h3 {
+            height: auto;
+        }
+
+        td-rich-text {
+            margin-top: 8px;
+        }
+    }
+
+    .lc-card.lc-icon-card {
+        flex-direction: row;
+        gap: 12px;
+
+        td-rich-text {
+            margin-top: 0;
+        }
+    }
+
+    .lc-flex-container {
+        gap: 12px;
     }
 }

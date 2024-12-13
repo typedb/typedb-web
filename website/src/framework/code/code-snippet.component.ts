@@ -34,7 +34,7 @@ export class CodeSnippetComponent implements AfterViewInit {
         private mediaQuery: MediaQueryService,
         private ngZone: NgZone,
     ) {
-        this.lineNumbers$ = this.mediaQuery.isMobile.pipe(
+        this.lineNumbers$ = this.mediaQuery.isMobile$.pipe(
             map((isMobile) => {
                 const lines = Math.max(
                     (this.snippet.code.match(/\n/g) || []).length + 2,
@@ -80,7 +80,7 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
         private _el: ElementRef,
         activatedRoute: ActivatedRoute,
     ) {
-        this.lineNumbers$ = this.mediaQuery.isMobile.pipe(
+        this.lineNumbers$ = this.mediaQuery.isMobile$.pipe(
             map((isMobile) => {
                 const lines = Math.max(
                     ...this.polyglotSnippet.snippets.map((x) => (x.code.match(/\n/g) || []).length + 2),

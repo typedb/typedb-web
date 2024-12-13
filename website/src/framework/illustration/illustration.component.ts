@@ -77,7 +77,7 @@ export class SplitPaneIllustrationComponent implements OnInit {
         mediaQuery: MediaQueryService,
     ) {
         this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
-        this.sliderImageSrc$ = mediaQuery.isMobile.pipe(
+        this.sliderImageSrc$ = mediaQuery.isMobile$.pipe(
             map((isMobile) => `/assets/graphic/${isMobile ? "split-pane-slider-mobile.svg" : "split-pane-slider.svg"}`),
         );
     }

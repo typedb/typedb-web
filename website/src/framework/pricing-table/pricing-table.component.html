@@ -2,7 +2,7 @@
   <h3 class="text-h3">{{ caption }}</h3>
 }
 
-<table class="section hide-mobile">
+<table role="presentation" class="section hide-mobile">
   <tr>
     @for (panel of panels; track panel) {
       <td>
@@ -23,16 +23,35 @@
       </td>
     }
   </tr>
+  <tr>
+    @for (panel of panels; track panel) {
+      <td class="td-bottom-link">
+        @if (panel.bottomLink) {
+          <div>
+            <a class="link-tertiary" [tdLink]="panel.bottomLink">{{ panel.bottomLink.text }}</a>
+          </div>
+        }
+      </td>
+    }
+  </tr>
   <tr class="td-key-points">
     @for (panel of panels; track panel) {
       <td>
-        <ul>
-          @for (keyPoint of panel.keyPoints; track keyPoint) {
-            <li>
-              <i class="fa-regular fa-check"></i> {{ keyPoint }}
-            </li>
-          }
-        </ul>
+        <div class="td-key-points-flex-container">
+          <ul>
+            @for (keyPoint of panel.keyPoints; track keyPoint) {
+              <li>
+                <i class="fa-regular fa-check"></i> {{ keyPoint }}
+              </li>
+            }
+          </ul>
+<!--          @if (panel.bottomLink) {-->
+<!--            <div class="flex"></div>-->
+<!--            <div class="td-bottom-link">-->
+<!--              <a class="link-tertiary" [tdLink]="panel.bottomLink">{{ panel.bottomLink.text }}</a>-->
+<!--            </div>-->
+<!--          }-->
+        </div>
       </td>
     }
   </tr>
@@ -53,6 +72,15 @@
     </tr>
     <tr class="pp-button-row">
       <td><td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" /></td>
+    </tr>
+    <tr>
+      <td class="td-bottom-link">
+        @if (panel.bottomLink) {
+          <div>
+            <a class="link-tertiary" [tdLink]="panel.bottomLink">{{ panel.bottomLink.text }}</a>
+          </div>
+        }
+      </td>
     </tr>
     <tr class="td-key-points">
       <td>

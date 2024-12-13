@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { PricingPanel } from "typedb-web-schema";
 import { ButtonComponent } from "../button/button.component";
+import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
 import { sanitiseHtmlID } from "../util";
 
@@ -10,7 +11,7 @@ import { sanitiseHtmlID } from "../util";
     styleUrls: ["./pricing-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [RichTextComponent, ButtonComponent],
+    imports: [RichTextComponent, ButtonComponent, LinkDirective],
 })
 export class PricingTableComponent {
     @Input() caption?: string;

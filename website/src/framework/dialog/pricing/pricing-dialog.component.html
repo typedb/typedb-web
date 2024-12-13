@@ -1,0 +1,146 @@
+<div mat-dialog-title>
+  <h1>TypeDB Pricing</h1>
+  <td-dialog-close-button />
+</div>
+<div mat-dialog-content>
+  <div>
+    <p>Clusters are billed hourly, and invoiced monthly (pay-as-you-go). Monthly estimates are based on 100% cluster uptime over a 30-day period.</p>
+    <p>These prices are per node in a given cluster. The table below shows sample configurations to illustrate scale, but machine (compute and storage) can be further fine-tuned in TypeDB Cloud.</p>
+  </div>
+  <hr/>
+  <div>
+    <div class="cards-row">
+      @for (providerId of providerIds; track providerId) {
+        <button type="button" class="provider-card" [ngClass]="providerCardClasses(providerId)" (click)="updateProviderId(providerId)">
+          <div class="card-content">
+            <img [src]="providerImageUrl(providerId)" [alt]="providerId | provider" />
+          </div>
+        </button>
+      }
+    </div>
+  </div>
+  <div class="td-table-area">
+    @if (loading) {
+      <tp-spinner/>
+    } @else {
+      <table>
+        <thead>
+        <tr>
+          <th>Machine tier ({{ providerId | provider }})</th>
+          <th>Storage</th>
+          <th>Compute</th>
+          <th>Hourly rate</th>
+          <th>Monthly est.</th>
+        </tr>
+        </thead>
+        <tbody>
+          @switch (providerId) {
+            @case ("gcp") {
+              <tr>
+                <td>n2-standard-2</td>
+                <td>10 GB</td>
+                <td>2 vCPU, 8 GB RAM</td>
+                <td><span>$0.18/hr</span></td>
+                <td>$130/mo</td>
+              </tr>
+              <tr>
+                <td>n2-standard-4</td>
+                <td>50 GB</td>
+                <td>4 vCPU, 16 GB RAM</td>
+                <td><span>$0.36/hr</span></td>
+                <td>$259/mo</td>
+              </tr>
+              <tr>
+                <td>n2-standard-8</td>
+                <td>400 GB</td>
+                <td>8 vCPU, 32 GB RAM</td>
+                <td><span>$0.79/hr</span></td>
+                <td>$569/mo</td>
+              </tr>
+              <tr>
+                <td>n2-standard-16</td>
+                <td>1 TB</td>
+                <td>16 vCPU, 64 GB RAM</td>
+                <td><span>$1.64/hr</span></td>
+                <td>$1181/mo</td>
+              </tr>
+            }
+            @case ("aws") {
+              <tr>
+                <td>m6a.large</td>
+                <td>10 GB</td>
+                <td>2 vCPU, 8 GB RAM</td>
+                <td><span>$0.18/hr</span></td>
+                <td>$130/mo</td>
+              </tr>
+              <tr>
+                <td>m6a.xlarge</td>
+                <td>50 GB</td>
+                <td>4 vCPU, 16 GB RAM</td>
+                <td><span>$0.36/hr</span></td>
+                <td>$259/mo</td>
+              </tr>
+              <tr>
+                <td>m6a.2xlarge</td>
+                <td>400 GB</td>
+                <td>8 vCPU, 32 GB RAM</td>
+                <td><span>$0.81/hr</span></td>
+                <td>$583/mo</td>
+              </tr>
+              <tr>
+                <td>m6a.4xlarge</td>
+                <td>1 TB</td>
+                <td>16 vCPU, 64 GB RAM</td>
+                <td><span>$1.67/hr</span></td>
+                <td>$1202/mo</td>
+              </tr>
+            }
+            @case ("azure") {
+              <tr>
+                <td>Standard_D2a_v4</td>
+                <td>10 GB</td>
+                <td>2 vCPU, 8 GB RAM</td>
+                <td><span>$0.20/hr</span></td>
+                <td>$144/mo</td>
+              </tr>
+              <tr>
+                <td>Standard_D4a_v4</td>
+                <td>50 GB</td>
+                <td>4 vCPU, 16 GB RAM</td>
+                <td><span>$0.40/hr</span></td>
+                <td>$288/mo</td>
+              </tr>
+              <tr>
+                <td>Standard_D8a_v4</td>
+                <td>400 GB</td>
+                <td>8 vCPU, 32 GB RAM</td>
+                <td><span>$0.86/hr</span></td>
+                <td>$619/mo</td>
+              </tr>
+              <tr>
+                <td>Standard_D16a_v4</td>
+                <td>1 TB</td>
+                <td>16 vCPU, 64 GB RAM</td>
+                <td><span>$1.76/hr</span></td>
+                <td>$1267/mo</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+
+<!--  @if (description) {-->
+<!--    <td-p-with-highlights [value]="description" level="p2" />-->
+<!--  }-->
+  <aside>
+    Listed prices are for the US East region and include both storage and compute. Storage is priced at
+    @switch (providerId) {
+      @case ("gcp") {$0.00028/hr}
+      @case ("aws") {$0.00028/hr}
+      @case ("azure") {$0.00022/hr}
+    }
+    per GB per cluster node, and is charged whether a cluster is running or suspended.
+  </aside>
+</div>

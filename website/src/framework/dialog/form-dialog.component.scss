@@ -1,35 +1,5 @@
 @use "media";
 
-h1 {
-    font-size: var(--font-size-h3);
-    line-height: var(--line-height-h3);
-}
-
-td-button {
-    margin-top: 30px;
-}
-
-aside {
-    margin-top: 32px;
-}
-
-.mat-mdc-progress-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.mdc-dialog__content {
-    overflow: visible;
-}
-
-td-p-with-highlights {
-    display: block;
-    margin-bottom: 24px;
-    color: var(--body-font-color);
-}
-
 :host.di-contact {
     .mdc-dialog__content {
         max-height: none;

@@ -37,11 +37,7 @@ thead {
         padding: 0;
 
         .td-cell-spacer {
-            height: calc(100% - 2px);
-        }
-
-        div {
-            padding: 12px 24px;
+            height: calc(100% - 1px);
         }
 
         hr {
@@ -51,7 +47,7 @@ thead {
 
         td-button {
             display: block;
-            margin-bottom: 16px;
+            margin: 0 auto 16px;
         }
 
         &:nth-of-type(3) {
@@ -66,12 +62,18 @@ thead {
             }
 
             td-button ::ng-deep a {
-                height: 41px;
                 position: relative;
                 overflow: hidden;
                 @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
             }
         }
+    }
+
+    .td-product-price-tag {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 6px;
     }
 
     .td-product-price-tag aside {
@@ -98,11 +100,9 @@ th, td {
 
 th {
     font-weight: inherit;
-    padding: 12px 24px;
+    padding: 0;
 
     @media (max-width: media.$max-width-mobile) {
-        padding: 8px 4px;
-
         font-size: var(--font-size-p2);
         line-height: var(--line-height-p2);
     }
@@ -130,7 +130,10 @@ td {
 
 @media (max-width: media.$max-width-mobile) {
     thead th div {
-        padding: 0 4px;
+        aside, td-button {
+            width: 100%;
+            padding: 0 4px;
+        }
     }
 
     .ft-row-header {

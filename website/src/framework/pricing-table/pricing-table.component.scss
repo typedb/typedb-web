@@ -16,28 +16,17 @@ table {
     border-spacing: 20px 0;
     background: none;
     box-shadow: none;
+}
 
-    &:nth-of-type(3) {
-        h3 {
-            color: var(--color-green);
-        }
-    }
-
-    &:nth-of-type(4) {
-        h3 {
-            @include color-gradient(#F96480, #FDD257);
-        }
-
-        td-button ::ng-deep a {
-            @include border-gradient(#F96480, #FDD257, var(--color-deep-purple));
-        }
-    }
+tr {
+    height: 100%;
 }
 
 tr td {
     background: var(--color-deep-purple);
     border: 1px solid var(--color-light-purple);
     border-width: 0 1px;
+    text-align: start;
 }
 
 tr:first-of-type td {
@@ -52,20 +41,20 @@ tr:last-of-type td {
 
 td {
     padding: 24px;
+}
 
-    &:nth-of-type(2) h3 {
+table:nth-of-type(3), td:nth-of-type(2) {
+    h3 {
         color: var(--color-green);
     }
+}
 
-    &:nth-of-type(3) h3 {
-        background: linear-gradient(105deg, #F96480, #FDD257);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+table:nth-of-type(4), td:nth-of-type(3) {
+    h3 {
+        @include color-gradient(#F96480, #FDD257);
     }
 
-    &:nth-of-type(3) td-button ::ng-deep a {
-        position: relative;
-        overflow: hidden;
+    td-button ::ng-deep a {
         @include border-gradient(#F96480, #FDD257, var(--color-deep-purple));
     }
 }
@@ -125,12 +114,29 @@ hr {
     }
 }
 
+.td-key-points-flex-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+tr .td-bottom-link {
+    height: 24px;
+    padding: 0 12px 14px;
+    align-self: stretch;
+    text-align: center;
+}
+
 @media (max-width: media.$max-width-mobile) {
     table {
         border-collapse: collapse;
 
         tr:not(:first-child) {
             border-top-width: 0;
+        }
+
+        th, td {
+            font-size: var(--font-size-p2);
         }
     }
 
