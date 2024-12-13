@@ -1,0 +1,158 @@
+@use "media";
+@import "mixins";
+
+:host {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+}
+
+table {
+    overflow: hidden;
+    table-layout: fixed;
+    text-align: start;
+    height: 0; // trick to make div fill cell height
+    border-collapse: separate;
+    border-spacing: 20px 0;
+    background: none;
+    box-shadow: none;
+}
+
+tr {
+    height: 100%;
+}
+
+tr td {
+    background: var(--color-deep-purple);
+    border: 1px solid var(--color-light-purple);
+    border-width: 0 1px;
+    text-align: start;
+}
+
+tr:first-of-type td {
+    border-top-width: 1px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+tr:last-of-type td {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-bottom-width: 1px;
+}
+
+td {
+    padding: 24px;
+}
+
+table:nth-of-type(3), td:nth-of-type(2) {
+    h3 {
+        color: var(--color-green);
+    }
+}
+
+table:nth-of-type(4), td:nth-of-type(3) {
+    h3 {
+        @include color-gradient(#F96480, #FDD257);
+    }
+
+    td-button ::ng-deep a {
+        @include border-gradient(#F96480, #FDD257, var(--color-deep-purple));
+    }
+}
+
+hr {
+    width: 100%;
+    margin: 16px 0;
+}
+
+.pp-cell-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pp-body-text {
+    margin-top: 24px;
+}
+
+.pp-button-row td {
+    padding: 16px 24px;
+}
+
+.td-key-points {
+    td {
+        vertical-align: top;
+    }
+
+    ul {
+        list-style: none;
+        text-align: start;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    li + li {
+        margin-top: 6px;
+    }
+
+    i {
+        color: var(--color-secondary-light-grey);
+    }
+
+    td:nth-of-type(2) i {
+        color: var(--color-green);
+    }
+
+    td:nth-of-type(3) i {
+        background: linear-gradient(105deg, #F96480, #FDD257);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.td-key-points-flex-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+tr .td-bottom-link {
+    height: 24px;
+    padding: 0 12px 14px;
+    align-self: stretch;
+    text-align: center;
+}
+
+@media (max-width: media.$max-width-mobile) {
+    table {
+        border-collapse: collapse;
+
+        tr:not(:first-child) {
+            border-top-width: 0;
+        }
+
+        th, td {
+            font-size: var(--font-size-p2);
+        }
+    }
+
+    td {
+        padding: 12px;
+    }
+
+    hr {
+        margin: 8px 0;
+    }
+
+    .pp-body-text {
+        margin-top: 12px;
+    }
+
+    .pp-button-row td {
+        padding: 12px;
+    }
+}

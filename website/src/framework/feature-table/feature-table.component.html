@@ -1,31 +1,44 @@
 <table class="section">
   <colgroup>
-  @for (header of table.headerRow; track header) {
-    <col />
+    <col/>
+  @for (header of table.products; track header) {
+    <col/>
   }
-</colgroup>
-<thead>
-  <tr>
-    @for (header of table.headerRow; track header) {
-      <th class="text-p1">{{ header }}</th>
-    }
-  </tr>
-</thead>
-<tbody>
-  @for (row of table.bodyRows; track row) {
+  </colgroup>
+  <thead>
     <tr>
       <th>
-        <div class="ft-row-header">
-          <span>{{ row.heading }}</span>
-          @if (row.description) {
-            <td-info-button [tooltipText]="row.description" />
-          }
-        </div>
+        <div class="td-cell-spacer"></div>
+        <hr/>
       </th>
-      @for (cell of row.cells; track cell) {
-        <td><td-feature-table-cell [table]="table" [columnIndex]="$index" [cell]="cell" [sectionId]="sectionId" /></td>
+      @for (product of table.products; track product) {
+        <th>
+          <div class="td-product-price-tag">
+            <p>{{ product.name }}</p>
+            <aside class="text-quiet">{{ product.priceString }}</aside>
+            <div class="flex"></div>
+            <td-button [button]="product.button" size="small"/>
+            <hr/>
+          </div>
+        </th>
       }
     </tr>
-  }
-</tbody>
+  </thead>
+  <tbody>
+    @for (row of table.rows; track row) {
+      <tr>
+        <th>
+          <div class="ft-row-header">
+            <span>{{ row.heading }}</span>
+            @if (row.description) {
+              <td-info-button [tooltipText]="row.description" />
+            }
+          </div>
+        </th>
+        @for (cell of row.cells; track cell) {
+          <td><td-feature-table-cell [table]="table" [columnIndex]="$index" [cell]="cell" [sectionId]="sectionId" /></td>
+        }
+      </tr>
+    }
+  </tbody>
 </table>

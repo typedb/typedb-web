@@ -55,8 +55,7 @@ article {
     }
 }
 
-section,
-.section {
+section, .section {
     position: relative;
     z-index: 1;
     @include section-width($offset: 0px);
@@ -68,8 +67,7 @@ section,
     max-width: 870px;
 }
 
-.nebula-section,
-.page-section.nebula-section {
+.nebula-section, .page-section.nebula-section {
     margin-top: 120px;
 
     @media (max-width: media.$max-width-mobile) {
@@ -105,7 +103,7 @@ section,
 }
 
 .link-tertiary, .link-tertiary:visited {
-    color: var(--color-secondary-blue);
+    color: var(--color-dark-white);
     font-weight: var(--font-weight-regular);
 
     &::after {
@@ -118,12 +116,12 @@ section,
     }
 
     &:hover, &:focus {
+        color: var(--color-white);
         text-decoration: underline;
     }
 }
 
-input[type="email"],
-select {
+input[type="email"], select {
     padding: 0 8px;
     background-color: var(--color-purple);
     color: var(--body-font-color);
@@ -136,21 +134,42 @@ select {
 }
 
 table {
-    background: var(--color-purple);
-    border-radius: var(--border-radius);
+    table-layout: fixed;
+    position: relative;
     border-collapse: collapse;
-    box-shadow: 0 0 0 1px var(--content-border-color);
+    background: none;
 
-    thead + tbody,
-    tr:not(:first-child) {
-        border-top: shapes.$border;
+    thead + tbody {
+        border-top: 1px solid var(--color-light-purple);
     }
 
-    th,
-    td {
-        &:not(:first-child) {
-            border-left: shapes.$border;
+    tr:not(:first-child) {
+        border-top: 1px solid var(--color-purple);
+    }
+
+    th, td {
+        color: var(--body-font-color);
+        padding: 12px 24px;
+        font-size: var(--font-size-p2);
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 8px 6px;
+            font-size: var(--font-size-aside);
         }
+    }
+
+    th {
+        font-weight: inherit;
+
+        &:first-of-type {
+            text-align: start;
+        }
+    }
+}
+
+.mat-mdc-dialog-container table {
+    tr:not(:first-child) {
+        border-top-color: var(--color-light-purple);
     }
 }
 
@@ -159,14 +178,9 @@ table {
     flex-direction: column;
     align-items: center;
     text-align: center;
-
-    &.page-intro-section {
-        margin-top: var(--intro-section-margin);
-    }
 }
 
-.page-section,
-.section-margin {
+.page-section, .section-margin {
     margin-top: var(--section-margin);
 }
 
@@ -214,4 +228,48 @@ table {
 
 .atcb-list {
     font-family: var(--default-font-family);
+}
+
+mat-dialog-container {
+    h1 {
+        font-size: var(--font-size-h3);
+        line-height: var(--line-height-h3);
+    }
+
+    td-button {
+        margin-top: 30px;
+    }
+
+    aside {
+        margin-top: 32px;
+    }
+
+    .mat-mdc-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .mdc-dialog__content {
+        overflow: visible;
+    }
+
+    td-p-with-highlights {
+        display: block;
+        margin-bottom: 24px;
+        color: var(--body-font-color);
+    }
+}
+
+@property --gradient-button-bg-angle {
+    inherits: false;
+    initial-value: 120deg;
+    syntax: "<angle>";
+}
+
+@keyframes gradient-button-bg-rotate {
+    to {
+        --gradient-button-bg-angle: 480deg;
+    }
 }

@@ -3,7 +3,7 @@ import { SanityOptionalActions } from "../button";
 import {
     collapsibleOptions,
     isVisibleField,
-    optionalActionsField,
+    actionsFieldOptional,
 
     titleBodyIconFields,
     SanityVisibleToggle,
@@ -112,7 +112,7 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 const sectionSchemas = [
     sectionSchema("intro", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "keyPoints",
             title: "Key Points",
@@ -123,7 +123,7 @@ const sectionSchemas = [
     ]),
     sectionSchema("testimonials", [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "testimonials",
             title: "Testimonials",
@@ -132,7 +132,7 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, optionalActionsField, isVisibleField]),
+    sectionSchema("contact", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>

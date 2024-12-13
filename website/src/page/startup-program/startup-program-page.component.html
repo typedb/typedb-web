@@ -1,0 +1,13 @@
+<article>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      @if (page.introSection) {
+        <td-startup-program-page-technicolor-block [block]="page.introSection" [index]="0" />
+        <td-link-panels [panels]="page.introSection.panels" sectionId="key-points-section" />
+      }
+      @if (page.finalSection) {
+        <td-startup-program-page-technicolor-block [block]="page.finalSection" [index]="1" />
+      }
+    </div>
+  }
+</article>

@@ -39,10 +39,36 @@
     transition-duration: 100ms;
     transition-timing-function: ease;
     text-decoration: none !important; // overrides various styles that set an underline on anchors
+    padding: 4px 8px;
+
+    span {
+        position: relative;
+    }
+
+    span::after {
+        content: "";
+        font-family: "Font Awesome 6 Pro";
+        font-size: 75%;
+        user-select: none;
+        display: inline-block;
+        position: absolute;
+        inset: auto auto auto 100%;
+        line-height: 18px;
+        margin-left: 2px;
+        opacity: 0;
+        transform: scaleX(0.5);
+        transition: opacity 100ms ease-out, margin-left 100ms ease-out, transform 100ms ease-out;
+    }
+
+    &:hover span::after {
+        opacity: 1;
+        margin-left: 8px;
+        transform: scaleX(1);
+    }
 
     @media (min-width: media.$min-width-tablet) {
         height: 48px;
-        width: 202px;
+        width: 212px;
     }
 
     @media (max-width: media.$max-width-mobile) {
@@ -64,23 +90,6 @@
 }
 
 @mixin button-primary {
-    border-color: transparent;
-    background: var(--color-green);
-    color: var(--color-purple);
-
-    &:not(.td-button-disabled) {
-        &:hover,
-        &.container-hover {
-            box-shadow: 0 3px 26px 0 rgba(colors.$green, 0.4);
-        }
-
-        &:active {
-            background-color: mix(colors.$green, colors.$purple);
-        }
-    }
-}
-
-@mixin button-secondary {
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
@@ -88,8 +97,20 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            background-color: var(--color-green);
-            color: var(--color-purple);
+            border-color: #81EDE4;
+            color: #81EDE4;
+        }
+    }
+}
+
+@mixin button-secondary {
+    border-color: var(--color-darker-white);
+    background: transparent;
+    color: var(--body-font-color);
+
+    &:not(.td-button-disabled) {
+        &:hover, &.container-hover {
+            color: var(--color-white);
         }
     }
 }
@@ -156,4 +177,31 @@
     -webkit-mask-image: $url;
     mask-size: 100%;
     -webkit-mask-size: 100%;
+}
+
+@mixin color-gradient($color1, $color2) {
+    background: linear-gradient(105deg, #{$color1} 0%, #{$color2} 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin border-gradient($color1, $color2, $bg-color) {
+    animation: gradient-button-bg-rotate 2.5s infinite linear paused;
+    background:
+        linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
+        conic-gradient(from var(--gradient-button-bg-angle), $color2, $color1, $color2) border-box;
+    border: 1px solid transparent;
+    color: var(--color-darker-white);
+
+    &:hover {
+        animation-play-state: running;
+        color: var(--color-white);
+    }
+
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+        /* Variable angle in gradient doesn't work in Safari (Dec 2024) - results in empty background */
+        background:
+            linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
+            conic-gradient(from 120deg, $color2, $color1, $color2) border-box;
+    }
 }

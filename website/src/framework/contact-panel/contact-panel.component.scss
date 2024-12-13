@@ -38,10 +38,18 @@ td-form-actions {
     margin-top: 40px;
     align-self: flex-end;
     width: unset;
+
+    @media (max-width: media.$max-width-mobile) {
+        align-self: stretch;
+    }
 }
 
 aside {
     position: absolute;
     bottom: 24px;
     left: 24px;
+
+    @media (max-width: media.$max-width-mobile) {
+        bottom: 64px;
+    }
 }

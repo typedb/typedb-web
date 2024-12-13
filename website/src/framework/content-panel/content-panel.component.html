@@ -1,18 +1,16 @@
-<div [ngClass]="rootNgClass" [hidden]="hidden">
-  @if (illustrationIsCodeSnippet()) {
-    <td-illustration class="cp-code-snippet" [illustration]="panel.illustration" [visible]="!hidden"/>
-  }
-  @if (!illustrationIsCodeSnippet()) {
-    <td-aspect-ratio ratio="16:9">
-      <td-illustration [illustration]="panel.illustration" [visible]="!hidden"/>
-    </td-aspect-ratio>
-  }
-  @if (contentTextPanel) {
-    <div class="cp-text-area">
-      <td-rich-text [value]="contentTextPanel.body"/>
-      @if (contentTextPanel.learnMoreLink) {
-        <a [attr.id]="learnMoreLinkId" [tdLink]="contentTextPanel.learnMoreLink" class="cp-learn-more link-tertiary">Learn more</a>
-      }
-    </div>
-  }
-</div>
+@if (illustrationIsCodeSnippet()) {
+  <td-illustration class="cp-code-snippet" [illustration]="panel.illustration" [visible]="!hidden"/>
+}
+@if (!illustrationIsCodeSnippet()) {
+  <td-aspect-ratio ratio="16:9">
+    <td-illustration class="td-frameless" [illustration]="panel.illustration" [visible]="!hidden"/>
+  </td-aspect-ratio>
+}
+@if (contentTextPanel) {
+  <div class="cp-text-area">
+    <td-rich-text [value]="contentTextPanel.body"/>
+    @if (contentTextPanel.learnMoreLink) {
+      <a [attr.id]="learnMoreLinkId" [tdLink]="contentTextPanel.learnMoreLink" class="cp-learn-more link-tertiary">Learn more</a>
+    }
+  </div>
+}

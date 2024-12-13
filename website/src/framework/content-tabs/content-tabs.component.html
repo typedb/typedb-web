@@ -15,6 +15,6 @@
     </div>
   </td-scroll-shadow>
   @for (tab of tabs; track tab) {
-    <td-content-panel [panel]="tab" [panelId]="tabID(tab)" [hidden]="(selectedTab$ | async) !== tab" />
+    <td-content-panel appearance="card" [panel]="tab" [panelId]="tabID(tab)" [hidden]="(selectedTab$ | async) !== tab" />
   }
 </div>

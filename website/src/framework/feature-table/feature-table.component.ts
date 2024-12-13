@@ -1,5 +1,5 @@
 import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
 import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
@@ -35,7 +35,7 @@ export class FeatureTableCellComponent {
     }
 
     buttonId(): string {
-        return this.cell instanceof LinkButton ? sanitiseHtmlID(`${this.sectionId}_${this.table.headerRow[this.columnIndex + 1]}_${this.cell.text}`) : ``;
+        return this.cell instanceof LinkButton ? sanitiseHtmlID(`${this.sectionId}_${this.table.products[this.columnIndex]}_${this.cell.text}`) : ``;
     }
 }
 
@@ -45,9 +45,10 @@ export class FeatureTableCellComponent {
     styleUrls: ["./feature-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [InfoButtonComponent, FeatureTableCellComponent],
+    imports: [InfoButtonComponent, FeatureTableCellComponent, ButtonComponent],
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;
     @Input({ required: true }) sectionId!: string;
+    @HostBinding("class") clazz = "section";
 }

@@ -1,12 +1,18 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { buttonSchemaName, LinkButton, SanityButton } from "../button";
-import { descriptionField, plainTextField, requiredRule } from "../common-fields";
+import { buttonField, descriptionField, nameField, plainTextField, requiredRule } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 
 export interface SanityFeatureTable {
-    headerRow: string[];
-    bodyRows: SanityFeatureTableRow[];
+    products: SanityProduct[];
+    rows: SanityFeatureTableRow[];
+}
+
+interface SanityProduct {
+    name: string;
+    priceString: string;
+    button: SanityButton;
 }
 
 interface SanityFeatureTableRow {
@@ -38,26 +44,46 @@ function isButtonCell(cell: SanityFeatureTableCell): cell is SanityButton {
 }
 
 export class FeatureTable {
-    headerRow: string[];
-    bodyRows: FeatureTableRow[];
+    readonly products: Product[];
+    readonly rows: FeatureTableRow[];
 
     constructor(props: PropsOf<FeatureTable>) {
-        this.headerRow = props.headerRow;
-        this.bodyRows = props.bodyRows;
+        this.products = props.products;
+        this.rows = props.rows;
     }
 
     static fromSanity(data: SanityFeatureTable, db: SanityDataset) {
         return new FeatureTable({
-            headerRow: data.headerRow,
-            bodyRows: data.bodyRows.map(x => FeatureTableRow.fromSanity(x, db)),
+            products: data.products.map(x => Product.fromSanity(x, db)),
+            rows: data.rows.map(x => FeatureTableRow.fromSanity(x, db)),
+        });
+    }
+}
+
+class Product {
+    readonly name: string;
+    readonly priceString: string;
+    readonly button: LinkButton;
+
+    constructor(props: PropsOf<Product>) {
+        this.name = props.name;
+        this.priceString = props.priceString;
+        this.button = props.button;
+    }
+
+    static fromSanity(data: SanityProduct, db: SanityDataset) {
+        return new Product({
+            name: data.name,
+            priceString: data.priceString,
+            button: LinkButton.fromSanity(data.button, db),
         });
     }
 }
 
 class FeatureTableRow {
-    heading: string;
-    description?: string;
-    cells: FeatureTableCell[];
+    readonly heading: string;
+    readonly description?: string;
+    readonly cells: FeatureTableCell[];
 
     constructor(props: PropsOf<FeatureTableRow>) {
         this.heading = props.heading;
@@ -85,6 +111,7 @@ function featureTableCellFromSanity(data: SanityFeatureTableCell, db: SanityData
 
 const booleanCellSchemaName = "featureTableBooleanCell";
 const textCellSchemaName = "featureTableTextCell";
+const productSchemaName = "featureTableProduct";
 const rowSchemaName = "featureTableRow";
 
 const booleanCellSchema = defineType({
@@ -116,6 +143,26 @@ const textCellSchema = defineType({
     preview: {
         select: { text: "text" },
         prepare: (selection) => ({ title: selection.text, subtitle: "Text Cell" }),
+    },
+});
+
+const productSchema = defineType({
+    name: productSchemaName,
+    title: "Product",
+    type: "object",
+    fields: [
+        nameField,
+        defineField({
+            name: "priceString",
+            title: "Price String",
+            type: "string",
+            validation: requiredRule,
+        }),
+        buttonField,
+    ],
+    preview: {
+        select: { name: "name" },
+        prepare: (selection) => ({ title: selection.name }),
     },
 });
 
@@ -153,15 +200,15 @@ const featureTableSchema = defineType({
     type: "object",
     fields: [
         defineField({
-            name: "headerRow",
-            title: "Header Row",
+            name: "products",
+            title: "Products",
             type: "array",
-            of: [{type: "string"}],
+            of: [{type: productSchemaName}],
             validation: requiredRule,
         }),
         defineField({
-            name: "bodyRows",
-            title: "Body Rows",
+            name: "rows",
+            title: "Rows",
             type: "array",
             of: [{type: rowSchemaName}],
             validation: requiredRule,
@@ -169,4 +216,4 @@ const featureTableSchema = defineType({
     ],
 });
 
-export const featureTableSchemas = [featureTableSchema, rowSchema, booleanCellSchema, textCellSchema];
+export const featureTableSchemas = [featureTableSchema, productSchema, rowSchema, booleanCellSchema, textCellSchema];

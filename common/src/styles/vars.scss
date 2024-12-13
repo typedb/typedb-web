@@ -7,6 +7,7 @@
     /* colors */
     --color-white: #{colors.$white};
     --color-dark-white: #{colors.$dark-white};
+    --color-darker-white: #{colors.$darker-white};
     --color-light-purple: #{colors.$light-purple};
     --color-purple: #{colors.$purple};
     --color-deep-purple: #{colors.$deep-purple};
@@ -25,8 +26,8 @@
     --content-border-color: var(--color-light-purple);
 
     --body-background: var(--color-black-purple);
-    --body-heading-color: var(--color-white);
     --body-font-color: var(--color-dark-white);
+    --body-heading-color: var(--color-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);
     --pre-font-color: #{colors.$prism-white};
@@ -36,7 +37,6 @@
 
     /* sizes */
     --border-radius: #{$border-radius};
-    --border-radius-large: #{$border-radius-large};
 
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
@@ -44,7 +44,6 @@
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
-    --intro-section-margin: #{$intro-section-margin};
     --section-margin: #{$section-margin};
     --subsection-margin: #{$subsection-margin};
     --subtitle-margin-l: #{$subtitle-margin-l};
@@ -97,7 +96,6 @@
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};
 
-        --intro-section-margin: #{$intro-section-margin-tablet};
         --subsection-margin: #{$subsection-margin-tablet};
 
         --card-padding: #{$card-padding-tablet};
@@ -110,7 +108,6 @@
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
 
-        --intro-section-margin: #{$intro-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
         --subsection-margin: #{$subsection-margin-mobile};
         --subtitle-margin-l: #{$subtitle-margin-mobile};

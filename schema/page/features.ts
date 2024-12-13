@@ -3,7 +3,7 @@ import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection
 import {
     bodyFieldRichText,
     collapsibleOptions,
-    optionalActionsField,
+    actionsFieldOptional,
 
     titleFieldWithHighlights,
 } from "../common-fields";
@@ -68,7 +68,7 @@ const introSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         bodyFieldRichText,
-        optionalActionsField,
+        actionsFieldOptional,
         Object.assign({}, organisationLogosField, { name: "userLogos", title: "User Logos" }) as any,
     ],
 });

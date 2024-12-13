@@ -19,7 +19,7 @@ import { ActionsComponent } from "../../framework/actions/actions.component";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
-import { AddToCalendarDialogComponent } from "../../framework/dialog/form-dialog.component";
+import { AddToCalendarDialogComponent } from "../../framework/dialog/add-to-calendar/add-to-calendar-dialog.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";

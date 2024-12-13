@@ -1,0 +1,17 @@
+<article>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      <td-pricing-page-technicolor-block [block]="page.introSection" [index]="0" />
+      <td-pricing-table [caption]="page.introSection.panelsCaption" [panels]="page.introSection.panels" sectionId="intro"/>
+
+      <td-pricing-page-technicolor-block [block]="page.providersSection" [index]="1" />
+      <td-content-panel [panel]="page.providersSection.panel" layout="text-content" panelId="providers-section" />
+
+      <td-pricing-page-technicolor-block class="td-features" [block]="page.featureTableSection" [index]="2" />
+      <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId"/>
+
+      <td-pricing-page-technicolor-block [block]="page.contactSection" [index]="3" />
+      <td-contact-panel class="section card" [showPersonalDataNotice]="true" />
+    </div>
+  }
+</article>

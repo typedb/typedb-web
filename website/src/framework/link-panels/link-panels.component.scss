@@ -2,30 +2,14 @@
 @use "shapes";
 @import "mixins";
 
-.lc-root-cols-3 {
+:host {
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 80px;
+    margin-top: 24px;
 
-    @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        gap: 16px;
-    }
-}
-
-.lc-root-cols-4 {
-    display: grid;
-    gap: 40px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-
-    @media (max-width: 1023px) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        gap: 64px;
     }
 }
 
@@ -33,25 +17,17 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     position: relative;
-    text-align: center;
+    gap: 12px;
 
     &:not(.hoverable) {
         cursor: initial;
     }
 
-    @media (max-width: media.$max-width-mobile) {
-        text-align: start;
-    }
-
     img {
         width: 72px;
         height: 72px;
-
-        @media (max-width: media.$max-width-mobile) {
-            width: 36px;
-            height: 36px;
-        }
     }
 
     &.lc-card-cols-3 {
@@ -85,27 +61,6 @@
                 max-height: 24px * 7;
             }
         }
-
-        @media (max-width: media.$max-width-mobile) {
-            h3 {
-                height: auto;
-            }
-
-            td-rich-text {
-                margin-top: 8px;
-            }
-        }
-    }
-
-    &.lc-icon-card {
-        @media (max-width: media.$max-width-mobile) {
-            flex-direction: row;
-            gap: 12px;
-
-            td-rich-text {
-                margin-top: 0;
-            }
-        }
     }
 
     .lc-cta-weak {
@@ -131,7 +86,6 @@
     }
 
     &:hover h3 {
-        color: var(--body-heading-color);
         text-decoration: none;
     }
 
@@ -150,16 +104,47 @@ td-button {
 .lc-flex-container {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     flex-grow: 1;
-    gap: 12px;
-    text-align: center;
-
-    @media (max-width: media.$max-width-mobile) {
-        text-align: start;
-    }
+    gap: 20px;
 
     .button-secondary {
         margin-top: 8px;
         width: unset;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    :host {
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .lc-card img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .lc-card.lc-card-cols-4 {
+        h3 {
+            height: auto;
+        }
+
+        td-rich-text {
+            margin-top: 8px;
+        }
+    }
+
+    .lc-card.lc-icon-card {
+        flex-direction: row;
+        gap: 12px;
+
+        td-rich-text {
+            margin-top: 0;
+        }
+    }
+
+    .lc-flex-container {
+        gap: 12px;
     }
 }

@@ -136,7 +136,7 @@ export const buttonField = defineField({
 
 export const actionsFieldName = "actions";
 
-export const optionalActionsField = defineField({
+export const actionsFieldOptional = defineField({
     name: actionsFieldName,
     title: "Actions (optional)",
     type: "actions",

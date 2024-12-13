@@ -4,15 +4,13 @@
 @use "shapes";
 
 @mixin nav-dt {
-    color: var(--body-heading-color);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-regular);
     font-size: 14px;
     display: flex;
     align-items: center;
 }
 
 @mixin nav-dd {
-    color: var(--color-secondary-light-grey);
     font-size: 12px;
     margin-top: 0;
     white-space: nowrap;
@@ -50,16 +48,17 @@
         justify-content: space-between;
     }
 
-    .td-topbar-panel-header, .td-topbar-logo-container, .td-topbar-link, .td-topbar-link:visited {
+    .td-topbar-logo-container, .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: #ccc;
-        transition: color 100ms;
+        color: var(--color-dark-white);
         cursor: pointer;
+        transition: color 100ms;
+        font-weight: var(--font-weight-regular);
 
-        &:hover, &:focus {
-            color: var(--color-white);
+        &:hover, .td-topbar-panel-opened & {
+            color: var(--color-darker-white);
         }
     }
 
@@ -98,11 +97,12 @@
         top: 64px;
         z-index: 700;
         border: 1px solid var(--content-border-color);
-        background-color: #232135;
-        border-radius: var(--border-radius-large);
+        background-color: var(--color-deep-purple);
+        border-radius: var(--border-radius);
         display: none;
         flex-direction: row;
         overflow: hidden;
+        margin-left: -64px;
 
         &::before {
             content: "";
@@ -121,17 +121,29 @@
         dd {
             @include nav-dd;
         }
+
+        @media (min-width: 960px) and (max-width: 1039px) {
+            margin-left: -164px;
+        }
+
+        @media (min-width: 1040px) and (max-width: 1120px) {
+            margin-left: -112px;
+        }
+
+        @media (max-width: 959px) {
+            margin-left: 0;
+        }
     }
 
     .td-topbar-chevron {
         margin: 0 -8px 0 8px;
         font-size: 12px;
-        color: var(--color-secondary-light-grey);
+        color: var(--color-darker-white);
         transition: transform 100ms;
     }
 
     .td-topbar-panel-opened {
-        @media (min-width: 900px) {
+        @media (min-width: 960px) {
             .td-topbar-chevron {
                 transform: rotate(180deg);
             }
@@ -142,32 +154,29 @@
         }
     }
 
-    .td-topbar-product-groups {
+    .td-topbar-columns {
         display: flex;
-        flex-flow: column wrap;
-        max-height: 380px;
         padding: 16px;
     }
 
-    .td-topbar-panel-column {
+    .td-topbar-panel-item-group {
         padding: 8px 12px;
 
         dl {
             margin: 8px 0 !important; // overrides stylesheets that reset browser styles
             display: grid;
             grid-auto-flow: dense;
-            grid-auto-columns: 260px;
             gap: 6px;
         }
 
         a {
-            color: var(--body-heading-color);
+            color: var(--color-white);
             font-weight: var(--font-weight-light);
             display: flex;
             gap: 16px;
-            padding: 6px 12px;
+            padding: 6px 14px;
             margin-left: -12px;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             transition: background-color 100ms;
 
             .td-icon-container {
@@ -176,7 +185,6 @@
                 justify-content: center;
                 width: 32px;
                 flex: 0 0 32px;
-                color: var(--color-secondary-blue);
 
                 i {
                     font-size: 24px;
@@ -185,16 +193,12 @@
 
             &:hover, &:focus {
                 background: var(--color-light-purple);
-                //dt {
-                //    color: var(--color-green);
-                //    text-decoration: underline;
-                //}
             }
         }
     }
 
     .td-topbar-column-title {
-        color: var(--body-heading-color);
+        color: var(--color-white);
         padding-bottom: 0 !important; // overrides stylesheets that reset browser styles
         font-weight: var(--font-weight-regular);
         font-size: 12px;
@@ -306,21 +310,26 @@
         border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
-        background-color: var(--color-secondary-purple);
+        background-color: var(--color-secondary-blue);
         text-align: center;
 
         p {
             font-size: 12px;
             line-height: 18px;
+            color: var(--color-purple);
+            font-family: var(--code-font-family);
+
+            @media (max-width: media.$max-width-mobile) {
+                font-size: 10px;
+            }
         }
 
         strong {
-            color: var(--color-green);
             font-weight: inherit;
         }
     }
 
-    @media (max-width: 899px) {
+    @media (max-width: 959px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
@@ -387,14 +396,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--body-heading-color);
+            color: var(--color-white);
             cursor: pointer;
             margin: 0;
             padding: 0;
             gap: 16px;
 
             &:hover, &:focus {
-                color: var(--body-heading-color);
+                color: var(--color-white);
                 text-decoration: none;
             }
 
@@ -471,13 +480,15 @@
             padding: 0;
         }
 
-        .td-topbar-product-groups {
-            max-height: unset;
-            padding: 16px 0 0;
+        .td-topbar-columns {
+            flex-direction: column;
+            padding: 0;
         }
 
-        .td-topbar-panel-column {
-            padding: 16px 0;
+        .td-topbar-panel-item-group {
+            flex-direction: column;
+            margin-top: 24px;
+            padding: 0;
 
             &:first-of-type {
                 padding-top: 0;
@@ -524,20 +535,20 @@
         }
 
         .td-topbar-menu-panel-ctas {
-            display: none;
             width: unset;
             border: 0;
+            margin-top: 24px;
 
             li {
                 display: flex;
-                flex-direction: row;
-                gap: 10px;
+                flex-direction: column;
                 align-items: baseline;
-                padding: 12px 0;
+                padding: 16px 0;
+                border-top: 1px solid var(--content-border-color);
             }
 
-            li + li {
-                border: 0;
+            li:last-of-type {
+                border-bottom: 1px solid var(--content-border-color);
             }
         }
     }
