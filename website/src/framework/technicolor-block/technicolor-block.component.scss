@@ -28,16 +28,8 @@
     &.tb-no-upper {
         margin-top: 120px;
 
-        &.tb-level-h1 {
-            margin-top: 256px;
-        }
-
         @media (max-width: media.$max-width-mobile) {
             margin-top: 64px;
-
-            &.tb-level-h1 {
-                margin-top: 116px;
-            }
         }
     }
 
@@ -99,7 +91,7 @@
 }
 
 .tb-main {
-    display: grid;
+    max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 64px;
 
@@ -218,15 +210,4 @@ td-heading-with-highlights {
 td-organisation-logos {
     display: block;
     margin-top: 40px;
-}
-
-@media (max-width: media.$max-width-mobile) {
-    td-heading-with-highlights,
-    td-rich-text {
-        padding-right: calc(var(--icon-size) / 2 - 1px);
-    }
-
-    td-actions {
-        padding-right: var(--graphic-area-width);
-    }
 }

@@ -38,18 +38,23 @@
         border-left: shapes.$border;
     }
 
+    h5 {
+        color: #ccc;
+    }
+
     @media (hover: hover) {
         &:hover h5 {
-            color: var(--color-green);
-            text-decoration: underline;
+            color: var(--color-white);
         }
     }
 }
 
-.ft-tab-selected,
-.ft-tab-selected h5 {
-    color: var(--color-green);
+.ft-tab-selected {
     background: var(--color-purple);
+
+    h5 {
+        color: var(--color-white);
+    }
 }
 
 .ft-graphic {

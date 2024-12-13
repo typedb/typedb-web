@@ -1,5 +1,5 @@
 import { footerSchemas } from "./footer";
 import { siteBannerSchemas } from "./site-banner";
-import { topbarSchemas } from "./topbar";
+import { topnavSchemas } from "./topnav";
 
-export const navigationSchemas: any[] = [...footerSchemas, ...siteBannerSchemas, ...topbarSchemas];
+export const navigationSchemas: any[] = [...footerSchemas, ...siteBannerSchemas, ...topnavSchemas];

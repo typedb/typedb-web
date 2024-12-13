@@ -57,6 +57,10 @@
     &.td-button-size-s {
         height: 40px;
     }
+
+    &.td-button-size-xs {
+        height: 36px;
+    }
 }
 
 @mixin button-primary {

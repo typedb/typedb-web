@@ -3,7 +3,7 @@ import "./styles.css";
 import {
     AddUserIcon,
     ArrowTopRightIcon,
-    BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon,
+    BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
@@ -15,7 +15,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
-    schemaTypes, topbarSchemaName, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
+    schemaTypes, topnavSchemaNames, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
     splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
@@ -30,7 +30,7 @@ import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 
 const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-const singletonTypes = new Set([topbarSchemaName, lecturesPageSchemaName]);
+const singletonTypes = new Set([topnavSchemaNames.topnav, lecturesPageSchemaName]);
 
 export default defineConfig({
     name: "default",
@@ -45,7 +45,7 @@ export default defineConfig({
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
                     singletonListItem(s, siteBannerSchemaName, { title: "Site Banner", icon: SparklesIcon }),
                     singletonListItem(s, platformUiBannerSchemaName, { title: "Platform UI Banner", icon: SparklesIcon }),
-                    singletonListItem(s, topbarSchemaName, { title: "Topbar", icon: ThListIcon }),
+                    singletonListItem(s, topnavSchemaNames.topnav, { title: "Topnav", icon: MasterDetailIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
                 s.listItem().title("Pages - Main Site").icon(DocumentsIcon).child(s.list().title("Pages - Main Site").items([

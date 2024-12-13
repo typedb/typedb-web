@@ -4,7 +4,7 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 
 @Component({
     selector: "td-fallback-page",
-    template: `<article tdPageBackground></article>`,
+    template: `<article></article>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [PageBackgroundComponent],

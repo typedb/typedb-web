@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { generateTopbar, setupLinks, setupTopbarListeners } from "typedb-web-common/lib";
+import { setupLinks, setupTopbarListeners, topbar } from "typedb-web-common/lib";
 
 import { ContentService } from "../../service/content.service";
 import { TopbarMenuService } from "./topbar-menu.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     selector: "td-topbar",
@@ -15,21 +16,23 @@ import { TopbarMenuService } from "./topbar-menu.service";
     standalone: true,
 })
 export class TopbarMenuComponent implements OnInit {
+
     constructor(
         private contentService: ContentService,
         private elementRef: ElementRef<HTMLElement>,
         private ngZone: NgZone,
         private router: Router,
         private topbarMenuService: TopbarMenuService,
+        private domSanitizer: DomSanitizer,
     ) {}
 
     ngOnInit() {
         this.contentService.getTopbarData().subscribe((data) => {
-            this.elementRef.nativeElement.innerHTML = generateTopbar(data);
+            this.elementRef.nativeElement.innerHTML = topbar(data);
             const headerEl = setupTopbarListeners();
 
             if (headerEl) {
-                this.setupScrollEvents(headerEl);
+                // this.setupScrollEvents(headerEl);
                 setupLinks(headerEl, this.router);
             }
         });

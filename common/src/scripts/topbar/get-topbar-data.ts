@@ -1,7 +1,7 @@
 import { SANITY_QUERY_URL } from "../sanity-config";
-import { TopbarData, topbarQuery } from "./topbar-query";
+import { TopnavData, topbarQuery } from "./schema";
 
-export const getTopbarData = async (): Promise<TopbarData> => {
+export const getTopbarData = async (): Promise<TopnavData> => {
     const url = new URL(SANITY_QUERY_URL);
     url.searchParams.set("query", topbarQuery);
     url.searchParams.set("perspective", "published");

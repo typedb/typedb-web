@@ -10,7 +10,7 @@ import {
     isVisibleField,
     keyPointsField,
     keyPointsWithIconsField,
-    learnMoreLinkField,
+    learnMoreLinkFieldOptional,
      resourcesFieldOptional,
     routeField,
     SanityVisibleToggle,
@@ -209,7 +209,7 @@ const exampleTabSchema = defineType({
     name: exampleTabSchemaName,
     title: "Example",
     type: "object",
-    fields: [titleField, videoEmbedField, bodyFieldRichText, learnMoreLinkField],
+    fields: [titleField, videoEmbedField, bodyFieldRichText, learnMoreLinkFieldOptional],
 });
 
 const sectionSchemas = [
