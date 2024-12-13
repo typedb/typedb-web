@@ -3,9 +3,8 @@
 $border-radius: 8px;
 $border: 1px solid colors.$light-purple;
 
-$body-width: 1200px;
 $section-page-margin: 20px;
-$section-width: $body-width - $section-page-margin * 2;
+$section-width: 1200px - $section-page-margin * 2;
 $section-page-margin-tablet: 32px;
 $section-width-tablet: 1024px - $section-page-margin-tablet * 2;
 $section-page-margin-mobile: 12px;
