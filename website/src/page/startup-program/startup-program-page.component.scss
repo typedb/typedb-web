@@ -1,0 +1,13 @@
+@import "mixins";
+
+td-startup-program-page-technicolor-block ::ng-deep td-heading-with-highlights h1 {
+    background: linear-gradient(285deg, #03D0BF, #AC79EE);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+td-startup-program-page-technicolor-block ::ng-deep td-button a {
+    border: none;
+    height: 49px;
+    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+}

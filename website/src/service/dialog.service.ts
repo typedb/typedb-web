@@ -2,9 +2,10 @@ import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import {
-    ContactDialogComponent, FeedbackDialogComponent, NewsletterDialogComponent,
-} from "../framework/dialog/form-dialog.component";
+import { ContactDialogComponent } from "../framework/dialog/contact/contact-dialog.component";
+import { FeedbackDialogComponent } from "../framework/dialog/feedback/feedback-dialog.component";
+import { NewsletterDialogComponent } from "../framework/dialog/newsletter/newsletter-dialog.component";
+import { PricingDialogComponent } from "../framework/dialog/pricing/pricing-dialog.component";
 
 @Injectable({
     providedIn: "root",
@@ -30,6 +31,9 @@ export class DialogService {
                         break;
                     case "feedback":
                         this.openFeedbackDialog();
+                        break;
+                    case "pricing":
+                        this.openPricingDialog();
                         break;
                     default:
                         this.closeCurrent();
@@ -68,5 +72,9 @@ export class DialogService {
         this.open(ContactDialogComponent, {
             width: "1088px", maxWidth: "100vw", maxHeight: "100vh", autoFocus: "input",
         });
+    }
+
+    openPricingDialog() {
+        this.open(PricingDialogComponent, { width: "880px", maxWidth: "100vw", maxHeight: "100vh" });
     }
 }

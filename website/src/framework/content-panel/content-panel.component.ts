@@ -1,5 +1,5 @@
 import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
 
@@ -20,18 +20,24 @@ export class ContentPanelComponent {
     @Input() hidden?: boolean;
     @Input({ required: true }) panel!: ContentTextPanel;
     @Input({ required: true }) panelId!: string;
+    @Input() appearance: "unadorned" | "card" = "unadorned";
+    @Input() layout: "content-text" | "text-content" = "content-text";
 
     get contentTextPanel(): ContentTextPanel | undefined {
         return this.panel instanceof ContentTextPanel ? this.panel : undefined;
     }
 
-    get rootNgClass(): { [clazz: string]: boolean | undefined } {
-        return {
-            section: true,
-            card: true,
-            "cp-root": true,
-            "cp-in-tab": this.panel instanceof ContentTextTab,
-        };
+    @HostBinding("class")
+    get clazz() {
+        return `section`
+            + (this.appearance === "card" ? ` card` : ``)
+            + (this.panel instanceof ContentTextTab ? ` cp-in-tab` : ``)
+            + ` td-layout-${this.layout}`;
+    }
+
+    @HostBinding("attr.hidden")
+    get hiddenAttr() {
+        return this.hidden ? true : undefined;
     }
 
     get learnMoreLinkId(): string | undefined {

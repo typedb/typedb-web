@@ -1,11 +1,6 @@
 <button
-  mat-icon-button
-  tabindex="0"
-  (mouseenter)="hovered = true"
-  (focus)="focused = true"
-  (mouseleave)="hovered = false"
-  (blur)="focused = false"
+  mat-icon-button tabindex="0" (mouseenter)="hovered = true" (focus)="focused = true" (mouseleave)="hovered = false"
+  (blur)="focused = false" [matTooltip]="tooltipText || ''"
 >
   <mat-icon svgIcon="info" />
 </button>
-<td-tooltip [text]="tooltipText" [visible]="hovered || focused"></td-tooltip>

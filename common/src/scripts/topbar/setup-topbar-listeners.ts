@@ -33,12 +33,9 @@ export const setupTopbarListeners = () => {
     const panels = document.querySelectorAll<HTMLDivElement>(".td-topbar-menu-panel");
 
     const updateMenuPanelVisibility = () =>
-        mainListItems.forEach((el) => el.classList.toggle("td-topbar-panel-opened", hoveredMenuElements.includes(el)));
-
-    // window.addEventListener("click", () => {
-    //     openedMenuItem = null;
-    //     updateMenuPanelVisibility();
-    // });
+        mainListItems.forEach((el) => {
+            el.classList.toggle("td-topbar-panel-opened", hoveredMenuElements.includes(el));
+        });
 
     [...mainListItems, ...panels].forEach((el) => {
         el.addEventListener("mouseenter", (e) => {

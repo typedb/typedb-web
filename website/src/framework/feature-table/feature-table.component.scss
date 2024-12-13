@@ -1,8 +1,11 @@
 @use "media";
+@import "mixins";
 
 table {
-    overflow: hidden;
     table-layout: fixed;
+    position: relative;
+    box-shadow: none;
+    background: none;
 }
 
 col:first-of-type {
@@ -13,33 +16,93 @@ col:first-of-type {
     }
 
     @media (max-width: media.$max-width-mobile) {
-        width: 114px;
+        width: 0;
     }
 }
 
 thead {
-    background: var(--color-deep-purple);
     font-weight: var(--font-weight-regular);
+    border: none;
+
+    tr {
+        border: none;
+    }
+
+    th {
+        position: sticky;
+        border: none;
+        top: 0;
+        background: var(--color-black-purple);
+        z-index: 50;
+        padding: 0;
+
+        .td-cell-spacer {
+            height: calc(100% - 1px);
+        }
+
+        hr {
+            margin: 0;
+            border-color: var(--color-light-purple);
+        }
+
+        td-button {
+            display: block;
+            margin: 0 auto 16px;
+        }
+
+        &:nth-of-type(3) {
+            p {
+                color: var(--color-green);
+            }
+        }
+
+        &:nth-of-type(4) {
+            p {
+                @include color-gradient(#F96480, #FDD257);
+            }
+
+            td-button ::ng-deep a {
+                position: relative;
+                overflow: hidden;
+                @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+            }
+        }
+    }
+
+    .td-product-price-tag {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 6px;
+    }
+
+    .td-product-price-tag aside {
+        margin-bottom: 8px;
+    }
+
+    + tbody {
+        border-top-width: 0;
+    }
 }
 
-th,
-td {
-    height: 80px;
+tbody tr {
+    position: relative;
+}
 
-    @media (max-width: media.$max-width-mobile) {
-        tr:last-of-type & {
-            height: 48px;
-        }
+th, td {
+    height: 80px;
+    color: var(--color-darker-white);
+
+    &, &:not(:first-child) {
+        border-left: none;
     }
 }
 
 th {
     font-weight: inherit;
-    padding: 12px 24px;
+    padding: 0;
 
     @media (max-width: media.$max-width-mobile) {
-        padding: 8px 4px;
-
         font-size: var(--font-size-p2);
         line-height: var(--line-height-p2);
     }
@@ -53,13 +116,31 @@ th {
     }
 }
 
+td {
+    text-align: center;
+}
+
 .ft-row-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+    color: var(--color-white);
+}
 
-    @media (max-width: media.$max-width-mobile) {
+@media (max-width: media.$max-width-mobile) {
+    thead th div {
+        aside, td-button {
+            width: 100%;
+            padding: 0 4px;
+        }
+    }
+
+    .ft-row-header {
+        position: absolute;
+        top: 2px;
         gap: 4px;
+        font-size: var(--font-size-aside);
+        color: var(--color-secondary-light-grey);
     }
 }

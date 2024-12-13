@@ -45,6 +45,7 @@ export {
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/page-section";
+export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
@@ -63,8 +64,8 @@ export {
     type SanitySiteBanner, SiteBanner, siteBannerSchemaName, platformUiBannerSchemaName
 } from "./navigation/site-banner";
 export {
-    topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, ProductsNavPanel, NavProductGroup,
-    NavResource, type NavPanel, NavPanelCta
+    topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, NavPanel, NavItemGroup,
+    NavResource, NavPanelCta
 } from "./navigation/topnav";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
@@ -77,17 +78,19 @@ export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from ".
 export {
     ResourceHub, learningCenterSchemaName, type SanityResourceHub, fundamentalsPageSchemaName,
 } from "./page/learn";
+export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
 export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
+export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {
     type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName,
 } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
+export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
-export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
-export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";

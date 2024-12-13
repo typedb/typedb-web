@@ -12,10 +12,6 @@
     height: 304px;
     perspective: 1400px;
     transform-style: preserve-3d;
-
-    @media (max-width: media.$max-width-mobile) {
-        height: 330px;
-    }
 }
 
 .tc-card {
@@ -32,11 +28,6 @@
     transition-property: transform, opacity;
     transition-duration: 750ms;
     transition-timing-function: ease;
-
-    @media (max-width: media.$max-width-mobile) {
-        width: 311px;
-        transition-duration: 400ms;
-    }
 }
 
 .tc-card-content {
@@ -56,10 +47,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    @media (max-width: media.$max-width-mobile) {
-        padding-top: 16px;
-    }
 }
 
 .tc-person {
@@ -71,11 +58,6 @@
         width: 54px;
         height: 54px;
         border-radius: var(--border-radius);
-
-        @media (max-width: media.$max-width-mobile) {
-            width: 40px;
-            height: 40px;
-        }
     }
 }
 
@@ -92,17 +74,13 @@
 
 .tc-logo {
     height: 48px;
-
-    @media (max-width: media.$max-width-mobile) {
-        height: 28px;
-    }
 }
 
 .tc-control-panel {
     margin-top: 48px;
     display: flex;
     justify-content: center;
-    gap: 61px;
+    gap: 48px;
 
     @media (max-width: media.$max-width-tablet) {
         margin-top: 40px;
@@ -115,25 +93,15 @@
 }
 
 .tc-controls-btn {
-    width: 45px;
-    height: 45px;
-    border: 1px solid var(--color-green);
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-secondary-light-grey);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: transparent;
     cursor: pointer;
-
-    @media (max-width: media.$max-width-mobile) {
-        width: 30px;
-        height: 30px;
-
-        img {
-            width: 10px;
-            height: 10px;
-        }
-    }
 }
 
 .tc-beads {
@@ -153,6 +121,39 @@
 
     &.tc-bead-focused {
         transform: scale(1.5);
-        background: var(--color-green);
+        background: var(--color-secondary-light-grey);
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    .tc-carousel {
+        height: 380px;
+    }
+
+    .tc-card {
+        width: 311px;
+        transition-duration: 400ms;
+    }
+
+    .tc-card-content p {
+        font-size: 14px;
+    }
+
+    .tc-controls-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .tc-logo {
+        height: 40px;
+        align-self: center;
+        margin-top: 8px;
+    }
+
+    .tc-details {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 16px;
     }
 }

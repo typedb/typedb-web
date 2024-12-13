@@ -8,9 +8,9 @@
  */
 
 @use "@angular/material" as mat;
-@use "../../../common/src/styles/colors";
-@use "../../../common/src/styles/shapes";
-@use "../../../common/src/styles/typography";
+@use "colors";
+@use "shapes";
+@use "typography";
 
 @include mat.core();
 $purple-palette: (
@@ -261,7 +261,7 @@ body {
 
     /* Dialog */
     .mdc-dialog {
-        --mdc-dialog-container-color: #{colors.$purple};
+        --mdc-dialog-container-color: #{colors.$deep-purple};
         --mdc-dialog-subhead-color: #{colors.$white};
         --mdc-dialog-supporting-text-color: #{colors.$white};
         --mdc-dialog-supporting-text-weight: var(--font-weight-light);
@@ -292,6 +292,10 @@ body {
     .mat-mdc-dialog-container .mdc-dialog__surface {
         border: shapes.$border;
         box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.3), 0px 24px 38px 3px rgba(0, 0, 0, 0.21), 0px 9px 46px 8px rgba(0, 0, 0, 0.18);
+
+        @media (max-width: 450px) {
+            border-radius: 0;
+        }
     }
 
     /* Expansion */
@@ -777,8 +781,8 @@ body {
 
     /* Tooltip */
     .mdc-tooltip {
-        --mdc-plain-tooltip-supporting-text-size: 14px;
-        --mdc-plain-tooltip-supporting-line-height: 21px;
+        --mdc-plain-tooltip-supporting-text-size: 12px;
+        --mdc-plain-tooltip-supporting-line-height: 20px;
         --mdc-plain-tooltip-supporting-text-tracking: var(--body-letter-spacing);
     }
 

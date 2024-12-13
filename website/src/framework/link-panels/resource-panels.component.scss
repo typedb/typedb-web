@@ -1,0 +1,164 @@
+@use "media";
+@use "shapes";
+@import "mixins";
+
+.lc-root-cols-3 {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.lc-root-cols-4 {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    @media (max-width: 1023px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.lc-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+
+    &:not(.hoverable) {
+        cursor: initial;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        text-align: start;
+    }
+
+    img {
+        width: 72px;
+        height: 72px;
+
+        @media (max-width: media.$max-width-mobile) {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    &.lc-card-cols-3 {
+        h3 {
+            @include line-clamp(1);
+        }
+    }
+
+    &.lc-card-cols-4 {
+        text-align: start;
+
+        h3 {
+            height: calc(var(--font-size-h3) * var(--line-height-h3) * 2);
+        }
+
+        td-rich-text {
+            margin-top: 12px;
+        }
+
+        .link-tertiary {
+            margin-top: 8px;
+        }
+
+        @media (max-width: media.$max-width-tablet) {
+            h3 {
+                height: calc(33px * 2);
+            }
+
+            td-rich-text {
+                @include line-clamp(7);
+                max-height: 24px * 7;
+            }
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            h3 {
+                height: auto;
+            }
+
+            td-rich-text {
+                margin-top: 8px;
+            }
+        }
+    }
+
+    &.lc-icon-card {
+        @media (max-width: media.$max-width-mobile) {
+            flex-direction: row;
+            gap: 12px;
+
+            td-rich-text {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .lc-cta-weak {
+        @media (min-width: media.$min-width-tablet) {
+            display: block;
+            margin-top: 4px;
+        }
+    }
+
+    .lp-coming-soon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 98px;
+        height: 32px;
+        background-color: var(--color-secondary-purple);
+        border-left: shapes.$border;
+        border-bottom: shapes.$border;
+        border-bottom-left-radius: var(--border-radius);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &:hover h3 {
+        text-decoration: none;
+    }
+
+    &:hover ::ng-deep .button-secondary {
+        background: var(--color-green);
+        color: var(--color-purple);
+    }
+}
+
+td-button {
+    @media (min-width: media.$min-width-tablet) {
+        margin-top: 24px;
+    }
+}
+
+.lc-flex-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 12px;
+    text-align: center;
+
+    @media (max-width: media.$max-width-mobile) {
+        text-align: start;
+    }
+
+    .button-secondary {
+        margin-top: 8px;
+        width: unset;
+    }
+}

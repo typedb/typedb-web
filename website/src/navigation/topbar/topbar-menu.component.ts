@@ -30,7 +30,6 @@ export class TopbarMenuComponent implements OnInit {
         this.contentService.getTopbarData().subscribe((data) => {
             this.elementRef.nativeElement.innerHTML = topbar(data);
             const headerEl = setupTopbarListeners();
-
             if (headerEl) {
                 // this.setupScrollEvents(headerEl);
                 setupLinks(headerEl, this.router);

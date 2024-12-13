@@ -1,9 +1,17 @@
 @use "media";
 
-.cp-root {
+:host {
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
     gap: 40px;
+
+    &.td-layout-content-text {
+        flex-direction: row;
+    }
+
+    &.td-layout-text-content {
+        flex-direction: row-reverse;
+    }
 
     @media (max-width: media.$max-width-tablet) {
         padding: 32px;

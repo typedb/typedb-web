@@ -1,7 +1,8 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
-import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, titleField } from "../common-fields";
+import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, textLinkFieldOptional, titleBodyIconFields, titleField } from "../common-fields";
+import { SanityTextLink, TextLink } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
@@ -13,7 +14,7 @@ export interface SanityLinkPanel {
 
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
     icon: SanityReference<SanityImageRef>;
-    button: SanityButton;
+    link?: SanityTextLink;
 }
 
 export interface SanityProductPanel extends SanityLinkPanel {
@@ -40,18 +41,18 @@ export class LinkPanel implements BodyTextField {
 
 export class LinkPanelWithIcon extends LinkPanel {
     readonly iconURL: string;
-    readonly button: LinkButton;
+    readonly link?: TextLink;
 
     constructor(props: PropsOf<LinkPanelWithIcon>) {
         super(props);
         this.iconURL = props.iconURL;
-        this.button = props.button;
+        this.link = props.link;
     }
 
     static override fromSanity(data: SanityLinkPanelWithIcon, db: SanityDataset): LinkPanelWithIcon {
         return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanity(data, db), {
             iconURL: db.resolveImageRef(data.icon).url,
-            button: LinkButton.fromSanity(data.button, db),
+            link: data.link ? TextLink.fromSanityTextLink(data.link, db) : undefined,
         }));
     }
 }
@@ -84,7 +85,7 @@ const linkPanelWithIconSchema = defineType({
         titleField,
         bodyFieldRichText,
         sectionIconField,
-        buttonField,
+        textLinkFieldOptional,
     ],
 });
 

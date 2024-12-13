@@ -93,14 +93,14 @@
 .tb-main {
     max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
-    padding-bottom: 64px;
+    padding-bottom: 80px;
 
     @media (max-width: media.$max-width-tablet) {
-        padding-bottom: 56px;
+        padding-bottom: 72px;
     }
 
     @media (max-width: media.$max-width-mobile) {
-        padding-bottom: 24px;
+        padding-bottom: 32px;
         grid-template-columns: var(--graphic-area-width) auto;
     }
 }

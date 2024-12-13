@@ -2,16 +2,6 @@
 
 :host {
     position: relative;
-    //background-image: url("/assets/background/deep-space.webp");
-    // background-attachment: fixed;
-    // background-position: center top;
-    // background-repeat: repeat;
-    // background-size: 100% auto;
-
-    // @media (max-width: media.$max-width-mobile) {
-    //     background-attachment: local;
-    //     background-position-y: top !important; /* overrides inline style */
-    // }
 }
 
 .pb-container {
@@ -24,9 +14,8 @@
     pointer-events: none;
 }
 
-.pb-nebula,
-.pb-planet {
-    width: 1920px;
+.pb-nebula, .pb-planet {
+    width: 100%;
     flex-grow: 1;
     position: relative;
 
@@ -70,12 +59,6 @@
 
     img {
         top: 0;
-    }
-}
-
-:host-context(td-website.has-banner) {
-    .pb-nebula {
-        margin-top: var(--banner-height);
     }
 }
 
