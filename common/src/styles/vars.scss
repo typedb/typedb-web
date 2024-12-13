@@ -38,6 +38,7 @@
     /* sizes */
     --border-radius: #{$border-radius};
 
+    --body-width: #{$body-width};
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
     --section-max-width: calc(100vw - var(--section-page-margin) * 2);
