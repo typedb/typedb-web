@@ -2,6 +2,7 @@ export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
     { path: "blog", schemaName: "blog" },
     { path: "deploy", schemaName: "deploymentPage" },
+    { path: "pricing", schemaName: "pricingPage" },
     { path: "events", schemaName: "eventsPage" },
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
@@ -10,6 +11,7 @@ export const staticPageSchemas = [
     { path: "fundamentals", schemaName: "fundamentalsPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
     { path: "support", schemaName: "supportPage" },
+    { path: "startup-program", schemaName: "startupProgramPage" },
     { path: "papers", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
 

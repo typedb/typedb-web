@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { TooltipComponent } from "../tooltip/tooltip.component";
 
@@ -10,7 +11,7 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
     styleUrls: ["./info-button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [MatButtonModule, MatIconModule, TooltipComponent],
+    imports: [MatButtonModule, MatIconModule, TooltipComponent, MatTooltipModule],
 })
 export class InfoButtonComponent {
     @Input() tooltipText!: string;

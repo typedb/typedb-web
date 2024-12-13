@@ -1,0 +1,91 @@
+@if (caption) {
+  <h3 class="text-h3">{{ caption }}</h3>
+}
+
+<table role="presentation" class="section hide-mobile">
+  <tr>
+    @for (panel of panels; track panel) {
+      <td>
+        <div class="pp-cell-content">
+          <h3>{{ panel.title }}</h3>
+          <td-rich-text [value]="panel.body" class="pp-body-text" />
+          <div class="flex"></div>
+          <hr />
+          <td-rich-text [value]="panel.priceString" />
+        </div>
+      </td>
+    }
+  </tr>
+  <tr class="pp-button-row">
+    @for (panel of panels; track panel) {
+      <td>
+        <td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" />
+      </td>
+    }
+  </tr>
+  <tr>
+    @for (panel of panels; track panel) {
+      <td class="td-bottom-link">
+        @if (panel.bottomLink) {
+          <div>
+            <a class="link-tertiary" [tdLink]="panel.bottomLink">{{ panel.bottomLink.text }}</a>
+          </div>
+        }
+      </td>
+    }
+  </tr>
+  <tr class="td-key-points">
+    @for (panel of panels; track panel) {
+      <td>
+        <div class="td-key-points-flex-container">
+          <ul>
+            @for (keyPoint of panel.keyPoints; track keyPoint) {
+              <li>
+                <i class="fa-regular fa-check"></i> {{ keyPoint }}
+              </li>
+            }
+          </ul>
+        </div>
+      </td>
+    }
+  </tr>
+</table>
+
+@for (panel of panels; track panel) {
+  <table role="presentation" class="section hide-gt-mobile">
+    <tr>
+      <td>
+        <div class="pp-cell-content">
+          <h3>{{ panel.title }}</h3>
+          <td-rich-text [value]="panel.body" class="pp-body-text" />
+          <div class="flex"></div>
+          <hr />
+          <td-rich-text [value]="panel.priceString" />
+        </div>
+      </td>
+    </tr>
+    <tr class="pp-button-row">
+      <td><td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" /></td>
+    </tr>
+    <tr>
+      <td class="td-bottom-link">
+        @if (panel.bottomLink) {
+          <div>
+            <a class="link-tertiary" [tdLink]="panel.bottomLink">{{ panel.bottomLink.text }}</a>
+          </div>
+        }
+      </td>
+    </tr>
+    <tr class="td-key-points">
+      <td>
+        <ul>
+          @for (keyPoint of panel.keyPoints; track keyPoint) {
+            <li>
+              <i class="fa-regular fa-check"></i> {{ keyPoint }}
+            </li>
+          }
+        </ul>
+      </td>
+    </tr>
+  </table>
+}

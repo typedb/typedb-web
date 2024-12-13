@@ -4,7 +4,7 @@ import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import {
     bodyFieldRichText,
     isVisibleField,
-    optionalActionsField,
+    actionsFieldOptional,
     requiredRule,
     SanityVisibleToggle,
     titleBodyIconFields,
@@ -76,7 +76,7 @@ const conclusionPanelSchema = defineType({
     fields: [
         titleField,
         bodyFieldRichText,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "resourceListTitle",
             title: "Resource List Title",
@@ -101,7 +101,7 @@ const conclusionSectionSchema = defineType({
     type: "object",
     fields: [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "panel",
             title: "Panel",

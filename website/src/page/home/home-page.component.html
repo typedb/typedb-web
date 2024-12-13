@@ -1,11 +1,9 @@
-<article nebula="home" planet="green">
+<article nebula="home">
   @if (page$ | async; as page) {
     <div class="article-content">
       @if (page.introSection) {
         <td-home-page-technicolor-block
-          [block]="page.introSection"
-          [page]="page"
-          variant="intro"
+          [block]="page.introSection" [page]="page" variant="intro" class="td-intro"
           [organisationLogos]="page.introSection.userLogos"
           />
         <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />

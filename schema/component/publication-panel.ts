@@ -2,7 +2,7 @@ import { BlockContentIcon, InlineIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { Illustration, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import {
-    isVisibleField, nameFieldOptional, optionalActionsField, requiredRule, SanityIconField,
+    isVisibleField, nameFieldOptional, actionsFieldOptional, requiredRule, SanityIconField,
     SanityVisibleToggle, sectionIconFieldOptional, titleBodyIconFields, titleFieldOptional,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -155,7 +155,7 @@ const publicationSectionSchema = defineType({
     type: "object",
     fields: [
         ...titleBodyIconFields,
-        optionalActionsField,
+        actionsFieldOptional,
         defineField({
             name: "panelItems",
             title: "Panel - Items",

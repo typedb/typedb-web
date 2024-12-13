@@ -1,0 +1,16 @@
+@use "media";
+
+:host {
+    @media (min-width: media.$min-width-tablet) {
+        td-pricing-page-technicolor-block.td-features ::ng-deep td-technicolor-block .tb-main {
+            padding: 0 0 16px;
+        }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        td-content-panel ::ng-deep .cp-text-area {
+            margin-top: -144px;
+            z-index: 10;
+        }
+    }
+}

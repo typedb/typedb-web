@@ -1,4 +1,4 @@
-import { BlockElementIcon, SquareIcon, TrolleyIcon } from "@sanity/icons";
+import { BlockElementIcon, ComponentIcon, SquareIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { LinkButton, buttonSchemaName, SanityButton } from "../button";
 import { Link, SanityLink, SanityTextLink } from "../link";
@@ -11,12 +11,11 @@ const topnav = "topnav";
 export const topnavSchemaNames = {
     topnav: topnav,
     item: `${topnav}_item`,
-    productsPanel: `${topnav}_productsPanel`,
-    developersPanel: `${topnav}_developersPanel`,
-    resourcesPanel: `${topnav}_resourcesPanel`,
-    productGroup: `${topnav}_productGroup`,
-    product: `${topnav}_product`,
-    resource: `${topnav}_resource`,
+    panel: `${topnav}_productsPanel`,
+    panelColumn: `${topnav}_panelColumn`,
+    panelItemGroup: `${topnav}_panelItemGroup`,
+    panelItem: `${topnav}_panelItem`,
+    panelResource: `${topnav}_panelResource`,
     panelCta: `${topnav}_panelCta`,
 } as const;
 
@@ -32,14 +31,18 @@ interface SanityNavItem {
     link?: SanityReference<SanityLink>;
 }
 
-interface SanityProductsNavPanel extends SanityDocument {
-    _type: typeof topnavSchemaNames.productsPanel;
-    productGroups: SanityNavProductGroup[];
+interface SanityNavPanel extends SanityDocument {
+    _type: typeof topnavSchemaNames.panel;
+    columns: SanityNavPanelColumn[];
     bottomLinks?: SanityNavResource[];
     ctas?: SanityNavPanelCta[];
 }
 
-interface SanityNavProductGroup {
+interface SanityNavPanelColumn {
+    itemGroups: SanityNavItemGroup[];
+}
+
+interface SanityNavItemGroup {
     title: string;
     items: SanityNavProduct[];
 }
@@ -63,8 +66,6 @@ interface SanityNavPanelCta {
     description?: string;
     link: SanityTextLink;
 }
-
-type SanityNavPanel = SanityProductsNavPanel;
 
 export class Topnav extends Document {
     readonly primaryItems: NavItem[];
@@ -99,37 +100,37 @@ export class NavItem {
     }
 }
 
-export class ProductsNavPanel {
-    readonly productGroups: NavProductGroup[];
+export class NavPanel {
+    readonly columns: NavItemGroup[][];
     readonly bottomLinks: NavResource[];
     readonly ctas: NavPanelCta[];
 
-    constructor(props: PropsOf<ProductsNavPanel>) {
-        this.productGroups = props.productGroups;
+    constructor(props: PropsOf<NavPanel>) {
+        this.columns = props.columns;
         this.bottomLinks = props.bottomLinks;
         this.ctas = props.ctas;
     }
 
-    static fromSanity(data: SanityProductsNavPanel, db: SanityDataset): ProductsNavPanel {
-        return new ProductsNavPanel({
-            productGroups: data.productGroups.map(x => NavProductGroup.fromSanity(x, db)),
+    static fromSanity(data: SanityNavPanel, db: SanityDataset): NavPanel {
+        return new NavPanel({
+            columns: data.columns.map(x => x.itemGroups.map(y => NavItemGroup.fromSanity(y, db))),
             bottomLinks: (data.bottomLinks || []).map(x => NavResource.fromSanity(x, db)),
             ctas: (data.ctas || []).map(x => NavPanelCta.fromSanity(x, db)),
         });
     }
 }
 
-export class NavProductGroup {
+export class NavItemGroup {
     readonly title: string;
     readonly items: NavProduct[];
 
-    constructor(props: PropsOf<NavProductGroup>) {
+    constructor(props: PropsOf<NavItemGroup>) {
         this.title = props.title;
         this.items = props.items;
     }
 
-    static fromSanity(data: SanityNavProductGroup, db: SanityDataset): NavProductGroup {
-        return new NavProductGroup({
+    static fromSanity(data: SanityNavItemGroup, db: SanityDataset): NavItemGroup {
+        return new NavItemGroup({
             title: data.title,
             items: data.items.map(x => NavProduct.fromSanity(x, db)),
         });
@@ -205,16 +206,14 @@ export class NavPanelCta {
     }
 }
 
-export type NavPanel = ProductsNavPanel;
-
 function navPanelFromSanity(data: SanityNavPanel, db: SanityDataset): NavPanel {
     switch (data._type) {
-        case "topnav_productsPanel": return ProductsNavPanel.fromSanity(data, db);
+        case "topnav_productsPanel": return NavPanel.fromSanity(data, db);
         default: throw `Invalid type for NavPanel: ${data._type}`;
     }
 }
 
-const navPanelCtaSchema = defineType({
+const panelCtaSchema = defineType({
     name: topnavSchemaNames.panelCta,
     title: "CTA",
     type: "object",
@@ -229,8 +228,8 @@ const navPanelCtaSchema = defineType({
     },
 });
 
-const navProductSchema = defineType({
-    name: topnavSchemaNames.product,
+const panelItemSchema = defineType({
+    name: topnavSchemaNames.panelItem,
     title: "Product",
     type: "object",
     fields: [
@@ -263,8 +262,8 @@ const navProductSchema = defineType({
     },
 });
 
-const navResourceSchema = defineType({
-    name: topnavSchemaNames.resource,
+const panelResourceSchema = defineType({
+    name: topnavSchemaNames.panelResource,
     title: "Resource",
     type: "object",
     fields: [
@@ -278,9 +277,9 @@ const navResourceSchema = defineType({
     },
 });
 
-const navProductGroupSchema = defineType({
-    name: topnavSchemaNames.productGroup,
-    title: "Product Group",
+const panelItemGroupSchema = defineType({
+    name: topnavSchemaNames.panelItemGroup,
+    title: "Item Group",
     type: "object",
     fields: [
         titleField,
@@ -288,7 +287,7 @@ const navProductGroupSchema = defineType({
             name: "items",
             title: "Items",
             type: "array",
-            of: [{type: topnavSchemaNames.product}],
+            of: [{type: topnavSchemaNames.panelItem}],
             validation: requiredRule,
         }),
     ],
@@ -301,24 +300,46 @@ const navProductGroupSchema = defineType({
     },
 });
 
-const productsNavPanelSchema = defineType({
-    name: topnavSchemaNames.productsPanel,
-    title: "Products Panel",
-    icon: TrolleyIcon,
-    type: "document",
+const panelColumnSchema = defineType({
+    name: topnavSchemaNames.panelColumn,
+    title: "Column",
+    type: "object",
     fields: [
         defineField({
-            name: "productGroups",
-            title: "Product Groups",
+            name: "itemGroups",
+            title: "Item Groups",
             type: "array",
-            of: [{type: topnavSchemaNames.productGroup}],
+            of: [{type: topnavSchemaNames.panelItemGroup}],
+            validation: requiredRule,
+        }),
+    ],
+    preview: {
+        select: { itemGroups: "itemGroups" },
+        prepare: (selection) => ({
+            title: `Column`,
+            subtitle: `${selection.itemGroups?.map((x: any) => x.title).join(", ") || ""}`,
+        }),
+    },
+});
+
+const panelSchema = defineType({
+    name: topnavSchemaNames.panel,
+    title: "Topnav Panel",
+    icon: ComponentIcon,
+    type: "object",
+    fields: [
+        defineField({
+            name: "columns",
+            title: "Columns",
+            type: "array",
+            of: [{type: topnavSchemaNames.panelColumn}],
             validation: requiredRule,
         }),
         defineField({
             name: "bottomLinks",
             title: "Bottom Links",
             type: "array",
-            of: [{type: topnavSchemaNames.resource}],
+            of: [{type: topnavSchemaNames.panelResource}],
         }),
         defineField({
             name: "ctas",
@@ -328,15 +349,13 @@ const productsNavPanelSchema = defineType({
         }),
     ],
     preview: {
-        select: { productGroups: "productGroups" },
+        select: { columns: "columns" },
         prepare: (selection) => ({
-            title: "Products",
-            subtitle: `${selection.productGroups?.map((x: any) => x.title).join(", ") || ""}`,
+            title: "Panel",
+            subtitle: `${selection.columns?.map((x: any) => x.itemGroups?.map((y: any) => y.title).join(", ") || "").join(", ") || ""}`,
         }),
     },
 });
-
-const navPanelTypes = [{type: topnavSchemaNames.productsPanel}];
 
 const navItemSchema = defineType({
     name: topnavSchemaNames.item,
@@ -347,9 +366,8 @@ const navItemSchema = defineType({
         titleField,
         defineField({
             name: "panel",
-            title: "Panel",
-            type: "reference",
-            to: navPanelTypes,
+            title: "Panel (optional)",
+            type: topnavSchemaNames.panel,
         }),
         linkFieldOptional,
     ],
@@ -386,6 +404,6 @@ const topnavSchema = defineType({
 });
 
 export const topnavSchemas = [
-    navPanelCtaSchema, navProductSchema, navResourceSchema, navProductGroupSchema, productsNavPanelSchema,
+    panelCtaSchema, panelItemSchema, panelResourceSchema, panelItemGroupSchema, panelSchema, panelColumnSchema,
     navItemSchema, topnavSchema
 ];

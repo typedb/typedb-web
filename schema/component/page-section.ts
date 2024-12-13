@@ -1,26 +1,21 @@
-import { defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
+import { defineField, defineType } from "@sanity/types";
 import {
-    bodyFieldRichText,
-    isVisibleField,
-    optionalActionsField,
-    resourcesFieldOptional,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleBodyIconFields,
-    titleFieldWithHighlights,
+    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
-import { SanityBodyTextField } from "../text";
 import { PropsOf } from "../util";
+import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "./link-panel";
 import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 
-// TODO: there are two other 'SanityCoreSection' interfaces which are similar, but not quite identical
-export interface SanityCoreSection extends SanityBodyTextField, SanityOptionalActions, SanityVisibleToggle {}
+export interface SanityCoreSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
 
-export interface SanityTitleBodyPanelSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityTitleBodyPanelSection extends SanityCoreSection {
     panel: SanityContentTextPanel;
+}
+
+export interface SanityLinkPanelsSection extends SanityCoreSection {
+    panels: SanityLinkPanelWithIcon[];
 }
 
 export class TitleBodyPanelSection extends TechnicolorBlock {
@@ -39,6 +34,31 @@ export class TitleBodyPanelSection extends TechnicolorBlock {
     }
 }
 
+export class LinkPanelsSection extends TechnicolorBlock {
+    readonly panels: LinkPanelWithIcon[];
+
+    constructor(props: PropsOf<LinkPanelsSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
+        return new LinkPanelsSection({
+            ...super.fromSanity(data, db),
+            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
+        });
+    }
+}
+
+export const coreSectionSchemaName = "coreSection";
+
+const coreSectionSchema = defineType({
+    name: coreSectionSchemaName,
+    title: "Section",
+    type: "document",
+    fields: [...titleBodyIconFields, isVisibleField],
+});
+
 export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
 
 const titleBodyPanelSectionSchema = defineType({
@@ -46,9 +66,8 @@ const titleBodyPanelSectionSchema = defineType({
     title: "Title, Body & Panel",
     type: "document",
     fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        sectionIconField,
+        ...titleBodyIconFields,
+        actionsFieldOptional,
         {
             title: "Panel",
             name: "panel",
@@ -64,7 +83,27 @@ const resourceSectionSchema = defineType({
     name: resourceSectionSchemaName,
     title: "Resources Section",
     type: "object",
-    fields: [...titleBodyIconFields, optionalActionsField, resourcesFieldOptional, isVisibleField],
+    fields: [...titleBodyIconFields, actionsFieldOptional, resourcesFieldOptional, isVisibleField],
 });
 
-export const pageSectionSchemas = [resourceSectionSchema, titleBodyPanelSectionSchema];
+export const linkPanelsSectionSchemaName = `linkPanelsSection`;
+
+const linkPanelsSectionSchema = defineType({
+    name: linkPanelsSectionSchemaName,
+    title: "Link Panels Section",
+    type: "object",
+    fields: [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{ type: linkPanelWithIconSchemaName }],
+            validation: (rule) => rule.required().length(3),
+        }),
+        isVisibleField,
+    ],
+});
+
+export const pageSectionSchemas = [coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema, linkPanelsSectionSchema];

@@ -6,13 +6,14 @@
     border-radius: var(--border-radius);
     position: relative;
     overflow: hidden;
+    border: shapes.$border;
 
     &.il-image-illustration {
         border-radius: 0;
     }
 
-    &:not(.sp-pane) {
-        border: shapes.$border;
+    &.sp-pane, &.td-frameless {
+        border: none;
     }
 
     &.il-blur {
