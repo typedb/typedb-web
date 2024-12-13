@@ -1,6 +1,9 @@
 [build]
 ignore = "/bin/false"
 
+[build.environment]
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/CqydmmRN9Ao1G49fg6QWroNujeoLJm7Qx__bO6gn1yHX9jKHWbQwyV3GMdD9GxzW9FnX"
+
 [build.processing.html]
 pretty_urls = true
 
@@ -190,6 +193,9 @@ path = "/api/echo"
 [[edge_functions]]
 function = "get-calendar-link"
 path = "/api/calendar-link"
+
+[[plugins]]
+package = "netlify-plugin-discord"
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
