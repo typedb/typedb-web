@@ -20,11 +20,8 @@
 
 @mixin styles($icon-path) {
     .td-topbar {
-        inset: 0 0 auto 0;
-        z-index: 700;
         font-size: 14px;
-        font-weight: var(--font-weight-light);
-        text-align: left;
+        position: relative;
 
         nav {
             height: var(--topbar-height);
@@ -33,7 +30,7 @@
             display: flex;
             justify-content: space-between;
             position: relative;
-            max-width: 1216px;
+            max-width: calc(var(--body-width) + 16px);
         }
 
         li {
@@ -353,8 +350,9 @@
         }
 
         .td-topbar-content {
-            position: fixed;
-            inset: var(--topbar-height) 0 84px auto;
+            position: absolute;
+            inset: var(--topbar-height) 0 auto 0;
+            height: 100vh;
             z-index: 700;
             display: flex;
             flex-direction: column;
@@ -365,10 +363,6 @@
             overflow-y: auto;
             border: none;
             border-top: 1px solid var(--color-light-purple);
-
-            .td-topbar.td-topbar-has-banner & {
-                top: calc(var(--topbar-height) + var(--banner-height));
-            }
         }
 
         .td-topbar-chevron {
