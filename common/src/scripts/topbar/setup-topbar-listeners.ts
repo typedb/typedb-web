@@ -4,7 +4,8 @@ export const setupTopbarListeners = () => {
         return;
     }
 
-    headerEl.querySelectorAll(".td-topbar-panel-header").forEach((el) =>
+    const panelHeaders = [...headerEl.querySelectorAll(".td-topbar-panel-header")];
+    panelHeaders.forEach((el) =>
         el.addEventListener("click", () => {
             el.closest("li")?.classList.toggle("td-topbar-panel-expanded");
         })
@@ -16,12 +17,12 @@ export const setupTopbarListeners = () => {
         document.body.style.overflowY = headerEl.classList.contains("td-topbar-open") ? "hidden" : "unset";
     });
 
-    let hoveredMenuItem: HTMLLIElement | null = null;
+    let hoveredMenuElements: HTMLElement[] = [];
 
     const links = headerEl.querySelectorAll("a");
     links.forEach((link) =>
         link.addEventListener("click", () => {
-            hoveredMenuItem = null;
+            hoveredMenuElements.length = 0;
             updateMenuPanelVisibility();
             headerEl.classList.remove("td-topbar-open");
             document.body.style.overflowY = "unset";
@@ -29,17 +30,24 @@ export const setupTopbarListeners = () => {
     );
 
     const mainListItems = document.querySelectorAll<HTMLLIElement>(".td-topbar-main-area li");
+    const panels = document.querySelectorAll<HTMLDivElement>(".td-topbar-menu-panel");
 
     const updateMenuPanelVisibility = () =>
-        mainListItems.forEach((el) => el.classList.toggle("td-topbar-panel-hovered", hoveredMenuItem === el));
+        mainListItems.forEach((el) => el.classList.toggle("td-topbar-panel-opened", hoveredMenuElements.includes(el)));
 
-    mainListItems.forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-            hoveredMenuItem = el;
+    // window.addEventListener("click", () => {
+    //     openedMenuItem = null;
+    //     updateMenuPanelVisibility();
+    // });
+
+    [...mainListItems, ...panels].forEach((el) => {
+        el.addEventListener("mouseenter", (e) => {
+            hoveredMenuElements.push(el);
             updateMenuPanelVisibility();
         });
-        el.addEventListener("mouseleave", () => {
-            hoveredMenuItem = null;
+        el.addEventListener("mouseleave", (e) => {
+            const idx = hoveredMenuElements.indexOf(el);
+            if (idx !== -1) hoveredMenuElements.splice(idx, 1);
             updateMenuPanelVisibility();
         });
     });
