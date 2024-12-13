@@ -27,7 +27,7 @@
   </div>
   <div class="tc-control-panel">
     <button class="tc-controls-btn" (click)="previous()" [attr.id]="sectionId + '_carousel_previous'">
-      <img src="/assets/image/chevron-left.svg" alt="<" />
+      <i class="fa-light fa-chevron-left"></i>
     </button>
     <div class="tc-beads">
       @for (_ of testimonials; track _; let idx = $index) {
@@ -35,7 +35,7 @@
       }
     </div>
     <button class="tc-controls-btn" (click)="next()" [attr.id]="sectionId + '_carousel_next'">
-      <img src="/assets/image/chevron-right.svg" alt=">" />
+      <i class="fa-light fa-chevron-right"></i>
     </button>
   </div>
 </div>

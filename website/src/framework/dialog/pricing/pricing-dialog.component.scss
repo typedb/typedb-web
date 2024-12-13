@@ -149,10 +149,7 @@ table {
         text-align: start;
     }
 
-    td span {
-        //border-bottom: 1px dashed var(--color-secondary-light-grey);
-        //padding-bottom: 2px;
-        //font-weight: var(--font-weight-medium);
+    td strong {
         color: var(--color-white);
         font-weight: var(--font-weight-regular);
         text-shadow: 1px 1px 1px #000;
@@ -163,8 +160,4 @@ table {
             display: none;
         }
     }
-
-    //td:last-of-type {
-    //    color: var(--color-secondary-blue);
-    //}
 }

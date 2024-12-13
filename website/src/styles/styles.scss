@@ -116,7 +116,7 @@ section, .section {
     }
 
     &:hover, &:focus {
-        color: var(--link-hovered-color);
+        color: var(--color-white);
         text-decoration: underline;
     }
 }
@@ -262,14 +262,14 @@ mat-dialog-container {
     }
 }
 
-@property --bg-angle {
+@property --gradient-button-bg-angle {
     inherits: false;
     initial-value: 120deg;
     syntax: "<angle>";
 }
 
-@keyframes spin {
+@keyframes gradient-button-bg-rotate {
     to {
-        --bg-angle: 480deg;
+        --gradient-button-bg-angle: 480deg;
     }
 }

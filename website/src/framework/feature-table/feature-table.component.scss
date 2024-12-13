@@ -91,7 +91,7 @@ tbody tr {
 
 th, td {
     height: 80px;
-    color: #ccc;
+    color: var(--color-darker-white);
 
     &, &:not(:first-child) {
         border-left: none;

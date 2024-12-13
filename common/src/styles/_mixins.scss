@@ -104,14 +104,12 @@
 }
 
 @mixin button-secondary {
-    border-color: #ccc;
+    border-color: var(--color-darker-white);
     background: transparent;
     color: var(--body-font-color);
 
     &:not(.td-button-disabled) {
-        &:hover,
-        &.container-hover {
-            //border-color: var(--color-white);
+        &:hover, &.container-hover {
             color: var(--color-white);
         }
     }
@@ -188,16 +186,16 @@
 }
 
 @mixin border-gradient($color1, $color2, $bg-color) {
-    animation: spin 2.5s infinite linear paused;
+    animation: gradient-button-bg-rotate 2.5s infinite linear paused;
     background:
         linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
-        conic-gradient(from var(--bg-angle), $color2, $color1, $color2) border-box;
+        conic-gradient(from var(--gradient-button-bg-angle), $color2, $color1, $color2) border-box;
     border: 1px solid transparent;
-    color: var(--link-muted-color);
+    color: var(--color-darker-white);
 
     &:hover {
         animation-play-state: running;
-        color: var(--link-hovered-color);
+        color: var(--color-white);
     }
 
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {

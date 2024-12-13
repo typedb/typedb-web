@@ -80,7 +80,7 @@
     margin-top: 48px;
     display: flex;
     justify-content: center;
-    gap: 61px;
+    gap: 48px;
 
     @media (max-width: media.$max-width-tablet) {
         margin-top: 40px;
@@ -93,8 +93,8 @@
 }
 
 .tc-controls-btn {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border: 1px solid var(--color-secondary-light-grey);
     border-radius: 50%;
     display: flex;
@@ -142,11 +142,7 @@
     .tc-controls-btn {
         width: 30px;
         height: 30px;
-
-        img {
-            width: 10px;
-            height: 10px;
-        }
+        font-size: 10px;
     }
 
     .tc-logo {
