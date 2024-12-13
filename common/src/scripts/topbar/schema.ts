@@ -6,13 +6,10 @@ export const topbarQuery = `
   "topnav": *[(_type match 'topnav')][0]{
     primaryItems[]{
       title,
-      panel->{
-        _type,
-        _type == 'topnav_productsPanel' => {
-          productGroups[]{ title, items[]{ title, description, iconName, iconVariant, link->${linkProps}}},
-          bottomLinks[]{ title, description, link->${linkProps} },
-          ctas[]{ title, description, link{text, link->${linkProps}}}
-        }
+      panel{
+        columns[]{ itemGroups[]{ title, items[]{ title, description, iconName, iconVariant, link->${linkProps}}}},
+        bottomLinks[]{ title, description, link->${linkProps} },
+        ctas[]{ title, description, link{text, link->${linkProps}}}
       },
       link->${linkProps}
     },
@@ -41,14 +38,17 @@ export interface NavItem {
     link?: Link;
 }
 
-interface ProductsNavPanel {
-    _type: "topnav_productsPanel";
-    productGroups: NavProductGroup[];
+export interface NavPanel {
+    columns: NavPanelColumn[];
     bottomLinks?: NavResource[];
     ctas?: NavPanelCta[];
 }
 
-export interface NavProductGroup {
+export interface NavPanelColumn {
+    itemGroups: NavItemGroup[];
+}
+
+export interface NavItemGroup {
     title: string;
     items: NavProduct[];
 }
@@ -78,8 +78,6 @@ interface Button {
     style: "primary" | "secondary";
     text: string;
 }
-
-export type NavPanel = ProductsNavPanel;
 
 export type SiteBanner =
     | { isEnabled: false }

@@ -64,8 +64,8 @@ export {
     type SanitySiteBanner, SiteBanner, siteBannerSchemaName, platformUiBannerSchemaName
 } from "./navigation/site-banner";
 export {
-    topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, ProductsNavPanel, NavProductGroup,
-    NavResource, type NavPanel, NavPanelCta
+    topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, NavPanel, NavItemGroup,
+    NavResource, NavPanelCta
 } from "./navigation/topnav";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";

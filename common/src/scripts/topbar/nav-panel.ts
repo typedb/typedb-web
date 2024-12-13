@@ -1,21 +1,15 @@
 import { escapeHtml, linkHtml, sanitiseHtmlID } from "../shared";
-import { NavPanel, NavPanelCta, NavProductGroup, NavResource } from "./schema";
+import { NavPanel, NavPanelCta, NavItemGroup, NavResource, NavPanelColumn } from "./schema";
 
 export const navPanel = (panel: NavPanel, urlPrefix: string) => {
-    const productGroups = panel.productGroups
-        .map((productGroup_) => {
-            const titleEl = `<h5 class="td-topbar-column-title">${escapeHtml(productGroup_.title)}</h5>`;
-            const content = [titleEl, productGroup(productGroup_, urlPrefix)].join("");
-            return `<div class="td-topbar-panel-column">${content}</div>`;
-        })
-        .join("");
+    const columns = panel.columns.map((col) => column(col, urlPrefix)).join("");
     const bottomLinks = bottomLinksHtml(panel.bottomLinks || [], urlPrefix);
     const ctas = ctasHtml(panel.ctas || [], urlPrefix);
     return `
 <div class="td-topbar-menu-panel">
   <div class="td-topbar-menu-panel-primary-area">
-    <div class="td-topbar-product-groups">
-      ${productGroups}
+    <div class="td-topbar-columns">
+      ${columns}
     </div>
     ${bottomLinks}
   </div>
@@ -24,7 +18,18 @@ export const navPanel = (panel: NavPanel, urlPrefix: string) => {
 `;
 };
 
-const productGroup = (productGroup: NavProductGroup, urlPrefix: string) => {
+const column = (column: NavPanelColumn, urlPrefix: string) => {
+    const itemGroups_ = column.itemGroups
+        .map((group) => {
+            const titleEl = `<h5 class="td-topbar-column-title">${escapeHtml(group.title)}</h5>`;
+            const content = [titleEl, productGroup(group, urlPrefix)].join("");
+            return `<div class="td-topbar-panel-item-group">${content}</div>`;
+        })
+        .join("");
+    return `<div class="td-topbar-panel-column">${itemGroups_}</div>`;
+};
+
+const productGroup = (productGroup: NavItemGroup, urlPrefix: string) => {
     const items = productGroup.items
         .map(({ title, description, link: link_, iconName, iconVariant }) => {
             const icon = iconName ? `<i class="fa-${iconVariant} fa-${iconName}"></i>` : null;

@@ -161,15 +161,12 @@
         }
     }
 
-    .td-topbar-product-groups {
+    .td-topbar-columns {
         display: flex;
-        flex-flow: column wrap;
-        max-height: 380px;
         padding: 16px;
-        column-gap: 8px;
     }
 
-    .td-topbar-panel-column {
+    .td-topbar-panel-item-group {
         padding: 8px 12px;
 
         dl {
@@ -335,16 +332,21 @@
         border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
-        background-color: var(--color-secondary-purple);
+        background-color: var(--color-secondary-blue);
         text-align: center;
 
         p {
             font-size: 12px;
             line-height: 18px;
+            color: var(--color-purple);
+            font-family: var(--code-font-family);
+
+            @media (max-width: media.$max-width-mobile) {
+                font-size: 10px;
+            }
         }
 
         strong {
-            color: var(--color-green);
             font-weight: inherit;
         }
     }
@@ -500,13 +502,15 @@
             padding: 0;
         }
 
-        .td-topbar-product-groups {
-            max-height: unset;
-            padding: 16px 0 0;
+        .td-topbar-columns {
+            flex-direction: column;
+            padding: 0;
         }
 
-        .td-topbar-panel-column {
-            padding: 16px 0;
+        .td-topbar-panel-item-group {
+            flex-direction: column;
+            margin-top: 24px;
+            padding: 0;
 
             &:first-of-type {
                 padding-top: 0;
@@ -553,20 +557,20 @@
         }
 
         .td-topbar-menu-panel-ctas {
-            display: none;
             width: unset;
             border: 0;
+            margin-top: 24px;
 
             li {
                 display: flex;
-                flex-direction: row;
-                gap: 10px;
+                flex-direction: column;
                 align-items: baseline;
-                padding: 12px 0;
+                padding: 16px 0;
+                border-top: 1px solid var(--content-border-color);
             }
 
-            li + li {
-                border: 0;
+            li:last-of-type {
+                border-bottom: 1px solid var(--content-border-color);
             }
         }
     }
