@@ -12,7 +12,7 @@ col:first-of-type {
     width: 359px;
 
     @media (max-width: media.$max-width-tablet) {
-        width: 261px;
+        width: 220px;
     }
 
     @media (max-width: media.$max-width-mobile) {
@@ -49,6 +49,12 @@ thead {
         td-button {
             display: block;
             margin: 0 auto 16px;
+
+            @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+                ::ng-deep a {
+                    width: 170px;
+                }
+            }
         }
 
         &:nth-of-type(3) {
