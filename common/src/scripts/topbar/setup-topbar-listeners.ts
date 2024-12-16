@@ -14,7 +14,9 @@ export const setupTopbarListeners = () => {
     const menuButton = headerEl.querySelector(".td-topbar-menu-button");
     menuButton?.addEventListener("click", () => {
         headerEl.classList.toggle("td-topbar-open");
-        document.body.style.overflowY = headerEl.classList.contains("td-topbar-open") ? "hidden" : "unset";
+        const overflowStyle = headerEl.classList.contains("td-topbar-open") ? "hidden" : "unset";
+        document.body.parentElement!.style.overflowY = overflowStyle;
+        document.body.style.overflowY = overflowStyle;
     });
 
     let hoveredMenuElements: HTMLElement[] = [];
@@ -25,6 +27,7 @@ export const setupTopbarListeners = () => {
             hoveredMenuElements.length = 0;
             updateMenuPanelVisibility();
             headerEl.classList.remove("td-topbar-open");
+            document.body.parentElement!.style.overflowY = "unset";
             document.body.style.overflowY = "unset";
         })
     );
