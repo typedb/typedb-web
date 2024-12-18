@@ -69,12 +69,9 @@ p,
 aside, .text-aside {
     font-size: var(--font-size-aside);
     line-height: var(--line-height-aside);
-    font-weight: var(--font-weight-thin);
 }
 
-pre,
-code,
-.text-code {
+pre, code, .text-code {
     font-size: var(--font-size-code);
     line-height: var(--line-height-code);
 }

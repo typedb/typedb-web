@@ -43,7 +43,7 @@ export {
     FeatureGrid, type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon, ProductPanel } from "./component/link-panel";
+export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/page-section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
@@ -72,7 +72,6 @@ export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, Reso
 export { Page, type SanityPage } from "./page/common";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
-export { DeploymentPage, type SanityDeploymentPage, deploymentPageSchemaName } from "./page/deployment";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
 export {
