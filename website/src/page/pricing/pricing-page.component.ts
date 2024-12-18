@@ -10,9 +10,7 @@ import { FeatureTableComponent } from "../../framework/feature-table/feature-tab
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PricingTableComponent } from "../../framework/pricing-table/pricing-table.component";
-import { ProductTableComponent } from "../../framework/product-table/product-table.component";
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { GenericPageTechnicolorBlockComponent } from "../generic/generic-page.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -38,8 +36,8 @@ export class PricingPageTechnicolorBlockComponent {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, PricingPageTechnicolorBlockComponent, ProductTableComponent, FeatureTableComponent,
-        LinkPanelsComponent, AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent, GenericPageTechnicolorBlockComponent,
+        PageBackgroundComponent, PricingPageTechnicolorBlockComponent, FeatureTableComponent, LinkPanelsComponent,
+        AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent,
     ],
 })
 export class PricingPageComponent extends PageComponentBase<PricingPage> {

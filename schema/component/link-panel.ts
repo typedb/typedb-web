@@ -1,7 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
-import { LinkButton, SanityButton } from "../button";
 import { SanityImageRef } from "../image";
-import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, textLinkFieldOptional, titleBodyIconFields, titleField } from "../common-fields";
+import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, textLinkFieldOptional, titleField } from "../common-fields";
 import { SanityTextLink, TextLink } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
@@ -15,11 +14,6 @@ export interface SanityLinkPanel {
 export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
     icon: SanityReference<SanityImageRef>;
     link?: SanityTextLink;
-}
-
-export interface SanityProductPanel extends SanityLinkPanel {
-    secondaryBody: PortableText;
-    button: SanityButton;
 }
 
 export class LinkPanel implements BodyTextField {
@@ -53,24 +47,6 @@ export class LinkPanelWithIcon extends LinkPanel {
         return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanity(data, db), {
             iconURL: db.resolveImageRef(data.icon).url,
             link: data.link ? TextLink.fromSanityTextLink(data.link, db) : undefined,
-        }));
-    }
-}
-
-export class ProductPanel extends LinkPanel {
-    readonly secondaryBody: PortableText;
-    readonly button: LinkButton;
-
-    constructor(props: PropsOf<ProductPanel>) {
-        super(props);
-        this.secondaryBody = props.secondaryBody;
-        this.button = props.button;
-    }
-
-    static override fromSanity(data: SanityProductPanel, db: SanityDataset): ProductPanel {
-        return new ProductPanel(Object.assign(LinkPanel.fromSanity(data, db), {
-            secondaryBody: data.secondaryBody,
-            button: LinkButton.fromSanity(data.button, db),
         }));
     }
 }

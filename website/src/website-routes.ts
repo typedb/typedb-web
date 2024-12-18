@@ -1,7 +1,6 @@
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
     { path: "blog", schemaName: "blog" },
-    { path: "deploy", schemaName: "deploymentPage" },
     { path: "pricing", schemaName: "pricingPage" },
     { path: "events", schemaName: "eventsPage" },
     { path: "lectures", schemaName: "lecturesPage" },
