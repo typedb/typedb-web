@@ -126,6 +126,12 @@ to = "/docs/home/"
 status = 301
 force = true
 
+# TODO: delete this redirect when 3.x docs launch
+[[redirects]]
+from = "/docs/2.x/*"
+to = "/docs/:splat"
+status = 302
+
 [[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
