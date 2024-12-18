@@ -1,7 +1,7 @@
 <article nebula="solutions">
   <div class="article-content article-content-no-planet">
     @if (blog$ | async; as blog) {
-      <section class="page-section bp-title-section">
+      <section class="page-section">
         <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
         <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
       </section>

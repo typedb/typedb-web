@@ -1,7 +1,6 @@
 @use "shapes";
 
 :host {
-    font-weight: var(--font-weight-regular);
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -11,6 +10,10 @@
         background: var(--color-purple);
         border: shapes.$border;
         border-radius: var(--border-radius);
-        color: var(--color-secondary-pink);
+
+        &, a, a:visited {
+            color: var(--color-secondary-pink);
+            font-weight: var(--font-weight-light);
+        }
     }
 }

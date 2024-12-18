@@ -352,7 +352,7 @@
         .td-topbar-content {
             position: absolute;
             inset: var(--topbar-height) 0 auto 0;
-            height: 100vh;
+            height: calc(100vh - 84px);
             z-index: 700;
             display: flex;
             flex-direction: column;

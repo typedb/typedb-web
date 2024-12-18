@@ -4,7 +4,6 @@ import { Route, RouterModule, Routes } from "@angular/router";
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
-import { DeploymentPageComponent } from "./page/deployment/deployment-page.component";
 import { EventDetailsPageComponent } from "./page/events/event-details-page.component";
 import { EventsPageComponent } from "./page/events/events-page.component";
 import { FallbackPageComponent } from "./page/fallback/fallback-page.component";
@@ -27,19 +26,18 @@ import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./web
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
-    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
-    papers: { component: PapersPageComponent, title: "TypeDB Papers" },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
-    deploy: { component: DeploymentPageComponent, title: "TypeDB Deployments" },
     events: { component: EventsPageComponent, title: "TypeDB Events" },
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
+    fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
+    learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
+    papers: { component: PapersPageComponent, title: "TypeDB Papers" },
     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
-    support: { component: SupportPageComponent, title: "TypeDB Support" },
+    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
-    learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
-    fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
+    support: { component: SupportPageComponent, title: "TypeDB Support" },
 };
 
 const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
@@ -77,6 +75,7 @@ const routes: Routes = [
 
     // TODO: remember to clean up these redirects eventually
     { path: "introduction", redirectTo: "philosophy" },
+    { path: "deploy", redirectTo: "pricing" },
     { path: "applications", redirectTo: "learn" },
     { path: "services", redirectTo: "support" },
     { path: "solutions/:route", redirectTo: "philosophy" },
