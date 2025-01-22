@@ -24,12 +24,7 @@ export class ResourceSection extends TechnicolorBlock {
 
     static fromSanityFurtherLearningSection(data: SanityResourceSection, db: SanityDataset): ResourceSection {
         return new ResourceSection({
-            title: new ParagraphWithHighlights({
-                spans: [
-                    { text: "Further", highlight: false },
-                    { text: " Learning", highlight: true },
-                ],
-            }),
+            title: new ParagraphWithHighlights({ spans: [{ text: "Further Learning", highlight: true }]}),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             iconURL: "https://cdn.sanity.io/images/xndl14mc/production/5cc35cf9f1d71af32a5d65426f2a6409cb0f72da-89x98.svg",
