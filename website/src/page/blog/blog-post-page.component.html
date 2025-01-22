@@ -1,14 +1,10 @@
 <article nebula="solutions">
   <div class="article-content article-content-no-planet">
     @if (post$ | async; as post) {
-      <section class="page-section nebula-section">
+      <section class="blog-landing-strip">
         <a tdLink="/blog">
           @if (blog$ | async; as blog) {
-            <td-heading-with-highlights
-              [value]="blog.blogTitle"
-              class="bp-site-title"
-              level="h2"
-              />
+            <td-heading-with-highlights [value]="blog.blogTitle" class="bp-site-title" level="h2"/>
           }
         </a>
       </section>
