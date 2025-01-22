@@ -106,11 +106,6 @@
         padding-left: 24px;
         border-left: 2px solid var(--color-green);
 
-        p {
-            font-size: var(--font-size-p1);
-            line-height: var(--line-height-p1);
-        }
-
         cite::before {
             content: "—";
             margin-right: 6px;
