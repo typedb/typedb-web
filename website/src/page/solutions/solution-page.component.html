@@ -2,7 +2,7 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       @if (page.introSection) {
-        <section class="page-section page-intro-section">
+        <section class="page-intro-section">
           <td-heading-with-highlights [value]="page.introSection.title" class="narrow-section" level="h1" />
           @if (page.introSection.body) {
             <td-rich-text
