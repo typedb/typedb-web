@@ -23,6 +23,6 @@ export class TitleBodyActionsSectionComponent {
     @Input() isIntroSection = false;
 
     get sectionClasses(): string {
-        return this.isIntroSection ? "page-section page-intro-section" : "page-section";
+        return this.isIntroSection ? "page-intro-section" : "";
     }
 }

@@ -44,10 +44,12 @@
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
+    --first-section-margin: #{$first-section-margin};
     --section-margin: #{$section-margin};
     --subsection-margin: #{$subsection-margin};
     --subtitle-margin-l: #{$subtitle-margin-l};
     --subtitle-margin: #{$subtitle-margin};
+    --blog-landing-strip-margin: #{$blog-landing-strip-margin};
 
     --text-margin-s: #{$text-margin-s};
 
@@ -108,10 +110,12 @@
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
 
+        --first-section-margin: #{$first-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
         --subsection-margin: #{$subsection-margin-mobile};
         --subtitle-margin-l: #{$subtitle-margin-mobile};
         --subtitle-margin: #{$subtitle-margin-mobile};
+        --blog-landing-strip-margin: #{$blog-landing-strip-margin-mobile};
 
         --topbar-height: #{$topbar-height-mobile};
         --banner-height: #{$banner-height-mobile};
