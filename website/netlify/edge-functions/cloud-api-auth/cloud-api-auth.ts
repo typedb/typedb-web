@@ -11,11 +11,11 @@ import type { Context } from "https://edge.netlify.com";
 
 export default async (request: Request, context: Context) => {
     if (request.method !== "POST") return undefined;
-    const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY")
-    const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID")
-    const auth = request.headers.get("Authorization")!.replace("Basic ", "")
-    const clientID = auth.split(":")[0]
-    const clientSecret = auth.split(":")[1]
+    const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY");
+    const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID");
+    const auth = request.headers.get("Authorization")!.replace("Basic ", "");
+    const clientID = auth.split(":")[0];
+    const clientSecret = auth.split(":")[1];
     return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
         method: "POST",
         body: JSON.stringify({
@@ -26,7 +26,7 @@ export default async (request: Request, context: Context) => {
         }),
         headers: { "Content-Type": "application/json" },
     }).then((res) => res.json().then((body) => {
-        if (body.idToken) return new Response(body.idToken)
-        else return new Response(null, { status: 401 })
-    }))
+        if (body.idToken) return new Response(body.idToken);
+        else return new Response(null, { status: 401 });
+    }));
 };
