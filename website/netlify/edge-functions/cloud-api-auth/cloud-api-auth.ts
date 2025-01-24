@@ -8,8 +8,8 @@
  */
 
 export default async (request: Request) => {
-    const apiKey = Netlify.env.get("API_KEY")
-    const tenantId = Netlify.env.get("TENANT_ID")
+    const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY")
+    const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID")
     const auth = request.headers.get("Authorization")!.replace("Basic ", "")
     const clientID = auth.split(":")[0]
     const clientSecret = auth.split(":"[1])
