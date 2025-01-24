@@ -11,13 +11,25 @@ pretty_urls = true
 command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
+[context.production.environment]
+CLOUD_API_AUTH_TENANT_ID="platform-api-utdw2"
+CLOUD_API_AUTH_API_KEY="AIzaSyBwx6DlQYNejTVUtjzQetj15frQ_FblVT8"
+
 [context.master]
 command = "pnpm run style:verify; ENV=staging pnpm run build"
 publish = "dist/dynamic"
 
+[context.master.environment]
+CLOUD_API_AUTH_TENANT_ID="platform-api-tnz9v"
+CLOUD_API_AUTH_API_KEY="AIzaSyBUcSa59YGemKHQb1UVT9nBk7H-yZCdJQ4"
+
 [context.development]
 command = "pnpm run style:verify; ENV=development pnpm run build"
 publish = "dist/dynamic"
+
+[context.development.environment]
+CLOUD_API_AUTH_TENANT_ID="platform-api-kjfbu"
+CLOUD_API_AUTH_API_KEY="AIzaSyDJHINOCzIvZpr-_CC8dtvWj4un_uuVysE"
 
 [context.deploy-preview]
 command = "pnpm run style:verify; ENV=development pnpm run build"
