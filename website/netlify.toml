@@ -205,6 +205,10 @@ path = "/api/echo"
 function = "get-calendar-link"
 path = "/api/calendar-link"
 
+[[edge_functions]]
+function = "cloud-api-auth"
+path = "/api/cloud/auth"
+
 [[plugins]]
 package = "netlify-plugin-discord"
 
