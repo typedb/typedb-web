@@ -7,24 +7,26 @@
  * of Vaticle.
  */
 
-export default async (request: Request) => {
+import type { Context } from "https://edge.netlify.com";
+
+export default async (request: Request, context: Context) => {
+    if (request.method !== "POST") return undefined;
     const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY")
     const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID")
     const auth = request.headers.get("Authorization")!.replace("Basic ", "")
     const clientID = auth.split(":")[0]
-    const clientSecret = auth.split(":"[1])
-    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
-            body: JSON.stringify({
-                email: `${clientID}@serviceaccounts.cloud.typedb.com`,
-                password: clientSecret,
-                tenantId,
-                returnSecureToken: true,
-            }),
-            headers: { "Content-Type": "application/json" },
-        }
-    ).then((res) => {
-        res.json().then((body) => {
-            return new Response(body.idToken as string)
-        })
-    })
+    const clientSecret = auth.split(":")[1]
+    return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
+        method: "POST",
+        body: JSON.stringify({
+            email: `${clientID}@serviceaccounts.cloud.typedb.com`,
+            password: clientSecret,
+            tenantId,
+            returnSecureToken: true,
+        }),
+        headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json().then((body) => {
+        if (body.idToken) return new Response(body.idToken)
+        else return new Response(null, { status: 401 })
+    }))
 };
