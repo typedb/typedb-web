@@ -20,6 +20,7 @@ ts_project(
     srcs = glob(["src/**/*"]),
     deps = [
         "//:node_modules/prismjs",
+        "//:node_modules/@sanity/types",
         "//:node_modules/@types/prismjs",
     ],
     transpiler = "tsc",
