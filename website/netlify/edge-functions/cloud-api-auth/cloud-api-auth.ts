@@ -27,6 +27,6 @@ export default async (request: Request, context: Context) => {
         headers: { "Content-Type": "application/json" },
     }).then((res) => res.json().then((body) => {
         if (body.idToken) return new Response(body.idToken);
-        else return new Response(null, { status: 401 });
+        else return body
     }));
 };
