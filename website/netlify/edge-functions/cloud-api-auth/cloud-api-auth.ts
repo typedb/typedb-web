@@ -25,7 +25,7 @@ export default async (request: Request, context: Context) => {
             returnSecureToken: true,
         }),
         headers: { "Content-Type": "application/json" },
-    })
+    });
     if (!response.ok) return response;
     const body = await response.json();
     return new Response(body.idToken);
