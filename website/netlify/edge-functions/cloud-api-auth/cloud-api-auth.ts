@@ -11,12 +11,12 @@ import type { Context } from "https://edge.netlify.com";
 
 export default async (request: Request, context: Context) => {
     if (request.method !== "POST") return undefined;
-    const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY");
-    const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID");
+    const apiKey = "AIzaSyDJHINOCzIvZpr-_CC8dtvWj4un_uuVysE"// Netlify.env.get("CLOUD_API_AUTH_API_KEY");
+    const tenantId = "platform-api-kjfbu"// Netlify.env.get("CLOUD_API_AUTH_TENANT_ID");
     const auth = request.headers.get("Authorization")!.replace("Basic ", "");
     const clientID = auth.split(":")[0];
     const clientSecret = auth.split(":")[1];
-    return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
+    const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
         method: "POST",
         body: JSON.stringify({
             email: `${clientID}@serviceaccounts.cloud.typedb.com`,
@@ -25,8 +25,8 @@ export default async (request: Request, context: Context) => {
             returnSecureToken: true,
         }),
         headers: { "Content-Type": "application/json" },
-    }).then((res) => res.json().then((body) => {
-        if (body.idToken) return new Response(body.idToken);
-        else return body
-    }));
+    })
+    if (!response.ok) return response;
+    const body = await response.json();
+    return new Response(body.idToken);
 };
