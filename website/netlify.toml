@@ -206,6 +206,14 @@ function = "get-calendar-link"
 path = "/api/calendar-link"
 
 [[edge_functions]]
+function = "cloud-api-auth-dev"
+path = "/api/cloud/auth-dev"
+
+[[edge_functions]]
+function = "cloud-api-auth-staging"
+path = "/api/cloud/auth-staging"
+
+[[edge_functions]]
 function = "cloud-api-auth"
 path = "/api/cloud/auth"
 
