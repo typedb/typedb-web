@@ -12,6 +12,7 @@ import type { Context } from "https://edge.netlify.com";
 export default async (request: Request, context: Context) => {
     if (request.method !== "POST") return undefined;
     console.log(Netlify.env.toObject());
+    console.log(context);
     const apiKey = Netlify.env.get("CLOUD_API_AUTH_API_KEY");
     const tenantId = Netlify.env.get("CLOUD_API_AUTH_TENANT_ID");
     const auth = request.headers.get("Authorization")!.replace("Basic ", "");
