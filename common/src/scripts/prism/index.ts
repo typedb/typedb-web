@@ -11,3 +11,4 @@ import "prismjs/components/prism-sql";
 import "prismjs/components/prism-typescript";
 import "./prism-bash";
 import "./prism-typeql";
+import "./prism-console";

@@ -5,6 +5,11 @@ pre[class*="language-"] {
     color: $prism-white;
 }
 
+.token.argument {
+    color: $prism-white;
+    font-style: italic;
+}
+
 .token.comment {
     color: $prism-green;
     font-style: italic;
@@ -55,8 +60,26 @@ pre[class*="language-"] {
     color: $prism-grey;
 }
 
+.token.irrelevant {
+    color: $prism-very-grey;
+}
+
 .token.annotation {
     color: $prism-orange;
+}
+
+.token.command {
+    color: $prism-yellow-orange;
+}
+
+.token.intention {
+    color: $prism-orange;
+    font-style: italic;
+}
+
+.token.console {
+    color: $prism-yellow-orange;
+    font-style: italic;
 }
 
 .token.error {
