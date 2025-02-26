@@ -79,6 +79,22 @@ Prism.languages["bash"] = {
         pattern: /(^|[^"{\\$])#.*/,
         lookbehind: true,
     },
+    // Highlight prompt character when writing code in prompt style
+    bash_prompt: {
+        pattern: /^(\$|>)\s+/,
+        alias: "irrelevant",
+    },
+    // Arguments to executables
+    parameter: {
+        pattern: /(^|\s)-{1,2}(?:\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
+        alias: "argument",
+        lookbehind: true,
+    },
+    // Code like `<label>` will be understood as special labels
+    grammar: {
+        pattern: /<[^>]+>/,
+        alias: "object_label",
+    },
     "function-name": [
         // a) function foo {
         // b) foo() {
@@ -113,12 +129,6 @@ Prism.languages["bash"] = {
                 alias: "constant",
             },
         },
-        alias: "variable",
-        lookbehind: true,
-    },
-    // Highlight parameter names as variables
-    parameter: {
-        pattern: /(^|\s)-{1,2}(?:\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
         alias: "variable",
         lookbehind: true,
     },

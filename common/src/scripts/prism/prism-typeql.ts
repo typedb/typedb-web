@@ -11,15 +11,15 @@ Prism.languages["typeql"] = {
         pattern: /(".*?")|('.*?')/,
     },
     keyword: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|redefine|match|with|fun|struct|return|reduce|get|filter|assert|insert|delete|update|put|std|median|mean|max|min|first|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|redefine|match|with|fun|struct|return|reduce|get|select|assert|insert|delete|update|put|std|median|mean|max|min|first|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     constraint: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|owns|abstract|relates|links|plays|value|isa!|isa|contains|regex|iid|is|or|try|not)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|has!|owns|relates|relates!|links|links!|plays|value|isa!|isa|contains|iid|is|or|try|not)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     annotation: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@values|@key|@unique|@card|@distinct|@independent|@cascade|@debug|@replace)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@values|@abstract|@regex|@key|@unique|@card|@distinct|@independent|@cascade|@debug|@replace)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     type: {
