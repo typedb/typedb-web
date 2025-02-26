@@ -81,7 +81,7 @@ Prism.languages["bash"] = {
     },
     // Highlight prompt character when writing code in prompt style
     bash_prompt: {
-        pattern: /(^\$|^>)\s*/,
+        pattern: /^(\$|>)\s+/,
         alias: "irrelevant",
     },
     // Arguments to executables
