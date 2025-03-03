@@ -4,11 +4,12 @@ import { SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
 export const buttonStyles = {
-    primary: "Primary",
-    secondary: "Secondary",
+    greenSolid: "Green (solid)",
+    greenHollow: "Green (hollow)",
+    water: "Water",
+    fire: "Fire",
+    frameless: "Frameless",
 } as const;
-
-export const buttonStyleList = Object.keys(buttonStyles);
 
 export type ButtonStyle = keyof typeof buttonStyles;
 
@@ -68,14 +69,13 @@ const buttonSchema = defineType({
         defineField({
             name: "style",
             title: "Style",
-            description: "Primary (solid) buttons stand out more than secondary (hollow) ones",
             type: "string",
             options: {
-                list: buttonStyleList,
+                list: Object.entries(buttonStyles).map(([value, title]) => ({ title, value })),
                 layout: "radio",
                 direction: "horizontal",
             },
-            initialValue: "primary",
+            initialValue: "greenHollow",
         }),
         ...textLinkSchema.fields,
     ],

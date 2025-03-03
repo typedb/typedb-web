@@ -89,7 +89,7 @@
     }
 }
 
-@mixin button-primary {
+@mixin button-greenHollow {
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
@@ -103,8 +103,16 @@
     }
 }
 
-@mixin button-secondary {
-    border-color: var(--color-darker-white);
+@mixin button-water {
+    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+}
+
+@mixin button-fire {
+    @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+}
+
+@mixin button-frameless {
+    border-color: transparent;
     background: transparent;
     color: var(--body-font-color);
 

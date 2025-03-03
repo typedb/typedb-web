@@ -238,7 +238,7 @@ button, td-button {
 ::file-selector-button {
     border-radius: 4px;
     font-family: inherit;
-    @include button-primary;
+    @include button-greenHollow;
 }
 
 [hidden] {
@@ -291,14 +291,24 @@ button, td-button {
     @include card-padding;
 }
 
-.button-primary {
+.button-greenHollow {
     @include button;
-    @include button-primary;
+    @include button-greenHollow;
 }
 
-.button-secondary {
+.button-water {
     @include button;
-    @include button-secondary;
+    @include button-water;
+}
+
+.button-fire {
+    @include button;
+    @include button-fire;
+}
+
+.button-frameless {
+    @include button;
+    @include button-frameless;
 }
 
 td-form-actions, .td-form-actions {

@@ -199,7 +199,7 @@ export class NavPanelCta {
             linkButton: new LinkButton({
                 text: data.link.text,
                 link: Link.fromSanityLinkRef(data.link.link, db),
-                style: "secondary",
+                style: "greenHollow",
                 comingSoon: data.link.comingSoon,
             }),
         });

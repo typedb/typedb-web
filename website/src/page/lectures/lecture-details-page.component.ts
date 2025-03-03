@@ -73,7 +73,7 @@ export class LectureDetailsPageComponent implements OnInit {
             shareReplay(1),
         );
         const subscribeButton = new LinkButton({
-            style: "secondary",
+            style: "greenHollow",
             text: "Subscribe to lectures",
             link: Link.fromAddress("?dialog=newsletter"),
             comingSoon: false,
@@ -84,7 +84,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new ActionButton({
-                            style: "primary",
+                            style: "greenHollow",
                             text: "Add to calendar",
                             onClick: () => {
                                 this.dialog.open<AddToCalendarDialogComponent, { event: EventBase }>(
@@ -99,7 +99,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new LinkButton({
-                            style: "primary",
+                            style: "greenHollow",
                             text: "Download slides",
                             link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
                                 opensNewTab: false,

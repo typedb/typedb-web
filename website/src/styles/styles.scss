@@ -214,7 +214,7 @@ table {
 
     .cc-btn {
         @include button;
-        @include button-primary;
+        @include button-greenHollow;
 
         &.cc-btn {
             height: auto;

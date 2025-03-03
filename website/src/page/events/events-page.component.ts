@@ -51,7 +51,7 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
     }
 
     getEventListImageUrl(event: LiveEvent) {
-        return this.imageBuilder.image(event.imageURL).width(731).url();
+        return event.imageURL ? this.imageBuilder.image(event.imageURL).width(731).url() : undefined;
     }
 
     eventDetailsButtonId(event: LiveEvent): string {

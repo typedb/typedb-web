@@ -88,11 +88,6 @@
     &:hover h3 {
         text-decoration: none;
     }
-
-    &:hover ::ng-deep .button-secondary {
-        background: var(--color-green);
-        color: var(--color-purple);
-    }
 }
 
 td-button {
@@ -108,7 +103,7 @@ td-button {
     flex-grow: 1;
     gap: 20px;
 
-    .button-secondary {
+    .button-frameless {
         margin-top: 8px;
         width: unset;
     }
