@@ -3,20 +3,25 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
+
+
 import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of } from "rxjs";
-import {
-    HomePage, homePageSchemaName, Organisation, SanityDataset, SanityHomePage, SocialMediaLink,
-} from "typedb-web-schema";
+import { HomePage, homePageSchemaName, Organisation, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
 import { TechnicolorBlock } from "typedb-web-schema";
+
+
 
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
+
+
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
+import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
 import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
@@ -24,6 +29,7 @@ import { SocialMediaPanelsComponent } from "../../framework/social-media/social-
 import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
 import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
 import { PageComponentBase } from "../page-component-base";
+
 
 @Component({
     selector: "td-home-page-technicolor-block",
@@ -71,9 +77,18 @@ export class HomePageTechnicolorBlockComponent {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
-        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe
+        PageBackgroundComponent,
+        HomePageTechnicolorBlockComponent,
+        ContentTabsComponent,
+        ResourcePanelsComponent,
+        LinkPanelsComponent,
+        FeatureGridComponent,
+        KeyPointTableComponent,
+        SocialMediaPanelsComponent,
+        TestimonialsCarouselComponent,
+        ConclusionPanelComponent,
+        AsyncPipe,
+        HotTopicsComponent,
     ],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

@@ -21,6 +21,7 @@ export interface SanitySiteResource extends SanityDocument {
     description: PortableText;
     shortTitle: string;
     shortDescription: string;
+    image?: SanityImage;
     furtherLearning?: SanityResourceSection;
 }
 
@@ -30,6 +31,7 @@ export interface SanityGenericResource extends SanityDocument {
     description: string;
     link: SanityReference<SanityLink>;
     linkText: string;
+    image?: SanityImage;
 }
 
 export interface SanityArticle extends SanitySiteResource {
@@ -50,7 +52,6 @@ export interface SanityBlogPost extends SanityArticle {
     author: SanityReference<SanityPerson>;
     date: string;
     categories: BlogCategoryID[];
-    image?: SanityImage;
 }
 
 export type BlogPostLevel = "primary" | "secondary" | "tertiary";

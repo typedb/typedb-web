@@ -6,12 +6,14 @@ import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection }
 import { TechnicolorBlock } from "../component/technicolor-block";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
+    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField, titleField,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { SanityResourceSection } from "../resource/sanity";
+import { resourceLinkOf } from "../resource";
+import { ResourceLink } from "../resource/base";
+import { SanityResource, SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
@@ -23,6 +25,7 @@ import { metaTagsField } from "./meta-tags";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
+    hotTopics: { id: "hotTopicsSection", title: "Hot Topics" },
     impact: { id: "impactSection", title: "Impact" },
     resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
@@ -37,6 +40,7 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
+    [sections.hotTopics.id]: SanityHotTopicsSection;
     impactSections: SanityImpactSection[];
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
@@ -51,6 +55,10 @@ interface SanityIntroSection extends SanityCoreSection {
     userLogos: SanityReference<SanityOrganisation>[];
     displayUserLogos: boolean;
     contentTabs: SanityContentTextTab[];
+}
+
+interface SanityHotTopicsSection extends SanityCoreSection {
+    hotTopics: SanityReference<SanityResource>[];
 }
 
 interface SanityImpactSection extends SanityCoreSection {
@@ -73,6 +81,7 @@ interface SanityTestimonialsSection extends SanityCoreSection {
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
+    readonly [sections.hotTopics.id]?: HotTopicsSection;
     readonly impactSections: ImpactSection[];
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
@@ -85,6 +94,7 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
+        this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
         this.impactSections = data.impactSections
             .filter((x) => x.isVisible)
             .map((x) => ImpactSection.fromSanity(x, db));
@@ -129,6 +139,21 @@ class IntroSection extends TechnicolorBlock {
                 contentTabs: data.contentTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
+    }
+}
+
+class HotTopicsSection extends TechnicolorBlock {
+    readonly hotTopics: ResourceLink[];
+
+    constructor(props: PropsOf<HotTopicsSection>) {
+        super(props);
+        this.hotTopics = props.hotTopics;
+    }
+
+    static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
+        return new HotTopicsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, true)) || [],
+        }));
     }
 }
 
@@ -254,6 +279,11 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
+    sectionSchema("hotTopics", [
+        titleFieldWithHighlights,
+        Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
+        isVisibleField,
+    ]),
     sectionSchema("impact", [
         ...titleBodyIconFields,
         actionsFieldOptional,
@@ -313,6 +343,13 @@ const introSectionField = defineField({
     options: collapsibleOptions,
 });
 
+const hotTopicsSectionField = defineField({
+    name: sections.hotTopics.id,
+    title: `${sections.hotTopics.title} Section`,
+    type: sectionSchemaName("hotTopics"),
+    options: collapsibleOptions,
+});
+
 const impactSectionsField = defineField({
     name: "impactSections",
     title: "Impact Sections",
@@ -321,7 +358,7 @@ const impactSectionsField = defineField({
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "resources"].includes(key))
+    .filter((key) => !["intro", "impact", "hotTopics", "resources"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -338,6 +375,7 @@ const homePageSchema = defineType({
     fields: [
         metaTagsField,
         introSectionField,
+        hotTopicsSectionField,
         impactSectionsField,
         defineField({
             name: "resourcesSection",

@@ -1,0 +1,21 @@
+<td-heading-with-highlights level="h2" [value]="title"/>
+<td-scroll-shadow>
+  <div class="td-cards">
+    @for (hotTopic of hotTopics; track hotTopic) {
+      <a class="td-card" [tdLink]="hotTopic.link">
+        @if (hotTopic.imageURL) {
+          <img class="td-hero" [src]="hotTopic.imageURL" alt="">
+        }
+        @if (!hotTopic.link) {
+          <aside class="lp-coming-soon">coming soon</aside>
+        }
+        <div class="td-card-body card-padding">
+          <h3>{{ hotTopic.title }}</h3>
+          <td-rich-text [value]="hotTopic.description" class="flex" />
+          <div class="flex"></div>
+          <p class="link-tertiary">{{ hotTopic.linkText }}</p>
+        </div>
+      </a>
+    }
+  </div>
+</td-scroll-shadow>

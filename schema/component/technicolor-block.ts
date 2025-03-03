@@ -9,14 +9,12 @@ export interface SanityTechnicolorBlock extends SanityTitleBodyActions, SanityIc
 export class TechnicolorBlock implements Partial<BodyTextField> {
     readonly title: ParagraphWithHighlights;
     readonly body?: PortableText;
-    readonly iconURL: string;
     readonly actions?: LinkButton[];
     readonly sectionId: string;
 
     constructor(props: PropsOf<TechnicolorBlock>) {
         this.title = props.title;
         this.body = props.body;
-        this.iconURL = props.iconURL;
         this.actions = props.actions;
         this.sectionId = props.sectionId;
     }
@@ -27,7 +25,6 @@ export class TechnicolorBlock implements Partial<BodyTextField> {
             title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: db.resolveImageRef(data.icon).url,
             sectionId: title.toSectionID(),
         });
     }

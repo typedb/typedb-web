@@ -145,7 +145,6 @@ class KeyPointsSection extends TechnicolorBlock {
             title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: iconURL,
             keyPoints: data.keyPoints.map((x) => new KeyPoint(x)),
             sectionId: title.toSectionID(),
         });
@@ -171,7 +170,6 @@ class SolutionSection extends TechnicolorBlock {
             }),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            iconURL: "https://cdn.sanity.io/images/xndl14mc/production/19628ad84b647bdbc783df17ce2ea89c8fd507a3-98x108.svg",
             keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
             sectionId: "typedb-solution",
         });

@@ -8,6 +8,9 @@
           />
         <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
       }
+      @if (page.hotTopicsSection) {
+        <td-hot-topics [title]="page.hotTopicsSection.title" [hotTopics]="page.hotTopicsSection.hotTopics"/>
+      }
       @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
         <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
         <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
