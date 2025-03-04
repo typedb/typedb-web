@@ -15,14 +15,14 @@ import { referenceMaterialSchema } from "./reference-material";
 import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
 import { surveySchemas } from "./survey";
-import { testimonialSchema } from "./testimonial";
+import { testimonialSchemas } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes: any[] = [
     ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
     ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
     ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
-    ...surveySchemas, ...textSchemas, testimonialSchema,
+    ...surveySchemas, ...textSchemas, ...testimonialSchemas,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";

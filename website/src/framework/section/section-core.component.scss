@@ -1,200 +1,27 @@
-@use "../../../node_modules/typedb-web-common/src/styles/colors";
-@use "../../../node_modules/typedb-web-common/src/styles/media";
-
-@mixin graphic-line-gradient($base-color) {
-    background: linear-gradient(
-        transparent 0%,
-        rgba($base-color, 0.1) 7%,
-        $base-color 20%,
-        $base-color 80%,
-        rgba($base-color, 0.1) 93%,
-        transparent 100%
-    );
-}
+@use "colors";
+@use "media";
 
 :host {
-    --icon-size: 72px;
-    --halo-size: 104px;
     --graphic-area-width: 120px;
     display: block;
     position: relative;
+    margin-top: 144px;
 
     @media (max-width: media.$max-width-mobile) {
-        --icon-size: 36px;
-        --halo-size: 52px;
         --graphic-area-width: 52px;
-    }
-
-    &.tb-no-upper {
-        margin-top: 120px;
-
-        @media (max-width: media.$max-width-mobile) {
-            margin-top: 64px;
-        }
-    }
-
-    &:not(.tb-no-upper) .tb-main {
-        padding-top: 144px;
-
-        @media (max-width: media.$max-width-mobile) {
-            padding-top: 64px;
-        }
-    }
-
-    &.tb-green {
-        .tb-icon-area {
-            color: var(--color-green);
-        }
-        .tb-background {
-            @include graphic-line-gradient(colors.$green);
-        }
-    }
-
-    &.tb-pink {
-        .tb-icon-area {
-            color: var(--color-secondary-pink);
-        }
-        .tb-background {
-            @include graphic-line-gradient(colors.$secondary-pink);
-        }
-    }
-
-    &.tb-yellow {
-        .tb-icon-area {
-            color: var(--color-secondary-yellow);
-        }
-        .tb-background {
-            @include graphic-line-gradient(colors.$secondary-yellow);
-        }
-    }
-
-    &.tb-no-upper .tb-background {
-        top: 35px;
-    }
-
-    &.tb-long-upper .tb-background {
-        top: -100px;
+        margin-top: 64px;
+        padding-bottom: 32px;
+        grid-template-columns: var(--graphic-area-width) auto;
     }
 }
 
-.tb-background {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(var(--icon-size) / 2 - 1px);
-    width: 3px;
-    z-index: -1;
-
-    @media (max-width: media.$max-width-mobile) {
-        width: 2px;
-    }
-}
-
-.tb-main {
+.td-root {
     max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 80px;
 
     @media (max-width: media.$max-width-tablet) {
         padding-bottom: 72px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        padding-bottom: 32px;
-        grid-template-columns: var(--graphic-area-width) auto;
-    }
-}
-
-.tb-icon-area {
-    position: relative;
-
-    .tb-icon-bg-paper,
-    .tb-icon-bg-halo,
-    .tb-icon {
-        top: 0;
-        bottom: 0;
-        margin: auto 0;
-    }
-
-    .tb-icon-bg-paper {
-        position: absolute;
-        width: var(--halo-size);
-        height: var(--halo-size);
-        margin-left: -16px;
-        border-radius: var(--border-radius);
-        filter: blur(8px);
-        background: var(--color-black-purple);
-    }
-
-    .tb-icon-bg-halo {
-        display: block;
-        color: unset;
-        position: absolute;
-        width: var(--halo-size);
-        height: var(--halo-size);
-        margin-left: -16px;
-        border-radius: 50%;
-        filter: blur(15px);
-        transform: translate3d(0, 0, 0); /* patch for Safari ignoring border-radius on hover */
-        opacity: 0.15;
-        background: currentColor;
-        z-index: 4;
-        transition: opacity 200ms ease;
-
-        &:hover {
-            opacity: 0.3;
-        }
-    }
-
-    .tb-icon {
-        position: absolute;
-        width: var(--icon-size);
-        height: var(--icon-size);
-        z-index: 3;
-    }
-}
-
-.tb-graphic-dot {
-    display: none !important; // temporary patch to hide dot pending QA review
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    background: currentColor;
-    border-radius: 50%;
-    top: 0;
-    opacity: 0;
-    left: -3px;
-    pointer-events: none;
-
-    @media (max-width: media.$max-width-mobile) {
-        left: -2px;
-        width: 6px;
-        height: 6px;
-    }
-
-    .tb-graphic-dot-blur {
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        width: 25px;
-        height: 25px;
-        background: currentColor;
-        border-radius: 50%;
-        filter: blur(15px);
-
-        @media (max-width: media.$max-width-tablet) {
-            top: -7px;
-            left: -7px;
-            width: 23px;
-            height: 23px;
-        }
-
-        @media (max-width: media.$max-width-mobile) {
-            top: -5px;
-            left: -5px;
-            width: 16px;
-            height: 16px;
-        }
     }
 }
 

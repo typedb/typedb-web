@@ -223,6 +223,14 @@ export const keyPointsWithIconsField = (count?: number) =>
         validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
     });
 
+export const keywordFieldName = "keyword";
+
+export const keywordFieldOptional = defineField({
+    name: keywordFieldName,
+    title: "Keyword (optional)",
+    type: "string",
+});
+
 export interface SanityVisibleToggle {
     isVisible: boolean;
 }

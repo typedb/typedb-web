@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import {
-    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField,
+    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
@@ -9,7 +9,9 @@ import { PropsOf } from "../util";
 import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "./link-panel";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 
-export interface SanitySectionBase extends SanityTitleBodyActions, SanityIconField {}
+export interface SanitySectionBase extends SanityTitleBodyActions, SanityIconField {
+    keyword?: string;
+}
 
 export interface SanityCoreSection extends SanitySectionBase, SanityVisibleToggle {}
 
@@ -26,12 +28,14 @@ export class SectionBase implements Partial<BodyTextField> {
     readonly body?: PortableText;
     readonly actions?: LinkButton[];
     readonly sectionId: string;
+    readonly keyword?: string;
 
     constructor(props: PropsOf<SectionBase>) {
         this.title = props.title;
         this.body = props.body;
         this.actions = props.actions;
         this.sectionId = props.sectionId;
+        this.keyword = props.keyword;
     }
 
     static fromSanity(data: SanitySectionBase, db: SanityDataset) {
@@ -41,6 +45,7 @@ export class SectionBase implements Partial<BodyTextField> {
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             sectionId: title.toSectionID(),
+            keyword: data.keyword,
         });
     }
 }
@@ -83,7 +88,7 @@ const coreSectionSchema = defineType({
     name: coreSectionSchemaName,
     title: "Section",
     type: "document",
-    fields: [...titleBodyIconFields, isVisibleField],
+    fields: [...titleBodyIconFields, keywordFieldOptional, isVisibleField],
 });
 
 export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
@@ -110,7 +115,7 @@ const resourceSectionSchema = defineType({
     name: resourceSectionSchemaName,
     title: "Resources Section",
     type: "object",
-    fields: [...titleBodyIconFields, actionsFieldOptional, resourcesFieldOptional, isVisibleField],
+    fields: [...titleBodyIconFields, actionsFieldOptional, keywordFieldOptional, resourcesFieldOptional, isVisibleField],
 });
 
 export const linkPanelsSectionSchemaName = `linkPanelsSection`;
@@ -122,6 +127,7 @@ const linkPanelsSectionSchema = defineType({
     fields: [
         ...titleBodyIconFields,
         actionsFieldOptional,
+        keywordFieldOptional,
         defineField({
             name: "panels",
             title: "Panels",

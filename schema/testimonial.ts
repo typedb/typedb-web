@@ -46,7 +46,7 @@ export class TestimonialsSection extends SectionBase {
 export const testimonialSchemaName = "testimonial";
 export const testimonialsSectionSchemaName = "testimonialsSection";
 
-export const testimonialSchema = defineType({
+const testimonialSchema = defineType({
     name: testimonialSchemaName,
     title: "Testimonial",
     type: "document",
@@ -92,3 +92,5 @@ const testimonialsSectionSchema = defineType({
         isVisibleField,
     ],
 });
+
+export const testimonialSchemas = [testimonialSchema, testimonialsSectionSchema];
