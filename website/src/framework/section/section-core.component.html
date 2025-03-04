@@ -1,4 +1,5 @@
 <div class="td-root">
+  @if (section.keyword) {<p class="td-keyword">{{ section.keyword }}</p>}
   <td-heading-with-highlights [value]="section.title" [id]="section.sectionId" [themeColorHex]="themeColorHex" [level]="level"/>
   @if (section.body && !noBody) {
     <td-rich-text [value]="section.body" class="text-p1" />

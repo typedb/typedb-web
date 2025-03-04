@@ -8,6 +8,10 @@
       @if (page.hotTopicsSection) {
         <td-hot-topics [title]="page.hotTopicsSection.title" [hotTopics]="page.hotTopicsSection.hotTopics"/>
       }
+      @if (page.featureFusionSection) {
+        <td-section-core [section]="page.featureFusionSection"/>
+        <td-feature-fusion [features]="page.featureFusionSection.keyPoints"/>
+      }
       @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
         <td-section-core [section]="impactSection"/>
         <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />

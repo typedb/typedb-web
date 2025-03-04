@@ -10,7 +10,7 @@ import {
     titleAndBodyFields, titleField, videoEmbedField,
 } from "../common-fields";
 import { LinkPanel, SanityLinkPanel } from "../component/link-panel";
-import { KeyPoint, KeyPointWithIcon, SanityKeyPoint, SanityKeyPointWithIcon } from "../key-point";
+import { KeyPointsSection, KeyPointWithIcon, SanityKeyPointsSection, SanityKeyPointWithIcon } from "../key-point";
 import { SanityResourceSection } from "../resource/sanity";
 import { furtherLearningField, ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -48,10 +48,6 @@ interface SanityIntroSection extends SanityTitleWithHighlights, SanityBodyTextFi
     links: SanityLinkPanel[];
 }
 
-interface SanityKeyPointsSection extends SanityCoreSection {
-    keyPoints: SanityKeyPoint[];
-}
-
 interface SanitySolutionSection extends SanityKeyPointsSection {
     keyPoints: SanityKeyPointWithIcon[];
 }
@@ -80,20 +76,10 @@ export class SolutionPage extends Page {
             ? IntroSection.fromSanityIntroSection(data.introSection, db)
             : undefined;
         if (data.useCasesSection.isVisible) {
-            this.useCasesSection = KeyPointsSection.fromSanityKeyPointsSection({
-                data: data.useCasesSection,
-                db: db,
-                title: new ParagraphWithHighlights({ spans: [{ text: "Requirements", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/production/ddb3754b63563cba578a2d5aa4c2de94468ef650-66x98.svg",
-            });
+            this.useCasesSection = KeyPointsSection.fromSanityKeyPointsSection(data.useCasesSection, db);
         }
         if (data.challengesSection.isVisible) {
-            this.challengesSection = KeyPointsSection.fromSanityKeyPointsSection({
-                data: data.challengesSection,
-                db: db,
-                title: new ParagraphWithHighlights({ spans: [{ text: "Challenges", highlight: true }] }),
-                iconURL: "https://cdn.sanity.io/images/xndl14mc/production/76cadf76e36fef7eac8a9b700a088a2e1ed10f1c-98x98.svg",
-            });
+            this.challengesSection = KeyPointsSection.fromSanityKeyPointsSection(data.challengesSection, db);
         }
         this.solutionSection = data.solutionSection.isVisible
             ? SolutionSection.fromSanitySolutionSection({ data: data.solutionSection, db: db })
@@ -123,31 +109,6 @@ class IntroSection extends TitleAndBody {
                 links: data.links.map((x) => LinkPanel.fromSanity(x, db)),
             })
         );
-    }
-}
-
-class KeyPointsSection extends SectionBase {
-    readonly keyPoints: KeyPoint[];
-
-    constructor(props: PropsOf<KeyPointsSection>) {
-        super(props);
-        this.keyPoints = props.keyPoints;
-    }
-
-    static fromSanityKeyPointsSection(props: {
-        data: SanityKeyPointsSection;
-        db: SanityDataset;
-        title: ParagraphWithHighlights;
-        iconURL: string;
-    }) {
-        const { data, db, title, iconURL } = props;
-        return new KeyPointsSection({
-            title: title,
-            body: data.body,
-            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            keyPoints: data.keyPoints.map((x) => new KeyPoint(x)),
-            sectionId: title.toSectionID(),
-        });
     }
 }
 

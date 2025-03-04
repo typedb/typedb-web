@@ -5,10 +5,10 @@ import { LinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/lin
 import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
+    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField, keywordFieldOptional, keyPointsField,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
-import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
+import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { ResourceLink } from "../resource/base";
 import { SanityResource, SanityResourceSection } from "../resource/sanity";
@@ -23,6 +23,7 @@ import { metaTagsField } from "./meta-tags";
 const sections = {
     intro: { id: "introSection", title: "Intro" },
     hotTopics: { id: "hotTopicsSection", title: "Hot Topics" },
+    featureFusion: { id: "featureFusionSection", title: "Feature Fusion" },
     impact: { id: "impactSection", title: "Impact" },
     resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
@@ -38,11 +39,12 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
+    [sections.featureFusion.id]: SanityKeyPointsSection;
     impactSections: SanityImpactSection[];
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
-    [sections.cloud.id]: SanityKeyPointsSection;
+    [sections.cloud.id]: SanityKeyPointsWithIconsSection;
     [sections.community.id]: SanityCommunitySection;
     [sections.testimonials.id]: SanityTestimonialsSection;
     conclusionSection: SanityConclusionSection;
@@ -64,10 +66,6 @@ interface SanityImpactSection extends SanityCoreSection {
 
 type SanityDriversSection = SanityFeatureGridSection;
 
-interface SanityKeyPointsSection extends SanityCoreSection {
-    keyPoints: SanityKeyPointWithIcon[];
-}
-
 interface SanityCommunitySection extends SanityCoreSection {
     socialMediaLinks: SocialMediaID[];
 }
@@ -75,11 +73,12 @@ interface SanityCommunitySection extends SanityCoreSection {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
+    readonly [sections.featureFusion.id]?: KeyPointsSection;
     readonly impactSections: ImpactSection[];
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: FeatureGridSection;
-    readonly [sections.cloud.id]?: CloudSection;
+    readonly [sections.cloud.id]?: KeyPointsWithIconsSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly conclusionSection?: ConclusionSection;
@@ -88,6 +87,9 @@ export class HomePage extends Page {
         super(data, db);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
         this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
+        this.featureFusionSection = data.featureFusionSection.isVisible
+            ? KeyPointsSection.fromSanityKeyPointsSection(data.featureFusionSection, db)
+            : undefined;
         this.impactSections = data.impactSections
             .filter((x) => x.isVisible)
             .map((x) => ImpactSection.fromSanity(x, db));
@@ -100,7 +102,7 @@ export class HomePage extends Page {
         this.driversSection = data.driversSection.isVisible
             ? FeatureGridSection.fromSanity(data.driversSection, db)
             : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? CloudSection.fromSanity(data.cloudSection, db) : undefined;
+        this.cloudSection = data.cloudSection.isVisible ? KeyPointsWithIconsSection.fromSanity(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible
             ? CommunitySection.fromSanity(data.communitySection, db)
             : undefined;
@@ -184,23 +186,6 @@ class ToolingSection extends SectionBase {
     }
 }
 
-class CloudSection extends SectionBase {
-    readonly keyPoints: KeyPointWithIcon[];
-
-    constructor(props: PropsOf<CloudSection>) {
-        super(props);
-        this.keyPoints = props.keyPoints;
-    }
-
-    static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
-        return new CloudSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
-                keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
-            })
-        );
-    }
-}
-
 class CommunitySection extends SectionBase {
     readonly socialMedias: SocialMediaID[];
 
@@ -260,9 +245,17 @@ const sectionSchemas = [
         Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
         isVisibleField,
     ]),
+    sectionSchema("featureFusion", [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        keywordFieldOptional,
+        keyPointsField(3),
+        isVisibleField,
+    ]),
     sectionSchema("impact", [
         ...titleBodyIconFields,
         actionsFieldOptional,
+        keywordFieldOptional,
         defineField({
             name: "impactTabs",
             title: "Impact Tabs",
@@ -326,6 +319,13 @@ const hotTopicsSectionField = defineField({
     options: collapsibleOptions,
 });
 
+const featureFusionSectionField = defineField({
+    name: sections.featureFusion.id,
+    title: `${sections.featureFusion.title} Section`,
+    type: sectionSchemaName("featureFusion"),
+    options: collapsibleOptions,
+})
+
 const impactSectionsField = defineField({
     name: "impactSections",
     title: "Impact Sections",
@@ -334,7 +334,7 @@ const impactSectionsField = defineField({
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "hotTopics", "resources", "testimonials"].includes(key))
+    .filter((key) => !["intro", "impact", "hotTopics", "featureFusion", "resources", "testimonials"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -352,6 +352,7 @@ const homePageSchema = defineType({
         metaTagsField,
         introSectionField,
         hotTopicsSectionField,
+        featureFusionSectionField,
         impactSectionsField,
         defineField({
             name: "resourcesSection",

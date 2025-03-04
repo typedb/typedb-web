@@ -25,6 +25,14 @@
     }
 }
 
+.td-keyword {
+    color: var(--color-secondary-pink);
+    font-family: var(--code-font-family);
+    font-weight: var(--font-weight-regular);
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+}
+
 td-heading-with-highlights {
     display: block;
     margin: 24px 0;
