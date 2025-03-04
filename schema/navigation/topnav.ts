@@ -1,6 +1,6 @@
 import { BlockElementIcon, ComponentIcon, SquareIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { LinkButton, buttonSchemaName, SanityButton } from "../button";
+import { LinkButton, buttonSchemaName, SanityLinkButton } from "../button";
 import { Link, SanityLink, SanityTextLink } from "../link";
 import { descriptionField, linkFieldOptional, requiredRule, textLinkFieldOptional, titleField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
@@ -22,7 +22,7 @@ export const topnavSchemaNames = {
 export interface SanityTopnav extends SanityDocument {
     primaryItems: SanityNavItem[];
     secondaryItems: SanityNavItem[];
-    cta: SanityButton;
+    cta: SanityLinkButton;
 }
 
 interface SanityNavItem {

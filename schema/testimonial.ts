@@ -1,12 +1,18 @@
 import { BookIcon, HeartIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { authorField } from "./common-fields";
+import { actionsFieldOptional, authorField, collapsibleOptions, isVisibleField, SanityVisibleToggle, titleBodyIconFields } from "./common-fields";
+import { SanityCoreSection, SectionBase } from "./component/section";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
+import { PropsOf } from "./util";
 
 export interface SanityTestimonial extends SanityDocument {
     author: SanityReference<SanityPerson>;
     body: string;
+}
+
+export interface SanityTestimonialsSection extends SanityCoreSection, SanityVisibleToggle {
+    testimonials: SanityReference<SanityTestimonial>[];
 }
 
 export class Testimonial extends Document {
@@ -20,7 +26,25 @@ export class Testimonial extends Document {
     }
 }
 
+export class TestimonialsSection extends SectionBase {
+    readonly testimonials: Testimonial[];
+
+    constructor(props: PropsOf<TestimonialsSection>) {
+        super(props);
+        this.testimonials = props.testimonials;
+    }
+
+    static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
+        return new TestimonialsSection(
+            Object.assign(SectionBase.fromSanity(data, db), {
+                testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
+            })
+        );
+    }
+}
+
 export const testimonialSchemaName = "testimonial";
+export const testimonialsSectionSchemaName = "testimonialsSection";
 
 export const testimonialSchema = defineType({
     name: testimonialSchemaName,
@@ -43,4 +67,28 @@ export const testimonialSchema = defineType({
             media: selection.authorHeadshot,
         }),
     },
+});
+
+export const testimonialsSectionField = defineField({
+    name: testimonialsSectionSchemaName,
+    title: `Testimonials Section`,
+    type: testimonialsSectionSchemaName,
+    options: collapsibleOptions,
+});
+
+const testimonialsSectionSchema = defineType({
+    name: testimonialsSectionSchemaName,
+    title: `Testimonials Section`,
+    type: "object",
+    fields: [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        defineField({
+            name: "testimonials",
+            title: "Testimonials",
+            type: "array",
+            of: [{ type: "reference", to: [{ type: testimonialSchemaName }] }],
+        }),
+        isVisibleField,
+    ],
 });

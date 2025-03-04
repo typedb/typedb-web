@@ -3,8 +3,7 @@
 @use "mixins" as *;
 @use "shapes";
 
-html,
-body {
+html, body {
     color-scheme: dark;
     background-color: var(--body-background);
     color: var(--body-font-color);
@@ -19,20 +18,16 @@ body {
     scroll-padding-top: var(--scroll-padding);
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-code,
-kbd,
-pre {
+code, kbd, pre {
     font-family: var(--code-font-family);
 }
 
 @each $tag in (h1, h2, h3, h4, h5, h6) {
-    #{$tag} {
+    #{$tag}, .text-#{$tag} {
         font-size: var(--font-size-#{$tag});
         line-height: var(--line-height-#{$tag});
     }
@@ -42,20 +37,17 @@ pre {
     }
 }
 
-.text-p1,
-.text-p1 p {
+.text-p1, .text-p1 p {
     font-size: var(--font-size-p1);
     line-height: var(--line-height-p1);
 }
 
-p,
-.text-p2 {
+p, .text-p2 {
     font-size: var(--font-size-p2);
     line-height: var(--line-height-p2);
 }
 
-.text-blog,
-.text-blog p {
+.text-blog, .text-blog p {
     font-size: var(--font-size-blog);
     line-height: var(--line-height-blog);
 }
@@ -89,9 +81,7 @@ button {
     font-family: var(--default-font-family);
 }
 
-input,
-select,
-textarea {
+input, select, textarea {
     font-family: var(--default-font-family);
     &::placeholder {
         color: rgba(colors.$secondary-light-grey, 0.8);

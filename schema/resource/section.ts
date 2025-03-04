@@ -1,14 +1,14 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import { bodyFieldRichText, isVisibleField, requiredRule, resourcesField } from "../common-fields";
-import { TechnicolorBlock } from "../component/technicolor-block";
+import { SectionBase } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights } from "../text";
 import { PropsOf } from "../util";
 import { ResourceLink } from "./base";
 import { SanityResourceSection } from "./sanity";
 
-export class ResourceSection extends TechnicolorBlock {
+export class ResourceSection extends SectionBase {
     readonly resources: ResourceLink[];
 
     constructor(props: PropsOf<ResourceSection>) {
@@ -17,7 +17,7 @@ export class ResourceSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityResourceSection, db: SanityDataset): ResourceSection {
-        return new ResourceSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+        return new ResourceSection(Object.assign(SectionBase.fromSanity(data, db), {
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, true)) || [],
         }));
     }

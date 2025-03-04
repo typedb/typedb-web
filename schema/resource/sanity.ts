@@ -1,7 +1,7 @@
 import { SanityDocument, Slug } from "@sanity/types";
-import { SanityButton } from "../button";
+import { SanityLinkButton } from "../button";
 import { SanityVisibleToggle } from "../common-fields";
-import { SanityTechnicolorBlock } from "../component/technicolor-block";
+import { SanitySectionBase } from "../component/section";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -100,10 +100,10 @@ export interface SanityLiveEvent extends SanityEventBase {
     venue: string;
     dateOptions: SanityEventDate;
     signupMethod: EventSignupMethod;
-    externalUrlButton?: SanityButton;
+    externalUrlButton?: SanityLinkButton;
 }
 
-export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityResourceSection extends SanitySectionBase, SanityVisibleToggle {
     resources?: SanityReference<SanityResource>[];
 }
 

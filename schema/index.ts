@@ -44,12 +44,12 @@ export {
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
-export { TitleBodyPanelSection } from "./component/page-section";
+export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { TechnicolorBlock } from "./component/technicolor-block";
+export { SectionBase } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,

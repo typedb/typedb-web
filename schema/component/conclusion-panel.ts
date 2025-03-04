@@ -2,25 +2,20 @@ import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import {
-    bodyFieldRichText,
-    isVisibleField,
-    actionsFieldOptional,
-    requiredRule,
-    SanityVisibleToggle,
-    titleBodyIconFields,
-    titleField,
+    bodyFieldRichText, isVisibleField, actionsFieldOptional, requiredRule, SanityVisibleToggle,
+    titleBodyIconFields, titleField,
 } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
+import { SanitySectionBase, SectionBase } from "./section";
 
 export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextField, SanityOptionalActions {
     resourceListTitle: string;
     resources: SanityTextLink[];
 }
 
-export interface SanityConclusionSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityConclusionSection extends SanitySectionBase, SanityVisibleToggle {
     panel: SanityConclusionPanel;
 }
 
@@ -50,7 +45,7 @@ export class ConclusionPanel implements Partial<BodyTextField> {
     }
 }
 
-export class ConclusionSection extends TechnicolorBlock {
+export class ConclusionSection extends SectionBase {
     readonly panel: ConclusionPanel;
 
     constructor(props: PropsOf<ConclusionSection>) {
@@ -60,7 +55,7 @@ export class ConclusionSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityConclusionSection, db: SanityDataset) {
         return new ConclusionSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 panel: ConclusionPanel.fromSanity(data.panel, db),
             })
         );

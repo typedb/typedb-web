@@ -8,9 +8,9 @@ import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "./technicolor-block";
+import { SanitySectionBase, SectionBase } from "./section";
 
-export interface SanityFeatureGridSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityFeatureGridSection extends SanitySectionBase, SanityVisibleToggle {
     featureGrid: SanityReference<SanityFeatureGrid>;
 }
 
@@ -102,7 +102,7 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
     }
 }
 
-export class FeatureGridSection extends TechnicolorBlock {
+export class FeatureGridSection extends SectionBase {
     readonly featureGridLayout: FeatureGridLayout;
     readonly features: FeatureGridCell[][];
     readonly illustration?: Illustration;
@@ -123,7 +123,7 @@ export class FeatureGridSection extends TechnicolorBlock {
             featureCells.push(chunk);
         }
         return new FeatureGridSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 featureGridLayout: featureGrid.featureGridLayout,
                 features: featureCells,
                 illustration: featureGrid.illustration

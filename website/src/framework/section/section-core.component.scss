@@ -1,5 +1,5 @@
-@use "colors";
-@use "media";
+@use "../../../node_modules/typedb-web-common/src/styles/colors";
+@use "../../../node_modules/typedb-web-common/src/styles/media";
 
 @mixin graphic-line-gradient($base-color) {
     background: linear-gradient(

@@ -2,24 +2,21 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
 import { LinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
-import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection } from "../component/page-section";
-import { TechnicolorBlock } from "../component/technicolor-block";
+import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField, titleField,
+    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
 import { KeyPointWithIcon, SanityKeyPointWithIcon } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { resourceLinkOf } from "../resource";
 import { ResourceLink } from "../resource/base";
 import { SanityResource, SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
-import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
+import { SanityTestimonialsSection, testimonialSchemaName, TestimonialsSection, testimonialsSectionField } from "../testimonial";
 import { PropsOf } from "../util";
-
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
@@ -75,10 +72,6 @@ interface SanityCommunitySection extends SanityCoreSection {
     socialMediaLinks: SocialMediaID[];
 }
 
-interface SanityTestimonialsSection extends SanityCoreSection {
-    testimonials: SanityReference<SanityTestimonial>[];
-}
-
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
@@ -120,7 +113,7 @@ export class HomePage extends Page {
     }
 }
 
-class IntroSection extends TechnicolorBlock {
+class IntroSection extends SectionBase {
     readonly userLogos: Organisation[];
     readonly contentTabs: ContentTextTab[];
 
@@ -132,7 +125,7 @@ class IntroSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 userLogos: data.displayUserLogos
                     ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
                     : [],
@@ -142,7 +135,7 @@ class IntroSection extends TechnicolorBlock {
     }
 }
 
-class HotTopicsSection extends TechnicolorBlock {
+class HotTopicsSection extends SectionBase {
     readonly hotTopics: ResourceLink[];
 
     constructor(props: PropsOf<HotTopicsSection>) {
@@ -151,13 +144,13 @@ class HotTopicsSection extends TechnicolorBlock {
     }
 
     static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
-        return new HotTopicsSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {
+        return new HotTopicsSection(Object.assign(SectionBase.fromSanity(data, db), {
             hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, true)) || [],
         }));
     }
 }
 
-class ImpactSection extends TechnicolorBlock {
+class ImpactSection extends SectionBase {
     readonly impactTabs: ContentTextTab[];
 
     constructor(props: PropsOf<ImpactSection>) {
@@ -167,14 +160,14 @@ class ImpactSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
         return new ImpactSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 impactTabs: data.impactTabs.map((x) => new ContentTextTab(x, db)),
             })
         );
     }
 }
 
-class ToolingSection extends TechnicolorBlock {
+class ToolingSection extends SectionBase {
     readonly panels: LinkPanelWithIcon[];
 
     constructor(props: PropsOf<ToolingSection>) {
@@ -184,14 +177,14 @@ class ToolingSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new ToolingSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
             })
         );
     }
 }
 
-class CloudSection extends TechnicolorBlock {
+class CloudSection extends SectionBase {
     readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<CloudSection>) {
@@ -201,14 +194,14 @@ class CloudSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
         return new CloudSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 keyPoints: data.keyPoints.map((x) => new KeyPointWithIcon(x, db)),
             })
         );
     }
 }
 
-class CommunitySection extends TechnicolorBlock {
+class CommunitySection extends SectionBase {
     readonly socialMedias: SocialMediaID[];
 
     constructor(props: PropsOf<CommunitySection>) {
@@ -218,25 +211,8 @@ class CommunitySection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityCommunitySection, db: SanityDataset) {
         return new CommunitySection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 socialMedias: data.socialMediaLinks,
-            })
-        );
-    }
-}
-
-class TestimonialsSection extends TechnicolorBlock {
-    readonly testimonials: Testimonial[];
-
-    constructor(props: PropsOf<TestimonialsSection>) {
-        super(props);
-        this.testimonials = props.testimonials;
-    }
-
-    static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
-        return new TestimonialsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
             })
         );
     }
@@ -358,7 +334,7 @@ const impactSectionsField = defineField({
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "hotTopics", "resources"].includes(key))
+    .filter((key) => !["intro", "impact", "hotTopics", "resources", "testimonials"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -385,6 +361,7 @@ const homePageSchema = defineType({
             validation: requiredRule,
         }),
         ...otherSectionFields,
+        testimonialsSectionField,
         defineField({
             name: "conclusionSection",
             title: "Conclusion Section",

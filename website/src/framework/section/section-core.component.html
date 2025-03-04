@@ -1,0 +1,15 @@
+<div class="tb-main">
+  <td-heading-with-highlights [value]="section.title" [id]="section.sectionId" [themeColorHex]="themeColorHex" [level]="level"/>
+  <div></div>
+  <div>
+    @if (section.body && !noBody) {
+      <td-rich-text [value]="section.body" class="text-p1" />
+    }
+    @if (section.actions) {
+      <td-actions [sectionId]="section.sectionId" [actions]="section.actions" />
+    }
+    @if (organisationLogos?.length) {
+      <td-organisation-logos appearance="transparent" [organisations]="organisationLogos!"/>
+    }
+  </div>
+</div>
