@@ -3,6 +3,7 @@
   <div class="td-cards">
     @for (hotTopic of hotTopics; track hotTopic) {
       <a class="td-card" [tdLink]="hotTopic.link">
+        <div class="td-card-overlay"></div>
         @if (hotTopic.imageURL) {
           <img class="td-hero" [src]="hotTopic.imageURL" alt="">
         }

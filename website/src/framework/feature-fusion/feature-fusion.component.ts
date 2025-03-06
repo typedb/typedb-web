@@ -12,5 +12,5 @@ import { RichTextComponent } from "../text/rich-text.component";
 })
 export class FeatureFusionComponent {
     @Input() features!: KeyPoint[];
-    @HostBinding("class") classes = "section card-appearance";
+    @HostBinding("class") classes = "section";
 }

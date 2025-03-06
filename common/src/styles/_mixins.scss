@@ -188,7 +188,7 @@
 }
 
 @mixin text-gradient($color1, $color2) {
-    background: linear-gradient(105deg, #{$color1} 0%, #{$color2} 100%);
+    background: linear-gradient(105deg, #{$color1} 0%, #{$color2} 50%, #{$color1} 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -212,4 +212,8 @@
             linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
             conic-gradient(from 120deg, $color2, $color1, $color2) border-box;
     }
+}
+
+@mixin light-source-gradient($light-source-color, $background-color, $left: 80px, $top: 50px) {
+    background: $background-color radial-gradient(ellipse at $left $top, $light-source-color 0%, 60%, rgba($background-color, 0));
 }

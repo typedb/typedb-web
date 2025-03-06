@@ -1,3 +1,4 @@
+@use "colors";
 @use "media";
 @use "shapes";
 @import "mixins";
@@ -6,6 +7,8 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    border-radius: var(--border-radius);
+    height: 270px;
 
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
@@ -25,7 +28,21 @@
     }
 }
 
-.ff-cell + .ff-cell {
+.ff-content-cell {
+    border-radius: var(--border-radius);
+    border: 1px solid colors.$light-purple;
+    @include light-source-gradient(colors.$purple, colors.$black-purple);
+    transition: background 100ms ease, flex 300ms ease-in-out;
+    cursor: pointer;
+    flex: 1;
+
+    &:hover {
+        @include light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+        flex: 3;
+    }
+}
+
+.ff-gap + .ff-cell {
     @media (min-width: media.$min-width-tablet) {
         border-left: 1px solid var(--content-border-color);
     }
@@ -37,6 +54,8 @@
 
 td-rich-text {
     margin-top: 24px;
+    max-height: 182px;
+    overflow: hidden;
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         margin-top: 16px;

@@ -1,3 +1,4 @@
+@use "colors";
 @use "media";
 @use "mixins" as *;
 @use "shapes";
@@ -11,6 +12,10 @@
 td-heading-with-highlights {
     display: block;
     flex: 0 0 400px;
+
+    ::ng-deep h2 {
+        @include text-gradient(#F96480, #FDD257);
+    }
 }
 
 .td-cards {
@@ -24,12 +29,32 @@ td-heading-with-highlights {
     height: 480px;
     display: flex;
     flex-direction: column;
+    transition: background 100ms ease, border-color 100ms ease;
+    @include light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    position: relative;
+
+    &:hover {
+        .td-card-overlay {
+            opacity: 0.04;
+        }
+    }
 }
 
 .td-hero {
     width: 100%;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: 1px solid var(--content-border-color);
+}
+
+.td-card-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius);
+    z-index: 1;
+    pointer-events: none;
+    background: #BBF;
+    opacity: 0;
+    transition: opacity 100ms ease;
 }
 
 .td-card-body {
