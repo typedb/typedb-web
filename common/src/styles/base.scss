@@ -268,9 +268,9 @@ button, td-button {
     @include card-padding;
     transition: border-color 100ms;
 
-    &.hoverable:hover {
-        border-color: var(--color-secondary-light-grey);
-    }
+    //&.hoverable:hover {
+    //    border-color: var(--color-secondary-light-grey);
+    //}
 }
 
 .card-appearance {

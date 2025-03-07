@@ -1,0 +1,58 @@
+@use "colors";
+@use "media";
+@use "mixins" as *;
+@use "shapes";
+
+.td-primary-items,
+.td-secondary-items {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    overflow: hidden;
+}
+
+.td-primary-items {
+    gap: 32px;
+}
+
+.td-secondary-items {
+    margin-top: 64px;
+    gap: 24px;
+}
+
+.td-primary-item,
+.td-secondary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include light-source-gradient(colors.$purple, colors.$deep-purple, 40px, 20px);
+    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+    text-align: center;
+
+    &:hover {
+        @include light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$purple, 40px, 20px);
+    }
+}
+
+.td-primary-item {
+    width: 240px;
+    height: 180px;
+
+    img {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.td-secondary-item {
+    width: 150px;
+    height: 120px;
+    padding: 16px;
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+}

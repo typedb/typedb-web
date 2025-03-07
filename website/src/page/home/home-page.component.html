@@ -3,7 +3,7 @@
     <div class="article-content">
       @if (page.introSection) {
         <td-section-core level="h1" [section]="page.introSection" class="td-intro" [organisationLogos]="page.introSection.userLogos"/>
-        <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
+<!--        <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />-->
       }
       @if (page.hotTopicsSection) {
         <td-hot-topics [title]="page.hotTopicsSection.title" [hotTopics]="page.hotTopicsSection.hotTopics"/>
@@ -14,38 +14,39 @@
       }
       @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
         <td-section-core [section]="impactSection"/>
-        <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
+<!--        <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />-->
       }
       @if (page.resourcesSection) {
-        <td-section-core [section]="page.resourcesSection"/>
-        <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" [sectionId]="page.resourcesSection.sectionId"/>
+<!--        <td-section-core [section]="page.resourcesSection"/>-->
+<!--        <td-resource-panels [resources]="page.resourcesSection.resources" [cols]="4" [sectionId]="page.resourcesSection.sectionId"/>-->
       }
       @if (page.toolingSection) {
-        <td-section-core [section]="page.toolingSection"/>
+<!--        <td-section-core [section]="page.toolingSection"/>-->
         <td-link-panels [panels]="page.toolingSection.panels" [sectionId]="page.toolingSection.sectionId" />
       }
       @if (page.driversSection) {
         <td-section-core [section]="page.driversSection"/>
-        <td-feature-grid
-          [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features"
-          [sectionId]="page.driversSection.sectionId"
-        />
+<!--        <td-feature-grid-->
+<!--          [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features"-->
+<!--          [sectionId]="page.driversSection.sectionId"-->
+<!--        />-->
+        <td-integrations-grid [integrations]="page.driversSection"/>
       }
       @if (page.cloudSection) {
-        <td-section-core [section]="page.cloudSection"/>
-        <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />
+<!--        <td-section-core [section]="page.cloudSection"/>-->
+<!--        <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />-->
       }
       @if (page.communitySection) {
-        <td-section-core [section]="page.communitySection"/>
-        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>
+<!--        <td-section-core [section]="page.communitySection"/>-->
+<!--        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>-->
       }
       @if (page.testimonialsSection) {
-        <td-section-core [section]="page.testimonialsSection"/>
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"/>
+<!--        <td-section-core [section]="page.testimonialsSection"/>-->
+<!--        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"/>-->
       }
       @if (page.conclusionSection) {
         <td-section-core [section]="page.conclusionSection"/>
-        <td-conclusion-panel [panel]="page.conclusionSection.panel" />
+<!--        <td-conclusion-panel [panel]="page.conclusionSection.panel" />-->
       }
     </div>
   }

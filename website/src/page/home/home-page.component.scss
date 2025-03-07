@@ -10,3 +10,6 @@ td-section-core.td-intro ::ng-deep td-heading-with-highlights h1 {
     animation: 8s linear 0s infinite flow;
 }
 
+td-link-panels {
+    margin-top: var(--section-margin);
+}

@@ -43,7 +43,8 @@ export {
     FeatureGrid, type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
+export { Integration, IntegrationsGridSection } from "./component/integrations-grid";
+export { LinkPanel } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {

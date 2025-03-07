@@ -1,7 +1,7 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { featureGridSchemaName, FeatureGridSection, SanityFeatureGridSection } from "../component/feature-grid";
-import { LinkPanelWithIcon, linkPanelWithIconSchemaName } from "../component/link-panel";
+import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
+import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
@@ -64,7 +64,7 @@ interface SanityImpactSection extends SanityCoreSection {
     impactTabs: SanityContentTextTab[];
 }
 
-type SanityDriversSection = SanityFeatureGridSection;
+type SanityDriversSection = SanityIntegrationsGridSection;
 
 interface SanityCommunitySection extends SanityCoreSection {
     socialMediaLinks: SocialMediaID[];
@@ -77,7 +77,7 @@ export class HomePage extends Page {
     readonly impactSections: ImpactSection[];
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
-    readonly [sections.drivers.id]?: FeatureGridSection;
+    readonly [sections.drivers.id]?: IntegrationsGridSection;
     readonly [sections.cloud.id]?: KeyPointsWithIconsSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
@@ -100,7 +100,7 @@ export class HomePage extends Page {
             ? ToolingSection.fromSanity(data.toolingSection, db)
             : undefined;
         this.driversSection = data.driversSection.isVisible
-            ? FeatureGridSection.fromSanity(data.driversSection, db)
+            ? IntegrationsGridSection.fromSanity(data.driversSection, db)
             : undefined;
         this.cloudSection = data.cloudSection.isVisible ? KeyPointsWithIconsSection.fromSanity(data.cloudSection, db) : undefined;
         this.communitySection = data.communitySection.isVisible
@@ -170,7 +170,7 @@ class ImpactSection extends SectionBase {
 }
 
 class ToolingSection extends SectionBase {
-    readonly panels: LinkPanelWithIcon[];
+    readonly panels: LinkPanel[];
 
     constructor(props: PropsOf<ToolingSection>) {
         super(props);
@@ -180,7 +180,7 @@ class ToolingSection extends SectionBase {
     static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new ToolingSection(
             Object.assign(SectionBase.fromSanity(data, db), {
-                panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
+                panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
             })
         );
     }
@@ -273,20 +273,8 @@ const sectionSchemas = [
             name: "panels",
             title: "Panels",
             type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
+            of: [{ type: linkPanelSchemaName }],
             validation: (rule: ArrayRule<any>) => rule.required().length(3),
-        }),
-        isVisibleField,
-    ]),
-    sectionSchema("drivers", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        defineField({
-            name: "featureGrid",
-            title: "Drivers",
-            type: "reference",
-            to: [{ type: featureGridSchemaName }],
-            validation: requiredRule,
         }),
         isVisibleField,
     ]),
@@ -334,7 +322,7 @@ const impactSectionsField = defineField({
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "hotTopics", "featureFusion", "resources", "testimonials"].includes(key))
+    .filter((key) => !["intro", "impact", "hotTopics", "featureFusion", "resources", "drivers", "testimonials"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -358,6 +346,13 @@ const homePageSchema = defineType({
             name: "resourcesSection",
             title: "Resources Section",
             type: resourceSectionSchemaName,
+            options: collapsibleOptions,
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "driversSection",
+            title: "Integrations Grid Section",
+            type: integrationsGridSectionSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

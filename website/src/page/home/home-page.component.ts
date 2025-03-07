@@ -22,6 +22,7 @@ import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.
 import { FeatureFusionComponent } from "../../framework/feature-fusion/feature-fusion.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
+import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
 import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
 import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
@@ -49,6 +50,7 @@ import { PageComponentBase } from "../page-component-base";
         HotTopicsComponent,
         SectionCoreComponent,
         FeatureFusionComponent,
+        IntegrationsGridComponent,
     ],
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

@@ -1,0 +1,28 @@
+<div class="td-primary-items">
+  @for (integration of integrations.primary; track integration) {
+    <a class="td-primary-item card" [tdLink]="integration.link">
+      @if (integration.imageURL) {
+        <img [src]="integration.imageURL" alt="" />
+        <div class="flex"></div>
+      }
+      <h3>{{ integration.name }}</h3>
+    </a>
+  }
+</div>
+
+<div class="td-secondary-items">
+  @for (integration of integrations.secondary; track integration) {
+    <a class="td-secondary-item card-appearance" [tdLink]="integration.link">
+      @if (integration.imageURL) {
+        <img [src]="integration.imageURL" alt="" />
+        <div class="flex"></div>
+      }
+      <h4>{{ integration.name }}</h4>
+    </a>
+  }
+  @if (integrations.requestLink) {
+    <a class="td-secondary-item card-appearance" [tdLink]="integrations.requestLink">
+      <h4>{{ integrations.requestLink.text }}</h4>
+    </a>
+  }
+</div>

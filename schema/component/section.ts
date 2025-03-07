@@ -6,8 +6,8 @@ import {
 import { SanityDataset } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
-import { LinkPanelWithIcon, linkPanelWithIconSchemaName, SanityLinkPanelWithIcon } from "./link-panel";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
+import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "./link-panel";
 
 export interface SanitySectionBase extends SanityTitleBodyActions, SanityIconField {
     keyword?: string;
@@ -20,7 +20,7 @@ export interface SanityTitleBodyPanelSection extends SanityCoreSection {
 }
 
 export interface SanityLinkPanelsSection extends SanityCoreSection {
-    panels: SanityLinkPanelWithIcon[];
+    panels: SanityLinkPanel[];
 }
 
 export class SectionBase implements Partial<BodyTextField> {
@@ -67,7 +67,7 @@ export class TitleBodyPanelSection extends SectionBase {
 }
 
 export class LinkPanelsSection extends SectionBase {
-    readonly panels: LinkPanelWithIcon[];
+    readonly panels: LinkPanel[];
 
     constructor(props: PropsOf<LinkPanelsSection>) {
         super(props);
@@ -77,7 +77,7 @@ export class LinkPanelsSection extends SectionBase {
     static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new LinkPanelsSection({
             ...super.fromSanity(data, db),
-            panels: data.panels.map((x) => LinkPanelWithIcon.fromSanity(x, db)),
+            panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
         });
     }
 }
@@ -132,7 +132,7 @@ const linkPanelsSectionSchema = defineType({
             name: "panels",
             title: "Panels",
             type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
+            of: [{ type: linkPanelSchemaName }],
             validation: (rule) => rule.required().length(3),
         }),
         isVisibleField,

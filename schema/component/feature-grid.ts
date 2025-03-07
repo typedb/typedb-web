@@ -1,7 +1,7 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, tagsField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -156,13 +156,7 @@ const featureGridCellSchema = defineType({
             type: "array",
             of: [{type: textLinkSchemaName}],
         }),
-        defineField({
-            name: "tags",
-            title: "Tags",
-            type: "array",
-            of: [{ type: "string" }],
-            initialValue: [],
-        }),
+        tagsField,
         defineField({
             name: "isIllustrationBlurred",
             title: "Blur Illustration?",

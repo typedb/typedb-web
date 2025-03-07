@@ -3,7 +3,7 @@ import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
 } from "../common-fields";
 import { featureTableSchemaName, FeatureTableSection, SanityFeatureTableSection } from "../component/feature-table";
-import { linkPanelWithIconSchemaName } from "../component/link-panel";
+import { linkPanelSchemaName } from "../component/link-panel";
 import { LinkPanelsSection, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { SanityTestimonialsSection, TestimonialsSection, testimonialsSectionField } from "../testimonial";
@@ -67,7 +67,7 @@ const sectionSchemas = [
             name: "panels",
             title: "Panels",
             type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
+            of: [{ type: linkPanelSchemaName }],
             validation: (rule) => rule.required().length(3),
         }),
         isVisibleField,

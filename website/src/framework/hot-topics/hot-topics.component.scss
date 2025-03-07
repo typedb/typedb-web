@@ -14,7 +14,7 @@ td-heading-with-highlights {
     flex: 0 0 400px;
 
     ::ng-deep h2 {
-        @include text-gradient(#F96480, #FDD257);
+        //@include text-gradient(#F96480, #FDD257);
     }
 }
 

@@ -42,15 +42,11 @@ article {
     > .article-content {
         display: flex;
         flex-direction: column;
-        padding-bottom: 144px;
+        padding-bottom: 5em;
         position: relative;
 
-        &.article-content-no-planet {
-            padding-bottom: 5em;
-        }
-
         @media (max-width: media.$max-width-mobile) {
-            padding-bottom: 64px;
+            padding-bottom: 24px;
         }
     }
 }
