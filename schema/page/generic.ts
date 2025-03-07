@@ -5,7 +5,7 @@ import {
     SanityTitleBodyPanelSection,
     TitleBodyPanelSection,
     titleBodyPanelSectionSchemaName,
-} from "../component/page-section";
+} from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";

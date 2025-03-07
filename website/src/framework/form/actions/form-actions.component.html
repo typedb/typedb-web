@@ -1,6 +1,6 @@
 @if (this.cancellable) {
-  <td-button [button]="{ style: 'secondary', text: cancelText, comingSoon: false }" (click)="onCancel()" [linkId]="buttonIdPrefix + '_cancel'"/>
+  <td-button [button]="{ style: 'frameless', text: cancelText, comingSoon: false }" (click)="onCancel()" [linkId]="buttonIdPrefix + '_cancel'"/>
 }
-<button type="submit" class="button-primary" [attr.disabled]="submitEnabled ? undefined : 'disabled'" [id]="buttonIdPrefix + '_submit'">
+<button type="submit" class="button-greenHollow" [attr.disabled]="submitEnabled ? undefined : 'disabled'" [id]="buttonIdPrefix + '_submit'">
   @if (isSubmitting) {<tp-spinner [size]="20"/>} @else {{{ submitText }}}
 </button>

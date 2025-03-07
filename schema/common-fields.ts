@@ -174,6 +174,30 @@ export const learnMoreLinkFieldOptional = Object.assign({}, linkFieldOptional, {
     title: "'Learn More' link",
 });
 
+export const iconNameFieldName = "iconName";
+export const iconVariantFieldName = "iconVariant";
+
+export const iconNameFieldOptional = defineField({
+    name: "iconName",
+    type: "string",
+    title: "Icon Name",
+});
+
+export const iconVariantFieldOptional = defineField({
+    name: "iconVariant",
+    type: "string",
+    title: "Icon Variant",
+    initialValue: "thin",
+    options: {
+        list: ["regular", "light", "thin", "brands"],
+        layout: "radio",
+        direction: "horizontal",
+    },
+    hidden: (ctx) => {
+        return ctx.parent == null || ctx.parent["iconName"] == null;
+    },
+});
+
 export const comingSoonField = defineField({
     name: "comingSoon",
     title: "Coming soon?",
@@ -222,6 +246,24 @@ export const keyPointsWithIconsField = (count?: number) =>
         of: [{ type: "keyPointWithIcon" }],
         validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
     });
+
+export const keywordFieldName = "keyword";
+
+export const keywordFieldOptional = defineField({
+    name: keywordFieldName,
+    title: "Keyword (optional)",
+    type: "string",
+});
+
+export const tagsFieldName = "tags";
+
+export const tagsField = defineField({
+    name: tagsFieldName,
+    title: "Tags",
+    type: "array",
+    of: [{ type: "string" }],
+    initialValue: [],
+});
 
 export interface SanityVisibleToggle {
     isVisible: boolean;

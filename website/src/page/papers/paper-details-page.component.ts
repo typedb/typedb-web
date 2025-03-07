@@ -44,7 +44,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     readonly isSubmitting$: Observable<boolean>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
     private readonly subscribeButton = new LinkButton({
-        style: "secondary",
+        style: "greenHollow",
         text: "Subscribe to updates",
         link: Link.fromAddress("?dialog=newsletter"),
         comingSoon: false,
@@ -53,7 +53,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
         filter(paper => !!paper),
         map(paper => paper!),
         map(paper => new ActionButton({
-            style: "primary",
+            style: "greenHollow",
             text: "Download paper",
             onClick: () => this.download(paper),
             comingSoon: false,

@@ -18,7 +18,6 @@ import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDatePipe } from "../../framework/date/event-date.pipe";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PersonInfoComponent } from "../../framework/person/person.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
@@ -31,7 +30,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
+        HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
         ButtonComponent, RichTextComponent, PersonInfoComponent, FurtherLearningComponent, AsyncPipe,
         EventDatePipe, EventDurationPipe
     ],
@@ -62,6 +61,6 @@ export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     }
 
     getEventImageUrl(event: LiveEvent) {
-        return this.imageBuilder.image(event.imageURL).width(494).url();
+        return event.imageURL ? this.imageBuilder.image(event.imageURL).width(494).url() : undefined;
     }
 }

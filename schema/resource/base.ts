@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { descriptionFieldRichText, requiredRule, titleFieldWithHighlights } from "../common-fields";
+import { descriptionFieldRichText, imageFieldOptional, requiredRule, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset } from "../sanity-core";
@@ -16,6 +16,7 @@ export abstract class SiteResource {
     readonly shortTitle: string;
     readonly shortDescription: string;
     readonly furtherLearning?: ResourceSection;
+    readonly imageURL?: string;
 
     protected constructor(props: PropsOf<SiteResource>) {
         this.slug = props.slug;
@@ -25,6 +26,7 @@ export abstract class SiteResource {
         this.shortTitle = props.shortTitle;
         this.shortDescription = props.shortDescription;
         this.furtherLearning = props.furtherLearning;
+        this.imageURL = props.imageURL;
     }
 }
 
@@ -39,6 +41,7 @@ export function resourcePropsFromSanity(data: SanitySiteResource, db: SanityData
         furtherLearning: data.furtherLearning?.isVisible
             ? ResourceSection.fromSanityFurtherLearningSection(data.furtherLearning, db)
             : undefined,
+        imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
     };
 }
 
@@ -47,12 +50,14 @@ export class ResourceLink {
     readonly description: string;
     readonly link?: Link;
     readonly linkText: string;
+    readonly imageURL?: string;
 
     constructor(props: PropsOf<ResourceLink>) {
         this.title = props.title;
         this.description = props.description;
         this.link = props.link;
         this.linkText = props.linkText;
+        this.imageURL = props.imageURL;
     }
 
     static fromSanity(data: SanityResource, db: SanityDataset, useLongTitle: boolean = false): ResourceLink {
@@ -61,11 +66,13 @@ export class ResourceLink {
             description: data.description,
             link: Link.fromSanityLinkRef(data.link, db),
             linkText: data.linkText,
+            imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
         }); else return new ResourceLink({
             title: useLongTitle ? ParagraphWithHighlights.fromSanity(data.title).toPlainText() : data.shortTitle,
             description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
             linkText: resourceLinkText(data),
+            imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
         });
     }
 }
@@ -107,5 +114,6 @@ export const resourceCommonFields = [
         description: "Displayed in link panels, etc.",
         type: "text",
     }),
+    imageFieldOptional,
     furtherLearningFieldOptional,
 ];

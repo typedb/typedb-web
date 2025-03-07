@@ -1,12 +1,12 @@
 @for (panel of panels; track panel) {
-  <div class="lc-card lc-icon-card" [attr.id]="panelID(panel)">
-    <div><img class="lc-icon" [src]="panel.iconURL" alt="" /></div>
+  <a class="lc-card lc-icon-card card hoverable" [tdLink]="panel.link" [attr.id]="panelID(panel)">
+    @if (panel.iconName) {<div><i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i></div>}
     <div class="lc-flex-container">
       <h3 class="lc-title">{{ panel.title }}</h3>
       <td-rich-text [value]="panel.body" class="flex" />
       @if (panel.link) {
-        <a class="link-tertiary lc-cta-weak" [tdLink]="panel.link">{{ panel.link.text }}</a>
+        <p class="link-tertiary lc-cta-weak" [tdLink]="panel.link">{{ panel.link.text }}</p>
       }
     </div>
-  </div>
+  </a>
 }

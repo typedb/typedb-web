@@ -19,7 +19,7 @@ import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { LecturePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { sanitiseHtmlID } from "../../framework/util";
@@ -33,7 +33,7 @@ import { PageComponentBase } from "../page-component-base";
     standalone: true,
     imports: [
         PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
-        ButtonComponent, TechnicolorBlockComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
+        ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
         EventDurationPipe, OrdinalDatePipe, PlainTextPipe
     ],
 })

@@ -47,7 +47,7 @@ export class BlogPostPageComponent implements OnInit {
     readonly categories$: Observable<BlogCategoryID[] | null>;
     readonly relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
     readonly subscribeToNewsletterButton = new LinkButton({
-        style: "secondary",
+        style: "greenHollow",
         link: Link.fromAddress("?dialog=newsletter"),
         text: "Subscribe to Newsletter",
         comingSoon: false,

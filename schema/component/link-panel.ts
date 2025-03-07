@@ -1,67 +1,56 @@
 import { defineField, defineType } from "@sanity/types";
-import { SanityImageRef } from "../image";
-import { bodyFieldRichText, buttonField, requiredRule, sectionIconField, textLinkFieldOptional, titleField } from "../common-fields";
+import { bodyFieldRichText, buttonField, iconNameFieldOptional, iconVariantFieldOptional, requiredRule, textLinkFieldOptional, titleField } from "../common-fields";
 import { SanityTextLink, TextLink } from "../link";
-import { SanityDataset, SanityReference } from "../sanity-core";
+import { SanityDataset } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
 
 export interface SanityLinkPanel {
     title: string;
     body: PortableText;
-}
-
-export interface SanityLinkPanelWithIcon extends SanityLinkPanel {
-    icon: SanityReference<SanityImageRef>;
+    iconName?: string;
+    iconVariant?: string;
     link?: SanityTextLink;
 }
 
 export class LinkPanel implements BodyTextField {
     readonly title: string;
     readonly body: PortableText;
+    readonly iconName?: string;
+    readonly iconVariant?: string;
+    readonly link?: TextLink;
 
     constructor(props: PropsOf<LinkPanel>) {
         this.title = props.title;
         this.body = props.body;
+        this.iconName = props.iconName;
+        this.iconVariant = props.iconVariant;
+        this.link = props.link;
     }
 
-    static fromSanity(data: SanityLinkPanel, _db: SanityDataset): LinkPanel {
+    static fromSanity(data: SanityLinkPanel, db: SanityDataset): LinkPanel {
         return new LinkPanel({
             title: data.title,
             body: data.body,
+            iconName: data.iconName,
+            iconVariant: data.iconVariant,
+            link: data.link ? TextLink.fromSanityTextLink(data.link, db) : undefined,
         });
     }
 }
 
-export class LinkPanelWithIcon extends LinkPanel {
-    readonly iconURL: string;
-    readonly link?: TextLink;
+export const linkPanelSchemaName = `linkPanel`;
 
-    constructor(props: PropsOf<LinkPanelWithIcon>) {
-        super(props);
-        this.iconURL = props.iconURL;
-        this.link = props.link;
-    }
-
-    static override fromSanity(data: SanityLinkPanelWithIcon, db: SanityDataset): LinkPanelWithIcon {
-        return new LinkPanelWithIcon(Object.assign(LinkPanel.fromSanity(data, db), {
-            iconURL: db.resolveImageRef(data.icon).url,
-            link: data.link ? TextLink.fromSanityTextLink(data.link, db) : undefined,
-        }));
-    }
-}
-
-export const linkPanelWithIconSchemaName = "linkPanelWithIcon";
-
-const linkPanelWithIconSchema = defineType({
-    name: linkPanelWithIconSchemaName,
+const linkPanelSchema = defineType({
+    name: linkPanelSchemaName,
     title: "Link Panel",
     type: "object",
     fields: [
         titleField,
         bodyFieldRichText,
-        sectionIconField,
         textLinkFieldOptional,
+        iconNameFieldOptional,
+        iconVariantFieldOptional,
     ],
 });
 
@@ -86,4 +75,4 @@ const productPanelSchema = defineType({
     ],
 });
 
-export const linkPanelSchemas = [linkPanelWithIconSchema, productPanelSchema];
+export const linkPanelSchemas = [linkPanelSchema, productPanelSchema];

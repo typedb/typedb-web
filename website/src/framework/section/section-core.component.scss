@@ -1,0 +1,48 @@
+@use "colors";
+@use "media";
+
+:host {
+    --graphic-area-width: 120px;
+    display: block;
+    position: relative;
+    margin-top: 144px;
+
+    @media (max-width: media.$max-width-mobile) {
+        --graphic-area-width: 52px;
+        margin-top: 64px;
+        padding-bottom: 32px;
+        grid-template-columns: var(--graphic-area-width) auto;
+    }
+}
+
+.td-root {
+    max-width: 660px;
+    grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
+    padding-bottom: 80px;
+
+    @media (max-width: media.$max-width-tablet) {
+        padding-bottom: 72px;
+    }
+}
+
+.td-keyword {
+    color: var(--color-secondary-pink);
+    font-family: var(--code-font-family);
+    font-weight: var(--font-weight-regular);
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+}
+
+td-heading-with-highlights {
+    display: block;
+    margin: 24px 0;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin: 16px 0;
+    }
+}
+
+td-organisation-logos {
+    display: block;
+    margin-top: 40px;
+}

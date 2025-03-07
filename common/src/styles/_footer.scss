@@ -147,20 +147,6 @@
         }
     }
 
-    .td-footer-section-copyright {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        @media (max-width: media.$max-width-mobile) {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-        }
-    }
-
     .td-footer-credits {
         display: flex;
         flex-direction: row;

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { collapsibleOptions,  requiredRule } from "../common-fields";
-import { resourceSectionSchemaName } from "../component/page-section";
+import { resourceSectionSchemaName } from "../component/section";
 import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset } from "../sanity-core";

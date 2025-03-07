@@ -62,7 +62,7 @@ export class Lecture extends EventBase {
 
     registrationButton(): LinkButton {
         return new LinkButton({
-            style: this.isFinished() || this.comingSoon ? "secondary" : "primary",
+            style: "greenHollow",
             text: this.comingSoon ? "Coming soon!" : this.isStarted() ? "Watch now" : "Register",
             link: this.comingSoon
                 ? undefined
@@ -110,12 +110,6 @@ const lectureSchema = defineType({
             title: "Duration (minutes)",
             type: "number",
             validation: (rule: NumberRule) => rule.required().positive(),
-        }),
-        defineField({
-            name: "image",
-            title: "Image",
-            type: "image",
-            validation: requiredRule,
         }),
         defineField({
             name: "speakers",

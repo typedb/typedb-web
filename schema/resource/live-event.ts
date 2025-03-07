@@ -51,7 +51,7 @@ export class LiveEvent extends EventBase {
 
     registrationButton(): LinkButton {
         return new LinkButton({
-            style: "primary",
+            style: "greenHollow",
             text: "Register Now",
             link: this.detailsPageLink(),
             comingSoon: false,
@@ -90,12 +90,6 @@ export const liveEventSchema = defineType({
             name: "venue",
             title: "Venue",
             type: "string",
-            validation: requiredRule,
-        }),
-        defineField({
-            name: "image",
-            title: "Image",
-            type: "image",
             validation: requiredRule,
         }),
         defineField({

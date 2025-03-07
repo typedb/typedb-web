@@ -5,20 +5,17 @@ import { SiteResource, resourcePropsFromSanity } from "./base";
 import { SanityEventBase } from "./sanity";
 
 export abstract class EventBase extends SiteResource {
-    readonly imageURL: string;
     readonly speakers: Person[];
     readonly cioFormID?: string;
 
     protected constructor(props: PropsOf<EventBase>) {
         super(props);
-        this.imageURL = props.imageURL;
         this.speakers = props.speakers;
         this.cioFormID = props.cioFormID;
     }
 
     static fromSanity(data: SanityEventBase, db: SanityDataset): PropsOf<EventBase> {
         return Object.assign(resourcePropsFromSanity(data, db), {
-            imageURL: db.resolveRef(data.image.asset).url,
             speakers: data.speakers.map((x) => Person.fromSanity(db.resolveRef(x), db)),
             cioFormID: data.cioFormID,
         });

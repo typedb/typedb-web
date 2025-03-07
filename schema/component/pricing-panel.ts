@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { LinkButton, SanityButton } from "../button";
+import { LinkButton, SanityLinkButton } from "../button";
 import { bodyFieldRichText, buttonField, keyPointsFieldName, textLinkFieldOptional, titleField, titleFieldOptional } from "../common-fields";
 import { SanityTextLink, TextLink } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -12,7 +12,7 @@ export interface SanityPricingPanel {
     priceString: string;
     priceStringDetail: string;
     body: PortableText;
-    button: SanityButton;
+    button: SanityLinkButton;
     keyPoints: string[];
     bottomLink?: SanityTextLink;
 }

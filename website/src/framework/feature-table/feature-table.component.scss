@@ -65,7 +65,7 @@ thead {
 
         &:nth-of-type(4) {
             p {
-                @include color-gradient(#F96480, #FDD257);
+                @include text-gradient(#F96480, #FDD257);
             }
 
             td-button ::ng-deep a {

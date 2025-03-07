@@ -6,19 +6,19 @@ import {
     BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon
 } from "@sanity/icons";
-import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
+import { presentationTool } from "sanity/presentation";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
     schemaTypes, topnavSchemaNames, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
-    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
+    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     personSchemaName, lectureSchemaName, papersPageSchemaName, paperSchemaName, siteBannerSchemaName,
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
@@ -55,7 +55,6 @@ export default defineConfig({
                     singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
-                    singletonListItem(s, deploymentPageSchemaName, { title: "Deploy", icon: DocumentIcon }),
                     s.divider(),
                     singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, fundamentalsPageSchemaName, { title: "Fundamentals", icon: DocumentIcon }),

@@ -15,14 +15,14 @@ import { referenceMaterialSchema } from "./reference-material";
 import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
 import { surveySchemas } from "./survey";
-import { testimonialSchema } from "./testimonial";
+import { testimonialSchemas } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes: any[] = [
     ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
     ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
     ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
-    ...surveySchemas, ...textSchemas, testimonialSchema,
+    ...surveySchemas, ...textSchemas, ...testimonialSchemas,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
@@ -43,13 +43,14 @@ export {
     FeatureGrid, type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
-export { TitleBodyPanelSection } from "./component/page-section";
+export { Integration, IntegrationsGridSection } from "./component/integrations-grid";
+export { LinkPanel } from "./component/link-panel";
+export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { TechnicolorBlock } from "./component/technicolor-block";
+export { SectionBase } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,

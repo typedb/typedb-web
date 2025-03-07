@@ -6,15 +6,11 @@
         [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
         />
       @for (section of page.coreSections; track section; let idx = $index) {
-        <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
+        <td-section-core [section]="section"/>
         <td-publication-panel [items]="section.panelItems" />
       }
       @if (page.finalSection) {
-        <td-philosophy-page-technicolor-block
-          [section]="page.finalSection"
-          [page]="page"
-          [index]="page.coreSections.length"
-          />
+        <td-section-core [section]="page.finalSection"/>
         <td-conclusion-panel [panel]="page.finalSection.panel" />
       }
     </div>

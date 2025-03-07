@@ -6,10 +6,10 @@
         [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
         />
       @for (section of page.resourceSections; track section; let idx = $index) {
-        <td-resources-block [section]="section" [index]="idx" />
+        <td-section-core [section]="section"/>
         <td-resource-panels-cols-2 [resources]="section.resources" [sectionId]="section.sectionId" />
       }
-      <td-resources-block [section]="page.finalSection" [index]="page.resourceSections.length"/>
+      <td-section-core [section]="page.finalSection"/>
       <td-conclusion-panel [panel]="page.finalSection.panel" />
     </div>
   }
