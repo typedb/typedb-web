@@ -156,7 +156,7 @@ const questionConditionSchema = defineType({
             title: "Show or Hide",
             description: "Whether this condition dictates when to show the question or when to hide it",
             type: "string",
-            validation: rule => rule.custom((field, context) => (context.parent?.enabled && field === undefined) ? "This field must be set." : true),
+            validation: rule => rule.custom((field, context) => ((context.parent as any | undefined)?.enabled && field === undefined) ? "This field must be set if enabled." : true),
             options: {
                 list: [{ title: "Show", value: "show" }, { title: "Hide", value: "hide" }],
                 layout: "radio",
@@ -169,7 +169,7 @@ const questionConditionSchema = defineType({
             name: "match",
             title: "Match",
             type: "string",
-            validation: rule => rule.custom((field, context) => (context.parent?.enabled && field === undefined) ? "This field must be set." : true),
+            validation: rule => rule.custom((field, context) => ((context.parent as any | undefined)?.enabled && field === undefined) ? "This field must be set if enabled." : true),
             options: {
                 list: [{ title: "All match", value: "allMatch" }, { title: "Any match", value: "anyMatch" }],
                 layout: "radio",
