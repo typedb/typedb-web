@@ -52,6 +52,7 @@ export interface CustomQuestion {
     _type: typeof customQuestionSchemaName;
     body: string;
     customId: string;
+    showHideCondition: QuestionCondition;
 }
 
 export function isMultipleChoiceQuestion(question: SurveyQuestion): question is MultipleChoiceQuestion {
