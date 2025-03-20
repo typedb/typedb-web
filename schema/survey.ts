@@ -98,6 +98,76 @@ const optionSchema = defineType({
     },
 });
 
+export const questionConditionItemSchemaName = "questionConditionItem"
+
+const questionConditionItemSchema = defineType({
+    name: questionConditionItemSchemaName,
+    title: "Question condition item",
+    type: "object",
+    fields: [
+        defineField({
+            name: "question",
+            title: "Question",
+            type: "string",
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "validResponses",
+            title: "Valid Responses",
+            type: "array",
+            of: [ { type: "string" } ],
+            validation: rule => rule.required().min(1)
+        }),
+    ]
+});
+
+export const questionConditionSchemaName = "questionCondition";
+
+const questionConditionSchema = defineType({
+    name: questionConditionSchemaName,
+    title: "Question Condition",
+    type: "object",
+    fields: [
+        defineField({
+            name: "enabled",
+            title: "Enabled",
+            type: "boolean",
+        }),
+        defineField({
+            name: "showOrHide",
+            title: "Show or Hide",
+            description: "Whether this condition dictates when to show the question or when to hide it",
+            type: "string",
+            validation: requiredRule,
+            options: {
+                list: [{ title: "Show", value: "show" }, { title: "Hide", value: "hide" }],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            hidden: (context) => !context.parent?.enabled
+        }),
+        defineField({
+            name: "match",
+            title: "Match",
+            type: "string",
+            validation: requiredRule,
+            options: {
+                list: [{ title: "All match", value: "allMatch" }, { title: "Any match", value: "anyMatch" }],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            hidden: (context) => !context.parent?.enabled
+        }),
+        defineField({
+            name: "conditions",
+            title: "Conditions",
+            type: "array",
+            of: [{ type: questionConditionItemSchemaName }],
+            hidden: (context) => !context.parent?.enabled
+        }),
+    ]
+});
+
 export const multipleChoiceQuestionSchemaName = "multipleChoiceQuestion";
 
 const multipleChoiceQuestionSchema = defineType({
@@ -155,6 +225,11 @@ const multipleChoiceQuestionSchema = defineType({
                 return true;
             }),
         }),
+        defineField({
+            name: "condition",
+            title: "Show/Hide condition",
+            type: questionConditionSchemaName,
+        })
     ],
     validation: (rule: ObjectRule) => rule.custom((obj) => {
         if (!obj) return true;
@@ -210,7 +285,25 @@ const sectionSchema = defineType({
             title: "Questions",
             type: "array",
             of: [{ type: multipleChoiceQuestionSchemaName }, { type: customQuestionSchemaName }],
-            validation: requiredRule,
+            validation: (rule) => rule.required().custom((questions) => {
+                if (!questions) return true;
+                const errors = questions!.flatMap((question: any): string[] => {
+                    if (!question["condition"]) return [];
+                    if (!question.condition["enabled"] || !question.condition["conditions"]) return [];
+
+                    return question.condition.conditions.flatMap((conditionItem: any): string[] => {
+                        const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === conditionItem.question || question.customId === conditionItem.question);
+                        if (!targetQuestion) return [`Question ${conditionItem.question} not found when validating condition for question ${question.posthogProperty}`];
+                        if (targetQuestion.customId) return [];
+
+                        return conditionItem.validResponses
+                            .filter((validResponse: any) => !targetQuestion.options.some((option: any) => option.posthogProperty === validResponse))
+                            .map((validResponse: any) => `Option ${validResponse} for question ${targetQuestion.posthogProperty} not found when validating condition for question ${question.posthogProperty}`);
+                    })
+                });
+                if (errors.length == 0) return true;
+                else return errors.join(", ");
+            }),
         }),
     ],
 });
@@ -234,4 +327,4 @@ const surveySchema = defineType({
     ],
 });
 
-export const surveySchemas = [optionSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
+export const surveySchemas = [optionSchema, questionConditionSchema, questionConditionItemSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
