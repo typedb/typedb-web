@@ -108,12 +108,14 @@ const matchingAnswerSchema = defineType({
         defineField({
             name: "question",
             title: "Question",
+            description: "The posthogProperty of the question to check",
             type: "string",
             validation: requiredRule,
         }),
         defineField({
             name: "validAnswers",
             title: "Valid Answers",
+            description: "The posthogProperties of the answers to that question that will trigger the condition",
             type: "array",
             of: [ { type: "string" } ],
             validation: rule => rule.required().min(1)
