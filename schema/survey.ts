@@ -45,7 +45,7 @@ export type MatchType = "allMatch" | "anyMatch";
 
 export interface MatchingAnswers {
     question: string;
-    answers: string[];
+    validAnswers: string[];
 }
 
 export interface CustomQuestion {
