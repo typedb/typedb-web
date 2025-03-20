@@ -138,7 +138,7 @@ const questionConditionSchema = defineType({
             title: "Show or Hide",
             description: "Whether this condition dictates when to show the question or when to hide it",
             type: "string",
-            validation: requiredRule,
+            validation: rule => rule.custom((field, context) => (context.parent?.enabled && field === undefined) ? "This field must be set." : true),
             options: {
                 list: [{ title: "Show", value: "show" }, { title: "Hide", value: "hide" }],
                 layout: "radio",
@@ -150,7 +150,7 @@ const questionConditionSchema = defineType({
             name: "match",
             title: "Match",
             type: "string",
-            validation: requiredRule,
+            validation: rule => rule.custom((field, context) => (context.parent?.enabled && field === undefined) ? "This field must be set." : true),
             options: {
                 list: [{ title: "All match", value: "allMatch" }, { title: "Any match", value: "anyMatch" }],
                 layout: "radio",
@@ -159,8 +159,8 @@ const questionConditionSchema = defineType({
             hidden: (context) => !context.parent?.enabled
         }),
         defineField({
-            name: "conditions",
-            title: "Conditions",
+            name: "matchingAnswers",
+            title: "Matching answers",
             type: "array",
             of: [{ type: questionConditionItemSchemaName }],
             hidden: (context) => !context.parent?.enabled
@@ -226,7 +226,7 @@ const multipleChoiceQuestionSchema = defineType({
             }),
         }),
         defineField({
-            name: "condition",
+            name: "showHideCondition",
             title: "Show/Hide condition",
             type: questionConditionSchemaName,
         })
@@ -288,10 +288,11 @@ const sectionSchema = defineType({
             validation: (rule) => rule.required().custom((questions) => {
                 if (!questions) return true;
                 const errors = questions!.flatMap((question: any): string[] => {
-                    if (!question["condition"]) return [];
-                    if (!question.condition["enabled"] || !question.condition["conditions"]) return [];
+                    if (!question["showHideCondition"]) return [];
+                    const showHideCondition = question.showHideCondition;
+                    if (!showHideCondition["enabled"] || !showHideCondition["conditions"]) return [];
 
-                    return question.condition.conditions.flatMap((conditionItem: any): string[] => {
+                    return showHideCondition.conditions.flatMap((conditionItem: any): string[] => {
                         const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === conditionItem.question || question.customId === conditionItem.question);
                         if (!targetQuestion) return [`Question ${conditionItem.question} not found when validating condition for question ${question.posthogProperty}`];
                         if (targetQuestion.customId) return [];
