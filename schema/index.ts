@@ -119,7 +119,7 @@ export {
 } from "./social-media";
 export {
     type SanitySurvey, type SurveySection, type SurveyQuestion, type MultipleChoiceQuestion, type CustomQuestion,
-    type QuestionOption, type QuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
+    type QuestionOption, type QuestionPresentation, type QuestionCondition, type ShowOrHide, type MatchType, type MatchingAnswers, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
     multiSelectOtherOptionPosthogProperty, isMultipleChoiceQuestion, isCustomQuestion,
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";

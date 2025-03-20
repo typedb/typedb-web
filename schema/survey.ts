@@ -23,6 +23,7 @@ export interface MultipleChoiceQuestion {
     hasOpenEndedOption: boolean;
     presentation: QuestionPresentation;
     posthogProperty: string;
+    showHideCondition: QuestionCondition;
 }
 
 export interface QuestionOption {
@@ -31,6 +32,21 @@ export interface QuestionOption {
 }
 
 export type QuestionPresentation = "chips" | "dropdown";
+
+export interface QuestionCondition {
+    enabled: boolean;
+    showOrHide: ShowOrHide;
+    match: MatchType;
+    matchingAnswers: MatchingAnswers[];
+}
+
+export type ShowOrHide = "show" | "hide";
+export type MatchType = "allMatch" | "anyMatch";
+
+export interface MatchingAnswers {
+    question: string;
+    answers: string[];
+}
 
 export interface CustomQuestion {
     _type: typeof customQuestionSchemaName;
