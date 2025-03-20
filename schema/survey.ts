@@ -231,7 +231,7 @@ const multipleChoiceQuestionSchema = defineType({
             name: "showHideCondition",
             title: "Show/Hide condition",
             type: questionConditionSchemaName,
-        })
+        }),
     ],
     validation: (rule: ObjectRule) => rule.custom((obj) => {
         if (!obj) return true;
@@ -266,6 +266,11 @@ const customQuestionSchema = defineType({
             description: "Used by the Cloud Platform website to determine how to render this question. Also used as the PostHog property name.",
             type: "string",
             validation: requiredRule,
+        }),
+        defineField({
+            name: "showHideCondition",
+            title: "Show/Hide condition",
+            type: questionConditionSchemaName,
         }),
     ],
     preview: {
