@@ -13,6 +13,12 @@ In order to compile either Sanity or Angular, you'll need to install the `npm` d
 pnpm i
 ```
 
+## Development
+
+If you'd like to preview the schema by booting up a local Sanity instance, see [sanity/README.md](../sanity/README.md).
+
+Or for running the Angular website, it's [website/README.md](../website/README.md).
+
 ## Troubleshooting
 
 See [common/README.md](../common/README.md).
