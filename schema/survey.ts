@@ -98,11 +98,11 @@ const optionSchema = defineType({
     },
 });
 
-export const questionConditionItemSchemaName = "questionConditionItem"
+export const matchingAnswerSchemaName = "matchingAnswer"
 
-const questionConditionItemSchema = defineType({
-    name: questionConditionItemSchemaName,
-    title: "Question condition item",
+const matchingAnswerSchema = defineType({
+    name: matchingAnswerSchemaName,
+    title: "Matching answer",
     type: "object",
     fields: [
         defineField({
@@ -112,8 +112,8 @@ const questionConditionItemSchema = defineType({
             validation: requiredRule,
         }),
         defineField({
-            name: "validResponses",
-            title: "Valid Responses",
+            name: "validAnswers",
+            title: "Valid Answers",
             type: "array",
             of: [ { type: "string" } ],
             validation: rule => rule.required().min(1)
@@ -162,7 +162,7 @@ const questionConditionSchema = defineType({
             name: "matchingAnswers",
             title: "Matching answers",
             type: "array",
-            of: [{ type: questionConditionItemSchemaName }],
+            of: [{ type: matchingAnswerSchemaName }],
             hidden: (context) => !context.parent?.enabled
         }),
     ]
@@ -290,16 +290,16 @@ const sectionSchema = defineType({
                 const errors = questions!.flatMap((question: any): string[] => {
                     if (!question["showHideCondition"]) return [];
                     const showHideCondition = question.showHideCondition;
-                    if (!showHideCondition["enabled"] || !showHideCondition["conditions"]) return [];
+                    if (!showHideCondition["enabled"] || !showHideCondition["matchingAnswers"]) return [];
 
-                    return showHideCondition.conditions.flatMap((conditionItem: any): string[] => {
-                        const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === conditionItem.question || question.customId === conditionItem.question);
-                        if (!targetQuestion) return [`Question ${conditionItem.question} not found when validating condition for question ${question.posthogProperty}`];
+                    return showHideCondition.matchingAnswers.flatMap((matchingAnswer: any): string[] => {
+                        const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === matchingAnswer.question || question.customId === matchingAnswer.question);
+                        if (!targetQuestion) return [`Question ${matchingAnswer.question} not found when validating condition for question ${question.posthogProperty}`];
                         if (targetQuestion.customId) return [];
 
-                        return conditionItem.validResponses
-                            .filter((validResponse: any) => !targetQuestion.options.some((option: any) => option.posthogProperty === validResponse))
-                            .map((validResponse: any) => `Option ${validResponse} for question ${targetQuestion.posthogProperty} not found when validating condition for question ${question.posthogProperty}`);
+                        return matchingAnswer.validAnswers
+                            .filter((validAnswer: any) => !targetQuestion.options.some((option: any) => option.posthogProperty === validAnswer))
+                            .map((validAnswer: any) => `Option ${validAnswer} for question ${targetQuestion.posthogProperty} not found when validating condition for question ${question.posthogProperty}`);
                     })
                 });
                 if (errors.length == 0) return true;
@@ -328,4 +328,4 @@ const surveySchema = defineType({
     ],
 });
 
-export const surveySchemas = [optionSchema, questionConditionSchema, questionConditionItemSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
+export const surveySchemas = [optionSchema, questionConditionSchema, matchingAnswerSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
