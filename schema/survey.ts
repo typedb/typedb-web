@@ -144,6 +144,7 @@ const questionConditionSchema = defineType({
                 layout: "radio",
                 direction: "horizontal",
             },
+            initialValue: "show",
             hidden: (context) => !context.parent?.enabled
         }),
         defineField({
@@ -156,6 +157,7 @@ const questionConditionSchema = defineType({
                 layout: "radio",
                 direction: "horizontal",
             },
+            initialValue: "allMatch",
             hidden: (context) => !context.parent?.enabled
         }),
         defineField({
