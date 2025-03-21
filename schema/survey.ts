@@ -319,13 +319,16 @@ const sectionSchema = defineType({
                     if (!showHideCondition["enabled"] || !showHideCondition["matchingAnswers"]) return [];
 
                     return showHideCondition.matchingAnswers.flatMap((matchingAnswer: any): string[] => {
+                        if (matchingAnswer.question === question.posthogProperty) return [`Question [${question.posthogProperty}] cannot be conditional on itself`];
                         const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === matchingAnswer.question || question.customId === matchingAnswer.question);
-                        if (!targetQuestion) return [`Question ${matchingAnswer.question} not found when validating condition for question ${question.posthogProperty}`];
+                        if (!targetQuestion) return [`Question ${matchingAnswer.question} not found when validating condition for question [${question.posthogProperty}]`];
+                        if (questions!.indexOf(targetQuestion) >= questions!.indexOf(question))
+                            return [`Question ${targetQuestion.posthogProperty} cannot be used as a condition for [${question.posthogProperty}] due to being later in the survey`]
                         if (targetQuestion.customId) return [];
 
                         return matchingAnswer.validAnswers
                             .filter((validAnswer: any) => !targetQuestion.options.some((option: any) => option.posthogProperty === validAnswer))
-                            .map((validAnswer: any) => `Option ${validAnswer} for question ${targetQuestion.posthogProperty} not found when validating condition for question ${question.posthogProperty}`);
+                            .map((validAnswer: any) => `Option ${validAnswer} for question ${targetQuestion.posthogProperty} not found when validating condition for question [${question.posthogProperty}]`);
                     })
                 });
                 if (errors.length == 0) return true;
