@@ -1,6 +1,6 @@
 export * from "./generate-banner";
 export * from "./get-topbar-data";
-export * from "./platform-ui-banner-query";
+export * from "./cloud-ui-banner-query";
 export * from "./setup-topbar-listeners";
 export { TopnavData, topbarQuery, SiteBanner } from "./schema";
 
