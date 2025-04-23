@@ -61,7 +61,7 @@ export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export {
-    type SanitySiteBanner, SiteBanner, siteBannerSchemaName, platformUiBannerSchemaName
+    type SanitySiteBanner, SiteBanner, siteBannerSchemaName, cloudUiBannerSchemaName
 } from "./navigation/site-banner";
 export {
     topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, NavPanel, NavItemGroup,

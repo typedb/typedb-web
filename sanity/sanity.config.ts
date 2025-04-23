@@ -23,7 +23,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -44,7 +44,7 @@ export default defineConfig({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
                     singletonListItem(s, siteBannerSchemaName, { title: "Site Banner", icon: SparklesIcon }),
-                    singletonListItem(s, platformUiBannerSchemaName, { title: "Platform UI Banner", icon: SparklesIcon }),
+                    singletonListItem(s, cloudUiBannerSchemaName, { title: "Cloud UI Banner", icon: SparklesIcon }),
                     singletonListItem(s, topnavSchemaNames.topnav, { title: "Topnav", icon: MasterDetailIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
