@@ -56,13 +56,13 @@ const siteBannerSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Site Banner" }) },
 });
 
-export const platformUiBannerSchemaName = "platformUiBanner";
+export const cloudUiBannerSchemaName = "cloudUiBanner";
 
-const platformUiBannerSchema = defineType({
+const cloudUiBannerSchema = defineType({
     ...siteBannerSchema,
-    name: platformUiBannerSchemaName,
-    title: "Platform UI Banner",
-    preview: { prepare: (_selection) => ({ title: "Platform UI Banner" }) },
+    name: cloudUiBannerSchemaName,
+    title: "Cloud UI Banner",
+    preview: { prepare: (_selection) => ({ title: "Cloud UI Banner" }) },
 });
 
-export const siteBannerSchemas = [siteBannerSchema, platformUiBannerSchema];
+export const siteBannerSchemas = [siteBannerSchema, cloudUiBannerSchema];
