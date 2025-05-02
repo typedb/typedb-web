@@ -1,8 +1,7 @@
 import { ConfettiIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { linkFieldOptional, requiredRule, titleField } from "../common-fields";
-import { Link, SanityLink } from "../link";
-import { SanityReference } from "../sanity-core";
+import { Link } from "../link";
 
 export interface CloudAnnouncement {
     isEnabled: boolean;
@@ -12,15 +11,20 @@ export interface CloudAnnouncement {
     id: string;
 }
 
-export interface SanityCloudAnnouncement {
-    isEnabled: boolean;
-    title: string;
-    subtitle: string;
-    link?: SanityReference<SanityLink>;
-    id: string;
-}
-
 export const cloudAnnouncementSchemaName = "cloudAnnouncement";
+export const cloudAnnouncementQuery = `
+{
+  "cloudAnnouncement": *[(_type match '${cloudAnnouncementSchemaName}')][0]{
+    isEnabled,
+    isEnabled == true => {
+      link->{ type, opensNewTab, destination{current} },
+      "spans": text[0].children[_type=='span']{
+        text, marks
+      }
+    }
+  }
+}
+`;
 
 const announcementSchema = defineType({
     name: cloudAnnouncementSchemaName,
