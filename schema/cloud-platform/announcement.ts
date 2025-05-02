@@ -1,11 +1,13 @@
 import { ConfettiIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
+import { linkFieldOptional, requiredRule, titleField } from "../common-fields";
+import { Link } from "../link";
 
 export interface CloudAnnouncement {
     isEnabled: boolean;
     title: string;
     subtitle: string;
-    link: string;
+    link?: Link;
     id: string;
 }
 
@@ -21,26 +23,22 @@ const announcementSchema = defineType({
             name: "isEnabled",
             title: "Is Enabled",
             type: "boolean",
+            initialValue: false,
+            validation: requiredRule,
         }),
-        defineField({
-            name: "title",
-            title: "Title",
-            type: "string",
-        }),
+        titleField,
         defineField({
             name: "subtitle",
             title: "Subtitle",
             type: "string",
+            validation: requiredRule,
         }),
-        defineField({
-            name: "link",
-            title: "Link",
-            type: "string",
-        }),
+        linkFieldOptional,
         defineField({
             name: "id",
             title: "ID",
             type: "string",
+            validation: requiredRule,
         }),
     ],
     preview: {
