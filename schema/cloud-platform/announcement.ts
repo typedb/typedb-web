@@ -1,13 +1,22 @@
 import { ConfettiIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
 import { linkFieldOptional, requiredRule, titleField } from "../common-fields";
-import { Link } from "../link";
+import { Link, SanityLink } from "../link";
+import { SanityReference } from "../sanity-core";
 
 export interface CloudAnnouncement {
     isEnabled: boolean;
     title: string;
     subtitle: string;
     link?: Link;
+    id: string;
+}
+
+export interface SanityCloudAnnouncement {
+    isEnabled: boolean;
+    title: string;
+    subtitle: string;
+    link?: SanityReference<SanityLink>;
     id: string;
 }
 
