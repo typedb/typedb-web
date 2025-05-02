@@ -1,7 +1,5 @@
-import { ConfettiIcon, DiamondIcon } from "@sanity/icons";
+import { ConfettiIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { titleFieldWithHighlights } from "../common-fields";
-import { PortableText } from "../text";
 
 export interface CloudAnnouncement {
     isEnabled: boolean;
