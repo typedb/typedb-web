@@ -147,6 +147,14 @@ from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
+# STUDIO BEHAVIOUR
+# Keep indefinitely
+
+[[redirects]]
+from = "https://development.typedb.com/studio/app/*"
+to = "https://development--typedb-studio.netlify.app/:splat"
+status = 200
+
 # POSTHOG REVERSE PROXY
 # Keep indefinitely. These reverse proxy configurations enable us to route data to PostHog through Netlify.
 [[redirects]]
