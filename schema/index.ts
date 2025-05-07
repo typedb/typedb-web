@@ -29,7 +29,7 @@ export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
 export { cloudLoginPortalSchemaName, type CloudLoginPortal } from "./cloud-platform/login";
 export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
-export { type CloudAnnouncement, cloudAnnouncementSchemaName } from "./cloud-platform/announcement";
+export { type CloudAnnouncement, cloudAnnouncementSchemaName, cloudAnnouncementQuery } from "./cloud-platform/announcement";
 export {
     type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
     providerRegionsQuery, cloudProviderSchemaName
