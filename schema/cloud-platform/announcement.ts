@@ -15,7 +15,7 @@ export const cloudAnnouncementSchemaName = "cloudAnnouncement";
 export const cloudAnnouncementQuery = `
 {
   "cloudAnnouncement": *[(_type match '${cloudAnnouncementSchemaName}')][0]{
-    isEnabled,
+    isEnabled, title, subtitle, id,
     isEnabled == true => {
       link->{ type, opensNewTab, destination{current} },
       "spans": text[0].children[_type=='span']{
