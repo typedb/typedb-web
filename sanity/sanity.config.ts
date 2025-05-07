@@ -4,7 +4,7 @@ import {
     AddUserIcon,
     ArrowTopRightIcon,
     BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
-    PresentationIcon, SparklesIcon, ThListIcon
+    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
@@ -23,7 +23,7 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -75,6 +75,7 @@ export default defineConfig({
                     singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
                     s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
+                    singletonListItem(s, cloudAnnouncementSchemaName, { title: "Announcement", icon: ConfettiIcon }),
                 ])),
                 s.listItem().title("Learning Resources & Events").icon(BookIcon).child(s.list().title("Learning Resources & Events").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
