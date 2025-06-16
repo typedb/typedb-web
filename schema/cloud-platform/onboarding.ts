@@ -7,7 +7,7 @@ export interface CloudOnboarding {
     title: PortableText;
     createProfileText?: PortableText;
     projectInfoText?: PortableText;
-    joinOrgText?: PortableText;
+    joinTeamText?: PortableText;
 }
 
 export const cloudOnboardingSchemaName = "cloudOnboarding";
@@ -32,8 +32,8 @@ const onboardingSchema = defineType({
             of: [{ type: "block" }],
         }),
         defineField({
-            name: "joinOrgText",
-            title: "Join Organization Text",
+            name: "joinTeamText",
+            title: "Join Team Text",
             type: "array",
             of: [{ type: "block" }],
         }),

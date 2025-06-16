@@ -29,6 +29,7 @@ export { ActionButton, LinkButton, type ButtonStyle } from "./button";
 export { countrySchemaName, continentSchemaName } from "./cloud-platform/geography";
 export { cloudLoginPortalSchemaName, type CloudLoginPortal } from "./cloud-platform/login";
 export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platform/onboarding";
+export { type CloudAnnouncement, cloudAnnouncementSchemaName, cloudAnnouncementQuery } from "./cloud-platform/announcement";
 export {
     type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
     providerRegionsQuery, cloudProviderSchemaName
@@ -61,7 +62,7 @@ export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export {
-    type SanitySiteBanner, SiteBanner, siteBannerSchemaName, platformUiBannerSchemaName
+    type SanitySiteBanner, SiteBanner, siteBannerSchemaName, cloudUiBannerSchemaName
 } from "./navigation/site-banner";
 export {
     topnavSchemaNames, type SanityTopnav, Topnav, NavItem, NavProduct, NavPanel, NavItemGroup,
@@ -119,7 +120,7 @@ export {
 } from "./social-media";
 export {
     type SanitySurvey, type SurveySection, type SurveyQuestion, type MultipleChoiceQuestion, type CustomQuestion,
-    type QuestionOption, type QuestionPresentation, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
+    type QuestionOption, type QuestionPresentation, type QuestionCondition, type ShowOrHide, type MatchType, type MatchingAnswers, Survey, surveySchemaName, multiSelectOptionPosthogProperty,
     multiSelectOtherOptionPosthogProperty, isMultipleChoiceQuestion, isCustomQuestion,
 } from "./survey";
 export { type SanityTestimonial, Testimonial, testimonialSchemaName } from "./testimonial";
