@@ -23,6 +23,7 @@ export interface MultipleChoiceQuestion {
     hasOpenEndedOption: boolean;
     presentation: QuestionPresentation;
     posthogProperty: string;
+    showHideCondition: QuestionCondition;
 }
 
 export interface QuestionOption {
@@ -32,10 +33,26 @@ export interface QuestionOption {
 
 export type QuestionPresentation = "chips" | "dropdown";
 
+export interface QuestionCondition {
+    enabled: boolean;
+    showOrHide: ShowOrHide;
+    match: MatchType;
+    matchingAnswers: MatchingAnswers[];
+}
+
+export type ShowOrHide = "show" | "hide";
+export type MatchType = "allMatch" | "anyMatch";
+
+export interface MatchingAnswers {
+    question: string;
+    validAnswers: string[];
+}
+
 export interface CustomQuestion {
     _type: typeof customQuestionSchemaName;
     body: string;
     customId: string;
+    showHideCondition: QuestionCondition;
 }
 
 export function isMultipleChoiceQuestion(question: SurveyQuestion): question is MultipleChoiceQuestion {
@@ -98,6 +115,80 @@ const optionSchema = defineType({
     },
 });
 
+export const matchingAnswerSchemaName = "matchingAnswer"
+
+const matchingAnswerSchema = defineType({
+    name: matchingAnswerSchemaName,
+    title: "Matching answer",
+    type: "object",
+    fields: [
+        defineField({
+            name: "question",
+            title: "Question",
+            description: "The posthogProperty of the question to check",
+            type: "string",
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "validAnswers",
+            title: "Valid Answers",
+            description: "The posthogProperties of the answers to that question that will trigger the condition",
+            type: "array",
+            of: [ { type: "string" } ],
+            validation: rule => rule.required().min(1)
+        }),
+    ]
+});
+
+export const questionConditionSchemaName = "questionCondition";
+
+const questionConditionSchema = defineType({
+    name: questionConditionSchemaName,
+    title: "Question Condition",
+    type: "object",
+    fields: [
+        defineField({
+            name: "enabled",
+            title: "Enabled",
+            type: "boolean",
+        }),
+        defineField({
+            name: "showOrHide",
+            title: "Show or Hide",
+            description: "Whether this condition dictates when to show the question or when to hide it",
+            type: "string",
+            validation: rule => rule.custom((field, context) => ((context.parent as any | undefined)?.enabled && field === undefined) ? "This field must be set if enabled." : true),
+            options: {
+                list: [{ title: "Show", value: "show" }, { title: "Hide", value: "hide" }],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            initialValue: "show",
+            hidden: (context) => !context.parent?.enabled
+        }),
+        defineField({
+            name: "match",
+            title: "Match",
+            type: "string",
+            validation: rule => rule.custom((field, context) => ((context.parent as any | undefined)?.enabled && field === undefined) ? "This field must be set if enabled." : true),
+            options: {
+                list: [{ title: "All match", value: "allMatch" }, { title: "Any match", value: "anyMatch" }],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            initialValue: "allMatch",
+            hidden: (context) => !context.parent?.enabled
+        }),
+        defineField({
+            name: "matchingAnswers",
+            title: "Matching answers",
+            type: "array",
+            of: [{ type: matchingAnswerSchemaName }],
+            hidden: (context) => !context.parent?.enabled
+        }),
+    ]
+});
+
 export const multipleChoiceQuestionSchemaName = "multipleChoiceQuestion";
 
 const multipleChoiceQuestionSchema = defineType({
@@ -155,6 +246,11 @@ const multipleChoiceQuestionSchema = defineType({
                 return true;
             }),
         }),
+        defineField({
+            name: "showHideCondition",
+            title: "Show/Hide condition",
+            type: questionConditionSchemaName,
+        }),
     ],
     validation: (rule: ObjectRule) => rule.custom((obj) => {
         if (!obj) return true;
@@ -190,6 +286,11 @@ const customQuestionSchema = defineType({
             type: "string",
             validation: requiredRule,
         }),
+        defineField({
+            name: "showHideCondition",
+            title: "Show/Hide condition",
+            type: questionConditionSchemaName,
+        }),
     ],
     preview: {
         select: { body: "body", customId: "customId" },
@@ -210,7 +311,29 @@ const sectionSchema = defineType({
             title: "Questions",
             type: "array",
             of: [{ type: multipleChoiceQuestionSchemaName }, { type: customQuestionSchemaName }],
-            validation: requiredRule,
+            validation: (rule) => rule.required().custom((questions) => {
+                if (!questions) return true;
+                const errors = questions!.flatMap((question: any): string[] => {
+                    if (!question["showHideCondition"]) return [];
+                    const showHideCondition = question.showHideCondition;
+                    if (!showHideCondition["enabled"] || !showHideCondition["matchingAnswers"]) return [];
+
+                    return showHideCondition.matchingAnswers.flatMap((matchingAnswer: any): string[] => {
+                        if (matchingAnswer.question === question.posthogProperty) return [`Question [${question.posthogProperty}] cannot be conditional on itself`];
+                        const targetQuestion: any | undefined = questions!.find((question: any) => question.posthogProperty === matchingAnswer.question || question.customId === matchingAnswer.question);
+                        if (!targetQuestion) return [`Question ${matchingAnswer.question} not found when validating condition for question [${question.posthogProperty}]`];
+                        if (questions!.indexOf(targetQuestion) >= questions!.indexOf(question))
+                            return [`Question ${targetQuestion.posthogProperty} cannot be used as a condition for [${question.posthogProperty}] due to being later in the survey`]
+                        if (targetQuestion.customId) return [];
+
+                        return matchingAnswer.validAnswers
+                            .filter((validAnswer: any) => !targetQuestion.options.some((option: any) => option.posthogProperty === validAnswer))
+                            .map((validAnswer: any) => `Option ${validAnswer} for question ${targetQuestion.posthogProperty} not found when validating condition for question [${question.posthogProperty}]`);
+                    })
+                });
+                if (errors.length == 0) return true;
+                else return errors.join(", ");
+            }),
         }),
     ],
 });
@@ -234,4 +357,4 @@ const surveySchema = defineType({
     ],
 });
 
-export const surveySchemas = [optionSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];
+export const surveySchemas = [optionSchema, questionConditionSchema, matchingAnswerSchema, multipleChoiceQuestionSchema, customQuestionSchema, sectionSchema, surveySchema];

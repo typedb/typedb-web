@@ -1,8 +1,8 @@
 import { linkProps } from "../shared";
 
-export const platformUiBannerQuery = `
+export const cloudUiBannerQuery = `
 {
-  "platformUiBanner": *[(_type match 'platformUiBanner')][0]{
+  "cloudUiBanner": *[(_type match 'cloudUiBanner')][0]{
     isEnabled,
     isEnabled == true => {
       link->${linkProps},

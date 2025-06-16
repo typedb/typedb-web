@@ -4,7 +4,7 @@ import {
     AddUserIcon,
     ArrowTopRightIcon,
     BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
-    PresentationIcon, SparklesIcon, ThListIcon
+    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
 } from "@sanity/icons";
 import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
@@ -18,12 +18,12 @@ import {
     schemaTypes, topnavSchemaNames, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
-    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName, deploymentPageSchemaName,
+    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
     personSchemaName, lectureSchemaName, papersPageSchemaName, paperSchemaName, siteBannerSchemaName,
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, platformUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -44,7 +44,7 @@ export default defineConfig({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
                     singletonListItem(s, siteBannerSchemaName, { title: "Site Banner", icon: SparklesIcon }),
-                    singletonListItem(s, platformUiBannerSchemaName, { title: "Platform UI Banner", icon: SparklesIcon }),
+                    singletonListItem(s, cloudUiBannerSchemaName, { title: "Cloud UI Banner", icon: SparklesIcon }),
                     singletonListItem(s, topnavSchemaNames.topnav, { title: "Topnav", icon: MasterDetailIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
@@ -55,7 +55,6 @@ export default defineConfig({
                     singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
-                    singletonListItem(s, deploymentPageSchemaName, { title: "Deploy", icon: DocumentIcon }),
                     s.divider(),
                     singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, fundamentalsPageSchemaName, { title: "Fundamentals", icon: DocumentIcon }),
@@ -76,6 +75,7 @@ export default defineConfig({
                     singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
                     s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
+                    singletonListItem(s, cloudAnnouncementSchemaName, { title: "Announcement", icon: ConfettiIcon }),
                 ])),
                 s.listItem().title("Learning Resources & Events").icon(BookIcon).child(s.list().title("Learning Resources & Events").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
