@@ -43,7 +43,7 @@ dependencies:
     version: 0.14.1(@angular/core@17.0.8)
   '@gammastream/scully-plugin-sitemap':
     specifier: 1.0.7
-    version: 1.0.7(@scullyio/scully@2.1.41)
+    version: 1.0.7(@scullyio/scully@2.1.41)(xmlbuilder@13.0.2)
   '@intercom/messenger-js-sdk':
     specifier: 0.0.14
     version: 0.0.14
@@ -280,6 +280,9 @@ devDependencies:
   typescript:
     specifier: 5.2.2
     version: 5.2.2
+  xmlbuilder:
+    specifier: 13.0.2
+    version: 13.0.2
 
 packages:
 
@@ -2694,7 +2697,7 @@ packages:
       tslib: 2.8.1
     dev: false
 
-  /@gammastream/scully-plugin-sitemap@1.0.7(@scullyio/scully@2.1.41):
+  /@gammastream/scully-plugin-sitemap@1.0.7(@scullyio/scully@2.1.41)(xmlbuilder@13.0.2):
     resolution: {integrity: sha512-YhNHcEaRaEV5aKF581Oafaf2o+lsuuJwczPAbYvldaUBxX/isHTTrIbXQblR+wi+Uf/UV2ntBjBcEzS87jst3w==}
     peerDependencies:
       '@scullyio/scully': ^1.0
@@ -2704,6 +2707,7 @@ packages:
     dependencies:
       '@scullyio/scully': 2.1.41(@angular/animations@17.0.8)(@angular/compiler@17.0.8)(@angular/platform-browser-dynamic@17.0.8)(@angular/platform-browser@17.0.8)(typescript@5.2.2)
       tslib: 2.6.1
+      xmlbuilder: 13.0.2
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -13133,6 +13137,10 @@ packages:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
     dev: false
+
+  /xmlbuilder@13.0.2:
+    resolution: {integrity: sha512-Eux0i2QdDYKbdbA6AM6xE4m6ZTZr4G4xF9kahI2ukSEMCzwce2eX9WlTI5J3s+NU7hpasFsr8hWIONae7LluAQ==}
+    engines: {node: '>=6.0'}
 
   /xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
