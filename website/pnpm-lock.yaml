@@ -43,7 +43,7 @@ dependencies:
     version: 0.14.1(@angular/core@17.0.8)
   '@gammastream/scully-plugin-sitemap':
     specifier: 1.0.7
-    version: 1.0.7(@scullyio/scully@2.1.41)(xmlbuilder@13.0.2)
+    version: 1.0.7(@scullyio/scully@2.1.41)(fast-xml-parser@3.21.1)(xmlbuilder@13.0.2)
   '@intercom/messenger-js-sdk':
     specifier: 0.0.14
     version: 0.0.14
@@ -244,6 +244,9 @@ devDependencies:
   eslint-plugin-unused-imports:
     specifier: 3.0.0
     version: 3.0.0(@typescript-eslint/eslint-plugin@6.17.0)(eslint@8.40.0)
+  fast-xml-parser:
+    specifier: 3.21.1
+    version: 3.21.1
   jasmine-core:
     specifier: 5.1.0
     version: 5.1.0
@@ -2697,7 +2700,7 @@ packages:
       tslib: 2.8.1
     dev: false
 
-  /@gammastream/scully-plugin-sitemap@1.0.7(@scullyio/scully@2.1.41)(xmlbuilder@13.0.2):
+  /@gammastream/scully-plugin-sitemap@1.0.7(@scullyio/scully@2.1.41)(fast-xml-parser@3.21.1)(xmlbuilder@13.0.2):
     resolution: {integrity: sha512-YhNHcEaRaEV5aKF581Oafaf2o+lsuuJwczPAbYvldaUBxX/isHTTrIbXQblR+wi+Uf/UV2ntBjBcEzS87jst3w==}
     peerDependencies:
       '@scullyio/scully': ^1.0
@@ -2706,6 +2709,7 @@ packages:
       xmlbuilder: ^13.0.2
     dependencies:
       '@scullyio/scully': 2.1.41(@angular/animations@17.0.8)(@angular/compiler@17.0.8)(@angular/platform-browser-dynamic@17.0.8)(@angular/platform-browser@17.0.8)(typescript@5.2.2)
+      fast-xml-parser: 3.21.1
       tslib: 2.6.1
       xmlbuilder: 13.0.2
     dev: false
@@ -8363,6 +8367,12 @@ packages:
     resolution: {integrity: sha512-aLrHthzCjH5He4Z2H9YZ+v6Ujb9ocRuW6ZzkJQOrTxleEijANq4v1TsaPaVG1PZcuurEzrLcWRyYBYXD5cEiaw==}
     dev: true
 
+  /fast-xml-parser@3.21.1:
+    resolution: {integrity: sha512-FTFVjYoBOZTJekiUsawGsSYV9QL0A+zDYCRj7y34IO6Jg+2IMYEtQa+bbictpdpV8dHxXywqU7C0gRDEOFtBFg==}
+    hasBin: true
+    dependencies:
+      strnum: 1.1.2
+
   /fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
     dependencies:
@@ -12209,6 +12219,9 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /strnum@1.1.2:
+    resolution: {integrity: sha512-vrN+B7DBIoTTZjnPNewwhx6cBA/H+IS7rfW68n7XxC1y7uoiGQBxaKzqucGUgavX15dJgiGztLJ8vxuEzwqBdA==}
 
   /strong-log-transformer@2.1.0:
     resolution: {integrity: sha512-B3Hgul+z0L9a236FAUC9iZsL+nVHgoCJnqCbN588DjYxvGXaXaaFbfmQ/JhvKjZwsOukuR72XbHv71Qkug0HxA==}
