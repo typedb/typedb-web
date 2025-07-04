@@ -42,7 +42,7 @@ export class LegalDocumentComponent implements OnInit {
                     this.title.setTitle(doc.pageTitle());
                     this.metaTags.register(doc.metaTags);
                     setTimeout(() => {
-                        Prism.highlightAll();
+                        (window as any)["Prism"].highlightAll();
                     }, 0);
                     document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                         el.setAttribute("rel", "noopener");
