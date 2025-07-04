@@ -12,7 +12,7 @@ command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prer
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run style:verify; ENV=staging pnpm run build && pnpm run prerender"
+command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.development]
