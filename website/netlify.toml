@@ -12,8 +12,8 @@ command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prer
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run style:verify; ENV=staging pnpm run build"
-publish = "dist/dynamic"
+command = "pnpm run style:verify; ENV=staging pnpm run build && pnpm run prerender"
+publish = "dist/static"
 
 [context.development]
 command = "pnpm run style:verify; ENV=development pnpm run build"
