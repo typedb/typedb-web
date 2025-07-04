@@ -145,7 +145,10 @@
                             "buildTarget": "typedb-web:build:local"
                         }
                     },
-                    "defaultConfiguration": "local"
+                    "defaultConfiguration": "local",
+                    "options": {
+                        "port": 4201
+                    }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",

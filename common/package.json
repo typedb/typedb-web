@@ -6,10 +6,11 @@
     "scripts": {
         "install": "tsc"
     },
-    "peerDependencies": {
+    "dependencies": {
         "prismjs": "1.29.x"
     },
-    "dependencies": {
+    "devDependencies": {
+        "@sanity/types": "3.14.1",
         "@types/prismjs": "1.26.2",
         "typescript": "5.1.6"
     }
