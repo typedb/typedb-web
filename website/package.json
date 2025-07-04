@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "cd ../schema && pnpm i && cd ../common && pnpm i && ng serve",
     "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -69,8 +69,8 @@
     "rxjs": "7.8.1",
     "ts-poet": "6.5.0",
     "ts-proto-descriptors": "1.15.0",
-    "typedb-web-common": "file:../common",
-    "typedb-web-schema": "file:../schema",
+    "typedb-web-common": "link:../common",
+    "typedb-web-schema": "link:../schema",
     "zone.js": "0.14.2"
   },
   "devDependencies": {

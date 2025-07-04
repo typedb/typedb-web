@@ -12,5 +12,8 @@
     "dependencies": {
         "@types/prismjs": "1.26.2",
         "typescript": "5.1.6"
+    },
+    "devDependencies": {
+        "@sanity/types": "3.14.1"
     }
 }

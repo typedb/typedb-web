@@ -94,7 +94,7 @@
             display: block;
             border-radius: var(--border-radius);
             border: shapes.$border;
-            max-width: var(--section-max-width);
+            max-width: 100%;
         }
 
         figcaption {

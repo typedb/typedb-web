@@ -149,7 +149,7 @@ export class ContentService {
                 name,
                 this.http.get<{ result: T }>(
                     SANITY_QUERY_URL,
-                    ["production", "staging"].includes(environment.env)
+                    ["production", "staging", "local"].includes(environment.env)
                         ? { params: { query, perspective: "published" } }
                         : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
                 ),
