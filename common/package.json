@@ -7,11 +7,11 @@
         "install": "tsc"
     },
     "dependencies": {
-        "@types/prismjs": "1.26.2",
-        "typescript": "5.1.6"
+        "prismjs": "1.29.x"
     },
     "devDependencies": {
         "@sanity/types": "3.14.1",
-        "prismjs": "1.29.x"
+        "@types/prismjs": "1.26.2",
+        "typescript": "5.1.6"
     }
 }

@@ -1,5 +1,6 @@
 import { enableProdMode, importProvidersFrom } from "@angular/core";
 
+import "prismjs";
 import "typedb-web-common/lib/prism";
 
 import { environment } from "./environment/environment";
