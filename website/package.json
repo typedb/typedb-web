@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "cd ../schema && pnpm i && cd ../common && pnpm i && ng serve",
-    "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
+    "build": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:verify": "prettier --check src",
