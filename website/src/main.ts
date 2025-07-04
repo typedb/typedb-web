@@ -42,7 +42,7 @@ if (!isScullyRunning()) {
     posthog.init(
         posthogProjectApiKey,
         {
-            api_host: "https://typedb.com/ingest",
+            api_host: "https://typedb.com/ph",
             ui_host: "https://us.posthog.com",
             person_profiles: "always",
             capture_pageview: false,
