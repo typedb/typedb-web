@@ -44,7 +44,7 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        Prism.highlightAll();
+        (window as any)["Prism"].highlightAll();
     }
 
     hasMediaIllustration(feature: FeatureGridCell) {

@@ -101,6 +101,5 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
     protected override onPageReady(page: HomePage): void {
         super.onPageReady(page);
         this.title.setTitle(`TypeDB: ${page.introSection?.title.toPlainText() || "Home"}`);
-        Prism.highlightAll();
     }
 }

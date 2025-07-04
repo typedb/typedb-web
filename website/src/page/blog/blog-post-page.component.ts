@@ -121,7 +121,7 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     private decoratePost() {
-        Prism.highlightAll();
+        (window as any)["Prism"].highlightAll();
         document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });
