@@ -98,6 +98,7 @@
     "axios": "1.4.0",
     "eslint": "8.40.0",
     "eslint-plugin-unused-imports": "3.0.0",
+    "fast-xml-parser": "3.21.1",
     "jasmine-core": "5.1.0",
     "karma": "6.4.2",
     "karma-chrome-launcher": "3.2.0",
