@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "cd ../schema && pnpm i && cd ../website && ng build -c $ENV",
+    "start": "cd ../schema && pnpm i && cd ../common && pnpm i && ng serve",
+    "build": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../website && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:verify": "prettier --check src",
@@ -69,8 +69,8 @@
     "rxjs": "7.8.1",
     "ts-poet": "6.5.0",
     "ts-proto-descriptors": "1.15.0",
-    "typedb-web-common": "file:../common",
-    "typedb-web-schema": "file:../schema",
+    "typedb-web-common": "link:../common",
+    "typedb-web-schema": "link:../schema",
     "zone.js": "0.14.2"
   },
   "devDependencies": {
@@ -98,6 +98,7 @@
     "axios": "1.4.0",
     "eslint": "8.40.0",
     "eslint-plugin-unused-imports": "3.0.0",
+    "fast-xml-parser": "3.21.1",
     "jasmine-core": "5.1.0",
     "karma": "6.4.2",
     "karma-chrome-launcher": "3.2.0",
@@ -109,7 +110,8 @@
     "react": "18.3.1",
     "ts-proto": "1.156.2",
     "tslib": "2.6.1",
-    "typescript": "5.5.4"
+    "typescript": "5.2.2",
+    "xmlbuilder": "13.0.2"
   },
   "engines": {
     "node": ">=18.12.0 <19"

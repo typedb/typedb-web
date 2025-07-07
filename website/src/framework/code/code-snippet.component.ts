@@ -1,14 +1,10 @@
 import { AsyncPipe, NgClass } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
-import Prism from "prismjs";
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { initCustomScrollbars } from "typedb-web-common/lib";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
-
 import { MediaQueryService } from "src/service/media-query.service";
-
 import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
 import { sanitiseHtmlID } from "../util";
 
@@ -22,7 +18,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     standalone: true,
     imports: [AsyncPipe],
 })
-export class CodeSnippetComponent implements AfterViewInit {
+export class CodeSnippetComponent {
     @Input() snippet!: CodeSnippet;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
@@ -33,6 +29,7 @@ export class CodeSnippetComponent implements AfterViewInit {
         private elementRef: ElementRef<HTMLElement>,
         private mediaQuery: MediaQueryService,
         private ngZone: NgZone,
+        private cdr: ChangeDetectorRef,
     ) {
         this.lineNumbers$ = this.mediaQuery.isMobile$.pipe(
             map((isMobile) => {
@@ -45,8 +42,28 @@ export class CodeSnippetComponent implements AfterViewInit {
         );
     }
 
+    // ngAfterViewInit(): void {
+        // Schedule highlight after Angular finishes change detection
+        // this.cdr.detectChanges();
+        //
+        // setInterval(() => {
+        //     const el = this.elementRef.nativeElement;
+        //     console.log('Code element:', el);
+        //     if (el) (window as any)["Prism"].highlightAllUnder(el);
+        // }, 5000);
+        //
+        // // Run Prism.highlightAll after the DOM updates
+        // // requestAnimationFrame(() => {
+        // //     const el = document.querySelector('code');
+        // //     console.log('Code element:', el);
+        // //     setTimeout(() => Prism.highlightAll(), 0);
+        // // });
+    // }
+
     ngAfterViewInit() {
-        Prism.highlightAll();
+        setTimeout(() => {
+            (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
+        });
 
         this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
     }
@@ -108,7 +125,7 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        Prism.highlightAll();
+        (window as any)["Prism"].highlightAll();
     }
 
     snippetTabID(tab: CodeSnippet): string {

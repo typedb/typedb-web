@@ -1,6 +1,6 @@
 import Prism from "prismjs";
 
-Prism.languages["console"] = {
+Prism.languages["typedb-console"] = {
     comment: {
         pattern: /#.*/,
     },
