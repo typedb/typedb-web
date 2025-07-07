@@ -114,7 +114,7 @@
     "xmlbuilder": "13.0.2"
   },
   "engines": {
-    "node": ">=18.12.0 <19"
+    "node": ">=22.16 <23"
   },
-  "packageManager": "pnpm@8.6.7"
+  "packageManager": "pnpm@10.12.1+sha256.889bac470ec93ccc3764488a19d6ba8f9c648ad5e50a9a6e4be3768a5de387a3"
 }
