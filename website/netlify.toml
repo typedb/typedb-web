@@ -20,8 +20,8 @@ command = "pnpm run style:verify; ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify; ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "pnpm run style:verify; ENV=development pnpm run build && pnpm run prerender"
+publish = "dist/static"
 
 # ALIASES
 # Keep indefinitely
