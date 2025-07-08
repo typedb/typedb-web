@@ -31,7 +31,6 @@
     "@angular/router": "18.2.13",
     "@angular/ssr": "^18.2.20",
     "@customerio/cdp-analytics-browser": "0.2.3",
-    "@fortawesome/angular-fontawesome": "0.14.1",
     "@intercom/messenger-js-sdk": "0.0.14",
     "@pixi/constants": "6.5.9",
     "@pixi/core": "6.5.9",
