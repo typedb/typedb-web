@@ -11,11 +11,11 @@
 @forward "scrollbars";
 @forward "vars";
 
-$default-typography: mat.define-typography-level(
+$default-typography: mat.m2-define-typography-level(
     $font-size: inherit,
 );
 
-$custom-typography: mat.define-typography-config(
+$custom-typography: mat.m2-define-typography-config(
     $font-family: var(--default-font-family),
     $headline-1: $default-typography,
     $headline-2: $default-typography,
