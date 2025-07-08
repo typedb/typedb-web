@@ -115,12 +115,12 @@ $typedb-theme: mat.m2-define-dark-theme((
 body {
     /* Button toggle */
     .mat-button-toggle-group, .mat-button-toggle {
-        --mat-standard-button-toggle-divider-color: #{colors.$light-purple};
-        --mat-standard-button-toggle-background-color: #{colors.$deep-purple};
-        --mat-standard-button-toggle-selected-state-background-color: #{colors.$secondary-purple};
-        --mat-standard-button-toggle-selected-state-text-color: #{colors.$green};
-        --mat-standard-button-toggle-disabled-state-background-color: #{colors.$secondary-deep-grey};
-        --mat-standard-button-toggle-disabled-selected-state-background-color: #{colors.$secondary-mid-deep-grey};
+        --mat-button-toggle-divider-color: #{colors.$light-purple};
+        --mat-button-toggle-background-color: #{colors.$deep-purple};
+        --mat-button-toggle-selected-state-background-color: #{colors.$secondary-purple};
+        --mat-button-toggle-selected-state-text-color: #{colors.$green};
+        --mat-button-toggle-disabled-state-background-color: #{colors.$secondary-deep-grey};
+        --mat-button-toggle-disabled-selected-state-background-color: #{colors.$secondary-mid-deep-grey};
     }
 
     .mat-button-toggle:hover button:not([disabled]) {
@@ -128,8 +128,8 @@ body {
     }
 
     .mat-button-toggle-appearance-standard.mat-button-toggle-disabled.mat-button-toggle-checked button:disabled {
-        color: var(--mat-standard-button-toggle-disabled-selected-state-text-color);
-        background-color: var(--mat-standard-button-toggle-disabled-selected-state-background-color);
+        color: var(--mat-button-toggle-disabled-selected-state-text-color);
+        background-color: var(--mat-button-toggle-disabled-selected-state-background-color);
     }
 
     /* CDK */
@@ -209,11 +209,11 @@ body {
 
     /* Chips */
     .mat-mdc-chip.mat-mdc-standard-chip {
-        --mdc-chip-elevated-container-color: #{colors.$secondary-purple};
-        --mdc-chip-label-text-size: 15px;
-        --mdc-chip-label-text-tracking: var(--body-letter-spacing);
-        --mdc-chip-container-height: 40px;
-        --mdc-chip-focus-state-layer-opacity: 1;
+        --mat-chip-elevated-container-color: #{colors.$secondary-purple};
+        --mat-chip-label-text-size: 15px;
+        --mat-chip-label-text-tracking: var(--body-letter-spacing);
+        --mat-chip-container-height: 40px;
+        --mat-chip-focus-state-layer-opacity: 1;
         @include shapes.standard-border;
         transition: 100ms border-color ease;
 
@@ -222,9 +222,9 @@ body {
         }
 
         &.mat-mdc-chip-selected.mat-primary {
-            --mdc-chip-label-text-color: #{colors.$purple};
+            --mat-chip-label-text-color: #{colors.$purple};
             border-color: #{colors.$green};
-            --mdc-chip-with-icon-selected-icon-color: #{colors.$purple};
+            --mat-chip-with-icon-selected-icon-color: #{colors.$purple};
         }
     }
 
@@ -253,16 +253,16 @@ body {
 
     /* Dialog */
     .mdc-dialog {
-        --mdc-dialog-container-color: #{colors.$deep-purple};
-        --mdc-dialog-subhead-color: #{colors.$white};
-        --mdc-dialog-supporting-text-color: #{colors.$white};
-        --mdc-dialog-supporting-text-weight: var(--font-weight-light);
-        --mdc-dialog-supporting-text-tracking: var(--body-letter-spacing);
+        --mat-dialog-container-color: #{colors.$deep-purple};
+        --mat-dialog-subhead-color: #{colors.$white};
+        --mat-dialog-supporting-text-color: #{colors.$white};
+        --mat-dialog-supporting-text-weight: var(--font-weight-light);
+        --mat-dialog-supporting-text-tracking: var(--body-letter-spacing);
 
         .mdc-dialog__surface {
             padding: 24px;
             border-radius: shapes.$border-radius;
-            background-color: var(--mdc-dialog-container-color);
+            background-color: var(--mat-dialog-container-color);
         }
 
         .mdc-dialog__title {
@@ -304,9 +304,9 @@ body {
     /* Form field */
     .mat-mdc-form-field {
         --mat-form-field-container-text-tracking: var(--body-letter-spacing);
-        --mdc-outlined-text-field-label-text-size: 15px;
-        --mdc-outlined-text-field-label-text-weight: var(--font-weight-light);
-        --mdc-outlined-text-field-label-text-tracking: var(--body-letter-spacing);
+        --mat-form-field-outlined-label-text-size: 15px;
+        --mat-form-field-outlined-label-text-weight: var(--font-weight-light);
+        --mat-form-field-outlined-label-text-tracking: var(--body-letter-spacing);
         --mat-form-field-subscript-text-tracking: var(--body-letter-spacing);
         font-size: 15px;
         --mat-select-trigger-text-size: 15px;
@@ -420,12 +420,12 @@ body {
     }
 
     .mdc-fab {
-        --mdc-fab-container-color: #{colors.$secondary-purple};
+        --mat-fab-container-color: #{colors.$secondary-purple};
         --mat-fab-foreground-color: #{colors.$dark-white};
         --mat-fab-disabled-state-container-color: #{colors.$secondary-purple};
         --mat-fab-disabled-state-foreground-color: #{colors.$secondary-mid-deep-grey};
-        --mdc-fab-container-shape: #{shapes.$border-radius};
-        --mdc-fab-small-icon-size: 16px;
+        --mat-fab-container-shape: #{shapes.$border-radius};
+        --mat-fab-small-icon-size: 16px;
         border: shapes.$border;
 
         .mat-icon {
@@ -469,10 +469,10 @@ body {
 
     /* Input */
     .mdc-text-field {
-        --mdc-outlined-text-field-input-text-color: #{colors.$white};
-        --mdc-outlined-text-field-outline-color: #{colors.$light-purple};
-        --mdc-outlined-text-field-hover-outline-color: #{colors.$secondary-grey};
-        --mdc-outlined-text-field-label-text-color: #{rgba(#fff, 0.5)};
+        --mat-form-field-outlined-input-text-color: #{colors.$white};
+        --mat-form-field-outlined-outline-color: #{colors.$light-purple};
+        --mat-form-field-outlined-hover-outline-color: #{colors.$secondary-grey};
+        --mat-form-field-outlined-label-text-color: #{rgba(#fff, 0.5)};
         border-radius: shapes.$border-radius;
     }
 
@@ -520,7 +520,7 @@ body {
 
     /* Progress spinner */
     .mat-mdc-progress-spinner {
-        --mdc-circular-progress-active-indicator-color: #{colors.$dark-white};
+        --mat-progress-spinner-active-indicator-color: #{colors.$dark-white};
     }
 
     /* Select */
@@ -595,14 +595,14 @@ body {
 
     /* Slider */
     .mat-mdc-slider {
-        --mdc-slider-handle-width: 8px;
-        --mdc-slider-handle-shape: 2px;
+        --mat-slider-handle-width: 8px;
+        --mat-slider-handle-shape: 2px;
     }
 
     /* Snack bar */
     .mat-mdc-snack-bar-container {
-        --mdc-snackbar-supporting-text-size: 16px;
-        --mdc-snackbar-supporting-text-line-height: 24px;
+        --mat-snackbar-supporting-text-size: 16px;
+        --mat-snackbar-supporting-text-line-height: 24px;
 
         .mdc-snackbar__surface {
             padding: 0;
@@ -773,9 +773,9 @@ body {
 
     /* Tooltip */
     .mdc-tooltip {
-        --mdc-plain-tooltip-supporting-text-size: 12px;
-        --mdc-plain-tooltip-supporting-line-height: 20px;
-        --mdc-plain-tooltip-supporting-text-tracking: var(--body-letter-spacing);
+        --mat-tooltip-supporting-text-size: 12px;
+        --mat-tooltip-supporting-line-height: 20px;
+        --mat-tooltip-supporting-text-tracking: var(--body-letter-spacing);
     }
 
     .mdc-tooltip__surface {
