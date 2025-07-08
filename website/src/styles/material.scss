@@ -3,7 +3,8 @@
 @use "shapes";
 @use "typography";
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 $purple-palette: (
     50: colors.$secondary-purple,
     100: colors.$secondary-purple,
