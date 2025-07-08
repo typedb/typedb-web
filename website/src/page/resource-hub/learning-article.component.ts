@@ -29,11 +29,10 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     templateUrl: "./learning-article.component.html",
     styleUrls: ["./learning-article.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, RichTextComponent,
+        LinkDirective, HeadingWithHighlightsComponent, RichTextComponent,
         MatIconModule, ButtonComponent, FurtherLearningComponent, AsyncPipe
-    ],
+    ]
 })
 export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;

@@ -29,12 +29,11 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-lectures-page",
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
         ButtonComponent, TechnicolorBlockComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
         EventDurationPipe, OrdinalDatePipe, PlainTextPipe
-    ],
+    ]
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;

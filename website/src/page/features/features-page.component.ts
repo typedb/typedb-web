@@ -17,15 +17,13 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./features-page.component.html",
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    forwardRef(() => FeaturesPageTechnicolorBlockComponent),
-    FeatureGridComponent,
-    ConclusionPanelComponent,
-    AsyncPipe
-],
+        TitleBodyActionsSectionComponent,
+        forwardRef(() => FeaturesPageTechnicolorBlockComponent),
+        FeatureGridComponent,
+        ConclusionPanelComponent,
+        AsyncPipe
+    ]
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     protected override getPage(data: SanityDataset) {
@@ -38,8 +36,7 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     selector: "td-features-page-technicolor-block",
     template: `<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class FeaturesPageTechnicolorBlockComponent {
     @Input() section!: TechnicolorBlock;

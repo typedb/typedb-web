@@ -8,7 +8,10 @@ import { MetaTags, SanityDataset } from "typedb-web-schema";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 
-@Component({ template: `` })
+@Component({
+    template: ``,
+    standalone: false
+})
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implements OnInit {
     readonly page$: Observable<T | null>;

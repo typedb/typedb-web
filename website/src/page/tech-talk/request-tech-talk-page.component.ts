@@ -30,11 +30,10 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
     templateUrl: "./request-tech-talk-page.component.html",
     styleUrls: ["./request-tech-talk-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
+        HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
         RichTextComponent, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent
-    ],
+    ]
 })
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     formId!: string;

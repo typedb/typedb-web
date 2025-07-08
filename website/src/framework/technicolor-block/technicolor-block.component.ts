@@ -14,10 +14,9 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     templateUrl: "technicolor-block.component.html",
     styleUrls: ["./technicolor-block.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        LinkDirective, HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, OrganisationLogosComponent
-    ],
+        HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, OrganisationLogosComponent
+    ]
 })
 export class TechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;

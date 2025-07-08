@@ -12,8 +12,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     templateUrl: "./title-body-actions-section.component.html",
     styleUrls: ["./title-body-actions-section.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent],
+    imports: [HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent]
 })
 export class TitleBodyActionsSectionComponent {
     @Input() title!: ParagraphWithHighlights;

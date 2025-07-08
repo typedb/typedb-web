@@ -16,8 +16,7 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-resources-block",
     template: `<td-technicolor-block [block]="section" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class ResourcesBlockComponent {
     @Input() section!: TechnicolorBlock;
@@ -29,11 +28,10 @@ export class ResourcesBlockComponent {
     templateUrl: "./resource-hub.component.html",
     styleUrls: ["./resource-hub.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, ResourcesBlockComponent,
+        TitleBodyActionsSectionComponent, ResourcesBlockComponent,
         LinkPanelsCols2Component, ConclusionPanelComponent, AsyncPipe
-    ],
+    ]
 })
 export class ResourceHubComponent extends PageComponentBase<ResourceHub> {
     protected override getPage(data: SanityDataset) {

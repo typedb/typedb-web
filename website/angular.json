@@ -161,7 +161,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "typedb-web:build"
+            "buildTarget": "typedb-web:build"
           }
         },
         "test": {

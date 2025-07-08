@@ -24,8 +24,7 @@ import { PageComponentBase } from "../page-component-base";
         [longUpperLine]="block === page.contactSection"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class SupportPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -54,11 +53,10 @@ export class SupportPageTechnicolorBlockComponent {
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, SupportPageTechnicolorBlockComponent, LinkPanelsComponent,
+        SupportPageTechnicolorBlockComponent, LinkPanelsComponent,
         FeatureTableComponent, TestimonialsCarouselComponent, ContactPanelComponent, AsyncPipe
-    ],
+    ]
 })
 export class SupportPageComponent extends PageComponentBase<SupportPage> {
     protected override getPage(data: SanityDataset) {

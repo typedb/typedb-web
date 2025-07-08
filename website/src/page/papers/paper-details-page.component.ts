@@ -27,11 +27,10 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./paper-details-page.component.html",
     styleUrls: ["./paper-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, AspectRatioComponent,
+        LinkDirective, HeadingWithHighlightsComponent, AspectRatioComponent,
         MatProgressBarModule, RichTextComponent, FurtherLearningComponent, AsyncPipe, ActionsComponent
-    ],
+    ]
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     readonly allPapersHeading = new ParagraphWithHighlights({

@@ -34,12 +34,11 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     selector: "td-lecture-details-page",
     templateUrl: "./lecture-details-page.component.html",
     styleUrls: ["./lecture-details-page.component.scss"],
-    standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, MatIconModule,
+        LinkDirective, HeadingWithHighlightsComponent, MatIconModule,
         ActionsComponent, AspectRatioComponent, MatProgressBarModule, RichTextComponent, PersonCardComponent,
         FurtherLearningComponent, AsyncPipe, DatePipe, EventDurationPipe, OrdinalDatePipe,
-    ],
+    ]
 })
 export class LectureDetailsPageComponent implements OnInit {
     readonly allLecturesHeading = new ParagraphWithHighlights({

@@ -22,8 +22,7 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-generic-page-technicolor-block",
     template: `<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class GenericPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: TitleBodyPanelSection;
@@ -41,11 +40,10 @@ export class GenericPageTechnicolorBlockComponent implements OnInit {
     templateUrl: "./generic-page.component.html",
     styleUrls: ["./generic-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, GenericPageTechnicolorBlockComponent,
+        TitleBodyActionsSectionComponent, GenericPageTechnicolorBlockComponent,
         ContentPanelComponent, FeaturesPageTechnicolorBlockComponent, ConclusionPanelComponent, AsyncPipe
-    ],
+    ]
 })
 export class GenericPageComponent extends PageComponentBase<GenericPage> {
     protected override getPage(data: SanityDataset) {

@@ -10,8 +10,7 @@ import { PersonInfoComponent } from "../../framework/person/person.component";
     templateUrl: "./blog-authorship-bar.component.html",
     styleUrls: ["./blog-authorship-bar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PersonInfoComponent, DatePipe],
+    imports: [PersonInfoComponent, DatePipe]
 })
 export class BlogAuthorshipBarComponent {
     @Input() post!: BlogPost;

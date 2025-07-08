@@ -12,7 +12,6 @@ import {
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -27,11 +26,10 @@ import { BlogRowComponent } from "./blog-row.component";
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
+        LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
         BlogNavbarComponent, BlogRowComponent, AsyncPipe
-    ],
+    ]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;

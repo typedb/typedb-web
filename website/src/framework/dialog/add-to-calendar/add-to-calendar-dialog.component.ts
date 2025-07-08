@@ -11,8 +11,7 @@ import { DialogCloseButtonComponent } from "../close-button/dialog-close-button.
     templateUrl: "./add-to-calendar-dialog.component.html",
     styleUrls: ["./add-to-calendar-dialog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ActionsComponent, MatProgressBarModule],
+    imports: [MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ActionsComponent, MatProgressBarModule]
 })
 export class AddToCalendarDialogComponent implements OnInit {
     actions!: ActionButton[];

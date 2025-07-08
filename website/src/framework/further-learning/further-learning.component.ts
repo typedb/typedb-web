@@ -9,8 +9,7 @@ import { TechnicolorBlockComponent } from "../technicolor-block/technicolor-bloc
     selector: "td-further-learning",
     templateUrl: "./further-learning.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent, ResourcePanelsComponent],
+    imports: [TechnicolorBlockComponent, ResourcePanelsComponent]
 })
 export class FurtherLearningComponent {
     @Input() value!: ResourceSection;

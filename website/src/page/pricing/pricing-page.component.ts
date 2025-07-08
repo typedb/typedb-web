@@ -17,8 +17,7 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-pricing-page-technicolor-block",
     template: `<td-technicolor-block [block]="block" [index]="index" [level]="level" [noUpperLine]="index === 0"/>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class PricingPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -34,11 +33,10 @@ export class PricingPageTechnicolorBlockComponent {
     templateUrl: "./pricing-page.component.html",
     styleUrls: ["./pricing-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, PricingPageTechnicolorBlockComponent, FeatureTableComponent, LinkPanelsComponent,
+        PricingPageTechnicolorBlockComponent, FeatureTableComponent,
         AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent,
-    ],
+    ]
 })
 export class PricingPageComponent extends PageComponentBase<PricingPage> {
     protected override getPage(data: SanityDataset) {

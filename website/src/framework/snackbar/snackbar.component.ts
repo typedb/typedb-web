@@ -13,8 +13,7 @@ export interface SnackbarData {
     templateUrl: "snackbar.component.html",
     styleUrls: ["./snackbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatIconModule, MatButtonModule],
+    imports: [MatIconModule, MatButtonModule]
 })
 export class SnackbarComponent {
     private readonly data = inject<SnackbarData>(MAT_SNACK_BAR_DATA);

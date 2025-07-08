@@ -1,15 +1,15 @@
 @use "@angular/material" as mat;
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
-@import "base";
-@import "fonts";
-@import "material";
-@import "prism";
-@import "reset";
-@import "scrollbars";
-@import "vars";
+@forward "base";
+@forward "fonts";
+@forward "material";
+@forward "prism";
+@forward "reset";
+@forward "scrollbars";
+@forward "vars";
 
 $default-typography: mat.define-typography-level(
     $font-size: inherit,
@@ -58,9 +58,9 @@ article {
 section, .section {
     position: relative;
     z-index: 1;
-    @include section-width($offset: 0px);
     margin-left: auto;
     margin-right: auto;
+    @include mixins.section-width($offset: 0px);
 }
 
 .narrow-section {
@@ -213,8 +213,8 @@ table {
     }
 
     .cc-btn {
-        @include button;
-        @include button-primary;
+        @include mixins.button;
+        @include mixins.button-primary;
 
         &.cc-btn {
             height: auto;

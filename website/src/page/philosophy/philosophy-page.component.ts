@@ -24,15 +24,13 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./philosophy-page.component.html",
     styleUrls: ["./philosophy-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-    PageBackgroundComponent,
-    TitleBodyActionsSectionComponent,
-    forwardRef(() => PhilosophyPageTechnicolorBlockComponent),
-    PublicationPanelComponent,
-    ConclusionPanelComponent,
-    AsyncPipe
-],
+        TitleBodyActionsSectionComponent,
+        forwardRef(() => PhilosophyPageTechnicolorBlockComponent),
+        PublicationPanelComponent,
+        ConclusionPanelComponent,
+        AsyncPipe
+    ]
 })
 export class PhilosophyPageComponent extends PageComponentBase<PhilosophyPage> {
     protected override getPage(data: SanityDataset) {
@@ -45,8 +43,7 @@ export class PhilosophyPageComponent extends PageComponentBase<PhilosophyPage> {
     selector: "td-philosophy-page-technicolor-block",
     template: `<td-technicolor-block [block]="block" [index]="index + 1" [noUpperLine]="index === 0" />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class PhilosophyPageTechnicolorBlockComponent implements OnInit {
     @Input() section!: PublicationSection | ConclusionSection;

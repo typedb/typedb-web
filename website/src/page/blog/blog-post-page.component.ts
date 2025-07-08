@@ -28,7 +28,6 @@ import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.
 import { ButtonComponent } from "../../framework/button/button.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { sanitiseHtmlID } from "../../framework/util";
@@ -43,7 +42,6 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     templateUrl: "./blog-post-page.component.html",
     styleUrls: ["./blog-post-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         LinkDirective,
         HeadingWithHighlightsComponent,
@@ -56,7 +54,7 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
         AspectRatioComponent,
         FurtherLearningComponent,
         AsyncPipe,
-    ],
+    ]
 })
 export class BlogPostPageComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;

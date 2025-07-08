@@ -1,9 +1,9 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 .cp-root {
-    @include card-appearance;
+    @include mixins.card-appearance;
     display: flex;
 
     @media (max-width: media.$max-width-mobile) {
@@ -13,7 +13,7 @@
 
 .cp-main-area,
 .cp-resources-area {
-    @include card-padding;
+    @include mixins.card-padding;
 }
 
 .cp-main-area {

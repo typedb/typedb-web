@@ -24,8 +24,7 @@ const SITE_URL = "https://typedb.com";
     templateUrl: "./root.component.html",
     styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TopbarMenuComponent, RouterOutlet, FooterComponent, FeedbackButtonComponent],
+    imports: [TopbarMenuComponent, RouterOutlet, FooterComponent, FeedbackButtonComponent]
 })
 export class RootComponent {
     @HostBinding("class.has-banner") hasBanner = false;

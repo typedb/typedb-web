@@ -15,8 +15,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "code-snippet.component.html",
     styleUrls: ["code-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe],
+    imports: [AsyncPipe]
 })
 export class CodeSnippetComponent {
     @Input() snippet!: CodeSnippet;
@@ -74,8 +73,7 @@ export class CodeSnippetComponent {
     templateUrl: "polyglot-snippet.component.html",
     styleUrls: ["polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe],
+    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename

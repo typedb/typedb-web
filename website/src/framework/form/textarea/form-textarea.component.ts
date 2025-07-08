@@ -7,8 +7,7 @@ import { MatInputModule } from "@angular/material/input";
     selector: "td-form-textarea",
     templateUrl: "./form-textarea.component.html",
     styleUrls: ["./form-textarea.component.scss"],
-    standalone: true,
-    imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
+    imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]
 })
 export class FormTextareaComponent<FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit, AfterViewInit {
     @Input() label = "";

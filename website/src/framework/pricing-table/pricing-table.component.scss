@@ -1,5 +1,5 @@
 @use "media";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: flex;
@@ -51,11 +51,11 @@ table:nth-of-type(3), td:nth-of-type(2) {
 
 table:nth-of-type(4), td:nth-of-type(3) {
     h3 {
-        @include color-gradient(#F96480, #FDD257);
+        @include mixins.color-gradient(#F96480, #FDD257);
     }
 
     td-button ::ng-deep a {
-        @include border-gradient(#F96480, #FDD257, var(--color-deep-purple));
+        @include mixins.border-gradient(#F96480, #FDD257, var(--color-deep-purple));
     }
 }
 

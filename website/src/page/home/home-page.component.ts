@@ -31,8 +31,7 @@ import { PageComponentBase } from "../page-component-base";
       [longUpperLine]="variant === 'conclusion'" [organisationLogos]="organisationLogos"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class HomePageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -68,12 +67,11 @@ export class HomePageTechnicolorBlockComponent {
     templateUrl: "./home-page.component.html",
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
+        HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
         LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
         TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe
-    ],
+    ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;

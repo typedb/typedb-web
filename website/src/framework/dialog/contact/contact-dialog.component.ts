@@ -11,11 +11,10 @@ import { FormDialogComponent } from "../form-dialog.component";
     selector: "td-contact-dialog",
     templateUrl: "./contact-dialog.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        FormDialogComponent, AsyncPipe, FormTextareaComponent, FormsModule, ReactiveFormsModule, FormComponent,
-        FormActionsComponent, FormInputComponent, MatCheckboxModule, ContactPanelComponent,
-    ],
+        FormDialogComponent, FormsModule, ReactiveFormsModule,
+        MatCheckboxModule, ContactPanelComponent,
+    ]
 })
 export class ContactDialogComponent {
     constructor(public dialogRef: MatDialogRef<ContactDialogComponent>) {}

@@ -18,8 +18,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     templateUrl: "./legal-document.component.html",
     styleUrls: ["./legal-document.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PageBackgroundComponent, HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe],
+    imports: [HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe]
 })
 export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;

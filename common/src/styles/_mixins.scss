@@ -3,9 +3,11 @@
 @use "shapes";
 
 @mixin section-width($offset) {
-    // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
-    width: shapes.$section-width + $offset;
-    max-width: var(--section-max-width);
+    & {
+        // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
+        width: shapes.$section-width + $offset;
+        max-width: var(--section-max-width);
+    }
 
     @media (min-width: media.$min-width-tablet) and (max-width: (shapes.$section-width-tablet + shapes.$section-page-margin-tablet * 2 - 1px)) {
         width: calc(100vw - #{shapes.$section-page-margin-tablet} * 2 + $offset);
