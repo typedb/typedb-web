@@ -4,7 +4,6 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { BehaviorSubject, filter, map, Observable } from "rxjs";
 import { ParagraphWithHighlights, SanityDataset, SanityPaper, Paper, paperSchemaName, LinkButton, Link, ActionButton } from "typedb-web-schema";
 
@@ -64,10 +63,10 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     constructor(
         private plainTextPipe: PlainTextPipe,
         private popupNotificationService: PopupNotificationService, activatedRoute: ActivatedRoute,
-        private analytics: AnalyticsService, router: Router, title: Title, idleMonitor: IdleMonitorService,
+        private analytics: AnalyticsService, router: Router, title: Title,
         metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
         this.isSubmitting$ = this._isSubmitting$.asObservable();
     }
 
@@ -101,7 +100,6 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
                 const a = document.createElement("a");
                 a.style.display = "none";
                 a.href = url;
-                // the filename you want
                 a.download = paper.fileName || "";
                 document.body.appendChild(a);
                 a.click();

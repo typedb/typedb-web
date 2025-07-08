@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of } from "rxjs";
 import {
@@ -28,8 +27,8 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-home-page-technicolor-block",
     template: `<td-technicolor-block
-        [block]="block" [index]="index" [level]="level" [noUpperLine]="index === 0" 
-        [longUpperLine]="variant === 'conclusion'" [organisationLogos]="organisationLogos"
+      [block]="block" [index]="index" [level]="level" [noUpperLine]="index === 0"
+      [longUpperLine]="variant === 'conclusion'" [organisationLogos]="organisationLogos"
     />`,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
@@ -83,11 +82,10 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
         this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
             map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
         );

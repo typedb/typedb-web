@@ -93,4 +93,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "disabled" })],
     exports: [RouterModule],
 })
-export class WebsiteRoutingModule {}
+export class RoutingModule {}

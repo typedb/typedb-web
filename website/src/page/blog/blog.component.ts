@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
@@ -40,8 +39,7 @@ export class BlogComponent implements OnInit {
 
     constructor(
         private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
-        private metaTags: MetaTagsService, private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef,
-        topbarMenuService: TopbarMenuService,
+        private metaTags: MetaTagsService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -94,9 +92,6 @@ export class BlogComponent implements OnInit {
                 this.router.navigate(["404"], { skipLocationChange: true });
                 return;
             }
-            setTimeout(() => {
-                this._idleMonitor.fireManualMyAppReadyEvent();
-            }, 60000);
         });
 
         combineLatest([

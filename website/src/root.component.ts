@@ -20,14 +20,14 @@ import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
 const SITE_URL = "https://typedb.com";
 
 @Component({
-    selector: "td-website",
-    templateUrl: "./website.component.html",
+    selector: "td-typedb-web",
+    templateUrl: "./root.component.html",
     styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [TopbarMenuComponent, RouterOutlet, FooterComponent, FeedbackButtonComponent],
 })
-export class WebsiteComponent {
+export class RootComponent {
     @HostBinding("class.has-banner") hasBanner = false;
     private _originBeforeNavigation: string = window.location.origin;
     private _pathnameBeforeNavigation: string = window.location.pathname;

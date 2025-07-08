@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { LegalDocument } from "typedb-web-schema";
@@ -27,7 +26,7 @@ export class LegalDocumentComponent implements OnInit {
 
     constructor(
         private router: Router, private activatedRoute: ActivatedRoute, private content: ContentService,
-        private metaTags: MetaTagsService, private title: Title, private _idleMonitor: IdleMonitorService,
+        private metaTags: MetaTagsService, private title: Title,
     ) {}
 
     ngOnInit() {
@@ -50,9 +49,6 @@ export class LegalDocumentComponent implements OnInit {
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
             },
             error: () => {
                 this.router.navigate(["404"], { skipLocationChange: true });

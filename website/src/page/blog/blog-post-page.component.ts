@@ -4,12 +4,21 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
-    Article, Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, blogPostSchemaName, blogSchemaName,
-    Link, LinkButton, RelatedBlogPosts, SanityBlog,
+    Article,
+    Blog,
+    blogCategories,
+    BlogCategoryID,
+    BlogPost,
+    blogPostLinkOf,
+    blogPostSchemaName,
+    blogSchemaName,
+    Link,
+    LinkButton,
+    RelatedBlogPosts,
+    SanityBlog,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -36,9 +45,17 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, BlogNavbarComponent,
-        BlogCategoryChipsComponent, RichTextComponent, BlogAuthorshipBarComponent, MatIconModule,
-        ButtonComponent, AspectRatioComponent, FurtherLearningComponent, AsyncPipe
+        LinkDirective,
+        HeadingWithHighlightsComponent,
+        BlogNavbarComponent,
+        BlogCategoryChipsComponent,
+        RichTextComponent,
+        BlogAuthorshipBarComponent,
+        MatIconModule,
+        ButtonComponent,
+        AspectRatioComponent,
+        FurtherLearningComponent,
+        AsyncPipe,
     ],
 })
 export class BlogPostPageComponent implements OnInit {
@@ -54,9 +71,14 @@ export class BlogPostPageComponent implements OnInit {
     });
 
     constructor(
-        private canonicalLink: CanonicalLinkService, private router: Router, private _activatedRoute: ActivatedRoute,
-        private content: ContentService, private metaTags: MetaTagsService, private title: Title,
-        private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
+        private canonicalLink: CanonicalLinkService,
+        private router: Router,
+        private _activatedRoute: ActivatedRoute,
+        private content: ContentService,
+        private metaTags: MetaTagsService,
+        private title: Title,
+        destroyRef: DestroyRef,
+        topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -95,7 +117,7 @@ export class BlogPostPageComponent implements OnInit {
         );
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.post$.subscribe({
             next: (post) => {
                 if (post) {
@@ -110,9 +132,6 @@ export class BlogPostPageComponent implements OnInit {
                 } else {
                     this.router.navigate(["blog"], { replaceUrl: true });
                 }
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 60000);
             },
             error: (_err) => {
                 this.router.navigate(["blog"], { replaceUrl: true });
@@ -120,13 +139,15 @@ export class BlogPostPageComponent implements OnInit {
         });
     }
 
-    private decoratePost() {
+    private decoratePost(): void {
         (window as any)["Prism"].highlightAll();
         document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });
         let anchorIndex = 0;
-        document.querySelectorAll("article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])").forEach((el) => {
+        document.querySelectorAll(
+            "article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])",
+        ).forEach((el) => {
             const sectionID = `${sanitiseHtmlID(el.textContent || "section")}-${anchorIndex}`;
             el.id = sectionID;
             const anchorEl = document.createElement("a");
@@ -137,7 +158,7 @@ export class BlogPostPageComponent implements OnInit {
         });
     }
 
-    categoryDisplayName(category: BlogCategoryID) {
+    categoryDisplayName(category: BlogCategoryID): string {
         return blogCategories[category];
     }
 

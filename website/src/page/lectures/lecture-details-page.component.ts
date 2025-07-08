@@ -6,7 +6,6 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton, EventBase, Lecture, lectureSchemaName, Link, LinkButton, ParagraphWithHighlights,
@@ -39,7 +38,7 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
     imports: [
         PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, MatIconModule,
         ActionsComponent, AspectRatioComponent, MatProgressBarModule, RichTextComponent, PersonCardComponent,
-        FurtherLearningComponent, AsyncPipe, DatePipe, EventDurationPipe, OrdinalDatePipe
+        FurtherLearningComponent, AsyncPipe, DatePipe, EventDurationPipe, OrdinalDatePipe,
     ],
 })
 export class LectureDetailsPageComponent implements OnInit {
@@ -58,8 +57,8 @@ export class LectureDetailsPageComponent implements OnInit {
     constructor(
         private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
         private metaTags: MetaTagsService, private _popupNotificationService: PopupNotificationService,
-        private _title: Title, private _analytics: AnalyticsService, private _idleMonitor: IdleMonitorService,
-        private _plainTextPipe: PlainTextPipe, private sanitizer: DomSanitizer, private dialog: MatDialog,
+        private _title: Title, private _analytics: AnalyticsService, private _plainTextPipe: PlainTextPipe,
+        private sanitizer: DomSanitizer, private dialog: MatDialog,
     ) {
         this.isSubmitting$ = this._isSubmitting$.asObservable();
         this.lecture$ = combineLatest([this.activatedRoute.paramMap, this.contentService.data]).pipe(
@@ -118,8 +117,8 @@ export class LectureDetailsPageComponent implements OnInit {
             map((lecture) =>
                 lecture?.youtubeVideoID
                     ? this.sanitizer.bypassSecurityTrustResourceUrl(
-                          `https://youtube.com/embed/${lecture.youtubeVideoID}`,
-                      )
+                        `https://youtube.com/embed/${lecture.youtubeVideoID}`,
+                    )
                     : null,
             ),
             shareReplay(1),
@@ -131,11 +130,6 @@ export class LectureDetailsPageComponent implements OnInit {
             if (lecture) {
                 this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
                 this.metaTags.register(lecture.metaTags);
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 20000);
-
-                // TODO: lead capture form / registration form?
             } else {
                 this.router.navigate(["lectures"], { replaceUrl: true });
             }

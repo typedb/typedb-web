@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ActionButton, EventBase, Link, LinkButton } from "typedb-web-schema";
@@ -17,10 +17,10 @@ import { DialogCloseButtonComponent } from "../close-button/dialog-close-button.
 export class AddToCalendarDialogComponent implements OnInit {
     actions!: ActionButton[];
     isLoading = false;
+    readonly data = inject<{ event: EventBase }>(MAT_DIALOG_DATA);
 
     constructor(
         private calendarService: CalendarService,
-        @Inject(MAT_DIALOG_DATA) public data: { event: EventBase },
         private dialogRef: MatDialogRef<AddToCalendarDialogComponent>,
     ) {}
 

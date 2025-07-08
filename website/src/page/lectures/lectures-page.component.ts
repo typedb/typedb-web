@@ -4,7 +4,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map, Observable, of } from "rxjs";
 import {
     Lecture, lectureSchemaName, LecturesPage, lecturesPageSchemaName, SanityDataset, SanityLecture, SanityLecturesPage,
@@ -41,10 +40,10 @@ export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;
 
     constructor(
-        activatedRoute: ActivatedRoute, router: Router, title: Title, idleMonitor: IdleMonitorService,
+        activatedRoute: ActivatedRoute, router: Router, title: Title,
         metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
         this.allLectures$ = contentService.data.pipe(
             map((data) => {
                 const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];

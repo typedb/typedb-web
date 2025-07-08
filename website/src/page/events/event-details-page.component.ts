@@ -4,7 +4,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map } from "rxjs";
 import { LiveEvent, liveEventSchemaName, SanityDataset, SanityLiveEvent } from "typedb-web-schema";
 
@@ -39,10 +38,10 @@ import { PageComponentBase } from "../page-component-base";
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
         private imageBuilder: ImageBuilder, private plainTextPipe: PlainTextPipe, activatedRoute: ActivatedRoute,
-        router: Router, title: Title, idleMonitor: IdleMonitorService, metaTags: MetaTagsService,
+        router: Router, title: Title, metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {

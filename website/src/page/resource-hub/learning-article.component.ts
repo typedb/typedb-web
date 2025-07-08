@@ -4,7 +4,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import {
@@ -51,7 +50,7 @@ export class LearningArticleComponent implements OnInit {
     constructor(
         private canonicalLink: CanonicalLinkService, private router: Router, private activatedRoute: ActivatedRoute,
         private content: ContentService, private metaTags: MetaTagsService, private title: Title,
-        private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
+        destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
     }
@@ -97,9 +96,6 @@ export class LearningArticleComponent implements OnInit {
                 } else {
                     this.router.navigate(["learn"], { replaceUrl: true });
                 }
-                setTimeout(() => {
-                    this._idleMonitor.fireManualMyAppReadyEvent();
-                }, 60000);
             },
             error: (_err) => {
                 this.router.navigate(["learn"], { replaceUrl: true });

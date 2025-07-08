@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { Observable, shareReplay, switchMap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 
@@ -20,7 +19,6 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected activatedRoute: ActivatedRoute,
         protected router: Router,
         protected title: Title,
-        private idleMonitor: IdleMonitorService,
         private metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
@@ -46,8 +44,5 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
 
     protected onPageReady(page: T): void {
         this.metaTags.register(page.metaTags);
-        setTimeout(() => {
-            this.idleMonitor.fireManualMyAppReadyEvent();
-        }, 20000);
     }
 }

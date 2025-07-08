@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { of } from "rxjs";
 import { EventsPage, eventsPageSchemaName, LiveEvent, SanityDataset, SanityEventsPage } from "typedb-web-schema";
 
@@ -38,11 +37,10 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {
