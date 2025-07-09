@@ -1,5 +1,5 @@
-import { AsyncPipe, NgClass } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { AsyncPipe, isPlatformBrowser, NgClass } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, PLATFORM_ID, ViewChild, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { initCustomScrollbars } from "typedb-web-common/lib";
@@ -18,6 +18,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     imports: [AsyncPipe]
 })
 export class CodeSnippetComponent {
+    private readonly platformId = inject(PLATFORM_ID);
     @Input() snippet!: CodeSnippet;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
@@ -60,11 +61,13 @@ export class CodeSnippetComponent {
     // }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
-        });
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
+            });
 
-        this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+            this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+        }
     }
 }
 

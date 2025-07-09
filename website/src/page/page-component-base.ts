@@ -26,24 +26,12 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected router: Router,
         protected title: Title,
         private metaTags: MetaTagsService,
-        // contentService: ContentService,
-        private http: HttpClient,
+        contentService: ContentService,
     ) {
-        const query = "*[!(_type match 'system.**')]";
-        this.page$ = this.http.get(
-            SANITY_QUERY_URL,
-            ["production", "staging", "local"].includes(environment.env)
-                ? { params: { query, perspective: "published" } }
-                : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
-        ).pipe(
-            first(),
-            map((res: any) => res.result.find((x: any) => x._id === "homePage")),
-            tap((x: any) => console.log(x)),
+        this.page$ = contentService.data.pipe(
+            switchMap((data) => this.getPage(data)),
+            shareReplay(1),
         );
-        // this.page$ = contentService.data.pipe(
-        //     switchMap((data) => this.getPage(data)),
-        //     shareReplay(1),
-        // );
     }
 
     ngOnInit() {
@@ -52,7 +40,7 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
                 return this.onPageNotFound();
             }
 
-            // this.onPageReady(page);
+            this.onPageReady(page);
         });
     }
 

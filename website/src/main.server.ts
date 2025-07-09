@@ -11,6 +11,11 @@
 
 import "zone.js";
 import 'zone.js/node';
+import { DOMParser } from '@xmldom/xmldom';
+
+if (typeof global !== 'undefined') {
+    (global as any).DOMParser = DOMParser;
+}
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { serverConfig } from "./config.server";

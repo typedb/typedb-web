@@ -2,15 +2,15 @@ import { Component } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { RouterOutlet } from "@angular/router";
-// import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
-// import { FooterComponent } from "./navigation/footer/footer.component";
-// import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
+import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
+import { FooterComponent } from "./navigation/footer/footer.component";
+import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
 
 @Component({
     selector: "td-typedb-web",
     templateUrl: "./root.component.html",
     imports: [
-        RouterOutlet, /*TopbarMenuComponent, FooterComponent, FeedbackButtonComponent*/
+        RouterOutlet, TopbarMenuComponent, FooterComponent, FeedbackButtonComponent
     ]
 })
 export class RootComponent {

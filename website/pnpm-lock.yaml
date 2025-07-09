@@ -59,6 +59,9 @@ importers:
       '@sanity/image-url':
         specifier: 1.0.2
         version: 1.0.2
+      '@xmldom/xmldom':
+        specifier: 0.9.8
+        version: 0.9.8
       cookieconsent:
         specifier: 3.1.1
         version: 3.1.1
@@ -1913,6 +1916,10 @@ packages:
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     peerDependencies:
       vite: ^6.0.0
+
+  '@xmldom/xmldom@0.9.8':
+    resolution: {integrity: sha512-p96FSY54r+WJ50FIOsCOjyj/wavs8921hG5+kVMmZgKcvIKxMXHTrjNJvRgWa/zuX3B6t2lijLNFaOyuxUH+2A==}
+    engines: {node: '>=14.6'}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -5531,6 +5538,8 @@ snapshots:
   '@vitejs/plugin-basic-ssl@2.0.0(vite@6.3.5(@types/node@18.19.115)(sass@1.88.0))':
     dependencies:
       vite: 6.3.5(@types/node@18.19.115)(sass@1.88.0)
+
+  '@xmldom/xmldom@0.9.8': {}
 
   '@yarnpkg/lockfile@1.1.0': {}
 
