@@ -1,15 +1,34 @@
 import { Component } from "@angular/core";
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 import { RouterOutlet } from "@angular/router";
+import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
+import { FooterComponent } from "./navigation/footer/footer.component";
+import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
 
 @Component({
     selector: "td-typedb-web",
-    template: "<router-outlet/>",
+    templateUrl: "./root.component.html",
     imports: [
-        RouterOutlet
+        RouterOutlet, TopbarMenuComponent, FooterComponent, FeedbackButtonComponent
     ]
 })
 export class RootComponent {
+    constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+        this.registerIcons(this.domSanitizer, this.matIconRegistry);
+    }
 
+    private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
+        const icons = [
+            "arrow-down", "burger-mobile", "burger-tablet", "calendar", "check", "checked", "close", "code",
+            "discord-rectangle", "discourse-rectangle", "facebook-rectangle", "github", "heart", "info", "link",
+            "linkedin", "linkedin-rectangle", "location", "mail", "meetup-rectangle", "reddit-rectangle", "time",
+            "twitter-rectangle", "youtube-rectangle",
+        ];
+        icons.forEach((icon) =>
+            matIconRegistry.addSvgIcon(icon, domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${icon}.svg`)),
+        );
+    }
 }
 
 // import { LocationStrategy, ViewportScroller } from "@angular/common";

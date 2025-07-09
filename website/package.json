@@ -13,7 +13,7 @@
     "lint:fix": "ng lint --fix",
     "style:verify": "prettier --check src && ng lint",
     "style:fix": "prettier --write src && ng lint --fix",
-    "serve": "ng build -c development && node dist/typedb-web/server/server.mjs",
+    "start:ssr": "ng build -c development && node dist/typedb-web/server/server.mjs",
     "prebuild:ssr": "node prerender-routes.js"
   },
   "private": true,

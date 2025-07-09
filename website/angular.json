@@ -14,11 +14,6 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "server.ts"
-            },
             "polyfills": [
               "src/polyfills.ts"
             ],
@@ -55,7 +50,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -63,9 +58,30 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "server": "src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "server.ts"
+              }
             },
             "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environment/environment.ts",
+                  "with": "src/environment/environment.dev.ts"
+                }
+              ],
+              "server": "src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "server.ts"
+              }
+            },
+            "no-ssr": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
@@ -83,13 +99,16 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-starter:build:production"
+              "buildTarget": "typedb-web:build:production"
             },
             "development": {
-              "buildTarget": "angular-starter:build:development"
+              "buildTarget": "typedb-web:build:development"
+            },
+            "no-ssr": {
+              "buildTarget": "typedb-web:build:no-ssr"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "no-ssr"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"

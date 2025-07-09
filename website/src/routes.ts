@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { _404PageComponent } from "./page/404/404-page.component";
+import { HomePageComponent } from "./page/home/home-page.component";
 
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
@@ -58,6 +59,6 @@ interface DynamicPagePredefined {
 type DynamicPage = DynamicPageWithSchema | DynamicPagePredefined;
 
 export const routes: Routes = [
-    { path: '', component: _404PageComponent },
+    { path: '', component: HomePageComponent },
     { path: "**", component: _404PageComponent },
 ];
