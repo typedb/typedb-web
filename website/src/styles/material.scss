@@ -312,7 +312,7 @@ body {
         --mat-select-trigger-text-size: 15px;
 
         &:not(.form-field-dense) {
-            @include mat.private-form-field-density(-2);
+            @include mat.form-field-density(-2);
 
             &.mat-mdc-form-field-type-mat-select {
                 height: 48px;
@@ -320,7 +320,7 @@ body {
         }
 
         &.form-field-dense {
-            @include mat.private-form-field-density(-5);
+            @include mat.form-field-density(-5);
         }
     }
 
