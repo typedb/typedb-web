@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Observable, shareReplay, switchMap } from "rxjs";
+import { Observable, of, shareReplay, switchMap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 
 import { ContentService } from "src/service/content.service";
@@ -23,12 +23,13 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected router: Router,
         protected title: Title,
         private metaTags: MetaTagsService,
-        contentService: ContentService,
+        // contentService: ContentService,
     ) {
-        this.page$ = contentService.data.pipe(
-            switchMap((data) => this.getPage(data)),
-            shareReplay(1),
-        );
+        this.page$ = of(null);
+        // this.page$ = contentService.data.pipe(
+        //     switchMap((data) => this.getPage(data)),
+        //     shareReplay(1),
+        // );
     }
 
     ngOnInit() {

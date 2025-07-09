@@ -74,19 +74,19 @@ export class HomePageTechnicolorBlockComponent {
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
-    readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
+    // readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
 
     constructor(
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
         metaTags: MetaTagsService,
-        contentService: ContentService,
+        // contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
-        this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
-            map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
-        );
+        super(activatedRoute, router, title, metaTags);
+        // this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
+        //     map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
+        // );
     }
 
     protected override getPage(data: SanityDataset) {
