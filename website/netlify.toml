@@ -8,20 +8,20 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/Cqyd
 pretty_urls = true
 
 [context.production]
-command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
+command = "ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run style:verify; ENV=staging pnpm run build"
+command = "ENV=staging pnpm run build"
 publish = "dist/dynamic"
 
 [context.development]
-command = "pnpm run style:verify; ENV=development pnpm run build"
+command = "ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify; ENV=development pnpm run build && pnpm run prerender"
-publish = "dist/static"
+command = "ENV=development pnpm run build"
+publish = "dist/typedb-web/browser"
 
 # ALIASES
 # Keep indefinitely
