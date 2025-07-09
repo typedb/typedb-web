@@ -24,16 +24,16 @@ const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wor
 })
 export class ContentService {
     public data = new ReplaySubject<SanityDataset>();
-    readonly wordpressPosts: Observable<WordpressPost[]>;
+    readonly wordpressPosts: Observable<WordpressPost[]> = of([]);
     readonly blogPosts = new ReplaySubject<BlogPost[]>();
-    readonly displayedPosts: Observable<BlogPost[]>;
+    readonly displayedPosts: Observable<BlogPost[]> = of([]);
     readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
     readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
     readonly legalDocuments = new ReplaySubject<LegalDocument[]>();
     readonly blogFilter = new BehaviorSubject<BlogFilter>(blogNullFilter());
 
-    private readonly footerData: Observable<FooterData>;
-    private readonly topnavData: Observable<TopnavData>;
+    // private readonly footerData: Observable<FooterData>;
+    // private readonly topnavData: Observable<TopnavData>;
 
     constructor(
         private http: HttpClient,
@@ -49,54 +49,54 @@ export class ContentService {
             );
         });
 
-        this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
-        this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
-
-        const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPost[]>("wordpressPosts");
-        this.wordpressPosts = this.handleTransferState(WORDPRESS_POSTS_KEY, this.wordpress.listPosts()).pipe(
-            switchMap((data) => {
-                if (data?.length) return of(data);
-                else return this.wordpress.listPosts(); // fall back to loading live (handles WP flakiness)
-            }),
-            shareReplay(),
-        );
-
-        this.listPosts().subscribe((data) => {
-            this.blogPosts.next(data);
-        });
-
-        this.listFundamentalArticles().subscribe((data) => {
-            this.fundamentalArticles.next(data);
-        });
-
-        this.listApplicationArticles().subscribe((data) => {
-            this.applicationArticles.next(data);
-        });
-
-        this.listLegalDocuments().subscribe((data) => {
-            this.legalDocuments.next(data);
-        });
-
-        this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
-            filter(([posts, _filter]) => !!posts?.length),
-            map(([posts, filter]) => {
-                const postsList = posts || [];
-                if ("categorySlug" in filter)
-                    return postsList.filter((post) => (post.categories as string[]).includes(filter.categorySlug));
-                return postsList;
-            }),
-            map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
-            shareReplay(),
-        );
+        // this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
+        // this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
+        //
+        // const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPost[]>("wordpressPosts");
+        // this.wordpressPosts = this.handleTransferState(WORDPRESS_POSTS_KEY, this.wordpress.listPosts()).pipe(
+        //     switchMap((data) => {
+        //         if (data?.length) return of(data);
+        //         else return this.wordpress.listPosts(); // fall back to loading live (handles WP flakiness)
+        //     }),
+        //     shareReplay(),
+        // );
+        //
+        // this.listPosts().subscribe((data) => {
+        //     this.blogPosts.next(data);
+        // });
+        //
+        // this.listFundamentalArticles().subscribe((data) => {
+        //     this.fundamentalArticles.next(data);
+        // });
+        //
+        // this.listApplicationArticles().subscribe((data) => {
+        //     this.applicationArticles.next(data);
+        // });
+        //
+        // this.listLegalDocuments().subscribe((data) => {
+        //     this.legalDocuments.next(data);
+        // });
+        //
+        // this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
+        //     filter(([posts, _filter]) => !!posts?.length),
+        //     map(([posts, filter]) => {
+        //         const postsList = posts || [];
+        //         if ("categorySlug" in filter)
+        //             return postsList.filter((post) => (post.categories as string[]).includes(filter.categorySlug));
+        //         return postsList;
+        //     }),
+        //     map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
+        //     shareReplay(),
+        // );
     }
 
-    getFooterData() {
-        return this.footerData;
-    }
-
-    getTopbarData() {
-        return this.topnavData;
-    }
+    // getFooterData() {
+    //     return this.footerData;
+    // }
+    //
+    // getTopbarData() {
+    //     return this.topnavData;
+    // }
 
     getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
         return articles$.pipe(

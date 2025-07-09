@@ -1,4 +1,5 @@
 import { AsyncPipe } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -82,8 +83,9 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         title: Title,
         metaTags: MetaTagsService,
         // contentService: ContentService,
+        http: HttpClient,
     ) {
-        super(activatedRoute, router, title, metaTags);
+        super(activatedRoute, router, title, metaTags, http);
         // this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
         //     map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
         // );

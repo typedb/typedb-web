@@ -11,7 +11,7 @@ import {
 import { MediaQueryService } from "../../service/media-query.service";
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { CodeSnippetComponent, PolyglotSnippetComponent } from "../code/code-snippet.component";
-import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
+// import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
 import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
@@ -20,7 +20,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
+        CodeSnippetComponent, PolyglotSnippetComponent, /*GraphVisualisationComponent,*/
         forwardRef(() => SplitPaneIllustrationComponent)
     ]
 })

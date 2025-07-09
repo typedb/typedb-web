@@ -1,3 +1,4 @@
+import "zone.js";
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RootComponent } from "./root.component";
 import { appConfig } from './config';

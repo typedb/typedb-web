@@ -15,7 +15,7 @@ import * as d3 from "d3-force";
 import FontFaceObserver from "fontfaceobserver";
 // pixi.js-legacy 7.x causes an issue where dragging stops at the edge of the visualisation, which is not a nice UX
 // pixi.js (non-legacy) causes an issue where all text is blurred
-import * as PIXI from "pixi.js-legacy";
+// import * as PIXI from "pixi.js-legacy";
 import { Subscription } from "rxjs";
 import { GraphVisualisation } from "typedb-web-schema";
 

@@ -10,6 +10,8 @@
 // export default bootstrap;
 
 import "zone.js";
+import 'zone.js/node';
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import { serverConfig } from "./config.server";
 // import { App } from './app/app';
