@@ -1,5 +1,5 @@
-import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { AsyncPipe, isPlatformBrowser } from "@angular/common";
+import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
@@ -43,20 +43,13 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     styleUrls: ["./blog-post-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        LinkDirective,
-        HeadingWithHighlightsComponent,
-        BlogNavbarComponent,
-        BlogCategoryChipsComponent,
-        RichTextComponent,
-        BlogAuthorshipBarComponent,
-        MatIconModule,
-        ButtonComponent,
-        AspectRatioComponent,
-        FurtherLearningComponent,
-        AsyncPipe,
+        LinkDirective, HeadingWithHighlightsComponent, BlogNavbarComponent, BlogCategoryChipsComponent,
+        RichTextComponent, BlogAuthorshipBarComponent, MatIconModule, ButtonComponent,
+        AspectRatioComponent, FurtherLearningComponent, AsyncPipe,
     ]
 })
 export class BlogPostPageComponent implements OnInit {
+    private readonly platformId = inject(PLATFORM_ID);
     readonly blog$: Observable<Blog | null>;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
@@ -69,14 +62,9 @@ export class BlogPostPageComponent implements OnInit {
     });
 
     constructor(
-        private canonicalLink: CanonicalLinkService,
-        private router: Router,
-        private _activatedRoute: ActivatedRoute,
-        private content: ContentService,
-        private metaTags: MetaTagsService,
-        private title: Title,
-        destroyRef: DestroyRef,
-        topbarMenuService: TopbarMenuService,
+        private canonicalLink: CanonicalLinkService, private router: Router, private _activatedRoute: ActivatedRoute,
+        private content: ContentService, private metaTags: MetaTagsService, private title: Title,
+        destroyRef: DestroyRef, topbarMenuService: TopbarMenuService, @Inject(DOCUMENT) private doc: Document,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -121,9 +109,11 @@ export class BlogPostPageComponent implements OnInit {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags);
-                    setTimeout(() => {
-                        this.decoratePost();
-                    }, 0);
+                    if (isPlatformBrowser(this.platformId)) {
+                        setTimeout(() => {
+                            this.decoratePost();
+                        }, 0);
+                    }
                     if (post.canonicalUrl) {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
@@ -162,23 +152,23 @@ export class BlogPostPageComponent implements OnInit {
 
     shareOnTwitterURL(post: BlogPost): string {
         return `https://twitter.com/intent/tweet?text=${post.title.toPlainText()}&url=${encodeURIComponent(
-            window.location.href,
+            this.doc.location.href,
         )}`;
     }
 
     shareOnFacebookURL(post: BlogPost): string {
         return `https://www.facebook.com/sharer.php?u=${encodeURIComponent(
-            window.location.href,
+            this.doc.location.href,
         )}&t=${post.title.toPlainText()}`;
     }
 
     shareOnLinkedInURL(_post: BlogPost): string {
-        return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+        return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.doc.location.href)}`;
     }
 
     shareOnRedditURL(post: BlogPost): string {
         return `https://www.reddit.com/submit?url=${encodeURIComponent(
-            window.location.href,
+            this.doc.location.href,
         )}&title=${post.title.toPlainText()}`;
     }
 

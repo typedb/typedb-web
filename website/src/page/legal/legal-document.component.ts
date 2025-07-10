@@ -1,5 +1,5 @@
-import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { AsyncPipe, isPlatformBrowser } from "@angular/common";
+import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -21,6 +21,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     imports: [HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe]
 })
 export class LegalDocumentComponent implements OnInit {
+    private readonly platformId = inject(PLATFORM_ID);
     document$!: Observable<LegalDocument | null>;
 
     constructor(
@@ -39,12 +40,14 @@ export class LegalDocumentComponent implements OnInit {
                 if (doc) {
                     this.title.setTitle(doc.pageTitle());
                     this.metaTags.register(doc.metaTags);
-                    setTimeout(() => {
-                        (window as any)["Prism"].highlightAll();
-                    }, 0);
-                    document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
-                        el.setAttribute("rel", "noopener");
-                    });
+                    if (isPlatformBrowser(this.platformId)) {
+                        setTimeout(() => {
+                            (window as any)["Prism"].highlightAll();
+                        }, 0);
+                        document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+                            el.setAttribute("rel", "noopener");
+                        });
+                    }
                 } else {
                     this.router.navigate(["404"], { skipLocationChange: true });
                 }
