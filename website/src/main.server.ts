@@ -18,11 +18,27 @@ if (typeof global !== 'undefined') {
 }
 
 import { bootstrapApplication } from '@angular/platform-browser';
-import { serverConfig } from "./config.server";
-// import { App } from './app/app';
-// import { config } from './app/app.config.server';
+import { serverConfigPromise } from "./config.server";
 import { RootComponent } from "./root.component";
 
-const bootstrap = () => bootstrapApplication(RootComponent, serverConfig);
+// This is the entry point for the server-side rendering
+export default async function bootstrap() {
+  try {
+    // Wait for both the server config and app config to be ready
+    const serverConfig = await serverConfigPromise;
 
-export default bootstrap;
+    // Merge the server and app configs
+    const mergedConfig = {
+      ...serverConfig,
+      providers: [
+        ...(serverConfig.providers || []),
+      ]
+    };
+
+    // Bootstrap the application with the merged config
+    return bootstrapApplication(RootComponent, mergedConfig);
+  } catch (error) {
+    console.error('Failed to bootstrap application:', error);
+    throw error;
+  }
+}
