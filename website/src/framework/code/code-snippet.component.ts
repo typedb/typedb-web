@@ -79,6 +79,7 @@ export class CodeSnippetComponent {
     imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
+    private readonly platformId = inject(PLATFORM_ID);
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("snippet") polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
@@ -126,7 +127,11 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        (window as any)["Prism"].highlightAll();
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                (window as any)["Prism"].highlightAllUnder(this._el.nativeElement);
+            });
+        }
     }
 
     snippetTabID(tab: CodeSnippet): string {

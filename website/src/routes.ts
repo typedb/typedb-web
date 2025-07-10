@@ -1,6 +1,17 @@
-import { Routes } from "@angular/router";
+import { Route, Routes } from "@angular/router";
 import { _404PageComponent } from "./page/404/404-page.component";
+import { BlogComponent } from "./page/blog/blog.component";
+import { EventsPageComponent } from "./page/events/events-page.component";
+import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { HomePageComponent } from "./page/home/home-page.component";
+import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
+import { PapersPageComponent } from "./page/papers/papers-page.component";
+import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
+import { PricingPageComponent } from "./page/pricing/pricing-page.component";
+import { ResourceHubComponent } from "./page/resource-hub/resource-hub.component";
+import { StartupProgramPageComponent } from "./page/startup-program/startup-program-page.component";
+import { SupportPageComponent } from "./page/support/support-page.component";
+import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
@@ -35,6 +46,22 @@ export const dynamicPageSchemas = [
     { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
+const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
+    "": { component: HomePageComponent },
+    blog: { component: BlogComponent, title: "TypeDB Blog" },
+    events: { component: EventsPageComponent, title: "TypeDB Events" },
+    features: { component: FeaturesPageComponent, title: "TypeDB Features" },
+    fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
+    learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
+    lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
+    papers: { component: PapersPageComponent, title: "TypeDB Papers" },
+    philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
+    pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
+    "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
+    "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
+    support: { component: SupportPageComponent, title: "TypeDB Support" },
+};
+
 interface StaticPage {
     path: string;
     schemaName: string;
@@ -59,6 +86,9 @@ interface DynamicPagePredefined {
 type DynamicPage = DynamicPageWithSchema | DynamicPagePredefined;
 
 export const routes: Routes = [
-    { path: '', component: HomePageComponent },
+    ...staticPageSchemas.map(({ path }) => ({
+        path,
+        ...staticPages[path],
+    })),
     { path: "**", component: _404PageComponent },
 ];

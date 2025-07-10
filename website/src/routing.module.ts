@@ -24,21 +24,7 @@ import { _404PageComponent } from "./page/404/404-page.component";
 // import { PapersPageComponent } from "./page/papers/papers-page.component";
 // import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./website-routes";
 //
-// const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
-//     "": { component: HomePageComponent },
-//     blog: { component: BlogComponent, title: "TypeDB Blog" },
-//     events: { component: EventsPageComponent, title: "TypeDB Events" },
-//     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
-//     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
-//     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
-//     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
-//     papers: { component: PapersPageComponent, title: "TypeDB Papers" },
-//     philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
-//     pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
-//     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
-//     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
-//     support: { component: SupportPageComponent, title: "TypeDB Support" },
-// };
+
 //
 // const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
 //     cloud: { component: GenericPageComponent, title: "TypeDB Cloud" },
