@@ -1,16 +1,16 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 .sm-root {
     display: flex;
     flex-direction: row;
-    @include card-appearance;
+    @include mixins.card-appearance;
 }
 
 .sm-panel {
     flex: 1;
-    @include card-padding;
+    @include mixins.card-padding;
     display: flex;
     flex-direction: column;
     justify-content: center;

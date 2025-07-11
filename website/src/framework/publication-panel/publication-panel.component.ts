@@ -13,8 +13,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "./publication-panel.component.html",
     styleUrls: ["./publication-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgTemplateOutlet, FeatureGridComponent, RichTextComponent, IllustrationComponent],
+    imports: [NgTemplateOutlet, FeatureGridComponent, RichTextComponent, IllustrationComponent]
 })
 export class PublicationPanelComponent {
     @Input() items!: PublicationPanelItem[];

@@ -1,5 +1,6 @@
 
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit, inject, PLATFORM_ID } from "@angular/core";
 
 import Prism from "prismjs";
 import {
@@ -19,10 +20,10 @@ import { TagChipsComponent } from "./tag-chips.component";
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent],
+    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent]
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
+    private readonly platformId = inject(PLATFORM_ID);
     @Input() layout!: FeatureGridLayout;
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
@@ -44,7 +45,9 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        (window as any)["Prism"].highlightAll();
+        if (isPlatformBrowser(this.platformId)) {
+            (window as any)["Prism"].highlightAll();
+        }
     }
 
     hasMediaIllustration(feature: FeatureGridCell) {

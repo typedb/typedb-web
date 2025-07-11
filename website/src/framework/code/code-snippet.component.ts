@@ -1,5 +1,5 @@
-import { AsyncPipe, NgClass } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { AsyncPipe, isPlatformBrowser, NgClass } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, NgZone, OnInit, PLATFORM_ID, ViewChild, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { initCustomScrollbars } from "typedb-web-common/lib";
@@ -15,10 +15,10 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "code-snippet.component.html",
     styleUrls: ["code-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AsyncPipe],
+    imports: [AsyncPipe]
 })
 export class CodeSnippetComponent {
+    private readonly platformId = inject(PLATFORM_ID);
     @Input() snippet!: CodeSnippet;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
@@ -61,11 +61,13 @@ export class CodeSnippetComponent {
     // }
 
     ngAfterViewInit() {
-        setTimeout(() => {
-            (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
-        });
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
+            });
 
-        this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+            this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+        }
     }
 }
 
@@ -74,10 +76,10 @@ export class CodeSnippetComponent {
     templateUrl: "polyglot-snippet.component.html",
     styleUrls: ["polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe],
+    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
+    private readonly platformId = inject(PLATFORM_ID);
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("snippet") polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
@@ -125,7 +127,11 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        (window as any)["Prism"].highlightAll();
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                (window as any)["Prism"].highlightAllUnder(this._el.nativeElement);
+            });
+        }
     }
 
     snippetTabID(tab: CodeSnippet): string {

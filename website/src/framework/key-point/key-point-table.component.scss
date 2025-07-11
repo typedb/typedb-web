@@ -1,5 +1,5 @@
 @use "media";
-@import "mixins";
+@use "mixins";
 
 
 .kpt-table {
@@ -9,7 +9,7 @@
 
     th,
     td {
-        @include card-padding;
+        @include mixins.card-padding;
     }
 
     th {

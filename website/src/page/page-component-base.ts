@@ -1,15 +1,20 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
-import { Observable, shareReplay, switchMap } from "rxjs";
+import { first, map, Observable, of, shareReplay, switchMap, tap } from "rxjs";
+import { SANITY_QUERY_URL, SANITY_TOKEN } from "typedb-web-common/lib";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { environment } from "../environment/environment";
 
-@Component({ template: `` })
+@Component({
+    template: ``,
+    standalone: false
+})
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implements OnInit {
     readonly page$: Observable<T | null>;
@@ -20,7 +25,6 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected activatedRoute: ActivatedRoute,
         protected router: Router,
         protected title: Title,
-        private idleMonitor: IdleMonitorService,
         private metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
@@ -46,8 +50,5 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
 
     protected onPageReady(page: T): void {
         this.metaTags.register(page.metaTags);
-        setTimeout(() => {
-            this.idleMonitor.fireManualMyAppReadyEvent();
-        }, 20000);
     }
 }

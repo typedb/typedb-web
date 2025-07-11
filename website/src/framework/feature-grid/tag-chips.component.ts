@@ -7,8 +7,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "./tag-chips.component.html",
     styleUrls: ["./tag-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class TagChipsComponent {
     @Input() tags!: string[];

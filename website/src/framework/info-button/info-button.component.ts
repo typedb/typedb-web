@@ -10,8 +10,7 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
     templateUrl: "info-button.component.html",
     styleUrls: ["./info-button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatButtonModule, MatIconModule, TooltipComponent, MatTooltipModule],
+    imports: [MatButtonModule, MatIconModule, MatTooltipModule]
 })
 export class InfoButtonComponent {
     @Input() tooltipText!: string;

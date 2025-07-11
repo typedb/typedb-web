@@ -11,8 +11,7 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
     templateUrl: "button.component.html",
     styleUrls: ["./button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TooltipComponent, NgClass, LinkDirective, NgStyle],
+    imports: [TooltipComponent, NgClass, LinkDirective, NgStyle]
 })
 export class ButtonComponent {
     @Input() button!: ActionButton;

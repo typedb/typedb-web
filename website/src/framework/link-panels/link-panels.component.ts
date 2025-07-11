@@ -15,8 +15,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "link-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanelWithIcon[];
@@ -33,8 +32,7 @@ export class LinkPanelsComponent {
     templateUrl: "resource-panels.component.html",
     styleUrls: ["resource-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
@@ -51,8 +49,7 @@ export class ResourcePanelsComponent {
     templateUrl: "link-panels-cols-2.component.html",
     styleUrls: ["link-panels-cols-2.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
@@ -68,8 +65,7 @@ export class LinkPanelsCols2Component {
     templateUrl: "lecture-panels.component.html",
     styleUrls: ["lecture-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe],
+    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe]
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];

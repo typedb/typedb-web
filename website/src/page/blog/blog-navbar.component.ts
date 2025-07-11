@@ -11,8 +11,7 @@ import { ScrollShadowComponent } from "../../framework/scroll-shadow/scroll-shad
     templateUrl: "./blog-navbar.component.html",
     styleUrls: ["./blog-navbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ScrollShadowComponent, LinkDirective],
+    imports: [ScrollShadowComponent, LinkDirective]
 })
 export class BlogNavbarComponent {
     @Input() variant!: "listPage" | "postPage";

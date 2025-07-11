@@ -12,8 +12,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "social-media-panels.component.html",
     styleUrls: ["./social-media-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, MatIconModule],
+    imports: [LinkDirective, MatIconModule]
 })
 export class SocialMediaPanelsComponent {
     @Input() socialMediaLinks!: SocialMediaLink[];

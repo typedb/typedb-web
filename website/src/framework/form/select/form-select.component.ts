@@ -10,8 +10,7 @@ export type FormOptionGroup<VALUE> = { name: string, options: FormOption<VALUE>[
     selector: "tp-form-select",
     templateUrl: "./form-select.component.html",
     styleUrls: ["./form-select.component.scss"],
-    standalone: true,
-    imports: [MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule],
+    imports: [MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule]
 })
 export class FormSelectComponent<VALUE, FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit {
     @Input() label = "";

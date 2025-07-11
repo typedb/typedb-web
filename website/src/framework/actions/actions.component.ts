@@ -11,8 +11,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "actions.component.html",
     styleUrls: ["./actions.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ButtonComponent],
+    imports: [ButtonComponent]
 })
 export class ActionsComponent {
     @Input() actions?: ActionButton[];

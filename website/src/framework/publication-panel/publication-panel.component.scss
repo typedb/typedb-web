@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host > * + * {
     border-top: shapes.$border;
@@ -11,7 +11,7 @@ $number-of-lines-short: 13;
 $number-of-lines-mobile: 12;
 
 .pp-content-row {
-    @include card-padding();
+    @include mixins.card-padding();
 }
 
 .pp-content-row-body {

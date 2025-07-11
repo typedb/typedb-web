@@ -25,7 +25,6 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-    PageBackgroundComponent,
     forwardRef(() => ServicesPageTechnicolorBlockComponent),
     ServicesTableComponent,
     TestimonialsCarouselComponent,

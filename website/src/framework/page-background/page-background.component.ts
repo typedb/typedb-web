@@ -6,8 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
     templateUrl: "page-background.component.html",
     styleUrls: ["page-background.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass],
+    imports: [NgClass]
 })
 export class PageBackgroundComponent {
     @Input() nebula?: "cloud" | "deploy" | "features" | "home" | "intro" | "solutions" | "studio";

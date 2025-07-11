@@ -16,8 +16,7 @@ import { FormDialogComponent } from "../form-dialog.component";
     selector: "td-newsletter-dialog",
     templateUrl: "./newsletter-dialog.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [FormDialogComponent, AsyncPipe, FormsModule, ReactiveFormsModule, FormInputComponent, FormComponent, FormActionsComponent],
+    imports: [FormDialogComponent, AsyncPipe, FormsModule, ReactiveFormsModule, FormInputComponent, FormComponent, FormActionsComponent]
 })
 export class NewsletterDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;

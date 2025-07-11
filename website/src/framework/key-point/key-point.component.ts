@@ -10,8 +10,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     templateUrl: "key-point-panels-2x2.component.html",
     styleUrls: ["./key-point-panels-2x2.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [RichTextComponent],
+    imports: [RichTextComponent]
 })
 export class KeyPointPanels2x2Component {
     @Input() keyPoints!: KeyPoint[];
@@ -22,8 +21,7 @@ export class KeyPointPanels2x2Component {
     templateUrl: "key-point-table.component.html",
     styleUrls: ["./key-point-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [RichTextComponent],
+    imports: [RichTextComponent]
 })
 export class KeyPointTableComponent {
     @Input() keyPoints!: KeyPointWithIcon[];

@@ -1,4 +1,4 @@
-@import "mixins";
+@use "mixins";
 
 td-startup-program-page-technicolor-block ::ng-deep td-heading-with-highlights h1 {
     background: linear-gradient(285deg, #03D0BF, #AC79EE);
@@ -9,5 +9,5 @@ td-startup-program-page-technicolor-block ::ng-deep td-heading-with-highlights h
 td-startup-program-page-technicolor-block ::ng-deep td-button a {
     border: none;
     height: 49px;
-    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+    @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
 }

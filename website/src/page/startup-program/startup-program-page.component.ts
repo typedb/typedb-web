@@ -19,8 +19,7 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-startup-program-page-technicolor-block",
     template: `<td-technicolor-block [block]="block" [index]="index" [level]="level" [noUpperLine]="index === 0"/>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [TechnicolorBlockComponent],
+    imports: [TechnicolorBlockComponent]
 })
 export class StartupProgramPageTechnicolorBlockComponent {
     @Input() block!: TechnicolorBlock;
@@ -36,12 +35,9 @@ export class StartupProgramPageTechnicolorBlockComponent {
     templateUrl: "./startup-program-page.component.html",
     styleUrls: ["./startup-program-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, StartupProgramPageTechnicolorBlockComponent,
-        FeatureTableComponent, LinkPanelsComponent, AsyncPipe, PricingTableComponent, ContactPanelComponent,
-        ContentPanelComponent, GenericPageTechnicolorBlockComponent, ConclusionPanelComponent,
-    ],
+        StartupProgramPageTechnicolorBlockComponent, LinkPanelsComponent, AsyncPipe,
+    ]
 })
 export class StartupProgramPageComponent extends PageComponentBase<StartupProgramPage> {
     protected override getPage(data: SanityDataset) {

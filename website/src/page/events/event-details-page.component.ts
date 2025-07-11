@@ -4,7 +4,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { map } from "rxjs";
 import { LiveEvent, liveEventSchemaName, SanityDataset, SanityLiveEvent } from "typedb-web-schema";
 
@@ -18,7 +17,6 @@ import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDatePipe } from "../../framework/date/event-date.pipe";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PersonInfoComponent } from "../../framework/person/person.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
@@ -29,20 +27,19 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./event-details-page.component.html",
     styleUrls: ["./event-details-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
+        HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
         ButtonComponent, RichTextComponent, PersonInfoComponent, FurtherLearningComponent, AsyncPipe,
         EventDatePipe, EventDurationPipe
-    ],
+    ]
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
         private imageBuilder: ImageBuilder, private plainTextPipe: PlainTextPipe, activatedRoute: ActivatedRoute,
-        router: Router, title: Title, idleMonitor: IdleMonitorService, metaTags: MetaTagsService,
+        router: Router, title: Title, metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {

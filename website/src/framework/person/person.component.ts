@@ -11,8 +11,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     templateUrl: "./avatar.component.html",
     styleUrls: ["./avatar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatIconModule],
+    imports: [MatIconModule]
 })
 export class AvatarComponent {
     @Input() person!: Person;
@@ -29,8 +28,7 @@ export class AvatarComponent {
     templateUrl: "./person-info.component.html",
     styleUrls: ["./person-info.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgTemplateOutlet, AvatarComponent],
+    imports: [NgTemplateOutlet, AvatarComponent]
 })
 export class PersonInfoComponent {
     @Input() disableLink = false;
@@ -65,8 +63,7 @@ export class PersonInfoComponent {
     templateUrl: "./person-card.component.html",
     styleUrls: ["./person-card.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PersonInfoComponent],
+    imports: [PersonInfoComponent]
 })
 export class PersonCardComponent {
     @Input() person!: Person;

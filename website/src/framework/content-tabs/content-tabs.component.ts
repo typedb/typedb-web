@@ -14,8 +14,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "content-tabs.component.html",
     styleUrls: ["content-tabs.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ScrollShadowComponent, NgClass, ContentPanelComponent, AsyncPipe],
+    imports: [ScrollShadowComponent, NgClass, ContentPanelComponent, AsyncPipe]
 })
 export class ContentTabsComponent implements OnInit {
     @Input() tabs!: ContentTextTab[];

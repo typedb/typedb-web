@@ -1,9 +1,9 @@
-@import "mixins";
+@use "mixins";
 
 td-home-page-technicolor-block.td-intro ::ng-deep td-heading-with-highlights h1 {
-    @include color-gradient(#AC79EE, #03D0BF);
+    @include mixins.color-gradient(#AC79EE, #03D0BF);
 }
 
 td-home-page-technicolor-block.td-intro ::ng-deep td-button a {
-    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+    @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
 }

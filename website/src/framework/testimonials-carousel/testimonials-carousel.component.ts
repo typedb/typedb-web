@@ -10,8 +10,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     templateUrl: "testimonials-carousel.component.html",
     styleUrls: ["./testimonials-carousel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];
