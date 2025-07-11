@@ -1,6 +1,16 @@
 @use "media";
 @use "shapes";
 
+:host {
+    display: block;
+    overflow: hidden;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
 .ol-root {
     border-radius: var(--border-radius);
     display: flex;
@@ -8,6 +18,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
+    animation: marquee 120s linear infinite;
 
     @media (max-width: media.$max-width-tablet) {
         padding-left: 32px;
@@ -35,7 +46,6 @@
 
     &.ol-root-transparent {
         gap: 42px;
-        width: 600px;
         opacity: 0.8;
     }
 }

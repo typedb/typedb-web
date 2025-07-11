@@ -1,5 +1,5 @@
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 @mixin styles($icon-path) {
@@ -175,7 +175,7 @@
 
     @each $social in $socials {
         .td-footer-icon-#{$social} {
-            @include url-icon(url("#{$icon-path}/#{$social}-rectangle.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/#{$social}-rectangle.svg"), var(--color-white));
         }
     }
 
@@ -188,7 +188,7 @@
 
     @each $name, $icon in $contactMedias {
         .td-footer-icon-#{$name} {
-            @include url-icon(url("#{$icon-path}/#{$icon}.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/#{$icon}.svg"), var(--color-white));
         }
     }
 }

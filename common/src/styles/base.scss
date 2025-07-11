@@ -8,7 +8,7 @@ html, body {
     background-color: var(--body-background);
     color: var(--body-font-color);
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-thin);
+    font-weight: var(--font-weight-light);
     line-height: var(--line-height-p2);
     letter-spacing: var(--body-letter-spacing);
 
@@ -108,7 +108,7 @@ aside {
 
 /* prettier-ignore */
 h1, h2 {
-  font-weight: var(--font-weight-semi-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 /* prettier-ignore */

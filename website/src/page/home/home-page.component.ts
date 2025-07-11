@@ -3,31 +3,18 @@ import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-
-import Prism from "prismjs";
 import { combineLatest, map, Observable, of } from "rxjs";
 import { HomePage, homePageSchemaName, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
-
-
-
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
-
-
-
-import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
-import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.component";
-import { FeatureFusionComponent } from "../../framework/feature-fusion/feature-fusion.component";
-import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
-import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
 import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { TitleBodyIllustrationSectionComponent } from "../../framework/section/illustration/title-body-illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
-import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
-import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
+import { SocialValidationSectionComponent } from "../../framework/social-validation/social-validation-section.component";
+import { HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { PageComponentBase } from "../page-component-base";
-
 
 @Component({
     selector: "td-home-page",
@@ -35,8 +22,8 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        LinkPanelsComponent,
-        AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, FeatureFusionComponent, HotTopicsComponent
+        LinkPanelsComponent, AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
+        TitleBodyIllustrationSectionComponent, SocialValidationSectionComponent
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

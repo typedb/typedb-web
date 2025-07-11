@@ -1,7 +1,7 @@
 @use "colors";
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 .ff-cell {
-    @include card-padding;
+    @include mixins.card-padding;
 
     &.text-h2 {
         line-height: 27px;
@@ -31,14 +31,14 @@
 .ff-content-cell {
     border-radius: var(--border-radius);
     border: 1px solid colors.$light-purple;
-    @include light-source-gradient(colors.$purple, colors.$black-purple);
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     cursor: pointer;
     flex: 1;
     //transform-origin: center;
 
     &:hover {
-        @include light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
         //transform: scale(1.1);
     }
 }

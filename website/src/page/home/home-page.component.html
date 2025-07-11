@@ -8,13 +8,19 @@
       @if (page.hotTopicsSection) {
         <td-hot-topics [title]="page.hotTopicsSection.title" [hotTopics]="page.hotTopicsSection.hotTopics"/>
       }
-      @if (page.featureFusionSection) {
-        <td-section-core [section]="page.featureFusionSection"/>
-        <td-feature-fusion [features]="page.featureFusionSection.keyPoints"/>
-      }
-      @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
-        <td-section-core [section]="impactSection"/>
+<!--      @if (page.featureFusionSection) {-->
+<!--        <td-section-core [section]="page.featureFusionSection"/>-->
+<!--        <td-feature-fusion [features]="page.featureFusionSection.keyPoints"/>-->
+<!--      }-->
+      @if (page.benefitSection1) {
+        <td-title-body-illustration-section [data]="page.benefitSection1"/>
 <!--        <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />-->
+      }
+      @if (page.benefitSection2) {
+        <td-title-body-illustration-section [data]="page.benefitSection2" flexDirection="row-reverse"/>
+      }
+      @if (page.socialValidationSection) {
+        <td-social-validation-section [data]="page.socialValidationSection"/>
       }
       @if (page.resourcesSection) {
 <!--        <td-section-core [section]="page.resourcesSection"/>-->

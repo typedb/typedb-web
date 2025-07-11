@@ -1,6 +1,6 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 .td-primary-items,
@@ -27,12 +27,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    @include light-source-gradient(colors.$purple, colors.$deep-purple, 40px, 20px);
+    @include mixins.light-source-gradient(colors.$purple, colors.$deep-purple, 40px, 20px);
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     text-align: center;
 
     &:hover {
-        @include light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$purple, 40px, 20px);
+        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$purple, 40px, 20px);
     }
 }
 

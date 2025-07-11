@@ -2,12 +2,16 @@ import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
-import { resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
+import { 
+    resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase, SanityTitleBodyIllustrationSection,
+    TitleBodyIllustrationSection,
+} from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField, keywordFieldOptional, keyPointsField,
+    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField, keywordFieldOptional, keyPointsField, titleField, SanityVisibleToggle,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
+import { illustrationFieldOptional } from "../illustration";
 import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { ResourceLink } from "../resource/base";
@@ -16,6 +20,7 @@ import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
 import { SanityTestimonialsSection, testimonialSchemaName, TestimonialsSection, testimonialsSectionField } from "../testimonial";
+import { ParagraphWithHighlights, SanityTitleField, SanityTitleWithHighlights } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
@@ -24,7 +29,9 @@ const sections = {
     intro: { id: "introSection", title: "Intro" },
     hotTopics: { id: "hotTopicsSection", title: "Hot Topics" },
     featureFusion: { id: "featureFusionSection", title: "Feature Fusion" },
-    impact: { id: "impactSection", title: "Impact" },
+    benefits1: { id: "benefitsSection1", title: "Benefits 1" },
+    benefits2: { id: "benefitsSection2", title: "Benefits 2" },
+    socialValidation: { id: "socialValidationSection", title: "Social Validation" },
     resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
     drivers: { id: "driversSection", title: "Drivers" },
@@ -40,7 +47,10 @@ export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
     [sections.featureFusion.id]: SanityKeyPointsSection;
-    impactSections: SanityImpactSection[];
+    [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
+    [sections.socialValidation.id]: SanitySocialValidationSection;
+    organisationLogos?: SanityReference<SanityOrganisation>[];
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
@@ -60,8 +70,8 @@ interface SanityHotTopicsSection extends SanityCoreSection {
     hotTopics: SanityReference<SanityResource>[];
 }
 
-interface SanityImpactSection extends SanityCoreSection {
-    impactTabs: SanityContentTextTab[];
+interface SanitySocialValidationSection extends SanityTitleWithHighlights, SanityVisibleToggle {
+    organisationLogos: SanityReference<SanityOrganisation>[];
 }
 
 type SanityDriversSection = SanityIntegrationsGridSection;
@@ -74,7 +84,9 @@ export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
     readonly [sections.featureFusion.id]?: KeyPointsSection;
-    readonly impactSections: ImpactSection[];
+    readonly benefitSection1?: TitleBodyIllustrationSection;
+    readonly benefitSection2?: TitleBodyIllustrationSection;
+    readonly [sections.socialValidation.id]?: SocialValidationSection;
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: IntegrationsGridSection;
@@ -90,9 +102,15 @@ export class HomePage extends Page {
         this.featureFusionSection = data.featureFusionSection.isVisible
             ? KeyPointsSection.fromSanityKeyPointsSection(data.featureFusionSection, db)
             : undefined;
-        this.impactSections = data.impactSections
-            .filter((x) => x.isVisible)
-            .map((x) => ImpactSection.fromSanity(x, db));
+        this.benefitSection1 = data.benefitsSection1.isVisible
+            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection1, db)
+            : undefined;
+        this.benefitSection2 = data.benefitsSection2.isVisible
+            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection2, db)
+            : undefined;
+        this.socialValidationSection = data.socialValidationSection.isVisible
+            ? SocialValidationSection.fromSanity(data.socialValidationSection, db)
+            : undefined;
         this.resourcesSection = data.resourcesSection.isVisible
             ? ResourceSection.fromSanity(data.resourcesSection, db)
             : undefined;
@@ -152,20 +170,20 @@ class HotTopicsSection extends SectionBase {
     }
 }
 
-class ImpactSection extends SectionBase {
-    readonly impactTabs: ContentTextTab[];
+export class SocialValidationSection {
+    readonly title: ParagraphWithHighlights;
+    readonly organisationLogos: Organisation[];
 
-    constructor(props: PropsOf<ImpactSection>) {
-        super(props);
-        this.impactTabs = props.impactTabs;
+    constructor(props: PropsOf<SocialValidationSection>) {
+        this.title = props.title;
+        this.organisationLogos = props.organisationLogos;
     }
 
-    static override fromSanity(data: SanityImpactSection, db: SanityDataset) {
-        return new ImpactSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
-                impactTabs: data.impactTabs.map((x) => new ContentTextTab(x, db)),
-            })
-        );
+    static fromSanity(data: SanitySocialValidationSection, db: SanityDataset) {
+        return new SocialValidationSection({
+            title: ParagraphWithHighlights.fromSanity(data.title),
+            organisationLogos: data.organisationLogos.map((x) => new Organisation(db.resolveRef(x), db)),
+        });
     }
 }
 
@@ -215,6 +233,15 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
         fields: fields,
     });
 
+export const socialValidationSectionSchemaName = `socialValidationSection`;
+
+const socialValidationSectionSchema = defineType({
+    name: socialValidationSectionSchemaName,
+    title: "Social Validation Section",
+    type: "object",
+    fields: [titleFieldWithHighlights, organisationLogosField, isVisibleField],
+});
+
 const sectionSchemas = [
     sectionSchema("intro", [
         Object.assign({}, titleFieldWithHighlights, {
@@ -223,14 +250,6 @@ const sectionSchemas = [
         bodyFieldRichText,
         sectionIconField,
         actionsFieldOptional,
-        defineField({
-            name: "displayUserLogos",
-            title: "Display Organisation Logos?",
-            type: "boolean",
-            initialValue: false,
-            validation: requiredRule,
-        }),
-        Object.assign({}, organisationLogosField, { name: "userLogos" }),
         defineField({
             name: "contentTabs",
             title: "Content Tabs",
@@ -252,19 +271,21 @@ const sectionSchemas = [
         keyPointsField(3),
         isVisibleField,
     ]),
-    sectionSchema("impact", [
+    sectionSchema("benefits1", [
         ...titleBodyIconFields,
         actionsFieldOptional,
         keywordFieldOptional,
-        defineField({
-            name: "impactTabs",
-            title: "Impact Tabs",
-            type: "array",
-            of: [{ type: contentTextTabSchemaName }],
-            validation: requiredRule,
-        }),
+        illustrationFieldOptional,
         isVisibleField,
     ]),
+    sectionSchema("benefits2", [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        keywordFieldOptional,
+        illustrationFieldOptional,
+        isVisibleField,
+    ]),
+    socialValidationSectionSchema,
     sectionSchema("resources", [...titleBodyIconFields, actionsFieldOptional, resourcesField, isVisibleField]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
@@ -307,22 +328,36 @@ const hotTopicsSectionField = defineField({
     options: collapsibleOptions,
 });
 
+const benefitsSection1Field = defineField({
+    name: sections.benefits1.id,
+    title: `${sections.benefits1.title} Section`,
+    type: sectionSchemaName("benefits1"),
+    options: collapsibleOptions,
+});
+
+const benefitsSection2Field = defineField({
+    name: sections.benefits2.id,
+    title: `${sections.benefits2.title} Section`,
+    type: sectionSchemaName("benefits2"),
+    options: collapsibleOptions,
+});
+
 const featureFusionSectionField = defineField({
     name: sections.featureFusion.id,
     title: `${sections.featureFusion.title} Section`,
     type: sectionSchemaName("featureFusion"),
     options: collapsibleOptions,
-})
+});
 
-const impactSectionsField = defineField({
-    name: "impactSections",
-    title: "Impact Sections",
-    type: "array",
-    of: [{ type: sectionSchemaName("impact") }],
+const socialValidationSectionField = defineField({
+    name: sections.socialValidation.id,
+    title: `${sections.socialValidation.title} Section`,
+    type: socialValidationSectionSchemaName,
+    options: collapsibleOptions,
 });
 
 const otherSectionFields = (Object.keys(sections) as SectionKey[])
-    .filter((key) => !["intro", "impact", "hotTopics", "featureFusion", "resources", "drivers", "testimonials"].includes(key))
+    .filter((key) => ["cloud", "community"].includes(key))
     .map((key) =>
         defineField({
             name: sections[key].id,
@@ -341,7 +376,9 @@ const homePageSchema = defineType({
         introSectionField,
         hotTopicsSectionField,
         featureFusionSectionField,
-        impactSectionsField,
+        benefitsSection1Field,
+        benefitsSection2Field,
+        socialValidationSectionField,
         defineField({
             name: "resourcesSection",
             title: "Resources Section",

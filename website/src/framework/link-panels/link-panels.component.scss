@@ -21,10 +21,10 @@
     align-items: flex-start;
     position: relative;
     gap: 12px;
-    @include light-source-gradient(colors.$purple, colors.$black-purple);
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
 
     &.hoverable:hover {
-        @include light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
     }
 
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;

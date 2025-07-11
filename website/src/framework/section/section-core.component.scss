@@ -1,21 +1,15 @@
 @use "colors";
 @use "media";
+@use "mixins";
 
 :host {
-    --graphic-area-width: 120px;
-    display: block;
-    position: relative;
-    margin-top: 144px;
-
-    @media (max-width: media.$max-width-mobile) {
-        --graphic-area-width: 52px;
-        margin-top: 64px;
-        padding-bottom: 32px;
-        grid-template-columns: var(--graphic-area-width) auto;
-    }
+    @include mixins.section-core;
 }
 
 .td-root {
+    // TODO: do we want centre alignment?
+    margin: 0 auto;
+    text-align: center;
     max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 80px;
@@ -35,7 +29,7 @@
 
 td-heading-with-highlights {
     display: block;
-    margin: 24px 0;
+    margin-bottom: 32px;
 
     @media (max-width: media.$max-width-mobile) {
         margin: 16px 0;
@@ -45,4 +39,8 @@ td-heading-with-highlights {
 td-organisation-logos {
     display: block;
     margin-top: 40px;
+}
+
+td-actions {
+    justify-content: center;
 }

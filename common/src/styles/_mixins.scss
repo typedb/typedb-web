@@ -18,6 +18,22 @@
     }
 }
 
+@mixin section-core() {
+    & {
+        --graphic-area-width: 120px;
+        display: block;
+        position: relative;
+        margin-top: 120px;
+
+        @media (max-width: media.$max-width-mobile) {
+            --graphic-area-width: 52px;
+            margin-top: 64px;
+            padding-bottom: 32px;
+            grid-template-columns: var(--graphic-area-width) auto;
+        }
+    }
+}
+
 @mixin line-clamp($lines) {
     display: -webkit-box;
     -webkit-line-clamp: $lines;
@@ -41,40 +57,20 @@
     transition-duration: 100ms;
     transition-timing-function: ease;
     text-decoration: none !important; // overrides various styles that set an underline on anchors
-    padding: 4px 8px;
+    padding: 6px 12px;
+    height: 40px;
 
     span {
         position: relative;
     }
 
     span::after {
-        content: "";
+        margin-left: 6px;
+        content: "";
         font-family: "Font Awesome 6 Pro";
-        font-size: 75%;
+        font-size: 90%;
         user-select: none;
         display: inline-block;
-        position: absolute;
-        inset: auto auto auto 100%;
-        line-height: 18px;
-        margin-left: 2px;
-        opacity: 0;
-        transform: scaleX(0.5);
-        transition: opacity 100ms ease-out, margin-left 100ms ease-out, transform 100ms ease-out;
-    }
-
-    &:hover span::after {
-        opacity: 1;
-        margin-left: 8px;
-        transform: scaleX(1);
-    }
-
-    @media (min-width: media.$min-width-tablet) {
-        height: 48px;
-        width: 212px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        height: 40px;
     }
 
     &.td-button-disabled {

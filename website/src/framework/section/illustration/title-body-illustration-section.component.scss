@@ -1,0 +1,34 @@
+@use "media";
+@use "mixins";
+
+:host {
+    @include mixins.section-core;
+}
+
+section {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    &.td-row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .td-text {
+        flex: 1;
+    }
+
+    .td-illustration {
+        flex: 1;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    td-actions {
+        width: 100%;
+    }
+}
+
+:host ::ng-deep h1 {
+    font-weight: var(--font-weight-bold);
+}

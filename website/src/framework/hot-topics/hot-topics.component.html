@@ -1,8 +1,8 @@
 <td-heading-with-highlights level="h2" [value]="title"/>
 <td-scroll-shadow>
-  <div class="td-cards">
+  <div #scrollContent class="td-cards">
     @for (hotTopic of hotTopics; track hotTopic) {
-      <a class="td-card" [tdLink]="hotTopic.link">
+      <a class="td-card" [tdLink]="hotTopic.link" draggable="false">
         <div class="td-card-overlay"></div>
         @if (hotTopic.imageURL) {
           <img class="td-hero" [src]="hotTopic.imageURL" alt="">

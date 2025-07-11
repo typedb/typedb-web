@@ -6,17 +6,18 @@
 :root {
     /* colors */
     --color-white: #{colors.$white};
-    --color-dark-white: #{colors.$dark-white};
-    --color-darker-white: #{colors.$darker-white};
+    --color-grey: #{colors.$grey};
     --color-light-purple: #{colors.$light-purple};
     --color-purple: #{colors.$purple};
     --color-deep-purple: #{colors.$deep-purple};
     --color-black-purple: #{colors.$black-purple};
+    --color-black: #{colors.$black};
     --color-green: #{colors.$green};
     --color-red: #{colors.$red};
 
     --color-secondary-light-grey: #{colors.$secondary-light-grey};
     --color-secondary-grey: #{colors.$secondary-grey};
+    --color-secondary-mid-deep-grey: #{colors.$secondary-mid-deep-grey};
     --color-secondary-deep-grey: #{colors.$secondary-deep-grey};
     --color-secondary-purple: #{colors.$secondary-purple};
     --color-secondary-yellow: #{colors.$secondary-yellow};
@@ -25,8 +26,8 @@
 
     --content-border-color: var(--color-light-purple);
 
-    --body-background: var(--color-black-purple);
-    --body-font-color: var(--color-dark-white);
+    --body-background: var(--color-black);
+    --body-font-color: var(--color-white);
     --body-heading-color: var(--color-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);

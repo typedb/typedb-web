@@ -1,6 +1,6 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 :host {
@@ -21,16 +21,22 @@ td-heading-with-highlights {
 .td-cards {
     display: flex;
     gap: 24px;
+
+    img {
+        user-drag: none;         /* Safari, Chrome */
+        -webkit-user-drag: none; /* Old Safari */
+        pointer-events: none;    /* Optional: prevents interaction during drag */
+    }
 }
 
 .td-card {
-    @include card-appearance;
+    @include mixins.card-appearance;
     flex: 0 0 360px;
     height: 480px;
     display: flex;
     flex-direction: column;
     transition: background 100ms ease, border-color 100ms ease;
-    @include light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
     position: relative;
 
     &:hover {

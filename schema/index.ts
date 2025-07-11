@@ -51,7 +51,7 @@ export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { SectionBase } from "./component/section";
+export { SectionBase, TitleBodyIllustrationSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -81,7 +81,7 @@ export {
 } from "./page/learn";
 export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
-export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection } from "./page/home";
 export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";

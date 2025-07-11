@@ -1,9 +1,11 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import {
-    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional,
+    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional, titleField,
 } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
+import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { organisationLogosField } from "../organisation";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
@@ -21,6 +23,10 @@ export interface SanityTitleBodyPanelSection extends SanityCoreSection {
 
 export interface SanityLinkPanelsSection extends SanityCoreSection {
     panels: SanityLinkPanel[];
+}
+
+export interface SanityTitleBodyIllustrationSection extends SanityCoreSection {
+    illustration: SanityReference<SanityIllustration>;
 }
 
 export class SectionBase implements Partial<BodyTextField> {
@@ -82,6 +88,22 @@ export class LinkPanelsSection extends SectionBase {
     }
 }
 
+export class TitleBodyIllustrationSection extends SectionBase {
+    readonly illustration?: Illustration;
+
+    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
+        super(props);
+        this.illustration = props.illustration;
+    }
+
+    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
+        return new TitleBodyIllustrationSection({
+            ...SectionBase.fromSanity(data, db),
+            illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
+        });
+    }
+}
+
 export const coreSectionSchemaName = "coreSection";
 
 const coreSectionSchema = defineType({
@@ -139,4 +161,22 @@ const linkPanelsSectionSchema = defineType({
     ],
 });
 
-export const pageSectionSchemas = [coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema, linkPanelsSectionSchema];
+const titleBodyIllustrationSectionSchema = defineType({
+    name: 'titleBodyIllustrationSection',
+    title: 'Title, Body & Illustration',
+    type: 'document',
+    fields: [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        illustrationFieldOptional,
+        isVisibleField,
+    ],
+});
+
+export const pageSectionSchemas = [
+    coreSectionSchema, 
+    resourceSectionSchema, 
+    titleBodyPanelSectionSchema, 
+    linkPanelsSectionSchema,
+    titleBodyIllustrationSectionSchema,
+];

@@ -1,6 +1,6 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 @mixin nav-dt {
@@ -49,7 +49,7 @@
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: var(--color-dark-white);
+        color: var(--color-white);
         cursor: pointer;
         transition: color 100ms;
         font-weight: var(--font-weight-regular);
@@ -262,7 +262,7 @@
 
     .td-topbar-external-icon {
         text-indent: 100%;
-        @include url-icon(url("#{$icon-path}/link.svg"), currentColor);
+        @include mixins.url-icon(url("#{$icon-path}/link.svg"), currentColor);
         width: 16px;
         height: 16px;
         margin-left: 4px;
@@ -295,7 +295,7 @@
             width: 1em;
             height: 1em;
 
-            @include url-icon(var(--menu-icon-url), var(--color-white));
+            @include mixins.url-icon(var(--menu-icon-url), var(--color-white));
         }
     }
 
@@ -419,7 +419,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
         }
 
         .td-topbar-menu-panel {

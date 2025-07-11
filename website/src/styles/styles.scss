@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "colors";
 @use "media";
 @use "mixins";
 @use "shapes";
@@ -104,7 +105,7 @@ section, .section {
 }
 
 .link-tertiary, .link-tertiary:visited {
-    color: var(--color-dark-white);
+    color: var(--color-white);
     font-weight: var(--font-weight-regular);
 
     &::after {
@@ -122,6 +123,10 @@ section, .section {
     }
 }
 
+.text-muted {
+    color: colors.$secondary-light-grey;
+}
+
 input[type="email"], select {
     padding: 0 8px;
     background-color: var(--color-purple);
@@ -131,7 +136,7 @@ input[type="email"], select {
     border-radius: var(--border-radius);
     font-size: 16px;
     line-height: 46px;
-    height: 48px;
+    height: 40px;
 }
 
 table {
