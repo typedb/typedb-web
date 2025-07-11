@@ -5,8 +5,7 @@ import { filter, Subject, Subscription } from "rxjs";
 @Component({
     selector: "td-form",
     templateUrl: "form.component.html",
-    standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule]
 })
 export class FormComponent<CONTROLS extends { [K in keyof CONTROLS]: AbstractControl<any, any>; }> implements OnInit, OnDestroy {
     @Input({ required: true }) formGroup!: FormGroup<CONTROLS>;

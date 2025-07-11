@@ -1,4 +1,4 @@
-@import "mixins";
+@use "mixins";
 
 td-section-core ::ng-deep td-heading-with-highlights h1 {
     @include text-gradient(#AC79EE, #03D0BF);
@@ -7,5 +7,5 @@ td-section-core ::ng-deep td-heading-with-highlights h1 {
 td-section-core ::ng-deep td-button a {
     border: none;
     height: 49px;
-    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+    @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
 }

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { ChangeDetectionStrategy, Component, ElementRef, inject, NgZone, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { setupLinks, setupTopbarListeners, topbar } from "typedb-web-common/lib";
@@ -16,6 +17,7 @@ import { DomSanitizer } from "@angular/platform-browser";
     standalone: true,
 })
 export class TopbarMenuComponent implements OnInit {
+    private readonly platformId = inject(PLATFORM_ID);
 
     constructor(
         private contentService: ContentService,
@@ -29,10 +31,14 @@ export class TopbarMenuComponent implements OnInit {
     ngOnInit() {
         this.contentService.getTopbarData().subscribe((data) => {
             this.elementRef.nativeElement.innerHTML = topbar(data);
-            const headerEl = setupTopbarListeners();
-            if (headerEl) {
-                // this.setupScrollEvents(headerEl);
-                setupLinks(headerEl, this.router);
+            if (isPlatformBrowser(this.platformId)) {
+                setupTopbarListeners();
+                const headerEl = this.elementRef.nativeElement.querySelector<HTMLElement>(".td-topbar");
+                if (!headerEl) throw "Header element not found";
+                if (headerEl) {
+                    // this.setupScrollEvents(headerEl);
+                    setupLinks(headerEl, this.router);
+                }
             }
         });
     }

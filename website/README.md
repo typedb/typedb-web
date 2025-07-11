@@ -11,7 +11,14 @@ Check the `packageManager` entry in [package.json](./package.json) to find out t
 
 Generally speaking, it's OK to use a different minor/patch version to the specified one, but the major version should be the same.
 
-Installation instructions can be found at https://pnpm.io/installation.
+Installation instructions can be found at https://pnpm.io/installation, and we recommend using **Corepack**.
+
+After installing PNPM, create a `~/.npmrc` file containing the following content: `auto-install-peers = false`.
+
+The following command will work if you don't already have a `~/.npmrc` file:
+```sh
+echo 'auto-install-peers = false' > ~/.npmrc
+```
 
 ### Angular CLI
 

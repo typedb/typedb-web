@@ -1,11 +1,9 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-
-
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of } from "rxjs";
 import { HomePage, homePageSchemaName, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
@@ -36,22 +34,11 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./home-page.component.html",
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        ContentTabsComponent,
-        ResourcePanelsComponent,
-        LinkPanelsComponent,
-        FeatureGridComponent,
-        KeyPointTableComponent,
-        SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent,
-        ConclusionPanelComponent,
-        AsyncPipe,
-        HotTopicsComponent,
-        SectionCoreComponent,
-        FeatureFusionComponent,
-        IntegrationsGridComponent,
-    ],
+        HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
+        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
+        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe
+    ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
@@ -60,11 +47,10 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
         this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
             map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
         );
@@ -78,6 +64,5 @@ export class HomePageComponent extends PageComponentBase<HomePage> {
     protected override onPageReady(page: HomePage): void {
         super.onPageReady(page);
         this.title.setTitle(`TypeDB: ${page.introSection?.title.toPlainText() || "Home"}`);
-        Prism.highlightAll();
     }
 }

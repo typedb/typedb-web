@@ -13,7 +13,6 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./resource-hub.component.html",
     styleUrls: ["./resource-hub.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         TitleBodyActionsSectionComponent, LinkPanelsCols2Component, ConclusionPanelComponent,
         AsyncPipe, SectionCoreComponent,

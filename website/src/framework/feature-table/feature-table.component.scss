@@ -1,5 +1,5 @@
 @use "media";
-@import "mixins";
+@use "mixins";
 
 table {
     table-layout: fixed;
@@ -65,13 +65,13 @@ thead {
 
         &:nth-of-type(4) {
             p {
-                @include text-gradient(#F96480, #FDD257);
+                @include mixins.color-gradient(#F96480, #FDD257);
             }
 
             td-button ::ng-deep a {
                 position: relative;
                 overflow: hidden;
-                @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+                @include mixins.border-gradient(#F96480, #FDD257, var(--color-black-purple));
             }
         }
     }

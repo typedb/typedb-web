@@ -9,8 +9,7 @@ import { Organisation } from "typedb-web-schema";
     templateUrl: "organisation-logos.component.html",
     styleUrls: ["organisation-logos.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass],
+    imports: [NgClass]
 })
 export class OrganisationLogosComponent {
     @Input() organisations!: Organisation[];

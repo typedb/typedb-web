@@ -3,14 +3,12 @@ import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModu
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @Component({
     selector: "td-form-password-input",
     templateUrl: "./form-password-input.component.html",
     styleUrls: ["./form-password-input.component.scss"],
-    standalone: true,
-    imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatButtonModule, FontAwesomeModule],
+    imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatButtonModule]
 })
 export class FormPasswordInputComponent<FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit, AfterViewInit {
     @Input() label = "";

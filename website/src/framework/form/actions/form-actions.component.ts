@@ -5,7 +5,6 @@ import { SpinnerComponent } from "../../spinner/spinner.component";
 @Component({
     selector: "td-form-actions",
     templateUrl: "form-actions.component.html",
-    standalone: true,
     imports: [ButtonComponent, SpinnerComponent]
 })
 export class FormActionsComponent {

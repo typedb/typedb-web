@@ -17,11 +17,10 @@ import { FormDialogComponent } from "../form-dialog.component";
     selector: "td-feedback-dialog",
     templateUrl: "./feedback-dialog.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         FormDialogComponent, AsyncPipe, FormToggleGroupComponent, FormTextareaComponent, FormsModule,
         ReactiveFormsModule, FormComponent, FormActionsComponent, FormInputComponent
-    ],
+    ]
 })
 export class FeedbackDialogComponent {
     description$: Observable<ParagraphWithHighlights | null>;

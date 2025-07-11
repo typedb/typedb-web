@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { isScullyRunning } from "@scullyio/ng-lib";
+import { isPlatformServer } from "@angular/common";
+import { inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { environment } from "../environment/environment";
 import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID } from "./marketing-tech-constants";
 import posthog, { Properties } from "posthog-js/dist/module.no-external";
@@ -9,6 +9,7 @@ import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
     providedIn: "root",
 })
 export class AnalyticsService {
+    private readonly platformId = inject(PLATFORM_ID);
     private _cio = AnalyticsBrowser.load({
         writeKey: environment.env === "production" ? "13252ebf8d339959b5b9" : "5fed4032be64c59cf336",
         cdnURL: "https://typedb.com/platform",
@@ -24,51 +25,51 @@ export class AnalyticsService {
     // Google Ads and Google Analytics scripts only run in production
     posthog = {
         alias: (alias: string, original?: string) => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.alias(alias, original);
         },
         capturePageView: () => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.capture("$pageview");
         },
         getDistinctId: () => posthog.get_distinct_id(),
         identify: (id: string, userPropertiesToSet?: Properties) => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.identify(id, userPropertiesToSet);
         },
         isIdentified: () => posthog._isIdentified(),
         mergeDangerously: (alias: string) => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.capture("$merge_dangerously", { alias });
         },
         reset: () => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.reset();
         },
         set: (userPropertiesToSet: Properties) => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             posthog.setPersonProperties(userPropertiesToSet);
         },
     };
 
     cio = {
         identify: (id: string, traits?: object) => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             this._cio.identify(id, traits);
         },
         page: () => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             this._cio.page();
         },
         reset: () => {
-            if (isScullyRunning()) return;
+            if (isPlatformServer(this.platformId)) return;
             this._cio.reset();
         },
     };
 
     google = {
         loadScriptTag: () => {
-            if (environment.env !== "production" || isScullyRunning()) return;
+            if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
 
             const scriptEl = document.createElement("script");
             scriptEl.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
@@ -81,7 +82,7 @@ export class AnalyticsService {
             document.head.appendChild(scriptEl2);
         },
         reportAdConversion: (event: keyof typeof googleAdsConversionIds) => {
-            if (environment.env !== "production" || isScullyRunning()) return;
+            if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
 
             window.gtag("event", "conversion", { send_to: googleAdsConversionIds[event] });
         },
@@ -89,7 +90,7 @@ export class AnalyticsService {
 
     googleTagManager = {
         loadScriptTag: () => {
-            if (environment.env !== "production" || isScullyRunning()) return;
+            if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
 
             const scriptEl = document.createElement("script");
             scriptEl.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

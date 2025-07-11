@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 .lc-root-cols-3 {
     display: flex;
@@ -56,7 +56,7 @@
 
     &.lc-card-cols-3 {
         h3 {
-            @include line-clamp(1);
+            @include mixins.line-clamp(1);
         }
     }
 
@@ -81,7 +81,7 @@
             }
 
             td-rich-text {
-                @include line-clamp(7);
+                @include mixins.line-clamp(7);
                 max-height: 24px * 7;
             }
         }

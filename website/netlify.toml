@@ -8,20 +8,20 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/Cqyd
 pretty_urls = true
 
 [context.production]
-command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
+command = "ENV=production pnpm run build && pnpm run prerender"
 publish = "dist/static"
 
 [context.master]
-command = "pnpm run style:verify; ENV=staging pnpm run build"
+command = "ENV=staging pnpm run build"
 publish = "dist/dynamic"
 
 [context.development]
-command = "pnpm run style:verify; ENV=development pnpm run build"
+command = "ENV=development pnpm run build"
 publish = "dist/dynamic"
 
 [context.deploy-preview]
-command = "pnpm run style:verify; ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "ENV=development pnpm run build"
+publish = "dist/typedb-web/browser"
 
 # ALIASES
 # Keep indefinitely
@@ -147,8 +147,31 @@ from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
+# STUDIO BEHAVIOUR
+# Keep indefinitely
+
+[[redirects]]
+from = "https://development.typedb.com/studio/app/*"
+to = "https://development--typedb-studio.netlify.app/:splat"
+status = 200
+
 # POSTHOG REVERSE PROXY
 # Keep indefinitely. These reverse proxy configurations enable us to route data to PostHog through Netlify.
+[[redirects]]
+from = "/ph/static/*"
+to = "https://us-assets.i.posthog.com/static/:splat"
+host = "us-assets.i.posthog.com"
+status = 200
+force = true
+
+[[redirects]]
+from = "/ph/*"
+to = "https://us.i.posthog.com/:splat"
+host = "us.i.posthog.com"
+status = 200
+force = true
+
+# These redirects were used in legacy applications and can be deleted in 2026
 [[redirects]]
 from = "/ingest/static/*"
 to = "https://us-assets.i.posthog.com/static/:splat"

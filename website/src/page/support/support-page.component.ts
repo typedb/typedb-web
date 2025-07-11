@@ -14,11 +14,10 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         LinkPanelsComponent, SectionCoreComponent,
         FeatureTableComponent, TestimonialsCarouselComponent, ContactPanelComponent, AsyncPipe
-    ],
+    ]
 })
 export class SupportPageComponent extends PageComponentBase<SupportPage> {
     protected override getPage(data: SanityDataset) {

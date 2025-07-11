@@ -14,11 +14,10 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./pricing-page.component.html",
     styleUrls: ["./pricing-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         FeatureTableComponent, SectionCoreComponent,
         AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent,
-    ],
+    ]
 })
 export class PricingPageComponent extends PageComponentBase<PricingPage> {
     protected override getPage(data: SanityDataset) {

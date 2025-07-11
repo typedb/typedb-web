@@ -10,11 +10,10 @@ import { DialogCloseButtonComponent } from "./close-button/dialog-close-button.c
     templateUrl: "form-dialog.component.html",
     styleUrls: ["./form-dialog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ParagraphWithHighlightsComponent,
         MatProgressBarModule
-    ],
+    ]
 })
 export class FormDialogComponent {
     @Input() isSubmitting: boolean | null = null;

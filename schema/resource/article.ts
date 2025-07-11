@@ -189,6 +189,7 @@ export const wordpressSlugField = Object.assign({}, slugField, {
     validation: (rule: SlugRule) =>
         rule.custom(async (value) => {
             if (!value?.current) return "Required";
+            if (value.current.includes("/")) return "Slug must not contain slashes (including at start/end)";
             const exists = await wordpressPostExists(value.current);
             return exists ? true : `WordPress post with slug '${value.current}' not found`;
         }),

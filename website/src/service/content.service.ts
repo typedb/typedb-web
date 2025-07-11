@@ -1,11 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, makeStateKey, StateKey, TransferState } from "@angular/core";
 
 import { SanityDocument } from "@sanity/types";
-import { TransferStateService } from "@scullyio/ng-lib";
 import {
-    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay,
-    switchMap,
+    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay, switchMap,
 } from "rxjs";
 import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
 import {
@@ -40,7 +38,7 @@ export class ContentService {
     constructor(
         private http: HttpClient,
         private wordpress: WordpressService,
-        private transferState: TransferStateService,
+        private transferState: TransferState
     ) {
         this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content").subscribe((result) => {
             this.data.next(
@@ -50,28 +48,35 @@ export class ContentService {
                 }),
             );
         });
+
         this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
         this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
-        this.wordpressPosts = this.transferState.useScullyTransferState("wordpressPosts", this.wordpress.listPosts())
-            .pipe(
-                switchMap((data) => {
-                    if (data?.length) return of(data);
-                    else return this.wordpress.listPosts(); // fall back to loading live. should patch away WP flakiness
-                }),
-                shareReplay(),
-            );
+
+        const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPost[]>("wordpressPosts");
+        this.wordpressPosts = this.handleTransferState(WORDPRESS_POSTS_KEY, this.wordpress.listPosts()).pipe(
+            switchMap((data) => {
+                if (data?.length) return of(data);
+                else return this.wordpress.listPosts(); // fall back to loading live (handles WP flakiness)
+            }),
+            shareReplay(),
+        );
+
         this.listPosts().subscribe((data) => {
             this.blogPosts.next(data);
         });
+
         this.listFundamentalArticles().subscribe((data) => {
             this.fundamentalArticles.next(data);
         });
+
         this.listApplicationArticles().subscribe((data) => {
             this.applicationArticles.next(data);
         });
+
         this.listLegalDocuments().subscribe((data) => {
             this.legalDocuments.next(data);
         });
+
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
@@ -143,21 +148,36 @@ export class ContentService {
         return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
     }
 
-    private getSanityResult<T>(query: string, name: string): Observable<T> {
-        return this.transferState
-            .useScullyTransferState(
-                name,
-                this.http.get<{ result: T }>(
-                    SANITY_QUERY_URL,
-                    ["production", "staging"].includes(environment.env)
-                        ? { params: { query, perspective: "published" } }
-                        : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
-                ),
+    private getSanityResult<T>(query: string, key: string): Observable<T> {
+        const STATE_KEY = makeStateKey<{ result: T }>(key);
+        return this.handleTransferState(
+            STATE_KEY,
+            this.http.get<{ result: T }>(
+                SANITY_QUERY_URL,
+                ["production", "staging", "local"].includes(environment.env)
+                    ? { params: { query, perspective: "published" } }
+                    : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
             )
-            .pipe(
-                first(),
-                map(({ result }) => result),
-            );
+        ).pipe(
+            first(),
+            map(({ result }) => result),
+        );
+    }
+
+    private handleTransferState<T>(stateKey: StateKey<T>, fetch$: Observable<T>): Observable<T> { // Ensure stateKey is StateKey<T>
+        if (this.transferState.hasKey(stateKey)) {
+            const cachedData = this.transferState.get<T>(stateKey, null as T); // Retrieve data from TransferState
+            this.transferState.remove(stateKey);
+            return of(cachedData);
+        }
+
+        return fetch$.pipe(
+            first(),
+            map((response) => {
+                this.transferState.set(stateKey, response);
+                return response;
+            })
+        );
     }
 
     private listPosts(): Observable<BlogPost[]> {

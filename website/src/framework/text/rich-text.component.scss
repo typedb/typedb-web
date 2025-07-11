@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: block;
@@ -94,7 +94,7 @@
             display: block;
             border-radius: var(--border-radius);
             border: shapes.$border;
-            max-width: var(--section-max-width);
+            max-width: 100%;
         }
 
         figcaption {
@@ -124,7 +124,7 @@
 
     table {
         width: 100%;
-        @include content-table;
+        @include mixins.content-table;
     }
 
     a {

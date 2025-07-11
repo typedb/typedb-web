@@ -13,7 +13,6 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./generic-page.component.html",
     styleUrls: ["./generic-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         TitleBodyActionsSectionComponent, ContentPanelComponent, ConclusionPanelComponent, AsyncPipe,
         SectionCoreComponent

@@ -15,7 +15,6 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./philosophy-page.component.html",
     styleUrls: ["./philosophy-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         TitleBodyActionsSectionComponent, PublicationPanelComponent, ConclusionPanelComponent, AsyncPipe,
         SectionCoreComponent

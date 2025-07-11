@@ -26,11 +26,10 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./papers-page.component.html",
     styleUrls: ["./papers-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
         ButtonComponent, AsyncPipe, PlainTextPipe,
-    ],
+    ]
 })
 export class PapersPageComponent extends PageComponentBase<PapersPage> {
     protected override getPage(data: SanityDataset) {

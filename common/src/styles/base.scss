@@ -1,6 +1,6 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 html, body {
@@ -264,8 +264,8 @@ button, td-button {
 }
 
 .card {
-    @include card-appearance;
-    @include card-padding;
+    @include mixins.card-appearance;
+    @include mixins.card-padding;
     transition: border-color 100ms;
 
     //&.hoverable:hover {
@@ -274,11 +274,11 @@ button, td-button {
 }
 
 .card-appearance {
-    @include card-appearance;
+    @include mixins.card-appearance;
 }
 
 .card-padding {
-    @include card-padding;
+    @include mixins.card-padding;
 }
 
 .button-greenHollow {

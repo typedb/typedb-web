@@ -1,4 +1,4 @@
-# Main Site Content Model
+# TypeDB Web Schema
 
 This module contains the main site "schema": the definitions of the content model that make up our Angular website data,
 and their respective representations in our CMS, Sanity.
@@ -12,6 +12,12 @@ In order to compile either Sanity or Angular, you'll need to install the `npm` d
 ```shell
 pnpm i
 ```
+
+## Development
+
+If you'd like to preview the schema by booting up a local Sanity instance, see [sanity/README.md](../sanity/README.md).
+
+Or for running the Angular website, it's [website/README.md](../website/README.md).
 
 ## Troubleshooting
 

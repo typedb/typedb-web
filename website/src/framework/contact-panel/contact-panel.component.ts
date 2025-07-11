@@ -28,11 +28,10 @@ const contactFormTopics = [
     templateUrl: "contact-panel.component.html",
     styleUrls: ["contact-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         MatProgressBarModule, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent,
         MatCheckboxModule, FormsModule, ReactiveFormsModule
-    ],
+    ]
 })
 export class ContactPanelComponent {
     @Input() showPersonalDataNotice = false;

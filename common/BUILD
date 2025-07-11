@@ -31,7 +31,7 @@ ts_project(
 )
 
 npm_package(
-    name = "common",
+    name = "pkg",
     srcs = [":srcs", ":lib", "package.json"],
     visibility = ["//:__subpackages__"],
 )

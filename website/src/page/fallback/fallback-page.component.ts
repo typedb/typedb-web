@@ -6,7 +6,6 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
     selector: "td-fallback-page",
     template: `<article></article>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PageBackgroundComponent],
+    imports: []
 })
 export class FallbackPageComponent {}

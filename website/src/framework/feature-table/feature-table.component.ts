@@ -13,8 +13,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "feature-table-cell.component.html",
     styleUrls: ["./feature-table-cell.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass, MatIconModule, ButtonComponent],
+    imports: [NgClass, MatIconModule, ButtonComponent]
 })
 export class FeatureTableCellComponent {
     @Input({ required: true }) table!: FeatureTable;
@@ -44,8 +43,7 @@ export class FeatureTableCellComponent {
     templateUrl: "feature-table.component.html",
     styleUrls: ["./feature-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [InfoButtonComponent, FeatureTableCellComponent, ButtonComponent],
+    imports: [InfoButtonComponent, FeatureTableCellComponent, ButtonComponent]
 })
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;

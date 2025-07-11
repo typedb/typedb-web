@@ -10,8 +10,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "./pricing-table.component.html",
     styleUrls: ["./pricing-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [RichTextComponent, ButtonComponent, LinkDirective],
+    imports: [RichTextComponent, ButtonComponent, LinkDirective]
 })
 export class PricingTableComponent {
     @Input() caption?: string;

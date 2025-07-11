@@ -1,14 +1,14 @@
 @use "colors";
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @include card-appearance;
-    @include card-padding;
+    @include mixins.card-appearance;
+    @include mixins.card-padding;
     width: 560px;
     max-width: calc(100vw - 24px);
 }

@@ -6,8 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
     templateUrl: "./aspect-ratio.component.html",
     styleUrls: ["./aspect-ratio.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass],
+    imports: [NgClass]
 })
 export class AspectRatioComponent {
     @Input() ratio: "1:1" | "16:9" | "3:2" | "17:22" = "1:1";

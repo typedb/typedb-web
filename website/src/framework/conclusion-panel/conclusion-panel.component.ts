@@ -13,8 +13,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "conclusion-panel.component.html",
     styleUrls: ["conclusion-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [RichTextComponent, ActionsComponent, LinkDirective],
+    imports: [RichTextComponent, ActionsComponent, LinkDirective]
 })
 export class ConclusionPanelComponent {
     @Input() panel!: ConclusionPanel;
