@@ -210,8 +210,8 @@ table {
     }
 
     .cc-btn {
-        @include button;
-        @include button-greenHollow;
+        @include mixins.button;
+        @include mixins.button-greenHollow;
 
         &.cc-btn {
             height: auto;

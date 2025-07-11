@@ -35,9 +35,8 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
-        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe
+        LinkPanelsComponent,
+        AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, FeatureFusionComponent, HotTopicsComponent
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

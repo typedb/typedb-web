@@ -30,7 +30,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
         ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
         EventDurationPipe, OrdinalDatePipe, PlainTextPipe
     ]

@@ -1,7 +1,7 @@
 @use "mixins";
 
 td-section-core ::ng-deep td-heading-with-highlights h1 {
-    @include text-gradient(#AC79EE, #03D0BF);
+    @include mixins.text-gradient(#AC79EE, #03D0BF);
 }
 
 td-section-core ::ng-deep td-button a {

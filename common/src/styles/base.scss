@@ -228,7 +228,7 @@ button, td-button {
 ::file-selector-button {
     border-radius: 4px;
     font-family: inherit;
-    @include button-greenHollow;
+    @include mixins.button-greenHollow;
 }
 
 [hidden] {
@@ -282,23 +282,23 @@ button, td-button {
 }
 
 .button-greenHollow {
-    @include button;
-    @include button-greenHollow;
+    @include mixins.button;
+    @include mixins.button-greenHollow;
 }
 
 .button-water {
-    @include button;
-    @include button-water;
+    @include mixins.button;
+    @include mixins.button-water;
 }
 
 .button-fire {
-    @include button;
-    @include button-fire;
+    @include mixins.button;
+    @include mixins.button-fire;
 }
 
 .button-frameless {
-    @include button;
-    @include button-frameless;
+    @include mixins.button;
+    @include mixins.button-frameless;
 }
 
 td-form-actions, .td-form-actions {
