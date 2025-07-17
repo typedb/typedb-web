@@ -1,18 +1,20 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
+import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import {
     bodyFieldRichText, isVisibleField, actionsFieldOptional, requiredRule, SanityVisibleToggle,
     titleBodyIconFields, titleField,
 } from "../common-fields";
-import { SanityDataset } from "../sanity-core";
+import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { SanitySectionBase, SectionBase } from "./section";
 
 export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextField, SanityOptionalActions {
-    resourceListTitle: string;
-    resources: SanityTextLink[];
+    resourceListTitle?: string;
+    resources?: SanityTextLink[];
+    illustration?: SanityReference<SanityIllustration>;
 }
 
 export interface SanityConclusionSection extends SanitySectionBase, SanityVisibleToggle {
@@ -23,8 +25,9 @@ export class ConclusionPanel implements Partial<BodyTextField> {
     readonly title: string;
     readonly body?: PortableText;
     readonly actions?: LinkButton[];
-    readonly resourceListTitle: string;
-    readonly resources: TextLink[];
+    readonly resourceListTitle?: string;
+    readonly resources?: TextLink[];
+    readonly illustration?: Illustration;
 
     constructor(props: PropsOf<ConclusionPanel>) {
         this.title = props.title;
@@ -32,6 +35,7 @@ export class ConclusionPanel implements Partial<BodyTextField> {
         this.actions = props.actions;
         this.resourceListTitle = props.resourceListTitle;
         this.resources = props.resources;
+        this.illustration = props.illustration;
     }
 
     static fromSanity(data: SanityConclusionPanel, db: SanityDataset): ConclusionPanel {
@@ -40,7 +44,8 @@ export class ConclusionPanel implements Partial<BodyTextField> {
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
-            resources: data.resources.map((x) => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
+            resources: data.resources?.map((x) => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
+            illustration: data.illustration && illustrationFromSanity(db.resolveRef(data.illustration), db),
         });
     }
 }
@@ -74,17 +79,16 @@ const conclusionPanelSchema = defineType({
         actionsFieldOptional,
         defineField({
             name: "resourceListTitle",
-            title: "Resource List Title",
+            title: "Resource List Title (optional)",
             type: "string",
-            validation: requiredRule,
         }),
         defineField({
             name: "resources",
-            title: "Resources",
+            title: "Resources (optional)",
             type: "array",
             of: [{ type: textLinkSchemaName }],
-            validation: requiredRule,
         }),
+        illustrationFieldOptional,
     ],
 });
 

@@ -4,6 +4,7 @@ import {
     isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional, titleField,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { Link, linkSchemaName, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { organisationLogosField } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
@@ -23,6 +24,10 @@ export interface SanityTitleBodyPanelSection extends SanityCoreSection {
 
 export interface SanityLinkPanelsSection extends SanityCoreSection {
     panels: SanityLinkPanel[];
+}
+
+export interface SanitySimpleLinkPanelsSection extends SanityCoreSection {
+    panels: SanityTextLink[];
 }
 
 export interface SanityTitleBodyIllustrationSection extends SanityCoreSection {
@@ -84,6 +89,22 @@ export class LinkPanelsSection extends SectionBase {
         return new LinkPanelsSection({
             ...super.fromSanity(data, db),
             panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
+        });
+    }
+}
+
+export class SimpleLinkPanelsSection extends SectionBase {
+    readonly panels: TextLink[];
+
+    constructor(props: PropsOf<SimpleLinkPanelsSection>) {
+        super(props);
+        this.panels = props.panels;
+    }
+
+    static override fromSanity(data: SanitySimpleLinkPanelsSection, db: SanityDataset) {
+        return new SimpleLinkPanelsSection({
+            ...super.fromSanity(data, db),
+            panels: data.panels.map((x) => TextLink.fromSanityTextLink(x, db)!),
         });
     }
 }
@@ -161,6 +182,27 @@ const linkPanelsSectionSchema = defineType({
     ],
 });
 
+export const simpleLinkPanelsSectionSchemaName = `simpleLinkPanelsSection`;
+
+const simpleLinkPanelsSectionSchema = defineType({
+    name: simpleLinkPanelsSectionSchemaName,
+    title: "Simple Link Panels Section",
+    type: "object",
+    fields: [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        keywordFieldOptional,
+        defineField({
+            name: "panels",
+            title: "Panels",
+            type: "array",
+            of: [{ type: textLinkSchemaName }],
+            validation: (rule) => rule.required(),
+        }),
+        isVisibleField,
+    ],
+});
+
 const titleBodyIllustrationSectionSchema = defineType({
     name: 'titleBodyIllustrationSection',
     title: 'Title, Body & Illustration',
@@ -178,5 +220,6 @@ export const pageSectionSchemas = [
     resourceSectionSchema, 
     titleBodyPanelSectionSchema, 
     linkPanelsSectionSchema,
+    simpleLinkPanelsSectionSchema,
     titleBodyIllustrationSectionSchema,
 ];

@@ -2,7 +2,7 @@
   @if (section.keyword) {<p class="td-keyword">{{ section.keyword }}</p>}
   <td-heading-with-highlights [value]="section.title" [id]="section.sectionId" [themeColorHex]="themeColorHex" [level]="level"/>
   @if (section.body && !noBody) {
-    <td-rich-text [value]="section.body" class="text-p1" />
+    <td-rich-text [value]="section.body" [class]="level === 'h3' ? 'text-p2' : 'text-p1'" />
   }
   @if (section.actions) {
     <td-actions [sectionId]="section.sectionId" [actions]="section.actions" />

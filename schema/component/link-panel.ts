@@ -7,15 +7,15 @@ import { PropsOf } from "../util";
 
 export interface SanityLinkPanel {
     title: string;
-    body: PortableText;
+    body?: PortableText;
     iconName?: string;
     iconVariant?: string;
     link?: SanityTextLink;
 }
 
-export class LinkPanel implements BodyTextField {
+export class LinkPanel implements Partial<BodyTextField> {
     readonly title: string;
-    readonly body: PortableText;
+    readonly body?: PortableText;
     readonly iconName?: string;
     readonly iconVariant?: string;
     readonly link?: TextLink;

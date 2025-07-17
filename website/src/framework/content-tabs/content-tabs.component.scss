@@ -38,10 +38,6 @@
         border-left: shapes.$border;
     }
 
-    h5 {
-        color: var(--color-darker-white);
-    }
-
     @media (hover: hover) {
         &:hover h5 {
             color: var(--color-white);

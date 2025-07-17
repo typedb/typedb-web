@@ -14,6 +14,18 @@ section {
         flex-direction: row-reverse;
     }
 
+    &.td-column {
+        flex-direction: column;
+
+        .td-text {
+            text-align: center;
+        }
+
+        .td-illustration {
+            width: 100%;
+        }
+    }
+
     .td-text {
         flex: 1;
     }

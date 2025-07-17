@@ -12,16 +12,16 @@
     text-align: center;
     max-width: 660px;
     grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
-    padding-bottom: 80px;
+    padding-bottom: 24px;
 
     @media (max-width: media.$max-width-tablet) {
-        padding-bottom: 72px;
+        padding-bottom: 20px;
     }
 }
 
 .td-keyword {
     color: var(--color-secondary-pink);
-    font-family: var(--code-font-family);
+    font-family: var(--font-family-code);
     font-weight: var(--font-weight-regular);
     text-transform: uppercase;
     margin-bottom: 0.5em;

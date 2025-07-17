@@ -15,7 +15,7 @@
     </div>
   </td-scroll-shadow>
   @for (snippet of polyglotSnippet.snippets; track snippet) {
-    <div class="ft-snippet-container" [hidden]="(selectedSnippet$ | async) !== snippet">
+    <div class="td-snippet-container" [hidden]="(selectedSnippet$ | async) !== snippet">
       <td-code-snippet [snippet]="snippet"/>
     </div>
   }

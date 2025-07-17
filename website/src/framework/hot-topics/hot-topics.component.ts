@@ -12,14 +12,16 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        ScrollShadowComponent,
-        HeadingWithHighlightsComponent,
-        LinkDirective,
-        RichTextComponent,
+        ScrollShadowComponent, HeadingWithHighlightsComponent, LinkDirective, RichTextComponent,
     ],
 })
 export class HotTopicsComponent {
     @Input() title!: ParagraphWithHighlights;
-    @Input() hotTopics!: ResourceLink[];
-    @HostBinding('class') clazz = 'section section-margin';
+    @Input() resources!: ResourceLink[];
+    @Input() appearance: "news" | "resources" = "news";
+
+    @HostBinding('class')
+    get clazz() {
+        return `section section-margin ${this.appearance}`;
+    }
 }

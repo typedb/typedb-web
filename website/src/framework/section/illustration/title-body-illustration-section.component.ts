@@ -18,7 +18,7 @@ import { HeadingWithHighlightsComponent } from "../../text/text-with-highlights.
 export class TitleBodyIllustrationSectionComponent {
     @Input({ required: true }) data!: TitleBodyIllustrationSection;
     @Input() level: "h1" | "h2" = "h2";
-    @Input() flexDirection: "row" | "row-reverse" = "row";
+    @Input() flexDirection: "row" | "row-reverse" | "column" = "row";
     @Input() isIntroSection = false;
 
     get sectionClasses(): string {

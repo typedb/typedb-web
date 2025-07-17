@@ -15,6 +15,7 @@
     --color-green: #{colors.$green};
     --color-red: #{colors.$red};
 
+    --color-secondary-extra-light-grey: #{colors.$secondary-extra-light-grey};
     --color-secondary-light-grey: #{colors.$secondary-light-grey};
     --color-secondary-grey: #{colors.$secondary-grey};
     --color-secondary-mid-deep-grey: #{colors.$secondary-mid-deep-grey};
@@ -45,7 +46,6 @@
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
-    --first-section-margin: #{$first-section-margin};
     --section-margin: #{$section-margin};
     --subsection-margin: #{$subsection-margin};
     --subtitle-margin-l: #{$subtitle-margin-l};
@@ -69,8 +69,8 @@
 
     --font-size-base: var(--font-size-p2);
     --body-letter-spacing: 0.02em;
-    --default-font-family: #{typography.$font-family-default};
-    --code-font-family: #{typography.$font-family-code};
+    --font-family-default: #{typography.$font-family-default};
+    --font-family-code: #{typography.$font-family-code};
 
     --font-size-h1: #{typography.$h1};
     --line-height-h1: #{typography.$height-h1};
@@ -111,7 +111,6 @@
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
 
-        --first-section-margin: #{$first-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
         --subsection-margin: #{$subsection-margin-mobile};
         --subtitle-margin-l: #{$subtitle-margin-mobile};

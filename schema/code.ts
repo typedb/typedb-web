@@ -1,7 +1,7 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { requiredRule, titleField } from "./common-fields";
-import { Document } from "./sanity-core";
+import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
 export const codeSnippetSchemaName = "codeSnippet";
@@ -43,7 +43,7 @@ export interface SanityCodeSnippet extends SanityDocument {
 }
 
 export interface SanityPolyglotSnippet extends SanityDocument {
-    snippets: SanityCodeSnippet[];
+    snippets: SanityReference<SanityCodeSnippet>[];
 }
 
 export class CodeSnippet extends Document {
@@ -90,8 +90,10 @@ export class PolyglotSnippet extends Document {
         this.snippets = data.snippets;
     }
 
-    static fromSanity(data: SanityPolyglotSnippet): PolyglotSnippet {
-        return new PolyglotSnippet(Object.assign(new Document(data), { snippets: data.snippets.map(x => CodeSnippet.fromSanity(x)) }));
+    static fromSanity(data: SanityPolyglotSnippet, db: SanityDataset): PolyglotSnippet {
+        return new PolyglotSnippet(Object.assign(new Document(data), {
+            snippets: data.snippets.map(x => CodeSnippet.fromSanity(db.resolveRef(x))) }
+        ));
     }
 }
 
@@ -158,7 +160,7 @@ const polyglotSnippetSchema = defineType({
             name: "snippets",
             title: "Snippets",
             type: "array",
-            of: [{ type: codeSnippetSchemaName }],
+            of: [{ type: "reference", to: [{ type: codeSnippetSchemaName }] }],
             validation: requiredRule,
         }),
     ],

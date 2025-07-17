@@ -7,6 +7,7 @@
         // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
         width: shapes.$section-width + $offset;
         max-width: var(--section-max-width);
+        padding: shapes.$section-padding;
     }
 
     @media (min-width: media.$min-width-tablet) and (max-width: (shapes.$section-width-tablet + shapes.$section-page-margin-tablet * 2 - 1px)) {
@@ -15,6 +16,7 @@
 
     @media (max-width: media.$max-width-mobile) {
         width: calc(100vw - 24px + $offset);
+        padding: shapes.$section-padding-mobile;
     }
 }
 
@@ -23,7 +25,7 @@
         --graphic-area-width: 120px;
         display: block;
         position: relative;
-        margin-top: 120px;
+        margin-top: 92px;
 
         @media (max-width: media.$max-width-mobile) {
             --graphic-area-width: 52px;
@@ -197,7 +199,6 @@
         linear-gradient(to bottom, $bg-color, $bg-color) padding-box,
         conic-gradient(from var(--gradient-button-bg-angle), $color2, $color1, $color2) border-box;
     border: 1px solid transparent;
-    color: var(--color-darker-white);
 
     &:hover {
         animation-play-state: running;

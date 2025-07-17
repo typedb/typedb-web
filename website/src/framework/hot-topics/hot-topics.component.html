@@ -1,7 +1,7 @@
 <td-heading-with-highlights level="h2" [value]="title"/>
 <td-scroll-shadow>
   <div #scrollContent class="td-cards">
-    @for (hotTopic of hotTopics; track hotTopic) {
+    @for (hotTopic of resources; track hotTopic) {
       <a class="td-card" [tdLink]="hotTopic.link" draggable="false">
         <div class="td-card-overlay"></div>
         @if (hotTopic.imageURL) {
@@ -13,7 +13,6 @@
         <div class="td-card-body card-padding">
           <h3>{{ hotTopic.title }}</h3>
           <td-rich-text [value]="hotTopic.description" class="flex" />
-          <div class="flex"></div>
           <p class="link-tertiary">{{ hotTopic.linkText }}</p>
         </div>
       </a>

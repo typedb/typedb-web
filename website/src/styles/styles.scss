@@ -17,7 +17,7 @@ $default-typography: mat.m2-define-typography-level(
 );
 
 $custom-typography: mat.m2-define-typography-config(
-    $font-family: var(--default-font-family),
+    $font-family: var(--font-family-default),
     $headline-1: $default-typography,
     $headline-2: $default-typography,
     $headline-3: $default-typography,
@@ -44,7 +44,7 @@ article {
     > .article-content {
         display: flex;
         flex-direction: column;
-        padding-bottom: 5em;
+        padding-bottom: 144px;
         position: relative;
 
         @media (max-width: media.$max-width-mobile) {
@@ -58,6 +58,7 @@ section, .section {
     z-index: 1;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
     @include mixins.section-width($offset: 0px);
 }
 
@@ -66,7 +67,7 @@ section, .section {
 }
 
 .nebula-section {
-    margin-top: var(--first-section-margin);
+    margin-top: var(--section-margin);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,7 +181,7 @@ table {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: var(--first-section-margin);
+    margin-top: var(--section-margin);
 }
 
 .section-margin {
@@ -230,7 +231,7 @@ table {
 }
 
 .atcb-list {
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 }
 
 mat-dialog-container {

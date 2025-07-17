@@ -12,7 +12,7 @@ html, body {
     line-height: var(--line-height-p2);
     letter-spacing: var(--body-letter-spacing);
 
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 
     margin: 0;
     scroll-padding-top: var(--scroll-padding);
@@ -23,7 +23,7 @@ html, body {
 }
 
 code, kbd, pre {
-    font-family: var(--code-font-family);
+    font-family: var(--font-family-code);
 }
 
 @each $tag in (h1, h2, h3, h4, h5, h6) {
@@ -78,11 +78,11 @@ pre, code, .text-code {
 }
 
 button {
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 }
 
 input, select, textarea {
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
     &::placeholder {
         color: rgba(colors.$secondary-light-grey, 0.8);
         font-style: italic;

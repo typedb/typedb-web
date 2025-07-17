@@ -5,7 +5,6 @@
 
 .td-primary-items,
 .td-secondary-items {
-    width: 100%;
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
@@ -13,20 +12,20 @@
 }
 
 .td-primary-items {
+    width: 100%;
     gap: 32px;
 }
 
 .td-secondary-items {
-    margin-top: 64px;
-    gap: 24px;
+    margin: 32px auto 0;
+    width: 320px;
+    gap: 32px;
 }
 
 .td-primary-item,
 .td-secondary-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     @include mixins.light-source-gradient(colors.$purple, colors.$deep-purple, 40px, 20px);
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     text-align: center;
@@ -37,22 +36,36 @@
 }
 
 .td-primary-item {
-    width: 240px;
-    height: 180px;
+    width: 260px;
+    height: 260px;
 
     img {
-        width: 64px;
-        height: 64px;
+        margin: 16px auto 0;
+        width: 80px;
+        height: 80px;
+    }
+
+    aside, h3 {
+        text-align: start;
+    }
+
+    aside {
+        text-transform: uppercase;
+        margin-bottom: 4px;
     }
 }
 
 .td-secondary-item {
-    width: 150px;
-    height: 120px;
+    width: 140px;
+    height: 80px;
     padding: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 
     img {
         width: 40px;
         height: 40px;
+        margin-right: 16px;
     }
 }

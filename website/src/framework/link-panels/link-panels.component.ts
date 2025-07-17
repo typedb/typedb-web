@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import { Lecture, LinkPanel, ResourceLink } from "typedb-web-schema";
 
@@ -8,7 +9,6 @@ import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
-import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-link-panels",

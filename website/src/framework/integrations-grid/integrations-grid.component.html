@@ -5,6 +5,7 @@
         <img [src]="integration.imageURL" alt="" />
         <div class="flex"></div>
       }
+      <aside class="text-muted">Develop with</aside>
       <h3>{{ integration.name }}</h3>
     </a>
   }
@@ -15,7 +16,6 @@
     <a class="td-secondary-item card-appearance" [tdLink]="integration.link">
       @if (integration.imageURL) {
         <img [src]="integration.imageURL" alt="" />
-        <div class="flex"></div>
       }
       <h4>{{ integration.name }}</h4>
     </a>

@@ -17,14 +17,15 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
 })
 export class SectionCoreComponent {
     @Input() section!: SectionBase;
-    @Input() level: "h1" | "h2" = "h2";
+    @Input() level: "h1" | "h2" | "h3" = "h2";
     @Input() noBody?: boolean;
     @Input() organisationLogos?: Organisation[];
+    @Input() noSectionClass?: boolean;
     themeColorHex = "#02DAC9";
 
     @HostBinding("class")
     get clazz(): string {
-        return `section ${this.levelClass}`;
+        return this.noSectionClass ? this.levelClass : `section ${this.levelClass}`;
     }
 
     private get levelClass(): string {

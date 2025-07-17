@@ -3,7 +3,9 @@
     @if (panel.iconName) {<div><i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i></div>}
     <div class="lc-flex-container">
       <h3 class="lc-title">{{ panel.title }}</h3>
-      <td-rich-text [value]="panel.body" class="flex" />
+      @if (panel.body) {
+        <td-rich-text [value]="panel.body" class="flex" />
+      }
       @if (panel.link) {
         <p class="link-tertiary lc-cta-weak" [tdLink]="panel.link">{{ panel.link.text }}</p>
       }

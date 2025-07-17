@@ -156,7 +156,7 @@ export function illustrationFromSanity(data: SanityIllustration, db: SanityDatas
     else if (isImageIllustration(data)) return ImageIllustration.fromSanity(data, db);
     else if (isVideoEmbed(data)) return VideoEmbed.fromSanity(data);
     else if (isCodeSnippet(data)) return CodeSnippet.fromSanity(data);
-    else if (isPolyglotSnippet(data)) return PolyglotSnippet.fromSanity(data);
+    else if (isPolyglotSnippet(data)) return PolyglotSnippet.fromSanity(data, db);
     else if (isGraphVisualisation(data)) return GraphVisualisation.fromSanity(data);
     else throw `Found illustration with illegal document type '${(data as any)._type}'`;
 }

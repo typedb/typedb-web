@@ -1,12 +1,12 @@
 import { NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import { FeatureGrid, Illustration, PortableText, PublicationContentRow, PublicationContentRowItem, PublicationPanelItem } from "typedb-web-schema";
 
 import { FeatureGridComponent } from "../feature-grid/feature-grid.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { RichTextComponent } from "../text/rich-text.component";
-import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-publication-panel",

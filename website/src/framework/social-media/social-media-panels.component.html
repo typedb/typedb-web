@@ -1,8 +1,6 @@
-<section class="sm-root">
-  @for (link of socialMediaLinks; track link) {
-    <a class="sm-panel" [tdLink]="link.link" [attr.id]="linkId(link)">
-      <mat-icon [svgIcon]="link.svgIcon" />
-      <p class="hide-mobile">{{ link.text }}</p>
-    </a>
-  }
-</section>
+@for (link of socialMediaLinks; track link) {
+  <a class="td-card" [tdLink]="link.link" [attr.id]="linkId(link)">
+    <mat-icon [svgIcon]="link.svgIcon" />
+    <h4 class="hide-mobile">{{ link.text }}</h4>
+  </a>
+}

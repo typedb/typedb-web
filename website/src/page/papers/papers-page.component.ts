@@ -2,6 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { of } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
     ButtonStyle,
     LinkButton,
@@ -18,7 +19,6 @@ import { PageBackgroundComponent } from "../../framework/page-background/page-ba
 import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({

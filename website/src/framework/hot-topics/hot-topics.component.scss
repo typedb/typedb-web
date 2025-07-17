@@ -7,15 +7,22 @@
     overflow-x: visible;
     display: flex;
     gap: 32px;
+
+    &.resources {
+        flex-direction: column;
+
+        td-heading-with-highlights {
+            margin: 0 auto 24px;
+        }
+    }
+
+    &.news td-heading-with-highlights {
+        flex: 0 0 400px;
+    }
 }
 
 td-heading-with-highlights {
     display: block;
-    flex: 0 0 400px;
-
-    ::ng-deep h2 {
-        //@include mixins.text-gradient(#F96480, #FDD257);
-    }
 }
 
 .td-cards {
@@ -32,7 +39,7 @@ td-heading-with-highlights {
 .td-card {
     @include mixins.card-appearance;
     flex: 0 0 360px;
-    height: 480px;
+    height: 512px;
     display: flex;
     flex-direction: column;
     transition: background 100ms ease, border-color 100ms ease;
