@@ -5,7 +5,7 @@ import { SanityCoreSection } from "../component/section";
 import { SectionBase } from "../component/section";
 import { SanityLink } from "../link";
 import {
-    bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField, keyPointsWithIconsField,
+    bodyFieldRichText, collapsibleOptions, isVisibleField, keyPointsField,
     learnMoreLinkFieldOptional, resourcesFieldOptional, routeField, SanityVisibleToggle,
     titleAndBodyFields, titleField, videoEmbedField,
 } from "../common-fields";
@@ -162,7 +162,7 @@ const sectionSchemas = [
     sectionSchema("intro", [...titleAndBodyFields, videoEmbedField, resourcesFieldOptional, isVisibleField]),
     sectionSchema("useCases", [bodyFieldRichText, keyPointsField(4), isVisibleField]),
     sectionSchema("challenges", [bodyFieldRichText, keyPointsField(4), isVisibleField]),
-    sectionSchema("solution", [bodyFieldRichText, keyPointsWithIconsField(), isVisibleField]),
+    sectionSchema("solution", [bodyFieldRichText, isVisibleField]),
     // sectionSchema("example", [
     //     bodyFieldRichText,
     //     defineField({

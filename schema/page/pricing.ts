@@ -1,5 +1,5 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
-import { collapsibleOptions, isVisibleField, requiredRule, titleBodyIconFields } from "../common-fields";
+import { collapsibleOptions, isVisibleField, requiredRule, titleBodyActionsFields } from "../common-fields";
 import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
 import { coreSectionSchemaName, SanityCoreSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/section";
 import { PricingPanel, pricingPanelSchemaName, SanityPricingPanel } from "../component/pricing-panel";
@@ -65,7 +65,7 @@ const introSectionSchema = defineType({
     title: "Intro Section",
     type: "object",
     fields: [
-        ...titleBodyIconFields,
+        ...titleBodyActionsFields,
         defineField({
             name: "panelsCaption",
             title: "Pricing Panels Caption",

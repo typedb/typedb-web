@@ -15,23 +15,23 @@
         "sanity"
     ],
     "dependencies": {
-        "@sanity/code-input": "4.1.4",
-        "@sanity/icons": "3.6.0",
-        "@sanity/ui": "2.13.4",
-        "@sanity/vision": "3.75.1",
-        "axios": "1.7.9",
+        "@sanity/code-input": "5.1.3",
+        "@sanity/icons": "3.7.4",
+        "@sanity/ui": "2.16.7",
+        "@sanity/vision": "4.0.1",
+        "axios": "1.10.0",
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-is": "18.3.1",
         "rxjs": "7.8.1",
-        "sanity": "3.75.1",
-        "sanity-plugin-media": "2.3.2",
-        "styled-components": "6.1.15",
+        "sanity": "4.0.1",
+        "sanity-plugin-media": "3.0.4",
+        "styled-components": "6.1.19",
         "typedb-web-schema": "link:../schema"
     },
     "devDependencies": {
-        "@sanity/client": "6.28.0",
-        "@types/react": "18.3.12",
+        "@sanity/client": "7.8.0",
+        "@types/react": "18.3.23",
         "@types/styled-components": "5.1.34",
         "prettier": "2.8.8",
         "typescript": "5.5.4"
@@ -42,5 +42,5 @@
         "bracketSpacing": false,
         "singleQuote": false
     },
-    "packageManager": "pnpm@8.6.7"
+    "packageManager": "pnpm@10.12.1+sha256.889bac470ec93ccc3764488a19d6ba8f9c648ad5e50a9a6e4be3768a5de387a3"
 }

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule, titleBodyActionsFields,
 } from "../common-fields";
 import { featureTableSchemaName, FeatureTableSection, SanityFeatureTableSection } from "../component/feature-table";
 import { linkPanelSchemaName } from "../component/link-panel";
@@ -61,8 +61,7 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 
 const sectionSchemas = [
     sectionSchema("intro", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "panels",
             title: "Panels",
@@ -73,8 +72,7 @@ const sectionSchemas = [
         isVisibleField,
     ]),
     sectionSchema("featureTable", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "featureTable",
             title: "Feature Table",
@@ -82,7 +80,7 @@ const sectionSchemas = [
             validation: requiredRule,
         }),
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
+    sectionSchema("contact", [...titleBodyActionsFields, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[])

@@ -95,20 +95,6 @@ export const slugField = defineField({
 
 export const iconFieldName = "icon";
 
-export const sectionIconFieldOptional = defineField({
-    name: iconFieldName,
-    title: "Icon",
-    type: "reference",
-    to: [{ type: "sectionIcon" }],
-    options: { disableNew: true },
-});
-
-export const sectionIconField = Object.assign({}, sectionIconFieldOptional, {
-    validation: requiredRule,
-});
-
-export const titleBodyIconFields = [...titleAndBodyFields, sectionIconField];
-
 export const descriptionFieldName = "description";
 
 export const descriptionField = defineField({
@@ -142,6 +128,8 @@ export const actionsFieldOptional = defineField({
     type: "actions",
     icon: PlayIcon,
 });
+
+export const titleBodyActionsFields = [...titleAndBodyFields, actionsFieldOptional];
 
 export const routeFieldName = "route";
 
@@ -235,15 +223,6 @@ export const keyPointsField = (count?: number) =>
         title: "Key Points",
         type: "array",
         of: [{ type: "keyPoint" }],
-        validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
-    });
-
-export const keyPointsWithIconsField = (count?: number) =>
-    defineField({
-        name: keyPointsFieldName,
-        title: "Key Points",
-        type: "array",
-        of: [{ type: "keyPointWithIcon" }],
         validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
     });
 

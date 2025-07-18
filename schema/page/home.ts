@@ -8,12 +8,11 @@ import {
     TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
 } from "../component/section";
 import {
-    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
-    keywordFieldOptional, keyPointsField, SanityVisibleToggle,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule,
+    titleFieldWithHighlights, bodyFieldRichText, resourcesField,
+    keyPointsField, SanityVisibleToggle, titleBodyActionsFields,
 } from "../common-fields";
 import { contentTextTabSchemaName } from "../component/content-text-panel";
-import { illustrationFieldOptional } from "../illustration";
 import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { ResourceLink } from "../resource/base";
@@ -30,7 +29,6 @@ import { metaTagsField } from "./meta-tags";
 const sections = {
     intro: { id: "introSection", title: "Intro" },
     hotTopics: { id: "hotTopicsSection", title: "Hot Topics" },
-    featureFusion: { id: "featureFusionSection", title: "Feature Fusion" },
     benefits1: { id: "benefitsSection1", title: "Benefits 1" },
     benefits2: { id: "benefitsSection2", title: "Benefits 2" },
     socialValidation: { id: "socialValidationSection", title: "Social Validation" },
@@ -253,7 +251,6 @@ const sectionSchemas = [
             description: "For the Home Page, this gets automatically added to the web page title",
         }),
         bodyFieldRichText,
-        sectionIconField,
         actionsFieldOptional,
         defineField({
             name: "contentTabs",
@@ -269,20 +266,12 @@ const sectionSchemas = [
         Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
         isVisibleField,
     ]),
-    sectionSchema("featureFusion", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        keyPointsField(3),
-        isVisibleField,
-    ]),
     socialValidationSectionSchema,
-    sectionSchema("community", [...titleBodyIconFields, actionsFieldOptional, socialMediaLinksField, isVisibleField]),
-    sectionSchema("benefits4", [...titleBodyIconFields, actionsFieldOptional, keyPointsField(), isVisibleField]),
-    sectionSchema("resources", [...titleBodyIconFields, actionsFieldOptional, resourcesField, isVisibleField]),
+    sectionSchema("community", [...titleBodyActionsFields, socialMediaLinksField, isVisibleField]),
+    sectionSchema("benefits4", [...titleBodyActionsFields, keyPointsField(), isVisibleField]),
+    sectionSchema("resources", [...titleBodyActionsFields, resourcesField, isVisibleField]),
     sectionSchema("tooling", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "panels",
             title: "Panels",

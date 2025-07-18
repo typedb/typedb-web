@@ -3,7 +3,7 @@ import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { Illustration, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import {
     isVisibleField, nameFieldOptional, actionsFieldOptional, requiredRule, SanityIconField,
-    SanityVisibleToggle, sectionIconFieldOptional, titleBodyIconFields, titleFieldOptional,
+    SanityVisibleToggle, titleFieldOptional, titleBodyActionsFields,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { PortableText, SanityTitleField } from "../text";
@@ -125,7 +125,6 @@ const publicationContentRowSchema = defineType({
     fields: [
         Object.assign({}, nameFieldOptional, { description: "For reference only - not visible to users" }),
         titleFieldOptional,
-        sectionIconFieldOptional,
         defineField({
             name: "item1",
             title: "Left Side Item",
@@ -154,8 +153,7 @@ const publicationSectionSchema = defineType({
     title: `Publication Section`,
     type: "object",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "panelItems",
             title: "Panel - Items",

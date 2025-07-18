@@ -1,12 +1,9 @@
 import { DashboardIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
-import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { actionsFieldOptional, bodyFieldRichText, imageFieldOptional, isVisibleField, linkFieldOptional, nameField, requiredRule, SanityVisibleToggle, sectionIconField, sectionIconFieldOptional, tagsField, titleBodyIconFields, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
-import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
-import { SanityImageRef } from "../image";
+import { defineField, defineType } from "@sanity/types";
+import { imageFieldOptional, isVisibleField, linkFieldOptional, nameField, SanityVisibleToggle, tagsField, titleBodyActionsFields } from "../common-fields";
+import { illustrationFieldOptional } from "../illustration";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityImage, SanityReference } from "../sanity-core";
-import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { SanitySectionBase, SectionBase } from "./section";
 
@@ -92,8 +89,7 @@ const integrationsGridSectionSchema = defineType({
     type: "document",
     icon: DashboardIcon,
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         isVisibleField,
         defineField({
             name: "primary",

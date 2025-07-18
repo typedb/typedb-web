@@ -1,6 +1,6 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSnippetSchemaName, requiredRule, titleBodyIconFields, titleField } from "./common-fields";
+import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSnippetSchemaName, requiredRule, titleAndBodyFields, titleBodyActionsFields, titleField } from "./common-fields";
 import { SanityCoreSection, SectionBase } from "./component/section";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
@@ -191,8 +191,7 @@ const queryLanguageComparisonSectionSchema = defineType({
     icon: CodeBlockIcon,
     type: "object",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "content",
             title: "Content",

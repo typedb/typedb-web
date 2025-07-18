@@ -1,6 +1,6 @@
 import { BookIcon, HeartIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { actionsFieldOptional, authorField, collapsibleOptions, isVisibleField, SanityVisibleToggle, titleBodyIconFields } from "./common-fields";
+import { actionsFieldOptional, authorField, collapsibleOptions, isVisibleField, SanityVisibleToggle, titleBodyActionsFields } from "./common-fields";
 import { SanityCoreSection, SectionBase } from "./component/section";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
@@ -81,8 +81,7 @@ const testimonialsSectionSchema = defineType({
     title: `Testimonials Section`,
     type: "object",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "testimonials",
             title: "Testimonials",

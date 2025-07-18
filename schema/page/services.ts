@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { SanityOptionalActions } from "../button";
 import {
-    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, SanityVisibleToggle,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, SanityVisibleToggle, titleBodyActionsFields,
 } from "../common-fields";
 import { SanitySectionBase, SectionBase } from "../component/section";
 import { SanityDataset } from "../sanity-core";
@@ -85,8 +85,7 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 
 const sectionSchemas = [
     sectionSchema("intro", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "keyPoints",
             title: "Key Points",
@@ -96,8 +95,7 @@ const sectionSchemas = [
         isVisibleField,
     ]),
     sectionSchema("testimonials", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "testimonials",
             title: "Testimonials",
@@ -106,7 +104,7 @@ const sectionSchemas = [
         }),
         isVisibleField,
     ]),
-    sectionSchema("contact", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
+    sectionSchema("contact", [...titleBodyActionsFields, isVisibleField]),
 ];
 
 const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>

@@ -1,6 +1,6 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
-import { buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, titleBodyIconFields } from "../common-fields";
+import { buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, titleAndBodyFields } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { SanitySectionBase, SectionBase } from "./section";
@@ -245,7 +245,7 @@ const featureTableSectionSchema = defineType({
     title: "Feature Table Section",
     type: "object",
     fields: [
-        ...titleBodyIconFields,
+        ...titleAndBodyFields,
         defineField({
             name: "featureTable",
             title: "Feature Table",

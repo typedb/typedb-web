@@ -1,7 +1,8 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton } from "../button";
 import {
-    isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional, titleField,
+    isVisibleField, resourcesFieldOptional, SanityVisibleToggle, SanityIconField, keywordFieldOptional,
+    titleBodyActionsFields,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -130,7 +131,7 @@ const coreSectionSchema = defineType({
     name: coreSectionSchemaName,
     title: "Section",
     type: "document",
-    fields: [...titleBodyIconFields, keywordFieldOptional, isVisibleField],
+    fields: [...titleBodyActionsFields, keywordFieldOptional, isVisibleField],
 });
 
 export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
@@ -140,8 +141,7 @@ const titleBodyPanelSectionSchema = defineType({
     title: "Title, Body & Panel",
     type: "document",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         {
             title: "Panel",
             name: "panel",
@@ -157,7 +157,7 @@ const resourceSectionSchema = defineType({
     name: resourceSectionSchemaName,
     title: "Resources Section",
     type: "object",
-    fields: [...titleBodyIconFields, actionsFieldOptional, keywordFieldOptional, resourcesFieldOptional, isVisibleField],
+    fields: [...titleBodyActionsFields, keywordFieldOptional, resourcesFieldOptional, isVisibleField],
 });
 
 export const linkPanelsSectionSchemaName = `linkPanelsSection`;
@@ -167,8 +167,7 @@ const linkPanelsSectionSchema = defineType({
     title: "Link Panels Section",
     type: "object",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         keywordFieldOptional,
         defineField({
             name: "panels",
@@ -188,8 +187,7 @@ const simpleLinkPanelsSectionSchema = defineType({
     title: "Simple Link Panels Section",
     type: "object",
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         keywordFieldOptional,
         defineField({
             name: "panels",
@@ -209,18 +207,13 @@ const titleBodyIllustrationSectionSchema = defineType({
     title: 'Title, Body & Illustration',
     type: 'document',
     fields: [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         illustrationFieldOptional,
         isVisibleField,
     ],
 });
 
 export const pageSectionSchemas = [
-    coreSectionSchema, 
-    resourceSectionSchema, 
-    titleBodyPanelSectionSchema, 
-    linkPanelsSectionSchema,
-    simpleLinkPanelsSectionSchema,
-    titleBodyIllustrationSectionSchema,
+    coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema, linkPanelsSectionSchema,
+    simpleLinkPanelsSectionSchema, titleBodyIllustrationSectionSchema,
 ];

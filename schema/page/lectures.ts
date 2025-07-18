@@ -1,12 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions,
-    isVisibleField,
-
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleAndBodyFields,
+    collapsibleOptions, isVisibleField, requiredRule, SanityVisibleToggle, titleAndBodyFields,
 } from "../common-fields";
 import { SanitySectionBase, SectionBase } from "../component/section";
 import { SanityLecture, lectureSchemaName } from "../resource/sanity";
@@ -127,7 +121,6 @@ const featuredLecturesSectionSchema = defineType({
     type: "object",
     fields: [
         ...titleAndBodyFields,
-        sectionIconField,
         defineField({
             name: "featuredLectures",
             title: "Featured Lectures",
@@ -144,7 +137,7 @@ const exploreLecturesSectionSchema = defineType({
     name: exploreLecturesSectionSchemaName,
     title: "Section",
     type: "object",
-    fields: [...titleAndBodyFields, sectionIconField, isVisibleField],
+    fields: [...titleAndBodyFields, isVisibleField],
 });
 
 const lecturesPageSchema = defineType({
@@ -184,8 +177,5 @@ const lecturesPageSchema = defineType({
 });
 
 export const lecturesPageSchemas = [
-    introSectionSchema,
-    featuredLecturesSectionSchema,
-    exploreLecturesSectionSchema,
-    lecturesPageSchema,
+    introSectionSchema, featuredLecturesSectionSchema, exploreLecturesSectionSchema, lecturesPageSchema,
 ];
