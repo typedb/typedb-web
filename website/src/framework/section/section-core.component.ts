@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { Organisation, SectionBase } from "typedb-web-schema";
 import { ActionsComponent } from "../actions/actions.component";
-import { OrganisationLogosComponent } from "../social-validation/organisation-logos.component";
 import { RichTextComponent } from "../text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
 
@@ -11,9 +10,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     styleUrls: ["./section-core.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [
-        HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, OrganisationLogosComponent, OrganisationLogosComponent
-    ],
+    imports: [HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent],
 })
 export class SectionCoreComponent {
     @Input() section!: SectionBase;

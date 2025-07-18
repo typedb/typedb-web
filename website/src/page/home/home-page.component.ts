@@ -10,6 +10,7 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
+import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
@@ -27,7 +28,7 @@ import { PageComponentBase } from "../page-component-base";
     imports: [
         AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
         TitleBodyIllustrationSectionComponent, SocialValidationSectionComponent, PolyglotComparisonComponent,
-        SimpleLinkPanelsComponent, LinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent
+        SimpleLinkPanelsComponent, LinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

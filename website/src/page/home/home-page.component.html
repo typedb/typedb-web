@@ -39,15 +39,8 @@
       <section class="td-benefits-4-to-6">
         @if (page.benefitsSection4) {
           <td-section-core [section]="page.benefitsSection4"/>
+          <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
         }
-        <div class="td-benefits-5-and-6">
-          @if (page.benefitsSection5) {
-            <td-section-core [section]="page.benefitsSection5" level="h3"/>
-          }
-          @if (page.benefitsSection6) {
-            <td-section-core [section]="page.benefitsSection6" level="h3"/>
-          }
-        </div>
       </section>
       @if (page.benefitsSection7) {
         <td-title-body-illustration-section [data]="page.benefitsSection7"/>

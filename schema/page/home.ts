@@ -4,12 +4,12 @@ import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
-    resourceSectionSchemaName, SanityCoreSection, SanityLinkPanelsSection, SectionBase, SanityTitleBodyIllustrationSection,
+    SanityCoreSection, SanityLinkPanelsSection, SectionBase, SanityTitleBodyIllustrationSection,
     TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection,
 } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
-    keyPointsWithIconsField, titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
+    titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
     keywordFieldOptional, keyPointsField, SanityVisibleToggle,
 } from "../common-fields";
 import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
@@ -21,7 +21,7 @@ import { SanityResource, SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
-import { SanityTestimonialsSection, testimonialSchemaName, TestimonialsSection, testimonialsSectionField } from "../testimonial";
+import { SanityTestimonialsSection, TestimonialsSection } from "../testimonial";
 import { ParagraphWithHighlights, SanityTitleWithHighlights } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
@@ -40,9 +40,7 @@ const sections = {
     studio: { id: "studioSection", title: "Studio" },
     community: { id: "communitySection", title: "Community" },
     benefits4: { id: "benefitsSection4", title: "Benefits 4" },
-    benefits5: { id: "benefitsSection5", title: "Benefits 5" },
-    benefits6: { id: "benefitsSection6", title: "Benefits 6" },
-    benefits7: { id: "benefitsSection7", title: "Benefits 7" },
+    benefits5: { id: "benefitsSection7", title: "Benefits 5" },
     resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
     drivers: { id: "driversSection", title: "Integrations Grid" },
@@ -56,7 +54,6 @@ type SectionID = (typeof sections)[SectionKey]["id"];
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
-    [sections.featureFusion.id]: SanityKeyPointsSection;
     [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
     [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
     [sections.socialValidation.id]: SanitySocialValidationSection;
@@ -66,10 +63,8 @@ export interface SanityHomePage extends SanityPage {
     [sections.benefits3.id]: SanityTitleBodyIllustrationSection;
     [sections.studio.id]: SanityTitleBodyIllustrationSection;
     [sections.community.id]: SanityCommunitySection;
-    [sections.benefits4.id]: SanityCoreSection;
-    [sections.benefits5.id]: SanityCoreSection;
-    [sections.benefits6.id]: SanityCoreSection;
-    [sections.benefits7.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits4.id]: SanityKeyPointsSection;
+    [sections.benefits5.id]: SanityTitleBodyIllustrationSection;
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
@@ -105,7 +100,6 @@ interface SanityCommunitySection extends SanityCoreSection {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
-    readonly [sections.featureFusion.id]?: KeyPointsSection;
     readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
     readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
     readonly [sections.socialValidation.id]?: SocialValidationSection;
@@ -114,10 +108,8 @@ export class HomePage extends Page {
     readonly [sections.benefits3.id]?: TitleBodyIllustrationSection;
     readonly [sections.studio.id]?: TitleBodyIllustrationSection;
     readonly [sections.community.id]?: CommunitySection;
-    readonly [sections.benefits4.id]?: SectionBase;
-    readonly [sections.benefits5.id]?: SectionBase;
-    readonly [sections.benefits6.id]?: SectionBase;
-    readonly [sections.benefits7.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits4.id]?: KeyPointsSection;
+    readonly [sections.benefits5.id]?: TitleBodyIllustrationSection;
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: IntegrationsGridSection;
@@ -129,9 +121,6 @@ export class HomePage extends Page {
         super(data, db);
         this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
         this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
-        this.featureFusionSection = data.featureFusionSection.isVisible
-            ? KeyPointsSection.fromSanityKeyPointsSection(data.featureFusionSection, db)
-            : undefined;
         this.benefitsSection1 = data.benefitsSection1.isVisible
             ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection1, db)
             : undefined;
@@ -157,13 +146,7 @@ export class HomePage extends Page {
             ? CommunitySection.fromSanity(data.communitySection, db)
             : undefined;
         this.benefitsSection4 = data.benefitsSection4.isVisible
-            ? SectionBase.fromSanity(data.benefitsSection4, db)
-            : undefined;
-        this.benefitsSection5 = data.benefitsSection5.isVisible
-            ? SectionBase.fromSanity(data.benefitsSection5, db)
-            : undefined;
-        this.benefitsSection6 = data.benefitsSection6.isVisible
-            ? SectionBase.fromSanity(data.benefitsSection6, db)
+            ? KeyPointsSection.fromSanity(data.benefitsSection4, db)
             : undefined;
         this.benefitsSection7 = data.benefitsSection7.isVisible
             ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection7, db)
@@ -382,10 +365,8 @@ const sectionSchemas = [
         isVisibleField,
     ]),
     sectionSchema("community", [...titleBodyIconFields, actionsFieldOptional, socialMediaLinksField, isVisibleField]),
-    sectionSchema("benefits4", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
-    sectionSchema("benefits5", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
-    sectionSchema("benefits6", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
-    sectionSchema("benefits7", [
+    sectionSchema("benefits4", [...titleBodyIconFields, actionsFieldOptional, keyPointsField(), isVisibleField]),
+    sectionSchema("benefits5", [
         ...titleBodyIconFields,
         actionsFieldOptional,
         keywordFieldOptional,
@@ -432,13 +413,6 @@ const benefitsSection2Field = defineField({
     name: sections.benefits2.id,
     title: `${sections.benefits2.title} Section`,
     type: sectionSchemaName("benefits2"),
-    options: collapsibleOptions,
-});
-
-const featureFusionSectionField = defineField({
-    name: sections.featureFusion.id,
-    title: `${sections.featureFusion.title} Section`,
-    type: sectionSchemaName("featureFusion"),
     options: collapsibleOptions,
 });
 
@@ -498,20 +472,6 @@ const benefitsSection5Field = defineField({
     options: collapsibleOptions,
 });
 
-const benefitsSection6Field = defineField({
-    name: sections.benefits6.id,
-    title: `${sections.benefits6.title} Section`,
-    type: sectionSchemaName("benefits6"),
-    options: collapsibleOptions,
-});
-
-const benefitsSection7Field = defineField({
-    name: sections.benefits7.id,
-    title: `${sections.benefits7.title} Section`,
-    type: sectionSchemaName("benefits7"),
-    options: collapsibleOptions,
-});
-
 const integrationsSectionField = defineField({
     name: sections.drivers.id,
     title: `${sections.drivers.title} Section`,
@@ -524,6 +484,14 @@ const resourcesSectionField = defineField({
     title: `${sections.resources.title} Section`,
     type: sectionSchemaName("resources"),
     options: collapsibleOptions,
+});
+
+const conclusionSectionField = defineField({
+    name: "conclusionSection",
+    title: "Conclusion Section",
+    type: conclusionSectionSchemaName,
+    options: collapsibleOptions,
+    validation: requiredRule,
 });
 
 const homePageSchema = defineType({
@@ -544,17 +512,9 @@ const homePageSchema = defineType({
         communitySectionField,
         benefitsSection4Field,
         benefitsSection5Field,
-        benefitsSection6Field,
-        benefitsSection7Field,
         integrationsSectionField,
         resourcesSectionField,
-        defineField({
-            name: "conclusionSection",
-            title: "Conclusion Section",
-            type: conclusionSectionSchemaName,
-            options: collapsibleOptions,
-            validation: requiredRule,
-        }),
+        conclusionSectionField,
     ],
     preview: { prepare: (_selection) => ({ title: "Home Page" }) },
 });

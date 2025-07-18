@@ -64,7 +64,7 @@ class IntroSection extends SectionBase {
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection({
             ...super.fromSanity(data, db),
-            keyPoints: data.keyPoints.map((x) => new ServicesKeyPoint(x, db)),
+            keyPoints: data.keyPoints.map((x) => ServicesKeyPoint.fromSanity(x, db)),
         });
     }
 }

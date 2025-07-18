@@ -39,6 +39,10 @@ export class ParagraphWithHighlights {
         return this.spans.map(x => x.text).join("");
     }
 
+    static fromPlainText(text: string): ParagraphWithHighlights {
+        return new ParagraphWithHighlights({ spans: [{ text, highlight: false }] });
+    }
+
     toSectionID(): string {
         return this.toPlainText().toLowerCase().replace(/([^A-Za-z0-9-\s])/g, '').replace(/\s/g, "-");
     }

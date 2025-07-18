@@ -9,3 +9,7 @@
 :host ::ng-deep h1 {
     font-weight: var(--font-weight-bold);
 }
+
+td-actions ::ng-deep .button-frameless {
+    padding: 0;
+}

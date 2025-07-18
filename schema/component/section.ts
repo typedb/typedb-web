@@ -4,8 +4,7 @@ import {
     isVisibleField, actionsFieldOptional, resourcesFieldOptional, SanityVisibleToggle, titleBodyIconFields, SanityIconField, keywordFieldOptional, titleField,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
-import { Link, linkSchemaName, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
-import { organisationLogosField } from "../organisation";
+import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
