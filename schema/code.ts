@@ -1,12 +1,12 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
-import { requiredRule, titleField } from "./common-fields";
+import { defineField, defineType, SanityDocument } from "@sanity/types";
+import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSnippetSchemaName, requiredRule, titleBodyIconFields, titleField } from "./common-fields";
+import { SanityCoreSection, SectionBase } from "./component/section";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
-export const codeSnippetSchemaName = "codeSnippet";
 export const codeSnippetShortSchemaName = "codeSnippetShort";
-export const polyglotSnippetSchemaName = "polyglotSnippet";
+export const queryLanguageComparisonSectionSchemaName = "queryLanguageComparisonSection";
 
 export function isCodeSnippetShort(doc: SanityDocument): doc is SanityCodeSnippet {
     return doc._type === codeSnippetShortSchemaName;
@@ -97,6 +97,25 @@ export class PolyglotSnippet extends Document {
     }
 }
 
+export interface SanityQueryLanguageComparisonSection extends SanityCoreSection {
+    content: SanityReference<SanityPolyglotSnippet>;
+}
+
+export class QueryLanguageComparisonSection extends SectionBase {
+    readonly content: PolyglotSnippet;
+
+    constructor(props: PropsOf<QueryLanguageComparisonSection>) {
+        super(props);
+        this.content = props.content;
+    }
+
+    static override fromSanity(data: SanityQueryLanguageComparisonSection, db: SanityDataset) {
+        return new QueryLanguageComparisonSection(Object.assign(SectionBase.fromSanity(data, db), {
+            content: PolyglotSnippet.fromSanity(db.resolveRef(data.content), db),
+        }));
+    }
+}
+
 const snippetTitleField = Object.assign({}, titleField, { title: "Description", description: "Internal use only - not visible to users" });
 
 const languageField = defineField({
@@ -166,4 +185,25 @@ const polyglotSnippetSchema = defineType({
     ],
 });
 
-export const codeSchemas = [codeSnippetShortSchema, codeSnippetSchema, polyglotSnippetSchema];
+const queryLanguageComparisonSectionSchema = defineType({
+    name: queryLanguageComparisonSectionSchemaName,
+    title: "Query Language Comparison Section",
+    icon: CodeBlockIcon,
+    type: "object",
+    fields: [
+        ...titleBodyIconFields,
+        actionsFieldOptional,
+        defineField({
+            name: "content",
+            title: "Content",
+            type: "reference",
+            to: [{ type: polyglotSnippetSchemaName }],
+            validation: requiredRule,
+        }),
+        isVisibleField,
+    ],
+});
+
+export const codeSchemas = [
+    codeSnippetShortSchema, codeSnippetSchema, polyglotSnippetSchema, queryLanguageComparisonSectionSchema
+];

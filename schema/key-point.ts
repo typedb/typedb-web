@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { actionsFieldOptional, bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
+import { actionsFieldOptional, bodyFieldRichText, isVisibleField, sectionIconField, titleAndBodyFields, titleField, titleFieldWithHighlights } from "./common-fields";
 import { SanityCoreSection, SectionBase } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
@@ -152,4 +152,23 @@ const servicesKeyPointSchema = defineType({
     ],
 });
 
-export const keyPointSchemas = [keyPointSchema, keyPointWithIconSchema, servicesKeyPointSchema];
+export const keyPointsSectionSchemaName = "keyPointsSection";
+
+const keyPointsSectionSchema = defineType({
+    name: keyPointsSectionSchemaName,
+    title: "Key Points Section",
+    type: "object",
+    fields: [
+        ...titleAndBodyFields,
+        actionsFieldOptional,
+        defineField({
+            name: "keyPoints",
+            title: "Key Points",
+            type: "array",
+            of: [{ type: keyPointSchemaName }],
+        }),
+        isVisibleField,
+    ],
+});
+
+export const keyPointSchemas = [keyPointSchema, keyPointWithIconSchema, servicesKeyPointSchema, keyPointsSectionSchema];

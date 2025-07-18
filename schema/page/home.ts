@@ -1,18 +1,18 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { PolyglotSnippet, polyglotSnippetSchemaName, SanityPolyglotSnippet } from "../code";
+import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
     SanityCoreSection, SanityLinkPanelsSection, SectionBase, SanityTitleBodyIllustrationSection,
-    TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection,
+    TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
 } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
     titleFieldWithHighlights, bodyFieldRichText, sectionIconField, resourcesField,
     keywordFieldOptional, keyPointsField, SanityVisibleToggle,
 } from "../common-fields";
-import { SanityContentTextTab, ContentTextTab, contentTextTabSchemaName } from "../component/content-text-panel";
+import { contentTextTabSchemaName } from "../component/content-text-panel";
 import { illustrationFieldOptional } from "../illustration";
 import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
@@ -52,7 +52,7 @@ type SectionKey = keyof typeof sections;
 type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
-    [sections.intro.id]: SanityIntroSection;
+    [sections.intro.id]: SanityCoreSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
     [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
     [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
@@ -73,22 +73,12 @@ export interface SanityHomePage extends SanityPage {
     conclusionSection: SanityConclusionSection;
 }
 
-interface SanityIntroSection extends SanityCoreSection {
-    userLogos: SanityReference<SanityOrganisation>[];
-    displayUserLogos: boolean;
-    contentTabs: SanityContentTextTab[];
-}
-
 interface SanityHotTopicsSection extends SanityCoreSection {
     hotTopics: SanityReference<SanityResource>[];
 }
 
 interface SanitySocialValidationSection extends SanityTitleWithHighlights, SanityVisibleToggle {
     organisationLogos: SanityReference<SanityOrganisation>[];
-}
-
-interface SanityQueryLanguageComparisonSection extends SanityCoreSection {
-    content: SanityReference<SanityPolyglotSnippet>;
 }
 
 type SanityDriversSection = SanityIntegrationsGridSection;
@@ -98,7 +88,7 @@ interface SanityCommunitySection extends SanityCoreSection {
 }
 
 export class HomePage extends Page {
-    readonly [sections.intro.id]?: IntroSection;
+    readonly [sections.intro.id]?: SectionBase;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
     readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
     readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
@@ -119,7 +109,7 @@ export class HomePage extends Page {
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
-        this.introSection = data.introSection.isVisible ? IntroSection.fromSanity(data.introSection, db) : undefined;
+        this.introSection = data.introSection.isVisible ? SectionBase.fromSanity(data.introSection, db) : undefined;
         this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
         this.benefitsSection1 = data.benefitsSection1.isVisible
             ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection1, db)
@@ -170,28 +160,6 @@ export class HomePage extends Page {
     }
 }
 
-class IntroSection extends SectionBase {
-    readonly userLogos: Organisation[];
-    readonly contentTabs: ContentTextTab[];
-
-    constructor(props: PropsOf<IntroSection>) {
-        super(props);
-        this.userLogos = props.userLogos;
-        this.contentTabs = props.contentTabs;
-    }
-
-    static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
-        return new IntroSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
-                userLogos: data.displayUserLogos
-                    ? data.userLogos.map((x) => new Organisation(db.resolveRef(x), db))
-                    : [],
-                contentTabs: data.contentTabs.map((x) => new ContentTextTab(x, db)),
-            })
-        );
-    }
-}
-
 class HotTopicsSection extends SectionBase {
     readonly hotTopics: ResourceLink[];
 
@@ -221,21 +189,6 @@ export class SocialValidationSection {
             title: ParagraphWithHighlights.fromSanity(data.title),
             organisationLogos: data.organisationLogos.map((x) => new Organisation(db.resolveRef(x), db)),
         });
-    }
-}
-
-export class QueryLanguageComparisonSection extends SectionBase {
-    readonly content: PolyglotSnippet;
-
-    constructor(props: PropsOf<QueryLanguageComparisonSection>) {
-        super(props);
-        this.content = props.content;
-    }
-
-    static override fromSanity(data: SanityQueryLanguageComparisonSection, db: SanityDataset) {
-        return new QueryLanguageComparisonSection(Object.assign(SectionBase.fromSanity(data, db), {
-            content: PolyglotSnippet.fromSanity(db.resolveRef(data.content), db),
-        }));
     }
 }
 
@@ -323,56 +276,9 @@ const sectionSchemas = [
         keyPointsField(3),
         isVisibleField,
     ]),
-    sectionSchema("benefits1", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        illustrationFieldOptional,
-        isVisibleField,
-    ]),
-    sectionSchema("benefits2", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        illustrationFieldOptional,
-        isVisibleField,
-    ]),
     socialValidationSectionSchema,
-    sectionSchema("queryLanguageComparison", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        defineField({
-            name: "content",
-            title: "Content",
-            type: "reference",
-            to: [{ type: polyglotSnippetSchemaName }],
-            validation: requiredRule,
-        }),
-        isVisibleField,
-    ]),
-    sectionSchema("benefits3", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        illustrationFieldOptional,
-        isVisibleField,
-    ]),
-    sectionSchema("studio", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        illustrationFieldOptional,
-        isVisibleField,
-    ]),
     sectionSchema("community", [...titleBodyIconFields, actionsFieldOptional, socialMediaLinksField, isVisibleField]),
     sectionSchema("benefits4", [...titleBodyIconFields, actionsFieldOptional, keyPointsField(), isVisibleField]),
-    sectionSchema("benefits5", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        keywordFieldOptional,
-        illustrationFieldOptional,
-        isVisibleField,
-    ]),
     sectionSchema("resources", [...titleBodyIconFields, actionsFieldOptional, resourcesField, isVisibleField]),
     sectionSchema("tooling", [
         ...titleBodyIconFields,
@@ -405,14 +311,14 @@ const hotTopicsSectionField = defineField({
 const benefitsSection1Field = defineField({
     name: sections.benefits1.id,
     title: `${sections.benefits1.title} Section`,
-    type: sectionSchemaName("benefits1"),
+    type: titleBodyIllustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const benefitsSection2Field = defineField({
     name: sections.benefits2.id,
     title: `${sections.benefits2.title} Section`,
-    type: sectionSchemaName("benefits2"),
+    type: titleBodyIllustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -426,7 +332,7 @@ const socialValidationSectionField = defineField({
 const queryLanguageComparisonSectionField = defineField({
     name: sections.queryLanguageComparison.id,
     title: `${sections.queryLanguageComparison.title} Section`,
-    type: sectionSchemaName("queryLanguageComparison"),
+    type: queryLanguageComparisonSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -440,14 +346,14 @@ const useCasesSectionField = defineField({
 const benefitsSection3Field = defineField({
     name: sections.benefits3.id,
     title: `${sections.benefits3.title} Section`,
-    type: sectionSchemaName("benefits3"),
+    type: titleBodyIllustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const studioSectionField = defineField({
     name: sections.studio.id,
     title: `${sections.studio.title} Section`,
-    type: sectionSchemaName("studio"),
+    type: titleBodyIllustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -468,7 +374,7 @@ const benefitsSection4Field = defineField({
 const benefitsSection5Field = defineField({
     name: sections.benefits5.id,
     title: `${sections.benefits5.title} Section`,
-    type: sectionSchemaName("benefits5"),
+    type: titleBodyIllustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 

@@ -202,8 +202,10 @@ const simpleLinkPanelsSectionSchema = defineType({
     ],
 });
 
+export const titleBodyIllustrationSectionSchemaName = "titleBodyIllustrationSection";
+
 const titleBodyIllustrationSectionSchema = defineType({
-    name: 'titleBodyIllustrationSection',
+    name: titleBodyIllustrationSectionSchemaName,
     title: 'Title, Body & Illustration',
     type: 'document',
     fields: [

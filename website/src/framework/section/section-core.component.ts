@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
-import { Organisation, SectionBase } from "typedb-web-schema";
+import { SectionBase } from "typedb-web-schema";
 import { ActionsComponent } from "../actions/actions.component";
 import { RichTextComponent } from "../text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
@@ -16,7 +16,6 @@ export class SectionCoreComponent {
     @Input() section!: SectionBase;
     @Input() level: "h1" | "h2" | "h3" = "h2";
     @Input() noBody?: boolean;
-    @Input() organisationLogos?: Organisation[];
     @Input() noSectionClass?: boolean;
     themeColorHex = "#02DAC9";
 

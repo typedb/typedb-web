@@ -36,8 +36,8 @@ export {
 } from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName,
 } from "./code";
+export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-fields";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
@@ -92,6 +92,10 @@ export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from ".
 export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
+export {
+    type SanityUseCasePageTemplate, type SanityUseCasePageInstance, UseCasePageTemplate, UseCasePageInstance,
+    useCasePageSchemaName, useCasePageTemplateSchemaName
+} from "./page/use-case";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";

@@ -305,3 +305,6 @@ export const resourcesFieldOptional = defineField({
 });
 
 export const resourcesField = Object.assign({}, resourcesFieldOptional, { validation: requiredRule });
+
+export const codeSnippetSchemaName = "codeSnippet";
+export const polyglotSnippetSchemaName = "polyglotSnippet";
