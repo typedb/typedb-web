@@ -58,6 +58,7 @@ section, .section {
     z-index: 1;
     margin-left: auto;
     margin-right: auto;
+    margin-top: var(--section-margin);
     border-radius: 20px;
     @include mixins.section-width($offset: 0px);
 }

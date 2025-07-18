@@ -17,7 +17,13 @@
     }
 
     &.news td-heading-with-highlights {
-        flex: 0 0 400px;
+        @media (min-width: media.$min-width-tablet) {
+            flex: 0 0 400px;
+        }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
     }
 }
 
@@ -50,6 +56,11 @@ td-heading-with-highlights {
         .td-card-overlay {
             opacity: 0.04;
         }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 0 0 80%;
+        height: 432px;
     }
 }
 

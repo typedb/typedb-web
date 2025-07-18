@@ -1,3 +1,4 @@
+@use "colors";
 @use "media";
 @use "shapes";
 @use "mixins";
@@ -6,6 +7,10 @@
     @include mixins.card-appearance;
     display: flex;
     gap: 40px;
+    transition: background 100ms ease, border-color 100ms ease;
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    position: relative;
+    margin-top: 0;
 
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
@@ -13,7 +18,6 @@
 }
 
 .cp-main-area {
-    background: var(--color-purple);
     border-radius: var(--border-radius) 0 0 var(--border-radius);
     flex: 1;
     display: flex;

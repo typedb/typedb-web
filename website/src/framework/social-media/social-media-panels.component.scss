@@ -5,8 +5,10 @@
 
 :host {
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     gap: 40px;
+    margin-top: 24px;
     height: 260px;
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
@@ -14,8 +16,7 @@
     }
 
     @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        gap: 48px;
+        gap: 20px;
     }
 }
 
@@ -50,5 +51,10 @@
         @media (max-width: media.$max-width-mobile) {
             font-size: 32px;
         }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 1 1 44%;
+        gap: 12px;
     }
 }

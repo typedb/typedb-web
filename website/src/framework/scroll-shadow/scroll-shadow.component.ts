@@ -17,7 +17,7 @@ import {
     standalone: true,
 })
 export class ScrollShadowComponent implements AfterViewInit {
-    @Input() color: "deep-purple" | "black-purple" = "deep-purple";
+    @Input() color: "deep-purple" | "black-purple" = "black-purple";
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowLeft") shadowLeftRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;

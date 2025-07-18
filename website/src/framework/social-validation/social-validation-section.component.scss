@@ -1,10 +1,6 @@
 @use "media";
 @use "mixins";
 
-:host {
-    @include mixins.section-core;
-}
-
 td-p-with-highlights {
     display: block;
     text-align: center;

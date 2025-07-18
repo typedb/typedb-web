@@ -1,6 +1,7 @@
 @use "shapes";
+@use "media";
 
-.ft-root {
+:host {
     height: 100%;
     width: 100%;
 }
@@ -10,6 +11,10 @@
     height: calc(100% - 42px);
     width: 100%;
     overflow: auto;
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 242px;
+    }
 }
 
 .ft-tabs-container {

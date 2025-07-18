@@ -11,6 +11,10 @@
 //    animation: 8s linear 0s infinite flow;
 //}
 
+td-section-core.td-intro ::ng-deep .button-frameless {
+    color: var(--color-white);
+}
+
 td-link-panels {
     margin-top: var(--section-margin);
 }
@@ -19,8 +23,11 @@ td-organisation-logos {
     margin-top: var(--section-margin);
 }
 
-.td-benefits-4-to-6 {
-
+.td-drivers-section {
+    td-section-core {
+        margin-top: 0;
+        padding-top: 0;
+    }
 }
 
 .td-benefits-5-and-6 {

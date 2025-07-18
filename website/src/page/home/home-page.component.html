@@ -19,7 +19,7 @@
       @if (page.queryLanguageComparisonSection) {
         <section class="td-inverted-colors-section">
           <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
-          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!"/>
+          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
         </section>
       }
       @if (page.useCasesSection) {
@@ -46,8 +46,8 @@
         <td-title-body-illustration-section [data]="page.benefitsSection7"/>
       }
       @if (page.driversSection) {
-        <section>
-          <td-section-core [noSectionClass]="true" [section]="page.driversSection"/>
+        <section class="td-drivers-section">
+          <td-section-core [section]="page.driversSection"/>
           <td-integrations-grid [integrations]="page.driversSection"/>
         </section>
       }

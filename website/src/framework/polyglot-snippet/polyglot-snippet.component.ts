@@ -12,8 +12,8 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 
 @Component({
     selector: "td-polyglot-snippet",
-    templateUrl: "../polyglot-snippet/polyglot-snippet.component.html",
-    styleUrls: ["../polyglot-snippet/polyglot-snippet.component.scss"],
+    templateUrl: "./polyglot-snippet.component.html",
+    styleUrls: ["./polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })

@@ -3,7 +3,7 @@
 @use "mixins";
 
 :host {
-    @include mixins.section-core;
+    display: block;
 }
 
 .td-root {

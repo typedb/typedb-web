@@ -9,17 +9,26 @@
     justify-content: center;
     flex-flow: row wrap;
     overflow: hidden;
+    gap: 32px;
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 20px;
+    }
 }
 
 .td-primary-items {
     width: 100%;
-    gap: 32px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .td-secondary-items {
     margin: 32px auto 0;
     width: 320px;
-    gap: 32px;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 20px;
+    }
 }
 
 .td-primary-item,
@@ -36,8 +45,10 @@
 }
 
 .td-primary-item {
-    width: 260px;
-    height: 260px;
+    @media (min-width: media.$min-width-tablet) {
+        width: 260px;
+        height: 260px;
+    }
 
     img {
         margin: 16px auto 0;
@@ -52,6 +63,17 @@
     aside {
         text-transform: uppercase;
         margin-bottom: 4px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 1 1 44%;
+        gap: 0;
+
+        img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+        }
     }
 }
 

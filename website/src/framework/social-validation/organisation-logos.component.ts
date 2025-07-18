@@ -2,6 +2,7 @@ import { NgClass } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Organisation } from "typedb-web-schema";
+import { MediaQueryService } from "../../service/media-query.service";
 import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
 
 // TODO: currently only behaves properly when all uploaded images are the same size
@@ -15,8 +16,17 @@ import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component"
 export class OrganisationLogosComponent {
     @Input() organisations!: Organisation[];
     @Input() appearance: "transparent" | "panel" = "transparent";
+    isMobile = false;
+
+    constructor(private media: MediaQueryService) {
+        this.media.isMobile$.subscribe(isMobile => { this.isMobile = isMobile; });
+    }
 
     get rootWidth() {
-        return `${this.organisations.length * 260}px`;
+        if (this.isMobile) {
+            return `${this.organisations.length * 240}px`;
+        } else {
+            return `${this.organisations.length * 260}px`;
+        }
     }
 }

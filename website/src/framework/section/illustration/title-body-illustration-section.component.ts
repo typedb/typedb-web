@@ -1,6 +1,5 @@
 
-import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
 import { TitleBodyIllustrationSection } from "typedb-web-schema";
 import { ActionsComponent } from "../../actions/actions.component";
@@ -21,7 +20,8 @@ export class TitleBodyIllustrationSectionComponent {
     @Input() flexDirection: "row" | "row-reverse" | "column" = "row";
     @Input() isIntroSection = false;
 
-    get sectionClasses(): string {
-        return `${this.isIntroSection ? "page-intro-section" : ""} td-${this.flexDirection}`;
+    @HostBinding("class")
+    get rootClasses(): string {
+        return `section ${this.isIntroSection ? "page-intro-section" : ""} td-${this.flexDirection}`;
     }
 }

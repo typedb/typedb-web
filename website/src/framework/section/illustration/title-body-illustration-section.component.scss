@@ -2,20 +2,25 @@
 @use "mixins";
 
 :host {
-    @include mixins.section-core;
-}
-
-section {
+    margin-top: 92px;
     display: flex;
     gap: 24px;
     align-items: center;
 
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+    }
+
     &.td-row-reverse {
-        flex-direction: row-reverse;
+        @media (min-width: media.$min-width-tablet) {
+            flex-direction: row-reverse;
+        }
     }
 
     &.td-column {
-        flex-direction: column;
+        @media (min-width: media.$min-width-tablet) {
+            flex-direction: column;
+        }
 
         .td-text {
             text-align: center;

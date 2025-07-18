@@ -13,5 +13,4 @@ import { RichTextComponent } from "../text/rich-text.component";
 })
 export class KeyPointPanels2x2Component {
     @Input() keyPoints!: KeyPoint[];
-    @HostBinding("class.section") hasSectionClass = true;
 }

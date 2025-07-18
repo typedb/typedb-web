@@ -47,6 +47,10 @@
     &.ol-root-transparent {
         gap: 42px;
         opacity: 0.8;
+        
+        @media (max-width: media.$max-width-mobile) {
+            gap: 24px;
+        }
     }
 }
 
@@ -56,9 +60,5 @@
 
     @media (max-width: media.$max-width-mobile) {
         height: 34px;
-
-        &:nth-child(n + 4) {
-            display: none;
-        }
     }
 }

@@ -20,22 +20,6 @@
     }
 }
 
-@mixin section-core() {
-    & {
-        --graphic-area-width: 120px;
-        display: block;
-        position: relative;
-        margin-top: 92px;
-
-        @media (max-width: media.$max-width-mobile) {
-            --graphic-area-width: 52px;
-            margin-top: 64px;
-            padding-bottom: 32px;
-            grid-template-columns: var(--graphic-area-width) auto;
-        }
-    }
-}
-
 @mixin line-clamp($lines) {
     display: -webkit-box;
     -webkit-line-clamp: $lines;
@@ -114,7 +98,7 @@
 @mixin button-frameless {
     border-color: transparent;
     background: transparent;
-    color: var(--body-font-color);
+    color: var(--color-secondary-blue);
 
     &:not(.td-button-disabled) {
         &:hover, &.container-hover {

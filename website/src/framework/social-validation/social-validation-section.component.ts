@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { ParagraphWithHighlightsComponent } from "../text/text-with-highlights.component";
 import { OrganisationLogosComponent } from "./organisation-logos.component";
 import { SocialValidationSection } from "typedb-web-schema";
@@ -12,4 +12,5 @@ import { SocialValidationSection } from "typedb-web-schema";
 })
 export class SocialValidationSectionComponent {
     @Input({ required: true }) data!: SocialValidationSection;
+    @HostBinding("class.section") hasSectionClass = true;
 }

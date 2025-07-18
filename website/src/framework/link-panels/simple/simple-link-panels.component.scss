@@ -5,6 +5,7 @@
 
 :host {
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     gap: 40px;
     margin-top: 24px;
@@ -15,8 +16,7 @@
     }
 
     @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        gap: 48px;
+        gap: 20px;
     }
 }
 
@@ -39,5 +39,9 @@
 
     &:hover h3 {
         text-decoration: none;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 1 1 44%;
     }
 }

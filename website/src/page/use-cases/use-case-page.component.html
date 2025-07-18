@@ -17,7 +17,7 @@
       @if (page.queryLanguageComparisonSection) {
         <section class="td-inverted-colors-section">
           <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
-          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!"/>
+          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
         </section>
       }
       @if (page.benefitsSection4) {

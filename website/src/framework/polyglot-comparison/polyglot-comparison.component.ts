@@ -22,6 +22,7 @@ export class PolyglotComparisonComponent implements AfterViewInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input({ required: true, alias: "snippet" }) polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
+    @Input({ required: true }) polyglotSnippetID!: string;
 
     private readonly tabClick$: Subject<CodeSnippet> = new Subject();
     private _elementID!: string;
