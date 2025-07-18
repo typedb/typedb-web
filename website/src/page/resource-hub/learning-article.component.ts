@@ -42,7 +42,7 @@ export class LearningArticleComponent implements OnInit {
     readonly subscribeToNewsletterButton = new LinkButton({
         style: "greenHollow",
         link: Link.fromAddress("?dialog=newsletter"),
-        text: "Subscribe to Newsletter",
+        text: "Subscribe to newsletter",
         comingSoon: false,
     });
 

@@ -53,6 +53,10 @@
         cursor: pointer;
         transition: color 100ms;
         font-weight: var(--font-weight-regular);
+
+        &:hover, &:focus {
+            color: var(--color-secondary-light-grey);
+        }
     }
 
     .td-topbar-logo-container {
@@ -294,6 +298,19 @@
         }
     }
 
+    .td-topbar-github-logo {
+        width: 88px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
     .td-topbar-banner {
         display: flex;
         align-items: center;
@@ -392,7 +409,7 @@
             gap: 16px;
 
             &:hover, &:focus {
-                color: var(--color-white);
+                color: var(--color-secondary-light-grey);
                 text-decoration: none;
             }
 

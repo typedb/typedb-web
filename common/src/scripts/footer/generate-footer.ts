@@ -25,7 +25,7 @@ const generateSocialSection = (params: GenerateParams) => {
 
     const buttonClasses = [`button-${button.style}`, "text-p2"].join(" ");
     const buttonEl = linkHtml({
-        content: button.text,
+        content: `<span>${escapeHtml(button.text)}</span>`,
         link: button.link,
         id: sanitiseHtmlID(`footer_${button.text}`),
         urlPrefix,

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd ../schema && pnpm i && cd ../common && pnpm i && ng serve",
-    "build": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../website && ng build -c $ENV",
+    "start": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../website && pnpm i && ng serve",
+    "build": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../website && pnpm i && ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format:verify": "prettier --check src",

@@ -23,6 +23,7 @@ export interface SanityTopnav extends SanityDocument {
     primaryItems: SanityNavItem[];
     secondaryItems: SanityNavItem[];
     cta: SanityLinkButton;
+    githubStarsCounter: string;
 }
 
 interface SanityNavItem {
@@ -71,12 +72,14 @@ export class Topnav extends Document {
     readonly primaryItems: NavItem[];
     readonly secondaryItems: NavItem[];
     readonly cta: LinkButton;
+    readonly githubStarsCounter: string;
 
     constructor(data: SanityTopnav, db: SanityDataset) {
         super(data);
         this.primaryItems = data.primaryItems.map(x => NavItem.fromSanity(x, db));
         this.secondaryItems = data.secondaryItems.map(x => NavItem.fromSanity(x, db));
         this.cta = LinkButton.fromSanity(data.cta, db);
+        this.githubStarsCounter = data.githubStarsCounter;
     }
 }
 
@@ -380,6 +383,12 @@ const topnavSchema = defineType({
             name: "cta",
             title: "CTA",
             type: buttonSchemaName,
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "githubStarsCounter",
+            title: "GitHub Stars Counter",
+            type: "string",
             validation: requiredRule,
         }),
     ],

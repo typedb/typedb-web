@@ -1,7 +1,7 @@
 {
   "name": "typedb-web-common",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "UNLICENSED",
   "scripts": {
     "install": "tsc"
