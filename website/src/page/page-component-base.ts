@@ -1,15 +1,11 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { first, map, Observable, of, shareReplay, switchMap, tap } from "rxjs";
-import { SANITY_QUERY_URL, SANITY_TOKEN } from "typedb-web-common/lib";
+import { Observable, shareReplay, switchMap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
-
-import { ContentService } from "src/service/content.service";
-import { MetaTagsService } from "src/service/meta-tags.service";
-import { environment } from "../environment/environment";
+import { ContentService } from "../service/content.service";
+import { MetaTagsService } from "../service/meta-tags.service";
 
 @Component({
     template: ``,

@@ -19,29 +19,6 @@ td-organisation-logos {
     margin-top: var(--section-margin);
 }
 
-.td-inverted-colors-section {
-    margin-top: var(--section-margin);
-    @include mixins.light-source-gradient(colors.$white, colors.$secondary-extra-light-grey);
-
-    td-section-core ::ng-deep {
-        h2, p {
-            color: colors.$black;
-        }
-
-        h2 {
-            font-weight: var(--font-weight-bold);
-        }
-
-        p {
-            font-weight: var(--font-weight-regular);
-        }
-    }
-
-    td-section-core {
-        margin-top: 0;
-    }
-}
-
 .td-benefits-4-to-6 {
 
 }

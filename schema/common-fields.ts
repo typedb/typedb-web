@@ -51,8 +51,8 @@ export const titleFieldWithHighlights = defineField({
     type: "array",
     of: [{ type: "block" }],
     validation: (rule: ArrayRule<any>) =>
-        rule.required().custom((value, _context) => {
-            return value?.length === 1 ? true : "Must contain exactly one paragraph";
+        rule.custom((value, _context) => {
+            return value?.length > 1 ? "Must contain exactly one paragraph" : true;
         }),
 });
 

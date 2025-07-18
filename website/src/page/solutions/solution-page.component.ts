@@ -14,7 +14,7 @@ export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
         return this.activatedRoute.paramMap.pipe(
             map((params) => {
                 const sanitySolutionPages = data.getDocumentsByType<SanitySolutionPage>(solutionPageSchemaName);
-                const page = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
+                const page = sanitySolutionPages.find((x) => x.route.current === params.get("slug"));
                 return page ? new SolutionPage(page, data) : null;
             }),
         );

@@ -1,0 +1,31 @@
+<article>
+  @if (page$ | async; as page) {
+    <div class="article-content">
+      @if (page.introSection) {
+        <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
+      }
+      @if (page.benefitsSection1) {
+        <td-title-body-illustration-section [data]="page.benefitsSection1"/>
+      }
+      @if (page.benefitsSection2) {
+        <td-title-body-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
+      }
+      @if (page.benefitsSection3) {
+        <td-section-core [section]="page.benefitsSection3"/>
+        <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection3.keyPoints" />
+      }
+      @if (page.queryLanguageComparisonSection) {
+        <section class="td-inverted-colors-section">
+          <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
+          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!"/>
+        </section>
+      }
+      @if (page.benefitsSection4) {
+        <td-title-body-illustration-section [data]="page.benefitsSection4" flexDirection="row-reverse"/>
+      }
+      @if (page.studioSection) {
+        <td-title-body-illustration-section [data]="page.studioSection" flexDirection="column"/>
+      }
+    </div>
+  }
+</article>

@@ -102,7 +102,7 @@ export interface SanityQueryLanguageComparisonSection extends SanityCoreSection 
 }
 
 export class QueryLanguageComparisonSection extends SectionBase {
-    readonly content: PolyglotSnippet;
+    readonly content?: PolyglotSnippet;
 
     constructor(props: PropsOf<QueryLanguageComparisonSection>) {
         super(props);
@@ -111,7 +111,7 @@ export class QueryLanguageComparisonSection extends SectionBase {
 
     static override fromSanity(data: SanityQueryLanguageComparisonSection, db: SanityDataset) {
         return new QueryLanguageComparisonSection(Object.assign(SectionBase.fromSanity(data, db), {
-            content: PolyglotSnippet.fromSanity(db.resolveRef(data.content), db),
+            content: data.content && PolyglotSnippet.fromSanity(db.resolveRef(data.content), db),
         }));
     }
 }
@@ -197,7 +197,6 @@ const queryLanguageComparisonSectionSchema = defineType({
             title: "Content",
             type: "reference",
             to: [{ type: polyglotSnippetSchemaName }],
-            validation: requiredRule,
         }),
         isVisibleField,
     ],

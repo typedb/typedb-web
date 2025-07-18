@@ -23,7 +23,10 @@ export class ParagraphWithHighlights {
         this.spans = props.spans;
     }
 
-    static fromSanity(data: PortableText) {
+    static fromSanity(data?: PortableText) {
+        if (!data?.length) {
+            return new ParagraphWithHighlights({ spans: [] });
+        }
         console.assert(data.length === 1);
         return new ParagraphWithHighlights({
             spans: data[0].children
@@ -31,7 +34,7 @@ export class ParagraphWithHighlights {
                 .map((block) => ({
                     text: block.text as string,
                     highlight: (block.marks as string[]).includes("strong"),
-                })),
+                })) || [],
         });
     }
 

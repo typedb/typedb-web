@@ -204,6 +204,27 @@ table {
     background-color: var(--color-black-purple);
 }
 
+.td-inverted-colors-section {
+    margin-top: var(--section-margin);
+    @include mixins.light-source-gradient(colors.$white, colors.$secondary-extra-light-grey);
+
+    td-section-core {
+        margin-top: 0;
+
+        h2, p {
+            color: colors.$black;
+        }
+
+        h2 {
+            font-weight: var(--font-weight-bold);
+        }
+
+        p {
+            font-weight: var(--font-weight-regular);
+        }
+    }
+}
+
 .cc-window {
     background: var(--color-purple);
     border-top: shapes.$border;

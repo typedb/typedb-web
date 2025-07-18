@@ -83,10 +83,17 @@ export class UseCasePageInstance extends UseCasePageTemplate {
 
     constructor(instance: SanityUseCasePageInstance, db: SanityDataset) {
         const template = db.getDocumentByID<SanityUseCasePageTemplate>(useCasePageTemplateSchemaName);
-        const data: SanityUseCasePageInstance = Object.assign({}, template, instance);
+        if (template == null) throw new Error(`Document not found: ${useCasePageTemplateSchemaName}`);
+        instance.introSection = Object.assign(template.introSection, instance.introSection);
+        instance.benefitsSection1 = Object.assign(template.benefitsSection1, instance.benefitsSection1);
+        instance.benefitsSection2 = Object.assign(template.benefitsSection2, instance.benefitsSection2);
+        instance.benefitsSection3 = Object.assign(template.benefitsSection3, instance.benefitsSection3);
+        instance.queryLanguageComparisonSection = Object.assign(template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection);
+        instance.benefitsSection4 = Object.assign(template.benefitsSection4, instance.benefitsSection4);
+        instance.studioSection = Object.assign(template.studioSection, instance.studioSection);
         super(instance, db);
-        this.title = data.title;
-        this.route = data.route.current;
+        this.title = instance.title;
+        this.route = instance.route.current;
     }
 }
 
@@ -172,7 +179,7 @@ const useCasePageSchema = defineType({
     fields: [
         metaTagsField,
         titleField,
-        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. cybersecurity). Do not include 'use-case', this is automatically prepended", }),
+        Object.assign({}, routeField, { description: "URL fragment for this use case page (e.g. agentics). Do not include 'use-case', this is automatically prepended", }),
         ...sectionFields,
     ],
     preview: {
@@ -181,4 +188,4 @@ const useCasePageSchema = defineType({
     },
 });
 
-export const useCasePageSchemas = [useCasePageTemplateSchema,useCasePageSchema];
+export const useCasePageSchemas = [useCasePageTemplateSchema, useCasePageSchema];

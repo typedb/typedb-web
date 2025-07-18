@@ -21,7 +21,6 @@ import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { AddToCalendarDialogComponent } from "../../framework/dialog/add-to-calendar/add-to-calendar-dialog.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PersonCardComponent } from "../../framework/person/person.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";

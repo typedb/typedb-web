@@ -13,7 +13,6 @@ import { ActionsComponent } from "../../framework/actions/actions.component";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";

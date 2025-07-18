@@ -20,7 +20,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 export class PolyglotComparisonComponent implements AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);
     // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input("snippet") polyglotSnippet!: PolyglotSnippet;
+    @Input({ required: true, alias: "snippet" }) polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
 
     private readonly tabClick$: Subject<CodeSnippet> = new Subject();

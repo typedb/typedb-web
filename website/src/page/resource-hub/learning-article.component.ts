@@ -18,7 +18,6 @@ import { CanonicalLinkService } from "src/service/canonical-link.service";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { ContentService } from "../../service/content.service";
