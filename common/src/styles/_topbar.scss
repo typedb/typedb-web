@@ -54,8 +54,16 @@
         transition: color 100ms;
         font-weight: var(--font-weight-regular);
 
-        &:hover, &:focus {
+        svg path {
+            transition: fill 100ms;
+        }
+
+        &:hover {
             color: var(--color-secondary-light-grey);
+
+            svg path {
+                fill: var(--color-secondary-light-grey);
+            }
         }
     }
 
