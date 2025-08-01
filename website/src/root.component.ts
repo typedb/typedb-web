@@ -21,8 +21,8 @@ export class RootComponent {
     private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
         const icons = [
             "arrow-down", "burger-mobile", "burger-tablet", "calendar", "check", "checked", "close", "code",
-            "discord-rectangle", "discourse-rectangle", "facebook-rectangle", "github", "heart", "info", "link",
-            "linkedin", "linkedin-rectangle", "location", "mail", "meetup-rectangle", "reddit-rectangle", "time",
+            "discord-rectangle", "discourse-rectangle", "facebook-rectangle", "github", "github-rectangle", "heart",
+            "info", "link", "linkedin", "linkedin-rectangle", "location", "mail", "meetup-rectangle", "reddit-rectangle", "time",
             "twitter-rectangle", "youtube-rectangle",
         ];
         icons.forEach((icon) =>

@@ -1,6 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { sanitiseHtmlID } from "../util";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 @Component({
     selector: "td-tag-chips",

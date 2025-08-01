@@ -1,28 +1,33 @@
+@use "colors";
 @use "media";
 @use "shapes";
 @use "mixins";
 
-.cp-root {
+:host {
     @include mixins.card-appearance;
     display: flex;
+    gap: 40px;
+    transition: background 100ms ease, border-color 100ms ease;
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    position: relative;
+    margin-top: 0;
 
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
     }
 }
 
-.cp-main-area,
-.cp-resources-area {
-    @include mixins.card-padding;
-}
-
 .cp-main-area {
-    background: var(--color-purple);
     border-radius: var(--border-radius) 0 0 var(--border-radius);
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    h2 {
+        width: 400px;
+        margin-bottom: 4px;
+    }
 
     @media (max-width: media.$max-width-mobile) {
         border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -32,13 +37,17 @@
     ::ng-deep .ac-root {
         margin-top: 16px;
     }
+
+    ::ng-deep td-actions a.button-water {
+        @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-purple));
+    }
 }
 
 .cp-resources-area {
     background: var(--color-deep-purple);
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
     border-left: shapes.$border;
-    min-width: 360px;
+    flex: 1;
 
     @media (max-width: media.$max-width-tablet) {
         min-width: auto;

@@ -19,6 +19,7 @@ import { ResourceHubComponent } from "./page/resource-hub/resource-hub.component
 import { StartupProgramPageComponent } from "./page/startup-program/startup-program-page.component";
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
+import { UseCasePageComponent } from "./page/use-cases/use-case-page.component";
 
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
@@ -49,7 +50,7 @@ export const dynamicPageSchemas = [
     { path: "fundamentals/:slug", schemaName: "fundamentalArticle" },
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
-    // { path: "solutions/:slug", schemaName: "solutionPage", schemaSlugAccessor: "route.current" },
+    { path: "use-cases/:slug", schemaName: "useCasePageInstance", schemaSlugAccessor: "route.current" },
     { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
@@ -81,6 +82,7 @@ const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> =
     "lectures/:slug": { component: LectureDetailsPageComponent },
     "legal/:slug": { component: LegalDocumentComponent },
     "papers/:slug": { component: PaperDetailsPageComponent },
+    "use-cases/:slug": { component: UseCasePageComponent },
     "applications/:slug": { 
         component: LearningArticleComponent, 
         data: { 

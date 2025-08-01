@@ -1,0 +1,5 @@
+@for (panel of panels; track panel) {
+  <a class="lc-card card hoverable" [tdLink]="panel" [attr.id]="panelID(panel)">
+    <h3 class="lc-title">{{ panel.text }}</h3>
+  </a>
+}

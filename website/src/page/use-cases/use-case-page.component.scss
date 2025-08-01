@@ -1,0 +1,9 @@
+@use "media";
+
+.sp-intro-section-body {
+    margin-top: 32px;
+
+    @media (max-width: media.$max-width-tablet) {
+        margin-top: 16px;
+    }
+}

@@ -1,0 +1,8 @@
+@use "media";
+@use "mixins";
+
+td-p-with-highlights {
+    display: block;
+    text-align: center;
+    margin-top: var(--subsection-margin);
+}

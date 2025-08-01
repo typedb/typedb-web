@@ -1,0 +1,41 @@
+@use "colors";
+@use "media";
+@use "mixins";
+
+:host {
+    display: block;
+}
+
+.td-root {
+    // TODO: do we want centre alignment?
+    margin: 0 auto;
+    text-align: center;
+    max-width: 660px;
+    grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
+    padding-bottom: 24px;
+
+    @media (max-width: media.$max-width-tablet) {
+        padding-bottom: 20px;
+    }
+}
+
+.td-keyword {
+    color: var(--color-secondary-pink);
+    font-family: var(--font-family-code);
+    font-weight: var(--font-weight-regular);
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+}
+
+td-heading-with-highlights {
+    display: block;
+    margin-bottom: 32px;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin: 16px 0;
+    }
+}
+
+td-actions {
+    justify-content: center;
+}

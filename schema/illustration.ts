@@ -1,7 +1,7 @@
 import { CodeBlockIcon, CodeIcon, DocumentVideoIcon, ImageIcon, SplitVerticalIcon, SunIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, ReferenceRule, SanityDocument, Slug, SlugRule, StringRule, TextRule } from "@sanity/types";
-import { CodeSnippet, codeSnippetSchemaName, isCodeSnippet, isPolyglotSnippet, PolyglotSnippet, polyglotSnippetSchemaName, SanityCodeSnippet, SanityPolyglotSnippet } from "./code";
-import { titleField } from "./common-fields";
+import { CodeSnippet, isCodeSnippet, isPolyglotSnippet, PolyglotSnippet, SanityCodeSnippet, SanityPolyglotSnippet } from "./code";
+import { codeSnippetSchemaName, polyglotSnippetSchemaName, titleField } from "./common-fields";
 import { Document, SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -156,7 +156,7 @@ export function illustrationFromSanity(data: SanityIllustration, db: SanityDatas
     else if (isImageIllustration(data)) return ImageIllustration.fromSanity(data, db);
     else if (isVideoEmbed(data)) return VideoEmbed.fromSanity(data);
     else if (isCodeSnippet(data)) return CodeSnippet.fromSanity(data);
-    else if (isPolyglotSnippet(data)) return PolyglotSnippet.fromSanity(data);
+    else if (isPolyglotSnippet(data)) return PolyglotSnippet.fromSanity(data, db);
     else if (isGraphVisualisation(data)) return GraphVisualisation.fromSanity(data);
     else throw `Found illustration with illegal document type '${(data as any)._type}'`;
 }

@@ -26,7 +26,7 @@ export class AddToCalendarDialogComponent implements OnInit {
     ngOnInit() {
         this.actions = [
             new LinkButton({
-                style: "secondary",
+                style: "greenHollow",
                 text: "Google",
                 comingSoon: false,
                 link: new Link({
@@ -36,7 +36,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                 }),
             }),
             new LinkButton({
-                style: "secondary",
+                style: "greenHollow",
                 text: "Apple / Outlook",
                 comingSoon: false,
                 download: { filename: `${this.data.event.slug}.ics` },

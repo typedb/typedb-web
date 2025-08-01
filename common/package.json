@@ -1,7 +1,7 @@
 {
   "name": "typedb-web-common",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "UNLICENSED",
   "scripts": {
     "install": "tsc"
@@ -10,7 +10,7 @@
     "prismjs": "1.29.x"
   },
   "devDependencies": {
-    "@sanity/types": "3.14.1",
+    "@sanity/types": "3.97.1",
     "@types/prismjs": "1.26.2",
     "typescript": "5.1.6"
   },

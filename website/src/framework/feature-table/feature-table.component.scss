@@ -65,7 +65,7 @@ thead {
 
         &:nth-of-type(4) {
             p {
-                @include mixins.color-gradient(#F96480, #FDD257);
+                @include mixins.text-gradient(#F96480, #FDD257);
             }
 
             td-button ::ng-deep a {
@@ -98,7 +98,6 @@ tbody tr {
 
 th, td {
     height: 80px;
-    color: var(--color-darker-white);
 
     &, &:not(:first-child) {
         border-left: none;

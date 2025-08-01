@@ -1,8 +1,9 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
-import { buttonSchemaName, LinkButton, SanityButton } from "../button";
-import { buttonField, descriptionField, nameField, plainTextField, requiredRule } from "../common-fields";
+import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
+import { buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, titleAndBodyFields } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
+import { SanitySectionBase, SectionBase } from "./section";
 
 export interface SanityFeatureTable {
     products: SanityProduct[];
@@ -12,7 +13,7 @@ export interface SanityFeatureTable {
 interface SanityProduct {
     name: string;
     priceString: string;
-    button: SanityButton;
+    button: SanityLinkButton;
 }
 
 interface SanityFeatureTableRow {
@@ -29,7 +30,7 @@ interface SanityFeatureTableTextCell {
     text: string;
 }
 
-type SanityFeatureTableCell = SanityFeatureTableBooleanCell | SanityFeatureTableTextCell | SanityButton;
+type SanityFeatureTableCell = SanityFeatureTableBooleanCell | SanityFeatureTableTextCell | SanityLinkButton;
 
 function isBooleanCell(cell: SanityFeatureTableCell): cell is SanityFeatureTableBooleanCell {
     return "isChecked" in cell;
@@ -39,9 +40,15 @@ function isTextCell(cell: SanityFeatureTableCell): cell is SanityFeatureTableTex
     return !isBooleanCell(cell) && !isButtonCell(cell);
 }
 
-function isButtonCell(cell: SanityFeatureTableCell): cell is SanityButton {
+function isButtonCell(cell: SanityFeatureTableCell): cell is SanityLinkButton {
     return "link" in cell;
 }
+
+export interface SanityFeatureTableSection extends SanitySectionBase {
+    featureTable: SanityFeatureTable;
+}
+
+export const featureTableSectionSchemaName = `featureTableSection`;
 
 export class FeatureTable {
     readonly products: Product[];
@@ -107,6 +114,23 @@ function featureTableCellFromSanity(data: SanityFeatureTableCell, db: SanityData
     else if (isTextCell(data)) return data.text;
     else if (isButtonCell(data)) return LinkButton.fromSanity(data, db);
     else throw "Found unexpected value in feature table cell: " + data;
+}
+
+export class FeatureTableSection extends SectionBase {
+    readonly featureTable: FeatureTable;
+
+    constructor(props: PropsOf<FeatureTableSection>) {
+        super(props);
+        this.featureTable = props.featureTable;
+    }
+
+    static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
+        return new FeatureTableSection(
+            Object.assign(SectionBase.fromSanity(data, db), {
+                featureTable: FeatureTable.fromSanity(data.featureTable, db),
+            })
+        );
+    }
 }
 
 const booleanCellSchemaName = "featureTableBooleanCell";
@@ -216,4 +240,22 @@ const featureTableSchema = defineType({
     ],
 });
 
-export const featureTableSchemas = [featureTableSchema, productSchema, rowSchema, booleanCellSchema, textCellSchema];
+const featureTableSectionSchema = defineType({
+    name: featureTableSectionSchemaName,
+    title: "Feature Table Section",
+    type: "object",
+    fields: [
+        ...titleAndBodyFields,
+        defineField({
+            name: "featureTable",
+            title: "Feature Table",
+            type: featureTableSchemaName,
+            validation: requiredRule,
+        }),
+        isVisibleField,
+    ],
+});
+
+export const featureTableSchemas = [
+    featureTableSchema, productSchema, rowSchema, booleanCellSchema, textCellSchema, featureTableSectionSchema
+];

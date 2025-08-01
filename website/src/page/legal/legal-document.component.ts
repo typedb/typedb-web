@@ -7,7 +7,6 @@ import Prism from "prismjs";
 import { map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { LegalDocument } from "typedb-web-schema";
 
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { ContentService } from "../../service/content.service";

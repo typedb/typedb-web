@@ -1,14 +1,14 @@
 
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
-import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
+import { Lecture, LinkPanel, ResourceLink } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
-import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-link-panels",
@@ -18,11 +18,11 @@ import { sanitiseHtmlID } from "../util";
     imports: [LinkDirective, RichTextComponent]
 })
 export class LinkPanelsComponent {
-    @Input() panels!: LinkPanelWithIcon[];
+    @Input() panels!: LinkPanel[];
     @Input({ required: true }) sectionId!: string;
     @HostBinding("class") clazz = "section";
 
-    panelID(panel: LinkPanelWithIcon) {
+    panelID(panel: LinkPanel) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
     }
 }

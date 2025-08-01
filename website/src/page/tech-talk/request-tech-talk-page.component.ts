@@ -15,7 +15,6 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../../framework/form";
 
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import {
     HeadingWithHighlightsComponent,

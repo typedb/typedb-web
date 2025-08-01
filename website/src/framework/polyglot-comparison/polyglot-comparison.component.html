@@ -1,0 +1,22 @@
+@if ((media.isMobile$ | async)) {
+  <td-polyglot-snippet [snippet]="polyglotSnippet" [id]="polyglotSnippetID"/>
+} @else {
+  <div class="td-polyglot-comparison">
+    <div class="td-sticky-column">
+      <h4 class="td-language-chip">{{ polyglotSnippet.snippets[0].tabText || polyglotSnippet.snippets[0].language }}</h4>
+      <div class="td-snippet-container">
+        <td-code-snippet [snippet]="polyglotSnippet.snippets[0]"/>
+      </div>
+    </div>
+    <div class="td-scrollable-column">
+      @for (snippet of polyglotSnippet.snippets.slice(1); track snippet) {
+        <div class="td-code-block">
+          <h4 class="td-language-chip">{{ snippet.tabText || snippet.language }}</h4>
+          <div class="td-snippet-container">
+            <td-code-snippet [snippet]="snippet"/>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

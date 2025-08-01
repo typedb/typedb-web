@@ -1,9 +1,56 @@
+@use "colors";
 @use "mixins";
 
-td-home-page-technicolor-block.td-intro ::ng-deep td-heading-with-highlights h1 {
-    @include mixins.color-gradient(#AC79EE, #03D0BF);
+//@keyframes flow {
+//    0% { background-position-x: 0; }
+//    100% { background-position-x: 680px; }
+//}
+//
+//td-section-core.td-intro ::ng-deep td-heading-with-highlights h1 {
+//    @include mixins.text-gradient(#03D0BF, #AC79EE);
+//    animation: 8s linear 0s infinite flow;
+//}
+
+td-section-core.td-intro ::ng-deep .button-frameless {
+    color: var(--color-white);
 }
 
-td-home-page-technicolor-block.td-intro ::ng-deep td-button a {
-    @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+td-link-panels {
+    margin-top: var(--section-margin);
+}
+
+td-organisation-logos {
+    margin-top: var(--section-margin);
+}
+
+.td-drivers-section {
+    td-section-core {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+.td-benefits-5-and-6 {
+    display: flex;
+
+    td-section-core {
+        margin-top: 0;
+    }
+
+    td-section-core ::ng-deep .td-root {
+        text-align: start;
+    }
+
+    td-section-core ::ng-deep td-actions {
+        justify-content: flex-start;
+
+        td-button a {
+            padding-left: 0;
+        }
+    }
+}
+
+td-integrations-grid {
+    display: block;
+    margin-top: var(--subtitle-margin-l);
 }

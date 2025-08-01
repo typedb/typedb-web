@@ -12,8 +12,8 @@ dependencies:
     specifier: 3.7.4
     version: 3.7.4(react@18.3.1)
   '@sanity/types':
-    specifier: 3.95.0
-    version: 3.95.0(@types/react@18.2.17)
+    specifier: 3.97.1
+    version: 3.97.1(@types/react@18.2.17)
   '@types/react':
     specifier: 18.2.17
     version: 18.2.17
@@ -68,8 +68,8 @@ packages:
     resolution: {integrity: sha512-RwBou7SybMbHkSeCn+3L/hbaFP77at3BesP67o8D8RrFiOgHX/h4ibw4yEauC1s09U9BE1MPq9K7ji+0XU57GA==}
     dev: false
 
-  /@sanity/types@3.95.0(@types/react@18.2.17):
-    resolution: {integrity: sha512-LIzlQWzJwol/4ybOkugtUJOc4nFoTrkttWpWbvWVufhavsk8XzjAREXbCcxyuWsAZhWchAgweEmAH3taL/yuhw==}
+  /@sanity/types@3.97.1(@types/react@18.2.17):
+    resolution: {integrity: sha512-ibOauea3H1DYZKqpL56HM92u+upd1bn+KKH+AxZGdypGWaYlUPDyU8moByO+A3rJTEaD554jRdqDCfqySYCFkg==}
     peerDependencies:
       '@types/react': 18 || 19
     dependencies:

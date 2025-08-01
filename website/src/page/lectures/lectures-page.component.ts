@@ -5,6 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { map, Observable, of } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
     Lecture, lectureSchemaName, LecturesPage, lecturesPageSchemaName, SanityDataset, SanityLecture, SanityLecturesPage,
 } from "typedb-web-schema";
@@ -16,12 +17,10 @@ import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { LecturePanelsComponent } from "../../framework/link-panels/link-panels.component";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { ContentService } from "../../service/content.service";
 import { PageComponentBase } from "../page-component-base";
 
@@ -31,7 +30,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./lectures-page.component.scss"],
     imports: [
         TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
-        ButtonComponent, TechnicolorBlockComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
+        ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
         EventDurationPipe, OrdinalDatePipe, PlainTextPipe
     ]
 })

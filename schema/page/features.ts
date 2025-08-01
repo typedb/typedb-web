@@ -8,7 +8,7 @@ import {
     titleFieldWithHighlights,
 } from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
-import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
+import { Organisation, SanityOrganisation } from "../organisation";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleBodyActions, TitleBodyActions } from "../text";
 import { PropsOf } from "../util";
@@ -69,7 +69,6 @@ const introSectionSchema = defineType({
         titleFieldWithHighlights,
         bodyFieldRichText,
         actionsFieldOptional,
-        Object.assign({}, organisationLogosField, { name: "userLogos", title: "User Logos" }) as any,
     ],
 });
 

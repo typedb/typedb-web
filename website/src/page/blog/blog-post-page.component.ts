@@ -4,21 +4,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
-import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
-    Article,
-    Blog,
-    blogCategories,
-    BlogCategoryID,
-    BlogPost,
-    blogPostLinkOf,
-    blogPostSchemaName,
-    blogSchemaName,
-    Link,
-    LinkButton,
-    RelatedBlogPosts,
-    SanityBlog,
+    Article, Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, blogPostSchemaName, blogSchemaName,
+    Link, LinkButton, RelatedBlogPosts, SanityBlog,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -30,7 +20,6 @@ import { FurtherLearningComponent } from "../../framework/further-learning/furth
 import { LinkDirective } from "../../framework/link/link.directive";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogAuthorshipBarComponent } from "./blog-authorship-bar.component";
@@ -55,9 +44,9 @@ export class BlogPostPageComponent implements OnInit {
     readonly categories$: Observable<BlogCategoryID[] | null>;
     readonly relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
     readonly subscribeToNewsletterButton = new LinkButton({
-        style: "secondary",
+        style: "greenHollow",
         link: Link.fromAddress("?dialog=newsletter"),
-        text: "Subscribe to Newsletter",
+        text: "Subscribe to newsletter",
         comingSoon: false,
     });
 

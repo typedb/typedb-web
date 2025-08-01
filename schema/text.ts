@@ -23,7 +23,10 @@ export class ParagraphWithHighlights {
         this.spans = props.spans;
     }
 
-    static fromSanity(data: PortableText) {
+    static fromSanity(data?: PortableText) {
+        if (!data?.length) {
+            return new ParagraphWithHighlights({ spans: [] });
+        }
         console.assert(data.length === 1);
         return new ParagraphWithHighlights({
             spans: data[0].children
@@ -31,12 +34,16 @@ export class ParagraphWithHighlights {
                 .map((block) => ({
                     text: block.text as string,
                     highlight: (block.marks as string[]).includes("strong"),
-                })),
+                })) || [],
         });
     }
 
     toPlainText(): string {
         return this.spans.map(x => x.text).join("");
+    }
+
+    static fromPlainText(text: string): ParagraphWithHighlights {
+        return new ParagraphWithHighlights({ spans: [{ text, highlight: false }] });
     }
 
     toSectionID(): string {

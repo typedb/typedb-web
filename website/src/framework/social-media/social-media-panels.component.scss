@@ -1,24 +1,47 @@
+@use "colors";
 @use "media";
 @use "shapes";
 @use "mixins";
 
-.sm-root {
+:host {
     display: flex;
-    flex-direction: row;
-    @include mixins.card-appearance;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 24px;
+    height: 260px;
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        gap: 32px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 20px;
+    }
 }
 
-.sm-panel {
+.td-card {
     flex: 1;
-    @include mixins.card-padding;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    border-radius: var(--border-radius);
+    border: shapes.$border;
+    gap: 16px;
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
 
-    & + & {
-        border-left: shapes.$border;
+    &.hoverable:hover {
+        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+    }
+
+    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+    cursor: pointer;
+
+    &:hover h3 {
+        text-decoration: none;
     }
 
     .mat-icon {
@@ -28,5 +51,10 @@
         @media (max-width: media.$max-width-mobile) {
             font-size: 32px;
         }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 1 1 44%;
+        gap: 12px;
     }
 }

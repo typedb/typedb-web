@@ -3,65 +3,22 @@ import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
-
-import Prism from "prismjs";
 import { combineLatest, map, Observable, of } from "rxjs";
-import {
-    HomePage, homePageSchemaName, Organisation, SanityDataset, SanityHomePage, SocialMediaLink,
-} from "typedb-web-schema";
-import { TechnicolorBlock } from "typedb-web-schema";
-
+import { HomePage, homePageSchemaName, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
-
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
-import { ContentTabsComponent } from "../../framework/content-tabs/content-tabs.component";
-import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
-import { KeyPointTableComponent } from "../../framework/key-point/key-point.component";
-import { LinkPanelsComponent, ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
+import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
+import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
+import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
+import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
+import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
+import { TitleBodyIllustrationSectionComponent } from "../../framework/section/illustration/title-body-illustration-section.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
-import { TechnicolorBlockComponent } from "../../framework/technicolor-block/technicolor-block.component";
-import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
+import { SocialValidationSectionComponent } from "../../framework/social-validation/social-validation-section.component";
 import { PageComponentBase } from "../page-component-base";
-
-@Component({
-    selector: "td-home-page-technicolor-block",
-    template: `<td-technicolor-block
-      [block]="block" [index]="index" [level]="level" [noUpperLine]="index === 0"
-      [longUpperLine]="variant === 'conclusion'" [organisationLogos]="organisationLogos"
-    />`,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TechnicolorBlockComponent]
-})
-export class HomePageTechnicolorBlockComponent {
-    @Input() block!: TechnicolorBlock;
-    @Input() page!: HomePage;
-    @Input() variant: "none" | "intro" | "conclusion" = "none";
-    @Input() organisationLogos?: Organisation[];
-
-    get allBlocks(): TechnicolorBlock[] {
-        return [
-            this.page.introSection,
-            ...this.page.impactSections,
-            this.page.resourcesSection,
-            this.page.toolingSection,
-            this.page.driversSection,
-            this.page.cloudSection,
-            this.page.communitySection,
-            this.page.testimonialsSection,
-            this.page.conclusionSection,
-        ].filter((x) => !!x) as TechnicolorBlock[];
-    }
-
-    get level(): TechnicolorBlockComponent["level"] {
-        return this.block === this.page.introSection ? "h1" : "h2";
-    }
-
-    get index() {
-        return this.allBlocks.indexOf(this.block);
-    }
-}
 
 @Component({
     selector: "td-home-page",
@@ -69,9 +26,9 @@ export class HomePageTechnicolorBlockComponent {
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        HomePageTechnicolorBlockComponent, ContentTabsComponent, ResourcePanelsComponent,
-        LinkPanelsComponent, FeatureGridComponent, KeyPointTableComponent, SocialMediaPanelsComponent,
-        TestimonialsCarouselComponent, ConclusionPanelComponent, AsyncPipe
+        AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
+        TitleBodyIllustrationSectionComponent, SocialValidationSectionComponent, PolyglotComparisonComponent,
+        SimpleLinkPanelsComponent, LinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

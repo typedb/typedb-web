@@ -1,8 +1,8 @@
 
 import { isPlatformBrowser } from "@angular/common";
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit, inject, PLATFORM_ID } from "@angular/core";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
-import Prism from "prismjs";
 import {
     CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridLayout, GraphVisualisation, Illustration,
     ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
@@ -12,7 +12,6 @@ import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
-import { sanitiseHtmlID } from "../util";
 import { TagChipsComponent } from "./tag-chips.component";
 
 @Component({

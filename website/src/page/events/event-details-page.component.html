@@ -37,7 +37,9 @@
               <strong>Register to {{ event.tag }}</strong>
             </h3>
             <td-aspect-ratio ratio="16:9">
-              <img [src]="getEventImageUrl(event)" class="ed-img" alt="" />
+              @if (getEventImageUrl(event); as imageURL) {
+                <img [src]="imageURL" class="ed-img" alt="" />
+              }
             </td-aspect-ratio>
             @if (event.externalUrlButton) {
               <td-button [button]="event.externalUrlButton" buttonWidth="100%" [linkId]="event.externalUrlButton.text"/>

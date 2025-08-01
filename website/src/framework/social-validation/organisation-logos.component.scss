@@ -1,6 +1,16 @@
 @use "media";
 @use "shapes";
 
+:host {
+    display: block;
+    overflow: hidden;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-65%); }
+}
+
 .ol-root {
     border-radius: var(--border-radius);
     display: flex;
@@ -8,6 +18,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
+    animation: marquee 80s linear infinite;
 
     @media (max-width: media.$max-width-tablet) {
         padding-left: 32px;
@@ -35,8 +46,11 @@
 
     &.ol-root-transparent {
         gap: 42px;
-        width: 600px;
         opacity: 0.8;
+        
+        @media (max-width: media.$max-width-mobile) {
+            gap: 24px;
+        }
     }
 }
 
@@ -46,9 +60,5 @@
 
     @media (max-width: media.$max-width-mobile) {
         height: 34px;
-
-        &:nth-child(n + 4) {
-            display: none;
-        }
     }
 }

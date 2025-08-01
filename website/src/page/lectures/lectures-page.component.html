@@ -2,10 +2,7 @@
   @if (page$ | async; as page) {
     <div class="article-content">
       <div class="section">
-        <td-title-body-actions-section
-          [isIntroSection]="true" sectionId="intro"
-          [title]="page.introSection.title" [body]="page.introSection.body"
-          />
+        <td-title-body-actions-section [isIntroSection]="true" sectionId="intro" [title]="page.introSection.title" [body]="page.introSection.body"/>
         <div class="card subsection-margin wp-primary-lecture">
           @if (!page?.introSection?.featuredLecture) {
             <div class="wp-primary-placeholder"></div>
@@ -37,14 +34,11 @@
         page.featuredLecturesSection.featuredLectures &&
         page.featuredLecturesSection.featuredLectures.length
         ) {
-        <td-technicolor-block [block]="page.featuredLecturesSection" [index]="1" [noUpperLine]="true" />
-        <td-lecture-panels
-          [lectures]="page.featuredLecturesSection.featuredLectures"
-          [sectionId]="page.featuredLecturesSection.sectionId"
-        />
+        <td-section-core [section]="page.featuredLecturesSection"/>
+        <td-lecture-panels [lectures]="page.featuredLecturesSection.featuredLectures" [sectionId]="page.featuredLecturesSection.sectionId"/>
       }
       @if (page.exploreLecturesSection) {
-        <td-technicolor-block [block]="page.exploreLecturesSection" [index]="2" />
+        <td-section-core [section]="page.exploreLecturesSection"/>
         <section class="card-appearance">
           <ul class="wp-lecture-list">
             @for (lecture of allLectures$ | async; track lecture) {
@@ -87,10 +81,7 @@
                   </aside>
                 </div>
                 <div class="hide-mobile flex"></div>
-                <td-button
-                  [button]="lecture.registrationButton()" buttonWidth="100%" size="small"
-                  [linkId]="lectureDetailsButtonId(lecture)"
-                />
+                <td-button [button]="lecture.registrationButton()" buttonWidth="100%" size="small" [linkId]="lectureDetailsButtonId(lecture)"/>
               </li>
             }
           </ul>

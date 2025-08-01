@@ -1,9 +1,9 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    Component,
+    Component, DOCUMENT,
     ElementRef,
-    HostBinding,
+    HostBinding, Inject,
     Input,
     NgZone,
     ViewChild,
@@ -17,7 +17,7 @@ import {
     standalone: true,
 })
 export class ScrollShadowComponent implements AfterViewInit {
-    @Input() color: "deep-purple" | "black-purple" = "deep-purple";
+    @Input() color: "deep-purple" | "black-purple" = "black-purple";
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowLeft") shadowLeftRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;
@@ -28,27 +28,69 @@ export class ScrollShadowComponent implements AfterViewInit {
         return this.color;
     }
 
-    constructor(private ngZone: NgZone) {}
+    constructor(private ngZone: NgZone, @Inject(DOCUMENT) private doc: Document) {}
 
     ngAfterViewInit(): void {
         this.ngZone.runOutsideAngular(() => {
             const scrollEl = this.scrollContainerRef.nativeElement;
+
+            // Scroll shadow logic
             const handleScroll = () => {
                 const scrollLeft = scrollEl.scrollLeft;
                 const scrollRight = scrollEl.scrollWidth - scrollEl.scrollLeft - scrollEl.clientWidth;
                 const scrollTop = scrollEl.scrollTop;
                 const scrollBottom = scrollEl.scrollHeight - scrollEl.scrollTop - scrollEl.clientHeight;
+
                 const leftShadowOpacity = Math.min(1, scrollLeft / this.shadowLeftRef.nativeElement.clientWidth);
                 const rightShadowOpacity = Math.min(1, scrollRight / this.shadowRightRef.nativeElement.clientWidth);
                 const topShadowOpacity = Math.min(1, scrollTop / this.shadowTopRef.nativeElement.clientHeight);
                 const bottomShadowOpacity = Math.min(1, scrollBottom / this.shadowBottomRef.nativeElement.clientHeight);
+
                 this.shadowLeftRef.nativeElement.style.opacity = `${leftShadowOpacity}`;
                 this.shadowRightRef.nativeElement.style.opacity = `${rightShadowOpacity}`;
                 this.shadowTopRef.nativeElement.style.opacity = `${topShadowOpacity}`;
                 this.shadowBottomRef.nativeElement.style.opacity = `${bottomShadowOpacity}`;
             };
+
             scrollEl.addEventListener("scroll", handleScroll, { passive: true });
             handleScroll();
+
+            let isDragging = false;
+            let startX = 0;
+            let scrollLeft = 0;
+
+            scrollEl.addEventListener('mousedown', (e) => {
+                isDragging = false;
+                startX = e.pageX;
+                scrollLeft = scrollEl.scrollLeft;
+
+                const onMouseMove = (moveEvent: MouseEvent) => {
+                    const dx = moveEvent.pageX - startX;
+                    if (Math.abs(dx) > 5) isDragging = true;
+                    scrollEl.scrollLeft = scrollLeft - dx;
+                };
+
+                const onMouseUp = (upEvent: MouseEvent) => {
+                    this.doc.removeEventListener('mousemove', onMouseMove);
+                    this.doc.removeEventListener('mouseup', onMouseUp);
+
+                    if (isDragging) {
+                        // Prevent the click that follows
+                        scrollEl.classList.add('suppress-click');
+                        setTimeout(() => scrollEl.classList.remove('suppress-click'), 0);
+                    }
+                };
+
+                this.doc.addEventListener('mousemove', onMouseMove);
+                this.doc.addEventListener('mouseup', onMouseUp);
+            });
+
+            scrollEl.addEventListener('click', (e) => {
+                if (scrollEl.classList.contains('suppress-click')) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation(); // cancel even Angular-bound handlers
+                }
+            }, true); // <-- use capture phase to intercept early
         });
     }
 }

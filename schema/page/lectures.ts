@@ -1,14 +1,8 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions,
-    isVisibleField,
-
-    requiredRule,
-    SanityVisibleToggle,
-    sectionIconField,
-    titleAndBodyFields,
+    collapsibleOptions, isVisibleField, requiredRule, SanityVisibleToggle, titleAndBodyFields,
 } from "../common-fields";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanitySectionBase, SectionBase } from "../component/section";
 import { SanityLecture, lectureSchemaName } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SanityTitleAndBody, TitleAndBody } from "../text";
@@ -27,11 +21,11 @@ export interface SanityIntroSection extends SanityTitleAndBody {
     featuredLecture?: SanityReference<SanityLecture>;
 }
 
-export interface SanityFeaturedLecturesSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityFeaturedLecturesSection extends SanitySectionBase, SanityVisibleToggle {
     featuredLectures?: SanityReference<SanityLecture>[];
 }
 
-export interface SanityExploreLecturesSection extends SanityTechnicolorBlock, SanityVisibleToggle {}
+export interface SanityExploreLecturesSection extends SanitySectionBase, SanityVisibleToggle {}
 
 export class LecturesPage extends Page {
     readonly introSection: IntroSection;
@@ -69,7 +63,7 @@ export class IntroSection extends TitleAndBody {
     }
 }
 
-export class FeaturedLecturesSection extends TechnicolorBlock {
+export class FeaturedLecturesSection extends SectionBase {
     featuredLectures?: Lecture[];
 
     constructor(props: PropsOf<FeaturedLecturesSection>) {
@@ -79,7 +73,7 @@ export class FeaturedLecturesSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityFeaturedLecturesSection, db: SanityDataset) {
         return new FeaturedLecturesSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionBase.fromSanity(data, db), {
                 featuredLectures: data.featuredLectures
                     ? data.featuredLectures.map((x) => Lecture.fromSanity(db.resolveRef(x), db))
                     : undefined,
@@ -88,13 +82,13 @@ export class FeaturedLecturesSection extends TechnicolorBlock {
     }
 }
 
-export class ExploreLecturesSection extends TechnicolorBlock {
+export class ExploreLecturesSection extends SectionBase {
     constructor(props: PropsOf<ExploreLecturesSection>) {
         super(props);
     }
 
-    static override fromSanity(data: SanityTechnicolorBlock, db: SanityDataset) {
-        return new ExploreLecturesSection(Object.assign(TechnicolorBlock.fromSanity(data, db), {}));
+    static override fromSanity(data: SanitySectionBase, db: SanityDataset) {
+        return new ExploreLecturesSection(Object.assign(SectionBase.fromSanity(data, db), {}));
     }
 }
 
@@ -127,7 +121,6 @@ const featuredLecturesSectionSchema = defineType({
     type: "object",
     fields: [
         ...titleAndBodyFields,
-        sectionIconField,
         defineField({
             name: "featuredLectures",
             title: "Featured Lectures",
@@ -144,7 +137,7 @@ const exploreLecturesSectionSchema = defineType({
     name: exploreLecturesSectionSchemaName,
     title: "Section",
     type: "object",
-    fields: [...titleAndBodyFields, sectionIconField, isVisibleField],
+    fields: [...titleAndBodyFields, isVisibleField],
 });
 
 const lecturesPageSchema = defineType({
@@ -184,8 +177,5 @@ const lecturesPageSchema = defineType({
 });
 
 export const lecturesPageSchemas = [
-    introSectionSchema,
-    featuredLecturesSectionSchema,
-    exploreLecturesSectionSchema,
-    lecturesPageSchema,
+    introSectionSchema, featuredLecturesSectionSchema, exploreLecturesSectionSchema, lecturesPageSchema,
 ];

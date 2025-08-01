@@ -6,12 +6,12 @@ import {
     BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
 } from "@sanity/icons";
-import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
+import { presentationTool } from "sanity/presentation";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
@@ -23,7 +23,10 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName,
+    surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName,
+    cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
+    useCasePageTemplateSchemaName, useCasePageSchemaName,
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -69,6 +72,8 @@ export default defineConfig({
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Tech Talk", icon: DocumentIcon }),
                     singletonListItem(s, startupProgramPageSchemaName, { title: "Startup Program", icon: DocumentIcon }),
                     s.divider(),
+                    singletonListItem(s, useCasePageTemplateSchemaName, { title: "Use Cases: Template", icon: DocumentIcon }),
+                    s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
                 s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([

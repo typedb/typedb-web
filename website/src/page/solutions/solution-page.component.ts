@@ -1,9 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { map } from "rxjs";
 import { SanityDataset, SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "typedb-web-schema";
-import { TechnicolorBlock } from "typedb-web-schema";
-
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -17,7 +14,7 @@ export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
         return this.activatedRoute.paramMap.pipe(
             map((params) => {
                 const sanitySolutionPages = data.getDocumentsByType<SanitySolutionPage>(solutionPageSchemaName);
-                const page = sanitySolutionPages.find((x) => x.route.current === params.get("route"));
+                const page = sanitySolutionPages.find((x) => x.route.current === params.get("slug"));
                 return page ? new SolutionPage(page, data) : null;
             }),
         );
@@ -26,37 +23,5 @@ export class SolutionPageComponent extends PageComponentBase<SolutionPage> {
     protected override onPageReady(page: SolutionPage): void {
         super.onPageReady(page);
         this.title.setTitle(`TypeDB Solutions: ${page.title}`);
-    }
-}
-
-@Component({
-    selector: "td-solution-page-technicolor-block",
-    template: `<td-technicolor-block
-        [block]="block"
-        [index]="index + 1"
-        [noUpperLine]="index === 0"
-        [noTrailingLine]="noTrailingLine"
-    ></td-technicolor-block>`,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class SolutionPageTechnicolorBlockComponent {
-    @Input() block!: TechnicolorBlock;
-    @Input() page!: SolutionPage;
-
-    get allBlocks(): TechnicolorBlock[] {
-        return [
-            this.page.useCasesSection,
-            this.page.challengesSection,
-            this.page.solutionSection,
-            this.page.furtherReadingSection,
-        ].filter((x) => !!x) as TechnicolorBlock[];
-    }
-
-    get index() {
-        return this.allBlocks.indexOf(this.block);
-    }
-
-    get noTrailingLine() {
-        return this.index >= this.allBlocks.length - 1;
     }
 }

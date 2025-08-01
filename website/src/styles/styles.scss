@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "colors";
 @use "media";
 @use "mixins";
 @use "shapes";
@@ -16,7 +17,7 @@ $default-typography: mat.m2-define-typography-level(
 );
 
 $custom-typography: mat.m2-define-typography-config(
-    $font-family: var(--default-font-family),
+    $font-family: var(--font-family-default),
     $headline-1: $default-typography,
     $headline-2: $default-typography,
     $headline-3: $default-typography,
@@ -46,12 +47,8 @@ article {
         padding-bottom: 144px;
         position: relative;
 
-        &.article-content-no-planet {
-            padding-bottom: 5em;
-        }
-
         @media (max-width: media.$max-width-mobile) {
-            padding-bottom: 64px;
+            padding-bottom: 24px;
         }
     }
 }
@@ -61,6 +58,8 @@ section, .section {
     z-index: 1;
     margin-left: auto;
     margin-right: auto;
+    margin-top: var(--section-margin);
+    border-radius: 20px;
     @include mixins.section-width($offset: 0px);
 }
 
@@ -69,7 +68,7 @@ section, .section {
 }
 
 .nebula-section {
-    margin-top: var(--first-section-margin);
+    margin-top: var(--section-margin);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +107,7 @@ section, .section {
 }
 
 .link-tertiary, .link-tertiary:visited {
-    color: var(--color-dark-white);
+    color: var(--color-white);
     font-weight: var(--font-weight-regular);
 
     &::after {
@@ -126,6 +125,10 @@ section, .section {
     }
 }
 
+.text-muted {
+    color: colors.$secondary-light-grey;
+}
+
 input[type="email"], select {
     padding: 0 8px;
     background-color: var(--color-purple);
@@ -135,7 +138,7 @@ input[type="email"], select {
     border-radius: var(--border-radius);
     font-size: 16px;
     line-height: 46px;
-    height: 48px;
+    height: 40px;
 }
 
 table {
@@ -179,7 +182,7 @@ table {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: var(--first-section-margin);
+    margin-top: var(--section-margin);
 }
 
 .section-margin {
@@ -202,6 +205,27 @@ table {
     background-color: var(--color-black-purple);
 }
 
+.td-inverted-colors-section {
+    margin-top: var(--section-margin);
+    @include mixins.light-source-gradient(colors.$white, colors.$secondary-extra-light-grey);
+
+    td-section-core {
+        margin-top: 0;
+
+        h2, p {
+            color: colors.$black;
+        }
+
+        h2 {
+            font-weight: var(--font-weight-bold);
+        }
+
+        p {
+            font-weight: var(--font-weight-regular);
+        }
+    }
+}
+
 .cc-window {
     background: var(--color-purple);
     border-top: shapes.$border;
@@ -215,7 +239,7 @@ table {
 
     .cc-btn {
         @include mixins.button;
-        @include mixins.button-primary;
+        @include mixins.button-greenHollow;
 
         &.cc-btn {
             height: auto;
@@ -229,7 +253,7 @@ table {
 }
 
 .atcb-list {
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 }
 
 mat-dialog-container {

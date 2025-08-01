@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import Prism from "prismjs";
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
     Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, ResourceHub,
     learningCenterSchemaName, Link, LinkButton, SanityResourceHub, fundamentalsPageSchemaName,
@@ -17,10 +18,8 @@ import { CanonicalLinkService } from "src/service/canonical-link.service";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 
@@ -41,9 +40,9 @@ export class LearningArticleComponent implements OnInit {
     resourceHubLink$!: Observable<string>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
-        style: "secondary",
+        style: "greenHollow",
         link: Link.fromAddress("?dialog=newsletter"),
-        text: "Subscribe to Newsletter",
+        text: "Subscribe to newsletter",
         comingSoon: false,
     });
 

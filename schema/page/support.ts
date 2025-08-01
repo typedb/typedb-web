@@ -1,14 +1,12 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions, isVisibleField, actionsFieldOptional, titleBodyIconFields, requiredRule,
+    collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule, titleBodyActionsFields,
 } from "../common-fields";
-import { FeatureTable, SanityFeatureTable, featureTableSchemaName } from "../component/feature-table";
-import { linkPanelWithIconSchemaName } from "../component/link-panel";
-import { LinkPanelsSection, SanityCoreSection, SanityLinkPanelsSection } from "../component/page-section";
-import { TechnicolorBlock } from "../component/technicolor-block";
-import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTestimonial, Testimonial, testimonialSchemaName } from "../testimonial";
-import { PropsOf } from "../util";
+import { featureTableSchemaName, FeatureTableSection, SanityFeatureTableSection } from "../component/feature-table";
+import { linkPanelSchemaName } from "../component/link-panel";
+import { LinkPanelsSection, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
+import { SanityDataset } from "../sanity-core";
+import { SanityTestimonialsSection, TestimonialsSection, testimonialsSectionField } from "../testimonial";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
@@ -28,67 +26,24 @@ export interface SanitySupportPage extends SanityPage {
     [sections.contact.id]: SanityCoreSection;
 }
 
-interface SanityFeatureTableSection extends SanityCoreSection {
-    featureTable: SanityFeatureTable;
-}
-
-interface SanityTestimonialsSection extends SanityCoreSection {
-    testimonials: SanityReference<SanityTestimonial>[];
-}
-
 export class SupportPage extends Page {
     readonly [sections.intro.id]?: LinkPanelsSection;
     readonly [sections.featureTable.id]?: FeatureTableSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.contact.id]?: TechnicolorBlock;
+    readonly [sections.contact.id]?: SectionBase;
 
     constructor(data: SanitySupportPage, db: SanityDataset) {
         super(data, db);
         this[sections.intro.id] = data.introSection.isVisible
             ? LinkPanelsSection.fromSanity(data.introSection, db)
             : undefined;
-        this[sections.featureTable.id] = data.featureTableSection.isVisible
-            ? FeatureTableSection.fromSanity(data.featureTableSection, db)
-            : undefined;
+        this[sections.featureTable.id] = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this[sections.testimonials.id] = data.testimonialsSection.isVisible
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this[sections.contact.id] = data.contactSection.isVisible
-            ? TechnicolorBlock.fromSanity(data.contactSection, db)
+            ? SectionBase.fromSanity(data.contactSection, db)
             : undefined;
-    }
-}
-
-class FeatureTableSection extends TechnicolorBlock {
-    readonly featureTable: FeatureTable;
-
-    constructor(props: PropsOf<FeatureTableSection>) {
-        super(props);
-        this.featureTable = props.featureTable;
-    }
-
-    static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
-        return new FeatureTableSection({
-            ...super.fromSanity(data, db),
-            featureTable: FeatureTable.fromSanity(data.featureTable, db),
-        });
-    }
-}
-
-class TestimonialsSection extends TechnicolorBlock {
-    readonly testimonials: Testimonial[];
-
-    constructor(props: PropsOf<TestimonialsSection>) {
-        super(props);
-        this.testimonials = props.testimonials;
-    }
-
-    static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
-        return new TestimonialsSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
-            })
-        );
     }
 }
 
@@ -106,44 +61,31 @@ const sectionSchema = (key: SectionKey, fields: any[]) =>
 
 const sectionSchemas = [
     sectionSchema("intro", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "panels",
             title: "Panels",
             type: "array",
-            of: [{ type: linkPanelWithIconSchemaName }],
+            of: [{ type: linkPanelSchemaName }],
             validation: (rule) => rule.required().length(3),
         }),
         isVisibleField,
     ]),
     sectionSchema("featureTable", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
+        ...titleBodyActionsFields,
         defineField({
             name: "featureTable",
             title: "Feature Table",
             type: featureTableSchemaName,
             validation: requiredRule,
         }),
-        isVisibleField,
     ]),
-    sectionSchema("testimonials", [
-        ...titleBodyIconFields,
-        actionsFieldOptional,
-        defineField({
-            name: "testimonials",
-            title: "Testimonials",
-            type: "array",
-            of: [{ type: "reference", to: [{ type: testimonialSchemaName }] }],
-        }),
-        isVisibleField,
-    ]),
-    sectionSchema("contact", [...titleBodyIconFields, actionsFieldOptional, isVisibleField]),
+    sectionSchema("contact", [...titleBodyActionsFields, isVisibleField]),
 ];
 
-const sectionFields = (Object.keys(sections) as SectionKey[]).map((key) =>
-    defineField({
+const sectionFields = (Object.keys(sections) as SectionKey[])
+    .filter((key) => !["testimonials"].includes(key))
+    .map((key) => defineField({
         name: sections[key].id,
         title: `${sections[key].title} Section`,
         type: sectionSchemaName(key),
@@ -155,7 +97,7 @@ const supportPageSchema = defineType({
     name: supportPageSchemaName,
     title: "Support Page",
     type: "document",
-    fields: [metaTagsField, ...sectionFields],
+    fields: [metaTagsField, ...sectionFields, testimonialsSectionField],
     preview: { prepare: (_selection) => ({ title: "Support Page" }) },
 });
 

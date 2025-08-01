@@ -21,7 +21,6 @@ import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { AddToCalendarDialogComponent } from "../../framework/dialog/add-to-calendar/add-to-calendar-dialog.component";
 import { FurtherLearningComponent } from "../../framework/further-learning/further-learning.component";
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { PersonCardComponent } from "../../framework/person/person.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
@@ -71,7 +70,7 @@ export class LectureDetailsPageComponent implements OnInit {
             shareReplay(1),
         );
         const subscribeButton = new LinkButton({
-            style: "secondary",
+            style: "greenHollow",
             text: "Subscribe to lectures",
             link: Link.fromAddress("?dialog=newsletter"),
             comingSoon: false,
@@ -82,7 +81,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new ActionButton({
-                            style: "primary",
+                            style: "greenHollow",
                             text: "Add to calendar",
                             onClick: () => {
                                 this.dialog.open<AddToCalendarDialogComponent, { event: EventBase }>(
@@ -97,7 +96,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new LinkButton({
-                            style: "primary",
+                            style: "greenHollow",
                             text: "Download slides",
                             link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {
                                 opensNewTab: false,
