@@ -19,6 +19,9 @@ $secondary-yellow: #ffe49e;
 $secondary-pink: #ff87dc;
 $secondary-blue: #7ba0ff;
 
+$translucent-red: rgba($red, 0.15);
+$translucent-yellow: rgba($secondary-yellow, 0.15);
+
 $prism-white: #ece0ff;
 $prism-cyan: #55eae2;
 $prism-light-green: #02dac9;
@@ -31,5 +34,5 @@ $prism-orange: #ffa187;
 $prism-yellow-orange: #ffc980;
 $prism-yellow: #ffe4a7;
 $prism-grey: #c69ec3;
-$prism-very-grey: #ac9ec6;
+$prism-very-grey: #999999;
 $prism-brick: #b88484;
