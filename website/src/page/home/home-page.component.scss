@@ -13,6 +13,10 @@
 
 td-section-core.td-intro ::ng-deep .button-frameless {
     color: var(--color-white);
+
+    &:hover {
+        color: var(--color-secondary-light-grey);
+    }
 }
 
 td-link-panels {

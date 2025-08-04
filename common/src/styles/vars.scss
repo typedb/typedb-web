@@ -96,6 +96,8 @@
 
     --card-padding: #{$card-padding};
 
+    --scroll-shadow-size: 20px;
+
     @media (max-width: media.$max-width-tablet) {
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};

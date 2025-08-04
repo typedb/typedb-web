@@ -18,25 +18,32 @@ import {
 })
 export class ScrollShadowComponent implements AfterViewInit {
     @Input() color: "deep-purple" | "black-purple" = "black-purple";
+    @Input() showControls = false;
+    @Input() collectionItemWidth = 360;
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowLeft") shadowLeftRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowTop") shadowTopRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowBottom") shadowBottomRef!: ElementRef<HTMLDivElement>;
+    @ViewChild('scrollLeftButton') scrollLeftButtonRef!: ElementRef<HTMLDivElement>;
+    @ViewChild('scrollRightButton') scrollRightButtonRef!: ElementRef<HTMLDivElement>;
 
     @HostBinding("class") get classes() {
-        return this.color;
+        return `${this.color}`;
     }
 
     constructor(private ngZone: NgZone, @Inject(DOCUMENT) private doc: Document) {}
 
+
     ngAfterViewInit(): void {
+
         this.ngZone.runOutsideAngular(() => {
             const scrollEl = this.scrollContainerRef.nativeElement;
 
             // Scroll shadow logic
             const handleScroll = () => {
                 const scrollLeft = scrollEl.scrollLeft;
+                const maxScrollLeft = scrollEl.scrollWidth - scrollEl.clientWidth;
                 const scrollRight = scrollEl.scrollWidth - scrollEl.scrollLeft - scrollEl.clientWidth;
                 const scrollTop = scrollEl.scrollTop;
                 const scrollBottom = scrollEl.scrollHeight - scrollEl.scrollTop - scrollEl.clientHeight;
@@ -50,6 +57,10 @@ export class ScrollShadowComponent implements AfterViewInit {
                 this.shadowRightRef.nativeElement.style.opacity = `${rightShadowOpacity}`;
                 this.shadowTopRef.nativeElement.style.opacity = `${topShadowOpacity}`;
                 this.shadowBottomRef.nativeElement.style.opacity = `${bottomShadowOpacity}`;
+
+                // Scroll button visibility
+                this.scrollLeftButtonRef.nativeElement.style.opacity = scrollLeft > 0 ? '1' : '0';
+                this.scrollRightButtonRef.nativeElement.style.opacity = scrollLeft < maxScrollLeft ? '1' : '0';
             };
 
             scrollEl.addEventListener("scroll", handleScroll, { passive: true });
@@ -91,6 +102,14 @@ export class ScrollShadowComponent implements AfterViewInit {
                     e.stopImmediatePropagation(); // cancel even Angular-bound handlers
                 }
             }, true); // <-- use capture phase to intercept early
+        });
+    }
+
+    scrollBy(direction: 1 | -1) {
+        const scrollEl = this.scrollContainerRef.nativeElement;
+        scrollEl.scrollBy({
+            left: direction * this.collectionItemWidth,
+            behavior: "smooth",
         });
     }
 }

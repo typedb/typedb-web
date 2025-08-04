@@ -168,7 +168,7 @@ class HotTopicsSection extends SectionBase {
 
     static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
         return new HotTopicsSection(Object.assign(SectionBase.fromSanity(data, db), {
-            hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, true)) || [],
+            hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, false)) || [],
         }));
     }
 }

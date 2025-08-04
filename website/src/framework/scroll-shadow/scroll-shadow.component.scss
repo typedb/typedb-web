@@ -4,7 +4,6 @@
     display: block;
     position: relative;
     overflow: hidden;
-    --shadow-size: 20px;
 
     $colors: (
         "deep-purple": colors.$deep-purple,
@@ -30,6 +29,10 @@
             }
         }
     }
+
+    &.hidden-scrollbar .ss-container {
+        scrollbar-width: none;
+    }
 }
 
 .ss-container {
@@ -53,13 +56,13 @@
 .ss-left, .ss-right {
     top: 0;
     bottom: 0;
-    width: var(--shadow-size);
+    width: var(--scroll-shadow-size);
 }
 
 .ss-top, .ss-bottom {
     left: 0;
     right: 0;
-    height: var(--shadow-size);
+    height: var(--scroll-shadow-size);
 }
 
 .ss-left {
@@ -76,4 +79,44 @@
 
 .ss-bottom {
     bottom: 0;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+
+    backdrop-filter: blur(4px); // frosted glass effect
+    color: white;
+
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    &.left {
+        left: 8px;
+    }
+
+    &.right {
+        right: 8px;
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 }

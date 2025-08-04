@@ -1,5 +1,5 @@
 <td-heading-with-highlights level="h2" [value]="title"/>
-<td-scroll-shadow>
+<td-scroll-shadow [showControls]="true" class="hidden-scrollbar">
   <div #scrollContent class="td-cards narrow-section">
     @for (hotTopic of resources; track hotTopic) {
       <a class="td-card" [tdLink]="hotTopic.link" draggable="false">

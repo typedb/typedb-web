@@ -1,7 +1,17 @@
 <div #scrollContainer class="ss-container">
   <ng-content></ng-content>
 </div>
+
 <div #shadowLeft class="ss-left"></div>
 <div #shadowRight class="ss-right"></div>
 <div #shadowTop class="ss-top"></div>
 <div #shadowBottom class="ss-bottom"></div>
+
+@if (showControls) {
+  <div #scrollLeftButton class="scroll-button left" (click)="scrollBy(-1)">
+    <i class="fa-light fa-chevron-left"></i>
+  </div>
+  <div #scrollRightButton class="scroll-button right" (click)="scrollBy(1)">
+    <i class="fa-light fa-chevron-right"></i>
+  </div>
+}
