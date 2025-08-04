@@ -20,6 +20,7 @@ export class ConclusionPanelComponent {
     @Input() panel!: ConclusionPanel;
     sectionId = "conclusion-panel";
     @HostBinding("class.section") hasSectionClass = true;
+    @HostBinding("class.narrow-section") hasNarrowSectionClass = true;
 
     resourceLinkId(resourceLink: TextLink) {
         return sanitiseHtmlID(`${this.sectionId}_${resourceLink.text}`);

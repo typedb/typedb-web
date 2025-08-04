@@ -16,7 +16,7 @@ export class PricingTableComponent {
     @Input() caption?: string;
     @Input() panels!: PricingPanel[];
     @Input({ required: true }) sectionId!: string;
-    @HostBinding("class") clazz = "section";
+    @HostBinding("class") clazz = "narrow-section";
 
     linkId(panel: PricingPanel): string {
         return sanitiseHtmlID(`${this.sectionId}_${panel.title}_${panel.button.text}`);

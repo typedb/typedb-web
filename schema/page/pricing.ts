@@ -11,7 +11,7 @@ import { metaTagsField } from "./meta-tags";
 
 export interface SanityPricingPage extends SanityPage {
     introSection: SanityIntroSection;
-    providersSection: SanityTitleBodyPanelSection;
+    providersSection: SanityCoreSection;
     featureTableSection: SanityFeatureTableSection;
     contactSection: SanityCoreSection;
 }
@@ -23,14 +23,14 @@ export interface SanityIntroSection extends SanitySectionBase {
 
 export class PricingPage extends Page {
     readonly introSection: IntroSection;
-    readonly providersSection: TitleBodyPanelSection;
+    readonly providersSection: SectionBase;
     readonly featureTableSection: FeatureTableSection;
     readonly contactSection: SectionBase;
 
     constructor(data: SanityPricingPage, db: SanityDataset) {
         super(data, db);
         this.introSection = IntroSection.fromSanity(data.introSection, db);
-        this.providersSection = TitleBodyPanelSection.fromSanity(data.providersSection, db);
+        this.providersSection = SectionBase.fromSanity(data.providersSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
         this.contactSection = SectionBase.fromSanity(data.contactSection, db);
     }

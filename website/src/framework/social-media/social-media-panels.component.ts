@@ -18,6 +18,7 @@ export class SocialMediaPanelsComponent {
     @Input() socialMediaLinks!: SocialMediaLink[];
     @Input({ required: true }) sectionId!: string;
     @HostBinding("class.section") hasSectionClass = true;
+    @HostBinding("class.narrow-section") hasNarrowSectionClass = true;
 
     linkId(link: SocialMediaLink): string {
         return sanitiseHtmlID(`${this.sectionId}_${link.text}`)

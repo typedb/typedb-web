@@ -2,7 +2,7 @@
   @if (page$ | async; as page) {
     @if (page.introSection) {
       <td-section-core [section]="page.introSection"/>
-      <td-link-panels [panels]="page.introSection.panels" sectionId="key-points-section" />
+      <td-link-panels class="narrow-section" [panels]="page.introSection.panels" sectionId="key-points-section" />
     }
     @if (page.finalSection) {
       <td-section-core [section]="page.finalSection"/>

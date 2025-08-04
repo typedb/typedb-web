@@ -11,7 +11,6 @@
     @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
     position: relative;
     margin-top: 0;
-    max-width: 1140px;
 
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;

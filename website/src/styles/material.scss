@@ -118,7 +118,6 @@ $typedb-theme: mat.m2-define-dark-theme((
 @include mat.all-component-densities(-1);
 
 /* Material CSS overrides */
-/* Mostly copied from typedb-web */
 body {
     /* Button */
     @include mat.button-overrides((
@@ -127,7 +126,7 @@ body {
         text-label-text-weight: typography.$regular,
         text-label-text-color: colors.$grey,
         text-container-height: 32px,
-        text-container-shape: shapes.$border-radius,
+        text-container-shape: 20px,
         text-disabled-label-text-color: rgba(255, 255, 255, 0.25),
         text-disabled-state-layer-color: transparent,
 
@@ -138,7 +137,7 @@ body {
         filled-disabled-container-color: rgba(255, 255, 255, 0.12),
         filled-disabled-label-text-color: rgba(255, 255, 255, 0.25),
         filled-disabled-state-layer-color: transparent,
-        filled-container-shape: shapes.$border-radius,
+        filled-container-shape: 20px,
         filled-container-height: 40px,
         filled-state-layer-color: #fff,
         filled-ripple-color: rgba(255, 255, 255, 0.1),
@@ -154,7 +153,7 @@ body {
         outlined-disabled-state-layer-color: transparent,
         outlined-label-text-color: #{colors.$grey},
         outlined-outline-color: #{colors.$light-purple},
-        outlined-container-shape: #{shapes.$border-radius},
+        outlined-container-shape: 20px,
     ));
 
     .mdc-button[disabled] {
@@ -303,7 +302,7 @@ body {
         container-text-tracking: var(--body-letter-spacing),
         subscript-text-tracking: var(--body-letter-spacing),
 
-        outlined-container-shape: shapes.$border-radius,
+        outlined-container-shape: 22px,
         outlined-label-text-size: 14px,
         outlined-label-text-tracking: var(--body-letter-spacing),
         outlined-label-text-weight: typography.$regular,
@@ -456,7 +455,7 @@ body {
         --mat-fab-foreground-color: #{colors.$grey};
         --mat-fab-disabled-state-container-color: transparent;
         --mat-fab-disabled-state-foreground-color: #{colors.$secondary-mid-deep-grey};
-        --mdc-fab-container-shape: #{shapes.$border-radius};
+        --mdc-fab-container-shape: 50%;
         --mdc-fab-small-icon-size: 16px;
         border-radius: shapes.$border-radius;
 

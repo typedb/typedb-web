@@ -31,7 +31,7 @@
     display: flex;
     border-width: 1px;
     border-style: solid;
-    border-radius: var(--border-radius);
+    border-radius: 20px;
     justify-content: center;
     align-items: center;
     font-weight: var(--font-weight-regular);
@@ -42,7 +42,7 @@
     transition-duration: 100ms;
     transition-timing-function: ease;
     text-decoration: none !important; // overrides various styles that set an underline on anchors
-    padding: 6px 12px;
+    padding: 6px 18px;
     height: 40px;
 
     span {

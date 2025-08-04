@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { IntegrationsGridSection } from "typedb-web-schema";
 import { LinkDirective } from "../link/link.directive";
 
@@ -12,4 +12,5 @@ import { LinkDirective } from "../link/link.directive";
 })
 export class IntegrationsGridComponent {
     @Input({ required: true }) integrations!: IntegrationsGridSection;
+    @HostBinding("class.narrow-section") hasNarrowSectionClass = true;
 }

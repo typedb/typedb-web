@@ -8,12 +8,12 @@ table {
     background: none;
 }
 
-col:first-of-type {
-    width: 359px;
+col {
+    width: 23%;
+}
 
-    @media (max-width: media.$max-width-tablet) {
-        width: 220px;
-    }
+col:first-of-type {
+    width: 31%;
 
     @media (max-width: media.$max-width-mobile) {
         width: 0;
@@ -32,7 +32,7 @@ thead {
         position: sticky;
         border: none;
         top: 0;
-        background: var(--color-black-purple);
+        background: var(--body-background);
         z-index: 50;
         padding: 0;
         height: 121px;

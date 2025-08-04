@@ -17,7 +17,7 @@ import { RichTextComponent } from "../../text/rich-text.component";
 export class SimpleLinkPanelsComponent {
     @Input() panels!: TextLink[];
     @Input({ required: true }) sectionId!: string;
-    @HostBinding("class") clazz = "section";
+    @HostBinding("class") clazz = "section narrow-section";
 
     panelID(panel: TextLink) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.text)}`;

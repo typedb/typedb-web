@@ -3,6 +3,7 @@
 @use "media";
 @use "mixins";
 @use "shapes";
+@use "sass:color";
 
 @forward "base";
 @forward "fonts";
@@ -68,16 +69,20 @@ article > section, article > .section {
 
 td-section-core {
     .td-root {
-        width: 800px;
+        max-width: 800px;
     }
 }
 
 article > td-section-core:first-child .td-root {
-    width: 660px;
+    max-width: 660px;
 }
 
 .narrow-section {
-    max-width: 870px;
+    @media (min-width: media.$min-width-desktop) {
+        max-width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .nebula-section {

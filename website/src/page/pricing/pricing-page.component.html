@@ -4,12 +4,11 @@
     <td-pricing-table [caption]="page.introSection.panelsCaption" [panels]="page.introSection.panels" sectionId="intro"/>
 
     <td-section-core [section]="page.providersSection"/>
-    <td-content-panel [panel]="page.providersSection.panel" layout="text-content" panelId="providers-section" />
 
     <td-section-core class="td-features" [section]="page.featureTableSection"/>
     <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId"/>
 
     <td-section-core [section]="page.contactSection"/>
-    <td-contact-panel class="section card" [showPersonalDataNotice]="true" />
+    <td-contact-panel class="narrow-section card" [showPersonalDataNotice]="true" />
   }
 </article>

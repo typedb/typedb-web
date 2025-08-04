@@ -10,7 +10,6 @@
     gap: 40px;
     margin-top: 24px;
     height: 260px;
-    max-width: 1140px;
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 32px;
@@ -34,7 +33,7 @@
     gap: 16px;
     @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
 
-    &.hoverable:hover {
+    &:hover {
         @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
     }
 

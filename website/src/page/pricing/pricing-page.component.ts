@@ -16,7 +16,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FeatureTableComponent, SectionCoreComponent,
-        AsyncPipe, PricingTableComponent, ContactPanelComponent, ContentPanelComponent,
+        AsyncPipe, PricingTableComponent, ContactPanelComponent,
     ]
 })
 export class PricingPageComponent extends PageComponentBase<PricingPage> {
