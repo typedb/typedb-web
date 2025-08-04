@@ -61,9 +61,19 @@ section, .section {
 }
 
 article > section, article > .section {
-    &:first-of-type {
+    &:first-child {
         margin-top: var(--first-section-margin);
     }
+}
+
+td-section-core {
+    .td-root {
+        width: 800px;
+    }
+}
+
+article > td-section-core:first-child .td-root {
+    width: 660px;
 }
 
 .narrow-section {
@@ -213,7 +223,8 @@ table {
     @include mixins.light-source-gradient(colors.$white, colors.$secondary-extra-light-grey);
 
     td-section-core {
-        margin-top: 0;
+        display: block;
+        margin-top: 16px;
 
         h2, p {
             color: colors.$black;

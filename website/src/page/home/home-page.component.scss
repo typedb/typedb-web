@@ -52,5 +52,6 @@ td-organisation-logos {
 
 td-integrations-grid {
     display: block;
-    margin-top: var(--subtitle-margin-l);
+    max-width: 1140px;
+    margin: var(--subtitle-margin-l) auto 0;
 }

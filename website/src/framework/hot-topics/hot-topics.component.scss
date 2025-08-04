@@ -34,6 +34,8 @@ td-heading-with-highlights {
 .td-cards {
     display: flex;
     gap: 24px;
+    max-width: 1140px;
+    margin: 0 auto;
 
     img {
         user-drag: none;         /* Safari, Chrome */

@@ -117,13 +117,12 @@ const generateNavSection = (params: GenerateParams) => {
 };
 
 const generateCopyrightSection = () => {
-    // const copyrightYear = new Date().getFullYear();
-    // const copyrightLine1 = `© ${copyrightYear} TypeDB Ltd`;
-    // const copyrightLine2 = `TypeDB™ and TypeQL™ are trademarks of TypeDB Ltd`;
-    // const copyright = `<aside>${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
+    const copyrightYear = new Date().getFullYear();
+    const copyrightLine1 = `© ${copyrightYear} TypeDB Ltd`;
+    const copyrightLine2 = `TypeDB™ and TypeQL™ are trademarks of TypeDB Ltd`;
+    const copyright = `<aside class="text-muted">${copyrightLine1} <br /> ${copyrightLine2}</aside>`;
 
-    // return `<div class="td-footer-section td-footer-section-copyright">${copyright}</div>`;
-    return `<div class="td-footer-section td-footer-section-copyright"></div>`;
+    return `<div class="td-footer-section td-footer-section-copyright">${copyright}</div>`;
 };
 
 const getContactLink = (contactMedia: string, communityResources: Record<string, string>): Link | null => {

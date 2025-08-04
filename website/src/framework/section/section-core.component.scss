@@ -10,8 +10,6 @@
     // TODO: do we want centre alignment?
     margin: 0 auto;
     text-align: center;
-    max-width: 660px;
-    grid-template-columns: var(--graphic-area-width) minmax(auto, 660px);
     padding-bottom: 24px;
 
     @media (max-width: media.$max-width-tablet) {

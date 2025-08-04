@@ -137,6 +137,9 @@
   },
   "cli": {
     "schematicCollections": [
-    ]
+    ],
+    "cache": {
+      "enabled": false
+    }
   }
 }
