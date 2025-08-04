@@ -1,7 +1,7 @@
 <article>
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
+      <td-title-body-illustration-section level="h1" [data]="page.introSection" class="td-intro"/>
     }
     @if (page.hotTopicsSection) {
       <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>

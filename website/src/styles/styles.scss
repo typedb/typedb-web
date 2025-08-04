@@ -221,7 +221,7 @@ table {
 
 .td-inverted-colors-section {
     margin-top: var(--section-margin);
-    @include mixins.light-source-gradient(colors.$white, colors.$secondary-extra-light-grey);
+    @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
 
     td-section-core {
         display: block;

@@ -28,7 +28,7 @@ import { PageComponentBase } from "../page-component-base";
     imports: [
         AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
         TitleBodyIllustrationSectionComponent, SocialValidationSectionComponent, PolyglotComparisonComponent,
-        SimpleLinkPanelsComponent, LinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
+        SimpleLinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {

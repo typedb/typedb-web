@@ -25,8 +25,8 @@ export class ScrollShadowComponent implements AfterViewInit {
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowTop") shadowTopRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowBottom") shadowBottomRef!: ElementRef<HTMLDivElement>;
-    @ViewChild('scrollLeftButton') scrollLeftButtonRef!: ElementRef<HTMLDivElement>;
-    @ViewChild('scrollRightButton') scrollRightButtonRef!: ElementRef<HTMLDivElement>;
+    @ViewChild('scrollLeftButton') scrollLeftButtonRef?: ElementRef<HTMLDivElement>;
+    @ViewChild('scrollRightButton') scrollRightButtonRef?: ElementRef<HTMLDivElement>;
 
     @HostBinding("class") get classes() {
         return `${this.color}`;
@@ -59,8 +59,10 @@ export class ScrollShadowComponent implements AfterViewInit {
                 this.shadowBottomRef.nativeElement.style.opacity = `${bottomShadowOpacity}`;
 
                 // Scroll button visibility
-                this.scrollLeftButtonRef.nativeElement.style.opacity = scrollLeft > 0 ? '1' : '0';
-                this.scrollRightButtonRef.nativeElement.style.opacity = scrollLeft < maxScrollLeft ? '1' : '0';
+                if (this.scrollLeftButtonRef?.nativeElement && this.scrollRightButtonRef?.nativeElement) {
+                    this.scrollLeftButtonRef.nativeElement.style.opacity = scrollLeft > 0 ? '1' : '0';
+                    this.scrollRightButtonRef.nativeElement.style.opacity = scrollLeft < maxScrollLeft ? '1' : '0';
+                }
             };
 
             scrollEl.addEventListener("scroll", handleScroll, { passive: true });

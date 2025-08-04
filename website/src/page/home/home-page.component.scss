@@ -1,5 +1,6 @@
 @use "colors";
 @use "mixins";
+@use "media";
 
 //@keyframes flow {
 //    0% { background-position-x: 0; }
@@ -11,11 +12,42 @@
 //    animation: 8s linear 0s infinite flow;
 //}
 
-td-section-core.td-intro ::ng-deep .button-frameless {
-    color: var(--color-white);
+.td-intro ::ng-deep {
+    .button-frameless {
+        color: var(--color-white);
 
-    &:hover {
-        color: var(--color-secondary-light-grey);
+        &:hover {
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    .td-illustration {
+        flex: unset !important;
+    }
+
+    td-illustration {
+        padding: 12px;
+        box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
+        animation-play-state: running !important;
+        position: relative;
+        @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+    }
+
+    td-illustration td-code-snippet {
+        .cs-line-numbers, code {
+            font-size: 18px;
+            line-height: 28px;
+        }
+    }
+}
+
+@media (max-width: media.$max-width-tablet) {
+    .td-intro {
+        flex-direction: column;
+    }
+
+    .td-intro ::ng-deep td-illustration {
+        margin-top: 32px;
     }
 }
 

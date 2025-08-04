@@ -42,7 +42,7 @@
 
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
-    --section-max-width: 100vw;
+    --section-max-width: calc(100vw - 24px);
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
@@ -113,6 +113,7 @@
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
+        --section-max-width: var(--section-width);
 
         --section-margin: #{$section-margin-mobile};
         --first-section-margin: #{$first-section-margin-mobile};

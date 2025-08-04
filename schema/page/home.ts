@@ -12,7 +12,7 @@ import {
     titleFieldWithHighlights, bodyFieldRichText, resourcesField,
     keyPointsField, SanityVisibleToggle, titleBodyActionsFields,
 } from "../common-fields";
-import { contentTextTabSchemaName } from "../component/content-text-panel";
+import { illustrationFieldOptional } from "../illustration";
 import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
 import { ResourceLink } from "../resource/base";
@@ -50,7 +50,7 @@ type SectionKey = keyof typeof sections;
 type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
-    [sections.intro.id]: SanityCoreSection;
+    [sections.intro.id]: SanityTitleBodyIllustrationSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
     [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
     [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
@@ -107,7 +107,7 @@ export class HomePage extends Page {
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
-        this.introSection = data.introSection.isVisible ? SectionBase.fromSanity(data.introSection, db) : undefined;
+        this.introSection = data.introSection.isVisible ? TitleBodyIllustrationSection.fromSanity(data.introSection, db) : undefined;
         this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
         this.benefitsSection1 = data.benefitsSection1.isVisible
             ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection1, db)
@@ -252,13 +252,7 @@ const sectionSchemas = [
         }),
         bodyFieldRichText,
         actionsFieldOptional,
-        defineField({
-            name: "contentTabs",
-            title: "Content Tabs",
-            type: "array",
-            of: [{ type: contentTextTabSchemaName }],
-            validation: requiredRule,
-        }),
+        illustrationFieldOptional,
         isVisibleField,
     ]),
     sectionSchema("hotTopics", [

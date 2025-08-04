@@ -1,6 +1,4 @@
-@if ((media.isMobile$ | async)) {
-  <td-polyglot-snippet [snippet]="polyglotSnippet" [id]="polyglotSnippetID"/>
-} @else {
+@if ((media.isDesktop$ | async)) {
   <div class="td-polyglot-comparison">
     <div class="td-sticky-column">
       <h4 class="td-language-chip">{{ polyglotSnippet.snippets[0].tabText || polyglotSnippet.snippets[0].language }}</h4>
@@ -19,4 +17,6 @@
       }
     </div>
   </div>
+} @else {
+  <td-polyglot-snippet [snippet]="polyglotSnippet" [id]="polyglotSnippetID"/>
 }

@@ -3,12 +3,16 @@
 
 .td-polyglot-comparison {
     display: flex;
-    gap: 80px;
     align-items: flex-start;
+    justify-content: space-between;
     width: fit-content;
     margin: 0 auto;
     position: relative;
     min-height: 100vh;
+
+    @media (min-width: 1300px) {
+        gap: 80px;
+    }
 }
 
 .td-sticky-column {
