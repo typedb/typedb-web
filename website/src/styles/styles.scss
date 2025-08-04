@@ -73,10 +73,6 @@ td-section-core {
     }
 }
 
-article > td-section-core:first-child .td-root {
-    max-width: 660px;
-}
-
 .narrow-section {
     @media (min-width: media.$min-width-desktop) {
         max-width: 1140px;

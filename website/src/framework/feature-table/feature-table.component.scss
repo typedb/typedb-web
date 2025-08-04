@@ -1,6 +1,10 @@
 @use "media";
 @use "mixins";
 
+:host {
+    margin-top: 0;
+}
+
 table {
     table-layout: fixed;
     position: relative;
