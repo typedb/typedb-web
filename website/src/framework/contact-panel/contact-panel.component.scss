@@ -4,7 +4,7 @@
 
 :host {
     position: relative;
-    @include mixins.light-source-gradient(colors.$purple, colors.$deep-purple, 80px, 250px);
+    background: transparent;
 
     @media (min-width: media.$min-width-desktop) {
         width: 900px;
@@ -56,8 +56,8 @@ td-form-actions {
 
 aside {
     position: absolute;
-    bottom: 24px;
-    left: 24px;
+    bottom: 32px;
+    left: 32px;
 
     @media (max-width: media.$max-width-mobile) {
         bottom: 64px;

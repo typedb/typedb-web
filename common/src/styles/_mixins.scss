@@ -1,6 +1,7 @@
 @use "colors";
 @use "media";
 @use "shapes";
+@use "sass:color";
 
 @mixin section-width($offset) {
     & {
@@ -76,22 +77,32 @@
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
+    box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.25);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
             border-color: #81EDE4;
-            color: #81EDE4;
+            color: color.mix(colors.$green, colors.$white, 35%);
+            box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
         }
     }
 }
 
 @mixin button-water {
-    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+    @include border-gradient(#AC79EE, #03D0BF, var(--body-background));
 }
 
 @mixin button-fire {
-    @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+    @include border-gradient(#F96480, #FDD257, var(--body-background));
+
+    &:not(.td-button-disabled) {
+        &:hover,
+        &.container-hover {
+            box-shadow: 0 0 8px 4px rgba(colors.$red, 0.25);
+            color: #FDD257;
+        }
+    }
 }
 
 @mixin button-frameless {

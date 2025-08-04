@@ -8,7 +8,7 @@
     display: flex;
     gap: 40px;
     transition: background 100ms ease, border-color 100ms ease;
-    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    background: transparent;
     position: relative;
     margin-top: 0;
 

@@ -24,7 +24,6 @@ tr {
 }
 
 tr td {
-    background: var(--color-deep-purple);
     border: 1px solid var(--color-light-purple);
     border-width: 0 1px;
     text-align: start;
@@ -53,10 +52,6 @@ table:nth-of-type(3), td:nth-of-type(2) {
 table:nth-of-type(4), td:nth-of-type(3) {
     h3 {
         @include mixins.text-gradient(#F96480, #FDD257);
-    }
-
-    td-button ::ng-deep a {
-        @include mixins.border-gradient(#F96480, #FDD257, var(--color-deep-purple));
     }
 }
 
