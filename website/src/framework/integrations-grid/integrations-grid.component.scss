@@ -35,12 +35,24 @@
 .td-secondary-item {
     display: flex;
     flex-direction: column;
-    @include mixins.light-source-gradient(colors.$purple, colors.$deep-purple, 40px, 20px);
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     text-align: center;
+    @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
+
+    h3, h4, aside {
+        color: colors.$black;
+    }
+
+    h3, h4 {
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    aside {
+        font-weight: var(--font-weight-regular);
+    }
 
     &:hover {
-        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$purple, 40px, 20px);
+        @include mixins.light-source-gradient(colors.$white, colors.$grey);
     }
 }
 
@@ -52,8 +64,8 @@
 
     img {
         margin: 16px auto 0;
-        width: 80px;
-        height: 80px;
+        width: 96px;
+        height: 96px;
     }
 
     aside, h3 {
