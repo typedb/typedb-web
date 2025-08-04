@@ -60,6 +60,12 @@ section, .section {
     @include mixins.section-width($offset: 0px);
 }
 
+article > section, article > .section {
+    &:first-of-type {
+        margin-top: var(--first-section-margin);
+    }
+}
+
 .narrow-section {
     max-width: 870px;
 }
@@ -214,7 +220,7 @@ table {
         }
 
         h2 {
-            font-weight: var(--font-weight-bold);
+            font-weight: var(--font-weight-semi-bold);
         }
 
         p {

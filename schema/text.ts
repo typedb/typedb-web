@@ -17,7 +17,7 @@ export type SanityTitleAndBody = SanityTitleWithHighlights & Partial<SanityBodyT
 export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
 
 export class ParagraphWithHighlights {
-    readonly spans: { text: string; highlight: boolean }[];
+    readonly spans: { text: string; highlight: boolean, newline?: boolean }[];
 
     constructor(props: PropsOf<ParagraphWithHighlights>) {
         this.spans = props.spans;
@@ -27,15 +27,27 @@ export class ParagraphWithHighlights {
         if (!data?.length) {
             return new ParagraphWithHighlights({ spans: [] });
         }
-        console.assert(data.length === 1);
-        return new ParagraphWithHighlights({
-            spans: data[0].children
-                .filter((block) => block._type === "span")
-                .map((block) => ({
-                    text: block.text as string,
-                    highlight: (block.marks as string[]).includes("strong"),
-                })) || [],
+
+        const spans: { text: string; highlight: boolean; newline?: boolean }[] = [];
+
+        data.forEach((block, index) => {
+            if (!block.children) return;
+
+            const blockSpans = block.children
+                .filter((child) => child._type === "span")
+                .map((child) => ({
+                    text: child.text as string,
+                    highlight: (child.marks as string[]).includes("strong"),
+                }));
+
+            spans.push(...blockSpans);
+
+            if (index < data.length - 1) {
+                spans.push({ text: '', highlight: false, newline: true });
+            }
         });
+
+        return new ParagraphWithHighlights({ spans });
     }
 
     toPlainText(): string {

@@ -35,18 +35,16 @@
       <td-section-core [section]="page.communitySection"/>
       <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>
     }
-    <section class="td-benefits-4-to-6">
-      @if (page.benefitsSection4) {
-        <td-section-core [section]="page.benefitsSection4"/>
-        <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
-      }
-    </section>
+    @if (page.benefitsSection4) {
+      <td-section-core [section]="page.benefitsSection4"/>
+      <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
+    }
     @if (page.benefitsSection7) {
       <td-title-body-illustration-section [data]="page.benefitsSection7"/>
     }
     @if (page.driversSection) {
       <section class="td-drivers-section">
-        <td-section-core [section]="page.driversSection"/>
+        <td-section-core [noSectionClass]="true" [section]="page.driversSection"/>
         <td-integrations-grid [integrations]="page.driversSection"/>
       </section>
     }

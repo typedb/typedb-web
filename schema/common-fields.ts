@@ -50,10 +50,7 @@ export const titleFieldWithHighlights = defineField({
     description: "Text marked as 'bold' will instead be rendered in the highlight color",
     type: "array",
     of: [{ type: "block" }],
-    validation: (rule: ArrayRule<any>) =>
-        rule.custom((value, _context) => {
-            return value?.length > 1 ? "Must contain exactly one paragraph" : true;
-        }),
+    validation: requiredRule,
 });
 
 export function titleWithHighlightsPreview(value: any[]): string {

@@ -15,7 +15,6 @@
     }
 
     @media (max-width: media.$max-width-mobile) {
-        width: calc(100vw - 24px + $offset);
         padding: shapes.$section-padding-mobile;
     }
 }
