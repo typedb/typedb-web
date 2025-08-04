@@ -89,7 +89,6 @@ export {
     type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName,
 } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
-export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
 export {

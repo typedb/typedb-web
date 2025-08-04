@@ -1,9 +1,8 @@
 import "./styles.css";
 
 import {
-    AddUserIcon,
-    ArrowTopRightIcon,
-    BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
+    AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon,
+    DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
 } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
@@ -15,7 +14,7 @@ import { presentationTool } from "sanity/presentation";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
-    schemaTypes, topnavSchemaNames, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
+    schemaTypes, topnavSchemaNames, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
     splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
@@ -89,7 +88,6 @@ export default defineConfig({
                     s.documentTypeListItem(lectureSchemaName).title("Lectures"),
                     s.documentTypeListItem(paperSchemaName).title("Papers"),
                     s.documentTypeListItem(liveEventSchemaName).title("Live Events"),
-                    s.documentTypeListItem(solutionPageSchemaName).title("Solutions"),
                     s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
                 ])),
                 s.listItem().title("Structure").icon(ComponentIcon).child(s.list().title("Structure").items([

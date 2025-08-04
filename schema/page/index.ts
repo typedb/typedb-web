@@ -10,7 +10,6 @@ import { philosophyPageSchemas } from "./philosophy";
 import { pricingPageSchemas } from "./pricing";
 import { requestTechTalkPageSchema } from "./request-tech-talk";
 import { servicesPageSchemas } from "./services";
-import { solutionPageSchemas } from "./solution";
 import { startupProgramPageSchemas } from "./startup-program";
 import { supportPageSchemas } from "./support";
 import { lecturesPageSchemas } from "./lectures";
@@ -22,6 +21,5 @@ export const pageSchemas: any[] = [
     ...basePageSchemas, ...blogSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
     ...genericPageSchemas, ...homePageSchemas, ...learnPageSchemas, ...lecturesPageSchemas, legalDocumentSchema,
     ...metaTagsSchemas, papersPageSchema, ...philosophyPageSchemas, ...pricingPageSchemas, requestTechTalkPageSchema,
-    ...servicesPageSchemas, ...solutionPageSchemas, ...startupProgramPageSchemas, ...supportPageSchemas,
-    ...useCasePageSchemas,
+    ...servicesPageSchemas, ...startupProgramPageSchemas, ...supportPageSchemas, ...useCasePageSchemas,
 ];

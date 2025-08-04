@@ -1,63 +1,61 @@
 <article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      @if (page.introSection) {
-        <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
-      }
-      @if (page.hotTopicsSection) {
-        <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>
-      }
-      @if (page.benefitsSection1) {
-        <td-title-body-illustration-section [data]="page.benefitsSection1"/>
-      }
-      @if (page.benefitsSection2) {
-        <td-title-body-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
-      }
-      @if (page.socialValidationSection) {
-        <td-social-validation-section [data]="page.socialValidationSection"/>
-      }
-      @if (page.queryLanguageComparisonSection) {
-        <section class="td-inverted-colors-section">
-          <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
-          <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
-        </section>
-      }
-      @if (page.useCasesSection) {
-        <td-section-core [section]="page.useCasesSection"/>
-        <td-simple-link-panels [panels]="page.useCasesSection.panels" [sectionId]="page.useCasesSection.sectionId" />
-      }
-      @if (page.benefitsSection3) {
-        <td-title-body-illustration-section [data]="page.benefitsSection3"/>
-      }
-      @if (page.studioSection) {
-        <td-title-body-illustration-section [data]="page.studioSection" flexDirection="column"/>
-      }
-      @if (page.communitySection) {
-        <td-section-core [section]="page.communitySection"/>
-        <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>
-      }
-      <section class="td-benefits-4-to-6">
-        @if (page.benefitsSection4) {
-          <td-section-core [section]="page.benefitsSection4"/>
-          <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
-        }
+    @if (page.introSection) {
+      <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
+    }
+    @if (page.hotTopicsSection) {
+      <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>
+    }
+    @if (page.benefitsSection1) {
+      <td-title-body-illustration-section [data]="page.benefitsSection1"/>
+    }
+    @if (page.benefitsSection2) {
+      <td-title-body-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
+    }
+    @if (page.socialValidationSection) {
+      <td-social-validation-section [data]="page.socialValidationSection"/>
+    }
+    @if (page.queryLanguageComparisonSection) {
+      <section class="td-inverted-colors-section">
+        <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
+        <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
       </section>
-      @if (page.benefitsSection7) {
-        <td-title-body-illustration-section [data]="page.benefitsSection7"/>
+    }
+    @if (page.useCasesSection) {
+      <td-section-core [section]="page.useCasesSection"/>
+      <td-simple-link-panels [panels]="page.useCasesSection.panels" [sectionId]="page.useCasesSection.sectionId" />
+    }
+    @if (page.benefitsSection3) {
+      <td-title-body-illustration-section [data]="page.benefitsSection3"/>
+    }
+    @if (page.studioSection) {
+      <td-title-body-illustration-section [data]="page.studioSection" flexDirection="column"/>
+    }
+    @if (page.communitySection) {
+      <td-section-core [section]="page.communitySection"/>
+      <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>
+    }
+    <section class="td-benefits-4-to-6">
+      @if (page.benefitsSection4) {
+        <td-section-core [section]="page.benefitsSection4"/>
+        <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
       }
-      @if (page.driversSection) {
-        <section class="td-drivers-section">
-          <td-section-core [section]="page.driversSection"/>
-          <td-integrations-grid [integrations]="page.driversSection"/>
-        </section>
-      }
-      @if (page.resourcesSection) {
-        <td-hot-topics appearance="resources" [title]="page.resourcesSection.title" [resources]="page.resourcesSection.resources"/>
-      }
-      @if (page.conclusionSection) {
-        <td-section-core [section]="page.conclusionSection"/>
-        <td-conclusion-panel [panel]="page.conclusionSection.panel" />
-      }
-    </div>
+    </section>
+    @if (page.benefitsSection7) {
+      <td-title-body-illustration-section [data]="page.benefitsSection7"/>
+    }
+    @if (page.driversSection) {
+      <section class="td-drivers-section">
+        <td-section-core [section]="page.driversSection"/>
+        <td-integrations-grid [integrations]="page.driversSection"/>
+      </section>
+    }
+    @if (page.resourcesSection) {
+      <td-hot-topics appearance="resources" [title]="page.resourcesSection.title" [resources]="page.resourcesSection.resources"/>
+    }
+    @if (page.conclusionSection) {
+      <td-section-core [section]="page.conclusionSection"/>
+      <td-conclusion-panel [panel]="page.conclusionSection.panel" />
+    }
   }
 </article>

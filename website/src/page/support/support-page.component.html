@@ -1,22 +1,20 @@
-<article nebula="deploy" planet="green">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      @if (page.introSection) {
-        <td-section-core [section]="page.introSection"/>
-        <td-link-panels [panels]="page.introSection.panels" [sectionId]="page.introSection.sectionId"/>
-      }
-      @if (page.featureTableSection) {
-        <td-section-core [section]="page.featureTableSection"/>
-        <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId"/>
-      }
-      @if (page.testimonialsSection) {
-        <td-section-core [section]="page.testimonialsSection"/>
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"/>
-      }
-      @if (page.contactSection) {
-        <td-section-core [section]="page.contactSection"/>
-        <td-contact-panel class="section card" [showPersonalDataNotice]="true"/>
-      }
-    </div>
+    @if (page.introSection) {
+      <td-section-core [section]="page.introSection"/>
+      <td-link-panels [panels]="page.introSection.panels" [sectionId]="page.introSection.sectionId"/>
+    }
+    @if (page.featureTableSection) {
+      <td-section-core [section]="page.featureTableSection"/>
+      <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId"/>
+    }
+    @if (page.testimonialsSection) {
+      <td-section-core [section]="page.testimonialsSection"/>
+      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"/>
+    }
+    @if (page.contactSection) {
+      <td-section-core [section]="page.contactSection"/>
+      <td-contact-panel class="section card" [showPersonalDataNotice]="true"/>
+    }
   }
 </article>

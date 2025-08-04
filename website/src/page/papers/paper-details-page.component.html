@@ -1,28 +1,26 @@
-<article nebula="studio" planet="pink">
+<article>
   @if (page$ | async; as paper) {
-    <div class="article-content">
-      <section class="nebula-section">
-        <a tdLink="/papers">
-          <td-heading-with-highlights [value]="allPapersHeading" class="bp-site-title" level="h2" />
-        </a>
-      </section>
-      <div class="resource-section">
-        <section>
-          <td-heading-with-highlights class="narrow-section" [value]="paper.title" level="h1" />
-          @if (actions$ | async; as actions) {
-            <td-actions [actions]="actions" class="wd-actions" sectionId="main" />
-          }
-          <div class="section subsection-margin card wd-form-card">
-            <td-aspect-ratio ratio="17:22">
-              <img [src]="paper.portraitImageURL" class="wd-img" [alt]="paper.title" />
-            </td-aspect-ratio>
-            <td-rich-text class="wd-description" [value]="paper.description" />
-          </div>
-        </section>
-        @if (paper.furtherLearning) {
-          <td-further-learning [value]="paper.furtherLearning" />
+    <section class="nebula-section">
+      <a tdLink="/papers">
+        <td-heading-with-highlights [value]="allPapersHeading" class="bp-site-title" level="h2" />
+      </a>
+    </section>
+    <div class="resource-section">
+      <section>
+        <td-heading-with-highlights class="narrow-section" [value]="paper.title" level="h1" />
+        @if (actions$ | async; as actions) {
+          <td-actions [actions]="actions" class="wd-actions" sectionId="main" />
         }
-      </div>
+        <div class="section subsection-margin card wd-form-card">
+          <td-aspect-ratio ratio="17:22">
+            <img [src]="paper.portraitImageURL" class="wd-img" [alt]="paper.title" />
+          </td-aspect-ratio>
+          <td-rich-text class="wd-description" [value]="paper.description" />
+        </div>
+      </section>
+      @if (paper.furtherLearning) {
+        <td-further-learning [value]="paper.furtherLearning" />
+      }
     </div>
   }
 </article>

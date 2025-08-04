@@ -40,16 +40,13 @@ $custom-typography: mat.m2-define-typography-config(
 
 article {
     min-height: 1080px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 144px;
+    position: relative;
 
-    > .article-content {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 144px;
-        position: relative;
-
-        @media (max-width: media.$max-width-mobile) {
-            padding-bottom: 24px;
-        }
+    @media (max-width: media.$max-width-mobile) {
+        padding-bottom: 24px;
     }
 }
 
@@ -182,7 +179,7 @@ table {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: var(--section-margin);
+    margin-top: var(--first-section-margin);
 }
 
 .section-margin {

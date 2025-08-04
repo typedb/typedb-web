@@ -1,8 +1,6 @@
 <article>
   @if (document$ | async; as doc) {
-    <section class="article-content">
-      <td-heading-with-highlights [value]="doc.title" level="h1" />
-      <td-rich-text [value]="doc.contentHtml" />
-    </section>
+    <td-heading-with-highlights [value]="doc.title" level="h1" />
+    <td-rich-text [value]="doc.contentHtml" />
   }
 </article>

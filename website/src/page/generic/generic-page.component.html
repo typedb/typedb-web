@@ -1,16 +1,14 @@
-<article nebula="cloud">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      <td-title-body-actions-section
-        [isIntroSection]="true" sectionId="intro"
-        [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
-        />
-      @for (section of page.coreSections; track section; let idx = $index) {
-        <td-section-core [section]="section" />
-        <td-content-panel [panel]="section.panel" [panelId]="'core-section-' + idx" />
-      }
-      <td-section-core [section]="page.finalSection" />
-      <td-conclusion-panel [panel]="page.finalSection.panel" />
-    </div>
+    <td-title-body-actions-section
+      [isIntroSection]="true" sectionId="intro"
+      [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
+      />
+    @for (section of page.coreSections; track section; let idx = $index) {
+      <td-section-core [section]="section" />
+      <td-content-panel [panel]="section.panel" [panelId]="'core-section-' + idx" />
+    }
+    <td-section-core [section]="page.finalSection" />
+    <td-conclusion-panel [panel]="page.finalSection.panel" />
   }
 </article>

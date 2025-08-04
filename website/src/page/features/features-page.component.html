@@ -1,19 +1,17 @@
-<article nebula="features" planet="yellow_green">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      <td-title-body-actions-section
-        [isIntroSection]="true" sectionId="intro"
-        [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
+    <td-title-body-actions-section
+      [isIntroSection]="true" sectionId="intro"
+      [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
+    />
+    @for (section of page.featureSections; track section; let idx = $index) {
+      <td-section-core [section]="section"/>
+      <td-feature-grid
+        [layout]="section.featureGridLayout" [featureRows]="section.features" [illustration]="section.illustration"
+        [sectionId]="section.sectionId"
       />
-      @for (section of page.featureSections; track section; let idx = $index) {
-        <td-section-core [section]="section"/>
-        <td-feature-grid
-          [layout]="section.featureGridLayout" [featureRows]="section.features" [illustration]="section.illustration"
-          [sectionId]="section.sectionId"
-        />
-      }
-      <td-section-core [section]="page.finalSection"/>
-      <td-conclusion-panel [panel]="page.finalSection.panel"/>
-    </div>
+    }
+    <td-section-core [section]="page.finalSection"/>
+    <td-conclusion-panel [panel]="page.finalSection.panel"/>
   }
 </article>
