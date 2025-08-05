@@ -83,18 +83,18 @@ td-organisation-logos {
     }
 }
 
-.td-benefits-5-and-6 {
+td-key-point-panels-2x2 ::ng-deep {
     display: flex;
 
     td-section-core {
         margin-top: 0;
     }
 
-    td-section-core ::ng-deep .td-root {
+    td-section-core .td-root {
         text-align: start;
     }
 
-    td-section-core ::ng-deep td-actions {
+    td-section-core td-actions {
         justify-content: flex-start;
 
         td-button a {
