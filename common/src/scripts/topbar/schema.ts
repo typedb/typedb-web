@@ -14,7 +14,8 @@ export const topbarQuery = `
       link->${linkProps}
     },
     secondaryItems[]{ title, link->${linkProps}},
-    cta{ text, style, link->${linkProps} }
+    cta{ text, style, link->${linkProps} },
+    githubStarsCounter
   },
   "siteBanner": *[(_type match 'siteBanner')][0]{
     isEnabled,
@@ -30,6 +31,7 @@ interface Topnav extends SanityDocument {
     primaryItems: NavItem[];
     secondaryItems: NavItem[];
     cta: Button;
+    githubStarsCounter: string;
 }
 
 export interface NavItem {

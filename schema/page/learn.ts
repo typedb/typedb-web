@@ -1,11 +1,10 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { collapsibleOptions,  requiredRule } from "../common-fields";
-import { resourceSectionSchemaName } from "../component/page-section";
+import { resourceSectionSchemaName, SanitySectionCore, SectionCore, sectionCoreSchemaName } from "../component/section";
 import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
@@ -14,19 +13,19 @@ const resourceSections = "resourceSections";
 const finalSection = "finalSection";
 
 export interface SanityResourceHub extends SanityPage {
-    [introSection]: SanityTitleBodyActions;
+    [introSection]: SanitySectionCore;
     [resourceSections]: SanityResourceSection[];
     [finalSection]: SanityConclusionSection;
 }
 
 export class ResourceHub extends Page {
-    readonly [introSection]: TitleBodyActions;
+    readonly [introSection]: SectionCore;
     readonly [resourceSections]: ResourceSection[];
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityResourceHub, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.resourceSections = data.resourceSections.map((x) => ResourceSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -40,7 +39,7 @@ const resourceHubSchemaBase = defineType({
         defineField({
             name: introSection,
             title: "Intro Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

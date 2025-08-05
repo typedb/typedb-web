@@ -1,29 +1,28 @@
 
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
-import { Lecture, LinkPanelWithIcon, ResourceLink } from "typedb-web-schema";
+import { Lecture, LinkPanel, ResourceLink } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
-import { sanitiseHtmlID } from "../util";
 
 @Component({
     selector: "td-link-panels",
     templateUrl: "link-panels.component.html",
     styleUrls: ["link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class LinkPanelsComponent {
-    @Input() panels!: LinkPanelWithIcon[];
+    @Input() panels!: LinkPanel[];
     @Input({ required: true }) sectionId!: string;
     @HostBinding("class") clazz = "section";
 
-    panelID(panel: LinkPanelWithIcon) {
+    panelID(panel: LinkPanel) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
     }
 }
@@ -33,8 +32,7 @@ export class LinkPanelsComponent {
     templateUrl: "resource-panels.component.html",
     styleUrls: ["resource-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class ResourcePanelsComponent {
     @Input() resources!: ResourceLink[];
@@ -51,8 +49,7 @@ export class ResourcePanelsComponent {
     templateUrl: "link-panels-cols-2.component.html",
     styleUrls: ["link-panels-cols-2.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, RichTextComponent],
+    imports: [LinkDirective, RichTextComponent]
 })
 export class LinkPanelsCols2Component {
     @Input() resources!: ResourceLink[];
@@ -68,12 +65,12 @@ export class LinkPanelsCols2Component {
     templateUrl: "lecture-panels.component.html",
     styleUrls: ["lecture-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe],
+    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe]
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];
     @Input({ required: true }) sectionId!: string;
+    @HostBinding("class") clazz = "section narrow-section";
 
     private _hoveredPanels = new Map<Lecture, boolean>();
 

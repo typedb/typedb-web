@@ -6,17 +6,19 @@
 :root {
     /* colors */
     --color-white: #{colors.$white};
-    --color-dark-white: #{colors.$dark-white};
-    --color-darker-white: #{colors.$darker-white};
+    --color-grey: #{colors.$grey};
     --color-light-purple: #{colors.$light-purple};
     --color-purple: #{colors.$purple};
     --color-deep-purple: #{colors.$deep-purple};
     --color-black-purple: #{colors.$black-purple};
+    --color-black: #{colors.$black};
     --color-green: #{colors.$green};
     --color-red: #{colors.$red};
 
+    --color-secondary-extra-light-grey: #{colors.$secondary-extra-light-grey};
     --color-secondary-light-grey: #{colors.$secondary-light-grey};
     --color-secondary-grey: #{colors.$secondary-grey};
+    --color-secondary-mid-deep-grey: #{colors.$secondary-mid-deep-grey};
     --color-secondary-deep-grey: #{colors.$secondary-deep-grey};
     --color-secondary-purple: #{colors.$secondary-purple};
     --color-secondary-yellow: #{colors.$secondary-yellow};
@@ -25,8 +27,8 @@
 
     --content-border-color: var(--color-light-purple);
 
-    --body-background: var(--color-black-purple);
-    --body-font-color: var(--color-dark-white);
+    --body-background: var(--color-black);
+    --body-font-color: var(--color-white);
     --body-heading-color: var(--color-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);
@@ -40,16 +42,17 @@
 
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
-    --section-max-width: calc(100vw - var(--section-page-margin) * 2);
+    --section-max-width: calc(100vw - 24px);
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
-    --first-section-margin: #{$first-section-margin};
     --section-margin: #{$section-margin};
+    --first-section-margin: #{$first-section-margin};
     --subsection-margin: #{$subsection-margin};
     --subtitle-margin-l: #{$subtitle-margin-l};
     --subtitle-margin: #{$subtitle-margin};
     --blog-landing-strip-margin: #{$blog-landing-strip-margin};
+    --section-padding: #{$section-padding};
 
     --text-margin-s: #{$text-margin-s};
 
@@ -68,8 +71,8 @@
 
     --font-size-base: var(--font-size-p2);
     --body-letter-spacing: 0.02em;
-    --default-font-family: #{typography.$font-family-default};
-    --code-font-family: #{typography.$font-family-code};
+    --font-family-default: #{typography.$font-family-default};
+    --font-family-code: #{typography.$font-family-code};
 
     --font-size-h1: #{typography.$h1};
     --line-height-h1: #{typography.$height-h1};
@@ -94,9 +97,13 @@
 
     --card-padding: #{$card-padding};
 
+    --scroll-shadow-size: 20px;
+
     @media (max-width: media.$max-width-tablet) {
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};
+        --first-section-margin: #{$first-section-margin-tablet};
+        --section-padding: #{$section-padding-tablet};
 
         --subsection-margin: #{$subsection-margin-tablet};
 
@@ -109,13 +116,15 @@
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
+        --section-max-width: var(--section-width);
 
-        --first-section-margin: #{$first-section-margin-mobile};
         --section-margin: #{$section-margin-mobile};
+        --first-section-margin: #{$first-section-margin-mobile};
         --subsection-margin: #{$subsection-margin-mobile};
         --subtitle-margin-l: #{$subtitle-margin-mobile};
         --subtitle-margin: #{$subtitle-margin-mobile};
         --blog-landing-strip-margin: #{$blog-landing-strip-margin-mobile};
+        --section-padding: #{$section-padding-mobile};
 
         --topbar-height: #{$topbar-height-mobile};
         --banner-height: #{$banner-height-mobile};

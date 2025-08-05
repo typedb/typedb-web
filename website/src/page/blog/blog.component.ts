@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
@@ -13,7 +12,6 @@ import {
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
 
 import { LinkDirective } from "../../framework/link/link.directive";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import {
     HeadingWithHighlightsComponent,
     ParagraphWithHighlightsComponent,
@@ -28,11 +26,10 @@ import { BlogRowComponent } from "./blog-row.component";
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
+        LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
         BlogNavbarComponent, BlogRowComponent, AsyncPipe
-    ],
+    ]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
@@ -40,8 +37,7 @@ export class BlogComponent implements OnInit {
 
     constructor(
         private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
-        private metaTags: MetaTagsService, private _idleMonitor: IdleMonitorService, destroyRef: DestroyRef,
-        topbarMenuService: TopbarMenuService,
+        private metaTags: MetaTagsService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -94,9 +90,6 @@ export class BlogComponent implements OnInit {
                 this.router.navigate(["404"], { skipLocationChange: true });
                 return;
             }
-            setTimeout(() => {
-                this._idleMonitor.fireManualMyAppReadyEvent();
-            }, 60000);
         });
 
         combineLatest([

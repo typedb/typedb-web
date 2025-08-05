@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: block;
@@ -124,7 +124,7 @@
 
     table {
         width: 100%;
-        @include content-table;
+        @include mixins.content-table;
     }
 
     a {

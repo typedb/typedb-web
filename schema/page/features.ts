@@ -1,17 +1,9 @@
 import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import {
-    bodyFieldRichText,
-    collapsibleOptions,
-    actionsFieldOptional,
-
-    titleFieldWithHighlights,
-} from "../common-fields";
+import { collapsibleOptions } from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
-import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleBodyActions, TitleBodyActions } from "../text";
-import { PropsOf } from "../util";
+import { sectionCoreSchemaName, SanitySectionCore, SectionCore } from "../component/section";
+import { SanityDataset } from "../sanity-core";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
@@ -20,58 +12,25 @@ const featureSections = "featureSections";
 const finalSection = "finalSection";
 
 export interface SanityFeaturesPage extends SanityPage {
-    [introSection]: SanityIntroSection;
+    [introSection]: SanitySectionCore;
     [featureSections]: SanityFeatureGridSection[];
     [finalSection]: SanityConclusionSection;
 }
 
-interface SanityIntroSection extends SanityTitleBodyActions {
-    userLogos: SanityReference<SanityOrganisation>[];
-}
-
 export class FeaturesPage extends Page {
-    readonly [introSection]: IntroSection;
+    readonly [introSection]: SectionCore;
     readonly [featureSections]: FeatureGridSection[];
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = IntroSection.fromSanityIntroSection(data.introSection, db);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.featureSections = data.featureSections.map((x) => FeatureGridSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
 }
 
-class IntroSection extends TitleBodyActions {
-    readonly userLogos: Organisation[];
-
-    constructor(props: PropsOf<IntroSection>) {
-        super(props);
-        this.userLogos = props.userLogos;
-    }
-
-    static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
-        return Object.assign(TitleBodyActions.fromSanityTitleBodyActions(data, db), {
-            userLogos: data.userLogos.map((x) => new Organisation(db.resolveRef(x), db)),
-        });
-    }
-}
-
 export const featuresPageSchemaName = "featuresPage";
-
-const introSectionSchemaName = `${featuresPageSchemaName}_introSection`;
-
-const introSectionSchema = defineType({
-    name: introSectionSchemaName,
-    title: "Intro Section",
-    type: "object",
-    fields: [
-        titleFieldWithHighlights,
-        bodyFieldRichText,
-        actionsFieldOptional,
-        Object.assign({}, organisationLogosField, { name: "userLogos", title: "User Logos" }) as any,
-    ],
-});
 
 const featuresPageSchema = defineType({
     name: featuresPageSchemaName,
@@ -82,7 +41,7 @@ const featuresPageSchema = defineType({
         defineField({
             name: introSection,
             title: "Intro Section",
-            type: introSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
         }),
         defineField({
@@ -101,4 +60,4 @@ const featuresPageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Features Page" }) },
 });
 
-export const featuresPageSchemas = [featuresPageSchema, introSectionSchema];
+export const featuresPageSchemas = [featuresPageSchema];

@@ -15,6 +15,6 @@ export class ImageBuilder {
     });
 
     image(source: string) {
-        return this.imageBuilder.image(source).auto("format").fit("max").dpr(window.devicePixelRatio);
+        return this.imageBuilder.image(source).auto("format").fit("max").dpr(typeof window !== "undefined" ? window.devicePixelRatio : 1);
     }
 }

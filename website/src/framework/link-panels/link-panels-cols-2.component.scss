@@ -4,6 +4,8 @@
     display: flex;
     flex-flow: row wrap;
     gap: 40px;
+    margin: 40px auto 0;
+    max-width: 1240px;
 
     @media (max-width: media.$max-width-tablet) {
         gap: 32px;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ActionButton, EventBase, Link, LinkButton } from "typedb-web-schema";
@@ -11,23 +11,22 @@ import { DialogCloseButtonComponent } from "../close-button/dialog-close-button.
     templateUrl: "./add-to-calendar-dialog.component.html",
     styleUrls: ["./add-to-calendar-dialog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ActionsComponent, MatProgressBarModule],
+    imports: [MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ActionsComponent, MatProgressBarModule]
 })
 export class AddToCalendarDialogComponent implements OnInit {
     actions!: ActionButton[];
     isLoading = false;
+    readonly data = inject<{ event: EventBase }>(MAT_DIALOG_DATA);
 
     constructor(
         private calendarService: CalendarService,
-        @Inject(MAT_DIALOG_DATA) public data: { event: EventBase },
         private dialogRef: MatDialogRef<AddToCalendarDialogComponent>,
     ) {}
 
     ngOnInit() {
         this.actions = [
             new LinkButton({
-                style: "secondary",
+                style: "greenHollow",
                 text: "Google",
                 comingSoon: false,
                 link: new Link({
@@ -37,7 +36,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                 }),
             }),
             new LinkButton({
-                style: "secondary",
+                style: "greenHollow",
                 text: "Apple / Outlook",
                 comingSoon: false,
                 download: { filename: `${this.data.event.slug}.ics` },

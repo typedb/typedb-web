@@ -4,15 +4,14 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular
 import { blogCategories, blogCategoryList, Link } from "typedb-web-schema";
 
 import { LinkDirective } from "../../framework/link/link.directive";
-import { ScrollShadowComponent } from "../../framework/scroll-shadow/scroll-shadow.component";
+import { ScrollPaneComponent } from "../../framework/scroll-pane/scroll-pane.component";
 
 @Component({
     selector: "td-blog-navbar, [td-blog-navbar]",
     templateUrl: "./blog-navbar.component.html",
     styleUrls: ["./blog-navbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ScrollShadowComponent, LinkDirective],
+    imports: [ScrollPaneComponent, LinkDirective]
 })
 export class BlogNavbarComponent {
     @Input() variant!: "listPage" | "postPage";

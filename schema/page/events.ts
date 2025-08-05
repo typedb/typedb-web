@@ -1,6 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 
 import { collapsibleOptions, isVisibleField, requiredRule } from "../common-fields";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { LiveEvent } from "../resource/live-event";
 import { liveEventSchemaName, SanityLiveEvent } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -14,19 +15,19 @@ interface SanityEventsListSection {
 }
 
 export interface SanityEventsPage extends SanityPage {
-    introSection: SanityTitleAndBody;
+    introSection: SanitySectionCore;
     featuredEvent?: SanityReference<SanityLiveEvent>;
     eventsList: SanityEventsListSection;
 }
 
 export class EventsPage extends Page {
-    readonly introSection: TitleAndBody;
+    readonly introSection: SectionCore;
     readonly featuredEvent?: LiveEvent;
     readonly eventsList?: LiveEvent[];
 
     constructor(data: SanityEventsPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.featuredEvent = data.featuredEvent && LiveEvent.fromSanity(db.resolveRef(data.featuredEvent), db);
         this.eventsList = data.eventsList.isVisible
             ? data.eventsList.events.map((x) => LiveEvent.fromSanity(db.resolveRef(x), db))

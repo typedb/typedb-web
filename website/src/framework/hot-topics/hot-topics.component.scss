@@ -1,0 +1,99 @@
+@use "colors";
+@use "media";
+@use "mixins";
+@use "shapes";
+
+:host {
+    overflow-x: visible;
+    display: flex;
+    gap: 32px;
+    --scroll-shadow-size: 360px;
+
+    &.resources {
+        flex-direction: column;
+
+        td-heading-with-highlights {
+            margin: 0 auto 24px;
+        }
+    }
+
+    &.news td-heading-with-highlights {
+        @media (min-width: media.$min-width-desktop) {
+            flex: 0 0 400px;
+        }
+
+        @media (max-width: media.$max-width-tablet) {
+            margin-bottom: 24px;
+        }
+    }
+
+    @media (max-width: media.$max-width-tablet) {
+        flex-direction: column;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        --scroll-shadow-size: 100px;
+    }
+}
+
+td-heading-with-highlights {
+    display: block;
+}
+
+.td-cards {
+    display: flex;
+    gap: 24px;
+    margin: 0 auto;
+
+    img {
+        user-drag: none;         /* Safari, Chrome */
+        -webkit-user-drag: none; /* Old Safari */
+        pointer-events: none;    /* Optional: prevents interaction during drag */
+    }
+}
+
+.td-card {
+    @include mixins.card-appearance;
+    flex: 0 0 360px;
+    height: 512px;
+    display: flex;
+    flex-direction: column;
+    transition: background 100ms ease, border-color 100ms ease;
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    position: relative;
+
+    &:hover {
+        .td-card-overlay {
+            opacity: 0.04;
+        }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-basis: 280px;
+        height: 454px;
+    }
+}
+
+.td-hero {
+    width: 100%;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-bottom: 1px solid var(--content-border-color);
+}
+
+.td-card-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius);
+    z-index: 1;
+    pointer-events: none;
+    background: #BBF;
+    opacity: 0;
+    transition: opacity 100ms ease;
+}
+
+.td-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

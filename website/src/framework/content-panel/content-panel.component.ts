@@ -13,8 +13,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     templateUrl: "content-panel.component.html",
     styleUrls: ["content-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgClass, IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective],
+    imports: [IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective]
 })
 export class ContentPanelComponent {
     @Input() hidden?: boolean;

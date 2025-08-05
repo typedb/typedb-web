@@ -1,9 +1,109 @@
-@import "mixins";
+@use "colors";
+@use "mixins";
+@use "media";
 
-td-home-page-technicolor-block.td-intro ::ng-deep td-heading-with-highlights h1 {
-    @include color-gradient(#AC79EE, #03D0BF);
+//@keyframes flow {
+//    0% { background-position-x: 0; }
+//    100% { background-position-x: 680px; }
+//}
+//
+//td-section-core.td-intro ::ng-deep td-heading-with-highlights h1 {
+//    @include mixins.text-gradient(#03D0BF, #AC79EE);
+//    animation: 8s linear 0s infinite flow;
+//}
+
+.td-intro ::ng-deep {
+    flex-direction: column;
+    text-align: center;
+    width: 800px;
+
+    td-actions {
+        justify-content: center;
+    }
+
+    .button-frameless {
+        color: var(--color-white);
+
+        &:hover {
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    .td-illustration {
+        @media (max-width: media.$max-width-mobile) {
+            transform: scale(0.86);
+        }
+    }
+
+    td-illustration {
+        flex: unset !important;
+        box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
+        padding: 12px;
+        animation-play-state: running !important;
+        position: relative;
+        @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+
+        @media (min-width: media.$min-width-tablet) {
+            margin-top: 32px;
+
+            td-code-snippet {
+                .cs-line-numbers, code {
+                    font-size: 18px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+
+    td-illustration td-code-snippet {
+        text-align: start;
+    }
 }
 
-td-home-page-technicolor-block.td-intro ::ng-deep td-button a {
-    @include border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+@media (max-width: media.$max-width-mobile) {
+    .td-intro .td-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+td-link-panels {
+    margin-top: var(--section-margin);
+}
+
+td-organisation-logos {
+    margin-top: var(--section-margin);
+}
+
+.td-drivers-section {
+    td-section-core {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+td-key-point-panels-2x2 ::ng-deep {
+    display: flex;
+
+    td-section-core {
+        margin-top: 0;
+    }
+
+    td-section-core .td-root {
+        text-align: start;
+    }
+
+    td-section-core td-actions {
+        justify-content: flex-start;
+
+        td-button a {
+            padding-left: 0;
+        }
+    }
+}
+
+td-integrations-grid {
+    display: block;
+    margin: var(--subtitle-margin-l) auto 0;
 }

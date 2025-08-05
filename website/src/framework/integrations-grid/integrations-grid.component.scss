@@ -1,0 +1,121 @@
+@use "colors";
+@use "media";
+@use "mixins";
+@use "shapes";
+
+.td-primary-items,
+.td-secondary-items {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    overflow: hidden;
+    gap: 32px;
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 12px;
+    }
+}
+
+.td-primary-items {
+    width: 100%;
+    display: flex;
+
+    @media (max-width: 1000px) {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.td-secondary-items {
+    margin: 32px auto 0;
+    width: 320px;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 12px;
+    }
+}
+
+.td-primary-item,
+.td-secondary-item {
+    display: flex;
+    flex-direction: column;
+    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+    text-align: center;
+    @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
+
+    h3, h4, aside {
+        color: colors.$black;
+    }
+
+    h3, h4 {
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    aside {
+        font-weight: var(--font-weight-regular);
+    }
+
+    &:hover {
+        @include mixins.light-source-gradient(colors.$white, colors.$grey);
+    }
+}
+
+.td-primary-item {
+    @media (min-width: media.$min-width-desktop) {
+        width: 260px;
+        height: 260px;
+
+        img {
+            margin: 16px auto 0;
+            width: 96px;
+            height: 96px;
+        }
+    }
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        width: 200px;
+        height: 200px;
+
+        img {
+            margin: 12px auto 0;
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    aside, h3 {
+        text-align: start;
+    }
+
+    aside {
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex: 1 1 44%;
+        gap: 0;
+
+        img {
+            width: 64px;
+            height: 64px;
+            margin: 6px auto 16px;
+        }
+    }
+}
+
+.td-secondary-item {
+    width: 140px;
+    height: 80px;
+    padding: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+        width: 40px;
+        height: 40px;
+        margin-right: 16px;
+    }
+}

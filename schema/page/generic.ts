@@ -2,29 +2,29 @@ import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import {
-    SanityTitleBodyPanelSection,
+    SanitySectionCore,
+    SanityTitleBodyPanelSection, SectionCore, sectionCoreSchemaName,
     TitleBodyPanelSection,
     titleBodyPanelSectionSchemaName,
-} from "../component/page-section";
+} from "../component/section";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
 export interface SanityGenericPage extends SanityPage {
-    introSection: SanityTitleBodyActions;
+    introSection: SanitySectionCore;
     coreSections: SanityTitleBodyPanelSection[];
     finalSection: SanityConclusionSection;
 }
 
 export class GenericPage extends Page {
-    readonly introSection: TitleBodyActions;
+    readonly introSection: SectionCore;
     readonly coreSections: TitleBodyPanelSection[];
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityGenericPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.coreSections = data.coreSections.map((x) => TitleBodyPanelSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -41,7 +41,7 @@ const genericPageSchema = defineType({
         defineField({
             name: "introSection",
             title: "Intro Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

@@ -1,18 +1,16 @@
-<article nebula="studio" planet="green">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      @if (page.introSection) {
-        <td-services-page-technicolor-block [block]="page.introSection" [page]="page" />
-        <td-services-table [keyPoints]="page.introSection.keyPoints" />
-      }
-      @if (page.testimonialsSection) {
-        <td-services-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-        <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" />
-      }
-      @if (page.contactSection) {
-        <td-services-page-technicolor-block [block]="page.contactSection" [page]="page" />
-        <td-contact-panel class="section card" />
-      }
-    </div>
+    @if (page.introSection) {
+      <td-section-core [section]="page.introSection"/>
+      <td-services-table [keyPoints]="page.introSection.keyPoints" />
+    }
+    @if (page.testimonialsSection) {
+      <td-section-core [section]="page.testimonialsSection"/>
+      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" sectionId="testimonials" />
+    }
+    @if (page.contactSection) {
+      <td-section-core [section]="page.contactSection"/>
+      <td-contact-panel class="section card" />
+    }
   }
 </article>

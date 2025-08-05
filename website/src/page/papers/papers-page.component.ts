@@ -2,23 +2,16 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { of } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
-    ButtonStyle,
-    LinkButton,
-    SanityDataset,
-    SanityPapersPage,
-    Paper,
-    PapersPage,
-    papersPageSchemaName,
+    ButtonStyle, LinkButton, SanityDataset, SanityPapersPage, Paper, PapersPage, papersPageSchemaName,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -26,11 +19,9 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./papers-page.component.html",
     styleUrls: ["./papers-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
-        ButtonComponent, AsyncPipe, PlainTextPipe,
-    ],
+        AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, PlainTextPipe, SectionCoreComponent,
+    ]
 })
 export class PapersPageComponent extends PageComponentBase<PapersPage> {
     protected override getPage(data: SanityDataset) {

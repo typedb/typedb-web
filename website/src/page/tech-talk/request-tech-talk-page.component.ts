@@ -4,7 +4,6 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { of, Subject } from "rxjs";
 import { RequestTechTalkPage, requestTechTalkPageSchemaName, SanityRequestTechTalkPage } from "typedb-web-schema";
 import { SanityDataset } from "typedb-web-schema";
@@ -16,7 +15,6 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../../framework/form";
 
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import {
     HeadingWithHighlightsComponent,
@@ -31,15 +29,14 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
     templateUrl: "./request-tech-talk-page.component.html",
     styleUrls: ["./request-tech-talk-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
+        HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
         RichTextComponent, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent
-    ],
+    ]
 })
 export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechTalkPage> {
     formId!: string;
-    readonly isSubmitting$ = new Subject<boolean>;
+    readonly isSubmitting$ = new Subject<boolean>();
     readonly form = this.formBuilder.nonNullable.group({
         first_name: ["", []],
         last_name: ["", []],
@@ -51,10 +48,10 @@ export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechT
     constructor(
         private forms: FormService, private popupNotificationService: PopupNotificationService,
         activatedRoute: ActivatedRoute, private analytics: AnalyticsService, router: Router, title: Title,
-        idleMonitor: IdleMonitorService, metaTags: MetaTagsService, contentService: ContentService,
+        metaTags: MetaTagsService, contentService: ContentService,
         private formBuilder: FormBuilder,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
         this.page$.subscribe((page) => {
             if (page) {
                 this.formId = page.cioFormID;

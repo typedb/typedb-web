@@ -1,19 +1,32 @@
 @use "media";
-@import "mixins";
+@use "mixins";
+
+:host {
+    margin-top: 0;
+}
 
 table {
+    width: 100%;
     table-layout: fixed;
     position: relative;
     box-shadow: none;
     background: none;
 }
 
-col:first-of-type {
-    width: 359px;
-
-    @media (max-width: media.$max-width-tablet) {
-        width: 220px;
+@media (min-width: media.$min-width-tablet) {
+    col {
+        width: 23%;
     }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    col {
+        width: 33.33%;
+    }
+}
+
+col:first-of-type {
+    width: 31%;
 
     @media (max-width: media.$max-width-mobile) {
         width: 0;
@@ -32,7 +45,7 @@ thead {
         position: sticky;
         border: none;
         top: 0;
-        background: var(--color-black-purple);
+        background: var(--body-background);
         z-index: 50;
         padding: 0;
         height: 121px;
@@ -65,13 +78,7 @@ thead {
 
         &:nth-of-type(4) {
             p {
-                @include color-gradient(#F96480, #FDD257);
-            }
-
-            td-button ::ng-deep a {
-                position: relative;
-                overflow: hidden;
-                @include border-gradient(#F96480, #FDD257, var(--color-black-purple));
+                @include mixins.text-gradient(#F96480, #FDD257);
             }
         }
     }
@@ -98,7 +105,6 @@ tbody tr {
 
 th, td {
     height: 80px;
-    color: var(--color-darker-white);
 
     &, &:not(:first-child) {
         border-left: none;
@@ -139,7 +145,7 @@ td {
     thead th div {
         aside, td-button {
             width: 100%;
-            padding: 0 4px;
+            padding: 0 2px;
         }
     }
 

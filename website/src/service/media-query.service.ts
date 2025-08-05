@@ -8,6 +8,7 @@ import { map } from "rxjs/operators";
 })
 export class MediaQueryService {
     isMobile$ = this._breakpointObserver.observe(["(max-width:767px)"]).pipe(map((value) => value.matches));
+    isDesktop$ = this._breakpointObserver.observe(["(min-width:1200px)"]).pipe(map((value) => value.matches));
 
     constructor(private _breakpointObserver: BreakpointObserver) {}
 }

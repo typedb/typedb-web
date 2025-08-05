@@ -1,6 +1,6 @@
 import { CaseIcon, UsersIcon } from "@sanity/icons";
 import { defineField, defineType, ImageRule, SanityDocument } from "@sanity/types";
-import { nameField } from "./common-fields";
+import { collapsibleOptions, nameField } from "./common-fields";
 import { Document, SanityDataset, SanityImage } from "./sanity-core";
 
 const logoFieldName = "logo";
@@ -39,7 +39,7 @@ const organisationSchema = defineType({
     ],
 });
 
-export const organisationLogosField = defineType({
+export const organisationLogosField = defineField({
     name: "organisationLogos",
     title: "Organisation Logos",
     icon: UsersIcon,

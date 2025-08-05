@@ -1,15 +1,16 @@
+@use "colors";
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: flex;
     justify-content: space-between;
-    gap: 80px;
+    gap: 40px;
     margin-top: 24px;
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
-        gap: 64px;
+        gap: 32px;
     }
 }
 
@@ -20,6 +21,14 @@
     align-items: flex-start;
     position: relative;
     gap: 12px;
+    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
+
+    &.hoverable:hover {
+        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+    }
+
+    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+    cursor: pointer;
 
     &:not(.hoverable) {
         cursor: initial;
@@ -30,9 +39,14 @@
         height: 72px;
     }
 
+    i {
+        font-size: 54px;
+        margin-bottom: 12px;
+    }
+
     &.lc-card-cols-3 {
         h3 {
-            @include line-clamp(1);
+            @include mixins.line-clamp(1);
         }
     }
 
@@ -57,7 +71,7 @@
             }
 
             td-rich-text {
-                @include line-clamp(7);
+                @include mixins.line-clamp(7);
                 max-height: 24px * 7;
             }
         }
@@ -88,11 +102,6 @@
     &:hover h3 {
         text-decoration: none;
     }
-
-    &:hover ::ng-deep .button-secondary {
-        background: var(--color-green);
-        color: var(--color-purple);
-    }
 }
 
 td-button {
@@ -108,7 +117,7 @@ td-button {
     flex-grow: 1;
     gap: 20px;
 
-    .button-secondary {
+    .button-frameless {
         margin-top: 8px;
         width: unset;
     }

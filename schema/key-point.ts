@@ -1,12 +1,13 @@
 import { defineField, defineType } from "@sanity/types";
-import { bodyFieldRichText, sectionIconField, titleField } from "./common-fields";
+import { LinkButton, SanityOptionalActions } from "./button";
+import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
+import { SanitySectionCore, SectionCore } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
-import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "./text";
+import { BodyTextField, ParagraphWithHighlights, PortableText, SanityBodyTextField, SanityTitleField } from "./text";
+import { PropsOf } from "./util";
 
-export type SanityKeyPoint = SanityTitleField & SanityBodyTextField;
-
-export interface SanityKeyPointWithIcon extends SanityKeyPoint {
+export interface SanityKeyPointWithIcon extends SanitySectionCore {
     icon: SanityReference<SanityImageRef>;
 }
 
@@ -14,31 +15,77 @@ export interface SanityServicesKeyPoint extends SanityKeyPointWithIcon {
     checklist: string[];
 }
 
-export class KeyPoint implements BodyTextField {
-    readonly title: string;
-    readonly body: PortableText;
-
-    constructor(data: SanityKeyPoint) {
-        this.title = data.title;
-        this.body = data.body;
-    }
+export interface SanityKeyPointsSection extends SanitySectionCore {
+    keyPoints: SanitySectionCore[];
 }
 
-export class KeyPointWithIcon extends KeyPoint {
+export interface SanityKeyPointsWithIconsSection extends SanitySectionCore {
+    keyPoints: SanityKeyPointWithIcon[];
+}
+
+export class KeyPointWithIcon extends SectionCore {
     readonly iconURL: string;
 
-    constructor(data: SanityKeyPointWithIcon, db: SanityDataset) {
-        super(data);
-        this.iconURL = db.resolveImageRef(data.icon).url;
+    constructor(props: PropsOf<KeyPointWithIcon>) {
+        super(props);
+        this.iconURL = props.iconURL;
+    }
+
+    static override fromSanity(data: SanityKeyPointWithIcon, db: SanityDataset) {
+        return Object.assign(SectionCore.fromSanity(data, db), {
+            iconURL: db.resolveImageRef(data.icon).url,
+        });
     }
 }
 
 export class ServicesKeyPoint extends KeyPointWithIcon {
     readonly checklist: string[];
 
-    constructor(data: SanityServicesKeyPoint, db: SanityDataset) {
-        super(data, db);
-        this.checklist = data.checklist;
+    constructor(props: PropsOf<ServicesKeyPoint>) {
+        super(props);
+        this.checklist = props.checklist;
+    }
+
+    static override fromSanity(data: SanityServicesKeyPoint, db: SanityDataset) {
+        return Object.assign(KeyPointWithIcon.fromSanity(data, db), {
+            checklist: data.checklist,
+        });
+    }
+}
+
+export class KeyPointsSection extends SectionCore {
+    readonly keyPoints: SectionCore[];
+
+    constructor(props: PropsOf<KeyPointsSection>) {
+        super(props);
+        this.keyPoints = props.keyPoints;
+    }
+
+    static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
+        return new KeyPointsSection({
+            title: ParagraphWithHighlights.fromSanity(data.title),
+            body: data.body,
+            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
+            keyPoints: data.keyPoints.map((x) => SectionCore.fromSanity(x, db)),
+            sectionId: ParagraphWithHighlights.fromSanity(data.title).toSectionID(),
+        });
+    }
+}
+
+export class KeyPointsWithIconsSection extends SectionCore {
+    readonly keyPoints: KeyPointWithIcon[];
+
+    constructor(props: PropsOf<KeyPointsWithIconsSection>) {
+        super(props);
+        this.keyPoints = props.keyPoints;
+    }
+
+    static override fromSanity(data: SanityKeyPointsWithIconsSection, db: SanityDataset) {
+        return new KeyPointsWithIconsSection(
+            Object.assign(SectionCore.fromSanity(data, db), {
+                keyPoints: data.keyPoints.map((x) => KeyPointWithIcon.fromSanity(x, db)),
+            })
+        );
     }
 }
 
@@ -48,16 +95,7 @@ const keyPointSchema = defineType({
     name: keyPointSchemaName,
     title: "Key Point",
     type: "object",
-    fields: [titleField, bodyFieldRichText],
-});
-
-export const keyPointWithIconSchemaName = "keyPointWithIcon";
-
-const keyPointWithIconSchema = defineType({
-    name: keyPointWithIconSchemaName,
-    title: "Key Point",
-    type: "object",
-    fields: [titleField, bodyFieldRichText, sectionIconField],
+    fields: [titleFieldWithHighlights, bodyFieldRichText, actionsFieldOptional],
 });
 
 export const servicesKeyPointSchemaName = "servicesKeyPoint";
@@ -78,8 +116,32 @@ const servicesKeyPointSchema = defineType({
                 layout: "grid",
             },
         }),
-        sectionIconField,
+        defineField({
+            name: iconFieldName,
+            title: "Icon",
+            type: "reference",
+            to: [{ type: "sectionIcon" }],
+            options: { disableNew: true },
+        }),
     ],
 });
 
-export const keyPointSchemas = [keyPointSchema, keyPointWithIconSchema, servicesKeyPointSchema];
+export const keyPointsSectionSchemaName = "keyPointsSection";
+
+const keyPointsSectionSchema = defineType({
+    name: keyPointsSectionSchemaName,
+    title: "Key Points Section",
+    type: "object",
+    fields: [
+        ...titleBodyActionsFields,
+        defineField({
+            name: "keyPoints",
+            title: "Key Points",
+            type: "array",
+            of: [{ type: keyPointSchemaName }],
+        }),
+        isVisibleField,
+    ],
+});
+
+export const keyPointSchemas = [keyPointSchema, servicesKeyPointSchema, keyPointsSectionSchema];

@@ -1,7 +1,7 @@
 import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions, requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
-import { LinkPanelsSection, linkPanelsSectionSchemaName, SanityLinkPanelsSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/page-section";
+import { LinkPanelsSection, linkPanelsSectionSchemaName, SanityLinkPanelsSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";

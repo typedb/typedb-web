@@ -1,21 +1,20 @@
 import "./styles.css";
 
 import {
-    AddUserIcon,
-    ArrowTopRightIcon,
-    BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
-    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
+    AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon,
+    DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
+    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon, CodeIcon, ImageIcon,
 } from "@sanity/icons";
-import { presentationTool } from "@sanity/presentation";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
 import { deskTool } from "sanity/desk";
 import { StructureBuilder } from "sanity/lib/exports/desk";
+import { presentationTool } from "sanity/presentation";
 
 import {
     featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
-    schemaTypes, topnavSchemaNames, solutionPageSchemaName, lecturesPageSchemaName, footerSchemaName,
+    schemaTypes, topnavSchemaNames, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
     splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
@@ -23,7 +22,10 @@ import {
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
-    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName, surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName, cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName
+    learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName,
+    surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName,
+    cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
+    useCasePageTemplateSchemaName, useCasePageSchemaName,
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -69,6 +71,8 @@ export default defineConfig({
                     singletonListItem(s, requestTechTalkPageSchemaName, { title: "Tech Talk", icon: DocumentIcon }),
                     singletonListItem(s, startupProgramPageSchemaName, { title: "Startup Program", icon: DocumentIcon }),
                     s.divider(),
+                    singletonListItem(s, useCasePageTemplateSchemaName, { title: "Use Cases: Template", icon: DocumentIcon }),
+                    s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
                 s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
@@ -84,18 +88,19 @@ export default defineConfig({
                     s.documentTypeListItem(lectureSchemaName).title("Lectures"),
                     s.documentTypeListItem(paperSchemaName).title("Papers"),
                     s.documentTypeListItem(liveEventSchemaName).title("Live Events"),
-                    s.documentTypeListItem(solutionPageSchemaName).title("Solutions"),
                     s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
                 ])),
                 s.listItem().title("Structure").icon(ComponentIcon).child(s.list().title("Structure").items([
                     s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
                 ])),
-                s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
+                s.listItem().title("Code Snippets").icon(CodeIcon).child(s.list().title("Code Snippets").items([
+                    s.documentTypeListItem(codeSnippetSchemaName).title("Single Snippets"),
+                    s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Snippets"),
+                ])),
+                s.listItem().title("Media").icon(ImageIcon).child(s.list().title("Media").items([
                     s.documentTypeListItem(splitPaneIllustrationSchemaName).title("Split Pane Illustrations"),
                     s.documentTypeListItem(imageIllustrationSchemaName).title("Images"),
                     s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
-                    s.documentTypeListItem(codeSnippetSchemaName).title("Code Snippets"),
-                    s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Code Snippets"),
                     s.documentTypeListItem(graphVisualisationSchemaName).title("Graph Visualisations"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),

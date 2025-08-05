@@ -1,63 +1,63 @@
-<article nebula="cloud" planet="blue_pink">
+<article>
   @if (page$ | async; as event) {
-    <div class="article-content">
-      <section class="page-intro-section">
-        <td-heading-with-highlights [value]="event.title" level="h1" />
-        <ul class="ed-subtitle text-p1">
-          <li>
-            <mat-icon svgIcon="calendar" />
-            <span class="cdk-visually-hidden">Date/Time:</span>
-            @switch (!event.dateOptions.dateTBC && !!event.dateOptions.startDate) {
-              @case (true) {
-                <time [dateTime]="event.dateOptions.startDate!.toISOString()">
-                  {{ event.dateOptions | eventDate }}
-                </time>
-              }
-              @case (false) {
-                <span>{{ event.dateOptions | eventDate }}</span>
-              }
+    <section class="page-intro-section">
+      <td-heading-with-highlights [value]="event.title" level="h1" />
+      <ul class="ed-subtitle text-p1">
+        <li>
+          <mat-icon svgIcon="calendar" />
+          <span class="cdk-visually-hidden">Date/Time:</span>
+          @switch (!event.dateOptions.dateTBC && !!event.dateOptions.startDate) {
+            @case (true) {
+              <time [dateTime]="event.dateOptions.startDate!.toISOString()">
+                {{ event.dateOptions | eventDate }}
+              </time>
             }
-          </li>
-          @if (event.dateOptions.endDate) {
-            <li>
-              <mat-icon svgIcon="time" />
-              <span class="cdk-visually-hidden">Duration:</span>
-              {{ event.dateOptions | eventDuration }}
-            </li>
+            @case (false) {
+              <span>{{ event.dateOptions | eventDate }}</span>
+            }
           }
+        </li>
+        @if (event.dateOptions.endDate) {
           <li>
-            <mat-icon svgIcon="location" />
-            <span class="cdk-visually-hidden">Location:</span>
-            {{ event.venue }}
+            <mat-icon svgIcon="time" />
+            <span class="cdk-visually-hidden">Duration:</span>
+            {{ event.dateOptions | eventDuration }}
           </li>
-        </ul>
-        <div class="subsection-margin ed-details-area">
-          <div class="card ed-form-card">
-            <h3>
-              <strong>Register to {{ event.tag }}</strong>
-            </h3>
-            <td-aspect-ratio ratio="16:9">
-              <img [src]="getEventImageUrl(event)" class="ed-img" alt="" />
-            </td-aspect-ratio>
-            @if (event.externalUrlButton) {
-              <td-button [button]="event.externalUrlButton" buttonWidth="100%" [linkId]="event.externalUrlButton.text"/>
+        }
+        <li>
+          <mat-icon svgIcon="location" />
+          <span class="cdk-visually-hidden">Location:</span>
+          {{ event.venue }}
+        </li>
+      </ul>
+      <div class="subsection-margin ed-details-area">
+        <div class="card ed-form-card">
+          <h3>
+            <strong>Register to {{ event.tag }}</strong>
+          </h3>
+          <td-aspect-ratio ratio="16:9">
+            @if (getEventImageUrl(event); as imageURL) {
+              <img [src]="imageURL" class="ed-img" alt="" />
             }
-          </div>
-          <div class="ed-description-container">
-            <td-rich-text [value]="event.description" />
-            <ul class="ed-speakers subsection-margin">
-              @for (speaker of event.speakers; track speaker) {
-                <li>
-                  <td-person-info [person]="speaker" />
-                </li>
-              }
-            </ul>
-          </div>
+          </td-aspect-ratio>
+          @if (event.externalUrlButton) {
+            <td-button [button]="event.externalUrlButton" buttonWidth="100%" [linkId]="event.externalUrlButton.text"/>
+          }
         </div>
-      </section>
-      @if (event.furtherLearning) {
-        <td-further-learning [value]="event.furtherLearning" />
-      }
-    </div>
+        <div class="ed-description-container">
+          <td-rich-text [value]="event.description" />
+          <ul class="ed-speakers subsection-margin">
+            @for (speaker of event.speakers; track speaker) {
+              <li>
+                <td-person-info [person]="speaker" />
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+    @if (event.furtherLearning) {
+      <td-further-learning [value]="event.furtherLearning" />
+    }
   }
 </article>

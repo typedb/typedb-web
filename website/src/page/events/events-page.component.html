@@ -1,75 +1,70 @@
-<article nebula="cloud" planet="green">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      <div class="section">
-        <td-title-body-actions-section
-          [isIntroSection]="true" sectionId="intro"
-          [title]="page.introSection.title" [body]="page.introSection.body"
-          />
-        @if (page.featuredEvent) {
-          <div class="subsection-margin card ep-primary-event">
-            <td-aspect-ratio ratio="16:9">
-              <img [src]="page.featuredEvent.imageURL" class="ep-img" alt="" />
-            </td-aspect-ratio>
-            <div class="ep-primary-event-summary">
-              <h3 class="ep-event-title-container">
-                <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
-                <span class="ep-title-separator">|</span>
-                @switch (!page.featuredEvent.dateOptions.dateTBC && !!page.featuredEvent.dateOptions.startDate) {
+    <div class="section">
+      <td-section-core sectionId="intro" [section]="page.introSection"/>
+      @if (page.featuredEvent) {
+        <div class="subsection-margin card ep-primary-event">
+          <td-aspect-ratio ratio="16:9">
+            <img [src]="page.featuredEvent.imageURL" class="ep-img" alt="" />
+          </td-aspect-ratio>
+          <div class="ep-primary-event-summary">
+            <h3 class="ep-event-title-container">
+              <span class="ep-event-title">{{ page.featuredEvent.title | plainText }}</span>
+              <span class="ep-title-separator">|</span>
+              @switch (!page.featuredEvent.dateOptions.dateTBC && !!page.featuredEvent.dateOptions.startDate) {
+                @case (true) {
+                  <time [dateTime]="page.featuredEvent.dateOptions.startDate!.toISOString()">
+                    {{ page.featuredEvent.dateOptions | eventDate }}
+                  </time>
+                }
+                @case (false) {
+                  <span>{{ page.featuredEvent.dateOptions | eventDate }}</span>
+                }
+              }
+              <span class="ep-title-separator">|</span>
+              <span>{{ page.featuredEvent.venue }}</span>
+            </h3>
+            <div class="ep-event-text-container">
+              <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
+              <td-button [button]="page.featuredEvent.registrationButton()" [linkId]="eventDetailsButtonId(page.featuredEvent)" />
+            </div>
+          </div>
+        </div>
+      }
+      @if (page.eventsList) {
+        <div class="subsection-margin card-appearance ep-grid">
+          @for (event of page.eventsList; track event) {
+            <div class="ep-grid-item">
+              <div class="ep-img-and-text">
+                <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">
+                  <img [src]="getEventListImageUrl(event)" class="ep-img" alt="" />
+                </td-aspect-ratio>
+                <div>
+                  <h3 class="ep-grid-item-title">{{ event.title | plainText }}</h3>
+                </div>
+              </div>
+              <div class="ep-grid-item-description">
+                @switch (!event.dateOptions.dateTBC && !!event.dateOptions.startDate) {
                   @case (true) {
-                    <time [dateTime]="page.featuredEvent.dateOptions.startDate!.toISOString()">
-                      {{ page.featuredEvent.dateOptions | eventDate }}
+                    <time [dateTime]="event.dateOptions.startDate!.toISOString()">
+                      {{ event.dateOptions | eventDate }}
                     </time>
                   }
                   @case (false) {
-                    <span>{{ page.featuredEvent.dateOptions | eventDate }}</span>
+                    <span>{{ event.dateOptions | eventDate }}</span>
                   }
                 }
-                <span class="ep-title-separator">|</span>
-                <span>{{ page.featuredEvent.venue }}</span>
-              </h3>
-              <div class="ep-event-text-container">
-                <td-rich-text class="ep-event-description" [value]="page.featuredEvent.description" />
-                <td-button [button]="page.featuredEvent.registrationButton()" [linkId]="eventDetailsButtonId(page.featuredEvent)" />
+                <span>|</span>
+                <span>{{ event.venue }}</span>
               </div>
+              <td-button
+                [button]="event.registrationButton()" size="small" buttonWidth="100%"
+                [linkId]="eventDetailsButtonId(event)"
+              />
             </div>
-          </div>
-        }
-        @if (page.eventsList) {
-          <div class="subsection-margin card-appearance ep-grid">
-            @for (event of page.eventsList; track event) {
-              <div class="ep-grid-item">
-                <div class="ep-img-and-text">
-                  <td-aspect-ratio ratio="16:9" class="ep-img-secondary-container">
-                    <img [src]="getEventListImageUrl(event)" class="ep-img" alt="" />
-                  </td-aspect-ratio>
-                  <div>
-                    <h3 class="ep-grid-item-title">{{ event.title | plainText }}</h3>
-                  </div>
-                </div>
-                <div class="ep-grid-item-description">
-                  @switch (!event.dateOptions.dateTBC && !!event.dateOptions.startDate) {
-                    @case (true) {
-                      <time [dateTime]="event.dateOptions.startDate!.toISOString()">
-                        {{ event.dateOptions | eventDate }}
-                      </time>
-                    }
-                    @case (false) {
-                      <span>{{ event.dateOptions | eventDate }}</span>
-                    }
-                  }
-                  <span>|</span>
-                  <span>{{ event.venue }}</span>
-                </div>
-                <td-button
-                  [button]="event.registrationButton()" size="small" buttonWidth="100%"
-                  [linkId]="eventDetailsButtonId(event)"
-                />
-              </div>
-            }
-          </div>
-        }
-      </div>
+          }
+        </div>
+      }
     </div>
   }
 </article>

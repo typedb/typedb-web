@@ -15,14 +15,14 @@ import { referenceMaterialSchema } from "./reference-material";
 import { resourceSchemas } from "./resource";
 import { socialMediaSchemas } from "./social-media";
 import { surveySchemas } from "./survey";
-import { testimonialSchema } from "./testimonial";
+import { testimonialSchemas } from "./testimonial";
 import { textSchemas } from "./text";
 
 export const schemaTypes: any[] = [
     ...actionSchemas, ...codeSchemas, ...linkSchemas, ...cloudPlatformSchemas, ...componentSchemas, ...formSchemas,
     ...keyPointSchemas, ...illustrationSchemas, ...imageSchemas, ...navigationSchemas, ...organisationSchemas,
     ...pageSchemas, ...personSchemas, referenceMaterialSchema, ...resourceSchemas, ...socialMediaSchemas,
-    ...surveySchemas, ...textSchemas, testimonialSchema,
+    ...surveySchemas, ...textSchemas, ...testimonialSchemas,
 ];
 
 export { ActionButton, LinkButton, type ButtonStyle } from "./button";
@@ -36,21 +36,22 @@ export {
 } from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
-    codeSnippetSchemaName, polyglotSnippetSchemaName,
 } from "./code";
+export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-fields";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
     FeatureGrid, type FeatureGridLayout, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
-export { LinkPanel, LinkPanelWithIcon } from "./component/link-panel";
-export { TitleBodyPanelSection } from "./component/page-section";
+export { Integration, IntegrationsGridSection } from "./component/integrations-grid";
+export { LinkPanel } from "./component/link-panel";
+export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { TechnicolorBlock } from "./component/technicolor-block";
+export { SectionCore, TitleBodyIllustrationSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -58,7 +59,7 @@ export {
     type SplitPaneIllustrationContent,
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
-export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
+export { KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export {
@@ -80,7 +81,7 @@ export {
 } from "./page/learn";
 export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
-export { HomePage, homePageSchemaName, type SanityHomePage } from "./page/home";
+export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection } from "./page/home";
 export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
@@ -88,9 +89,12 @@ export {
     type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName,
 } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
-export { type SanitySolutionPage, SolutionPage, solutionPageSchemaName } from "./page/solution";
 export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
+export {
+    type SanityUseCasePageTemplate, type SanityUseCasePageInstance, UseCasePageTemplate, UseCasePageInstance,
+    useCasePageSchemaName, useCasePageTemplateSchemaName
+} from "./page/use-case";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";

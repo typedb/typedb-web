@@ -1,13 +1,15 @@
-<div class="section cp-root">
-  <div class="cp-main-area">
-    <h3>{{ panel.title }}</h3>
-    @if (panel.body) {
-      <td-rich-text [value]="panel.body" />
-    }
-    <div class="flex"></div>
-    <td-actions [actions]="panel.actions" [sectionId]="sectionId" />
-  </div>
-  <div class="cp-resources-area">
+<div class="cp-main-area">
+  <h2>{{ panel.title }}</h2>
+  @if (panel.body) {
+    <td-rich-text [value]="panel.body" />
+  }
+  <div class="flex"></div>
+  <td-actions [actions]="panel.actions" [sectionId]="sectionId" />
+</div>
+<div class="cp-resources-area" [class]="panel.illustration ? 'cp-resources-area-with-illustration' : ''">
+  @if (panel.illustration) {
+    <td-illustration class="td-frameless" [illustration]="panel.illustration" />
+  } @else {
     <h4>{{ panel.resourceListTitle }}</h4>
     <ul>
       @for (resource of panel.resources; track resource) {
@@ -16,5 +18,5 @@
         </li>
       }
     </ul>
-  </div>
+  }
 </div>

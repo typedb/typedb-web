@@ -1,8 +1,8 @@
 import { BlockElementIcon, ComponentIcon, SquareIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
-import { LinkButton, buttonSchemaName, SanityButton } from "../button";
+import { LinkButton, buttonSchemaName, SanityLinkButton } from "../button";
 import { Link, SanityLink, SanityTextLink } from "../link";
-import { descriptionField, linkFieldOptional, requiredRule, textLinkFieldOptional, titleField } from "../common-fields";
+import { descriptionField, iconNameFieldOptional, iconVariantFieldOptional, linkFieldOptional, requiredRule, textLinkFieldOptional, titleField } from "../common-fields";
 import { Document, SanityDataset, SanityReference } from "../sanity-core";
 import { PropsOf } from "../util";
 
@@ -22,7 +22,8 @@ export const topnavSchemaNames = {
 export interface SanityTopnav extends SanityDocument {
     primaryItems: SanityNavItem[];
     secondaryItems: SanityNavItem[];
-    cta: SanityButton;
+    cta: SanityLinkButton;
+    githubStarsCounter: string;
 }
 
 interface SanityNavItem {
@@ -71,12 +72,14 @@ export class Topnav extends Document {
     readonly primaryItems: NavItem[];
     readonly secondaryItems: NavItem[];
     readonly cta: LinkButton;
+    readonly githubStarsCounter: string;
 
     constructor(data: SanityTopnav, db: SanityDataset) {
         super(data);
         this.primaryItems = data.primaryItems.map(x => NavItem.fromSanity(x, db));
         this.secondaryItems = data.secondaryItems.map(x => NavItem.fromSanity(x, db));
         this.cta = LinkButton.fromSanity(data.cta, db);
+        this.githubStarsCounter = data.githubStarsCounter;
     }
 }
 
@@ -199,7 +202,7 @@ export class NavPanelCta {
             linkButton: new LinkButton({
                 text: data.link.text,
                 link: Link.fromSanityLinkRef(data.link.link, db),
-                style: "secondary",
+                style: "greenHollow",
                 comingSoon: data.link.comingSoon,
             }),
         });
@@ -236,25 +239,8 @@ const panelItemSchema = defineType({
         titleField,
         descriptionField,
         linkFieldOptional,
-        defineField({
-            name: "iconName",
-            type: "string",
-            title: "Icon Name",
-        }),
-        defineField({
-            name: "iconVariant",
-            type: "string",
-            title: "Icon Variant",
-            initialValue: "thin",
-            options: {
-                list: ["regular", "light", "thin", "brands"],
-                layout: "radio",
-                direction: "horizontal",
-            },
-            hidden: (ctx) => {
-                return ctx.parent == null || ctx.parent["iconName"] == null;
-            },
-        }),
+        iconNameFieldOptional,
+        iconVariantFieldOptional,
     ],
     preview: {
         select: { title: "title", description: "description", link: "link.title" },
@@ -397,6 +383,12 @@ const topnavSchema = defineType({
             name: "cta",
             title: "CTA",
             type: buttonSchemaName,
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "githubStarsCounter",
+            title: "GitHub Stars Counter",
+            type: "string",
             validation: requiredRule,
         }),
     ],

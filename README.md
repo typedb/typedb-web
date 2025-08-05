@@ -1,6 +1,8 @@
 # TypeDB Web
 
-Main repository for the TypeDB Web project. Principally this repository holds all sources for the typedb.com website and its backing infrastructure, but it also contains common sources and assets for reuse across TypeDB's Web-based projects.
+Main repository for the TypeDB Web project. This is the source code of https://typedb.com!
+
+This repo also contains common sources and assets for reuse across TypeDB's Web-based projects.
 
 Details of each module, including local development instructions,
 can be found in the `README` files of their respective directories:

@@ -1,49 +1,42 @@
-<article nebula="studio" planet="pink">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      <div class="section">
-        <td-title-body-actions-section
-          [isIntroSection]="true" sectionId="intro"
-          [title]="page.introSection.title" [body]="page.introSection.body"
-        />
-        <div class="subsection-margin card wp-primary-paper">
-          <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
-          <div class="wp-primary-paper-details">
-            <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
-              <img [src]="page.featuredPaper.landscapeImageURL" class="wp-img" alt="" />
-            </td-aspect-ratio>
-            <td-aspect-ratio ratio="17:22" class="hide-mobile">
-              <img [src]="page.featuredPaper.portraitImageURL" class="wp-img" alt="" />
-            </td-aspect-ratio>
-            <div class="wp-primary-paper-summary">
-              <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
-              <div class="flex"></div>
-              <td-button
-                [button]="accessResourceButton(page.featuredPaper, 'primary', 'Download')"
-                [linkId]="downloadButtonId(page.featuredPaper)"
-              />
-            </div>
-          </div>
+    <td-section-core [section]="page.introSection"/>
+    <div class="subsection-margin card narrow-section wp-primary-paper">
+      <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
+      <div class="wp-primary-paper-details">
+        <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
+          <img [src]="page.featuredPaper.landscapeImageURL" class="wp-img" alt="" />
+        </td-aspect-ratio>
+        <td-aspect-ratio ratio="17:22" class="hide-mobile">
+          <img [src]="page.featuredPaper.portraitImageURL" class="wp-img" alt="" />
+        </td-aspect-ratio>
+        <div class="wp-primary-paper-summary">
+          <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
+          <div class="flex"></div>
+          <td-button
+            [button]="accessResourceButton(page.featuredPaper, 'greenHollow', 'Download')"
+            [linkId]="downloadButtonId(page.featuredPaper)"
+          />
         </div>
-        <div class="subsection-margin card-appearance wp-grid">
-          @for (paper of page.papersList; track paper) {
-            <div class="wp-grid-item">
-              <div class="wp-img-and-text">
-                <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
-                  <img [src]="paper.landscapeImageURL" class="wp-img" alt="" />
-                </td-aspect-ratio>
-                <div>
-                  <h3 class="wp-paper-title wp-grid-item-title">{{ paper.title | plainText }}</h3>
-                </div>
+      </div>
+      <div class="subsection-margin card-appearance wp-grid">
+        @for (paper of page.papersList; track paper) {
+          <div class="wp-grid-item">
+            <div class="wp-img-and-text">
+              <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
+                <img [src]="paper.landscapeImageURL" class="wp-img" alt="" />
+              </td-aspect-ratio>
+              <div>
+                <h3 class="wp-paper-title wp-grid-item-title">{{ paper.title | plainText }}</h3>
               </div>
-              <td-rich-text class="wp-grid-item-description" [value]="paper.description" />
-              <td-button
-                [button]="accessResourceButton(paper, 'secondary', 'Download')"
-                size="small" buttonWidth="100%" [linkId]="downloadButtonId(paper)"
-              />
             </div>
-          }
-        </div>
+            <td-rich-text class="wp-grid-item-description" [value]="paper.description" />
+            <td-button
+              [button]="accessResourceButton(paper, 'greenHollow', 'Download')"
+              size="small" buttonWidth="100%" [linkId]="downloadButtonId(paper)"
+            />
+          </div>
+        }
       </div>
     </div>
   }

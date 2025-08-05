@@ -8,20 +8,20 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/Cqyd
 pretty_urls = true
 
 [context.production]
-command = "pnpm run style:verify; ENV=production pnpm run build && pnpm run prerender"
-publish = "dist/static"
+command = "ENV=production pnpm build"
+publish = "dist/typedb-web/browser"
 
 [context.master]
-command = "pnpm run style:verify; ENV=staging pnpm run build"
-publish = "dist/dynamic"
+command = "ENV=staging pnpm build"
+publish = "dist/typedb-web/browser"
 
 [context.development]
-command = "pnpm run style:verify; ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "ENV=development pnpm build"
+publish = "dist/typedb-web/browser"
 
 [context.deploy-preview]
-command = "pnpm run style:verify; ENV=development pnpm run build"
-publish = "dist/dynamic"
+command = "ENV=development pnpm build"
+publish = "dist/typedb-web/browser"
 
 # ALIASES
 # Keep indefinitely
@@ -70,53 +70,6 @@ from = "/white-papers/*"
 to = "/papers"
 status = 301
 
-# TEMPORARILY DISABLED PATHS
-# Keep until we re-enable their source path
-
-[[redirects]]
-from = "/meetup"
-to = "/lectures"
-status = 302
-
-[[redirects]]
-from = "/solutions/*"
-to = "/philosophy"
-status = 302
-
-# ERRONEOUSLY INDEXED PATHS
-# Paths in this section exist due to bugs that were later fixed
-# Keep for one year, then delete. This gives time for search engines to delist them
-
-[[redirects]]
-from = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show-a795701af90e"
-to = "/blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show"
-status = 301
-
-[[redirects]]
-from = "/blog/typedb-for-identity-and-access-management-caeffa43f2f0"
-to = "/blog/identity-and-access-management-with-typedb-part-i-polymorphism"
-status = 301
-
-[[redirects]]
-from = "/blog/typedb-for-identity-and-access-management-6466dafb669e"
-to = "/blog/identity-and-access-management-with-typedb-part-ii-transitivity"
-status = 301
-
-[[redirects]]
-from = "/blog/typedb-for-identity-and-access-management-af995e4d5263"
-to = "/blog/identity-and-access-management-with-typedb-part-iii-inference"
-status = 301
-
-[[redirects]]
-from = "/webinars/polymoprhic-data-model"
-to = "/lectures/polymorphic-data-model"
-status = 301
-
-[[redirects]]
-from = "/lectures/polymoprhic-data-model"
-to = "/lectures/polymorphic-data-model"
-status = 301
-
 # DOCS BEHAVIOUR
 # Keep indefinitely. These redirects are required for Docs to behave correctly
 
@@ -145,14 +98,6 @@ status = 200
 [[redirects]]
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
-status = 200
-
-# STUDIO BEHAVIOUR
-# Keep indefinitely
-
-[[redirects]]
-from = "https://development.typedb.com/studio/app/*"
-to = "https://development--typedb-studio.netlify.app/:splat"
 status = 200
 
 # POSTHOG REVERSE PROXY
