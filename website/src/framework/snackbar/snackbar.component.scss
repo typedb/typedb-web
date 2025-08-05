@@ -1,4 +1,5 @@
 @use "colors";
+@use "sass:color";
 
 :host {
     margin: 16px;
@@ -10,7 +11,7 @@
     gap: 16px;
 
     &.ok {
-        background: mix(colors.$green, colors.$black-purple, 15%);
+        background: color.mix(colors.$green, colors.$black-purple, 15%);
         box-shadow: inset 0 0 0 1px var(--color-green);
 
         .mat-icon {
@@ -19,7 +20,7 @@
     }
 
     &.error {
-        background: mix(colors.$red, colors.$black-purple, 15%);
+        background: color.mix(colors.$red, colors.$black-purple, 15%);
         box-shadow: inset 0 0 0 1px var(--color-red);
 
         .mat-icon {

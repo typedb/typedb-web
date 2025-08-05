@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 .wp-primary-placeholder {
     padding-bottom: calc(100% * 2 / 3);
@@ -52,11 +52,11 @@
 }
 
 .wp-lecture-description {
-    @include line-clamp(2);
+    @include mixins.line-clamp(2);
     max-height: 24px * 2;
 
     @media (max-width: media.$max-width-mobile) {
-        @include line-clamp(3);
+        @include mixins.line-clamp(3);
         max-height: 21px * 3;
     }
 }
@@ -67,6 +67,10 @@
     @media (max-width: media.$max-width-mobile) {
         margin-top: 24px;
     }
+}
+
+.wp-lecture-list-section {
+    margin-top: 40px;
 }
 
 .wp-lecture-list {
@@ -92,7 +96,7 @@
     }
 
     .wp-speaker {
-        @include line-clamp(1);
+        @include mixins.line-clamp(1);
 
         > span + span {
             margin-left: 16px;

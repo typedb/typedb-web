@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 :host {
     display: block;
@@ -22,7 +22,7 @@
     right: 0;
     left: 0;
     margin: 0 auto;
-    @include card-appearance;
+    @include mixins.card-appearance;
     opacity: 1;
     box-shadow: 0 8px 6px rgba(6, 4, 20, 0.601481);
     transition-property: transform, opacity;
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @include card-padding;
+    @include mixins.card-padding;
     border-radius: var(--border-radius);
 }
 

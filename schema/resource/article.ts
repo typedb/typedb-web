@@ -36,12 +36,10 @@ export interface WordpressPost {
 
 export class BlogPostLink extends ResourceLink {
     readonly author: Person;
-    readonly imageURL: string;
 
     constructor(props: PropsOf<BlogPostLink>) {
         super(props);
         this.author = props.author;
-        this.imageURL = props.imageURL;
     }
 
     static override fromSanity(data: SanityBlogPost, db: SanityDataset): BlogPostLink {
@@ -123,7 +121,6 @@ export class BlogPost extends Article {
     readonly author: Person;
     readonly categories: BlogCategoryID[];
     readonly date: Date;
-    readonly imageURL?: string;
 
     constructor(props: PropsOf<BlogPost>) {
         super(props);
@@ -131,7 +128,6 @@ export class BlogPost extends Article {
         this.author = props.author;
         this.categories = props.categories;
         this.date = props.date;
-        this.imageURL = props.imageURL;
     }
 
     static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
@@ -266,7 +262,6 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
             validation: requiredRule,
             initialValue: ["engineering"],
         }),
-        imageFieldOptional,
     ],
 });
 

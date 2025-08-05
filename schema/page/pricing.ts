@@ -1,9 +1,9 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
-import { collapsibleOptions, isVisibleField, requiredRule, titleBodyIconFields } from "../common-fields";
-import { FeatureTable, featureTableSchemaName, SanityFeatureTable } from "../component/feature-table";
-import { coreSectionSchemaName, SanityCoreSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/page-section";
+import { collapsibleOptions, isVisibleField, requiredRule, titleBodyActionsFields } from "../common-fields";
+import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
+import { sectionCoreSchemaName, titleBodyPanelSectionSchemaName } from "../component/section";
 import { PricingPanel, pricingPanelSchemaName, SanityPricingPanel } from "../component/pricing-panel";
-import { SanityTechnicolorBlock, TechnicolorBlock } from "../component/technicolor-block";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
@@ -11,36 +11,32 @@ import { metaTagsField } from "./meta-tags";
 
 export interface SanityPricingPage extends SanityPage {
     introSection: SanityIntroSection;
-    providersSection: SanityTitleBodyPanelSection;
+    providersSection: SanitySectionCore;
     featureTableSection: SanityFeatureTableSection;
-    contactSection: SanityCoreSection;
+    contactSection: SanitySectionCore;
 }
 
-export interface SanityIntroSection extends SanityTechnicolorBlock {
+export interface SanityIntroSection extends SanitySectionCore {
     panelsCaption?: string;
     panels: SanityPricingPanel[];
 }
 
-export interface SanityFeatureTableSection extends SanityTechnicolorBlock {
-    featureTable: SanityFeatureTable;
-}
-
 export class PricingPage extends Page {
     readonly introSection: IntroSection;
-    readonly providersSection: TitleBodyPanelSection;
+    readonly providersSection: SectionCore;
     readonly featureTableSection: FeatureTableSection;
-    readonly contactSection: TechnicolorBlock;
+    readonly contactSection: SectionCore;
 
     constructor(data: SanityPricingPage, db: SanityDataset) {
         super(data, db);
         this.introSection = IntroSection.fromSanity(data.introSection, db);
-        this.providersSection = TitleBodyPanelSection.fromSanity(data.providersSection, db);
+        this.providersSection = SectionCore.fromSanity(data.providersSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
-        this.contactSection = TechnicolorBlock.fromSanity(data.contactSection, db);
+        this.contactSection = SectionCore.fromSanity(data.contactSection, db);
     }
 }
 
-export class IntroSection extends TechnicolorBlock {
+export class IntroSection extends SectionCore {
     readonly panelsCaption?: string;
     readonly panels: PricingPanel[];
 
@@ -52,26 +48,9 @@ export class IntroSection extends TechnicolorBlock {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 panelsCaption: data.panelsCaption,
                 panels: data.panels.map((x) => PricingPanel.fromSanity(x, db)),
-            })
-        );
-    }
-}
-
-export class FeatureTableSection extends TechnicolorBlock {
-    readonly featureTable: FeatureTable;
-
-    constructor(props: PropsOf<FeatureTableSection>) {
-        super(props);
-        this.featureTable = props.featureTable;
-    }
-
-    static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
-        return new FeatureTableSection(
-            Object.assign(TechnicolorBlock.fromSanity(data, db), {
-                featureTable: FeatureTable.fromSanity(data.featureTable, db),
             })
         );
     }
@@ -80,14 +59,13 @@ export class FeatureTableSection extends TechnicolorBlock {
 export const pricingPageSchemaName = "pricingPage";
 
 const introSectionSchemaName = `${pricingPageSchemaName}_introSection`;
-const featureTableSectionSchemaName = `${pricingPageSchemaName}_featureTableSection`;
 
 const introSectionSchema = defineType({
     name: introSectionSchemaName,
     title: "Intro Section",
     type: "object",
     fields: [
-        ...titleBodyIconFields,
+        ...titleBodyActionsFields,
         defineField({
             name: "panelsCaption",
             title: "Pricing Panels Caption",
@@ -98,22 +76,6 @@ const introSectionSchema = defineType({
             title: "Pricing Panels",
             type: "array",
             of: [{ type: pricingPanelSchemaName }],
-        }),
-        isVisibleField,
-    ],
-});
-
-const featureTableSectionSchema = defineType({
-    name: featureTableSectionSchemaName,
-    title: "Feature Table Section",
-    type: "object",
-    fields: [
-        ...titleBodyIconFields,
-        defineField({
-            name: "featureTable",
-            title: "Feature Table",
-            type: featureTableSchemaName,
-            validation: requiredRule,
         }),
         isVisibleField,
     ],
@@ -149,7 +111,7 @@ const pricingPageSchema = defineType({
         defineField({
             name: "contactSection",
             title: "Contact Section",
-            type: coreSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),
@@ -173,4 +135,4 @@ const pricingPageSchema = defineType({
         }),
 });
 
-export const pricingPageSchemas = [introSectionSchema, featureTableSectionSchema, pricingPageSchema];
+export const pricingPageSchemas = [introSectionSchema, pricingPageSchema];

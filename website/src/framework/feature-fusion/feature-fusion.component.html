@@ -1,0 +1,9 @@
+@for (feature of features; track feature) {
+  @if ($index !== 0) {
+    <div class="ff-cell ff-plus-cell text-h2">+</div>
+  }
+  <div class="ff-cell ff-content-cell">
+    <h3>{{ feature.title }}</h3>
+    <td-rich-text [value]="feature.body"/>
+  </div>
+}

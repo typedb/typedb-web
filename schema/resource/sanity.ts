@@ -1,7 +1,7 @@
 import { SanityDocument, Slug } from "@sanity/types";
-import { SanityButton } from "../button";
+import { SanityLinkButton } from "../button";
 import { SanityVisibleToggle } from "../common-fields";
-import { SanityTechnicolorBlock } from "../component/technicolor-block";
+import { SanitySectionCore } from "../component/section";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -21,6 +21,7 @@ export interface SanitySiteResource extends SanityDocument {
     description: PortableText;
     shortTitle: string;
     shortDescription: string;
+    image?: SanityImage;
     furtherLearning?: SanityResourceSection;
 }
 
@@ -30,6 +31,7 @@ export interface SanityGenericResource extends SanityDocument {
     description: string;
     link: SanityReference<SanityLink>;
     linkText: string;
+    image?: SanityImage;
 }
 
 export interface SanityArticle extends SanitySiteResource {
@@ -50,7 +52,6 @@ export interface SanityBlogPost extends SanityArticle {
     author: SanityReference<SanityPerson>;
     date: string;
     categories: BlogCategoryID[];
-    image?: SanityImage;
 }
 
 export type BlogPostLevel = "primary" | "secondary" | "tertiary";
@@ -99,10 +100,10 @@ export interface SanityLiveEvent extends SanityEventBase {
     venue: string;
     dateOptions: SanityEventDate;
     signupMethod: EventSignupMethod;
-    externalUrlButton?: SanityButton;
+    externalUrlButton?: SanityLinkButton;
 }
 
-export interface SanityResourceSection extends SanityTechnicolorBlock, SanityVisibleToggle {
+export interface SanityResourceSection extends SanitySectionCore {
     resources?: SanityReference<SanityResource>[];
 }
 

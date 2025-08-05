@@ -1,14 +1,13 @@
 
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { sanitiseHtmlID } from "../util";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 @Component({
     selector: "td-tag-chips",
     templateUrl: "./tag-chips.component.html",
     styleUrls: ["./tag-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class TagChipsComponent {
     @Input() tags!: string[];

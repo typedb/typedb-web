@@ -50,10 +50,7 @@ export const titleFieldWithHighlights = defineField({
     description: "Text marked as 'bold' will instead be rendered in the highlight color",
     type: "array",
     of: [{ type: "block" }],
-    validation: (rule: ArrayRule<any>) =>
-        rule.required().custom((value, _context) => {
-            return value?.length === 1 ? true : "Must contain exactly one paragraph";
-        }),
+    validation: requiredRule,
 });
 
 export function titleWithHighlightsPreview(value: any[]): string {
@@ -95,20 +92,6 @@ export const slugField = defineField({
 
 export const iconFieldName = "icon";
 
-export const sectionIconFieldOptional = defineField({
-    name: iconFieldName,
-    title: "Icon",
-    type: "reference",
-    to: [{ type: "sectionIcon" }],
-    options: { disableNew: true },
-});
-
-export const sectionIconField = Object.assign({}, sectionIconFieldOptional, {
-    validation: requiredRule,
-});
-
-export const titleBodyIconFields = [...titleAndBodyFields, sectionIconField];
-
 export const descriptionFieldName = "description";
 
 export const descriptionField = defineField({
@@ -143,6 +126,8 @@ export const actionsFieldOptional = defineField({
     icon: PlayIcon,
 });
 
+export const titleBodyActionsFields = [...titleAndBodyFields, actionsFieldOptional];
+
 export const routeFieldName = "route";
 
 export const routeField = defineField({
@@ -172,6 +157,30 @@ export const learnMoreLinkFieldName = "learnMoreLink";
 export const learnMoreLinkFieldOptional = Object.assign({}, linkFieldOptional, {
     name: learnMoreLinkFieldName,
     title: "'Learn More' link",
+});
+
+export const iconNameFieldName = "iconName";
+export const iconVariantFieldName = "iconVariant";
+
+export const iconNameFieldOptional = defineField({
+    name: "iconName",
+    type: "string",
+    title: "Icon Name",
+});
+
+export const iconVariantFieldOptional = defineField({
+    name: "iconVariant",
+    type: "string",
+    title: "Icon Variant",
+    initialValue: "thin",
+    options: {
+        list: ["regular", "light", "thin", "brands"],
+        layout: "radio",
+        direction: "horizontal",
+    },
+    hidden: (ctx) => {
+        return ctx.parent == null || ctx.parent["iconName"] == null;
+    },
 });
 
 export const comingSoonField = defineField({
@@ -214,14 +223,23 @@ export const keyPointsField = (count?: number) =>
         validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
     });
 
-export const keyPointsWithIconsField = (count?: number) =>
-    defineField({
-        name: keyPointsFieldName,
-        title: "Key Points",
-        type: "array",
-        of: [{ type: "keyPointWithIcon" }],
-        validation: count != null ? (rule: ArrayRule<any>) => rule.length(count) : undefined,
-    });
+export const keywordFieldName = "keyword";
+
+export const keywordFieldOptional = defineField({
+    name: keywordFieldName,
+    title: "Keyword (optional)",
+    type: "string",
+});
+
+export const tagsFieldName = "tags";
+
+export const tagsField = defineField({
+    name: tagsFieldName,
+    title: "Tags",
+    type: "array",
+    of: [{ type: "string" }],
+    initialValue: [],
+});
 
 export interface SanityVisibleToggle {
     isVisible: boolean;
@@ -263,3 +281,6 @@ export const resourcesFieldOptional = defineField({
 });
 
 export const resourcesField = Object.assign({}, resourcesFieldOptional, { validation: requiredRule });
+
+export const codeSnippetSchemaName = "codeSnippet";
+export const polyglotSnippetSchemaName = "polyglotSnippet";

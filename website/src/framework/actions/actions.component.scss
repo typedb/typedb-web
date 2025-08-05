@@ -2,12 +2,11 @@
 
 :host {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     gap: 16px;
     margin-top: 40px;
 
     @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        margin-top: 24px;
+        margin-top: 32px;
     }
 }

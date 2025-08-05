@@ -10,8 +10,9 @@ import {
 
 import { MediaQueryService } from "../../service/media-query.service";
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
-import { CodeSnippetComponent, PolyglotSnippetComponent } from "../code/code-snippet.component";
-import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
+import { CodeSnippetComponent } from "../code/code-snippet.component";
+import { PolyglotSnippetComponent } from "../polyglot-snippet/polyglot-snippet.component";
+// import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
 import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
@@ -19,11 +20,10 @@ import { RichTextComponent } from "../text/rich-text.component";
     templateUrl: "illustration.component.html",
     styleUrls: ["illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
+        CodeSnippetComponent, PolyglotSnippetComponent, /*GraphVisualisationComponent,*/
         forwardRef(() => SplitPaneIllustrationComponent)
-    ],
+    ]
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
@@ -61,8 +61,7 @@ export class IllustrationComponent {
     templateUrl: "split-pane-illustration.component.html",
     styleUrls: ["split-pane-illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [IllustrationComponent, AsyncPipe],
+    imports: [IllustrationComponent, AsyncPipe]
 })
 export class SplitPaneIllustrationComponent implements OnInit {
     @Input() panes!: SplitPaneIllustration;
@@ -114,8 +113,7 @@ export class SplitPaneIllustrationComponent implements OnInit {
     templateUrl: "captioned-illustration.component.html",
     styleUrls: ["captioned-illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent],
+    imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent]
 })
 export class CaptionedIllustrationComponent {
     @Input() illustration!: Illustration;

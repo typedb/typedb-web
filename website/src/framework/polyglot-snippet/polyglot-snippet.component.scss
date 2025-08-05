@@ -1,0 +1,76 @@
+@use "shapes";
+@use "media";
+
+:host {
+    height: 100%;
+    width: 100%;
+}
+
+.td-snippet-container {
+    position: relative;
+    height: calc(100% - 42px);
+    width: 100%;
+    overflow: auto;
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 242px;
+    }
+}
+
+.ft-tabs-container {
+    border-bottom: shapes.$border;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    background: var(--color-deep-purple);
+}
+
+.ft-tabs {
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ft-tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+
+    &:not(:first-child) {
+        border-left: shapes.$border;
+    }
+
+    @media (hover: hover) {
+        &:hover h5 {
+            color: var(--color-green);
+            text-decoration: underline;
+        }
+    }
+}
+
+.ft-tab-selected,
+.ft-tab-selected h5 {
+    color: var(--color-green);
+    background: var(--color-purple);
+}
+
+.ft-graphic {
+    flex: 1;
+}
+
+.ft-text-area {
+    width: 366px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+td-scroll-pane {
+    ::ng-deep .ss-container {
+        height: calc(100% + 4px);
+    }
+}

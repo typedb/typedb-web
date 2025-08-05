@@ -1,6 +1,6 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 @mixin nav-dt {
@@ -30,7 +30,7 @@
             display: flex;
             justify-content: space-between;
             position: relative;
-            max-width: 1216px;
+            max-width: 1536px;
         }
 
         li {
@@ -49,13 +49,21 @@
         display: flex;
         align-items: center;
         padding: 0 20px;
-        color: var(--color-dark-white);
+        color: var(--color-white);
         cursor: pointer;
         transition: color 100ms;
         font-weight: var(--font-weight-regular);
 
-        &:hover, .td-topbar-panel-opened & {
-            color: var(--color-darker-white);
+        svg path {
+            transition: fill 100ms;
+        }
+
+        &:hover {
+            color: var(--color-secondary-light-grey);
+
+            svg path {
+                fill: var(--color-secondary-light-grey);
+            }
         }
     }
 
@@ -119,7 +127,7 @@
             @include nav-dd;
         }
 
-        @media (min-width: 960px) and (max-width: 1039px) {
+        @media (min-width: 1000px) and (max-width: 1039px) {
             margin-left: -164px;
         }
 
@@ -127,7 +135,7 @@
             margin-left: -112px;
         }
 
-        @media (max-width: 959px) {
+        @media (max-width: 999px) {
             margin-left: 0;
         }
     }
@@ -135,12 +143,11 @@
     .td-topbar-chevron {
         margin: 0 -8px 0 8px;
         font-size: 12px;
-        color: var(--color-darker-white);
         transition: transform 100ms;
     }
 
     .td-topbar-panel-opened {
-        @media (min-width: 960px) {
+        @media (min-width: 1000px) {
             .td-topbar-chevron {
                 transform: rotate(180deg);
             }
@@ -262,7 +269,7 @@
 
     .td-topbar-external-icon {
         text-indent: 100%;
-        @include url-icon(url("#{$icon-path}/link.svg"), currentColor);
+        @include mixins.url-icon(url("#{$icon-path}/link.svg"), currentColor);
         width: 16px;
         height: 16px;
         margin-left: 4px;
@@ -295,7 +302,20 @@
             width: 1em;
             height: 1em;
 
-            @include url-icon(var(--menu-icon-url), var(--color-white));
+            @include mixins.url-icon(var(--menu-icon-url), var(--color-white));
+        }
+    }
+
+    .td-topbar-github-logo {
+        width: 88px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        svg {
+            width: 24px;
+            height: 24px;
         }
     }
 
@@ -313,8 +333,8 @@
         p {
             font-size: 12px;
             line-height: 18px;
-            color: var(--color-purple);
-            font-family: var(--code-font-family);
+            color: var(--color-black);
+            font-family: var(--font-family-code);
 
             @media (max-width: media.$max-width-mobile) {
                 font-size: 10px;
@@ -326,13 +346,13 @@
         }
     }
 
-    @media (max-width: 959px) {
+    @media (max-width: 999px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
 
         .td-topbar-open nav {
-            background: var(--color-purple);
+            background: var(--body-background);
         }
 
         .td-topbar-logo-container {
@@ -357,7 +377,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            background-color: var(--color-purple);
+            background-color: var(--body-background);
             width: 100%;
             padding: 0 20px;
             overflow-y: auto;
@@ -384,7 +404,6 @@
 
         .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
             font-size: 16px;
-            font-weight: var(--font-weight-medium);
             box-sizing: content-box;
             width: 100%;
             display: flex;
@@ -397,8 +416,12 @@
             gap: 16px;
 
             &:hover, &:focus {
-                color: var(--color-white);
+                color: var(--color-secondary-light-grey);
                 text-decoration: none;
+            }
+
+            &.td-topbar-github-logo {
+                display: none;
             }
 
             li.td-topbar-panel-expanded & {
@@ -419,7 +442,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            @include url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/arrow-down.svg"), var(--color-white));
         }
 
         .td-topbar-menu-panel {
@@ -461,7 +484,7 @@
                 border-top: 1px solid var(--color-light-purple);
                 justify-content: center;
                 align-items: center;
-                background: var(--color-purple);
+                background: var(--body-background);
             }
         }
 
@@ -539,10 +562,6 @@
                 align-items: baseline;
                 padding: 16px 0;
                 border-top: 1px solid var(--content-border-color);
-            }
-
-            li:last-of-type {
-                border-bottom: 1px solid var(--content-border-color);
             }
         }
     }

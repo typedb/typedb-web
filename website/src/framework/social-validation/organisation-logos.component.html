@@ -1,0 +1,11 @@
+<div
+  class="ol-root"
+  [style.width]="rootWidth"
+  [ngClass]="{ 'ol-root-panel': appearance === 'panel', 'ol-root-transparent': appearance === 'transparent' }"
+>
+  @for (_ of [].constructor(2); track _) {
+    @for (organisation of organisations; track organisation) {
+      <img class="ol-image" [src]="organisation.logoURL" [alt]="organisation.name"/>
+    }
+  }
+</div>

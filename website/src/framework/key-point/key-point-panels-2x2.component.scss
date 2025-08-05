@@ -1,30 +1,24 @@
 @use "media";
+@use "mixins";
 
-.kpp-root {
+:host {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
     gap: 40px;
+    @include mixins.section-width();
 
     @media (max-width: media.$max-width-tablet) {
         gap: 32px;
     }
 
     @media (max-width: media.$max-width-mobile) {
-        gap: 12px;
+        gap: var(--subsection-margin);
+        flex-wrap: wrap;
     }
 }
 
 .kpp-panel {
-    padding: 32px;
-    flex: 1 1 400px;
-
-    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
-        padding: 20px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        padding: 12px;
-    }
+    flex: 1 1 660px;
 }
 
 td-rich-text {

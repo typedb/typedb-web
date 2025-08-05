@@ -1,0 +1,51 @@
+@use "media";
+@use "mixins";
+
+:host {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-top: var(--section-margin);
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+    }
+
+    &.td-row-reverse {
+        @media (min-width: media.$min-width-tablet) {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &.td-column {
+        @media (min-width: media.$min-width-tablet) {
+            flex-direction: column;
+        }
+
+        .td-text {
+            text-align: center;
+        }
+
+        .td-illustration {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: media.$min-width-tablet) {
+        .td-text {
+            flex: 1;
+        }
+
+        .td-illustration {
+            flex: 1;
+        }
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+
+}
+
+:host ::ng-deep h1 {
+    font-weight: var(--font-weight-bold);
+}

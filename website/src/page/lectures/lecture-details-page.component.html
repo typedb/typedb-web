@@ -1,88 +1,86 @@
-<article nebula="features" planet="blue_pink">
+<article>
   @if (lecture$ | async; as lecture) {
-    <div class="article-content">
-      <section class="nebula-section">
-        <a tdLink="/lectures">
-          <td-heading-with-highlights [value]="allLecturesHeading" class="bp-site-title" level="h2" />
-        </a>
-      </section>
-      <div class="resource-section">
-        <section>
-          <td-heading-with-highlights [value]="lecture.title" level="h1" />
-          @if (!lecture.lectureSlidesURL) {
-            <ul class="wd-subtitle text-p1">
-              <li>Lecture</li>
-              <li>
-                <mat-icon svgIcon="calendar" />
-                <span class="cdk-visually-hidden">Date/Time:</span>
-                @if (lecture.isFinished()) {
-                  <span>On-Demand</span>
-                }
-                @if (!lecture.isFinished()) {
-                  <time [dateTime]="lecture.datetime.toISOString()">
-                    {{ lecture.datetime | ordinalDate }},
-                    {{ lecture.datetime | date: "shortTime" }}
-                    {{ localTimezoneAbbreviation(lecture) }}
-                  </time>
-                }
-              </li>
-              <li>
-                <mat-icon svgIcon="time" />
-                <span class="cdk-visually-hidden">Duration:</span>
-                {{ lecture.durationMins | eventDuration }}
-              </li>
-            </ul>
-          }
-          @if (actions$ | async; as actions) {
-            <td-actions [actions]="actions" class="ld-download-slides" sectionId="main" />
-          }
-          @if (safeVideoURL$ | async; as safeVideoURL) {
-            <td-aspect-ratio class="ld-video-container" ratio="16:9">
-              <iframe
-                class="ld-video-frame"
-                [src]="safeVideoURL"
-                title="Video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </td-aspect-ratio>
-          }
-          <div class="subsection-margin wd-details-area">
-            @if (!lecture.isStarted() || (safeVideoURL$ | async) === null) {
-              <div class="card wd-form-card">
-                <h3>
-                  <strong>{{ lecture.isStarted() ? "Watch Lecture" : "Get notified for event" }}</strong>
-                </h3>
-                <div id="hubspot-form-holder"></div> <!-- TODO -->
-                <aside>
-                  By submitting your personal data, you consent to emails from TypeDB. See our
-                  <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
-                </aside>
-                @if (isSubmitting$ | async) {
-                  <mat-progress-bar mode="indeterminate" />
-                }
-              </div>
-            }
-            <div>
-              <td-rich-text
-                [value]="lecture.description"
-                [class]="!lecture.isStarted() || (safeVideoURL$ | async) === null ? '' : 'ld-cols-2'"
-                />
-              <ul class="wd-speakers subsection-margin">
-                @for (speaker of lecture.speakers; track speaker) {
-                  <li>
-                    <td-person-card [person]="speaker" />
-                  </li>
-                }
-              </ul>
-            </div>
-          </div>
-        </section>
-        @if (lecture.furtherLearning) {
-          <td-further-learning [value]="lecture.furtherLearning" />
+    <section class="nebula-section">
+      <a tdLink="/lectures">
+        <td-heading-with-highlights [value]="allLecturesHeading" class="bp-site-title" level="h2" />
+      </a>
+    </section>
+    <div class="resource-section narrow-section">
+      <section class="main-section narrow-section">
+        <td-heading-with-highlights [value]="lecture.title" level="h1" />
+        @if (!lecture.lectureSlidesURL) {
+          <ul class="wd-subtitle text-p1">
+            <li>Lecture</li>
+            <li>
+              <mat-icon svgIcon="calendar" />
+              <span class="cdk-visually-hidden">Date/Time:</span>
+              @if (lecture.isFinished()) {
+                <span>On-Demand</span>
+              }
+              @if (!lecture.isFinished()) {
+                <time [dateTime]="lecture.datetime.toISOString()">
+                  {{ lecture.datetime | ordinalDate }},
+                  {{ lecture.datetime | date: "shortTime" }}
+                  {{ localTimezoneAbbreviation(lecture) }}
+                </time>
+              }
+            </li>
+            <li>
+              <mat-icon svgIcon="time" />
+              <span class="cdk-visually-hidden">Duration:</span>
+              {{ lecture.durationMins | eventDuration }}
+            </li>
+          </ul>
         }
-      </div>
+        @if (actions$ | async; as actions) {
+          <td-actions [actions]="actions" class="ld-download-slides" sectionId="main" />
+        }
+        @if (safeVideoURL$ | async; as safeVideoURL) {
+          <td-aspect-ratio class="ld-video-container" ratio="16:9">
+            <iframe
+              class="ld-video-frame"
+              [src]="safeVideoURL"
+              title="Video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </td-aspect-ratio>
+        }
+        <div class="subsection-margin wd-details-area">
+          @if (!lecture.isStarted() || (safeVideoURL$ | async) === null) {
+            <div class="card wd-form-card">
+              <h3>
+                <strong>{{ lecture.isStarted() ? "Watch Lecture" : "Get notified for event" }}</strong>
+              </h3>
+              <div id="hubspot-form-holder"></div> <!-- TODO -->
+              <aside>
+                By submitting your personal data, you consent to emails from TypeDB. See our
+                <a href="/legal/privacy-policy" target="_blank">Privacy Policy</a>.
+              </aside>
+              @if (isSubmitting$ | async) {
+                <mat-progress-bar mode="indeterminate" />
+              }
+            </div>
+          }
+          <div>
+            <td-rich-text
+              [value]="lecture.description"
+              [class]="!lecture.isStarted() || (safeVideoURL$ | async) === null ? '' : 'ld-cols-2'"
+              />
+            <ul class="wd-speakers subsection-margin">
+              @for (speaker of lecture.speakers; track speaker) {
+                <li>
+                  <td-person-card [person]="speaker" />
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </section>
+      @if (lecture.furtherLearning) {
+        <td-further-learning [value]="lecture.furtherLearning" />
+      }
     </div>
   }
 </article>

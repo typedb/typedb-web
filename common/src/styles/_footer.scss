@@ -1,5 +1,5 @@
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
 @mixin styles($icon-path) {
@@ -7,8 +7,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-top: shapes.$border;
-        background: var(--color-purple);
     }
 
     .td-footer-section {
@@ -20,16 +18,13 @@
         @media (max-width: media.$max-width-mobile) {
             padding: 18px 12px;
         }
-
-        &:not(:first-child) {
-            border-top: shapes.$border;
-        }
     }
 
     .td-footer-section-social {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        border-top: shapes.$border;
 
         @media (max-width: media.$max-width-mobile) {
             flex-direction: column;
@@ -64,6 +59,10 @@
         }
     }
 
+    .td-footer-section-copyright {
+        border-top: shapes.$border;
+    }
+
     .td-footer-section-nav {
         display: flex;
         flex-flow: row wrap;
@@ -75,7 +74,7 @@
         }
 
         a, a:visited, a p {
-            color: var(--body-font-color);
+            color: var(--color-secondary-light-grey);
 
             &:hover, &:focus {
                 color: var(--color-white);
@@ -147,20 +146,6 @@
         }
     }
 
-    .td-footer-section-copyright {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        @media (max-width: media.$max-width-mobile) {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-        }
-    }
-
     .td-footer-credits {
         display: flex;
         flex-direction: row;
@@ -189,7 +174,7 @@
 
     @each $social in $socials {
         .td-footer-icon-#{$social} {
-            @include url-icon(url("#{$icon-path}/#{$social}-rectangle.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/#{$social}-rectangle.svg"), var(--color-secondary-light-grey));
         }
     }
 
@@ -202,7 +187,7 @@
 
     @each $name, $icon in $contactMedias {
         .td-footer-icon-#{$name} {
-            @include url-icon(url("#{$icon-path}/#{$icon}.svg"), var(--color-white));
+            @include mixins.url-icon(url("#{$icon-path}/#{$icon}.svg"), var(--color-secondary-light-grey));
         }
     }
 }

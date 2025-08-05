@@ -8,7 +8,6 @@ import { MatIconModule } from "@angular/material/icon";
     templateUrl: "./dialog-close-button.component.html",
     styleUrls: ["./dialog-close-button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [MatButtonModule, MatDialogClose, MatIconModule],
+    imports: [MatButtonModule, MatDialogClose, MatIconModule]
 })
 export class DialogCloseButtonComponent {}

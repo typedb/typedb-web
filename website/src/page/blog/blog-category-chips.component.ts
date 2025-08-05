@@ -10,8 +10,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
     templateUrl: "./blog-category-chips.component.html",
     styleUrls: ["./blog-category-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [LinkDirective],
+    imports: [LinkDirective]
 })
 export class BlogCategoryChipsComponent {
     @Input() post!: BlogPost;

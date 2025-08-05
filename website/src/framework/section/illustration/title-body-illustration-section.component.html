@@ -1,0 +1,12 @@
+<div class="td-text">
+  <td-heading-with-highlights [value]="data.title" [level]="level" />
+  @if (data.body) {
+    <td-rich-text [value]="data.body" class="narrow-section subtitle-l text-p1" />
+  }
+  <td-actions [actions]="data.actions" [sectionId]="data.sectionId" />
+</div>
+@if (data.illustration) {
+  <div class="td-illustration">
+    <td-illustration class="td-frameless" [illustration]="data.illustration" />
+  </div>
+}

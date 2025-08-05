@@ -3,6 +3,7 @@ import { Link } from "./link";
 import { SanityDataset } from "./sanity-core";
 
 export const socialMedias = {
+    github: "GitHub",
     discord: "Discord",
     meetup: "Meetup",
     twitter: "Twitter",
@@ -63,12 +64,6 @@ export const communityResourcesSchema = defineType({
         { name: "socialMedia", title: "Social Media" },
     ],
     fields: [
-        defineField({
-            name: "githubURL",
-            title: "GitHub URL",
-            type: "url",
-            group: "developerAndSupport",
-        }),
         defineField({
             name: "discussionForumURL",
             title: "Discussion Forum URL",

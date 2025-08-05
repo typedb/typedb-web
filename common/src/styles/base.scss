@@ -1,38 +1,33 @@
 @use "colors";
 @use "media";
-@use "mixins" as *;
+@use "mixins";
 @use "shapes";
 
-html,
-body {
+html, body {
     color-scheme: dark;
     background-color: var(--body-background);
     color: var(--body-font-color);
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-thin);
+    font-weight: var(--font-weight-light);
     line-height: var(--line-height-p2);
     letter-spacing: var(--body-letter-spacing);
 
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 
     margin: 0;
     scroll-padding-top: var(--scroll-padding);
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-code,
-kbd,
-pre {
-    font-family: var(--code-font-family);
+code, kbd, pre {
+    font-family: var(--font-family-code);
 }
 
 @each $tag in (h1, h2, h3, h4, h5, h6) {
-    #{$tag} {
+    #{$tag}, .text-#{$tag} {
         font-size: var(--font-size-#{$tag});
         line-height: var(--line-height-#{$tag});
     }
@@ -42,20 +37,17 @@ pre {
     }
 }
 
-.text-p1,
-.text-p1 p {
+.text-p1, .text-p1 p {
     font-size: var(--font-size-p1);
     line-height: var(--line-height-p1);
 }
 
-p,
-.text-p2 {
+p, .text-p2 {
     font-size: var(--font-size-p2);
     line-height: var(--line-height-p2);
 }
 
-.text-blog,
-.text-blog p {
+.text-blog, .text-blog p {
     font-size: var(--font-size-blog);
     line-height: var(--line-height-blog);
 }
@@ -86,13 +78,11 @@ pre, code, .text-code {
 }
 
 button {
-    font-family: var(--default-font-family);
+    font-family: var(--font-family-default);
 }
 
-input,
-select,
-textarea {
-    font-family: var(--default-font-family);
+input, select, textarea {
+    font-family: var(--font-family-default);
     &::placeholder {
         color: rgba(colors.$secondary-light-grey, 0.8);
         font-style: italic;
@@ -116,14 +106,16 @@ aside {
     }
 }
 
-/* prettier-ignore */
-h1, h2 {
-  font-weight: var(--font-weight-semi-bold);
+h1 {
+    font-weight: var(--font-weight-medium);
 }
 
-/* prettier-ignore */
-h3, h4 {
+h2 {
   font-weight: var(--font-weight-medium);
+}
+
+h3, h4 {
+  font-weight: var(--font-weight-regular);
 }
 
 h5, h6 {
@@ -238,7 +230,7 @@ button, td-button {
 ::file-selector-button {
     border-radius: 4px;
     font-family: inherit;
-    @include button-primary;
+    @include mixins.button-greenHollow;
 }
 
 [hidden] {
@@ -274,31 +266,41 @@ button, td-button {
 }
 
 .card {
-    @include card-appearance;
-    @include card-padding;
+    @include mixins.card-appearance;
+    @include mixins.card-padding;
     transition: border-color 100ms;
 
-    &.hoverable:hover {
-        border-color: var(--color-secondary-light-grey);
-    }
+    //&.hoverable:hover {
+    //    border-color: var(--color-secondary-light-grey);
+    //}
 }
 
 .card-appearance {
-    @include card-appearance;
+    @include mixins.card-appearance;
 }
 
 .card-padding {
-    @include card-padding;
+    @include mixins.card-padding;
 }
 
-.button-primary {
-    @include button;
-    @include button-primary;
+.button-greenHollow {
+    @include mixins.button;
+    @include mixins.button-greenHollow;
 }
 
-.button-secondary {
-    @include button;
-    @include button-secondary;
+.button-water {
+    @include mixins.button;
+    @include mixins.button-water;
+}
+
+.button-fire {
+    @include mixins.button;
+    @include mixins.button-fire;
+}
+
+.button-frameless {
+    @include mixins.button;
+    @include mixins.button-frameless;
 }
 
 td-form-actions, .td-form-actions {
@@ -334,7 +336,7 @@ td-form-actions, .td-form-actions {
         outline: none;
         cursor: pointer;
         padding: 9px 26px;
-        background-color: var(--color-purple);
+        background-color: var(--color-deep-purple);
         color: var(--body-font-color);
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);

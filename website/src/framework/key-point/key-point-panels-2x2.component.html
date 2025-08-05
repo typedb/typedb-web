@@ -1,8 +1,3 @@
-<div class="section kpp-root">
-  @for (keyPoint of keyPoints; track keyPoint) {
-    <div class="card kpp-panel">
-      <h3>{{ keyPoint.title }}</h3>
-      <td-rich-text [value]="keyPoint.body" />
-    </div>
-  }
-</div>
+@for (keyPoint of keyPoints; track keyPoint) {
+  <td-section-core class="kpp-panel" [section]="keyPoint"/>
+}

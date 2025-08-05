@@ -2,7 +2,7 @@
 
 :host {
     @media (min-width: media.$min-width-tablet) {
-        td-pricing-page-technicolor-block.td-features ::ng-deep td-technicolor-block .tb-main {
+        td-section-core.td-features ::ng-deep td-section-core .tb-main {
             padding: 0 0 16px;
         }
     }

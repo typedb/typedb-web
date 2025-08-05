@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { IdleMonitorService } from "@scullyio/ng-lib";
 import { of } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { EventsPage, eventsPageSchemaName, LiveEvent, SanityDataset, SanityEventsPage } from "typedb-web-schema";
 
 import { ContentService } from "src/service/content.service";
@@ -14,11 +14,9 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDatePipe } from "../../framework/date/event-date.pipe";
-import { PageBackgroundComponent } from "../../framework/page-background/page-background.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
-import { sanitiseHtmlID } from "../../framework/util";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -26,11 +24,10 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./events-page.component.html",
     styleUrls: ["./events-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-        PageBackgroundComponent, TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
-        ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe
-    ],
+        AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe,
+        SectionCoreComponent
+    ]
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {
     constructor(
@@ -38,11 +35,10 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        idleMonitor: IdleMonitorService,
         metaTags: MetaTagsService,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, idleMonitor, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, contentService);
     }
 
     protected override getPage(data: SanityDataset) {
@@ -51,7 +47,7 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
     }
 
     getEventListImageUrl(event: LiveEvent) {
-        return this.imageBuilder.image(event.imageURL).width(731).url();
+        return event.imageURL ? this.imageBuilder.image(event.imageURL).width(731).url() : undefined;
     }
 
     eventDetailsButtonId(event: LiveEvent): string {

@@ -17,17 +17,16 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
     templateUrl: "./blog-row.component.html",
     styleUrls: ["./blog-row.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-    LinkDirective,
-    AspectRatioComponent,
-    BlogCategoryChipsComponent,
-    RichTextComponent,
-    BlogAuthorshipBarComponent,
-    HeadingWithHighlightsComponent,
-    ResourcePanelsComponent,
-    PlainTextPipe
-],
+        LinkDirective,
+        AspectRatioComponent,
+        BlogCategoryChipsComponent,
+        RichTextComponent,
+        BlogAuthorshipBarComponent,
+        HeadingWithHighlightsComponent,
+        ResourcePanelsComponent,
+        PlainTextPipe
+    ]
 })
 export class BlogRowComponent {
     @Input() row!: BlogRow;

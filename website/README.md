@@ -1,47 +1,47 @@
 # TypeDB Website Frontend - Angular
 
-The TypeDB website frontend is an Angular app that is client-side rendered locally and in development. In production,
-we use [Scully](https://scully.io) to prerender the pages.
+TypeDB Website is built on [Angular](https://angular.dev).
 
-## Install dependencies
+Its pages can be client-side, server-side, or prerendered according to each environment's needs.
 
-### PNPM
+## Build from source
 
-Check the `packageManager` entry in [package.json](./package.json) to find out the correct PNPM version.
+There is a wide variety of Web toolchains; the process below is one way to compile TypeDB Website from source.
 
-Generally speaking, it's OK to use a different minor/patch version to the specified one, but the major version should be the same.
+### Install toolchains and dependencies
 
-Installation instructions can be found at https://pnpm.io/installation, and we recommend using **Corepack**.
+First, install [nvm](https://github.com/nvm-sh/nvm) on MacOS or Linux, [nvm-windows](https://github.com/coreybutler/nvm-windows) on Windows. Then:
 
-After installing PNPM, create a `~/.npmrc` file containing the following content: `auto-install-peers = false`.
-
-The following command will work if you don't already have a `~/.npmrc` file:
 ```sh
-echo 'auto-install-peers = false' > ~/.npmrc
-```
-
-### Angular CLI
-
-It's common practice to install Angular CLI globally, but local installation may be beneficial if you need to manage
-multiple Angular projects on your system that use different major Angular versions.
-
-```shell
-pnpm add --global @angular/cli
-```
-
-### Node modules
-```shell
+nvm install 22.16.0
+nvm use 22.16.0
+npm install --global corepack@0.17.0
+corepack enable
+corepack prepare pnpm@10.12.1 --activate
+pnpm i -g @angular/cli
 pnpm i
 ```
 
-ℹ️ _If this is a freshly cloned repo, you'll also need to run `pnpm i` in the `schema` directory. See the
-[Schema module README](../schema/README.md) for more instruction on `/schema` package.
+### Launch local development server (Angular)
 
-## Develop locally
-
-```shell
-ng serve --open
+```sh
+pnpm run start
 ```
+
+### Other build commands
+
+Launch local SSR server with prerendering:
+```sh
+pnpm run start:ssr
+```
+
+Build web app distribution:
+```sh
+pnpm build
+```
+
+_Instructions are accurate at the time of writing (12 Jul 2025); see [./netlify.toml](./netlify.toml) for the most up-to-date build process that we use in our Netlify CI._
+
 
 ℹ️ _If you need to develop the content model (CMS model), see the instructions in the
 [CMS module README](../sanity/README.md)._
@@ -58,27 +58,8 @@ You can view the status of deploys [here](https://app.netlify.com/sites/typedb/d
 - The `master` branch is deployed to https://master.typedb.com. It renders **published** content in Sanity client-side. This allows you to preview how your content will look in production.
 - The `live` branch is deployed to https://typedb.com, the live site. It takes a snapshot of the published content at the time of deployment, prerenders the site using Scully, and publishes it live.
 
-## Prerendering - [Scully](https://scully.io/)
-
-Scully is a prerenderer purpose-built for Angular sites. We use prerendering so that search engine crawlers see the
-actual content without needing to run JavaScript, and sharply improves performance for our users by making the initial
-page load lightning fast.
-
-### Run Scully locally
-
-The intended result is that the site behaves exactly the same prerendered as it would otherwise. However, it is not
-perfect, and it's possible to introduce bugs, e.g. using code that is expected to run exactly once on a page - which
-may end up getting run repeatedly (once by the prerenderer, once by the user's browser)
-
-When fixing bugs in Scully or developing features, it can be useful to run it locally:
-```shell
-OUT_DIR=./dist/static npx scully --project typedb-web --scanRoutes --noPrompt
-```
-
-The prerendered site will be built to `./dist/static` where you can browse the artifacts.
-
 ## Resources
 
-- [Angular docs](https://angular.io/docs)
-- [Scully docs](https://scully.io/docs/learn/overview/)
+- [Angular docs](https://angular.dev)
+- [Angular SSR docs](https://angular.dev/guide/ssr)
 - [Netlify docs](https://docs.netlify.com/)

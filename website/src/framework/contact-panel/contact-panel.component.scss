@@ -1,4 +1,19 @@
 @use "media";
+@use "mixins";
+@use "colors";
+
+:host {
+    position: relative;
+    background: transparent;
+
+    @media (min-width: media.$min-width-desktop) {
+        width: 900px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        border: none;
+    }
+}
 
 .cp-contact-policy {
     height: 0;
@@ -35,21 +50,22 @@
 }
 
 td-form-actions {
-    margin-top: 40px;
     align-self: flex-end;
     width: unset;
 
     @media (max-width: media.$max-width-mobile) {
         align-self: stretch;
+        margin-top: 52px;
     }
 }
 
 aside {
     position: absolute;
-    bottom: 24px;
-    left: 24px;
+    bottom: 32px;
+    left: 32px;
 
     @media (max-width: media.$max-width-mobile) {
-        bottom: 64px;
+        bottom: 68px;
+        left: 20px;
     }
 }

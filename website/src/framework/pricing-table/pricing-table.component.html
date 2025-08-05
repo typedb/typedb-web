@@ -2,7 +2,12 @@
   <h3 class="text-h3">{{ caption }}</h3>
 }
 
-<table role="presentation" class="section hide-mobile">
+<table role="presentation" class="hide-mobile">
+  <colgroup>
+    <col style="width: 33.33%" />
+    <col style="width: 33.33%" />
+    <col style="width: 33.33%" />
+  </colgroup>
   <tr>
     @for (panel of panels; track panel) {
       <td>
@@ -19,7 +24,7 @@
   <tr class="pp-button-row">
     @for (panel of panels; track panel) {
       <td>
-        <td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" />
+        <td-button [button]="panel.button" size="small" [linkId]="linkId(panel)" />
       </td>
     }
   </tr>
@@ -52,7 +57,7 @@
 </table>
 
 @for (panel of panels; track panel) {
-  <table role="presentation" class="section hide-gt-mobile">
+  <table role="presentation" class="hide-gt-mobile">
     <tr>
       <td>
         <div class="pp-cell-content">
@@ -65,7 +70,7 @@
       </td>
     </tr>
     <tr class="pp-button-row">
-      <td><td-button [button]="panel.button" size="small" buttonWidth="100%" [linkId]="linkId(panel)" /></td>
+      <td><td-button [button]="panel.button" size="small" [linkId]="linkId(panel)" /></td>
     </tr>
     <tr>
       <td class="td-bottom-link">

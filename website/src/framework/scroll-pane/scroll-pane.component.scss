@@ -1,0 +1,126 @@
+@use "colors";
+
+:host {
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    $colors: (
+        "deep-purple": colors.$deep-purple,
+        "black-purple": colors.$black-purple,
+    );
+
+    @each $name, $value in $colors {
+        &.#{$name} {
+            .ss-left {
+                background: linear-gradient(90deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-right {
+                background: linear-gradient(-90deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-top {
+                background: linear-gradient(180deg, $value 0%, rgba($value, 0) 100%);
+            }
+
+            .ss-bottom {
+                background: linear-gradient(0deg, $value 0%, rgba($value, 0) 100%);
+            }
+        }
+    }
+
+    &.hidden-scrollbar .ss-container {
+        scrollbar-width: none;
+    }
+}
+
+.ss-container {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    user-select: none;
+
+    &.dragging {
+        cursor: grabbing;
+    }
+}
+
+.ss-left, .ss-right, .ss-top, .ss-bottom {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ss-left, .ss-right {
+    top: 0;
+    bottom: 0;
+    width: var(--scroll-shadow-size);
+}
+
+.ss-top, .ss-bottom {
+    left: 0;
+    right: 0;
+    height: var(--scroll-shadow-size);
+}
+
+.ss-left {
+    left: 0;
+}
+
+:host.hide-left-shadow .ss-left {
+    opacity: 0 !important;
+}
+
+.ss-right {
+    right: 0;
+}
+
+.ss-top {
+    top: 0;
+}
+
+.ss-bottom {
+    bottom: 0;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+
+    backdrop-filter: blur(4px); // frosted glass effect
+    color: white;
+
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    &.left {
+        left: 8px;
+    }
+
+    &.right {
+        right: 8px;
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

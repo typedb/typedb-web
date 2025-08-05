@@ -1,0 +1,31 @@
+@use "colors";
+@use "media";
+@use "mixins";
+
+:host {
+    display: block;
+}
+
+.td-root {
+    // TODO: do we want centre alignment?
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 24px;
+
+    @media (max-width: media.$max-width-tablet) {
+        padding-bottom: 20px;
+    }
+}
+
+td-heading-with-highlights {
+    display: block;
+    margin-bottom: 32px;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+td-actions {
+    justify-content: center;
+}

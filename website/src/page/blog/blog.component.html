@@ -1,26 +1,24 @@
-<article nebula="solutions">
-  <div class="article-content article-content-no-planet">
-    @if (blog$ | async; as blog) {
-      <section class="blog-landing-strip">
-        <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
-        <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
+<article>
+  @if (blog$ | async; as blog) {
+    <section class="blog-landing-strip">
+      <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
+      <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
+    </section>
+  }
+
+  <div class="section-background-solid subsection-margin bp-blog-list">
+    <hr class="bp-intro-hr" />
+
+    <nav td-blog-navbar variant="listPage" class="section"></nav>
+
+    @if (rows$ | async; as rows) {
+      <section class="posts">
+        @for (row of rows; track row) {
+          <td-blog-row [row]="row" />
+        }
       </section>
     }
 
-    <div class="section-background-solid subsection-margin bp-blog-list">
-      <hr class="bp-intro-hr" />
-
-      <nav td-blog-navbar variant="listPage" class="section"></nav>
-
-      @if (rows$ | async; as rows) {
-        <section>
-          @for (row of rows; track row) {
-            <td-blog-row [row]="row" />
-          }
-        </section>
-      }
-
-      <div class="subsection-margin"></div>
-    </div>
+    <div class="subsection-margin"></div>
   </div>
 </article>

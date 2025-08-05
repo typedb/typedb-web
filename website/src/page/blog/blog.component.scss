@@ -1,6 +1,6 @@
 @use "media";
 @use "shapes";
-@import "mixins";
+@use "mixins";
 
 hr {
     margin: 0;
@@ -13,6 +13,10 @@ hr {
         color: var(--color-green);
         text-decoration: underline;
     }
+}
+
+.posts {
+    margin-top: 0;
 }
 
 ::ng-deep .rt-reading-time {
@@ -45,7 +49,7 @@ hr {
     }
 
     .bp-post-title {
-        @include line-clamp(3);
+        @include mixins.line-clamp(3);
     }
 }
 
@@ -129,7 +133,7 @@ td-aspect-ratio {
     }
 
     .bp-post-title {
-        @include line-clamp(2);
+        @include mixins.line-clamp(2);
     }
 }
 
@@ -142,7 +146,7 @@ td-aspect-ratio {
 .bp-secondary-post-description {
     font-weight: var(--font-weight-thin);
     margin-top: 16px;
-    @include line-clamp(4);
+    @include mixins.line-clamp(4);
 }
 
 .bp-posts-list-section {
@@ -190,12 +194,12 @@ td-aspect-ratio {
     margin-top: 2px;
 
     .bp-post-title {
-        @include line-clamp(1);
+        @include mixins.line-clamp(1);
     }
 
     .bp-tertiary-post-description {
         font-weight: var(--font-weight-thin);
         margin-top: 12px;
-        @include line-clamp(3);
+        @include mixins.line-clamp(3);
     }
 }

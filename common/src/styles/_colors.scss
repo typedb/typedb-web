@@ -1,21 +1,26 @@
-$white: #ffffff;
-$dark-white: #f5f5f7;
-$darker-white: #ccc;
+$white: #f3f3f3;
+$grey: #d7d4e5;
 $light-purple: #2d2a46;
 $purple: #1a182a;
 $deep-purple: #151322;
 $black-purple: #0e0d17;
+$black: #0e0e0e;
 $green: #02dac9;
 $red: #e96464;
 
+$secondary-extra-light-grey: #c4c4c4;
 $secondary-light-grey: #958fa8;
 $secondary-grey: #63607c;
 $secondary-mid-deep-grey: #4e4b63;
 $secondary-deep-grey: #383649;
+$secondary-dark-grey: #282634;
 $secondary-purple: #232135;
 $secondary-yellow: #ffe49e;
 $secondary-pink: #ff87dc;
 $secondary-blue: #7ba0ff;
+
+$translucent-red: rgba($red, 0.15);
+$translucent-yellow: rgba($secondary-yellow, 0.15);
 
 $prism-white: #ece0ff;
 $prism-cyan: #55eae2;
@@ -29,5 +34,5 @@ $prism-orange: #ffa187;
 $prism-yellow-orange: #ffc980;
 $prism-yellow: #ffe4a7;
 $prism-grey: #c69ec3;
-$prism-very-grey: #ac9ec6;
+$prism-very-grey: #999999;
 $prism-brick: #b88484;

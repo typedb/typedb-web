@@ -29,8 +29,7 @@ export class ProviderPipe implements PipeTransform {
     selector: "td-pricing-dialog",
     templateUrl: "./pricing-dialog.component.html",
     styleUrls: ["./pricing-dialog.component.scss"],
-    standalone: true,
-    imports: [MatDialogTitle, MatDialogContent, DialogCloseButtonComponent, ProviderPipe, MatSelectModule, FormsModule, SpinnerComponent, MatTooltipModule, NgClass],
+    imports: [MatDialogTitle, MatDialogContent, DialogCloseButtonComponent, ProviderPipe, MatSelectModule, FormsModule, SpinnerComponent, MatTooltipModule, NgClass]
 })
 export class PricingDialogComponent implements OnInit {
     providerId: ProviderID = "gcp";

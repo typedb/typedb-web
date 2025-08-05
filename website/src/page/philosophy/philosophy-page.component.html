@@ -1,22 +1,13 @@
-<article nebula="intro" planet="pink">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      <td-title-body-actions-section
-        [isIntroSection]="true" sectionId="intro"
-        [title]="page.introSection.title" [body]="page.introSection.body" [actions]="page.introSection.actions"
-        />
-      @for (section of page.coreSections; track section; let idx = $index) {
-        <td-philosophy-page-technicolor-block [section]="section" [page]="page" [index]="idx" />
-        <td-publication-panel [items]="section.panelItems" />
-      }
-      @if (page.finalSection) {
-        <td-philosophy-page-technicolor-block
-          [section]="page.finalSection"
-          [page]="page"
-          [index]="page.coreSections.length"
-          />
-        <td-conclusion-panel [panel]="page.finalSection.panel" />
-      }
-    </div>
+    <td-section-core sectionId="intro" [section]="page.introSection"/>
+    @for (section of page.coreSections; track section; let idx = $index) {
+      <td-section-core [section]="section"/>
+      <td-publication-panel [items]="section.panelItems" />
+    }
+    @if (page.finalSection) {
+      <td-section-core [section]="page.finalSection"/>
+      <td-conclusion-panel [panel]="page.finalSection.panel" />
+    }
   }
 </article>

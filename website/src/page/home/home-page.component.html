@@ -1,54 +1,59 @@
-<article nebula="home">
+<article>
   @if (page$ | async; as page) {
-    <div class="article-content">
-      @if (page.introSection) {
-        <td-home-page-technicolor-block
-          [block]="page.introSection" [page]="page" variant="intro" class="td-intro"
-          [organisationLogos]="page.introSection.userLogos"
-          />
-        <td-content-tabs id="main" [tabs]="page.introSection.contentTabs" />
-      }
-      @for (impactSection of page.impactSections; track impactSection; let idx = $index) {
-        <td-home-page-technicolor-block [block]="impactSection" [page]="page" />
-        <td-content-tabs [id]="'impact-' + idx" [tabs]="impactSection.impactTabs" />
-      }
-      @if (page.resourcesSection) {
-        <td-home-page-technicolor-block [block]="page.resourcesSection" [page]="page" />
-        <td-resource-panels
-          [resources]="page.resourcesSection.resources" [cols]="4" [sectionId]="page.resourcesSection.sectionId"
-        />
-      }
-      @if (page.toolingSection) {
-        <td-home-page-technicolor-block [block]="page.toolingSection" [page]="page" />
-        <td-link-panels [panels]="page.toolingSection.panels" [sectionId]="page.toolingSection.sectionId" />
-      }
-      @if (page.driversSection) {
-        <td-home-page-technicolor-block [block]="page.driversSection" [page]="page" />
-        <td-feature-grid
-          [layout]="page.driversSection.featureGridLayout" [featureRows]="page.driversSection.features"
-          [sectionId]="page.driversSection.sectionId"
-        />
-      }
-      @if (page.cloudSection) {
-        <td-home-page-technicolor-block [block]="page.cloudSection" [page]="page" />
-        <td-key-point-table [keyPoints]="page.cloudSection.keyPoints" />
-      }
-      @if (page.communitySection) {
-        <td-home-page-technicolor-block [block]="page.communitySection" [page]="page" />
-        <td-social-media-panels
-          [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"
-        />
-      }
-      @if (page.testimonialsSection) {
-        <td-home-page-technicolor-block [block]="page.testimonialsSection" [page]="page" />
-        <td-testimonials-carousel
-          [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"
-        />
-      }
-      @if (page.conclusionSection) {
-        <td-home-page-technicolor-block [block]="page.conclusionSection" [page]="page" variant="conclusion" />
-        <td-conclusion-panel [panel]="page.conclusionSection.panel" />
-      }
-    </div>
+    @if (page.introSection) {
+      <td-title-body-illustration-section level="h1" [data]="page.introSection" class="td-intro"/>
+    }
+    @if (page.hotTopicsSection) {
+      <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>
+    }
+    @if (page.benefitsSection1) {
+      <td-title-body-illustration-section [data]="page.benefitsSection1"/>
+    }
+    @if (page.benefitsSection2) {
+      <td-title-body-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
+    }
+    @if (page.socialValidationSection) {
+      <td-social-validation-section [data]="page.socialValidationSection"/>
+    }
+    @if (page.queryLanguageComparisonSection) {
+      <section class="td-inverted-colors-section">
+        <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
+        <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
+      </section>
+    }
+    @if (page.useCasesSection) {
+      <td-section-core [section]="page.useCasesSection"/>
+      <td-simple-link-panels [panels]="page.useCasesSection.panels" [sectionId]="page.useCasesSection.sectionId" />
+    }
+    @if (page.benefitsSection3) {
+      <td-title-body-illustration-section [data]="page.benefitsSection3"/>
+    }
+    @if (page.studioSection) {
+      <td-title-body-illustration-section [data]="page.studioSection" flexDirection="column"/>
+    }
+    @if (page.communitySection) {
+      <td-section-core [section]="page.communitySection"/>
+      <td-social-media-panels [socialMediaLinks]="(socialMediaLinks$ | async) || []" [sectionId]="page.communitySection.sectionId"/>
+    }
+    @if (page.benefitsSection4) {
+      <td-section-core [section]="page.benefitsSection4"/>
+      <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection4.keyPoints" />
+    }
+    @if (page.benefitsSection7) {
+      <td-title-body-illustration-section [data]="page.benefitsSection7"/>
+    }
+    @if (page.driversSection) {
+      <section class="td-drivers-section">
+        <td-section-core [noSectionClass]="true" [section]="page.driversSection"/>
+        <td-integrations-grid [integrations]="page.driversSection"/>
+      </section>
+    }
+    @if (page.resourcesSection) {
+      <td-hot-topics appearance="resources" [title]="page.resourcesSection.title" [resources]="page.resourcesSection.resources"/>
+    }
+    @if (page.conclusionSection) {
+      <td-section-core [section]="page.conclusionSection"/>
+      <td-conclusion-panel [panel]="page.conclusionSection.panel" />
+    }
   }
 </article>

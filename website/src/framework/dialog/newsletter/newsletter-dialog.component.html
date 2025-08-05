@@ -1,6 +1,6 @@
 <td-form-dialog
   [isSubmitting]="isSubmitting$ | async"
-  titleProp="Subscribe to Newsletter" [description]="description$ | async"
+  titleProp="Subscribe to newsletter" [description]="description$ | async"
 >
   <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
     <td-form-input [form]="form" field="first_name" label="First Name" autocomplete="given-name" [required]="true"/>

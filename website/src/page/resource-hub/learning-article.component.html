@@ -1,56 +1,54 @@
-<article nebula="solutions">
-  <div class="article-content article-content-no-planet">
-    @if (article$ | async; as article) {
-      <section class="blog-landing-strip">
-        <a [tdLink]="resourceHubLink$ | async">
-          @if (resourceHub$ | async; as learningCenter) {
-            <td-heading-with-highlights [value]="learningCenter.introSection.title" class="bp-site-title" level="h2"/>
-          }
-        </a>
+<article>
+  @if (article$ | async; as article) {
+    <section class="blog-landing-strip">
+      <a [tdLink]="resourceHubLink$ | async">
+        @if (resourceHub$ | async; as learningCenter) {
+          <td-heading-with-highlights [value]="learningCenter.introSection.title" class="bp-site-title" level="h2"/>
+        }
+      </a>
+    </section>
+    <div class="resource-section">
+      <section class="bp-intro-section">
+        <div>
+          <td-heading-with-highlights level="h1" [value]="article.title" />
+        </div>
+        <hr class="bp-author-section-hr" />
       </section>
-      <div class="resource-section">
-        <section>
-          <div class="bp-intro-section">
-            <td-heading-with-highlights level="h1" [value]="article.title" />
-          </div>
-          <hr class="bp-author-section-hr" />
-        </section>
-        <section class="bp-content-section">
-          <div class="bp-content">
-            <td-rich-text class="text-blog" [value]="article.contentHtml" />
-          </div>
-          @if (article$ | async; as post) {
-            <div class="bp-sidebar">
-              <div class="bp-sharing-section">
-                <h4>Share this article</h4>
-                <div class="bp-sharing-links">
-                  <a [href]="shareOnTwitterURL(post)" target="_blank">
-                    <mat-icon svgIcon="twitter-rectangle" class="td-icon-xl" />
-                  </a>
-                  <a [href]="shareOnFacebookURL(post)" target="_blank">
-                    <mat-icon svgIcon="facebook-rectangle" class="td-icon-xl" />
-                  </a>
-                  <a [href]="shareOnLinkedInURL(post)" target="_blank">
-                    <mat-icon svgIcon="linkedin-rectangle" class="td-icon-xl" />
-                  </a>
-                  <a [href]="shareOnRedditURL(post)" target="_blank">
-                    <mat-icon svgIcon="reddit-rectangle" class="td-icon-xl" />
-                  </a>
-                </div>
-              </div>
-              <div class="bp-newsletter-section">
-                <h4>TypeDB Newsletter</h4>
-                <p>Stay up to date with the latest TypeDB announcements and events.</p>
-                <td-button [button]="subscribeToNewsletterButton" [linkId]="subscribeNewsletterLinkId(post)" />
+      <section class="bp-content-section">
+        <div class="bp-content">
+          <td-rich-text class="text-blog" [value]="article.contentHtml" />
+        </div>
+        @if (article$ | async; as post) {
+          <div class="bp-sidebar">
+            <div class="bp-sharing-section">
+              <h4>Share this article</h4>
+              <div class="bp-sharing-links">
+                <a [href]="shareOnTwitterURL(post)" target="_blank">
+                  <mat-icon svgIcon="twitter-rectangle" class="td-icon-xl" />
+                </a>
+                <a [href]="shareOnFacebookURL(post)" target="_blank">
+                  <mat-icon svgIcon="facebook-rectangle" class="td-icon-xl" />
+                </a>
+                <a [href]="shareOnLinkedInURL(post)" target="_blank">
+                  <mat-icon svgIcon="linkedin-rectangle" class="td-icon-xl" />
+                </a>
+                <a [href]="shareOnRedditURL(post)" target="_blank">
+                  <mat-icon svgIcon="reddit-rectangle" class="td-icon-xl" />
+                </a>
               </div>
             </div>
-          }
-        </section>
-        @if (article.furtherLearning) {
-          <td-further-learning [value]="article.furtherLearning" />
+            <div class="bp-newsletter-section">
+              <h4>TypeDB Newsletter</h4>
+              <p>Stay up to date with the latest TypeDB announcements and events.</p>
+              <td-button [button]="subscribeToNewsletterButton" [linkId]="subscribeNewsletterLinkId(post)" />
+            </div>
+          </div>
         }
-        <div class="subsection-margin"></div>
-      </div>
-    }
-  </div>
+      </section>
+      @if (article.furtherLearning) {
+        <td-further-learning [value]="article.furtherLearning" />
+      }
+      <div class="subsection-margin"></div>
+    </div>
+  }
 </article>
