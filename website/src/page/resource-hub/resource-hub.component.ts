@@ -5,7 +5,6 @@ import { ResourceHub, SanityDataset, SanityResourceHub } from "typedb-web-schema
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { LinkPanelsCols2Component } from "../../framework/link-panels/link-panels.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -14,8 +13,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./resource-hub.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        TitleBodyActionsSectionComponent, LinkPanelsCols2Component, ConclusionPanelComponent,
-        AsyncPipe, SectionCoreComponent,
+        LinkPanelsCols2Component, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
     ],
 })
 export class ResourceHubComponent extends PageComponentBase<ResourceHub> {

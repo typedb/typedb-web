@@ -1,7 +1,7 @@
 import { SanityDocument, Slug } from "@sanity/types";
 import { SanityLinkButton } from "../button";
 import { SanityVisibleToggle } from "../common-fields";
-import { SanitySectionBase } from "../component/section";
+import { SanitySectionCore } from "../component/section";
 import { SanityLink } from "../link";
 import { SanityMetaTags } from "../page/meta-tags";
 import { SanityPerson } from "../person";
@@ -103,7 +103,7 @@ export interface SanityLiveEvent extends SanityEventBase {
     externalUrlButton?: SanityLinkButton;
 }
 
-export interface SanityResourceSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityResourceSection extends SanitySectionCore {
     resources?: SanityReference<SanityResource>[];
 }
 

@@ -8,9 +8,9 @@ import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText } from "../text";
 import { PropsOf } from "../util";
-import { SanitySectionBase, SectionBase } from "./section";
+import { SanitySectionCore, SectionCore } from "./section";
 
-export interface SanityFeatureGridSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityFeatureGridSection extends SanitySectionCore {
     featureGrid: SanityReference<SanityFeatureGrid>;
 }
 
@@ -102,7 +102,7 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
     }
 }
 
-export class FeatureGridSection extends SectionBase {
+export class FeatureGridSection extends SectionCore {
     readonly featureGridLayout: FeatureGridLayout;
     readonly features: FeatureGridCell[][];
     readonly illustration?: Illustration;
@@ -123,7 +123,7 @@ export class FeatureGridSection extends SectionBase {
             featureCells.push(chunk);
         }
         return new FeatureGridSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 featureGridLayout: featureGrid.featureGridLayout,
                 features: featureCells,
                 illustration: featureGrid.illustration

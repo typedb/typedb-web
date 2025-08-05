@@ -6,6 +6,7 @@
 }
 
 table {
+    width: 100%;
     table-layout: fixed;
     position: relative;
     box-shadow: none;
@@ -78,12 +79,6 @@ thead {
         &:nth-of-type(4) {
             p {
                 @include mixins.text-gradient(#F96480, #FDD257);
-            }
-
-            td-button ::ng-deep a {
-                position: relative;
-                overflow: hidden;
-                @include mixins.border-gradient(#F96480, #FDD257, var(--color-black-purple));
             }
         }
     }

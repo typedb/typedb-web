@@ -5,9 +5,9 @@ import { illustrationFieldOptional } from "../illustration";
 import { Link, SanityLink, SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityImage, SanityReference } from "../sanity-core";
 import { PropsOf } from "../util";
-import { SanitySectionBase, SectionBase } from "./section";
+import { SanitySectionCore, SectionCore } from "./section";
 
-export interface SanityIntegrationsGridSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityIntegrationsGridSection extends SanitySectionCore {
     primary: SanityIntegration[];
     secondary: SanityIntegration[];
     requestLink?: SanityTextLink;
@@ -43,7 +43,7 @@ export class Integration {
     }
 }
 
-export class IntegrationsGridSection extends SectionBase {
+export class IntegrationsGridSection extends SectionCore {
     readonly primary: Integration[];
     readonly secondary: Integration[];
     readonly requestLink?: TextLink;
@@ -58,7 +58,7 @@ export class IntegrationsGridSection extends SectionBase {
     static override fromSanity(data: SanityIntegrationsGridSection, db: SanityDataset) {
         const visiblePrimaries = data.primary.filter((x) => x.isVisible);
         const visibleSecondaries = data.secondary.filter((x) => x.isVisible);
-        return new IntegrationsGridSection(Object.assign(SectionBase.fromSanity(data, db), {
+        return new IntegrationsGridSection(Object.assign(SectionCore.fromSanity(data, db), {
             primary: visiblePrimaries.map(x => Integration.fromSanity(x, db)),
             secondary: visibleSecondaries.map(x => Integration.fromSanity(x, db)),
             requestLink: data.requestLink ? TextLink.fromSanityTextLink(data.requestLink, db) : undefined,

@@ -6,7 +6,6 @@ import {
 } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { PublicationPanelComponent } from "../../framework/publication-panel/publication-panel.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 
@@ -16,8 +15,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./philosophy-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        TitleBodyActionsSectionComponent, PublicationPanelComponent, ConclusionPanelComponent, AsyncPipe,
-        SectionCoreComponent
+        PublicationPanelComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent
     ],
 })
 export class PhilosophyPageComponent extends PageComponentBase<PhilosophyPage> {

@@ -14,7 +14,7 @@ import { MetaTagsService } from "src/service/meta-tags.service";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDatePipe } from "../../framework/date/event-date.pipe";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
+import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { PageComponentBase } from "../page-component-base";
@@ -25,8 +25,8 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./events-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
-        ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe
+        AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe,
+        SectionCoreComponent
     ]
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {

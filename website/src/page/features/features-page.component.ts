@@ -5,7 +5,6 @@ import { FeaturesPage, featuresPageSchemaName, SanityDataset, SanityFeaturesPage
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -14,8 +13,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        TitleBodyActionsSectionComponent, FeatureGridComponent, ConclusionPanelComponent, AsyncPipe,
-        SectionCoreComponent,
+        FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
     ],
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {

@@ -1,26 +1,27 @@
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { collapsibleOptions } from "../common-fields";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, TitleAndBody, titleAndBodySchemaName } from "../text";
+import { titleAndBodySchemaName } from "../text";
 import { Paper } from "../resource/paper";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 import { SanityPaper, paperSchemaName } from "../resource/sanity";
 
 export interface SanityPapersPage extends SanityPage {
-    introSection: SanityTitleAndBody;
+    introSection: SanitySectionCore;
     featuredPaper: SanityReference<SanityPaper>;
     papersList: SanityReference<SanityPaper>[];
 }
 
 export class PapersPage extends Page {
-    readonly introSection: TitleAndBody;
+    readonly introSection: SectionCore;
     readonly featuredPaper: Paper;
     readonly papersList: Paper[];
 
     constructor(data: SanityPapersPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleAndBody.fromSanityTitleAndBody(data.introSection);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.featuredPaper = Paper.fromSanity(db.resolveRef(data.featuredPaper), db);
         this.papersList = data.papersList.map((x) => Paper.fromSanity(db.resolveRef(x), db));
     }

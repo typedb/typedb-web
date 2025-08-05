@@ -9,7 +9,7 @@ import { SanityDataset, SanityReference } from "../sanity-core";
 import { PortableText, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { FeatureGrid, featureGridSchemaName, SanityFeatureGrid } from "./feature-grid";
-import { SanitySectionBase, SectionBase } from "./section";
+import { SanitySectionCore, SectionCore } from "./section";
 
 export interface SanityPublicationTextBlock extends SanityDocument { // required as we can't mix primitive + object types in Sanity union types
     content: PortableText;
@@ -32,7 +32,7 @@ function isContentRow(item: SanityPublicationItem): item is SanityPublicationCon
     return item._type === publicationContentRowSchemaName;
 }
 
-export interface SanityPublicationSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityPublicationSection extends SanitySectionCore {
     panelItems: SanityPublicationItem[];
 }
 
@@ -78,7 +78,7 @@ function publicationItemFromSanity(data: SanityPublicationItem, db: SanityDatase
     else return FeatureGrid.fromSanity(data, db);
 }
 
-export class PublicationSection extends SectionBase {
+export class PublicationSection extends SectionCore {
     readonly panelItems: PublicationPanelItem[];
 
     constructor(props: PropsOf<PublicationSection>) {
@@ -88,7 +88,7 @@ export class PublicationSection extends SectionBase {
 
     static override fromSanity(data: SanityPublicationSection, db: SanityDataset) {
         return new PublicationSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 panelItems: data.panelItems.map(x => publicationItemFromSanity(x, db)),
             })
         );

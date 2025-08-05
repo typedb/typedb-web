@@ -51,7 +51,7 @@ export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { SectionBase, TitleBodyIllustrationSection } from "./component/section";
+export { SectionCore, TitleBodyIllustrationSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -59,7 +59,7 @@ export {
     type SplitPaneIllustrationContent,
 } from "./illustration";
 export { sectionIconSchemaName } from "./image";
-export { KeyPoint, KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
+export { KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
 export {

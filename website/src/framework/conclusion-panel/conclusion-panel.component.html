@@ -6,7 +6,7 @@
   <div class="flex"></div>
   <td-actions [actions]="panel.actions" [sectionId]="sectionId" />
 </div>
-<div class="cp-resources-area">
+<div class="cp-resources-area" [class]="panel.illustration ? 'cp-resources-area-with-illustration' : ''">
   @if (panel.illustration) {
     <td-illustration class="td-frameless" [illustration]="panel.illustration" />
   } @else {

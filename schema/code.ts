@@ -1,7 +1,7 @@
 import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSnippetSchemaName, requiredRule, titleAndBodyFields, titleBodyActionsFields, titleField } from "./common-fields";
-import { SanityCoreSection, SectionBase } from "./component/section";
+import { SanitySectionCore, SectionCore } from "./component/section";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -97,11 +97,11 @@ export class PolyglotSnippet extends Document {
     }
 }
 
-export interface SanityQueryLanguageComparisonSection extends SanityCoreSection {
+export interface SanityQueryLanguageComparisonSection extends SanitySectionCore {
     content: SanityReference<SanityPolyglotSnippet>;
 }
 
-export class QueryLanguageComparisonSection extends SectionBase {
+export class QueryLanguageComparisonSection extends SectionCore {
     readonly content?: PolyglotSnippet;
 
     constructor(props: PropsOf<QueryLanguageComparisonSection>) {
@@ -110,7 +110,7 @@ export class QueryLanguageComparisonSection extends SectionBase {
     }
 
     static override fromSanity(data: SanityQueryLanguageComparisonSection, db: SanityDataset) {
-        return new QueryLanguageComparisonSection(Object.assign(SectionBase.fromSanity(data, db), {
+        return new QueryLanguageComparisonSection(Object.assign(SectionCore.fromSanity(data, db), {
             content: data.content && PolyglotSnippet.fromSanity(db.resolveRef(data.content), db),
         }));
     }

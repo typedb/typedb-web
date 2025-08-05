@@ -1,11 +1,10 @@
 import { defineField, defineType } from "@sanity/types";
 import {
-    collapsibleOptions, isVisibleField, requiredRule, SanityVisibleToggle, titleAndBodyFields,
+    collapsibleOptions, isVisibleField, requiredRule, titleAndBodyFields,
 } from "../common-fields";
-import { SanitySectionBase, SectionBase } from "../component/section";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { SanityLecture, lectureSchemaName } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { SanityTitleAndBody, TitleAndBody } from "../text";
 import { PropsOf } from "../util";
 import { Lecture } from "../resource/lecture";
 import { Page, SanityPage } from "./common";
@@ -17,15 +16,15 @@ export interface SanityLecturesPage extends SanityPage {
     exploreLecturesSection: SanityExploreLecturesSection;
 }
 
-export interface SanityIntroSection extends SanityTitleAndBody {
+export interface SanityIntroSection extends SanitySectionCore {
     featuredLecture?: SanityReference<SanityLecture>;
 }
 
-export interface SanityFeaturedLecturesSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityFeaturedLecturesSection extends SanitySectionCore {
     featuredLectures?: SanityReference<SanityLecture>[];
 }
 
-export interface SanityExploreLecturesSection extends SanitySectionBase, SanityVisibleToggle {}
+export interface SanityExploreLecturesSection extends SanitySectionCore {}
 
 export class LecturesPage extends Page {
     readonly introSection: IntroSection;
@@ -44,7 +43,7 @@ export class LecturesPage extends Page {
     }
 }
 
-export class IntroSection extends TitleAndBody {
+export class IntroSection extends SectionCore {
     featuredLecture?: Lecture;
 
     constructor(props: PropsOf<IntroSection>) {
@@ -54,7 +53,7 @@ export class IntroSection extends TitleAndBody {
 
     static fromSanityIntroSection(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 featuredLecture: data.featuredLecture
                     ? Lecture.fromSanity(db.resolveRef(data.featuredLecture), db)
                     : undefined,
@@ -63,7 +62,7 @@ export class IntroSection extends TitleAndBody {
     }
 }
 
-export class FeaturedLecturesSection extends SectionBase {
+export class FeaturedLecturesSection extends SectionCore {
     featuredLectures?: Lecture[];
 
     constructor(props: PropsOf<FeaturedLecturesSection>) {
@@ -73,7 +72,7 @@ export class FeaturedLecturesSection extends SectionBase {
 
     static override fromSanity(data: SanityFeaturedLecturesSection, db: SanityDataset) {
         return new FeaturedLecturesSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 featuredLectures: data.featuredLectures
                     ? data.featuredLectures.map((x) => Lecture.fromSanity(db.resolveRef(x), db))
                     : undefined,
@@ -82,13 +81,13 @@ export class FeaturedLecturesSection extends SectionBase {
     }
 }
 
-export class ExploreLecturesSection extends SectionBase {
+export class ExploreLecturesSection extends SectionCore {
     constructor(props: PropsOf<ExploreLecturesSection>) {
         super(props);
     }
 
-    static override fromSanity(data: SanitySectionBase, db: SanityDataset) {
-        return new ExploreLecturesSection(Object.assign(SectionBase.fromSanity(data, db), {}));
+    static override fromSanity(data: SanitySectionCore, db: SanityDataset) {
+        return new ExploreLecturesSection(Object.assign(SectionCore.fromSanity(data, db), {}));
     }
 }
 

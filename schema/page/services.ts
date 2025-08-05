@@ -1,12 +1,10 @@
 import { defineField, defineType } from "@sanity/types";
-import { SanityOptionalActions } from "../button";
 import {
-    collapsibleOptions, isVisibleField, actionsFieldOptional, SanityVisibleToggle, titleBodyActionsFields,
+    collapsibleOptions, isVisibleField, titleBodyActionsFields,
 } from "../common-fields";
-import { SanitySectionBase, SectionBase } from "../component/section";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { SanityTestimonialsSection, testimonialSchemaName, TestimonialsSection } from "../testimonial";
-import { SanityTitleBodyActions } from "../text";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
 import { SanityServicesKeyPoint, ServicesKeyPoint, servicesKeyPointSchemaName } from "../key-point";
@@ -23,21 +21,17 @@ type SectionKey = keyof typeof sections;
 export interface SanityServicesPage extends SanityPage {
     [sections.intro.id]: SanityIntroSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
-    [sections.contact.id]: SanityCoreSection;
+    [sections.contact.id]: SanitySectionCore;
 }
 
-interface SanitySection extends SanityTitleBodyActions, SanityVisibleToggle {}
-
-interface SanityCoreSection extends SanitySection, SanitySectionBase {}
-
-interface SanityIntroSection extends SanityCoreSection, SanityOptionalActions {
+interface SanityIntroSection extends SanitySectionCore {
     keyPoints: SanityServicesKeyPoint[];
 }
 
 export class ServicesPage extends Page {
     readonly [sections.intro.id]?: IntroSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.contact.id]?: SectionBase;
+    readonly [sections.contact.id]?: SectionCore;
 
     constructor(data: SanityServicesPage, db: SanityDataset) {
         super(data, db);
@@ -53,7 +47,7 @@ export class ServicesPage extends Page {
     }
 }
 
-class IntroSection extends SectionBase {
+class IntroSection extends SectionCore {
     readonly keyPoints: ServicesKeyPoint[];
 
     constructor(props: PropsOf<IntroSection>) {
@@ -69,7 +63,7 @@ class IntroSection extends SectionBase {
     }
 }
 
-class ContactSection extends SectionBase {}
+class ContactSection extends SectionCore {}
 
 export const servicesPageSchemaName = "servicesPage";
 

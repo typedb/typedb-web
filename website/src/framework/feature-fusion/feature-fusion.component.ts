@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
-import { KeyPoint } from "typedb-web-schema";
+import { SectionCore } from "typedb-web-schema";
 import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
@@ -11,6 +11,6 @@ import { RichTextComponent } from "../text/rich-text.component";
     imports: [RichTextComponent],
 })
 export class FeatureFusionComponent {
-    @Input() features!: KeyPoint[];
+    @Input() features!: SectionCore[];
     @HostBinding("class") classes = "section";
 }

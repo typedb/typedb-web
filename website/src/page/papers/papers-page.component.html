@@ -1,10 +1,7 @@
 <article>
   @if (page$ | async; as page) {
     <div class="section">
-      <td-title-body-actions-section
-        [isIntroSection]="true" sectionId="intro"
-        [title]="page.introSection.title" [body]="page.introSection.body"
-      />
+      <td-section-core [section]="page.introSection"/>
       <div class="subsection-margin card wp-primary-paper">
         <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
         <div class="wp-primary-paper-details">

@@ -59,10 +59,9 @@
 }
 
 .cp-resources-area {
-    background: var(--color-deep-purple);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    border-left: shapes.$border;
-    flex: 1;
+    &.cp-resources-area-with-illustration {
+        flex: 1;
+    }
 
     @media (max-width: media.$max-width-tablet) {
         min-width: auto;

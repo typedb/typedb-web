@@ -4,7 +4,6 @@ import { map } from "rxjs";
 import { GenericPage, SanityDataset, SanityGenericPage } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 
@@ -14,8 +13,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./generic-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        TitleBodyActionsSectionComponent, ContentPanelComponent, ConclusionPanelComponent, AsyncPipe,
-        SectionCoreComponent
+        ContentPanelComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent
     ],
 })
 export class GenericPageComponent extends PageComponentBase<GenericPage> {

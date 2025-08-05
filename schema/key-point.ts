@@ -1,15 +1,13 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
 import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, titleBodyActionsFields, titleField } from "./common-fields";
-import { SanityCoreSection, SectionBase } from "./component/section";
+import { SanitySectionCore, SectionCore } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityBodyTextField, SanityTitleField } from "./text";
 import { PropsOf } from "./util";
 
-export type SanityKeyPoint = SanityTitleField & SanityBodyTextField & SanityOptionalActions;
-
-export interface SanityKeyPointWithIcon extends SanityKeyPoint {
+export interface SanityKeyPointWithIcon extends SanitySectionCore {
     icon: SanityReference<SanityImageRef>;
 }
 
@@ -17,35 +15,15 @@ export interface SanityServicesKeyPoint extends SanityKeyPointWithIcon {
     checklist: string[];
 }
 
-export interface SanityKeyPointsSection extends SanityCoreSection {
-    keyPoints: SanityKeyPoint[];
+export interface SanityKeyPointsSection extends SanitySectionCore {
+    keyPoints: SanitySectionCore[];
 }
 
-export interface SanityKeyPointsWithIconsSection extends SanityCoreSection {
+export interface SanityKeyPointsWithIconsSection extends SanitySectionCore {
     keyPoints: SanityKeyPointWithIcon[];
 }
 
-export class KeyPoint implements BodyTextField {
-    readonly title: ParagraphWithHighlights;
-    readonly body: PortableText;
-    readonly actions?: LinkButton[];
-
-    constructor(props: PropsOf<KeyPoint>) {
-        this.title = props.title;
-        this.body = props.body;
-        this.actions = props.actions;
-    }
-
-    static fromSanity(data: SanityKeyPoint, db: SanityDataset) {
-        return new KeyPoint({
-            title: ParagraphWithHighlights.fromPlainText(data.title),
-            body: data.body,
-            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-        });
-    }
-}
-
-export class KeyPointWithIcon extends KeyPoint {
+export class KeyPointWithIcon extends SectionCore {
     readonly iconURL: string;
 
     constructor(props: PropsOf<KeyPointWithIcon>) {
@@ -54,7 +32,7 @@ export class KeyPointWithIcon extends KeyPoint {
     }
 
     static override fromSanity(data: SanityKeyPointWithIcon, db: SanityDataset) {
-        return Object.assign(KeyPoint.fromSanity(data, db), {
+        return Object.assign(SectionCore.fromSanity(data, db), {
             iconURL: db.resolveImageRef(data.icon).url,
         });
     }
@@ -75,8 +53,8 @@ export class ServicesKeyPoint extends KeyPointWithIcon {
     }
 }
 
-export class KeyPointsSection extends SectionBase {
-    readonly keyPoints: KeyPoint[];
+export class KeyPointsSection extends SectionCore {
+    readonly keyPoints: SectionCore[];
 
     constructor(props: PropsOf<KeyPointsSection>) {
         super(props);
@@ -88,14 +66,13 @@ export class KeyPointsSection extends SectionBase {
             title: ParagraphWithHighlights.fromSanity(data.title),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            keyword: data.keyword,
-            keyPoints: data.keyPoints.map((x) => KeyPoint.fromSanity(x, db)),
+            keyPoints: data.keyPoints.map((x) => SectionCore.fromSanity(x, db)),
             sectionId: ParagraphWithHighlights.fromSanity(data.title).toSectionID(),
         });
     }
 }
 
-export class KeyPointsWithIconsSection extends SectionBase {
+export class KeyPointsWithIconsSection extends SectionCore {
     readonly keyPoints: KeyPointWithIcon[];
 
     constructor(props: PropsOf<KeyPointsWithIconsSection>) {
@@ -105,7 +82,7 @@ export class KeyPointsWithIconsSection extends SectionBase {
 
     static override fromSanity(data: SanityKeyPointsWithIconsSection, db: SanityDataset) {
         return new KeyPointsWithIconsSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 keyPoints: data.keyPoints.map((x) => KeyPointWithIcon.fromSanity(x, db)),
             })
         );

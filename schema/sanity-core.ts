@@ -25,7 +25,8 @@ export class SanityDataset {
     resolveRef<T extends SanityDocument>(ref: SanityReference<T>): T {
         const referencedObject = this._byId[`drafts.${ref._ref}`] || this._byId[ref._ref];
         if (referencedObject != null) return referencedObject as T;
-        throw `Failed to resolve reference with ID '${ref._ref}'`;
+        console.error(`Failed to resolve reference: `, ref);
+        throw new Error(`Failed to resolve reference`);
     }
 
     resolveImageRef(ref: SanityReference<SanityImageRef>) {

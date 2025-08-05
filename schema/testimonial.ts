@@ -1,7 +1,7 @@
 import { BookIcon, HeartIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { actionsFieldOptional, authorField, collapsibleOptions, isVisibleField, SanityVisibleToggle, titleBodyActionsFields } from "./common-fields";
-import { SanityCoreSection, SectionBase } from "./component/section";
+import { SanitySectionCore, SectionCore } from "./component/section";
 import { Person, personSchemaName, SanityPerson } from "./person";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
@@ -11,7 +11,7 @@ export interface SanityTestimonial extends SanityDocument {
     body: string;
 }
 
-export interface SanityTestimonialsSection extends SanityCoreSection, SanityVisibleToggle {
+export interface SanityTestimonialsSection extends SanitySectionCore {
     testimonials: SanityReference<SanityTestimonial>[];
 }
 
@@ -26,7 +26,7 @@ export class Testimonial extends Document {
     }
 }
 
-export class TestimonialsSection extends SectionBase {
+export class TestimonialsSection extends SectionCore {
     readonly testimonials: Testimonial[];
 
     constructor(props: PropsOf<TestimonialsSection>) {
@@ -36,7 +36,7 @@ export class TestimonialsSection extends SectionBase {
 
     static override fromSanity(data: SanityTestimonialsSection, db: SanityDataset) {
         return new TestimonialsSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 testimonials: data.testimonials.map((x) => new Testimonial(db.resolveRef(x), db)),
             })
         );

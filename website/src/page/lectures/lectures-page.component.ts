@@ -10,18 +10,16 @@ import {
     Lecture, lectureSchemaName, LecturesPage, lecturesPageSchemaName, SanityDataset, SanityLecture, SanityLecturesPage,
 } from "typedb-web-schema";
 
-import { MetaTagsService } from "src/service/meta-tags.service";
-
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { EventDurationPipe } from "../../framework/date/event-duration.pipe";
 import { OrdinalDatePipe } from "../../framework/date/ordinal-date.pipe";
 import { LecturePanelsComponent } from "../../framework/link-panels/link-panels.component";
-import { TitleBodyActionsSectionComponent } from "../../framework/section/title-body-actions-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { ContentService } from "../../service/content.service";
+import { MetaTagsService } from "../../service/meta-tags.service";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -29,7 +27,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
     imports: [
-        TitleBodyActionsSectionComponent, AspectRatioComponent, RichTextComponent,
+        AspectRatioComponent, RichTextComponent,
         ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
         EventDurationPipe, OrdinalDatePipe, PlainTextPipe
     ]

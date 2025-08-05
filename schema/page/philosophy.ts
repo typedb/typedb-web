@@ -2,25 +2,25 @@ import { defineField, defineType } from "@sanity/types";
 import { collapsibleOptions,  requiredRule } from "../common-fields";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { PublicationSection, publicationSectionSchemaName, SanityPublicationSection } from "../component/publication-panel";
+import { sectionCoreSchemaName, SanitySectionCore, SectionCore } from "../component/section";
 import { SanityDataset } from "../sanity-core";
-import { SanityTitleBodyActions, TitleBodyActions, titleBodyActionsSectionSchemaName } from "../text";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
 export interface SanityPhilosophyPage extends SanityPage {
-    introSection: SanityTitleBodyActions;
+    introSection: SanitySectionCore;
     coreSections: SanityPublicationSection[];
     finalSection: SanityConclusionSection;
 }
 
 export class PhilosophyPage extends Page {
-    readonly introSection: TitleBodyActions;
+    readonly introSection: SectionCore;
     readonly coreSections: PublicationSection[];
     readonly finalSection: ConclusionSection;
 
     constructor(data: SanityPhilosophyPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = TitleBodyActions.fromSanityTitleBodyActions(data.introSection, db);
+        this.introSection = SectionCore.fromSanity(data.introSection, db);
         this.coreSections = data.coreSections.map((x) => PublicationSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -37,7 +37,7 @@ const philosophyPageSchema = defineType({
         defineField({
             name: "introSection",
             title: "Intro Section",
-            type: titleBodyActionsSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

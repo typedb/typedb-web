@@ -4,7 +4,7 @@ import {
 } from "../common-fields";
 import { featureTableSchemaName, FeatureTableSection, SanityFeatureTableSection } from "../component/feature-table";
 import { linkPanelSchemaName } from "../component/link-panel";
-import { LinkPanelsSection, SanityCoreSection, SanityLinkPanelsSection, SectionBase } from "../component/section";
+import { LinkPanelsSection, SanitySectionCore, SanityLinkPanelsSection, SectionCore } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { SanityTestimonialsSection, TestimonialsSection, testimonialsSectionField } from "../testimonial";
 import { Page, SanityPage } from "./common";
@@ -23,14 +23,14 @@ export interface SanitySupportPage extends SanityPage {
     [sections.intro.id]: SanityLinkPanelsSection;
     [sections.featureTable.id]: SanityFeatureTableSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
-    [sections.contact.id]: SanityCoreSection;
+    [sections.contact.id]: SanitySectionCore;
 }
 
 export class SupportPage extends Page {
     readonly [sections.intro.id]?: LinkPanelsSection;
     readonly [sections.featureTable.id]?: FeatureTableSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
-    readonly [sections.contact.id]?: SectionBase;
+    readonly [sections.contact.id]?: SectionCore;
 
     constructor(data: SanitySupportPage, db: SanityDataset) {
         super(data, db);
@@ -42,7 +42,7 @@ export class SupportPage extends Page {
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this[sections.contact.id] = data.contactSection.isVisible
-            ? SectionBase.fromSanity(data.contactSection, db)
+            ? SectionCore.fromSanity(data.contactSection, db)
             : undefined;
     }
 }

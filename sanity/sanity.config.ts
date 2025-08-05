@@ -3,7 +3,7 @@ import "./styles.css";
 import {
     AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon,
     DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
-    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon,
+    PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon, CodeIcon, ImageIcon,
 } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
@@ -93,12 +93,14 @@ export default defineConfig({
                 s.listItem().title("Structure").icon(ComponentIcon).child(s.list().title("Structure").items([
                     s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
                 ])),
-                s.listItem().title("Illustrations & Videos").icon(PresentationIcon).child(s.list().title("Illustrations & Videos").items([
+                s.listItem().title("Code Snippets").icon(CodeIcon).child(s.list().title("Code Snippets").items([
+                    s.documentTypeListItem(codeSnippetSchemaName).title("Single Snippets"),
+                    s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Snippets"),
+                ])),
+                s.listItem().title("Media").icon(ImageIcon).child(s.list().title("Media").items([
                     s.documentTypeListItem(splitPaneIllustrationSchemaName).title("Split Pane Illustrations"),
                     s.documentTypeListItem(imageIllustrationSchemaName).title("Images"),
                     s.documentTypeListItem(videoEmbedSchemaName).title("Video Embeds"),
-                    s.documentTypeListItem(codeSnippetSchemaName).title("Code Snippets"),
-                    s.documentTypeListItem(polyglotSnippetSchemaName).title("Polyglot Code Snippets"),
                     s.documentTypeListItem(graphVisualisationSchemaName).title("Graph Visualisations"),
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),

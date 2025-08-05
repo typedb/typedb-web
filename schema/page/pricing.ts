@@ -1,9 +1,9 @@
 import { defineField, defineType, DocumentRule } from "@sanity/types";
 import { collapsibleOptions, isVisibleField, requiredRule, titleBodyActionsFields } from "../common-fields";
 import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
-import { coreSectionSchemaName, SanityCoreSection, SanityTitleBodyPanelSection, TitleBodyPanelSection, titleBodyPanelSectionSchemaName } from "../component/section";
+import { sectionCoreSchemaName, titleBodyPanelSectionSchemaName } from "../component/section";
 import { PricingPanel, pricingPanelSchemaName, SanityPricingPanel } from "../component/pricing-panel";
-import { SanitySectionBase, SectionBase } from "../component/section";
+import { SanitySectionCore, SectionCore } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { Page, SanityPage } from "./common";
@@ -11,32 +11,32 @@ import { metaTagsField } from "./meta-tags";
 
 export interface SanityPricingPage extends SanityPage {
     introSection: SanityIntroSection;
-    providersSection: SanityCoreSection;
+    providersSection: SanitySectionCore;
     featureTableSection: SanityFeatureTableSection;
-    contactSection: SanityCoreSection;
+    contactSection: SanitySectionCore;
 }
 
-export interface SanityIntroSection extends SanitySectionBase {
+export interface SanityIntroSection extends SanitySectionCore {
     panelsCaption?: string;
     panels: SanityPricingPanel[];
 }
 
 export class PricingPage extends Page {
     readonly introSection: IntroSection;
-    readonly providersSection: SectionBase;
+    readonly providersSection: SectionCore;
     readonly featureTableSection: FeatureTableSection;
-    readonly contactSection: SectionBase;
+    readonly contactSection: SectionCore;
 
     constructor(data: SanityPricingPage, db: SanityDataset) {
         super(data, db);
         this.introSection = IntroSection.fromSanity(data.introSection, db);
-        this.providersSection = SectionBase.fromSanity(data.providersSection, db);
+        this.providersSection = SectionCore.fromSanity(data.providersSection, db);
         this.featureTableSection = FeatureTableSection.fromSanity(data.featureTableSection, db);
-        this.contactSection = SectionBase.fromSanity(data.contactSection, db);
+        this.contactSection = SectionCore.fromSanity(data.contactSection, db);
     }
 }
 
-export class IntroSection extends SectionBase {
+export class IntroSection extends SectionCore {
     readonly panelsCaption?: string;
     readonly panels: PricingPanel[];
 
@@ -48,7 +48,7 @@ export class IntroSection extends SectionBase {
 
     static override fromSanity(data: SanityIntroSection, db: SanityDataset) {
         return new IntroSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 panelsCaption: data.panelsCaption,
                 panels: data.panels.map((x) => PricingPanel.fromSanity(x, db)),
             })
@@ -111,7 +111,7 @@ const pricingPageSchema = defineType({
         defineField({
             name: "contactSection",
             title: "Contact Section",
-            type: coreSectionSchemaName,
+            type: sectionCoreSchemaName,
             options: collapsibleOptions,
             validation: requiredRule,
         }),

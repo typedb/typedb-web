@@ -1,7 +1,5 @@
 import { defineType, PortableTextTextBlock } from "@sanity/types";
-import { LinkButton, SanityOptionalActions } from "./button";
-import { bodyFieldRichText, actionsFieldOptional, titleFieldWithHighlights } from "./common-fields";
-import { SanityDataset } from "./sanity-core";
+import { bodyFieldRichText, titleFieldWithHighlights } from "./common-fields";
 import { PropsOf } from "./util";
 
 export type PortableText = PortableTextTextBlock[];
@@ -13,8 +11,6 @@ export type SanityTitleWithHighlights = { title: PortableText };
 export type SanityBodyTextField = { body: PortableText };
 
 export type SanityTitleAndBody = SanityTitleWithHighlights & Partial<SanityBodyTextField>;
-
-export type SanityTitleBodyActions = SanityTitleAndBody & SanityOptionalActions;
 
 export class ParagraphWithHighlights {
     readonly spans: { text: string; highlight: boolean, newline?: boolean }[];
@@ -84,26 +80,7 @@ export class TitleAndBody implements TitleWithHighlights, Partial<BodyTextField>
     }
 }
 
-export class TitleBodyActions extends TitleAndBody {
-    readonly actions?: LinkButton[];
-
-    constructor(props: PropsOf<TitleBodyActions>) {
-        super(props);
-        this.actions = props.actions;
-    }
-
-    static fromSanityTitleBodyActions(data: SanityTitleBodyActions, db: SanityDataset) {
-        return new TitleBodyActions(
-            Object.assign(TitleAndBody.fromSanityTitleAndBody(data), {
-                actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            })
-        );
-    }
-}
-
 export const titleAndBodySchemaName = "titleAndBody";
-
-export const titleBodyActionsSectionSchemaName = "titleBodyActionsSection";
 
 const titleAndBodySchema = defineType({
     name: titleAndBodySchemaName,
@@ -112,11 +89,4 @@ const titleAndBodySchema = defineType({
     fields: [titleFieldWithHighlights, bodyFieldRichText],
 });
 
-const titleBodyActionsSectionSchema = defineType({
-    name: titleBodyActionsSectionSchemaName,
-    title: "Title, Body & Actions",
-    type: "document",
-    fields: [titleFieldWithHighlights, bodyFieldRichText, actionsFieldOptional],
-});
-
-export const textSchemas = [titleAndBodySchema, titleBodyActionsSectionSchema];
+export const textSchemas = [titleAndBodySchema];

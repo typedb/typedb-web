@@ -33,6 +33,7 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
         return {
             "card-appearance": !this.disableCardAppearance,
             section: !this.disableCardAppearance,
+            "narrow-section": !this.disableCardAppearance,
             ["fg-row-size-" + this.columnIndexes.length]: true,
         };
     }

@@ -4,7 +4,7 @@ import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
-    SanityCoreSection, SanityLinkPanelsSection, SectionBase, SanityTitleBodyIllustrationSection,
+    SanitySectionCore, SanityLinkPanelsSection, SectionCore, SanityTitleBodyIllustrationSection,
     TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
 } from "../component/section";
 import {
@@ -71,7 +71,7 @@ export interface SanityHomePage extends SanityPage {
     conclusionSection: SanityConclusionSection;
 }
 
-interface SanityHotTopicsSection extends SanityCoreSection {
+interface SanityHotTopicsSection extends SanitySectionCore {
     hotTopics: SanityReference<SanityResource>[];
 }
 
@@ -81,12 +81,12 @@ interface SanitySocialValidationSection extends SanityTitleWithHighlights, Sanit
 
 type SanityDriversSection = SanityIntegrationsGridSection;
 
-interface SanityCommunitySection extends SanityCoreSection {
+interface SanityCommunitySection extends SanitySectionCore {
     socialMediaLinks: SocialMediaID[];
 }
 
 export class HomePage extends Page {
-    readonly [sections.intro.id]?: SectionBase;
+    readonly [sections.intro.id]?: SectionCore;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
     readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
     readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
@@ -158,7 +158,7 @@ export class HomePage extends Page {
     }
 }
 
-class HotTopicsSection extends SectionBase {
+class HotTopicsSection extends SectionCore {
     readonly hotTopics: ResourceLink[];
 
     constructor(props: PropsOf<HotTopicsSection>) {
@@ -167,7 +167,7 @@ class HotTopicsSection extends SectionBase {
     }
 
     static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
-        return new HotTopicsSection(Object.assign(SectionBase.fromSanity(data, db), {
+        return new HotTopicsSection(Object.assign(SectionCore.fromSanity(data, db), {
             hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, false)) || [],
         }));
     }
@@ -190,7 +190,7 @@ export class SocialValidationSection {
     }
 }
 
-class ToolingSection extends SectionBase {
+class ToolingSection extends SectionCore {
     readonly panels: LinkPanel[];
 
     constructor(props: PropsOf<ToolingSection>) {
@@ -200,14 +200,14 @@ class ToolingSection extends SectionBase {
 
     static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new ToolingSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
             })
         );
     }
 }
 
-class CommunitySection extends SectionBase {
+class CommunitySection extends SectionCore {
     readonly socialMedias: SocialMediaID[];
 
     constructor(props: PropsOf<CommunitySection>) {
@@ -217,7 +217,7 @@ class CommunitySection extends SectionBase {
 
     static override fromSanity(data: SanityCommunitySection, db: SanityDataset) {
         return new CommunitySection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 socialMedias: data.socialMediaLinks,
             })
         );

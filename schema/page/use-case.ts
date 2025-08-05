@@ -1,8 +1,8 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
-import { coreSectionSchemaName, SanityCoreSection, SanityTitleBodyIllustrationSection, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../component/section";
-import { SectionBase } from "../component/section";
+import { sectionCoreSchemaName, SanitySectionCore, SanityTitleBodyIllustrationSection, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../component/section";
+import { SectionCore } from "../component/section";
 import {
     collapsibleOptions, routeField, titleField,
 } from "../common-fields";
@@ -28,7 +28,7 @@ export const useCasePageTemplateSchemaName = "useCasePageTemplate";
 export const useCasePageSchemaName = "useCasePage";
 
 export interface SanityUseCasePageTemplate extends SanityPage {
-    [sections.intro.id]: SanityCoreSection;
+    [sections.intro.id]: SanitySectionCore;
     [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
     [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
     [sections.benefits3.id]: SanityKeyPointsSection;
@@ -43,7 +43,7 @@ export interface SanityUseCasePageInstance extends SanityUseCasePageTemplate {
 }
 
 export class UseCasePageTemplate extends Page {
-    readonly [sections.intro.id]?: SectionBase;
+    readonly [sections.intro.id]?: SectionCore;
     readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
     readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
     readonly [sections.benefits3.id]?: KeyPointsSection;
@@ -54,7 +54,7 @@ export class UseCasePageTemplate extends Page {
     constructor(data: SanityUseCasePageTemplate, db: SanityDataset) {
         super(data, db);
         this[sections.intro.id] = data[sections.intro.id].isVisible
-            ? SectionBase.fromSanity(data[sections.intro.id], db)
+            ? SectionCore.fromSanity(data[sections.intro.id], db)
             : undefined;
         this[sections.benefits1.id] = data[sections.benefits1.id].isVisible
             ? TitleBodyIllustrationSection.fromSanity(data[sections.benefits1.id], db)
@@ -100,7 +100,7 @@ export class UseCasePageInstance extends UseCasePageTemplate {
 const introSectionField = defineField({
     name: sections.intro.id,
     title: `${sections.intro.title} Section`,
-    type: coreSectionSchemaName,
+    type: sectionCoreSchemaName,
     options: collapsibleOptions,
 });
 

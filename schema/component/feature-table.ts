@@ -3,7 +3,7 @@ import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
 import { buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, titleAndBodyFields } from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
-import { SanitySectionBase, SectionBase } from "./section";
+import { SanitySectionCore, SectionCore } from "./section";
 
 export interface SanityFeatureTable {
     products: SanityProduct[];
@@ -44,7 +44,7 @@ function isButtonCell(cell: SanityFeatureTableCell): cell is SanityLinkButton {
     return "link" in cell;
 }
 
-export interface SanityFeatureTableSection extends SanitySectionBase {
+export interface SanityFeatureTableSection extends SanitySectionCore {
     featureTable: SanityFeatureTable;
 }
 
@@ -116,7 +116,7 @@ function featureTableCellFromSanity(data: SanityFeatureTableCell, db: SanityData
     else throw "Found unexpected value in feature table cell: " + data;
 }
 
-export class FeatureTableSection extends SectionBase {
+export class FeatureTableSection extends SectionCore {
     readonly featureTable: FeatureTable;
 
     constructor(props: PropsOf<FeatureTableSection>) {
@@ -126,7 +126,7 @@ export class FeatureTableSection extends SectionBase {
 
     static override fromSanity(data: SanityFeatureTableSection, db: SanityDataset) {
         return new FeatureTableSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 featureTable: FeatureTable.fromSanity(data.featureTable, db),
             })
         );

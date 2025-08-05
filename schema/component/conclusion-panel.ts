@@ -9,7 +9,7 @@ import {
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
-import { SanitySectionBase, SectionBase } from "./section";
+import { SanitySectionCore, SectionCore } from "./section";
 
 export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextField, SanityOptionalActions {
     resourceListTitle?: string;
@@ -17,7 +17,7 @@ export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextF
     illustration?: SanityReference<SanityIllustration>;
 }
 
-export interface SanityConclusionSection extends SanitySectionBase, SanityVisibleToggle {
+export interface SanityConclusionSection extends SanitySectionCore {
     panel: SanityConclusionPanel;
 }
 
@@ -50,7 +50,7 @@ export class ConclusionPanel implements Partial<BodyTextField> {
     }
 }
 
-export class ConclusionSection extends SectionBase {
+export class ConclusionSection extends SectionCore {
     readonly panel: ConclusionPanel;
 
     constructor(props: PropsOf<ConclusionSection>) {
@@ -60,7 +60,7 @@ export class ConclusionSection extends SectionBase {
 
     static override fromSanity(data: SanityConclusionSection, db: SanityDataset) {
         return new ConclusionSection(
-            Object.assign(SectionBase.fromSanity(data, db), {
+            Object.assign(SectionCore.fromSanity(data, db), {
                 panel: ConclusionPanel.fromSanity(data.panel, db),
             })
         );

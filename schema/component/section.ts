@@ -1,67 +1,60 @@
 import { defineField, defineType } from "@sanity/types";
-import { LinkButton } from "../button";
+import { LinkButton, SanityOptionalActions } from "../button";
 import {
-    isVisibleField, resourcesFieldOptional, SanityVisibleToggle, SanityIconField, keywordFieldOptional,
+    isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
     titleBodyActionsFields,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleBodyActions } from "../text";
+import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleAndBody } from "../text";
 import { PropsOf } from "../util";
 import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } from "./content-text-panel";
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "./link-panel";
 
-export interface SanitySectionBase extends SanityTitleBodyActions, SanityIconField {
-    keyword?: string;
-}
+export interface SanitySectionCore extends SanityTitleAndBody, SanityOptionalActions, SanityVisibleToggle {}
 
-export interface SanityCoreSection extends SanitySectionBase, SanityVisibleToggle {}
-
-export interface SanityTitleBodyPanelSection extends SanityCoreSection {
+export interface SanityTitleBodyPanelSection extends SanitySectionCore {
     panel: SanityContentTextPanel;
 }
 
-export interface SanityLinkPanelsSection extends SanityCoreSection {
+export interface SanityLinkPanelsSection extends SanitySectionCore {
     panels: SanityLinkPanel[];
 }
 
-export interface SanitySimpleLinkPanelsSection extends SanityCoreSection {
+export interface SanitySimpleLinkPanelsSection extends SanitySectionCore {
     panels: SanityTextLink[];
 }
 
-export interface SanityTitleBodyIllustrationSection extends SanityCoreSection {
+export interface SanityTitleBodyIllustrationSection extends SanitySectionCore {
     illustration: SanityReference<SanityIllustration>;
 }
 
-export class SectionBase implements Partial<BodyTextField> {
+export class SectionCore implements Partial<BodyTextField> {
     readonly title: ParagraphWithHighlights;
     readonly body?: PortableText;
     readonly actions?: LinkButton[];
     readonly sectionId: string;
-    readonly keyword?: string;
 
-    constructor(props: PropsOf<SectionBase>) {
+    constructor(props: PropsOf<SectionCore>) {
         this.title = props.title;
         this.body = props.body;
         this.actions = props.actions;
         this.sectionId = props.sectionId;
-        this.keyword = props.keyword;
     }
 
-    static fromSanity(data: SanitySectionBase, db: SanityDataset) {
+    static fromSanity(data: SanitySectionCore, db: SanityDataset) {
         const title = ParagraphWithHighlights.fromSanity(data.title);
-        return new SectionBase({
+        return new SectionCore({
             title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             sectionId: title.toSectionID(),
-            keyword: data.keyword,
         });
     }
 }
 
-export class TitleBodyPanelSection extends SectionBase {
+export class TitleBodyPanelSection extends SectionCore {
     readonly panel: ContentTextPanel;
 
     constructor(props: PropsOf<TitleBodyPanelSection>) {
@@ -71,13 +64,13 @@ export class TitleBodyPanelSection extends SectionBase {
 
     static override fromSanity(data: SanityTitleBodyPanelSection, db: SanityDataset) {
         return new TitleBodyPanelSection({
-            ...SectionBase.fromSanity(data, db),
+            ...SectionCore.fromSanity(data, db),
             panel: new ContentTextPanel(data.panel, db),
         });
     }
 }
 
-export class LinkPanelsSection extends SectionBase {
+export class LinkPanelsSection extends SectionCore {
     readonly panels: LinkPanel[];
 
     constructor(props: PropsOf<LinkPanelsSection>) {
@@ -93,7 +86,7 @@ export class LinkPanelsSection extends SectionBase {
     }
 }
 
-export class SimpleLinkPanelsSection extends SectionBase {
+export class SimpleLinkPanelsSection extends SectionCore {
     readonly panels: TextLink[];
 
     constructor(props: PropsOf<SimpleLinkPanelsSection>) {
@@ -109,7 +102,7 @@ export class SimpleLinkPanelsSection extends SectionBase {
     }
 }
 
-export class TitleBodyIllustrationSection extends SectionBase {
+export class TitleBodyIllustrationSection extends SectionCore {
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<TitleBodyIllustrationSection>) {
@@ -119,16 +112,16 @@ export class TitleBodyIllustrationSection extends SectionBase {
 
     static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
         return new TitleBodyIllustrationSection({
-            ...SectionBase.fromSanity(data, db),
+            ...SectionCore.fromSanity(data, db),
             illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
         });
     }
 }
 
-export const coreSectionSchemaName = "coreSection";
+export const sectionCoreSchemaName = "coreSection";
 
 const coreSectionSchema = defineType({
-    name: coreSectionSchemaName,
+    name: sectionCoreSchemaName,
     title: "Section",
     type: "document",
     fields: [...titleBodyActionsFields, keywordFieldOptional, isVisibleField],
