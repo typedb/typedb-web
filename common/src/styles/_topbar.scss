@@ -127,7 +127,7 @@
             @include nav-dd;
         }
 
-        @media (min-width: 960px) and (max-width: 1039px) {
+        @media (min-width: 1000px) and (max-width: 1039px) {
             margin-left: -164px;
         }
 
@@ -135,7 +135,7 @@
             margin-left: -112px;
         }
 
-        @media (max-width: 959px) {
+        @media (max-width: 999px) {
             margin-left: 0;
         }
     }
@@ -147,7 +147,7 @@
     }
 
     .td-topbar-panel-opened {
-        @media (min-width: 960px) {
+        @media (min-width: 1000px) {
             .td-topbar-chevron {
                 transform: rotate(180deg);
             }
@@ -333,7 +333,7 @@
         p {
             font-size: 12px;
             line-height: 18px;
-            color: var(--color-purple);
+            color: var(--color-black);
             font-family: var(--font-family-code);
 
             @media (max-width: media.$max-width-mobile) {
@@ -346,13 +346,13 @@
         }
     }
 
-    @media (max-width: 959px) {
+    @media (max-width: 999px) {
         .td-topbar:not(.td-topbar-open) .td-topbar-content {
             display: none;
         }
 
         .td-topbar-open nav {
-            background: var(--color-purple);
+            background: var(--body-background);
         }
 
         .td-topbar-logo-container {
@@ -377,7 +377,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            background-color: var(--color-purple);
+            background-color: var(--body-background);
             width: 100%;
             padding: 0 20px;
             overflow-y: auto;
@@ -404,7 +404,6 @@
 
         .td-topbar-panel-header, .td-topbar-link, .td-topbar-link:visited {
             font-size: 16px;
-            font-weight: var(--font-weight-medium);
             box-sizing: content-box;
             width: 100%;
             display: flex;
@@ -419,6 +418,10 @@
             &:hover, &:focus {
                 color: var(--color-secondary-light-grey);
                 text-decoration: none;
+            }
+
+            &.td-topbar-github-logo {
+                display: none;
             }
 
             li.td-topbar-panel-expanded & {
@@ -481,7 +484,7 @@
                 border-top: 1px solid var(--color-light-purple);
                 justify-content: center;
                 align-items: center;
-                background: var(--color-purple);
+                background: var(--body-background);
             }
         }
 
@@ -559,10 +562,6 @@
                 align-items: baseline;
                 padding: 16px 0;
                 border-top: 1px solid var(--content-border-color);
-            }
-
-            li:last-of-type {
-                border-bottom: 1px solid var(--content-border-color);
             }
         }
     }

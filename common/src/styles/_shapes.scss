@@ -5,9 +5,10 @@ $border: 1px solid colors.$light-purple;
 
 $section-page-margin: 20px;
 $section-width: 1536px;
-$section-padding: 28px;
+$section-padding: 40px;
 $section-page-margin-tablet: 32px;
 $section-width-tablet: 1016px;
+$section-padding-tablet: 20px;
 $section-page-margin-mobile: 0;
 $section-padding-mobile: 12px;
 $section-width-mobile: 100vw;
@@ -15,13 +16,14 @@ $blog-post-gap: 125px;
 $blog-post-sidebar-width: 208px;
 $blog-post-width: 700px;
 
-$section-margin: 144px;
-$first-section-margin: 72px;
-$section-margin-mobile: 40px;
-$first-section-margin-mobile: 16px;
+$section-margin: 180px;
+$first-section-margin: 128px;
+$first-section-margin-tablet: 64px;
+$section-margin-mobile: 80px;
+$first-section-margin-mobile: 20px;
 $subsection-margin: 64px;
 $subsection-margin-tablet: 56px;
-$subsection-margin-mobile: 24px;
+$subsection-margin-mobile: 40px;
 $blog-landing-strip-margin: 64px;
 $blog-landing-strip-margin-mobile: 24px;
 

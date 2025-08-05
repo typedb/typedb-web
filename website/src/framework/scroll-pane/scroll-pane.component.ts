@@ -10,16 +10,17 @@ import {
 } from "@angular/core";
 
 @Component({
-    selector: "td-scroll-shadow",
-    templateUrl: "./scroll-shadow.component.html",
-    styleUrls: ["./scroll-shadow.component.scss"],
+    selector: "td-scroll-pane",
+    templateUrl: "./scroll-pane.component.html",
+    styleUrls: ["./scroll-pane.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class ScrollShadowComponent implements AfterViewInit {
+export class ScrollPaneComponent implements AfterViewInit {
     @Input() color: "deep-purple" | "black-purple" = "black-purple";
     @Input() showControls = false;
     @Input() collectionItemWidth = 360;
+    @Input() hideLeftShadow = false;
     @ViewChild("scrollContainer") scrollContainerRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowLeft") shadowLeftRef!: ElementRef<HTMLDivElement>;
     @ViewChild("shadowRight") shadowRightRef!: ElementRef<HTMLDivElement>;
@@ -32,8 +33,11 @@ export class ScrollShadowComponent implements AfterViewInit {
         return `${this.color}`;
     }
 
-    constructor(private ngZone: NgZone, @Inject(DOCUMENT) private doc: Document) {}
+    @HostBinding("class.hide-left-shadow") get hasHideLeftShadowClass() {
+        return this.hideLeftShadow;
+    }
 
+    constructor(private ngZone: NgZone, @Inject(DOCUMENT) private doc: Document) {}
 
     ngAfterViewInit(): void {
 

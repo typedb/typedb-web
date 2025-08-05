@@ -3,20 +3,26 @@
 @use "shapes";
 @use "sass:color";
 
-@mixin section-width($offset) {
+@mixin section-width($offset: 0px) {
     & {
         // max-width doesn't work with table-layout:fixed in Safari, so we use fine-grained media queries to set width.
         width: shapes.$section-width + $offset;
         max-width: var(--section-max-width);
-        padding: shapes.$section-padding;
+        padding-left: shapes.$section-padding;
+        padding-right: shapes.$section-padding;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     @media (min-width: media.$min-width-tablet) and (max-width: (shapes.$section-width-tablet + shapes.$section-page-margin-tablet * 2 - 1px)) {
-        width: calc(100vw - #{shapes.$section-page-margin-tablet} * 2 + $offset);
+        width: calc(100vw + $offset);
+        padding-left: shapes.$section-padding-tablet;
+        padding-right: shapes.$section-padding-tablet;
     }
 
     @media (max-width: media.$max-width-mobile) {
-        padding: shapes.$section-padding-mobile;
+        padding-left: shapes.$section-padding-mobile;
+        padding-right: shapes.$section-padding-mobile;
     }
 }
 
@@ -70,6 +76,10 @@
 
     &.td-button-size-xs {
         height: 36px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        padding: 6px 14px;
     }
 }
 

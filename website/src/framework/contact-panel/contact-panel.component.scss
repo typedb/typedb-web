@@ -9,6 +9,10 @@
     @media (min-width: media.$min-width-desktop) {
         width: 900px;
     }
+
+    @media (max-width: media.$max-width-mobile) {
+        border: none;
+    }
 }
 
 .cp-contact-policy {
@@ -51,6 +55,7 @@ td-form-actions {
 
     @media (max-width: media.$max-width-mobile) {
         align-self: stretch;
+        margin-top: 52px;
     }
 }
 
@@ -60,6 +65,7 @@ aside {
     left: 32px;
 
     @media (max-width: media.$max-width-mobile) {
-        bottom: 64px;
+        bottom: 68px;
+        left: 20px;
     }
 }

@@ -77,7 +77,10 @@ const secondaryArea = (params: GenerateParams) => {
     });
     const buttonItem = `<li>${button}</li>`;
 
-    const githubWidget = `<a class="td-topbar-github-logo td-topbar-link" href="https://github.com/typedb/typedb" target="_blank">${githubLogo}<span>${topnav.githubStarsCounter}</span></a>`;
+    const githubWidget = `
+<a class="td-topbar-github-logo td-topbar-link" href="https://github.com/typedb/typedb" target="_blank">
+  ${githubLogo}<span>${topnav.githubStarsCounter}</span>
+</a>`;
 
     return `<ul class="td-topbar-secondary-area">${githubWidget}${listItems}${buttonItem}</ul>`;
 };

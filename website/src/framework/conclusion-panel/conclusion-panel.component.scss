@@ -12,8 +12,22 @@
     position: relative;
     margin-top: 0;
 
+    @media (min-width: media.$min-width-desktop) {
+        padding-top: 32px;
+        padding-bottom: 40px;
+    }
+
+    @media (max-width: media.$max-width-tablet) {
+        border-radius: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+        padding-top: 24px;
+        padding-bottom: 32px;
+    }
+
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
+        padding-top: 12px;
     }
 }
 

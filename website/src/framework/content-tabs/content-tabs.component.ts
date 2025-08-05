@@ -6,7 +6,7 @@ import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject 
 import { ContentTextTab } from "typedb-web-schema";
 
 import { ContentPanelComponent } from "../content-panel/content-panel.component";
-import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
+import { ScrollPaneComponent } from "../scroll-pane/scroll-pane.component";
 import { sanitiseHtmlID } from "../util";
 
 @Component({
@@ -14,7 +14,7 @@ import { sanitiseHtmlID } from "../util";
     templateUrl: "content-tabs.component.html",
     styleUrls: ["content-tabs.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ScrollShadowComponent, NgClass, ContentPanelComponent, AsyncPipe]
+    imports: [ScrollPaneComponent, NgClass, ContentPanelComponent, AsyncPipe]
 })
 export class ContentTabsComponent implements OnInit {
     @Input() tabs!: ContentTextTab[];

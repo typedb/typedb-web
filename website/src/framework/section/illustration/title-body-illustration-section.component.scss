@@ -5,9 +5,9 @@
     display: flex;
     gap: 24px;
     align-items: center;
+    margin-top: var(--section-margin);
 
     @media (max-width: media.$max-width-mobile) {
-        margin-top: 40px;
         flex-direction: column;
     }
 
@@ -31,19 +31,19 @@
         }
     }
 
-    .td-text {
-        flex: 1;
-    }
+    @media (min-width: media.$min-width-tablet) {
+        .td-text {
+            flex: 1;
+        }
 
-    .td-illustration {
-        flex: 1;
+        .td-illustration {
+            flex: 1;
+        }
     }
 }
 
 @media (max-width: media.$max-width-mobile) {
-    td-actions {
-        width: 100%;
-    }
+
 }
 
 :host ::ng-deep h1 {

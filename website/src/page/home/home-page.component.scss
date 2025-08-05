@@ -13,6 +13,14 @@
 //}
 
 .td-intro ::ng-deep {
+    flex-direction: column;
+    text-align: center;
+    width: 800px;
+
+    td-actions {
+        justify-content: center;
+    }
+
     .button-frameless {
         color: var(--color-white);
 
@@ -22,32 +30,41 @@
     }
 
     .td-illustration {
-        flex: unset !important;
+        @media (max-width: media.$max-width-mobile) {
+            transform: scale(0.86);
+        }
     }
 
     td-illustration {
-        padding: 12px;
+        flex: unset !important;
         box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
+        padding: 12px;
         animation-play-state: running !important;
         position: relative;
         @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+
+        @media (min-width: media.$min-width-tablet) {
+            margin-top: 32px;
+
+            td-code-snippet {
+                .cs-line-numbers, code {
+                    font-size: 18px;
+                    line-height: 28px;
+                }
+            }
+        }
     }
 
     td-illustration td-code-snippet {
-        .cs-line-numbers, code {
-            font-size: 18px;
-            line-height: 28px;
-        }
+        text-align: start;
     }
 }
 
-@media (max-width: media.$max-width-tablet) {
-    .td-intro {
+@media (max-width: media.$max-width-mobile) {
+    .td-intro .td-text {
+        display: flex;
         flex-direction: column;
-    }
-
-    .td-intro ::ng-deep td-illustration {
-        margin-top: 32px;
+        align-items: center;
     }
 }
 

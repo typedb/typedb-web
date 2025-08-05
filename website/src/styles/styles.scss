@@ -73,11 +73,23 @@ td-section-core {
     }
 }
 
+td-section-core + td-key-point-panels-2x2 {
+    margin-top: var(--subsection-margin);
+}
+
 .narrow-section {
     @media (min-width: media.$min-width-desktop) {
         max-width: 1140px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    @media (max-width: media.$max-width-mobile) and (min-width: 480px) {
+        max-width: 420px;
+    }
+
+    @media (max-width: 479px) {
+        max-width: 100vw;
     }
 }
 
@@ -221,11 +233,12 @@ table {
 
 .td-inverted-colors-section {
     margin-top: var(--section-margin);
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
     @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
 
     td-section-core {
         display: block;
-        margin-top: 16px;
 
         h2, p {
             color: colors.$black;

@@ -9,7 +9,6 @@
     justify-content: space-between;
     gap: 40px;
     margin-top: 24px;
-    height: 260px;
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 32px;
@@ -28,14 +27,15 @@
     justify-content: center;
     text-align: center;
     position: relative;
+    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+
     @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
 
     &.hoverable:hover {
         @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
     }
-
-    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
-    cursor: pointer;
 
     &:hover h3 {
         text-decoration: none;

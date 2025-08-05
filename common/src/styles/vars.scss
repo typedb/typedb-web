@@ -52,6 +52,7 @@
     --subtitle-margin-l: #{$subtitle-margin-l};
     --subtitle-margin: #{$subtitle-margin};
     --blog-landing-strip-margin: #{$blog-landing-strip-margin};
+    --section-padding: #{$section-padding};
 
     --text-margin-s: #{$text-margin-s};
 
@@ -101,6 +102,8 @@
     @media (max-width: media.$max-width-tablet) {
         --section-width: #{$section-width-tablet};
         --section-page-margin: #{$section-page-margin-tablet};
+        --first-section-margin: #{$first-section-margin-tablet};
+        --section-padding: #{$section-padding-tablet};
 
         --subsection-margin: #{$subsection-margin-tablet};
 
@@ -121,6 +124,7 @@
         --subtitle-margin-l: #{$subtitle-margin-mobile};
         --subtitle-margin: #{$subtitle-margin-mobile};
         --blog-landing-strip-margin: #{$blog-landing-strip-margin-mobile};
+        --section-padding: #{$section-padding-mobile};
 
         --topbar-height: #{$topbar-height-mobile};
         --banner-height: #{$banner-height-mobile};

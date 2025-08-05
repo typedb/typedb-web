@@ -12,8 +12,16 @@ table {
     background: none;
 }
 
-col {
-    width: 23%;
+@media (min-width: media.$min-width-tablet) {
+    col {
+        width: 23%;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    col {
+        width: 33.33%;
+    }
 }
 
 col:first-of-type {
@@ -142,7 +150,7 @@ td {
     thead th div {
         aside, td-button {
             width: 100%;
-            padding: 0 4px;
+            padding: 0 2px;
         }
     }
 

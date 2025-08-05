@@ -69,6 +69,10 @@
     left: 0;
 }
 
+:host.hide-left-shadow .ss-left {
+    opacity: 0 !important;
+}
+
 .ss-right {
     right: 0;
 }

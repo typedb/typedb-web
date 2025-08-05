@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Organisation } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
-import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
+import { ScrollPaneComponent } from "../scroll-pane/scroll-pane.component";
 
 // TODO: currently only behaves properly when all uploaded images are the same size
 @Component({

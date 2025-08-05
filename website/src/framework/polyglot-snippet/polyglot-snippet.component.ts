@@ -6,7 +6,7 @@ import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema/lib/code";
 import { MediaQueryService } from "../../service/media-query.service";
 import { CodeSnippetComponent } from "../code/code-snippet.component";
-import { ScrollShadowComponent } from "../scroll-shadow/scroll-shadow.component";
+import { ScrollPaneComponent } from "../scroll-pane/scroll-pane.component";
 
 const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 
@@ -15,7 +15,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "./polyglot-snippet.component.html",
     styleUrls: ["./polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ScrollShadowComponent, NgClass, CodeSnippetComponent, AsyncPipe]
+    imports: [ScrollPaneComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
 export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);

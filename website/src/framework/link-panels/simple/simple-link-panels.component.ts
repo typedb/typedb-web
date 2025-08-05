@@ -4,7 +4,7 @@ import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import { LinkPanel, TextLink } from "typedb-web-schema";
 import { LinkDirective } from "../../link/link.directive";
-import { ScrollShadowComponent } from "../../scroll-shadow/scroll-shadow.component";
+import { ScrollPaneComponent } from "../../scroll-pane/scroll-pane.component";
 import { RichTextComponent } from "../../text/rich-text.component";
 
 @Component({
@@ -12,7 +12,7 @@ import { RichTextComponent } from "../../text/rich-text.component";
     templateUrl: "simple-link-panels.component.html",
     styleUrls: ["simple-link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [LinkDirective, RichTextComponent, ScrollShadowComponent]
+    imports: [LinkDirective, RichTextComponent, ScrollPaneComponent]
 })
 export class SimpleLinkPanelsComponent {
     @Input() panels!: TextLink[];

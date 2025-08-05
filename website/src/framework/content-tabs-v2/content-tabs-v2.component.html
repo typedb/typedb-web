@@ -1,5 +1,5 @@
 <div class="section ft-root">
-  <td-scroll-shadow class="ft-tabs-container">
+  <td-scroll-pane class="ft-tabs-container">
     <div class="ft-tabs">
       @for (tab of tabs; track tab) {
         <a
@@ -13,7 +13,7 @@
         </a>
       }
     </div>
-  </td-scroll-shadow>
+  </td-scroll-pane>
   @for (tab of tabs; track tab) {
     <td-content-panel appearance="card" [panel]="tab" [panelId]="tabID(tab)" [hidden]="(selectedTab$ | async) !== tab" />
   }
