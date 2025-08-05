@@ -19,6 +19,7 @@ export class PublicationPanelComponent {
     @Input() items!: PublicationPanelItem[];
 
     @HostBinding("class.section") useSectionClass = true;
+    @HostBinding("class.narrow-section") useNarrowSectionClass = true;
     @HostBinding("class.card-appearance") useCardAppearanceClass = true;
 
     isContentRow(item: PublicationPanelItem): item is PublicationContentRow {

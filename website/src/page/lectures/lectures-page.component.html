@@ -1,32 +1,30 @@
 <article>
   @if (page$ | async; as page) {
-    <div class="section">
-      <td-section-core sectionId="intro" [section]="page.introSection"/>
-      <div class="card subsection-margin wp-primary-lecture">
-        @if (!page?.introSection?.featuredLecture) {
-          <div class="wp-primary-placeholder"></div>
-        }
-        @if (page?.introSection?.featuredLecture; as primaryLecture) {
-          <td-aspect-ratio ratio="16:9">
-            <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
-          </td-aspect-ratio>
-          <div class="wp-primary-lecture-summary">
-            <h3 class="wp-lecture-title-container">
-              <span class="wp-lecture-title">{{ primaryLecture.title | plainText }}</span>
-              @if (!primaryLecture.isFinished()) {
-                <span class="wp-title-separator">|</span>
-                <time [dateTime]="primaryLecture.datetime.toISOString()">
-                  {{ primaryLecture.datetime | ordinalDate }}
-                </time>
-              }
-            </h3>
-            <div class="wp-lecture-text-container">
-              <td-rich-text class="wp-lecture-description" [value]="primaryLecture.description" />
-              <td-button [button]="primaryLecture.registrationButton()" [linkId]="lectureDetailsButtonId(primaryLecture)"/>
-            </div>
+    <td-section-core sectionId="intro" [section]="page.introSection"/>
+    <div class="section narrow-section card subsection-margin wp-primary-lecture">
+      @if (!page?.introSection?.featuredLecture) {
+        <div class="wp-primary-placeholder"></div>
+      }
+      @if (page?.introSection?.featuredLecture; as primaryLecture) {
+        <td-aspect-ratio ratio="16:9">
+          <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
+        </td-aspect-ratio>
+        <div class="wp-primary-lecture-summary">
+          <h3 class="wp-lecture-title-container">
+            <span class="wp-lecture-title">{{ primaryLecture.title | plainText }}</span>
+            @if (!primaryLecture.isFinished()) {
+              <span class="wp-title-separator">|</span>
+              <time [dateTime]="primaryLecture.datetime.toISOString()">
+                {{ primaryLecture.datetime | ordinalDate }}
+              </time>
+            }
+          </h3>
+          <div class="wp-lecture-text-container">
+            <td-rich-text class="wp-lecture-description" [value]="primaryLecture.description" />
+            <td-button [button]="primaryLecture.registrationButton()" [linkId]="lectureDetailsButtonId(primaryLecture)"/>
           </div>
-        }
-      </div>
+        </div>
+      }
     </div>
     @if (
       page.featuredLecturesSection &&
@@ -38,7 +36,7 @@
     }
     @if (page.exploreLecturesSection) {
       <td-section-core [section]="page.exploreLecturesSection"/>
-      <section class="card-appearance">
+      <section class="card-appearance narrow-section wp-lecture-list-section">
         <ul class="wp-lecture-list">
           @for (lecture of allLectures$ | async; track lecture) {
             <li class="wp-lecture-list-item">

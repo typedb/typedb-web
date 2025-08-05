@@ -2,6 +2,10 @@
 @use "shapes";
 @use "mixins";
 
+.section {
+    margin-top: 0;
+}
+
 .lc-root-cols-3 {
     display: flex;
     justify-content: space-between;
@@ -130,7 +134,12 @@
         align-items: center;
     }
 
+    &:hover {
+        background: var(--color-light-purple);
+    }
+
     &:hover h3 {
+        color: var(--color-white);
         text-decoration: none;
     }
 }
@@ -145,7 +154,7 @@ td-button {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 12px;
+    gap: 16px;
     text-align: center;
 
     @media (max-width: media.$max-width-mobile) {

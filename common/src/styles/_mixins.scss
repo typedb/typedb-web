@@ -51,6 +51,7 @@
     text-decoration: none !important; // overrides various styles that set an underline on anchors
     padding: 6px 18px;
     height: 40px;
+    text-wrap: nowrap;
 
     span {
         position: relative;

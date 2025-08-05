@@ -1,24 +1,22 @@
 <article>
   @if (page$ | async; as page) {
-    <div class="section">
-      <td-section-core [section]="page.introSection"/>
-      <div class="subsection-margin card wp-primary-paper">
-        <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
-        <div class="wp-primary-paper-details">
-          <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
-            <img [src]="page.featuredPaper.landscapeImageURL" class="wp-img" alt="" />
-          </td-aspect-ratio>
-          <td-aspect-ratio ratio="17:22" class="hide-mobile">
-            <img [src]="page.featuredPaper.portraitImageURL" class="wp-img" alt="" />
-          </td-aspect-ratio>
-          <div class="wp-primary-paper-summary">
-            <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
-            <div class="flex"></div>
-            <td-button
-              [button]="accessResourceButton(page.featuredPaper, 'greenHollow', 'Download')"
-              [linkId]="downloadButtonId(page.featuredPaper)"
-            />
-          </div>
+    <td-section-core [section]="page.introSection"/>
+    <div class="subsection-margin card narrow-section wp-primary-paper">
+      <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
+      <div class="wp-primary-paper-details">
+        <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
+          <img [src]="page.featuredPaper.landscapeImageURL" class="wp-img" alt="" />
+        </td-aspect-ratio>
+        <td-aspect-ratio ratio="17:22" class="hide-mobile">
+          <img [src]="page.featuredPaper.portraitImageURL" class="wp-img" alt="" />
+        </td-aspect-ratio>
+        <div class="wp-primary-paper-summary">
+          <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
+          <div class="flex"></div>
+          <td-button
+            [button]="accessResourceButton(page.featuredPaper, 'greenHollow', 'Download')"
+            [linkId]="downloadButtonId(page.featuredPaper)"
+          />
         </div>
       </div>
       <div class="subsection-margin card-appearance wp-grid">

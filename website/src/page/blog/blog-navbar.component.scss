@@ -5,6 +5,7 @@
     height: 72px;
     margin-bottom: 8px;
     border-bottom: shapes.$border;
+    margin-top: 0;
 
     @media (max-width: media.$max-width-mobile) {
         height: 54px;

@@ -70,6 +70,7 @@ export class LinkPanelsCols2Component {
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];
     @Input({ required: true }) sectionId!: string;
+    @HostBinding("class") clazz = "section narrow-section";
 
     private _hoveredPanels = new Map<Lecture, boolean>();
 

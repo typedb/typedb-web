@@ -12,7 +12,7 @@
     <nav td-blog-navbar variant="listPage" class="section"></nav>
 
     @if (rows$ | async; as rows) {
-      <section>
+      <section class="posts">
         @for (row of rows; track row) {
           <td-blog-row [row]="row" />
         }

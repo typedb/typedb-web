@@ -42,7 +42,6 @@ const sections = {
     resources: { id: "resourcesSection", title: "Resources" },
     tooling: { id: "toolingSection", title: "Tooling" },
     drivers: { id: "driversSection", title: "Integrations Grid" },
-    cloud: { id: "cloudSection", title: "Cloud" },
     testimonials: { id: "testimonialsSection", title: "Testimonials" },
 } as const;
 
@@ -66,7 +65,6 @@ export interface SanityHomePage extends SanityPage {
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
-    [sections.cloud.id]: SanityKeyPointsWithIconsSection;
     [sections.testimonials.id]: SanityTestimonialsSection;
     conclusionSection: SanityConclusionSection;
 }
@@ -101,7 +99,6 @@ export class HomePage extends Page {
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: IntegrationsGridSection;
-    readonly [sections.cloud.id]?: KeyPointsWithIconsSection;
     readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly conclusionSection?: ConclusionSection;
 
@@ -148,7 +145,6 @@ export class HomePage extends Page {
         this.driversSection = data.driversSection.isVisible
             ? IntegrationsGridSection.fromSanity(data.driversSection, db)
             : undefined;
-        this.cloudSection = data.cloudSection.isVisible ? KeyPointsWithIconsSection.fromSanity(data.cloudSection, db) : undefined;
         this.testimonialsSection = data.testimonialsSection.isVisible
             ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
