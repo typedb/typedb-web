@@ -80,9 +80,9 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/docs/2.x/manual/*"
-to = "/docs/manual/2.x/*"
-status = 200
+from = "/docs/2.x/*"
+to = "/docs/:splat"
+status = 302
 
 [[redirects]]
 from = "/docs/manual/*"
