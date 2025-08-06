@@ -4,7 +4,7 @@
   "version": "1.0.3",
   "license": "UNLICENSED",
   "scripts": {
-    "install": "tsc"
+    "install": "npx tsc"
   },
   "dependencies": {
     "prismjs": "1.29.x"
@@ -12,7 +12,7 @@
   "devDependencies": {
     "@sanity/types": "3.97.1",
     "@types/prismjs": "1.26.2",
-    "typescript": "5.1.6"
+    "typescript": "5.5.4"
   },
   "packageManager": "pnpm@10.12.1+sha256.889bac470ec93ccc3764488a19d6ba8f9c648ad5e50a9a6e4be3768a5de387a3"
 }
