@@ -80,6 +80,11 @@ status = 301
 force = true
 
 [[redirects]]
+from = "/docs/2.x/manual/*"
+to = "/docs/manual/2.x/*"
+status = 200
+
+[[redirects]]
 from = "/docs/manual/*"
 to = "/docs/core-concepts/typedb/:splat"
 status = 301
