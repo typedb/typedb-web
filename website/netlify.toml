@@ -79,11 +79,20 @@ to = "/docs/home/"
 status = 301
 force = true
 
-# TODO: delete this redirect when 3.x docs launch
 [[redirects]]
-from = "/docs/2.x/*"
-to = "/docs/:splat"
-status = 302
+from = "/docs/manual/*"
+to = "/docs/core-concepts/typedb/:splat"
+status = 301
+
+[[redirects]]
+from = "/docs/drivers/*"
+to = "/docs/core-concepts/drivers/:splat"
+status = 301
+
+[[redirects]]
+from = "/docs/typeql/*"
+to = "/docs/core-concepts/typeql/:splat"
+status = 301
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
