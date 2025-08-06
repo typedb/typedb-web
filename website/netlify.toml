@@ -70,6 +70,11 @@ from = "/white-papers/*"
 to = "/papers"
 status = 301
 
+[[redirects]]
+from = "/docs/home/get-started"
+to = "/docs/home/get-started/"
+status = 301
+
 # DOCS BEHAVIOUR
 # Keep indefinitely. These redirects are required for Docs to behave correctly
 
@@ -80,24 +85,9 @@ status = 301
 force = true
 
 [[redirects]]
-from = "/docs/2.x/manual/*"
-to = "/docs/manual/2.x/*"
-status = 200
-
-[[redirects]]
-from = "/docs/manual/*"
-to = "/docs/core-concepts/typedb/:splat"
-status = 301
-
-[[redirects]]
-from = "/docs/drivers/*"
-to = "/docs/core-concepts/drivers/:splat"
-status = 301
-
-[[redirects]]
-from = "/docs/typeql/*"
-to = "/docs/core-concepts/typeql/:splat"
-status = 301
+from = "/docs/2.x/*"
+to = "/docs/:splat"
+status = 302
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
