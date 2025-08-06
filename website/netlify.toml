@@ -12,7 +12,7 @@ command = "ENV=production pnpm build"
 publish = "dist/typedb-web/browser"
 
 [context.master]
-command = "ENV=staging pnpm build"
+command = "ENV=production pnpm build"
 publish = "dist/typedb-web/browser"
 
 [context.development]
@@ -78,6 +78,11 @@ from = "/docs"
 to = "/docs/home/"
 status = 301
 force = true
+
+[[redirects]]
+from = "/docs/2.x/manual/*"
+to = "/docs/manual/2.x/*"
+status = 200
 
 [[redirects]]
 from = "/docs/manual/*"
