@@ -4,7 +4,8 @@
   "version": "1.0.3",
   "license": "UNLICENSED",
   "scripts": {
-    "install": "npx tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "prismjs": "1.29.x"

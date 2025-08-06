@@ -5,7 +5,8 @@
     "main": "index.ts",
     "license": "UNLICENSED",
     "scripts": {
-        "install": "npx tsc"
+        "build": "tsc",
+        "prepare": "npm run build"
     },
     "dependencies": {
         "@sanity/asset-utils": "1.3.2",
@@ -16,5 +17,5 @@
         "react": "18.3.1",
         "typescript": "5.5.4"
     },
-    "packageManager": "pnpm@8.6.7"
+    "packageManager": "pnpm@10.12.1+sha256.889bac470ec93ccc3764488a19d6ba8f9c648ad5e50a9a6e4be3768a5de387a3"
 }
