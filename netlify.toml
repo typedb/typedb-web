@@ -13,7 +13,7 @@ command = "ENV=production pnpm build"
 publish = "dist/typedb-web/browser"
 
 [context.master]
-command = "ENV=production pnpm build"
+command = "ENV=staging pnpm build"
 publish = "dist/typedb-web/browser"
 
 [context.development]
