@@ -7,6 +7,6 @@
 </div>
 @if (data.illustration) {
   <div class="td-illustration">
-    <td-illustration class="td-frameless" [illustration]="data.illustration" />
+    <td-illustration [class]="hasCodeSnippetIllustration ? '' : 'td-frameless'" [illustration]="data.illustration" />
   </div>
 }

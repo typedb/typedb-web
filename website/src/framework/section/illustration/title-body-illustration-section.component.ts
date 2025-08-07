@@ -1,7 +1,7 @@
 
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 
-import { TitleBodyIllustrationSection } from "typedb-web-schema";
+import { CodeSnippet, FeatureGridCell, PolyglotSnippet, TitleBodyIllustrationSection } from "typedb-web-schema";
 import { ActionsComponent } from "../../actions/actions.component";
 import { IllustrationComponent } from "../../illustration/illustration.component";
 import { RichTextComponent } from "../../text/rich-text.component";
@@ -23,5 +23,10 @@ export class TitleBodyIllustrationSectionComponent {
     @HostBinding("class")
     get rootClasses(): string {
         return `section ${this.isIntroSection ? "page-intro-section" : ""} td-${this.flexDirection}`;
+    }
+
+    @HostBinding("class.has-code-snippet-illustration")
+    get hasCodeSnippetIllustration() {
+        return this.data.illustration instanceof CodeSnippet || this.data.illustration instanceof PolyglotSnippet;
     }
 }
