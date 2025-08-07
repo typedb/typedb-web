@@ -7,7 +7,7 @@ import { FooterComponent } from "./navigation/footer/footer.component";
 import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
 
 @Component({
-    selector: "td-typedb-web",
+    selector: "td-web-main",
     templateUrl: "./root.component.html",
     imports: [
         RouterOutlet, TopbarMenuComponent, FooterComponent, FeedbackButtonComponent
