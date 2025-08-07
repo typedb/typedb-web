@@ -2,7 +2,7 @@ import { getSitemapPlugin, SitemapConfig } from "@gammastream/scully-plugin-site
 import { ScullyConfig, setPluginConfig } from "@scullyio/scully";
 import "@scullyio/scully-plugin-puppeteer";
 
-import { getWebsiteRoutes } from "./scully/get-website-routes";
+import { getWebsiteRoutes } from "./scully/get-main-routes";
 
 const SitemapPlugin = getSitemapPlugin();
 setPluginConfig<SitemapConfig>(SitemapPlugin, {

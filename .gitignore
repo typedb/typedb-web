@@ -33,19 +33,19 @@ sanity/scripts/credentials/**/*
 schema/lib
 
 # Website - Angular
-website/.angular
-website/src/service/credentials/**/*
-!website/src/service/credentials/.gitkeep
+main/.angular
+main/src/service/credentials/**/*
+!main/src/service/credentials/.gitkeep
 
 # Website - Scully
-website/src/assets/scully-routes.json
-website/src/website-routes.js
-website/src/website-routes.js.map
-website/scully.log
-website/scully/**/*.js
-website/scully/**/*.js.map
-website/scully/plugins/credentials/**/*
-!website/scully/plugins/credentials/.gitkeep
+main/src/assets/scully-routes.json
+main/src/main-routes.js
+main/src/main-routes.js.map
+main/scully.log
+main/scully/**/*.js
+main/scully/**/*.js.map
+main/scully/plugins/credentials/**/*
+!main/scully/plugins/credentials/.gitkeep
 
 # Local Netlify folder
 .netlify

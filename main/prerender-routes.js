@@ -5,7 +5,7 @@ const axios = require("axios");
 const SANITY_QUERY_URL = "https://xndl14mc.api.sanity.io/v2021-10-21/data/query/production";
 
 // Import your page schemas
-const { staticPageSchemas, genericPageSchemas, dynamicPageSchemas } = require("./src/website-routes");
+const { staticPageSchemas, genericPageSchemas, dynamicPageSchemas } = require("./src/main-routes");
 
 // Function to fetch static pages
 const staticPageRoute = async (route, schemaName) => {

@@ -19,8 +19,8 @@ Q: Running `pnpm i` in an Angular project that depends on `typedb-web-common` (o
 when running `ng serve`.
 A:
 Use `readlink -f` to find the true location of the `node_modules/typedb-web-common` link. Delete both the true location, and the link. Then, rerun `pnpm i`.
-If that fails, try running `ng cache clean` in `website`.
-If that fails, try deleting `node_modules` in `website` and rerunning `pnpm i`.
+If that fails, try running `ng cache clean` in `main`.
+If that fails, try deleting `node_modules` in `main` and rerunning `pnpm i`.
 If that fails, try deleting both `node_modules` and `pnpm-lock.yaml` and rerunning `pnpm i`.
 
 Q: Running `pnpm i` in an Angular project that depends on `typedb-web-common` (or `typedb-web-schema`) shows an error on running `tsc` in the install script.

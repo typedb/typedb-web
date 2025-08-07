@@ -1,12 +1,12 @@
-# TypeDB Website Frontend - Angular
+# TypeDB Main Site - Angular
 
-TypeDB Website is built on [Angular](https://angular.dev).
+TypeDB Main Site is built on [Angular](https://angular.dev).
 
 Its pages can be client-side, server-side, or prerendered according to each environment's needs.
 
 ## Build from source
 
-There is a wide variety of Web toolchains; the process below is one way to compile TypeDB Website from source.
+There is a wide variety of Web toolchains; the process below is one way to compile TypeDB Main Site from source.
 
 ### Install toolchains and dependencies
 
