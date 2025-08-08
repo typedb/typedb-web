@@ -170,6 +170,10 @@ path = "/api/echo"
 function = "get-calendar-link"
 path = "/api/calendar-link"
 
+[[edge_functions]]
+function = "send-deploy-notification-discord"
+path = "/api/send-deploy-notification-discord"
+
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
 
