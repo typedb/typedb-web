@@ -26,49 +26,28 @@ export default async (request: Request, context) => {
         }
 
         // Read raw body as text
-        const bodyText = await request.text();
+        const body = await request.text();
 
-        // Verify signature using Web Crypto API
-        // Create a key from the secret
+        const [header, sigPayload, sig] = signature.split('.');
+    
+        // Decode payload
+        const decodedPayload = JSON.parse(atob(sigPayload.replace(/-/g, '+').replace(/_/g, '/')));
+        
+        // Verify the body hash
         const encoder = new TextEncoder();
-        const keyData = encoder.encode(secret);
-
-        const cryptoKey = await crypto.subtle.importKey(
-            "raw",
-            keyData,
-            { name: "HMAC", hash: "SHA-256" },
-            false,
-            ["sign", "verify"]
-        );
-
-        // Decode signature from hex to Uint8Array
-        function hexToUint8Array(hex: string) {
-            const arr = new Uint8Array(hex.length / 2);
-            for (let i = 0; i < arr.length; i++) {
-                arr[i] = parseInt(hex.substr(i * 2, 2), 16);
-            }
-            return arr;
-        }
-
-        const signatureBytes = hexToUint8Array(signature);
-        const data = encoder.encode(bodyText);
-
-        // Verify the signature
-        const valid = await crypto.subtle.verify(
-            "HMAC",
-            cryptoKey,
-            signatureBytes,
-            data
-        );
-
-        if (!valid) {
+        const data = encoder.encode(body);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const expectedHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        if (decodedPayload.sha256 !== expectedHash) {
             const msg = `Invalid signature`;
             console.warn(msg);
             return new Response(msg, { status: 401 });
         }
 
         // Parse the payload JSON
-        const payload = JSON.parse(bodyText);
+        const payload = JSON.parse(body);
 
         // Build deploy log URL if possible
         const deployLogUrl =
