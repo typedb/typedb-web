@@ -5,12 +5,24 @@ export default async (request: Request, context) => {
         // Access env var from context.env
         const secret = Netlify.env.NETLIFY_WEBHOOK_SECRET;
         if (!secret) {
-            return new Response("Environment variable 'NETLIFY_WEBHOOK_SECRET' must be set", { status: 500 });
+            const msg = `Environment variable 'NETLIFY_WEBHOOK_SECRET' must be set`;
+            console.error(msg);
+            return new Response(msg, { status: 500 });
+        }
+
+        // Your Discord webhook URL
+        const discordWebhook = Netlify.env.DISCORD_WEBHOOK_URL;
+        if (!discordWebhook) {
+            const msg = "Environment variable 'DISCORD_WEBHOOK_URL' must be set";
+            console.error(msg);
+            return new Response("Environment variable 'DISCORD_WEBHOOK_URL' must be set", { status: 500 });
         }
 
         const signature = request.headers.get("x-netlify-signature");
         if (!signature) {
-            return new Response("Request header 'x-netlify-signature' must be set", { status: 401 });
+            const msg = `Request header 'x-netlify-signature' must be set`;
+            console.warn(msg);
+            return new Response(msg, { status: 401 });
         }
 
         // Read raw body as text
@@ -55,12 +67,6 @@ export default async (request: Request, context) => {
 
         // Parse the payload JSON
         const payload = JSON.parse(bodyText);
-
-        // Your Discord webhook URL
-        const discordWebhook = context.env.DISCORD_WEBHOOK_URL;
-        if (!discordWebhook) {
-            return new Response("Environment variable 'DISCORD_WEBHOOK_URL' must be set", { status: 500 });
-        }
 
         // Build deploy log URL if possible
         const deployLogUrl =
