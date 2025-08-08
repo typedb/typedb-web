@@ -1,27 +1,25 @@
 [build]
+base = "."
 ignore = "/bin/false"
-
-[build.environment]
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/CqydmmRN9Ao1G49fg6QWroNujeoLJm7Qx__bO6gn1yHX9jKHWbQwyV3GMdD9GxzW9FnX"
 
 [build.processing.html]
 pretty_urls = true
 
 [context.production]
-command = "ENV=production pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=production npm run build"
+publish = "main/dist/main/browser"
 
 [context.master]
-command = "ENV=production pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=staging npm run build"
+publish = "main/dist/main/browser"
 
 [context.development]
-command = "ENV=development pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=development npm run build"
+publish = "main/dist/main/browser"
 
 [context.deploy-preview]
-command = "ENV=development pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=development npm run build"
+publish = "main/dist/main/browser"
 
 # ALIASES
 # Keep indefinitely
@@ -175,9 +173,6 @@ path = "/api/calendar-link"
 [[edge_functions]]
 function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
-
-[[plugins]]
-package = "netlify-plugin-discord"
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"

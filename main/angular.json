@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "typedb-web": {
+    "main": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -65,23 +65,18 @@
                 "entry": "server.ts"
               }
             },
-            "development": {
+            "staging": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
               "fileReplacements": [
                 {
                   "replace": "src/environment/environment.ts",
-                  "with": "src/environment/environment.dev.ts"
+                  "with": "src/environment/environment.staging.ts"
                 }
-              ],
-              "server": "src/main.server.ts",
-              "outputMode": "server",
-              "ssr": {
-                "entry": "server.ts"
-              }
+              ]
             },
-            "no-ssr": {
+            "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
@@ -99,38 +94,19 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "typedb-web:build:production"
+              "buildTarget": "main:build:production"
             },
+            "staging": {
+              "buildTarget": "main:build:staging"
+            }
             "development": {
-              "buildTarget": "typedb-web:build:development"
-            },
-            "no-ssr": {
-              "buildTarget": "typedb-web:build:no-ssr"
+              "buildTarget": "main:build:development"
             }
           },
-          "defaultConfiguration": "no-ssr"
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.png",
-              "src/assets",
-              "src/robots.txt"
-            ],
-            "styles": [
-              "src/styles/styles.scss"
-            ],
-            "scripts": []
-          }
         }
       }
     }

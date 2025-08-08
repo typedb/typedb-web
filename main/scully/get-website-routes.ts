@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "../src/website-routes";
+import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "../src/main-routes";
 
 const SANITY_URL = "https://xndl14mc.api.sanity.io/";
 const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
