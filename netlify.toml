@@ -1,5 +1,5 @@
 [build]
-base = "main"
+base = "."
 ignore = "/bin/false"
 
 [build.environment]
@@ -9,20 +9,20 @@ DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1317118973443309649/Cqyd
 pretty_urls = true
 
 [context.production]
-command = "ENV=production pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=production npm run build"
+publish = "dist/main/browser"
 
 [context.master]
-command = "ENV=staging pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=staging npm run build"
+publish = "dist/main/browser"
 
 [context.development]
-command = "ENV=development pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=development npm run build"
+publish = "dist/main/browser"
 
 [context.deploy-preview]
-command = "ENV=development pnpm build"
-publish = "dist/typedb-web/browser"
+command = "ENV=development npm run build"
+publish = "dist/main/browser"
 
 # ALIASES
 # Keep indefinitely
