@@ -18,9 +18,9 @@ export default async (request: Request, context) => {
             return new Response("Environment variable 'DISCORD_WEBHOOK_URL' must be set", { status: 500 });
         }
 
-        const signature = request.headers.get("x-netlify-signature");
+        const signature = request.headers.get("X-Netlify-Signature");
         if (!signature) {
-            const msg = `Request header 'x-netlify-signature' must be set`;
+            const msg = `Request header 'X-Netlify-Signature' must be set`;
             console.warn(msg);
             return new Response(msg, { status: 401 });
         }
