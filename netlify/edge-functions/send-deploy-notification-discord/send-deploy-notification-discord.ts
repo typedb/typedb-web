@@ -62,7 +62,9 @@ export default async (request: Request, context) => {
         );
 
         if (!valid) {
-            return new Response("Invalid signature", { status: 401 });
+            const msg = `Invalid signature`;
+            console.warn(msg);
+            return new Response(msg, { status: 401 });
         }
 
         // Parse the payload JSON
