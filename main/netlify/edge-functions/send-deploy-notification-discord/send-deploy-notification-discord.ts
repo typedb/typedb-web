@@ -1,16 +1,39 @@
+import crypto from "crypto";
+
 export async function handler(event) {
     try {
-        const payload = JSON.parse(event.body);
+        // Your Netlify webhook secret configured as env var
+        const secret = process.env.NETLIFY_WEBHOOK_SECRET;
+        if (!secret) {
+            return { statusCode: 500, body: "Environment variable NETLIFY_WEBHOOK_SECRET must be set" };
+        }
 
-        // Get your Discord webhook URL from environment variable
+        // Get Discord webhook URL from environment variable
         const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
-
         if (!discordWebhook) {
             return {
                 statusCode: 500,
-                body: "No Discord webhook URL configured"
+                body: "Environment variable DISCORD_WEBHOOK_URL must be set"
             };
         }
+
+        // Netlify signature header
+        const signature = event.headers["x-netlify-signature"];
+        if (!signature) {
+            return { statusCode: 401, body: "Missing request header: x-netlify-signature" };
+        }
+
+        // Verify signature: create HMAC SHA256 of raw body
+        const hmac = crypto.createHmac("sha256", secret);
+        hmac.update(event.body);
+        const computedSignature = hmac.digest("hex");
+
+        if (!crypto.timingSafeEqual(Buffer.from(computedSignature), Buffer.from(signature))) {
+            return { statusCode: 401, body: "Invalid signature" };
+        }
+
+        // At this point, signature is valid, so parse JSON
+        const payload = JSON.parse(event.body);
 
         // Build deploy log URL if possible
         const deployLogUrl =
