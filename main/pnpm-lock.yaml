@@ -180,9 +180,6 @@ importers:
       karma-jasmine-html-reporter:
         specifier: 2.1.0
         version: 2.1.0(jasmine-core@5.1.0)(karma-jasmine@5.1.0(karma@6.4.2))(karma@6.4.2)
-      netlify-plugin-discord:
-        specifier: 0.0.2
-        version: 0.0.2
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1976,9 +1973,6 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
-
   axios@1.4.0:
     resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
 
@@ -2153,11 +2147,6 @@ packages:
 
   countable@3.0.1:
     resolution: {integrity: sha512-dz/sdi+RFpHJKMen5RAB9EKpCKd/q5WMfxG3SbdbQ3Pak4+SEPmDhVWZF0GTTHwjqjR+7DmiZHzZiFJ4qeAzmg==}
-
-  cross-env@7.0.3:
-    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
-    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
-    hasBin: true
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -2973,10 +2962,6 @@ packages:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
     engines: {node: '>= 0.6'}
 
-  netlify-plugin-discord@0.0.2:
-    resolution: {integrity: sha512-SQ5gRZRhxqaBWer1/HT8Twb9fEkbqffSiceeI2OMLFPOuUSuKztQWnkbv3XX6OZb7ETC27YO/DecHPc1Tnz5MA==}
-    engines: {node: '>=10.22.0'}
-
   new-date@1.0.3:
     resolution: {integrity: sha512-0fsVvQPbo2I18DT2zVHpezmeeNYV2JaJSrseiHLc17GNOxJzUdx5mvSigPu8LtIfZSij5i1wXnXFspEs2CD6hA==}
 
@@ -3162,11 +3147,6 @@ packages:
 
   preact@10.26.9:
     resolution: {integrity: sha512-SSjF9vcnF27mJK1XyFMNJzFd5u3pQiATFqoaDy03XuN00u4ziveVVEGt5RKJrDR8MHE/wJo9Nnad56RLzS2RMA==}
-
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
 
   prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
@@ -5590,12 +5570,6 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@0.21.4:
-    dependencies:
-      follow-redirects: 1.15.9
-    transitivePeerDependencies:
-      - debug
-
   axios@1.4.0:
     dependencies:
       follow-redirects: 1.15.9
@@ -5797,10 +5771,6 @@ snapshots:
       vary: 1.1.2
 
   countable@3.0.1: {}
-
-  cross-env@7.0.3:
-    dependencies:
-      cross-spawn: 7.0.6
 
   cross-spawn@7.0.6:
     dependencies:
@@ -6692,14 +6662,6 @@ snapshots:
 
   negotiator@1.0.0: {}
 
-  netlify-plugin-discord@0.0.2:
-    dependencies:
-      axios: 0.21.4
-      cross-env: 7.0.3
-      prettier: 2.8.8
-    transitivePeerDependencies:
-      - debug
-
   new-date@1.0.3:
     dependencies:
       '@segment/isodate': 1.0.3
@@ -6917,8 +6879,6 @@ snapshots:
       web-vitals: 4.2.4
 
   preact@10.26.9: {}
-
-  prettier@2.8.8: {}
 
   prismjs@1.29.0: {}
 
