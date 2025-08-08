@@ -1,7 +1,7 @@
 export default async (request: Request, context) => {
     try {
         // Access env var from context.env
-        const secret = context.env.NETLIFY_WEBHOOK_SECRET;
+        const secret = Netlify.env.NETLIFY_WEBHOOK_SECRET;
         if (!secret) {
             return new Response("Environment variable 'NETLIFY_WEBHOOK_SECRET' must be set", { status: 500 });
         }
