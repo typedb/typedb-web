@@ -1,39 +1,64 @@
-import crypto from "crypto";
-
-export default async (request: Request) => {
+export default async (request: Request, context) => {
     try {
-        // Your Netlify webhook secret configured as env var
-        const secret = process.env.NETLIFY_WEBHOOK_SECRET;
+        // Access env var from context.env
+        const secret = context.env.NETLIFY_WEBHOOK_SECRET;
         if (!secret) {
-            return { statusCode: 500, body: "Environment variable NETLIFY_WEBHOOK_SECRET must be set" };
+            return new Response("Environment variable 'NETLIFY_WEBHOOK_SECRET' must be set", { status: 500 });
         }
 
-        // Get Discord webhook URL from environment variable
-        const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
-        if (!discordWebhook) {
-            return {
-                statusCode: 500,
-                body: "Environment variable DISCORD_WEBHOOK_URL must be set"
-            };
-        }
-
-        // Netlify signature header
-        const signature = request.headers["x-netlify-signature"];
+        const signature = request.headers.get("x-netlify-signature");
         if (!signature) {
-            return { statusCode: 401, body: "Missing request header: x-netlify-signature" };
+            return new Response("Request header 'x-netlify-signature' must be set", { status: 401 });
         }
 
-        // Verify signature: create HMAC SHA256 of raw body
-        const hmac = crypto.createHmac("sha256", secret);
-        hmac.update(request.body);
-        const computedSignature = hmac.digest("hex");
+        // Read raw body as text
+        const bodyText = await request.text();
 
-        if (!crypto.timingSafeEqual(Buffer.from(computedSignature), Buffer.from(signature))) {
-            return { statusCode: 401, body: "Invalid signature" };
+        // Verify signature using Web Crypto API
+        // Create a key from the secret
+        const encoder = new TextEncoder();
+        const keyData = encoder.encode(secret);
+
+        const cryptoKey = await crypto.subtle.importKey(
+            "raw",
+            keyData,
+            { name: "HMAC", hash: "SHA-256" },
+            false,
+            ["sign", "verify"]
+        );
+
+        // Decode signature from hex to Uint8Array
+        function hexToUint8Array(hex: string) {
+            const arr = new Uint8Array(hex.length / 2);
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = parseInt(hex.substr(i * 2, 2), 16);
+            }
+            return arr;
         }
 
-        // At this point, signature is valid, so parse JSON
-        const payload = JSON.parse(request.body);
+        const signatureBytes = hexToUint8Array(signature);
+        const data = encoder.encode(bodyText);
+
+        // Verify the signature
+        const valid = await crypto.subtle.verify(
+            "HMAC",
+            cryptoKey,
+            signatureBytes,
+            data
+        );
+
+        if (!valid) {
+            return new Response("Invalid signature", { status: 401 });
+        }
+
+        // Parse the payload JSON
+        const payload = JSON.parse(bodyText);
+
+        // Your Discord webhook URL
+        const discordWebhook = context.env.DISCORD_WEBHOOK_URL;
+        if (!discordWebhook) {
+            return new Response("Environment variable 'DISCORD_WEBHOOK_URL' must be set", { status: 500 });
+        }
 
         // Build deploy log URL if possible
         const deployLogUrl =
@@ -44,22 +69,23 @@ export default async (request: Request) => {
         // Choose color and title based on deploy state
         let color;
         let title;
+        let mention = ""; // for personal ping
         switch (payload.state) {
-            case "ready": // successful deploy
+            case "ready":
                 color = 0x00ff99;
                 title = `🚀 Deploy succeeded: ${payload.name}`;
                 break;
-            case "error": // failed deploy
+            case "error":
                 color = 0xff0000;
                 title = `❌ Deploy failed: ${payload.name}`;
+                mention = `<@708327677165043833>`;
                 break;
-            default: // other states like building, canceled
+            default:
                 color = 0xffcc00;
                 title = `⚠️ Deploy status: ${payload.name}`;
         }
 
-        // Extract details from payload
-        const siteName = payload.name || "Unknown site";
+        // Extract commit info
         const branch = payload.branch || "unknown";
         const siteUrl = payload.url || "No URL";
         const state = payload.state || "unknown";
@@ -71,53 +97,55 @@ export default async (request: Request) => {
         const committer = payload.committer || "Unknown author";
         const createdAt = payload.created_at
             ? new Date(payload.created_at).toLocaleString()
-            : null;
+            : "Unknown";
 
-        // Build the message for Discord
-        const msg = {
+        // Construct Discord payload
+        const discordMsg = {
+            content: mention,
             embeds: [
                 {
-                    title: title,
-                    description: `Branch: **${branch}**\n[View Site](${siteUrl})` +
+                    title,
+                    description:
+                        `Branch: **${branch}**\n[View Site](${siteUrl})` +
                         (deployLogUrl ? `\n[View Logs](${deployLogUrl})` : ""),
-                    color: color,
+                    color,
                     fields: [
                         {
                             name: "Commit",
                             value: commitUrl
                                 ? `[${commitRef}](${commitUrl}) — ${commitMessage}`
                                 : commitMessage,
-                            inline: false
+                            inline: false,
                         },
                         {
                             name: "Author",
                             value: committer,
-                            inline: true
+                            inline: true,
                         },
                         {
                             name: "Deployed At",
-                            value: createdAt || "Unknown",
-                            inline: true
-                        }
+                            value: createdAt,
+                            inline: true,
+                        },
                     ],
                     footer: {
-                        text: `State: ${state}`
+                        text: `State: ${state}`,
                     },
-                    timestamp: new Date().toISOString()
-                }
-            ]
+                    timestamp: new Date().toISOString(),
+                },
+            ],
         };
 
-        // Send to Discord
+        // Send message to Discord
         await fetch(discordWebhook, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(msg)
+            body: JSON.stringify(discordMsg),
         });
 
-        return { statusCode: 200, body: "Notification sent to Discord" };
+        return new Response("Notification sent to Discord", { status: 200 });
     } catch (error) {
         console.error(error);
-        return { statusCode: 500, body: "Error sending to Discord" };
+        return new Response("Error sending to Discord", { status: 500 });
     }
-}
+};
