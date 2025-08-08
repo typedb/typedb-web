@@ -7,19 +7,19 @@ pretty_urls = true
 
 [context.production]
 command = "ENV=production npm run build"
-publish = "dist/main/browser"
+publish = "main/dist/main/browser"
 
 [context.master]
 command = "ENV=staging npm run build"
-publish = "dist/main/browser"
+publish = "main/dist/main/browser"
 
 [context.development]
 command = "ENV=development npm run build"
-publish = "dist/main/browser"
+publish = "main/dist/main/browser"
 
 [context.deploy-preview]
 command = "ENV=development npm run build"
-publish = "dist/main/browser"
+publish = "main/dist/main/browser"
 
 # ALIASES
 # Keep indefinitely
