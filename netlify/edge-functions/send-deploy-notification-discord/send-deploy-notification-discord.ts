@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-export async function handler(event) {
+export default async (request: Request) => {
     try {
         // Your Netlify webhook secret configured as env var
         const secret = process.env.NETLIFY_WEBHOOK_SECRET;
@@ -18,14 +18,14 @@ export async function handler(event) {
         }
 
         // Netlify signature header
-        const signature = event.headers["x-netlify-signature"];
+        const signature = request.headers["x-netlify-signature"];
         if (!signature) {
             return { statusCode: 401, body: "Missing request header: x-netlify-signature" };
         }
 
         // Verify signature: create HMAC SHA256 of raw body
         const hmac = crypto.createHmac("sha256", secret);
-        hmac.update(event.body);
+        hmac.update(request.body);
         const computedSignature = hmac.digest("hex");
 
         if (!crypto.timingSafeEqual(Buffer.from(computedSignature), Buffer.from(signature))) {
@@ -33,7 +33,7 @@ export async function handler(event) {
         }
 
         // At this point, signature is valid, so parse JSON
-        const payload = JSON.parse(event.body);
+        const payload = JSON.parse(request.body);
 
         // Build deploy log URL if possible
         const deployLogUrl =
