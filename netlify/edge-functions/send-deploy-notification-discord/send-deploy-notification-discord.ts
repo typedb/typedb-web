@@ -3,7 +3,7 @@ export default async (request: Request, context) => {
         console.log(`${request.method} ${request.url}`);
         
         // Access env var from context.env
-        const secret = Netlify.env.NETLIFY_WEBHOOK_SECRET;
+        const secret = Netlify.env.get("NETLIFY_WEBHOOK_SECRET");
         if (!secret) {
             const msg = `Environment variable 'NETLIFY_WEBHOOK_SECRET' must be set`;
             console.error(msg);
@@ -11,7 +11,7 @@ export default async (request: Request, context) => {
         }
 
         // Your Discord webhook URL
-        const discordWebhook = Netlify.env.DISCORD_WEBHOOK_URL;
+        const discordWebhook = Netlify.env.get("DISCORD_WEBHOOK_URL");
         if (!discordWebhook) {
             const msg = "Environment variable 'DISCORD_WEBHOOK_URL' must be set";
             console.error(msg);
