@@ -68,11 +68,6 @@ from = "/white-papers/*"
 to = "/papers"
 status = 301
 
-[[redirects]]
-from = "/docs/home/get-started"
-to = "/docs/home/get-started/"
-status = 301
-
 # DOCS BEHAVIOUR
 # Keep indefinitely. These redirects are required for Docs to behave correctly
 
