@@ -27,6 +27,7 @@ export default async (request: Request, context) => {
 
         // Read raw body as text
         const body = await request.text();
+        console.log(body);
 
         const [header, sigPayload, sig] = signature.split('.');
     
