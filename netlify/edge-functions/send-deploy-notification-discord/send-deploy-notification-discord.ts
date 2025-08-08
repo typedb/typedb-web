@@ -27,7 +27,6 @@ export default async (request: Request, context) => {
 
         // Read raw body as text
         const body = await request.text();
-        console.log(body);
 
         const [header, sigPayload, sig] = signature.split('.');
     
@@ -133,6 +132,7 @@ export default async (request: Request, context) => {
             body: JSON.stringify(discordMsg),
         });
 
+        console.log(`${request.method} ${request.url} 200 OK`);
         return new Response("Notification sent to Discord", { status: 200 });
     } catch (error) {
         console.error(error);
