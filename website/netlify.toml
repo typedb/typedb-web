@@ -172,6 +172,10 @@ path = "/api/echo"
 function = "get-calendar-link"
 path = "/api/calendar-link"
 
+[[edge_functions]]
+function = "send-deploy-notification-discord"
+path = "/api/send-deploy-notification-discord"
+
 [[plugins]]
 package = "netlify-plugin-discord"
 
