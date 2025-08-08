@@ -62,16 +62,16 @@ export default async (request: Request, context) => {
         let mention = ""; // for personal ping
         switch (payload.state) {
             case "ready":
-                color = 0x00ff99;
+                color = 0x02dac9;
                 title = `🚀 Deploy succeeded: ${payload.name}`;
                 break;
             case "error":
-                color = 0xff0000;
+                color = 0xe96464;
                 title = `❌ Deploy failed: ${payload.name}`;
                 mention = `<@708327677165043833>`;
                 break;
             default:
-                color = 0xffcc00;
+                color = 0xffe49e;
                 title = `⚠️ Deploy status: ${payload.name}`;
         }
 
@@ -79,7 +79,7 @@ export default async (request: Request, context) => {
         const branch = payload.branch || "unknown";
         const siteUrl = payload.url || "No URL";
         const state = payload.state || "unknown";
-        const commitMessage = payload.commit_message || "No commit message";
+        const commitMessage = payload.title || "No commit message";
         const commitUrl = payload.commit_url || null;
         const commitRef = payload.commit_ref
             ? payload.commit_ref.substring(0, 7)
