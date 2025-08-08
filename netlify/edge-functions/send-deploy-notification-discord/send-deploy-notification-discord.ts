@@ -1,5 +1,7 @@
 export default async (request: Request, context) => {
     try {
+        console.log(`${request.method} ${request.url}`);
+        
         // Access env var from context.env
         const secret = Netlify.env.NETLIFY_WEBHOOK_SECRET;
         if (!secret) {
