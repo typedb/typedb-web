@@ -30,7 +30,7 @@
         }
     }
 
-    .td-illustration {
+    .td-illustration-container {
         @media (max-width: media.$max-width-mobile) {
             transform: scale(0.86);
         }
@@ -38,7 +38,7 @@
 
     td-illustration {
         flex: unset !important;
-        box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
+        box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
         padding: 12px;
         animation-play-state: running !important;
         position: relative;

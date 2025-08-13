@@ -1,11 +1,15 @@
 @use "colors";
 @use "shapes";
+@use "media";
 
 .td-polyglot-comparison {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: fit-content;
+    @media (min-width: media.$min-width-tablet) {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: fit-content;
+    }
+
     margin: 0 auto;
     position: relative;
     min-height: 100vh;
@@ -16,30 +20,39 @@
 }
 
 .td-sticky-column {
-    position: sticky;
-    top: 144px;
-    width: 576px;
-    flex-shrink: 0;
-    will-change: transform;
-    transition: transform 0.3s ease-out;
-    transform: translateY(calc(var(--scroll-amount, 0) * 0.5px));
-    backface-visibility: hidden;
+    @media (min-width: media.$min-width-tablet) {
+        position: sticky;
+        top: 144px;
+        width: 576px;
+        flex-shrink: 0;
+        will-change: transform;
+        transition: transform 0.3s ease-out;
+        transform: translateY(calc(var(--scroll-amount, 0) * 0.5px));
+        backface-visibility: hidden;
+    }
 }
 
 .td-scrollable-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+    @media (min-width: media.$min-width-tablet) {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
 }
 
-.td-snippet-container {
-    position: relative;
-    width: 576px;
-    height: 324px;
-    border: 1px solid var(--color-secondary-light-grey);
-    border-radius: var(--border-radius);
-    overflow: auto;
+td-illustration {
+    @media (min-width: media.$min-width-tablet) {
+        position: relative;
+        width: 576px;
+        height: 324px;
+        overflow: auto;
+        background: colors.$black;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        aspect-ratio: 4 / 3;
+    }
 }
 
 .td-language-chip {
@@ -50,4 +63,8 @@
     border: none;
     margin-bottom: 16px;
     display: inline-block;
+
+    @media (max-width: media.$max-width-mobile) {
+        margin-top: 64px;
+    }
 }

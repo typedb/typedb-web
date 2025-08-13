@@ -1,22 +1,18 @@
-@if ((media.isDesktop$ | async)) {
+<!--@if ((media.isDesktop$ | async)) {-->
   <div class="td-polyglot-comparison">
     <div class="td-sticky-column">
-      <h4 class="td-language-chip">{{ polyglotSnippet.snippets[0].tabText || polyglotSnippet.snippets[0].language }}</h4>
-      <div class="td-snippet-container">
-        <td-code-snippet [snippet]="polyglotSnippet.snippets[0]"/>
-      </div>
+      <h3 class="td-language-chip">{{ polyglotSnippet.snippets[0].tabText || polyglotSnippet.snippets[0].language }}</h3>
+      <td-illustration [illustration]="polyglotSnippet.snippets[0]" />
     </div>
     <div class="td-scrollable-column">
       @for (snippet of polyglotSnippet.snippets.slice(1); track snippet) {
         <div class="td-code-block">
-          <h4 class="td-language-chip">{{ snippet.tabText || snippet.language }}</h4>
-          <div class="td-snippet-container">
-            <td-code-snippet [snippet]="snippet"/>
-          </div>
+          <h3 class="td-language-chip">{{ snippet.tabText || snippet.language }}</h3>
+          <td-illustration [illustration]="snippet" />
         </div>
       }
     </div>
   </div>
-} @else {
-  <td-polyglot-snippet [snippet]="polyglotSnippet" [id]="polyglotSnippetID"/>
-}
+<!--} @else {-->
+<!--  <td-polyglot-snippet [snippet]="polyglotSnippet" [id]="polyglotSnippetID"/>-->
+<!--}-->

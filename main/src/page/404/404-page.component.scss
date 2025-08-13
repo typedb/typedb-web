@@ -1,10 +1,11 @@
-.nf-root {
+:host {
     width: 100%;
     min-height: 800px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 h1 {

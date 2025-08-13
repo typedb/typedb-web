@@ -238,19 +238,27 @@ table {
 
     td-section-core {
         display: block;
-
-        h2, p {
-            color: colors.$black;
-        }
-
-        h2 {
-            font-weight: var(--font-weight-semi-bold);
-        }
-
-        p {
-            font-weight: var(--font-weight-regular);
-        }
     }
+
+    h2, p {
+        color: colors.$black;
+    }
+
+    h2 {
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    h3 {
+        font-weight: var(--font-weight-medium);
+    }
+
+    p {
+        font-weight: var(--font-weight-regular);
+    }
+
+    //td-illustration.is-code-snippet.is-typeql-snippet {
+    //    box-shadow: 0 0 6px 3px rgba(colors.$secondary-purple, 0.5);
+    //}
 }
 
 .cc-window {
