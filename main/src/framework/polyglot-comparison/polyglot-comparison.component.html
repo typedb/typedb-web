@@ -1,13 +1,16 @@
 <!--@if ((media.isDesktop$ | async)) {-->
   <div class="td-polyglot-comparison">
     <div class="td-sticky-column">
-      <h3 class="td-language-chip">{{ polyglotSnippet.snippets[0].tabText || polyglotSnippet.snippets[0].language }}</h3>
+      @let snippet = polyglotSnippet.snippets[0];
+      <h3 class="td-language-chip">{{ snippet.tabText || snippet.language }}</h3>
+      @if (snippet.caption) {<td-rich-text [value]="snippet.caption"/>}
       <td-illustration [illustration]="polyglotSnippet.snippets[0]" />
     </div>
     <div class="td-scrollable-column">
       @for (snippet of polyglotSnippet.snippets.slice(1); track snippet) {
         <div class="td-code-block">
           <h3 class="td-language-chip">{{ snippet.tabText || snippet.language }}</h3>
+          @if (snippet.caption) {<td-rich-text [value]="snippet.caption"/>}
           <td-illustration [illustration]="snippet" />
         </div>
       }

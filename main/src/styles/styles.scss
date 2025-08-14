@@ -234,7 +234,12 @@ table {
     margin-top: var(--section-margin);
     padding-top: var(--section-padding);
     padding-bottom: var(--section-padding);
-    @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
+    // @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey)
+    background: 
+        linear-gradient(rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+        linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%);
+    background-size: 20px 20px, 20px 20px, auto;
 
     td-section-core {
         display: block;
@@ -333,4 +338,91 @@ mat-dialog-container {
     to {
         --gradient-button-bg-angle: 480deg;
     }
+}
+
+.glow {
+            color: #f3f3f3;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.1),
+                0 0 40px rgba(168, 85, 247, 0.1);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            0% { 
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.15),
+                    0 0 10px rgba(255, 255, 255, 0.1),
+                    0 0 15px rgba(255, 255, 255, 0.05),
+                    0 0 20px rgba(168, 85, 247, 0.05);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.15),
+                    0 0 10px rgba(255, 255, 255, 0.1),
+                    0 0 15px rgba(255, 255, 255, 0.05),
+                    0 0 20px rgba(168, 85, 247, 0.05);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 15px rgba(255, 255, 255, 0.35),
+                    0 0 25px rgba(255, 255, 255, 0.25),
+                    0 0 35px rgba(255, 255, 255, 0.15),
+                    0 0 45px rgba(168, 85, 247, 0.15);
+            }
+        }
+
+.holographic {
+    background: linear-gradient(
+        45deg,
+        #f3f3f3 0%,
+        #ffffff 20%,
+        #e8e5ff 40%,
+        #d1c7ff 60%,
+        #ffffff 80%,
+        #f3f3f3 100%
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: holographic 2s linear infinite;
+}
+
+@keyframes holographic {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+.multi-glow {
+    color: #f3f3f3;
+    position: relative;
+}
+
+.multi-glow::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8),
+        0 0 10px rgba(168, 85, 247, 0.6),
+        0 0 15px rgba(59, 130, 246, 0.4);
+    animation: multi-glow-pulse 3s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+@keyframes multi-glow-pulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
 }

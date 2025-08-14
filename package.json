@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "cd schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng serve",
-    "build": "cd schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng build -c $ENV"
+    "build": "cd schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng build -c $ENV",
+    "sanity:dev": "cd schema && pnpm i && cd ../sanity && pnpm i && npx sanity dev"
   },
   "private": true,
   "peerDependencies": {

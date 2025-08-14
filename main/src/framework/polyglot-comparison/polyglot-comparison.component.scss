@@ -1,29 +1,35 @@
 @use "colors";
 @use "shapes";
 @use "media";
+@use "mixins";
+
+$flex-layout-min-width: 1260px;
+$block-layout-max-width: $flex-layout-min-width - 1px;
 
 .td-polyglot-comparison {
-    @media (min-width: media.$min-width-tablet) {
+    @media (min-width: $flex-layout-min-width) {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         width: fit-content;
-    }
-
-    margin: 0 auto;
-    position: relative;
-    min-height: 100vh;
-
-    @media (min-width: 1300px) {
         gap: 80px;
     }
+
+    margin: 24px auto 0;
+    position: relative;
+    min-height: 100vh;
 }
 
 .td-sticky-column {
+    margin: 0 auto;
+
     @media (min-width: media.$min-width-tablet) {
+        width: 576px;
+    }
+
+    @media (min-width: $flex-layout-min-width) {
         position: sticky;
         top: 144px;
-        width: 576px;
         flex-shrink: 0;
         will-change: transform;
         transition: transform 0.3s ease-out;
@@ -33,7 +39,14 @@
 }
 
 .td-scrollable-column {
+    
+    margin: 0 auto;
+
     @media (min-width: media.$min-width-tablet) {
+        width: 576px;
+    }
+
+    @media (min-width: $flex-layout-min-width) {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -45,9 +58,8 @@ td-illustration {
     @media (min-width: media.$min-width-tablet) {
         position: relative;
         width: 576px;
-        height: 324px;
+        height: 432px;
         overflow: auto;
-        background: colors.$black;
     }
 
     @media (max-width: media.$max-width-mobile) {
@@ -58,13 +70,19 @@ td-illustration {
 .td-language-chip {
     background-color: transparent;
     color: colors.$black-purple;
-    padding: 0.2em 0.5em;
+    padding: 0.2em 18px;
     border-radius: 4px;
     border: none;
     margin-bottom: 16px;
     display: inline-block;
 
-    @media (max-width: media.$max-width-mobile) {
+    @media (max-width: $flex-layout-min-width) {
         margin-top: 64px;
     }
+}
+
+td-rich-text {
+    padding: 0 18px 24px;
+    width: 576px;
+    max-width: 100%;
 }

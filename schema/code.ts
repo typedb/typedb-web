@@ -4,6 +4,7 @@ import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSn
 import { SanitySectionCore, SectionCore } from "./component/section";
 import { Document, SanityDataset, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
+import { PortableText } from "./text";
 
 export const codeSnippetShortSchemaName = "codeSnippetShort";
 export const queryLanguageComparisonSectionSchemaName = "queryLanguageComparisonSection";
@@ -38,6 +39,7 @@ export type Language = keyof typeof languages;
 
 export interface SanityCodeSnippet extends SanityDocument {
     tabText?: string;
+    caption?: PortableText;
     language: Language;
     code: string;
 }
@@ -48,12 +50,14 @@ export interface SanityPolyglotSnippet extends SanityDocument {
 
 export class CodeSnippet extends Document {
     readonly tabText?: string;
+    readonly caption?: PortableText;
     readonly language: Language;
     readonly code: string;
 
     constructor(data: PropsOf<CodeSnippet>) {
         super({ _id: data.id });
         this.tabText = data.tabText;
+        this.caption = data.caption;
         this.language = data.language;
         this.code = data.code;
     }
@@ -61,6 +65,7 @@ export class CodeSnippet extends Document {
     static fromSanity(data: SanityCodeSnippet): CodeSnippet {
         return new CodeSnippet(Object.assign(new Document(data), {
             tabText: data.tabText,
+            caption: data.caption,
             language: data.language,
             code: data.code,
         }));
@@ -116,7 +121,7 @@ export class QueryLanguageComparisonSection extends SectionCore {
     }
 }
 
-const snippetTitleField = Object.assign({}, titleField, { title: "Description", description: "Internal use only - not visible to users" });
+const snippetTitleField = Object.assign({}, titleField, { title: "Internal Name", description: "Not visible to users" });
 
 const languageField = defineField({
     name: "language",
@@ -150,6 +155,12 @@ const codeSnippetSchema = defineType({
             title: "Tab Text",
             description: "Only displayed within a polyglot snippet; defaults to language name",
             type: "string",
+        }),
+        defineField({
+            name: "caption",
+            title: "Caption",
+            type: "array",
+            of: [{ type: "block" }],
         }),
         languageField,
         codeField,
