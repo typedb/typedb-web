@@ -1,0 +1,25 @@
+<div class="td-text">
+  <td-heading-with-highlights [value]="data.title" [level]="level" />
+  @if (data.body) {
+    <td-rich-text [value]="data.body" class="narrow-section subtitle-l text-p1" />
+  }
+  <td-actions [actions]="data.actions" [sectionId]="data.sectionId" />
+</div>
+@if (data.illustration) {
+  <div class="td-illustration-wrapper">
+    <div class="illustration-container light-mode">
+      @if (hasWindowHeader) {
+        <div class="window-header">
+          <div class="traffic-lights">
+            <div class="traffic-light red"></div>
+            <div class="traffic-light yellow"></div>
+            <div class="traffic-light green"></div>
+          </div>
+          <div class="window-title">TypeDB Studio</div>
+        </div>
+      }
+
+      <td-illustration [class]="hasCodeSnippetIllustration ? '' : ''" [illustration]="data.illustration" />
+    </div>
+  </div>
+}

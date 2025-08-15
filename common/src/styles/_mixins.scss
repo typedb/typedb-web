@@ -88,14 +88,14 @@
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
-    box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.25);
+    box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.25);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
             border-color: #81EDE4;
             color: color.mix(colors.$green, colors.$white, 35%);
-            box-shadow: 0 0 8px 4px rgba(colors.$secondary-blue, 0.35);
+            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
         }
     }
 }
@@ -110,7 +110,7 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 0 8px 4px rgba(colors.$red, 0.25);
+            box-shadow: 0 0 6px 3px rgba(colors.$red, 0.25);
             color: #FDD257;
         }
     }

@@ -4,10 +4,10 @@
       <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
     }
     @if (page.benefitsSection1) {
-      <td-title-body-illustration-section [data]="page.benefitsSection1"/>
+      <td-illustration-section [data]="page.benefitsSection1"/>
     }
     @if (page.benefitsSection2) {
-      <td-title-body-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
+      <td-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
     }
     @if (page.benefitsSection3) {
       <td-section-core [section]="page.benefitsSection3"/>
@@ -20,10 +20,10 @@
       </section>
     }
     @if (page.benefitsSection4) {
-      <td-title-body-illustration-section [data]="page.benefitsSection4" flexDirection="row-reverse"/>
+      <td-illustration-section [data]="page.benefitsSection4" flexDirection="row-reverse"/>
     }
     @if (page.studioSection) {
-      <td-title-body-illustration-section [data]="page.studioSection" flexDirection="column"/>
+      <td-illustration-section [data]="page.studioSection" flexDirection="column"/>
     }
   }
 </article>

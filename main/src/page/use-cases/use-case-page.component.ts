@@ -4,7 +4,7 @@ import { map } from "rxjs";
 import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCasePageSchemaName } from "typedb-web-schema";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
-import { TitleBodyIllustrationSectionComponent } from "../../framework/section/illustration/title-body-illustration-section.component";
+import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 
@@ -15,7 +15,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe, KeyPointPanels2x2Component, PolyglotComparisonComponent, SectionCoreComponent,
-        TitleBodyIllustrationSectionComponent
+        IllustrationSectionComponent
     ]
 })
 export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance> {

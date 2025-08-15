@@ -51,7 +51,7 @@ export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { SectionCore, TitleBodyIllustrationSection } from "./component/section";
+export { SectionCore, IllustrationSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,

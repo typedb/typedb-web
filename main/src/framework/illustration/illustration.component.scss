@@ -1,4 +1,6 @@
 @use "shapes";
+@use "colors";
+@use "mixins";
 
 :host {
     display: flex;
@@ -21,6 +23,18 @@
 
         > * {
             filter: blur(5px);
+        }
+    }
+
+    &.is-code-snippet {
+        ::ng-deep td-code-snippet {
+            padding: 12px;
+        }
+        animation-play-state: running !important;
+
+        &.is-typeql-snippet {
+            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+            @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black));
         }
     }
 }

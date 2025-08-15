@@ -5,7 +5,7 @@ import { initCustomScrollbars } from "typedb-web-common/lib";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 
-const DEFAULT_MIN_LINES = { desktop: 14, mobile: 13 };
+const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
 
 @Component({
     selector: "td-code-snippet",
@@ -37,12 +37,25 @@ export class CodeSnippetComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+            console.log('ngAfterViewInit - before highlight:', this.elementRef.nativeElement.innerHTML);
+
+        if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+                (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
+                console.log('After highlight:', this.elementRef.nativeElement.innerHTML);
+            });
+
+            // this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+        }
+    }
+
+    ngAfterViewChecked() {
         if (isPlatformBrowser(this.platformId)) {
             setTimeout(() => {
                 (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
             });
 
-            this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
+            // this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));
         }
     }
 }
