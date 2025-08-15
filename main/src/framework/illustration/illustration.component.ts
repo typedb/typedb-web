@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 
 import interact from "interactjs";
 import { map, Observable } from "rxjs";
@@ -30,6 +30,16 @@ export class IllustrationComponent {
     // TODO: requiring the caller to set visible explicitly is counter-intuitive
     @Input() visible = false;
     @Input() @HostBinding("class.il-blur") isBlurred = false;
+
+    @HostBinding("class.is-code-snippet")
+    get isCodeSnippet() {
+        return this.illustration instanceof CodeSnippet;
+    }
+
+    @HostBinding("class.is-typeql-snippet")
+    get isTypeQLSnippet() {
+        return this.illustration instanceof CodeSnippet && this.illustration.language === "typeql";
+    }
 
     get imageIllustration(): ImageIllustration | undefined {
         return this.illustration instanceof ImageIllustration ? this.illustration : undefined;

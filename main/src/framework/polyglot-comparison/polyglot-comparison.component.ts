@@ -3,10 +3,12 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBind
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
-import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema/lib/code";
+import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 import { CodeSnippetComponent } from "../code/code-snippet.component";
+import { IllustrationComponent } from "../illustration/illustration.component";
 import { PolyglotSnippetComponent } from "../polyglot-snippet/polyglot-snippet.component";
+import { RichTextComponent } from "../text/rich-text.component";
 
 const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 
@@ -15,7 +17,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "./polyglot-comparison.component.html",
     styleUrls: ["./polyglot-comparison.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CodeSnippetComponent, AsyncPipe, PolyglotSnippetComponent]
+    imports: [CodeSnippetComponent, AsyncPipe, PolyglotSnippetComponent, IllustrationComponent, RichTextComponent]
 })
 export class PolyglotComparisonComponent implements AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);

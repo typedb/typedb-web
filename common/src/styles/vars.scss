@@ -116,7 +116,7 @@
         --section-width: #{$section-width-mobile};
         --section-page-margin: #{$section-page-margin-mobile};
         --blog-post-max-width: var(--section-max-width);
-        --section-max-width: var(--section-width);
+        --section-max-width: calc(100vw - 16px);
 
         --section-margin: #{$section-margin-mobile};
         --first-section-margin: #{$first-section-margin-mobile};

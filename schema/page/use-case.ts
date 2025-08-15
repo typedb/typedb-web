@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
-import { sectionCoreSchemaName, SanitySectionCore, SanityTitleBodyIllustrationSection, TitleBodyIllustrationSection, titleBodyIllustrationSectionSchemaName } from "../component/section";
+import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, titleBodyIllustrationSectionSchemaName } from "../component/section";
 import { SectionCore } from "../component/section";
 import {
     collapsibleOptions, routeField, titleField,
@@ -29,12 +29,12 @@ export const useCasePageSchemaName = "useCasePage";
 
 export interface SanityUseCasePageTemplate extends SanityPage {
     [sections.intro.id]: SanitySectionCore;
-    [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
-    [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits1.id]: SanityIllustrationSection;
+    [sections.benefits2.id]: SanityIllustrationSection;
     [sections.benefits3.id]: SanityKeyPointsSection;
     [sections.queryLanguageComparison.id]: SanityQueryLanguageComparisonSection;
-    [sections.benefits4.id]: SanityTitleBodyIllustrationSection;
-    [sections.studio.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits4.id]: SanityIllustrationSection;
+    [sections.studio.id]: SanityIllustrationSection;
 }
 
 export interface SanityUseCasePageInstance extends SanityUseCasePageTemplate {
@@ -44,12 +44,12 @@ export interface SanityUseCasePageInstance extends SanityUseCasePageTemplate {
 
 export class UseCasePageTemplate extends Page {
     readonly [sections.intro.id]?: SectionCore;
-    readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
-    readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits1.id]?: IllustrationSection;
+    readonly [sections.benefits2.id]?: IllustrationSection;
     readonly [sections.benefits3.id]?: KeyPointsSection;
     readonly [sections.queryLanguageComparison.id]?: QueryLanguageComparisonSection;
-    readonly [sections.benefits4.id]?: TitleBodyIllustrationSection;
-    readonly [sections.studio.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits4.id]?: IllustrationSection;
+    readonly [sections.studio.id]?: IllustrationSection;
 
     constructor(data: SanityUseCasePageTemplate, db: SanityDataset) {
         super(data, db);
@@ -57,10 +57,10 @@ export class UseCasePageTemplate extends Page {
             ? SectionCore.fromSanity(data[sections.intro.id], db)
             : undefined;
         this[sections.benefits1.id] = data[sections.benefits1.id].isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data[sections.benefits1.id], db)
+            ? IllustrationSection.fromSanity(data[sections.benefits1.id], db)
             : undefined;
         this[sections.benefits2.id] = data[sections.benefits2.id].isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data[sections.benefits2.id], db)
+            ? IllustrationSection.fromSanity(data[sections.benefits2.id], db)
             : undefined;
         this[sections.benefits3.id] = data[sections.benefits3.id].isVisible
             ? KeyPointsSection.fromSanity(data[sections.benefits3.id], db)
@@ -69,10 +69,10 @@ export class UseCasePageTemplate extends Page {
             ? QueryLanguageComparisonSection.fromSanity(data[sections.queryLanguageComparison.id], db)
             : undefined;
         this[sections.benefits4.id] = data[sections.benefits4.id].isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data[sections.benefits4.id], db)
+            ? IllustrationSection.fromSanity(data[sections.benefits4.id], db)
             : undefined;
         this[sections.studio.id] = data[sections.studio.id].isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data[sections.studio.id], db)
+            ? IllustrationSection.fromSanity(data[sections.studio.id], db)
             : undefined;
     }
 }

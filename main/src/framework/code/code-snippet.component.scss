@@ -3,12 +3,12 @@
     height: 100%;
     overflow: auto;
     background-color: var(--color-black);
-    scrollbar-width: none;
+    // scrollbar-width: none;
 
-    &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }
+    // &::-webkit-scrollbar {
+    //     width: 0;
+    //     height: 0;
+    // }
 }
 
 .cs-root {

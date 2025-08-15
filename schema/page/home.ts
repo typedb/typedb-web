@@ -4,8 +4,8 @@ import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
-    SanitySectionCore, SanityLinkPanelsSection, SectionCore, SanityTitleBodyIllustrationSection,
-    TitleBodyIllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
+    SanitySectionCore, SanityLinkPanelsSection, SectionCore, SanityIllustrationSection,
+    IllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
 } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule,
@@ -49,19 +49,19 @@ type SectionKey = keyof typeof sections;
 type SectionID = (typeof sections)[SectionKey]["id"];
 
 export interface SanityHomePage extends SanityPage {
-    [sections.intro.id]: SanityTitleBodyIllustrationSection;
+    [sections.intro.id]: SanityIllustrationSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
-    [sections.benefits1.id]: SanityTitleBodyIllustrationSection;
-    [sections.benefits2.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits1.id]: SanityIllustrationSection;
+    [sections.benefits2.id]: SanityIllustrationSection;
     [sections.socialValidation.id]: SanitySocialValidationSection;
     organisationLogos?: SanityReference<SanityOrganisation>[];
     [sections.queryLanguageComparison.id]: SanityQueryLanguageComparisonSection;
     [sections.useCases.id]: SanitySimpleLinkPanelsSection;
-    [sections.benefits3.id]: SanityTitleBodyIllustrationSection;
-    [sections.studio.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits3.id]: SanityIllustrationSection;
+    [sections.studio.id]: SanityIllustrationSection;
     [sections.community.id]: SanityCommunitySection;
     [sections.benefits4.id]: SanityKeyPointsSection;
-    [sections.benefits5.id]: SanityTitleBodyIllustrationSection;
+    [sections.benefits5.id]: SanityIllustrationSection;
     [sections.resources.id]: SanityResourceSection;
     [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
@@ -86,16 +86,16 @@ interface SanityCommunitySection extends SanitySectionCore {
 export class HomePage extends Page {
     readonly [sections.intro.id]?: SectionCore;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
-    readonly [sections.benefits1.id]?: TitleBodyIllustrationSection;
-    readonly [sections.benefits2.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits1.id]?: IllustrationSection;
+    readonly [sections.benefits2.id]?: IllustrationSection;
     readonly [sections.socialValidation.id]?: SocialValidationSection;
     readonly [sections.queryLanguageComparison.id]?: QueryLanguageComparisonSection;
     readonly [sections.useCases.id]?: SimpleLinkPanelsSection;
-    readonly [sections.benefits3.id]?: TitleBodyIllustrationSection;
-    readonly [sections.studio.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits3.id]?: IllustrationSection;
+    readonly [sections.studio.id]?: IllustrationSection;
     readonly [sections.community.id]?: CommunitySection;
     readonly [sections.benefits4.id]?: KeyPointsSection;
-    readonly [sections.benefits5.id]?: TitleBodyIllustrationSection;
+    readonly [sections.benefits5.id]?: IllustrationSection;
     readonly [sections.resources.id]?: ResourceSection;
     readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: IntegrationsGridSection;
@@ -104,13 +104,13 @@ export class HomePage extends Page {
 
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
-        this.introSection = data.introSection.isVisible ? TitleBodyIllustrationSection.fromSanity(data.introSection, db) : undefined;
+        this.introSection = data.introSection.isVisible ? IllustrationSection.fromSanity(data.introSection, db) : undefined;
         this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
         this.benefitsSection1 = data.benefitsSection1.isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection1, db)
+            ? IllustrationSection.fromSanity(data.benefitsSection1, db)
             : undefined;
         this.benefitsSection2 = data.benefitsSection2.isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection2, db)
+            ? IllustrationSection.fromSanity(data.benefitsSection2, db)
             : undefined;
         this.socialValidationSection = data.socialValidationSection.isVisible
             ? SocialValidationSection.fromSanity(data.socialValidationSection, db)
@@ -122,10 +122,10 @@ export class HomePage extends Page {
             ? SimpleLinkPanelsSection.fromSanity(data.useCasesSection, db)
             : undefined;
         this.benefitsSection3 = data.benefitsSection3.isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection3, db)
+            ? IllustrationSection.fromSanity(data.benefitsSection3, db)
             : undefined;
         this.studioSection = data.studioSection.isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data.studioSection, db)
+            ? IllustrationSection.fromSanity(data.studioSection, db)
             : undefined;
         this.communitySection = data.communitySection.isVisible
             ? CommunitySection.fromSanity(data.communitySection, db)
@@ -134,7 +134,7 @@ export class HomePage extends Page {
             ? KeyPointsSection.fromSanity(data.benefitsSection4, db)
             : undefined;
         this.benefitsSection7 = data.benefitsSection7.isVisible
-            ? TitleBodyIllustrationSection.fromSanity(data.benefitsSection7, db)
+            ? IllustrationSection.fromSanity(data.benefitsSection7, db)
             : undefined;
         this.resourcesSection = data.resourcesSection.isVisible
             ? ResourceSection.fromSanity(data.resourcesSection, db)

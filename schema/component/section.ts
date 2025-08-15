@@ -26,7 +26,7 @@ export interface SanitySimpleLinkPanelsSection extends SanitySectionCore {
     panels: SanityTextLink[];
 }
 
-export interface SanityTitleBodyIllustrationSection extends SanitySectionCore {
+export interface SanityIllustrationSection extends SanitySectionCore {
     illustration: SanityReference<SanityIllustration>;
 }
 
@@ -102,16 +102,16 @@ export class SimpleLinkPanelsSection extends SectionCore {
     }
 }
 
-export class TitleBodyIllustrationSection extends SectionCore {
+export class IllustrationSection extends SectionCore {
     readonly illustration?: Illustration;
 
-    constructor(props: PropsOf<TitleBodyIllustrationSection>) {
+    constructor(props: PropsOf<IllustrationSection>) {
         super(props);
         this.illustration = props.illustration;
     }
 
-    static override fromSanity(data: SanityTitleBodyIllustrationSection, db: SanityDataset) {
-        return new TitleBodyIllustrationSection({
+    static override fromSanity(data: SanityIllustrationSection, db: SanityDataset) {
+        return new IllustrationSection({
             ...SectionCore.fromSanity(data, db),
             illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
         });

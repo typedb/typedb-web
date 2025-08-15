@@ -27,7 +27,7 @@ posthog/credential/*
 # Sanity
 sanity/data.json
 sanity/scripts/credentials/**/*
-!sanity/scripts/credentials/.gitkeep
+!sanity/scripts/credentials/token.template.js
 
 # Schema
 schema/lib

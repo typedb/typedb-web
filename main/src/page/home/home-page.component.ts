@@ -14,7 +14,7 @@ import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
-import { TitleBodyIllustrationSectionComponent } from "../../framework/section/illustration/title-body-illustration-section.component";
+import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
 import { SocialValidationSectionComponent } from "../../framework/social-validation/social-validation-section.component";
@@ -27,7 +27,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
-        TitleBodyIllustrationSectionComponent, SocialValidationSectionComponent, PolyglotComparisonComponent,
+        IllustrationSectionComponent, SocialValidationSectionComponent, PolyglotComparisonComponent,
         SimpleLinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
 })
