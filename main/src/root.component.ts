@@ -11,6 +11,7 @@ import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
 import { CanonicalLinkService } from "./service/canonical-link.service";
 import { LocationStrategy, ViewportScroller } from "@angular/common";
+import { DialogService } from "./service/dialog.service";
 
 const SITE_URL = "https://typedb.com";
 
@@ -30,6 +31,7 @@ export class RootComponent {
         private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, contentService: ContentService,
         changeDet: ChangeDetectorRef, analyticsService: AnalyticsService, router: Router, activatedRoute: ActivatedRoute,
         canonicalLink: CanonicalLinkService, viewportScroller: ViewportScroller, locationStrategy: LocationStrategy,
+        _dialogService: DialogService,
     ) {
         contentService.data.subscribe((data) => {
             this.hasBanner = !!data.getDocumentByID<SanitySiteBanner>(siteBannerSchemaName)?.isEnabled;
