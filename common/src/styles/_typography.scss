@@ -1,6 +1,3 @@
-//$font-family-default: "Titillium Web", sans-serif;
-//$font-family-default: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-//$font-family-default: Roboto, sans-serif;
 $font-family-default: "Darkmode", sans-serif;
 $font-family-code: "Monaco", monospace;
 
@@ -10,6 +7,8 @@ $medium: 500;
 $regular: 400;
 $light: 300;
 $thin: 200;
+
+$letter-spacing: 0.02em;
 
 $h1: 64px;
 $height-h1: calc(76px / $h1);
