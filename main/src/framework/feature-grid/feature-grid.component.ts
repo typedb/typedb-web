@@ -31,7 +31,6 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
 
     @HostBinding("class") get classes() {
         return {
-            "card-appearance": !this.disableCardAppearance,
             section: !this.disableCardAppearance,
             "narrow-section": !this.disableCardAppearance,
             ["fg-row-size-" + this.columnIndexes.length]: true,

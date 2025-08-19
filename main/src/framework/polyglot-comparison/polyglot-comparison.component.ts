@@ -17,7 +17,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "./polyglot-comparison.component.html",
     styleUrls: ["./polyglot-comparison.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CodeSnippetComponent, AsyncPipe, PolyglotSnippetComponent, IllustrationComponent, RichTextComponent]
+    imports: [IllustrationComponent, RichTextComponent]
 })
 export class PolyglotComparisonComponent implements AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);
