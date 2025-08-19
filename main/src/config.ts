@@ -11,7 +11,13 @@ export const appConfig: ApplicationConfig = {
         PlainTextPipe,
         provideBrowserGlobalErrorListeners(),
         provideZoneChangeDetection({ eventCoalescing: true }),
-        provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: "enabled" })),
+        provideRouter(
+            routes,
+            withInMemoryScrolling({
+                scrollPositionRestoration: 'disabled', // or 'disabled' for your use case
+                anchorScrolling: 'enabled'
+            })
+        ),
         provideHttpClient(withFetch()),
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "outline" } },
     ]
