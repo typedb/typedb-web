@@ -34,10 +34,10 @@
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     cursor: pointer;
 
-    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple);
+    @include colors.light-source-gradient(colors.$purple, colors.$black-purple);
 
     &:hover {
-        @include mixins.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
+        @include colors.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
     }
 
     &:hover h3 {

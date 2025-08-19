@@ -34,7 +34,7 @@
 
         &.is-typeql-snippet {
             box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
-            @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black));
+            @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-black));
         }
     }
 }
