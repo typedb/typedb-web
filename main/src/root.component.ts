@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostBinding } from "@angular/core";
+import { ChangeDetectorRef, Component, HostBinding, inject, PLATFORM_ID } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet, Scroll, NavigationStart } from "@angular/router";
@@ -10,7 +10,7 @@ import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
 import { CanonicalLinkService } from "./service/canonical-link.service";
-import { LocationStrategy, ViewportScroller } from "@angular/common";
+import { LocationStrategy, ViewportScroller, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { DialogService } from "./service/dialog.service";
 
 const SITE_URL = "https://typedb.com";
@@ -24,63 +24,76 @@ const SITE_URL = "https://typedb.com";
 })
 export class RootComponent {
     @HostBinding("class.has-banner") hasBanner = false;
-    private _originBeforeNavigation: string = ``;
-    private _pathnameBeforeNavigation: string = ``;
 
-    constructor(
-        private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, contentService: ContentService,
-        changeDet: ChangeDetectorRef, analyticsService: AnalyticsService, router: Router, activatedRoute: ActivatedRoute,
-        canonicalLink: CanonicalLinkService, viewportScroller: ViewportScroller, locationStrategy: LocationStrategy,
-        _dialogService: DialogService,
-    ) {
-        contentService.data.subscribe((data) => {
+    private readonly matIconRegistry = inject(MatIconRegistry);
+    private readonly domSanitizer = inject(DomSanitizer);
+    private readonly contentService = inject(ContentService);
+    private readonly changeDet = inject(ChangeDetectorRef);
+    private readonly analyticsService = inject(AnalyticsService);
+    private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly canonicalLink = inject(CanonicalLinkService);
+    private readonly viewportScroller = inject(ViewportScroller);
+    private readonly locationStrategy = inject(LocationStrategy);
+    private readonly location = inject(Location);
+    private readonly document = inject(DOCUMENT);
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly dialogService = inject(DialogService);
+
+    private _originBeforeNavigation = this.document.location?.origin || '';
+    private _pathnameBeforeNavigation = this.locationPathname();
+
+    constructor() {
+        this.dialogService.init();
+        this.setCanonicalLinkOnNavigation();
+        this.registerIcons();
+
+        if (isPlatformBrowser(this.platformId)) {
+            this.initScrollBehaviour();
+            this.analyticsService.google.loadScriptTag();
+            this.analyticsService.googleTagManager.loadScriptTag();
+            this.capturePageViewOnNavigation();
+        }
+
+        this.contentService.data.subscribe((data) => {
             this.hasBanner = !!data.getDocumentByID<SanitySiteBanner>(siteBannerSchemaName)?.isEnabled;
-            changeDet.markForCheck();
-        });
-        this.initScrollBehaviour(router, contentService, activatedRoute, locationStrategy, viewportScroller);
-        this.setCanonicalLinkOnNavigation(router, canonicalLink);
-        this.capturePageViewOnNavigation(router, analyticsService);
-        analyticsService.google.loadScriptTag();
-        analyticsService.googleTagManager.loadScriptTag();
-        this.registerIcons(this.domSanitizer, this.matIconRegistry);
-    }
-        
-    private capturePageViewOnNavigation(router: Router, analytics: AnalyticsService) {
-        router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
-            analytics.posthog.capturePageView();
-            analytics.cio.page();
+            this.changeDet.markForCheck();
         });
     }
-    
-    private setCanonicalLinkOnNavigation(router: Router, canonicalLink: CanonicalLinkService) {
-        router.events.subscribe((e) => {
+
+    private capturePageViewOnNavigation() {
+        this.router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
+            this.analyticsService.posthog.capturePageView();
+            this.analyticsService.cio.page();
+        });
+    }
+
+    private setCanonicalLinkOnNavigation() {
+        this.router.events.subscribe((e) => {
             if (e instanceof NavigationStart) {
-                canonicalLink.removeCanonical();
+                this.canonicalLink.removeCanonical();
             }
             if (e instanceof NavigationEnd) {
-                canonicalLink.setCanonical(`${SITE_URL}${e.url.split(/[#?]/)[0]}`);
+                this.canonicalLink.setCanonical(`${SITE_URL}${e.url.split(/[#?]/)[0]}`);
             }
         });
     }
-    
-    private initScrollBehaviour(
-        router: Router, contentService: ContentService, activatedRoute: ActivatedRoute, location: LocationStrategy,
-        viewportScroller: ViewportScroller,
-    ) {
-        viewportScroller.setOffset([0, 112]);
-        router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
+
+    private initScrollBehaviour() {
+        this.viewportScroller.setOffset([0, 112]);
+        this.router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
             const { anchor, position } = ev;
-            contentService.data.subscribe((_data) => {
-                const state = location.getState();
+            this.contentService.data.subscribe((_data) => {
+                const state = this.location.getState();
                 const preventScrollToAnchor =
                     typeof state === "object" &&
                     state &&
                     "preventScrollToAnchor" in state &&
                     state.preventScrollToAnchor;
-        
-                let currentRoute = activatedRoute;
+
+                let currentRoute = this.activatedRoute;
                 while (currentRoute.firstChild) currentRoute = currentRoute.firstChild;
-        
+
                 if (position) {
                     // backward navigation
                     setTimeout(() => {
@@ -91,18 +104,22 @@ export class RootComponent {
                         document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });
                 } else if (
-                    this._originBeforeNavigation !== window.location.origin ||
-                    this._pathnameBeforeNavigation !== window.location.pathname
+                    this._originBeforeNavigation !== this.document.location?.origin || '' ||
+                    this._pathnameBeforeNavigation !== this.locationPathname()
                 ) {
                     scrollTo(0, 0);
                 }
-                this._originBeforeNavigation = window.location.origin;
-                this._pathnameBeforeNavigation = window.location.pathname;
+                this._originBeforeNavigation = this.document.location?.origin || '';
+                this._pathnameBeforeNavigation = this.locationPathname();
             });
         });
     }
 
-    private registerIcons(domSanitizer: DomSanitizer, matIconRegistry: MatIconRegistry): void {
+    private locationPathname(): string {
+        return this.router.url.split(/[?#]/)[0] || '/';
+    }
+
+    private registerIcons(): void {
         const icons = [
             "arrow-down", "burger-mobile", "burger-tablet", "calendar", "check", "checked", "close", "code",
             "discord-rectangle", "discourse-rectangle", "facebook-rectangle", "github", "github-rectangle", "heart",
@@ -110,7 +127,7 @@ export class RootComponent {
             "twitter-rectangle", "youtube-rectangle",
         ];
         icons.forEach((icon) =>
-            matIconRegistry.addSvgIcon(icon, domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${icon}.svg`)),
+            this.matIconRegistry.addSvgIcon(icon, this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${icon}.svg`)),
         );
     }
 }
