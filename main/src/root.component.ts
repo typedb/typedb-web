@@ -24,8 +24,8 @@ const SITE_URL = "https://typedb.com";
 })
 export class RootComponent {
     @HostBinding("class.has-banner") hasBanner = false;
-    private _originBeforeNavigation: string = window.location.origin;
-    private _pathnameBeforeNavigation: string = window.location.pathname;
+    private _originBeforeNavigation: string = ``;
+    private _pathnameBeforeNavigation: string = ``;
 
     constructor(
         private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, contentService: ContentService,
