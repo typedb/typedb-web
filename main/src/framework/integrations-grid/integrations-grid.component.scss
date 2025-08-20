@@ -42,7 +42,7 @@
     flex-direction: column;
     transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
     text-align: center;
-    @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
+    @include colors.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey);
 
     h3, h4, aside {
         color: colors.$black;
@@ -57,7 +57,7 @@
     }
 
     &:hover {
-        @include mixins.light-source-gradient(colors.$white, colors.$grey);
+        @include colors.light-source-gradient(colors.$white, colors.$grey);
     }
 }
 

@@ -12,7 +12,7 @@ import { RichTextComponent } from "../../text/rich-text.component";
     templateUrl: "simple-link-panels.component.html",
     styleUrls: ["simple-link-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [LinkDirective, RichTextComponent, ScrollPaneComponent]
+    imports: [LinkDirective]
 })
 export class SimpleLinkPanelsComponent {
     @Input() panels!: TextLink[];

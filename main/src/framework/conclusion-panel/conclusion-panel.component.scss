@@ -54,7 +54,7 @@
     }
 
     ::ng-deep td-actions a.button-water {
-        @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-purple));
+        @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-purple));
     }
 }
 

@@ -1,5 +1,6 @@
 @use "media";
 @use "mixins";
+@use "colors";
 
 :host {
     margin-top: 0;
@@ -78,7 +79,7 @@ thead {
 
         &:nth-of-type(4) {
             p {
-                @include mixins.text-gradient(#F96480, #FDD257);
+                @include colors.text-gradient(#F96480, #FDD257);
             }
         }
     }

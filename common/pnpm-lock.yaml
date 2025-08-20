@@ -14,15 +14,94 @@ importers:
     devDependencies:
       '@sanity/types':
         specifier: 3.97.1
-        version: 3.97.1
+        version: 3.97.1(@types/react@18.3.23)
       '@types/prismjs':
         specifier: 1.26.2
         version: 1.26.2
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.23
       typescript:
         specifier: 5.5.4
         version: 5.5.4
+    optionalDependencies:
+      '@angular/cdk':
+        specifier: ^20.0.0
+        version: 20.1.6(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/common':
+        specifier: ^20.0.0
+        version: 20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core':
+        specifier: ^20.0.0
+        version: 20.1.7(rxjs@7.8.2)
+      '@angular/forms':
+        specifier: ^20.0.0
+        version: 20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/material':
+        specifier: ^20.0.0
+        version: 20.1.6(@angular/cdk@20.1.6(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/forms@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^20.0.0
+        version: 20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))
 
 packages:
+
+  '@angular/cdk@20.1.6':
+    resolution: {integrity: sha512-GKxCS/GOAOQCNTnrvYia9wR4Z9rRWjzNRE0989LXwWLYcmiG7+ku30PolGV7zhmlgUu/qx8P6BbxZgUvK34X/A==}
+    peerDependencies:
+      '@angular/common': ^20.0.0 || ^21.0.0
+      '@angular/core': ^20.0.0 || ^21.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/common@20.1.7':
+    resolution: {integrity: sha512-3eFxQ18613JpBQw53wMUZfqc2RvratWx6GqKs5A1JJpMs0qq26yc2PhJWer99u3mugpKavmKoKpXFBkuWg50Qw==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/core': 20.1.7
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/core@20.1.7':
+    resolution: {integrity: sha512-LL5nyCQ9yrMLQMfAPgambGCPEQmpuHrg3cTRI0P9EMySgFoyyPUsIfWYYz5w1VWxmkfcXSkpNtyaNB5P60p0rg==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/compiler': 20.1.7
+      rxjs: ^6.5.3 || ^7.4.0
+      zone.js: ~0.15.0
+    peerDependenciesMeta:
+      '@angular/compiler':
+        optional: true
+      zone.js:
+        optional: true
+
+  '@angular/forms@20.1.7':
+    resolution: {integrity: sha512-gHfCeW7gp7GLjHfNOF+es8gAYph4+ZhgfvP9cdj9RmRy7ckQTuJ2OwrWmruqRcrB3J46uqENQyrNhJz0ubozYA==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/common': 20.1.7
+      '@angular/core': 20.1.7
+      '@angular/platform-browser': 20.1.7
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/material@20.1.6':
+    resolution: {integrity: sha512-k2rjN6ABd5ahE4LWAJ5rv7Z3WAO6tgmjOrFZG7ED0xavhcGWyHroALFqdmlIkb2QFAAF186ifLIH+xgln9edqw==}
+    peerDependencies:
+      '@angular/cdk': 20.1.6
+      '@angular/common': ^20.0.0 || ^21.0.0
+      '@angular/core': ^20.0.0 || ^21.0.0
+      '@angular/forms': ^20.0.0 || ^21.0.0
+      '@angular/platform-browser': ^20.0.0 || ^21.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/platform-browser@20.1.7':
+    resolution: {integrity: sha512-z2dlsrar4XmDAIgin1O3zDztVWHUpdZzR65mqyvbaNKtQHcnL33wVBBNVnksBkpPq+Lou2Cih1AdsICKyRyRbQ==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/animations': 20.1.7
+      '@angular/common': 20.1.7
+      '@angular/core': 20.1.7
+    peerDependenciesMeta:
+      '@angular/animations':
+        optional: true
 
   '@sanity/client@7.8.0':
     resolution: {integrity: sha512-DSa/CqRFtK/GdTG4w9rN3QeYEraZI9hKEhKZcoyJBUJEZLPOiGk69LemfNM/I1I9D64+/NlkvVSAHHKuwV0wOQ==}
@@ -54,9 +133,22 @@ packages:
   '@types/prismjs@1.26.2':
     resolution: {integrity: sha512-/r7Cp7iUIk7gts26mHXD66geUC+2Fo26TZYjQK6Nr4LDfi6lmdRmMqM0oPwfiMhUwoBAOFe8GstKi2pf6hZvwA==}
 
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
+
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
+
+  csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+
   decompress-response@7.0.0:
     resolution: {integrity: sha512-6IvPrADQyyPGLpMnUh6kfKiqy7SrbXbjoUuZ90WMBJKErzv2pCiwlGEXjRX9/54OnTq+XFVnkOnOMzclLI5aEA==}
     engines: {node: '>=10'}
+
+  entities@6.0.1:
+    resolution: {integrity: sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g==}
+    engines: {node: '>=0.12'}
 
   event-source-polyfill@1.0.31:
     resolution: {integrity: sha512-4IJSItgS/41IxN5UVAVuAyczwZF7ZIEsM1XAoUzIHA6A+xzusEZUutdXz2Nr+MQPLxfTiCvqE79/C8HT8fKFvA==}
@@ -93,6 +185,9 @@ packages:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  parse5@8.0.0:
+    resolution: {integrity: sha512-9m4m5GSgXjL4AjumKzq1Fgfp3Z8rsvjRNbnkVwfu2ImRqE5D0LnY2QfDen18FSY9C573YU5XxSapdHZTZ2WolA==}
 
   prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
@@ -133,6 +228,55 @@ packages:
 
 snapshots:
 
+  '@angular/cdk@20.1.6(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 20.1.7(rxjs@7.8.2)
+      parse5: 8.0.0
+      rxjs: 7.8.2
+      tslib: 2.8.1
+    optional: true
+
+  '@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/core': 20.1.7(rxjs@7.8.2)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+    optional: true
+
+  '@angular/core@20.1.7(rxjs@7.8.2)':
+    dependencies:
+      rxjs: 7.8.2
+      tslib: 2.8.1
+    optional: true
+
+  '@angular/forms@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 20.1.7(rxjs@7.8.2)
+      '@angular/platform-browser': 20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))
+      rxjs: 7.8.2
+      tslib: 2.8.1
+    optional: true
+
+  '@angular/material@20.1.6(@angular/cdk@20.1.6(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/forms@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/cdk': 20.1.6(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/common': 20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 20.1.7(rxjs@7.8.2)
+      '@angular/forms': 20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))(@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/platform-browser': 20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))
+      rxjs: 7.8.2
+      tslib: 2.8.1
+    optional: true
+
+  '@angular/platform-browser@20.1.7(@angular/common@20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.1.7(rxjs@7.8.2))':
+    dependencies:
+      '@angular/common': 20.1.7(@angular/core@20.1.7(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 20.1.7(rxjs@7.8.2)
+      tslib: 2.8.1
+    optional: true
+
   '@sanity/client@7.8.0':
     dependencies:
       '@sanity/eventsource': 5.0.2
@@ -151,10 +295,11 @@ snapshots:
 
   '@sanity/media-library-types@1.0.0': {}
 
-  '@sanity/types@3.97.1':
+  '@sanity/types@3.97.1(@types/react@18.3.23)':
     dependencies:
       '@sanity/client': 7.8.0
       '@sanity/media-library-types': 1.0.0
+      '@types/react': 18.3.23
     transitivePeerDependencies:
       - debug
 
@@ -172,9 +317,21 @@ snapshots:
 
   '@types/prismjs@1.26.2': {}
 
+  '@types/prop-types@15.7.15': {}
+
+  '@types/react@18.3.23':
+    dependencies:
+      '@types/prop-types': 15.7.15
+      csstype: 3.1.3
+
+  csstype@3.1.3: {}
+
   decompress-response@7.0.0:
     dependencies:
       mimic-response: 3.1.0
+
+  entities@6.0.1:
+    optional: true
 
   event-source-polyfill@1.0.31: {}
 
@@ -200,6 +357,11 @@ snapshots:
   mimic-response@3.1.0: {}
 
   nanoid@3.3.11: {}
+
+  parse5@8.0.0:
+    dependencies:
+      entities: 6.0.1
+    optional: true
 
   prismjs@1.29.0: {}
 
