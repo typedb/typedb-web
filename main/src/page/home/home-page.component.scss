@@ -8,7 +8,7 @@
 //}
 //
 //td-section-core.td-intro ::ng-deep td-heading-with-highlights h1 {
-//    @include mixins.text-gradient(#03D0BF, #AC79EE);
+//    @include colors.text-gradient(#03D0BF, #AC79EE);
 //    animation: 8s linear 0s infinite flow;
 //}
 
@@ -30,7 +30,7 @@
         }
     }
 
-    .td-illustration-container {
+    .td-illustration-wrapper {
         @media (max-width: media.$max-width-mobile) {
             transform: scale(0.86);
         }
@@ -39,15 +39,15 @@
     td-illustration {
         flex: unset !important;
         box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
-        padding: 12px;
         animation-play-state: running !important;
         position: relative;
         max-height: unset !important;
         aspect-ratio: unset !important;
-        @include mixins.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+        @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
 
         @media (min-width: media.$min-width-tablet) {
             margin-top: 32px;
+            padding: 12px;
 
             td-code-snippet {
                 .cs-line-numbers, code {

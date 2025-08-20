@@ -59,7 +59,7 @@ td-heading-with-highlights {
     display: flex;
     flex-direction: column;
     transition: background 100ms ease, border-color 100ms ease;
-    @include mixins.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+    @include colors.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
     position: relative;
 
     &:hover {

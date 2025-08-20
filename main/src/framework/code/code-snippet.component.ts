@@ -37,12 +37,9 @@ export class CodeSnippetComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-            console.log('ngAfterViewInit - before highlight:', this.elementRef.nativeElement.innerHTML);
-
         if (isPlatformBrowser(this.platformId)) {
             setTimeout(() => {
                 (window as any)["Prism"].highlightAllUnder(this.elementRef.nativeElement);
-                console.log('After highlight:', this.elementRef.nativeElement.innerHTML);
             });
 
             // this.ngZone.runOutsideAngular(() => initCustomScrollbars(this.elementRef.nativeElement));

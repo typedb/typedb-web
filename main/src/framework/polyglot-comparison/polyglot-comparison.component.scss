@@ -7,6 +7,10 @@ $flex-layout-min-width: 1260px;
 $block-layout-max-width: $flex-layout-min-width - 1px;
 
 .td-polyglot-comparison {
+    margin: 24px auto 0;
+    position: relative;
+    min-height: 100vh;
+
     @media (min-width: $flex-layout-min-width) {
         display: flex;
         align-items: flex-start;
@@ -14,10 +18,6 @@ $block-layout-max-width: $flex-layout-min-width - 1px;
         width: fit-content;
         gap: 80px;
     }
-
-    margin: 24px auto 0;
-    position: relative;
-    min-height: 100vh;
 }
 
 .td-sticky-column {

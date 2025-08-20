@@ -234,7 +234,7 @@ table {
     margin-top: var(--section-margin);
     padding-top: var(--section-padding);
     padding-bottom: var(--section-padding);
-    // @include mixins.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey)
+    // @include colors.light-source-gradient(colors.$grey, colors.$secondary-extra-light-grey)
     background: 
         linear-gradient(rgba(156, 163, 175, 0.08) 1px, transparent 1px),
         linear-gradient(90deg, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
