@@ -1,5 +1,5 @@
 import { ComponentType } from "@angular/cdk/portal";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { ContactDialogComponent } from "../framework/dialog/contact/contact-dialog.component";
@@ -12,16 +12,21 @@ import { PricingDialogComponent } from "../framework/dialog/pricing/pricing-dial
 })
 export class DialogService {
     current?: MatDialogRef<unknown>;
+    private readonly _router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly dialog = inject(MatDialog);
 
-    constructor(
-        private _router: Router,
-        private activatedRoute: ActivatedRoute,
-        private dialog: MatDialog,
-    ) {
+    init() {
         this._router.events.subscribe((e) => {
             if (e instanceof NavigationEnd) {
-                const searchParams = new URLSearchParams(window.location.search);
+                // Extract query string from NavigationEnd.url
+                const queryIndex = e.url.indexOf('?');
+                const searchParams = queryIndex !== -1
+                    ? new URLSearchParams(e.url.substring(queryIndex))
+                    : new URLSearchParams();
+
                 const dialogParam = searchParams.get("dialog");
+
                 switch (dialogParam) {
                     case "contact":
                         this.openContactDialog();
