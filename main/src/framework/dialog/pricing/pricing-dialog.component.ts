@@ -33,7 +33,7 @@ export class ProviderPipe implements PipeTransform {
 })
 export class PricingDialogComponent implements OnInit {
     providerId: ProviderID = "gcp";
-    providerIds: ProviderID[] = ["gcp", "aws", "azure"];
+    providerIds: ProviderID[] = ["gcp", "aws"];
     loading = true;
 
     constructor(public dialogRef: MatDialogRef<PricingDialogComponent>, private mediaQuery: MediaQueryService) {}
