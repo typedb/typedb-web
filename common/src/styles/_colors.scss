@@ -15,6 +15,7 @@ $secondary-mid-deep-grey: #4e4b63;
 $secondary-deep-grey: #383649;
 $secondary-dark-grey: #282634;
 $secondary-purple: #232135;
+$secondary-deep-green: #0cc7b8;
 $secondary-yellow: #ffe49e;
 $secondary-pink: #ff87dc;
 $secondary-blue: #7ba0ff;
@@ -36,6 +37,11 @@ $prism-yellow: #ffe4a7;
 $prism-grey: #c69ec3;
 $prism-very-grey: #999999;
 $prism-brick: #b88484;
+
+$attribute-blue: #78a0ff;
+$relation-yellow: #f6c94c;
+$entity-pink: #ff87dc;
+$role-orange: #b0740c;
 
 @mixin text-gradient($color1, $color2) {
     background: linear-gradient(105deg, #{$color1} 0%, #{$color2} 50%, #{$color1} 100%);
