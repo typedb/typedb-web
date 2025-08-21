@@ -476,7 +476,7 @@ body {
 
     /* Menu */
     @include mat.menu-overrides((
-        container-color: colors.$deep-purple,
+        container-color: colors.$secondary-purple,
         item-label-text-font: typography.$font-family-default,
         item-label-text-size: 14px,
         item-label-text-tracking: var(--body-letter-spacing),
