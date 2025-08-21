@@ -484,6 +484,12 @@ body {
 
     .mat-mdc-menu-panel {
         border-radius: shapes.$border-radius-small;
+        border: 1px solid colors.$secondary-mid-deep-grey;
+        --mat-divider-color: colors.$secondary-deep-grey;
+
+        aside {
+            color: colors.$secondary-extra-light-grey;
+        }
     }
 
     .mat-mdc-menu-item {
