@@ -773,7 +773,7 @@ body {
 
     /* Tooltip */
     @include mat.tooltip-overrides((
-        supporting-text-size: 12px,
+        supporting-text-size: 14px,
         supporting-text-line-height: 18px,
         supporting-text-tracking: var(--body-letter-spacing),
         container-color: colors.$secondary-mid-deep-grey,
