@@ -6,19 +6,19 @@ ignore = "/bin/false"
 pretty_urls = true
 
 [context.production]
-command = "ENV=production npm run build"
+command = "ENV=production pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
 [context.master]
-command = "ENV=staging npm run build"
+command = "ENV=staging pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
 [context.development]
-command = "ENV=development npm run build"
+command = "ENV=development pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
 [context.deploy-preview]
-command = "ENV=development npm run build"
+command = "ENV=development pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
 # ALIASES
