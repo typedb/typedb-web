@@ -548,7 +548,7 @@ body {
     }
 
     div.mat-mdc-select-panel {
-        border: shapes.$border;
+        border: 1px solid colors.$secondary-deep-grey;
         border-radius: shapes.$border-radius-small;
 
         mat-pseudo-checkbox.mat-pseudo-checkbox-checked::after {
