@@ -3,14 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng serve",
-    "build": "cd schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng build -c $ENV",
-    "sanity:dev": "cd schema && pnpm i && cd ../sanity && pnpm i && npx sanity dev"
+    "start": "cd main && ng serve",
+    "build": "cd main && ng build -c $ENV",
+    "sanity:dev": "cd sanity && npx sanity dev"
   },
   "private": true,
-  "peerDependencies": {
-    "@angular/cli": "^20.0.5"
-  },
   "engines": {
     "node": ">=22.16 <23"
   },

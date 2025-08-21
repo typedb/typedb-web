@@ -27,7 +27,7 @@
         "sanity": "4.0.1",
         "sanity-plugin-media": "3.0.4",
         "styled-components": "6.1.19",
-        "typedb-web-schema": "link:../schema"
+        "typedb-web-schema": "workspace:*"
     },
     "devDependencies": {
         "@sanity/client": "7.8.0",

@@ -209,19 +209,19 @@ const articleSchemaBase = defineType({
     ],
 });
 
-const fundamentalArticleSchema = Object.assign({}, articleSchemaBase, {
+const fundamentalArticleSchema = defineType(Object.assign({}, articleSchemaBase, {
     name: fundamentalArticleSchemaName,
     title: "Fundamental Article",
     icon: BulbOutlineIcon,
-});
+}));
 
-const applicationArticleSchema = Object.assign({}, articleSchemaBase, {
+const applicationArticleSchema = defineType(Object.assign({}, articleSchemaBase, {
     name: applicationArticleSchemaName,
     title: "Application Article",
     icon: PlugIcon,
-});
+}));
 
-const blogPostSchema = Object.assign({}, articleSchemaBase, {
+const blogPostSchema = defineType(Object.assign({}, articleSchemaBase, {
     name: blogPostSchemaName,
     title: "Blog Post",
     icon: DocumentTextIcon,
@@ -263,6 +263,6 @@ const blogPostSchema = Object.assign({}, articleSchemaBase, {
             initialValue: ["engineering"],
         }),
     ],
-});
+}));
 
 export const articleSchemas = [fundamentalArticleSchema, applicationArticleSchema, blogPostSchema];

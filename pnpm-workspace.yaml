@@ -1,0 +1,5 @@
+packages:
+  - "main"
+  - "sanity"
+  - "schema"
+  - "common"
