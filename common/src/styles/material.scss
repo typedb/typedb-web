@@ -518,14 +518,6 @@ body {
         container-text-tracking: var(--body-letter-spacing),
     ));
 
-    mat-paginator div.mat-mdc-select-panel {
-        --mat-option-label-text-size: 14px;
-
-        .mat-mdc-option {
-            min-height: 32px;
-        }
-    }
-
     /* Progress spinner */
     @include mat.progress-spinner-overrides((
         active-indicator-color: colors.$grey,
