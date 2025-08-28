@@ -43,7 +43,7 @@
         position: relative;
         max-height: unset !important;
         aspect-ratio: unset !important;
-        @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-black-purple));
+        @include colors.border-gradient(#AC79EE, #03D0BF, var(--body-background));
 
         @media (min-width: media.$min-width-tablet) {
             margin-top: 32px;

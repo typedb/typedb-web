@@ -595,7 +595,7 @@ body {
     @include mat.sidenav-overrides((
         container-background-color: transparent,
         container-divider-color: transparent,
-        content-background-color: #{colors.$black-purple},
+        content-background-color: #{colors.$black},
         scrim-color: rgba(#000, 0.4),
     ));
 

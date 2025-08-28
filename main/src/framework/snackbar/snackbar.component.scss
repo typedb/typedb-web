@@ -11,7 +11,7 @@
     gap: 16px;
 
     &.ok {
-        background: color.mix(colors.$green, colors.$black-purple, 15%);
+        background: color.mix(colors.$green, colors.$black, 15%);
         box-shadow: inset 0 0 0 1px var(--color-green);
 
         .mat-icon {
@@ -20,7 +20,7 @@
     }
 
     &.error {
-        background: color.mix(colors.$red, colors.$black-purple, 15%);
+        background: color.mix(colors.$red, colors.$black, 15%);
         box-shadow: inset 0 0 0 1px var(--color-red);
 
         .mat-icon {
