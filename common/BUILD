@@ -44,6 +44,7 @@ checkstyle_test(
         "*.json",
         "*.yaml",
         "*.md",
+        ".npmrc",
     ]),
     license_type = "commercial-header",
 )
