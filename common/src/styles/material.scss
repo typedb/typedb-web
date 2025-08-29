@@ -117,7 +117,6 @@ $typedb-theme: mat.m2-define-dark-theme((
 @include mat.all-component-densities(-1);
 
 /* Material CSS overrides */
-/* Mostly copied from typedb-web */
 body {
     /* Button */
     @include mat.button-overrides((
@@ -126,7 +125,7 @@ body {
         text-label-text-weight: typography.$regular,
         text-label-text-color: colors.$grey,
         text-container-height: 32px,
-        text-container-shape: shapes.$border-radius,
+        text-container-shape: 16px,
         text-disabled-label-text-color: rgba(255, 255, 255, 0.25),
         text-disabled-state-layer-color: transparent,
 
@@ -137,8 +136,8 @@ body {
         filled-disabled-container-color: rgba(255, 255, 255, 0.12),
         filled-disabled-label-text-color: rgba(255, 255, 255, 0.25),
         filled-disabled-state-layer-color: transparent,
-        filled-container-shape: shapes.$border-radius,
         filled-container-height: 40px,
+        filled-container-shape: 20px,
         filled-state-layer-color: #fff,
         filled-ripple-color: rgba(255, 255, 255, 0.1),
         filled-hover-state-layer-opacity: 0.08,
@@ -153,7 +152,7 @@ body {
         outlined-disabled-state-layer-color: transparent,
         outlined-label-text-color: #{colors.$grey},
         outlined-outline-color: #{colors.$light-purple},
-        outlined-container-shape: #{shapes.$border-radius},
+        outlined-container-shape: 16px,
     ));
 
     .mdc-button[disabled] {
@@ -161,7 +160,7 @@ body {
     }
 
     .mat-mdc-unelevated-button {
-        @include shapes.standard-border;
+        border: 1px solid colors.$light-purple;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
@@ -408,7 +407,7 @@ body {
 
     /* Icon button */
     .mat-mdc-icon-button.mat-mdc-button-base {
-        --mat-icon-button-container-shape: #{shapes.$border-radius};
+        --mat-icon-button-container-shape: #{shapes.$border-radius-small};
         --mat-icon-button-state-layer-size: 32px;
         min-width: 0;
         padding: 0;
@@ -432,9 +431,9 @@ body {
         --mat-fab-foreground-color: #{colors.$grey};
         --mat-fab-disabled-state-container-color: transparent;
         --mat-fab-disabled-state-foreground-color: #{colors.$secondary-mid-deep-grey};
-        --mdc-fab-container-shape: #{shapes.$border-radius};
+        --mdc-fab-container-shape: #{shapes.$border-radius-small};
         --mdc-fab-small-icon-size: 16px;
-        border-radius: shapes.$border-radius;
+        border-radius: shapes.$border-radius-small;
 
         .mat-icon {
             font-size: unset;
@@ -477,14 +476,20 @@ body {
 
     /* Menu */
     @include mat.menu-overrides((
-        container-color: colors.$deep-purple,
+        container-color: colors.$secondary-purple,
         item-label-text-font: typography.$font-family-default,
         item-label-text-size: 14px,
         item-label-text-tracking: var(--body-letter-spacing),
     ));
 
     .mat-mdc-menu-panel {
-        border-radius: shapes.$border-radius;
+        border-radius: shapes.$border-radius-small;
+        border: 1px solid colors.$secondary-deep-grey;
+        --mat-divider-color: colors.$secondary-deep-grey;
+
+        aside {
+            color: colors.$secondary-light-grey;
+        }
     }
 
     .mat-mdc-menu-item {
@@ -543,8 +548,8 @@ body {
     }
 
     div.mat-mdc-select-panel {
-        border: shapes.$border;
-        border-radius: shapes.$border-radius;
+        border: 1px solid colors.$secondary-deep-grey;
+        border-radius: shapes.$border-radius-small;
 
         mat-pseudo-checkbox.mat-pseudo-checkbox-checked::after {
             width: 12px;
@@ -559,7 +564,7 @@ body {
             --mat-option-label-text-size: 14px;
 
             .mat-mdc-option {
-                min-height: 40px;
+                min-height: 32px;
             }
         }
     }
@@ -590,7 +595,7 @@ body {
     @include mat.sidenav-overrides((
         container-background-color: transparent,
         container-divider-color: transparent,
-        content-background-color: #{colors.$black-purple},
+        content-background-color: #{colors.$black},
         scrim-color: rgba(#000, 0.4),
     ));
 
@@ -651,7 +656,7 @@ body {
     ));
 
     .mat-horizontal-stepper-header {
-        border-radius: shapes.$border-radius;
+        border-radius: shapes.$border-radius-small;
         --mat-icon-color: #{colors.$purple};
         --mat-stepper-header-icon-foreground-color: #{colors.$purple};
         --mat-stepper-header-selected-state-icon-foreground-color: #{colors.$purple};
@@ -660,10 +665,6 @@ body {
     .mat-horizontal-content-container {
         flex: 1;
         overflow: visible;
-    }
-
-    .mat-horizontal-stepper-content {
-        height: 100%;
     }
 
     .mat-step-label.mat-step-label-selected {
@@ -773,15 +774,15 @@ body {
 
     /* Tooltip */
     @include mat.tooltip-overrides((
-        supporting-text-size: 12px,
+        supporting-text-size: 14px,
         supporting-text-line-height: 18px,
         supporting-text-tracking: var(--body-letter-spacing),
         container-color: colors.$secondary-mid-deep-grey,
-        container-shape: shapes.$border-radius,
+        container-shape: shapes.$border-radius-small,
     ));
 
     .mdc-tooltip__surface {
-        padding: 4px 8px;
+        padding: 6px 10px;
     }
 
     /* Tree */

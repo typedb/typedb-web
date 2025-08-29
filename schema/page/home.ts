@@ -40,9 +40,7 @@ const sections = {
     benefits4: { id: "benefitsSection4", title: "Benefits 4" },
     benefits5: { id: "benefitsSection7", title: "Benefits 5" },
     resources: { id: "resourcesSection", title: "Resources" },
-    tooling: { id: "toolingSection", title: "Tooling" },
     drivers: { id: "driversSection", title: "Integrations Grid" },
-    testimonials: { id: "testimonialsSection", title: "Testimonials" },
 } as const;
 
 type SectionKey = keyof typeof sections;
@@ -63,9 +61,7 @@ export interface SanityHomePage extends SanityPage {
     [sections.benefits4.id]: SanityKeyPointsSection;
     [sections.benefits5.id]: SanityIllustrationSection;
     [sections.resources.id]: SanityResourceSection;
-    [sections.tooling.id]: SanityLinkPanelsSection;
     [sections.drivers.id]: SanityDriversSection;
-    [sections.testimonials.id]: SanityTestimonialsSection;
     conclusionSection: SanityConclusionSection;
 }
 
@@ -97,9 +93,7 @@ export class HomePage extends Page {
     readonly [sections.benefits4.id]?: KeyPointsSection;
     readonly [sections.benefits5.id]?: IllustrationSection;
     readonly [sections.resources.id]?: ResourceSection;
-    readonly [sections.tooling.id]?: ToolingSection;
     readonly [sections.drivers.id]?: IntegrationsGridSection;
-    readonly [sections.testimonials.id]?: TestimonialsSection;
     readonly conclusionSection?: ConclusionSection;
 
     constructor(data: SanityHomePage, db: SanityDataset) {
@@ -139,14 +133,8 @@ export class HomePage extends Page {
         this.resourcesSection = data.resourcesSection.isVisible
             ? ResourceSection.fromSanity(data.resourcesSection, db)
             : undefined;
-        this.toolingSection = data.toolingSection.isVisible
-            ? ToolingSection.fromSanity(data.toolingSection, db)
-            : undefined;
         this.driversSection = data.driversSection.isVisible
             ? IntegrationsGridSection.fromSanity(data.driversSection, db)
-            : undefined;
-        this.testimonialsSection = data.testimonialsSection.isVisible
-            ? TestimonialsSection.fromSanity(data.testimonialsSection, db)
             : undefined;
         this.conclusionSection = data.conclusionSection.isVisible
             ? ConclusionSection.fromSanity(data.conclusionSection, db)
@@ -183,23 +171,6 @@ export class SocialValidationSection {
             title: ParagraphWithHighlights.fromSanity(data.title),
             organisationLogos: data.organisationLogos.map((x) => new Organisation(db.resolveRef(x), db)),
         });
-    }
-}
-
-class ToolingSection extends SectionCore {
-    readonly panels: LinkPanel[];
-
-    constructor(props: PropsOf<ToolingSection>) {
-        super(props);
-        this.panels = props.panels;
-    }
-
-    static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
-        return new ToolingSection(
-            Object.assign(SectionCore.fromSanity(data, db), {
-                panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
-            })
-        );
     }
 }
 
@@ -260,17 +231,6 @@ const sectionSchemas = [
     sectionSchema("community", [...titleBodyActionsFields, socialMediaLinksField, isVisibleField]),
     sectionSchema("benefits4", [...titleBodyActionsFields, keyPointsField(), isVisibleField]),
     sectionSchema("resources", [...titleBodyActionsFields, resourcesField, isVisibleField]),
-    sectionSchema("tooling", [
-        ...titleBodyActionsFields,
-        defineField({
-            name: "panels",
-            title: "Panels",
-            type: "array",
-            of: [{ type: linkPanelSchemaName }],
-            validation: (rule: ArrayRule<any>) => rule.required().length(3),
-        }),
-        isVisibleField,
-    ]),
 ];
 
 const introSectionField = defineField({
