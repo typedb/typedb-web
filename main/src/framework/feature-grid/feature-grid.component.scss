@@ -152,7 +152,7 @@ td-aspect-ratio,
     padding: 1.25rem 3rem 1.25rem 1.25rem;
     border-radius: var(--border-radius);
     border: shapes.$border;
-    background: var(--color-black-purple);
+    background: var(--body-background);
     hyphens: none;
 
     @media (max-width: media.$max-width-mobile) {

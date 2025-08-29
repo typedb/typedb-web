@@ -3,17 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng serve",
-    "build": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../main && pnpm i && ng build -c $ENV",
+    "start": "ng serve",
+    "build": "ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format:verify": "prettier --check src",
-    "format:fix": "prettier --write src",
     "lint:verify": "ng lint",
     "lint:fix": "ng lint --fix",
-    "style:verify": "prettier --check src && ng lint",
-    "style:fix": "prettier --write src && ng lint --fix",
-    "start:ssr": "cd ../schema && pnpm i && cd ../common && pnpm i && cd ../main && ng build -c development && node dist/typedb-web/server/server.mjs",
+    "start:ssr": "ng build -c development && node dist/typedb-web/server/server.mjs",
     "prebuild:ssr": "node prerender-routes.js"
   },
   "private": true,
@@ -51,8 +47,8 @@
     "rxjs": "7.8.1",
     "ts-poet": "6.5.0",
     "ts-proto-descriptors": "1.15.0",
-    "typedb-web-common": "link:../common",
-    "typedb-web-schema": "link:../schema",
+    "typedb-web-common": "workspace:*",
+    "typedb-web-schema": "workspace:*",
     "zone.js": "0.15.1"
   },
   "devDependencies": {
