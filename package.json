@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "cd main && ng serve",
     "build": "cd main && ng build -c $ENV",
-    "sanity:dev": "cd sanity && npx sanity dev"
+    "sanity:dev": "cd sanity && npx sanity dev",
+    "sanity:deploy": "cd sanity && npx sanity deploy",
+    "sanity:login": "cd sanity && npx sanity login"
   },
   "private": true,
   "engines": {
