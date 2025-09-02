@@ -78,6 +78,10 @@ async function fetchFundamentalArticleSlugs(): Promise<Array<{ slug: string }>> 
     return fetchSanitySlugs('fundamentalArticle');
 }
 
+async function fetchUseCasePageInstanceSlugs(): Promise<Array<{ slug: string }>> {
+    return fetchSanitySlugs('useCasePage', 'route.current');
+}
+
 export const getDynamicRoutes = () => {
     const routes: ServerRoute[] = [];
 
@@ -113,6 +117,8 @@ export const getDynamicRoutes = () => {
                                 return await fetchApplicationArticleSlugs();
                             case 'fundamentalArticle':
                                 return await fetchFundamentalArticleSlugs();
+                            case "useCasePage":
+                                return await fetchUseCasePageInstanceSlugs();
                             default:
                                 console.warn(`No slug fetcher implemented for schema: ${JSON.stringify(schema)}`);
                                 return [];
