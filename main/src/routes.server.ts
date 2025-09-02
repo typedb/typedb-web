@@ -3,7 +3,7 @@ import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./rou
 import axios from "axios";
 
 // Sanity.io configuration
-const SANITY_URL = "https://xndl14mc.api.sanity.io/v2021-10-21/data/query/production";
+const SANITY_URL = "https://xndl14mc.api.sanity.io/v2025-09-02/data/query/production";
 
 /**
  * Fetches document slugs from Sanity.io
