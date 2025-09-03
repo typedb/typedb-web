@@ -71,6 +71,7 @@
     /* typography */
 
     --font-size-base: var(--font-size-p2);
+    --font-weight-base: var(--font-weight-regular);
     --body-letter-spacing: 0.02em;
     --font-family-default: #{typography.$font-family-default};
     --font-family-code: #{typography.$font-family-code};
