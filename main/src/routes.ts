@@ -50,7 +50,7 @@ export const dynamicPageSchemas = [
     { path: "fundamentals/:slug", schemaName: "fundamentalArticle" },
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
-    { path: "use-cases/:slug", schemaName: "useCasePage", schemaSlugAccessor: "route.current" },
+    // { path: "use-cases/:slug", schemaName: "useCasePage", schemaSlugAccessor: "route.current" },
     { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
@@ -82,7 +82,7 @@ const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> =
     "lectures/:slug": { component: LectureDetailsPageComponent },
     "legal/:slug": { component: LegalDocumentComponent },
     "papers/:slug": { component: PaperDetailsPageComponent },
-    "use-cases/:slug": { component: UseCasePageComponent },
+    // "use-cases/:slug": { component: UseCasePageComponent },
     "applications/:slug": { 
         component: LearningArticleComponent, 
         data: { 
