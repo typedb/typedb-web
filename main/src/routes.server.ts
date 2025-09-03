@@ -6,25 +6,6 @@ import axios from "axios";
 const SANITY_URL = "https://xndl14mc.api.sanity.io/v2025-09-02/data/query/production";
 
 /**
- * Fetches document slugs from Sanity.io
- * @param schemaName The document type in Sanity
- * @param slugField The field containing the slug (defaults to 'slug.current')
- */
-async function fetchSanitySlugs(schemaName: string, slugField = 'slug.current'): Promise<Array<{ slug: string }>> {
-    try {
-        const { data } = await axios.get<{ result: Array<{ [key: string]: string }> }>(SANITY_URL, {
-            params: { 
-                query: `*[_type == '${schemaName}']{"slug": ${slugField}}`
-            },
-        });
-        return data.result.map(item => ({ slug: item["slug"] }));
-    } catch (error) {
-        console.error(`Error fetching ${schemaName} slugs from Sanity:`, error);
-        return [];
-    }
-}
-
-/**
  * Checks if a document exists in Sanity
  */
 async function documentExists(schemaName: string, id?: string): Promise<boolean> {
@@ -43,43 +24,82 @@ async function documentExists(schemaName: string, id?: string): Promise<boolean>
     }
 }
 
-// Blog posts
-async function fetchBlogPostSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('blogPost');
+/**
+ * Fetches all document slugs from Sanity.io in a single request
+ */
+async function fetchAllSanitySlugs(): Promise<Record<string, Array<{ slug: string }>>> {
+    try {
+        const schemaQueries = dynamicPageSchemas
+            .filter(schema => 'schemaName' in schema)
+            .map(schema => {
+                const slugField = "schemaSlugAccessor" in schema ? schema.schemaSlugAccessor : 'slug.current';
+                return `"${schema.schemaName}": *[_type == '${schema.schemaName}']{"slug": ${slugField}}`;
+            });
+
+        const query = `{${schemaQueries.join(',')}}`;
+
+        const { data } = await axios.get<{ result: Record<string, Array<{ slug: string }>> }>(SANITY_URL, {
+            params: { query },
+        });
+
+        console.log(query);
+        console.log(JSON.stringify(data.result, null, 2));
+        return data.result;
+    } catch (error) {
+        console.error('Error fetching all slugs from Sanity:', error);
+        return {};
+    }
 }
 
-// Events
-async function fetchEventSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('liveEvent');
+// Cache the results to avoid multiple API calls
+let slugCache: Record<string, Array<{ slug: string }>> | null = null;
+
+async function getCachedSlugs(): Promise<Record<string, Array<{ slug: string }>>> {
+    if (!slugCache) {
+        slugCache = await fetchAllSanitySlugs();
+    }
+    return slugCache;
 }
 
-// Lectures
-async function fetchLectureSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('lecture');
-}
-
-// Legal documents
-async function fetchLegalDocumentSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('legalDocument');
-}
-
-// Papers
+// Updated individual fetch functions
 async function fetchPaperSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('paper');
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["paper"] || [];
 }
 
-// Application articles
+async function fetchBlogPostSlugs(): Promise<Array<{ slug: string }>> {
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["blogPost"] || [];
+}
+
+async function fetchEventSlugs(): Promise<Array<{ slug: string }>> {
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["liveEvent"] || [];
+}
+
+async function fetchLectureSlugs(): Promise<Array<{ slug: string }>> {
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["lecture"] || [];
+}
+
+async function fetchLegalDocumentSlugs(): Promise<Array<{ slug: string }>> {
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["legalDocument"] || [];
+}
+
 async function fetchApplicationArticleSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('applicationArticle');
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["applicationArticle"] || [];
 }
 
-// Fundamental articles
 async function fetchFundamentalArticleSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('fundamentalArticle');
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["fundamentalArticle"] || [];
 }
 
 async function fetchUseCasePageInstanceSlugs(): Promise<Array<{ slug: string }>> {
-    return fetchSanitySlugs('useCasePage', 'route.current');
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["useCasePage"] || [];
 }
 
 export const getDynamicRoutes = () => {
@@ -117,8 +137,8 @@ export const getDynamicRoutes = () => {
                                 return await fetchApplicationArticleSlugs();
                             case 'fundamentalArticle':
                                 return await fetchFundamentalArticleSlugs();
-                            case "useCasePage":
-                                return await fetchUseCasePageInstanceSlugs();
+                            // case "useCasePage":
+                            //     return await fetchUseCasePageInstanceSlugs();
                             default:
                                 console.warn(`No slug fetcher implemented for schema: ${JSON.stringify(schema)}`);
                                 return [];
