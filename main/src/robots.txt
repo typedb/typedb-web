@@ -1,6 +1,14 @@
-# *
+# Allow everything by default
 User-agent: *
-Allow: /
+Disallow:
+
+# Block 2.x docs
+User-agent: *
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
 
 # Host
 Host: https://typedb.com
