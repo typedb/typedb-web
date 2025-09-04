@@ -6,9 +6,9 @@
 html, body {
     color-scheme: dark;
     background-color: var(--body-background);
-    color: var(--body-font-color);
+    color: var(--color-secondary-extra-light-grey);
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-base);
     line-height: var(--line-height-p2);
     letter-spacing: var(--body-letter-spacing);
 
@@ -99,7 +99,6 @@ h1, h2, h3, h4, h5, h6, th {
 }
 
 aside {
-    /* prettier-ignore */
     h1, h2, h3, h4 {
         color: var(--body-font-color);
     }

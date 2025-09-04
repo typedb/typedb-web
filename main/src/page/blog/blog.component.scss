@@ -144,7 +144,7 @@ td-aspect-ratio {
 }
 
 .bp-secondary-post-description {
-    font-weight: var(--font-weight-thin);
+    font-weight: var(--font-weight-light);
     margin-top: 16px;
     @include mixins.line-clamp(4);
 }
@@ -198,7 +198,7 @@ td-aspect-ratio {
     }
 
     .bp-tertiary-post-description {
-        font-weight: var(--font-weight-thin);
+        font-weight: var(--font-weight-light);
         margin-top: 12px;
         @include mixins.line-clamp(3);
     }
