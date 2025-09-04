@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "cd main && ng serve",
     "build": "cd main && ng build -c $ENV",
+    "build-sitemap": "cd main && npm run build-sitemap",
     "sanity:dev": "cd sanity && npx sanity dev",
     "sanity:deploy": "cd sanity && npx sanity deploy",
     "sanity:login": "cd sanity && npx sanity login"
