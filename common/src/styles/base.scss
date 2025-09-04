@@ -447,11 +447,11 @@ td-form .form-row {
         display: flex;
         gap: 0.5rem;
         align-items: center;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
 
         &::after {
             font-weight: var(--font-weight-medium);
-            font-size: 12px;
+            font-size: 14px;
             letter-spacing: .5px;
         }
     }
