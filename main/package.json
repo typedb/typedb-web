@@ -6,11 +6,7 @@
     "start": "ng serve",
     "build": "ng build -c $ENV",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint:verify": "ng lint",
-    "lint:fix": "ng lint --fix",
-    "start:ssr": "ng build -c development && node dist/typedb-web/server/server.mjs",
-    "prebuild:ssr": "node prerender-routes.js"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
