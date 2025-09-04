@@ -89,9 +89,23 @@
                   "with": "src/environment/environment.dev.ts"
                 }
               ]
+            },
+            "ssr": {
+              "outputHashing": "all",
+              "server": "src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "server.ts"
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environment/environment.ts",
+                  "with": "src/environment/environment.staging.ts"
+                }
+              ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -101,9 +115,12 @@
             },
             "staging": {
               "buildTarget": "main:build:staging"
-            }
+            },
             "development": {
               "buildTarget": "main:build:development"
+            },
+            "ssr": {
+              "buildTarget": "main:build:ssr"
             }
           },
           "defaultConfiguration": "development"
