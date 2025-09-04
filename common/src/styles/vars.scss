@@ -28,7 +28,7 @@
     --content-border-color: var(--color-light-purple);
 
     --body-background: var(--color-black);
-    --body-font-color: var(--color-white);
+    --body-font-color: var(--color-secondary-extra-light-grey);
     --body-heading-color: var(--color-white);
     --code-background: var(--color-deep-purple);
     --code-font-color: var(--color-secondary-pink);
@@ -71,6 +71,7 @@
     /* typography */
 
     --font-size-base: var(--font-size-p2);
+    --font-weight-base: var(--font-weight-regular);
     --body-letter-spacing: 0.02em;
     --font-family-default: #{typography.$font-family-default};
     --font-family-code: #{typography.$font-family-code};
