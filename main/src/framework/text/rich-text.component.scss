@@ -4,6 +4,7 @@
 
 :host {
     display: block;
+    color: var(--body-font-color);
 }
 
 :host ::ng-deep {
