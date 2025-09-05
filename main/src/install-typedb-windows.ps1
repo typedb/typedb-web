@@ -1,24 +1,20 @@
-if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Start-Process powershell "-Command `"iwr https://typedb.com/install-typedb-windows.ps1 -useb | iex`"" -Verb RunAs
-    exit
-}
-
-Write-Host "Installing TypeDB..." -ForegroundColor Green
-iwr "https://repo.typedb.com/public/public-release/raw/names/typedb-all-windows-x86_64/versions/latest/download" -OutFile "$env:TEMP\typedb.zip"
-
-Write-Host "Extracting to Program Files..." -ForegroundColor Yellow
-Expand-Archive "$env:TEMP\typedb.zip" -DestinationPath "C:\Program Files\" -Force
-Remove-Item "$env:TEMP\typedb.zip"
-
-Write-Host "Adding to PATH..." -ForegroundColor Yellow
-$typedbFolder = Get-ChildItem "C:\Program Files\" -Directory | Where-Object {$_.Name -like "typedb-all-windows-x86_64*"} | Sort-Object Name -Descending | Select-Object -First 1
-$typedbPath = $typedbFolder.FullName
-$path = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
-$newPath = ($path -split ';' | Where-Object {$_ -notlike '*typedb*'}) -join ';'
-[Environment]::SetEnvironmentVariable('PATH', $newPath + ';' + $typedbPath, 'Machine')
+Start-Process powershell "-Command `"
+    Write-Host 'Installing TypeDB...' -ForegroundColor Green;
+    iwr 'https://repo.typedb.com/public/public-release/raw/names/typedb-all-windows-x86_64/versions/latest/download' -OutFile `$env:TEMP\typedb.zip;
+    Write-Host 'Extracting to Program Files...' -ForegroundColor Yellow;
+    Expand-Archive `$env:TEMP\typedb.zip -DestinationPath 'C:\Program Files\' -Force;
+    Remove-Item `$env:TEMP\typedb.zip;
+    Write-Host 'Adding to PATH...' -ForegroundColor Yellow;
+    `$typedbFolder = Get-ChildItem 'C:\Program Files\' -Directory | Where-Object {`$_.Name -like 'typedb-all-windows-x86_64*'} | Sort-Object Name -Descending | Select-Object -First 1;
+    `$typedbPath = `$typedbFolder.FullName;
+    `$path = [Environment]::GetEnvironmentVariable('PATH', 'Machine');
+    `$newPath = (`$path -split ';' | Where-Object {`$_ -notlike '*typedb*'}) -join ';';
+    [Environment]::SetEnvironmentVariable('PATH', `$newPath + ';' + `$typedbPath, 'Machine');
+    Write-Host 'Installation complete!' -ForegroundColor Green
+`"" -Verb RunAs -Wait
 
 Write-Host "Refreshing PATH in current session..." -ForegroundColor Yellow
-$env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("PATH","User")
+$env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('PATH', 'User')
 
 Write-Host "TypeDB installed successfully!" -ForegroundColor Green
 Write-Host ""
