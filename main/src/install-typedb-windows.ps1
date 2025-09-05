@@ -1,5 +1,5 @@
 if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Start-Process powershell "-Command `"iwr https://your-domain.com/install-typedb.ps1 -useb | iex`"" -Verb RunAs
+    Start-Process powershell "-Command `"iwr https://typedb.com/install-typedb-windows.ps1 -useb | iex`"" -Verb RunAs
     exit
 }
 
