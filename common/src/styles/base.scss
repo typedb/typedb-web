@@ -384,7 +384,7 @@ td-form .form-row {
     --warning-background: #{rgba(colors.$red, 0.12)};
 
     position: relative;
-    margin: 1.5rem 0 0;
+    margin: 0.5rem 0 1.5rem;
     padding: 16px;
     border-radius: var(--border-radius);
     color: var(--color-white);
@@ -402,25 +402,12 @@ td-form .form-row {
         padding: 0;
     }
 
-    &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-    }
-
     &.note {
         background: var(--note-background);
 
         .icon::after {
             content: "Note";
         }
-    }
-
-    &.note::before {
-        background: var(--note-color);
     }
 
     &.important, &.attention {
@@ -448,10 +435,6 @@ td-form .form-row {
         }
     }
 
-    &.tip::before {
-        background: var(--tip-color);
-    }
-
     &.warning {
         background: var(--warning-background);
 
@@ -460,20 +443,15 @@ td-form .form-row {
         }
     }
 
-    &.warning::before {
-        background: var(--warning-color);
-    }
-
     .icon {
         display: flex;
         gap: 0.5rem;
         align-items: center;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
 
         &::after {
             font-weight: var(--font-weight-medium);
-            text-transform: uppercase;
-            font-size: 12px;
+            font-size: 14px;
             letter-spacing: .5px;
         }
     }

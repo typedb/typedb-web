@@ -13,3 +13,7 @@ Disallow: /docs/home/2.x/
 # Host
 Host: https://typedb.com
 Sitemap: https://typedb.com/sitemap.xml
+
+# Clankers
+User-agent: python-httpx/0.28.1
+Disallow:
