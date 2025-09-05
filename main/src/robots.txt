@@ -16,4 +16,4 @@ Sitemap: https://typedb.com/sitemap.xml
 
 # Clankers
 User-agent: python-httpx/0.28.1
-Disallow:
+Disallow: /
