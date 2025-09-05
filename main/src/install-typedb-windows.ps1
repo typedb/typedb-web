@@ -1,3 +1,5 @@
+Write-Host "Launching TypeDB installer..." -ForegroundColor Yellow
+
 Start-Process powershell "-Command `"
     Write-Host 'Installing TypeDB...' -ForegroundColor Green;
     iwr 'https://repo.typedb.com/public/public-release/raw/names/typedb-all-windows-x86_64/versions/latest/download' -OutFile `$env:TEMP\typedb.zip;
