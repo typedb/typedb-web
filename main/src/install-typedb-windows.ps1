@@ -3,11 +3,11 @@ Write-Host "Launching TypeDB installer..." -ForegroundColor Yellow
 Start-Process powershell "-Command `"
     Write-Host 'Installing TypeDB...' -ForegroundColor Green;
     iwr 'https://repo.typedb.com/public/public-release/raw/names/typedb-all-windows-x86_64/versions/latest/download' -OutFile `$env:TEMP\typedb.zip;
-    Write-Host 'Extracting to Program Files...' -ForegroundColor Yellow;
-    Expand-Archive `$env:TEMP\typedb.zip -DestinationPath 'C:\Program Files\' -Force;
+    Write-Host 'Extracting to $env:LOCALAPPDATA...' -ForegroundColor Yellow;
+    Expand-Archive `$env:TEMP\typedb.zip -DestinationPath '$env:LOCALAPPDATA' -Force;
     Remove-Item `$env:TEMP\typedb.zip;
     Write-Host 'Adding to PATH...' -ForegroundColor Yellow;
-    `$typedbFolder = Get-ChildItem 'C:\Program Files\' -Directory | Where-Object {`$_.Name -like 'typedb-all-windows-x86_64*'} | Sort-Object Name -Descending | Select-Object -First 1;
+    `$typedbFolder = Get-ChildItem '$env:LOCALAPPDATA' -Directory | Where-Object {`$_.Name -like 'typedb-all-windows-x86_64*'} | Sort-Object Name -Descending | Select-Object -First 1;
     `$typedbPath = `$typedbFolder.FullName;
     `$path = [Environment]::GetEnvironmentVariable('PATH', 'Machine');
     `$newPath = (`$path -split ';' | Where-Object {`$_ -notlike '*typedb*'}) -join ';';
