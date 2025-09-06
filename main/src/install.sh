@@ -92,7 +92,7 @@ install_typedb() {
     local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/latest/download"
 
     # Set installation directory
-    local install_dir="$HOME/.local/typedb"
+    local install_dir="$HOME/.typedb"
 
     # Create installation directory
     mkdir -p "$install_dir"
