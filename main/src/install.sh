@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # TypeDB Installation Script for Mac/Linux
 
@@ -92,7 +92,7 @@ install_typedb() {
     local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/latest/download"
 
     # Set installation directory
-    local install_dir="$HOME/.typedb"
+    local install_dir="$HOME/.local/typedb"
 
     # Create installation directory
     mkdir -p "$install_dir"
@@ -148,6 +148,10 @@ install_typedb() {
     export PATH="$install_dir:$PATH"
 
     show_installation_messages
+
+    if [ -n "$shell_config" ]; then
+        print_info "TypeDB has been added to your PATH for future terminal sessions."
+    fi
 }
 
 # Run installation
