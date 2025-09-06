@@ -37,7 +37,7 @@ show_installation_messages() {
     echo
     echo "  View TypeDB Console CLI options:"
     echo "    typedb console --help"
-    echo "  Run a local database server:"
+    echo "  Run a local database server (you'll need to allow network access when prompted):"
     echo "    typedb server"
     echo "  Read the docs:"
     echo "    https://typedb.com/docs/home/get-started/"
@@ -134,12 +134,12 @@ install_typedb() {
     if [[ -n "$shell_config" ]]; then
         # Remove any existing TypeDB PATH entries
         sed -i.bak '/# TypeDB PATH/d' "$shell_config" 2>/dev/null || true
-        sed -i.bak '\|\.local/typedb|d' "$shell_config" 2>/dev/null || true
+        sed -i.bak '\|\.typedb|d' "$shell_config" 2>/dev/null || true
 
         # Add new PATH entry
         echo "" >> "$shell_config"
         echo "# TypeDB PATH" >> "$shell_config"
-        echo "export PATH=\"\$HOME/.local/typedb:\$PATH\"" >> "$shell_config"
+        echo "export PATH=\"\$HOME/.typedb:\$PATH\"" >> "$shell_config"
 
         print_info "Added TypeDB to PATH in $shell_config"
     fi
