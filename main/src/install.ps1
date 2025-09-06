@@ -3,12 +3,26 @@ $installPath = "$env:LOCALAPPDATA\TypeDB"
 iwr "https://repo.typedb.com/public/public-release/raw/names/typedb-all-windows-x86_64/versions/latest/download" -OutFile "$env:TEMP\typedb.zip"
 
 Write-Host "Extracting to $installPath..." -ForegroundColor Yellow
-Expand-Archive "$env:TEMP\typedb.zip" -DestinationPath $installPath -Force
+# Create a temporary extraction directory
+$tempExtractPath = "$env:TEMP\typedb_extract"
+Expand-Archive "$env:TEMP\typedb.zip" -DestinationPath $tempExtractPath -Force
+
+# Find the extracted folder (with version/arch info)
+$extractedFolder = Get-ChildItem $tempExtractPath -Directory | Where-Object {$_.Name -like "typedb-all-windows-x86_64*"} | Select-Object -First 1
+
+# Move contents to clean install path
+if (Test-Path $installPath) {
+    Remove-Item $installPath -Recurse -Force
+}
+Move-Item $extractedFolder.FullName $installPath
+
+# Clean up
 Remove-Item "$env:TEMP\typedb.zip"
+Remove-Item $tempExtractPath -Recurse -Force
 
 Write-Host "Adding to PATH..." -ForegroundColor Yellow
-$typedbFolder = Get-ChildItem $installPath -Directory | Where-Object {$_.Name -like "typedb-all-windows-x86_64*"} | Sort-Object Name -Descending | Select-Object -First 1
-$typedbPath = $typedbFolder.FullName
+# Now we can use the clean install path directly
+$typedbPath = $installPath
 
 # Update user PATH (not system PATH)
 $userPath = [Environment]::GetEnvironmentVariable('PATH', 'User')
