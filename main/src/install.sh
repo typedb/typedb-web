@@ -28,22 +28,6 @@ print_error() {
     echo -e "${RED}$1${NC}"
 }
 
-# Function to show installation messages
-show_installation_messages() {
-    echo
-    print_status "TypeDB installed successfully!"
-    echo
-    print_info "Get started using the following commands:"
-    echo
-    echo "  View TypeDB Console CLI options:"
-    echo "    typedb console --help"
-    echo "  Run a local database server (you'll need to allow network access when prompted):"
-    echo "    typedb server"
-    echo "  Read the docs:"
-    echo "    https://typedb.com/docs/home/get-started/"
-    echo
-}
-
 # Detect OS and architecture
 detect_platform() {
     local os=""
@@ -154,14 +138,18 @@ install_typedb() {
         print_info "Added TypeDB to PATH in $shell_config"
     fi
 
-    # Add to current session PATH
-    export PATH="$install_dir:$PATH"
-
-    show_installation_messages
-
-    if [ -n "$shell_config" ]; then
-        print_info "TypeDB has been added to your PATH for future terminal sessions."
-    fi
+    echo
+    print_status "TypeDB installed successfully!"
+    echo
+    print_info "Get started using the following commands:"
+    echo
+    echo "  View TypeDB Console CLI options:"
+    echo "    typedb console --help"
+    echo "  Run a local database server (you'll need to allow network access when prompted):"
+    echo "    typedb server"
+    echo "  Read the docs:"
+    echo "    https://typedb.com/docs/home/get-started/"
+    echo
 }
 
 # Run installation
