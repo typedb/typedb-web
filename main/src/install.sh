@@ -148,10 +148,6 @@ install_typedb() {
     export PATH="$install_dir:$PATH"
 
     show_installation_messages
-
-    if [[ -n "$shell_config" ]]; then
-        print_warning "Please restart your terminal or run: source $shell_config"
-    fi
 }
 
 # Run installation
