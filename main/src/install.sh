@@ -92,7 +92,7 @@ install_typedb() {
     local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/latest/download"
 
     # Set installation directory
-    local install_dir="$HOME/.local/typedb"
+    local install_dir="$HOME/.typedb"
 
     # Create installation directory
     mkdir -p "$install_dir"
@@ -120,18 +120,28 @@ install_typedb() {
 
     # Determine shell config file
     local shell_config=""
-    if [[ "$SHELL" == *"zsh"* ]] || [[ -f "$HOME/.zshrc" ]]; then
-        shell_config="$HOME/.zshrc"
-    elif [[ "$SHELL" == *"bash"* ]] || [[ -f "$HOME/.bashrc" ]]; then
-        shell_config="$HOME/.bashrc"
-    elif [[ -f "$HOME/.profile" ]]; then
-        shell_config="$HOME/.profile"
-    else
-        print_warning "Could not determine shell config file. Please manually add $install_dir to your PATH."
-        shell_config=""
-    fi
+    case "$SHELL" in
+        *zsh*)
+            shell_config="$HOME/.zshrc"
+            ;;
+        *bash*)
+            shell_config="$HOME/.bashrc"
+            ;;
+        *)
+            if [ -f "$HOME/.zshrc" ]; then
+                shell_config="$HOME/.zshrc"
+            elif [ -f "$HOME/.bashrc" ]; then
+                shell_config="$HOME/.bashrc"
+            elif [ -f "$HOME/.profile" ]; then
+                shell_config="$HOME/.profile"
+            else
+                print_warning "Could not determine shell config file. Please manually add $install_dir to your PATH."
+                shell_config=""
+            fi
+            ;;
+    esac
 
-    if [[ -n "$shell_config" ]]; then
+    if [ -n "$shell_config" ]; then
         # Remove any existing TypeDB PATH entries
         sed -i.bak '/# TypeDB PATH/d' "$shell_config" 2>/dev/null || true
         sed -i.bak '\|\.typedb|d' "$shell_config" 2>/dev/null || true
