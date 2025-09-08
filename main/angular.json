@@ -22,6 +22,8 @@
               "src/favicon.ico",
               "src/favicon.png",
               "src/assets",
+              "src/install.ps1",
+              "src/install.sh",
               "src/robots.txt",
               "src/site.webmanifest",
               "src/sitemap.xml",
