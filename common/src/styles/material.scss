@@ -199,6 +199,10 @@ body {
         border-radius: 3px;
     }
 
+    @include mat.checkbox-overrides((
+        selected-checkmark-color: colors.$purple,
+    ));
+
     /* Chips */
     .mat-mdc-chip.mat-mdc-standard-chip {
         --mdc-chip-elevated-container-color: #{colors.$secondary-purple};
