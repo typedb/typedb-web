@@ -25,6 +25,24 @@ publish = "main/dist/main/browser"
 command = "ENV=development pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
+# EDGE FUNCTIONS
+
+[[edge_functions]]
+function = "ua-blocker"
+path = "/*"
+
+[[edge_functions]]
+function = "echo"
+path = "/api/echo"
+
+[[edge_functions]]
+function = "get-calendar-link"
+path = "/api/calendar-link"
+
+[[edge_functions]]
+function = "send-deploy-notification-discord"
+path = "/api/send-deploy-notification-discord"
+
 # ALIASES
 # Keep indefinitely
 # N.B. the semantically correct status code is 303, but this code is not supported by Netlify
@@ -160,18 +178,6 @@ status = 200
 from = "/*"
 to = "/index.html"
 status = 200
-
-[[edge_functions]]
-function = "echo"
-path = "/api/echo"
-
-[[edge_functions]]
-function = "get-calendar-link"
-path = "/api/calendar-link"
-
-[[edge_functions]]
-function = "send-deploy-notification-discord"
-path = "/api/send-deploy-notification-discord"
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
