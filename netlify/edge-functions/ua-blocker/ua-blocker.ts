@@ -17,6 +17,12 @@ const CONFIG = {
     /MJ12Bot/i,
   ],
   exemptRoutes: [
+    /^\/favicon\.ico$/i,
+    /^\/favicon\.png$/i,     
+    /^\/install\.ps1$/i,
+    /^\/install\.sh$/i,    
+    /^\/robots\.txt$/i,
+    /^\/site\.webmanifest$/i,
     /^\/api\/.*$/i,
     /^\/ph\/.*$/i,
     /^\/platform\/.*$/i,
