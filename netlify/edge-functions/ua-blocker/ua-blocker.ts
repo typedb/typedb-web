@@ -3,19 +3,6 @@
 
 // Centralized configuration
 const CONFIG = {
-  blockedUserAgents: [
-    /python-httpx/i,
-    /PetalBot/i,
-    /Factset_spyderbot/i,
-    /LinerBot/i,
-    /Timpibot/i,
-    /SemrushBot/i,
-    /AhrefsBot/i,
-    /AhrefsSiteAudit/i,
-    /AwarioBot/i,
-    /DotBot/i,
-    /MJ12Bot/i,
-  ],
   exemptRoutes: [
     /^\/favicon\.ico$/i,
     /^\/favicon\.png$/i,     
@@ -35,6 +22,18 @@ export default async (request: Request) => {
   try {
     const requestUrl = new URL(request.url);
     const path = requestUrl.pathname;
+
+    const blockedUserAgentsRaw = Netlify.env.BLOCKED_USER_AGENTS;
+    if (!blockedUserAgentsRaw) {
+      console.warn("Environment variable 'BLOCKED_USER_AGENTS' is not set; skipping UA blocking");
+      return; // proceed normally
+    }
+
+    const blockedUserAgents = blockedUserAgentsRaw
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0)
+      .map((s) => new RegExp(s, "i")); // case-insensitive
 
     // Skip UA blocking for exempt routes
     if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
@@ -58,7 +57,7 @@ export default async (request: Request) => {
     }
 
     // Check against blocked UA patterns
-    const matchedPattern = CONFIG.blockedUserAgents.find((pattern) => pattern.test(ua));
+    const matchedPattern = blockedUserAgents.find((pattern) => pattern.test(ua));
     if (matchedPattern) {
       console.log(
         `Blocked request ${method} ${url} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}; Accept-Language: ${acceptLang}`
