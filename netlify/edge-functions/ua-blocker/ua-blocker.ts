@@ -27,6 +27,7 @@ const CONFIG = {
     /^\/ph\/.*$/i,
     /^\/platform\/.*$/i,
     /^\/forms\/.*$/i,
+    /^\/docs\/llms.txt$/i,
   ],
 };
 

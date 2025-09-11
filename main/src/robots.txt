@@ -15,5 +15,33 @@ Host: https://typedb.com
 Sitemap: https://typedb.com/sitemap.xml
 
 # Clankers
-User-agent: python-httpx/0.28.1
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Factset_spyderbot
+Disallow: /
+
+User-agent: LinerBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: AhrefsSiteAudit
+Disallow: /
+
+User-agent: AwarioBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
 Disallow: /
