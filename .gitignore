@@ -9,7 +9,9 @@
 # Bazel
 bazel-*
 
+# PNPM
 node_modules
+pnpm-audit.json
 
 local
 dist
@@ -32,20 +34,10 @@ sanity/scripts/credentials/**/*
 # Schema
 schema/lib
 
-# Website - Angular
+# Main Site
 main/.angular
 main/src/service/credentials/**/*
 !main/src/service/credentials/.gitkeep
 
-# Website - Scully
-main/src/assets/scully-routes.json
-main/src/main-routes.js
-main/src/main-routes.js.map
-main/scully.log
-main/scully/**/*.js
-main/scully/**/*.js.map
-main/scully/plugins/credentials/**/*
-!main/scully/plugins/credentials/.gitkeep
-
-# Local Netlify folder
+# Netlify
 .netlify
