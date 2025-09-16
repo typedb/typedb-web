@@ -2,17 +2,73 @@
 User-agent: *
 Disallow:
 
-# Block 2.x docs
-User-agent: *
+# Host
+Host: https://typedb.com
+Sitemap: https://typedb.com/sitemap.xml
+
+# AI agents should not crawl 2.x docs
+User-agent: GPTBot
 Disallow: /docs/manual/
 Disallow: /docs/academy/
 Disallow: /docs/drivers/
 Disallow: /docs/typeql/
 Disallow: /docs/home/2.x/
 
-# Host
-Host: https://typedb.com
-Sitemap: https://typedb.com/sitemap.xml
+User-agent: OAI-SearchBot
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: ChatGPT-User
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: anthropic-ai
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: ClaudeBot
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: claude-web
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: PerplexityBot
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: Google-Extended
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+
+User-agent: GoogleOther
+Disallow: /docs/manual/
+Disallow: /docs/academy/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
 
 # Clankers
 
