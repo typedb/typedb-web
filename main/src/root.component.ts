@@ -51,7 +51,6 @@ export class RootComponent {
         if (isPlatformBrowser(this.platformId)) {
             this.initScrollBehaviour();
             this.analyticsService.google.loadScriptTag();
-            this.analyticsService.googleTagManager.loadScriptTag();
             this.capturePageViewOnNavigation();
         }
 
