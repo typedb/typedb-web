@@ -87,9 +87,6 @@ importers:
       '@customerio/cdp-analytics-browser':
         specifier: 0.2.3
         version: 0.2.3(encoding@0.1.13)
-      '@intercom/messenger-js-sdk':
-        specifier: 0.0.14
-        version: 0.0.14
       '@portabletext/to-html':
         specifier: 2.0.5
         version: 2.0.5
@@ -1761,9 +1758,6 @@ packages:
 
   '@interactjs/types@1.10.18':
     resolution: {integrity: sha512-3a+2Kx6PhA60ekxImRQJl+EyT4lD0/kd3/PveyaLtgfNxkxnSWdUq7Ixo3Y/t1lon4EqVGZQgp+qj/QNaEs6qA==}
-
-  '@intercom/messenger-js-sdk@0.0.14':
-    resolution: {integrity: sha512-2dH4BDAh9EI90K7hUkAdZ76W79LM45Sd1OBX7t6Vzy8twpNiQ5X+7sH9G5hlJlkSGnf+vFWlFcy9TOYAyEs1hA==}
 
   '@isaacs/balanced-match@4.0.1':
     resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
@@ -9112,8 +9106,6 @@ snapshots:
       '@types/node': 18.19.123
 
   '@interactjs/types@1.10.18': {}
-
-  '@intercom/messenger-js-sdk@0.0.14': {}
 
   '@isaacs/balanced-match@4.0.1': {}
 
