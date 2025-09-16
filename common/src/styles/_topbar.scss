@@ -372,14 +372,14 @@
         .td-topbar-content {
             position: absolute;
             inset: var(--topbar-height) 0 auto 0;
-            height: calc(100vh - 156px);
+            height: calc(100dvh - 84px);
             z-index: 700;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             background-color: var(--body-background);
             width: 100%;
-            padding: 0 20px;
+            padding: 0 20px 84px;
             overflow-y: auto;
             border: none;
             border-top: 1px solid var(--color-light-purple);

@@ -17,6 +17,7 @@ export const setupTopbarListeners = () => {
         const overflowStyle = headerEl.classList.contains("td-topbar-open") ? "hidden" : "unset";
         document.body.parentElement!.style.overflowY = overflowStyle;
         document.body.style.overflowY = overflowStyle;
+        document.body.style.position = overflowStyle === "hidden" ? "fixed" : "unset";
     });
 
     let hoveredMenuElements: HTMLElement[] = [];
@@ -29,6 +30,7 @@ export const setupTopbarListeners = () => {
             headerEl.classList.remove("td-topbar-open");
             document.body.parentElement!.style.overflowY = "unset";
             document.body.style.overflowY = "unset";
+            document.body.style.position = "unset";
         })
     );
 
