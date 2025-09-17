@@ -27,9 +27,9 @@ publish = "main/dist/main/browser"
 
 # EDGE FUNCTIONS
 
-# [[edge_functions]]
-# function = "ua-blocker"
-# path = "/*"
+[[edge_functions]]
+function = "ua-blocker"
+path = "/*"
 
 [[edge_functions]]
 function = "echo"
