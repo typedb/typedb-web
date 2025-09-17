@@ -48,7 +48,7 @@ export default async (request: Request) => {
     const origin = request.headers.get("origin") || "-";
 
     if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
-      console.info(`Exempted route accessed: ${path}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
+      console.info(`Exempted route accessed: ${method} ${path}; UA: ${ua}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
       return; // proceed normally
     }
 
