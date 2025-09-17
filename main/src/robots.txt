@@ -9,7 +9,7 @@ Sitemap: https://typedb.com/sitemap.xml
 # AI agents should not crawl 2.x docs
 User-agent: GPTBot
 Disallow: /docs/manual/
-Disallow: /docs/academy/
+Disallow: /docs/academy/2.x/
 Disallow: /docs/drivers/
 Disallow: /docs/typeql/
 Disallow: /docs/home/2.x/
