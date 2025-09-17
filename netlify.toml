@@ -182,12 +182,12 @@ force = true
 
 [[redirects]]
 from = "https://typedb.com/*"
-to = "https://typedb.com/404"
+to = "https://typedb.com/404/index.html"
 status = 404
 
 [[redirects]]
 from = "https://ssr.typedb.com/*"
-to = "https://ssr.typedb.com/404"
+to = "https://ssr.typedb.com/404/index.html"
 status = 404
 
 # MAIN SITE - CLIENT-RENDERED SPA HANDLING
