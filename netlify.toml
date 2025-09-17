@@ -119,6 +119,11 @@ to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
+from = "https://ssr.typedb.com/docs/*"
+to = "https://typedb-docs.netlify.app/:splat"
+status = 200
+
+[[redirects]]
 from = "https://development.typedb.com/docs/*"
 to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
