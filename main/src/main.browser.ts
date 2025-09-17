@@ -10,7 +10,6 @@ import "posthog-js/dist/tracing-headers";
 import "posthog-js/dist/web-vitals";
 import "posthog-js/dist/dead-clicks-autocapture";
 import posthog from "posthog-js/dist/module.no-external";
-import Intercom from "@intercom/messenger-js-sdk";
 
 const posthogProjectApiKey = environment.env === "production" ? "phc_w6b3dE1UxM9LKE2FLbDP9yiHFEXegbtxv1feHm0yigA" : "phc_kee7J4vlLnef61l6krVU8Fg5B6tYIgSEVOyW7yxwLSk";
 posthog.init(
@@ -23,8 +22,6 @@ posthog.init(
         capture_pageleave: true,
     }
 );
-
-Intercom({ app_id: "zof896ic" });
 
 bootstrapApplication(RootComponent, appConfig)
     .catch((err) => console.error(err));

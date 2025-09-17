@@ -62,11 +62,6 @@ from = "/academy"
 to = "/docs/academy/"
 status = 302
 
-[[redirects]]
-from = "/crash-course"
-to = "/docs/home/crash-course/"
-status = 302
-
 # PERMANENT RENAMES
 # Keep indefinitely as they will be used by old blog posts and other articles on the Web
 

@@ -23,7 +23,7 @@ export default async (request: Request) => {
     const requestUrl = new URL(request.url);
     const path = requestUrl.pathname;
 
-    const blockedUserAgentsRaw = Netlify.env.BLOCKED_USER_AGENTS;
+    const blockedUserAgentsRaw = Netlify.env.get("BLOCKED_USER_AGENTS");
     if (!blockedUserAgentsRaw) {
       console.warn("Environment variable 'BLOCKED_USER_AGENTS' is not set; skipping UA blocking");
       return; // proceed normally
