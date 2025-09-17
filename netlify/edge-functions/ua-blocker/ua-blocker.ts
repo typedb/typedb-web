@@ -4,17 +4,18 @@
 // Centralized configuration
 const CONFIG = {
   exemptRoutes: [
-    /^\/favicon\.ico$/i,
-    /^\/favicon\.png$/i,     
+    /\/favicon\.ico$/i,
+    /\/favicon\.png$/i,     
     /^\/install\.ps1$/i,
     /^\/install\.sh$/i,    
-    /^\/robots\.txt$/i,
-    /^\/site\.webmanifest$/i,
+    /\/robots\.txt/i,
+    /\/site\.webmanifest$/i,
     /^\/api\/.*$/i,
     /^\/ph\/.*$/i,
     /^\/platform\/.*$/i,
     /^\/forms\/.*$/i,
-    /^\/docs\/llms.txt$/i,
+    /\/llms.*\.txt$/i,
+    /\/sitemap.*\.xml$/i,
   ],
 };
 
