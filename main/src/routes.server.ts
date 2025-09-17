@@ -194,10 +194,14 @@ export async function getServerRoutes(): Promise<ServerRoute[]> {
         ...staticRoutes,
         // Dynamic routes with parameters
         ...dynamicRoutes,
-        // 404 route - when wired up with Netlify, this will handle all unrecognized routes
+        // 404 route and fallback route - when wired up with Netlify, this will handle all unrecognized routes
         {
             path: '404',
             renderMode: RenderMode.Prerender,
+        },
+        {
+            path: '**',
+            renderMode: RenderMode.Client,
         },
     ];
 }
