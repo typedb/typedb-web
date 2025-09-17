@@ -37,17 +37,20 @@ export default async (request: Request) => {
       .map((s) => new RegExp(s, "i")); // case-insensitive
 
     // Skip UA blocking for exempt routes
-    if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
-      return; // proceed normally
-    }
+    // if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
+    //   return; // proceed normally
+    // }
 
     const ua = request.headers.get("user-agent") || "";
-    const url = request.url;
     const method = request.method;
     const ip = request.headers.get("x-nf-client-connection-ip") || "unknown";
     const referer = request.headers.get("referer") || "-";
     const origin = request.headers.get("origin") || "-";
-    const acceptLang = request.headers.get("accept-language") || "-";
+
+    if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
+      console.info(`Exempted route accessed: ${path}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
+      return; // proceed normally
+    }
 
     // Block empty/null User-Agent
     if (!ua) {
@@ -61,7 +64,7 @@ export default async (request: Request) => {
     const matchedPattern = blockedUserAgents.find((pattern) => pattern.test(ua));
     if (matchedPattern) {
       console.log(
-        `Blocked request ${method} ${url} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}; Accept-Language: ${acceptLang}`
+        `Blocked request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`
       );
       return new Response("Forbidden", { status: 403 });
     }
