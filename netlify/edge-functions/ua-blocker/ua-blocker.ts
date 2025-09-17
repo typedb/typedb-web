@@ -4,17 +4,18 @@
 // Centralized configuration
 const CONFIG = {
   exemptRoutes: [
-    /^\/favicon\.ico$/i,
-    /^\/favicon\.png$/i,     
+    /\/favicon\.ico$/i,
+    /\/favicon\.png$/i,     
     /^\/install\.ps1$/i,
     /^\/install\.sh$/i,    
-    /^\/robots\.txt$/i,
-    /^\/site\.webmanifest$/i,
+    /\/robots\.txt/i,
+    /\/site\.webmanifest$/i,
     /^\/api\/.*$/i,
     /^\/ph\/.*$/i,
     /^\/platform\/.*$/i,
     /^\/forms\/.*$/i,
-    /^\/docs\/llms.txt$/i,
+    /\/llms.*\.txt$/i,
+    /\/sitemap.*\.xml$/i,
   ],
 };
 
@@ -41,12 +42,15 @@ export default async (request: Request) => {
     }
 
     const ua = request.headers.get("user-agent") || "";
-    const url = request.url;
     const method = request.method;
     const ip = request.headers.get("x-nf-client-connection-ip") || "unknown";
     const referer = request.headers.get("referer") || "-";
     const origin = request.headers.get("origin") || "-";
-    const acceptLang = request.headers.get("accept-language") || "-";
+
+    if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
+      // console.info(`Exempted route accessed: ${method} ${path}; UA: ${ua}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
+      return; // proceed normally
+    }
 
     // Block empty/null User-Agent
     if (!ua) {
@@ -59,12 +63,11 @@ export default async (request: Request) => {
     // Check against blocked UA patterns
     const matchedPattern = blockedUserAgents.find((pattern) => pattern.test(ua));
     if (matchedPattern) {
-      console.log(
-        `Blocked request ${method} ${url} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}; Accept-Language: ${acceptLang}`
-      );
+      console.log(`Blocked request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
       return new Response("Forbidden", { status: 403 });
     }
 
+    // console.info(`Allowed request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
     return; // proceed normally
   } catch (error) {
     console.error('Edge function error:', error);

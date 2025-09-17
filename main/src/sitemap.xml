@@ -5,6 +5,24 @@
     <loc>https://typedb.com/sitemap-main.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://typedb.com/docs/sitemap.xml</loc>
+    <loc>https://typedb.com/docs/sitemap-home.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-examples.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-core-concepts.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-tools.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-maintenance-operation.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-reference.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://typedb.com/docs/sitemap-academy.xml</loc>
   </sitemap>
 </sitemapindex>
