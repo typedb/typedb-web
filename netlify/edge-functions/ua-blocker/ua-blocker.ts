@@ -63,12 +63,11 @@ export default async (request: Request) => {
     // Check against blocked UA patterns
     const matchedPattern = blockedUserAgents.find((pattern) => pattern.test(ua));
     if (matchedPattern) {
-      console.log(
-        `Blocked request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`
-      );
+      console.log(`Blocked request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
       return new Response("Forbidden", { status: 403 });
     }
 
+    console.info(`Allowed request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
     return; // proceed normally
   } catch (error) {
     console.error('Edge function error:', error);
