@@ -37,9 +37,9 @@ export default async (request: Request) => {
       .map((s) => new RegExp(s, "i")); // case-insensitive
 
     // Skip UA blocking for exempt routes
-    // if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
-    //   return; // proceed normally
-    // }
+    if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
+      return; // proceed normally
+    }
 
     const ua = request.headers.get("user-agent") || "";
     const method = request.method;
@@ -48,7 +48,7 @@ export default async (request: Request) => {
     const origin = request.headers.get("origin") || "-";
 
     if (CONFIG.exemptRoutes.some((pattern) => pattern.test(path))) {
-      console.info(`Exempted route accessed: ${method} ${path}; UA: ${ua}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
+      // console.info(`Exempted route accessed: ${method} ${path}; UA: ${ua}; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
       return; // proceed normally
     }
 
@@ -67,7 +67,7 @@ export default async (request: Request) => {
       return new Response("Forbidden", { status: 403 });
     }
 
-    console.info(`Allowed request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
+    // console.info(`Allowed request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
     return; // proceed normally
   } catch (error) {
     console.error('Edge function error:', error);
