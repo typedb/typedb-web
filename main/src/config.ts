@@ -4,7 +4,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { PlainTextPipe } from "./framework/text/plain-text.pipe";
 
-import { routes } from "./routes";
+import { routes } from "./routes.browser";
 
 export const appConfig: ApplicationConfig = {
     providers: [

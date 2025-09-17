@@ -1,5 +1,5 @@
 import { RenderMode, ServerRoute } from "@angular/ssr";
-import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./routes";
+import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./routes.browser";
 import axios from "axios";
 
 // Sanity.io configuration

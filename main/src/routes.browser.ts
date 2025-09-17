@@ -134,5 +134,6 @@ export const routes: Routes = [
         path,
         ...dynamicPages[path],
     })),
+    { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
     { path: "**", component: _404PageComponent },
 ];
