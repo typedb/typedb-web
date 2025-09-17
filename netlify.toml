@@ -25,6 +25,7 @@ publish = "main/dist/main/browser"
 command = "ENV=development pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
+
 # EDGE FUNCTIONS
 
 [[edge_functions]]
@@ -43,6 +44,9 @@ path = "/api/calendar-link"
 function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
 
+
+# REDIRECTS AND REWRITES
+
 # ALIASES
 # Keep indefinitely
 # N.B. the semantically correct status code is 303, but this code is not supported by Netlify
@@ -60,6 +64,17 @@ status = 301
 [[redirects]]
 from = "/academy"
 to = "/docs/academy/"
+status = 302
+
+[[redirects]]
+from = "/docs"
+to = "/docs/home/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/2.x/*"
+to = "/docs/:splat"
 status = 302
 
 # PERMANENT RENAMES
@@ -85,19 +100,13 @@ from = "/white-papers/*"
 to = "/papers"
 status = 301
 
-# DOCS BEHAVIOUR
-# Keep indefinitely. These redirects are required for Docs to behave correctly
-
 [[redirects]]
-from = "/docs"
-to = "/docs/home/"
+from = "/docs/reference/typeql/*"
+to = "/docs/typeql-reference/:splat"
 status = 301
-force = true
 
-[[redirects]]
-from = "/docs/2.x/*"
-to = "/docs/:splat"
-status = 302
+# DOCS SUBDOMAIN POSING AS A SUBDIRECTORY
+# Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
@@ -161,18 +170,34 @@ host = "track.customer.io"
 status = 200
 force = true
 
-# MAIN SITE BEHAVIOUR
-# Keep indefinitely. These redirects are required for the main site to behave correctly
+# MAIN SITE PRERENDERED SPA
+# Keep indefinitely. This instructs any resource not found to serve index.html, allowing Angular router to serve a nice 404 page.
+# IMPORTANT: This rule must come last in the redirects list in production, otherwise it will override all other rules.
+# If we ever introduce non-prerendered pages on the main site, we will need to revisit this.
 
 [[redirects]]
-from = "https://typedb.com/*/data.json"
-to = "https://typedb.com/data.json"
+from = "https://typedb.com/*"
+to = "https://typedb.com/404.html"
+status = 404
+
+[[redirects]]
+from = "https://ssr.typedb.com/*"
+to = "https://ssr.typedb.com/404.html"
+status = 404
+
+# MAIN SITE CLIENT-SIDE SPA - ALL OTHER CONTEXTS
+# Keep indefinitely. This instructs any resource not found to serve the index page of the client-side SPA.
+
+[[redirects]]
+from = "https://development.typedb.com/*"
+to = "https://development.typedb.com/index.html"
 status = 200
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
+from = "https://master.typedb.com/*"
+to = "https://master.typedb.com/index.html"
 status = 200
+
 
 [[context.production.plugins]]
   package = "@netlify/plugin-lighthouse"
