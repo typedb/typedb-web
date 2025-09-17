@@ -251,7 +251,7 @@ body {
 
     /* Dialog */
     @include mat.dialog-overrides((
-        container-color: colors.$purple,
+        container-color: colors.$deep-purple,
         subhead-color: colors.$white,
         supporting-text-color: colors.$white,
         supporting-text-size: 14px,
@@ -532,7 +532,7 @@ body {
     /* Select */
     @include mat.select-overrides((
         trigger-text-tracking: var(--body-letter-spacing),
-        panel-background-color: colors.$secondary-purple,
+        panel-background-color: colors.$purple,
     ));
 
     @include mat.option-overrides((
