@@ -175,22 +175,22 @@ host = "track.customer.io"
 status = 200
 force = true
 
-# MAIN SITE PRERENDERED SPA
+# MAIN SITE - 404 HANDLING FOR PRERENDERED SPA
 # Keep indefinitely. This instructs any resource not found to serve index.html, allowing Angular router to serve a nice 404 page.
 # IMPORTANT: This rule must come last in the redirects list in production, otherwise it will override all other rules.
 # If we ever introduce non-prerendered pages on the main site, we will need to revisit this.
 
 [[redirects]]
 from = "https://typedb.com/*"
-to = "https://typedb.com/404.html"
+to = "https://typedb.com/404"
 status = 404
 
 [[redirects]]
 from = "https://ssr.typedb.com/*"
-to = "https://ssr.typedb.com/404.html"
+to = "https://ssr.typedb.com/404"
 status = 404
 
-# MAIN SITE CLIENT-SIDE SPA - ALL OTHER CONTEXTS
+# MAIN SITE - CLIENT-RENDERED SPA HANDLING
 # Keep indefinitely. This instructs any resource not found to serve the index page of the client-side SPA.
 
 [[redirects]]
