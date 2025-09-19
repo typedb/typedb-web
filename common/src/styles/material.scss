@@ -323,6 +323,7 @@ body {
     /* Form field */
     @include mat.form-field-overrides((
         container-text-size: 14px,
+        container-text-line-height: 1.5,
         container-text-tracking: var(--body-letter-spacing),
         subscript-text-tracking: var(--body-letter-spacing),
 
