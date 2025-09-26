@@ -228,6 +228,7 @@ body {
 
     .mat-mdc-chip-focus-overlay {
         opacity: 0 !important; /* overrides Angular Material styles */
+        backdrop-filter: blur(10px);
     }
 
     .mdc-evolution-chip-set .mdc-evolution-chip-set__chips {
@@ -807,4 +808,10 @@ body {
     mat-tree-node[mattreenodetoggle] {
         cursor: pointer;
     }
+
+
+    /* Autocomplete */
+    @include mat.autocomplete-overrides((
+        background-color: colors.$purple,
+    ));
 }
