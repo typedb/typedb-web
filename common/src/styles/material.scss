@@ -228,6 +228,7 @@ body {
 
     .mat-mdc-chip-focus-overlay {
         opacity: 0 !important; /* overrides Angular Material styles */
+        backdrop-filter: blur(10px);
     }
 
     .mdc-evolution-chip-set .mdc-evolution-chip-set__chips {
@@ -323,6 +324,7 @@ body {
     /* Form field */
     @include mat.form-field-overrides((
         container-text-size: 14px,
+        container-text-line-height: 1.5,
         container-text-tracking: var(--body-letter-spacing),
         subscript-text-tracking: var(--body-letter-spacing),
 
@@ -806,4 +808,10 @@ body {
     mat-tree-node[mattreenodetoggle] {
         cursor: pointer;
     }
+
+
+    /* Autocomplete */
+    @include mat.autocomplete-overrides((
+        background-color: colors.$purple,
+    ));
 }

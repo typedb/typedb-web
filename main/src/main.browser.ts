@@ -20,6 +20,7 @@ posthog.init(
         person_profiles: "always",
         capture_pageview: false,
         capture_pageleave: true,
+        disable_session_recording: true,
     }
 );
 
