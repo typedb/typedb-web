@@ -375,13 +375,13 @@ td-form .form-row {
 
 .admonitionblock {
     --important-color: #{colors.$secondary-yellow};
-    --important-background: #{rgba(colors.$secondary-yellow, 0.12)};
+    --important-background: #{rgba(colors.$secondary-yellow, 0.09)};
     --note-color: #{colors.$secondary-blue};
-    --note-background: #{rgba(colors.$secondary-blue, 0.12)};
+    --note-background: #{rgba(colors.$secondary-blue, 0.09)};
     --tip-color: #{colors.$green};
-    --tip-background: #{rgba(colors.$green, 0.12)};
+    --tip-background: #{rgba(colors.$green, 0.09)};
     --warning-color: #{colors.$red};
-    --warning-background: #{rgba(colors.$red, 0.12)};
+    --warning-background: #{rgba(colors.$red, 0.09)};
 
     position: relative;
     margin: 0.5rem 0 1.5rem;
