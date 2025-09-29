@@ -118,8 +118,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2(@angular/common@20.0.6(@angular/core@20.0.6(@angular/compiler@20.0.6)(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@20.0.6(@angular/compiler@20.0.6)(rxjs@7.8.1)(zone.js@0.15.1))(cookieconsent@3.1.1)(rxjs@7.8.1)
       posthog-js:
-        specifier: 1.187.2
-        version: 1.187.2
+        specifier: 1.268.8
+        version: 1.268.8
       prismjs:
         specifier: 1.29.0
         version: 1.29.0
@@ -2271,6 +2271,9 @@ packages:
   '@portabletext/types@2.0.14':
     resolution: {integrity: sha512-LnAanK3vkn30gMqtGv5QoR0QT3fioOgqh1SBIiquAbtBcoETxhdvCfEMnv5CAuFiZMFLyRIgfpjWyIIVA2yOjQ==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
+
+  '@posthog/core@1.2.2':
+    resolution: {integrity: sha512-f16Ozx6LIigRG+HsJdt+7kgSxZTHeX5f1JlCGKI1lXcvlZgfsCR338FuMI2QRYXGl+jg/vYFzGOTQBxl90lnBg==}
 
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -5925,8 +5928,16 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.187.2:
-    resolution: {integrity: sha512-IGKsZ7M4AYACm5I6gGGFrv9kR/MOnVYw11XFYCLk363n0nq+ghwenoW1jJVL9gZLGKiMsConUR8rG2DD2OMKyg==}
+  posthog-js@1.268.8:
+    resolution: {integrity: sha512-BJiKK4MlUvs7ybnQcy1KkwAz+SZkE/wRLotetIoank5kbqZs8FLbeyozFvmmgx4aoMmaVymYBSmYphYjYQeidw==}
+    peerDependencies:
+      '@rrweb/types': 2.0.0-alpha.17
+      rrweb-snapshot: 2.0.0-alpha.17
+    peerDependenciesMeta:
+      '@rrweb/types':
+        optional: true
+      rrweb-snapshot:
+        optional: true
 
   preact@10.27.1:
     resolution: {integrity: sha512-V79raXEWch/rbqoNc7nT9E4ep7lu+mI3+sBmfRD4i1M73R3WLYcCtdI0ibxGVf4eQL8ZIz2nFacqEC+rmnOORQ==}
@@ -9635,6 +9646,8 @@ snapshots:
       '@portabletext/types': 2.0.14
 
   '@portabletext/types@2.0.14': {}
+
+  '@posthog/core@1.2.2': {}
 
   '@protobufjs/aspromise@1.1.2': {}
 
@@ -13763,8 +13776,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.187.2:
+  posthog-js@1.268.8:
     dependencies:
+      '@posthog/core': 1.2.2
       core-js: 3.45.1
       fflate: 0.4.8
       preact: 10.27.1
