@@ -281,18 +281,18 @@ body {
             padding: 0;
         }
 
-        @include mat.form-field-overrides((
-            outlined-outline-color: colors.$secondary-mid-deep-grey,
-            outlined-hover-outline-color: colors.$secondary-light-grey,
-            outlined-focus-outline-color: colors.$secondary-light-grey,
-        ));
-
         @include mat.button-toggle-overrides((
             divider-color: colors.$secondary-mid-deep-grey,
             background-color: colors.$secondary-purple,
             selected-state-background-color: colors.$secondary-mid-deep-grey,
             selected-state-text-color: colors.$green,
-        ))
+        ));
+
+        @include mat.form-field-overrides((
+            outlined-outline-color: colors.$secondary-mid-deep-grey,
+            outlined-hover-outline-color: colors.$secondary-light-grey,
+            outlined-focus-outline-color: colors.$secondary-light-grey,
+        ));
     }
 
     .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -305,7 +305,6 @@ body {
     }
 
     /* Divider */
-
     @include mat.divider-overrides((
         color: colors.$light-purple,
     ));
@@ -404,6 +403,10 @@ body {
 
     mat-error p + p {
         margin-top: 8px;
+    }
+
+    textarea::placeholder {
+        font-style: italic;
     }
 
     /* Icon */
