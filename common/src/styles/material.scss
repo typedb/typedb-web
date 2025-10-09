@@ -194,6 +194,14 @@ body {
         background-color: var(--mat-standard-button-toggle-disabled-selected-state-background-color);
     }
 
+    .no-checkmark-toggle .mat-button-toggle-checked mat-pseudo-checkbox {
+        display: none !important;
+    }
+
+    .no-checkmark-toggle .mat-button-toggle-checked .mat-button-toggle-button:has(.mat-button-toggle-checkbox-wrapper) {
+        padding-left: 0;
+    }
+
     /* Checkbox */
     .mdc-checkbox__background {
         border-radius: 3px;
