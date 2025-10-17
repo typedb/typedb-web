@@ -41,9 +41,6 @@ detect_platform() {
         Linux)
             os="linux"
             ;;
-        MINGW* | MSYS* | CYGWIN*)
-            os="windows"
-            ;;
         *)
             print_error "Unsupported operating system: $(uname -s)"
             exit 1
@@ -87,7 +84,6 @@ install_typedb() {
     case "$os" in
         linux) ext="tar.gz";;
         mac) ext="zip";;
-        windows) ext="zip";;
     esac
 
     local ver
