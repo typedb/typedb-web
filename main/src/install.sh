@@ -84,7 +84,6 @@ install_typedb() {
     done
 
     local ext
-    echo $os
     case "$os" in
         linux) ext="tar.gz";;
         mac) ext="zip";;
