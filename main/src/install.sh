@@ -115,17 +115,17 @@ install_typedb() {
     # Download and extract
     print_info "Downloading TypeDB..."
     if command -v curl >/dev/null 2>&1; then
-        curl --fail -L "$download_url" -o "/tmp/typedb.tar.gz"
+        curl --fail -L "$download_url" -o "/tmp/typedb.${ext}"
     elif command -v wget >/dev/null 2>&1; then
-        wget "$download_url" -O "/tmp/typedb.tar.gz"
+        wget "$download_url" -O "/tmp/typedb.${ext}"
     else
         print_error "Neither curl nor wget found. Please install one of them."
         exit 1
     fi
 
     print_info "Extracting to $install_dir..."
-    tar -xzf "/tmp/typedb.tar.gz" -C "$install_dir" --strip-components=1
-    rm "/tmp/typedb.tar.gz"
+    tar -xzf "/tmp/typedb.${ext}" -C "$install_dir" --strip-components=1
+    rm "/tmp/typedb.${ext}"
 
     # Make executable
     chmod +x "$install_dir/typedb"
