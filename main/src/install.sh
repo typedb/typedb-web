@@ -41,6 +41,9 @@ detect_platform() {
         Linux)
             os="linux"
             ;;
+        MINGW* | MSYS* | CYGWIN*)
+            os="windows"
+            ;;
         *)
             print_error "Unsupported operating system: $(uname -s)"
             exit 1
@@ -84,6 +87,7 @@ install_typedb() {
     case "$os" in
         linux) ext="tar.gz";;
         mac) ext="zip";;
+        windows) ext="zip";;
     esac
 
     local ver
@@ -119,11 +123,22 @@ install_typedb() {
     fi
 
     print_info "Extracting to $install_dir..."
-    tar -xzf "/tmp/typedb.${ext}" -C "$install_dir" --strip-components=1
+    if [ "$os" == "windows" ]; then
+      unzip "/tmp/typedb.${ext}" -d "$install_dir"
+      folder=("$install_dir"/*)
+      mv "$folder"/* "$install_dir"
+      rm -rf "$folder"
+    else
+      tar -xzf "/tmp/typedb.${ext}" -C "$install_dir" --strip-components=1
+    fi
     rm "/tmp/typedb.${ext}"
 
     # Make executable
-    chmod +x "$install_dir/typedb"
+    if [ "$os" == "windows" ]; then
+      chmod +x "$install_dir/typedb.bat"
+    else
+      chmod +x "$install_dir/typedb"
+    fi
 
     # Add to PATH
     print_info "Adding to PATH..."
