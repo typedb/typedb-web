@@ -41,6 +41,9 @@ detect_platform() {
         Linux)
             os="linux"
             ;;
+        MINGW* | MSYS* | CYGWIN*)
+            os="windows"
+            ;;
         *)
             print_error "Unsupported operating system: $(uname -s)"
             exit 1
@@ -70,10 +73,37 @@ install_typedb() {
     local os=$(echo $platform | cut -d'-' -f1)
     local arch=$(echo $platform | cut -d'-' -f2)
 
-    print_status "Installing TypeDB for $os ($arch)..."
+    while [ $# -ge 1 ]; do
+        case "$1" in
+            -v|--version)
+                VERSION="$2"
+                shift
+                ;;
+        esac
+        shift
+    done
+
+    local ext
+    case "$os" in
+        linux) ext="tar.gz";;
+        mac) ext="zip";;
+        windows) ext="zip";;
+    esac
+
+    local ver
+    local item
+    if [ "$VERSION" != "" ]; then
+        ver="$VERSION"
+        item="typedb-all-${platform}-${ver}.${ext}"
+    else
+        ver="latest"
+        item="download"
+    fi
+
+    print_status "Installing TypeDB ${ver} for $os ($arch)..."
 
     # Construct download URL
-    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/latest/download"
+    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/${ver}/${item}"
 
     # Set installation directory
     local install_dir="$HOME/.typedb"
@@ -84,20 +114,31 @@ install_typedb() {
     # Download and extract
     print_info "Downloading TypeDB..."
     if command -v curl >/dev/null 2>&1; then
-        curl -L "$download_url" -o "/tmp/typedb.tar.gz"
+        curl --fail -L "$download_url" -o "/tmp/typedb.${ext}"
     elif command -v wget >/dev/null 2>&1; then
-        wget "$download_url" -O "/tmp/typedb.tar.gz"
+        wget "$download_url" -O "/tmp/typedb.${ext}"
     else
         print_error "Neither curl nor wget found. Please install one of them."
         exit 1
     fi
 
     print_info "Extracting to $install_dir..."
-    tar -xzf "/tmp/typedb.tar.gz" -C "$install_dir" --strip-components=1
-    rm "/tmp/typedb.tar.gz"
+    if [ "$os" == "windows" ]; then
+      unzip "/tmp/typedb.${ext}" -d "$install_dir"
+      folder=("$install_dir"/*)
+      mv "$folder"/* "$install_dir"
+      rm -rf "$folder"
+    else
+      tar -xzf "/tmp/typedb.${ext}" -C "$install_dir" --strip-components=1
+    fi
+    rm "/tmp/typedb.${ext}"
 
     # Make executable
-    chmod +x "$install_dir/typedb"
+    if [ "$os" == "windows" ]; then
+      chmod +x "$install_dir/typedb.bat"
+    else
+      chmod +x "$install_dir/typedb"
+    fi
 
     # Add to PATH
     print_info "Adding to PATH..."
@@ -134,6 +175,9 @@ install_typedb() {
         echo "" >> "$shell_config"
         echo "# TypeDB PATH" >> "$shell_config"
         echo "export PATH=\"\$HOME/.typedb:\$PATH\"" >> "$shell_config"
+        if [ "$os" == "windows" ]; then
+          echo "alias typedb='\"\$HOME/.typedb/typedb.bat\"'" >> "$shell_config"
+        fi
 
         print_info "Added TypeDB to PATH in $shell_config"
     fi
@@ -153,4 +197,4 @@ install_typedb() {
 }
 
 # Run installation
-install_typedb
+install_typedb $@
