@@ -176,7 +176,7 @@ install_typedb() {
         echo "# TypeDB PATH" >> "$shell_config"
         echo "export PATH=\"\$HOME/.typedb:\$PATH\"" >> "$shell_config"
         if [ "$os" == "windows" ]; then
-          echo "alias typedb='\"$HOME/typedb.bat\"'" >> "$shell_config"
+          echo "alias typedb='\"\$HOME/typedb.bat\"'" >> "$shell_config"
         fi
 
         print_info "Added TypeDB to PATH in $shell_config"
