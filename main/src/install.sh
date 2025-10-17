@@ -41,6 +41,9 @@ detect_platform() {
         Linux)
             os="linux"
             ;;
+        MINGW* | MSYS* | CYGWIN*)
+            os="windows"
+            ;;
         *)
             print_error "Unsupported operating system: $(uname -s)"
             exit 1
@@ -70,10 +73,38 @@ install_typedb() {
     local os=$(echo $platform | cut -d'-' -f1)
     local arch=$(echo $platform | cut -d'-' -f2)
 
-    print_status "Installing TypeDB for $os ($arch)..."
+    while [ $# -ge 1 ]; do
+        case "$1" in
+            -v|--version)
+                VERSION="$2"
+                shift
+                ;;
+        esac
+        shift
+    done
+
+    local ext
+    echo $os
+    case "$os" in
+        linux) ext="tar.gz";;
+        mac) ext="zip";;
+        windows) ext="zip";;
+    esac
+
+    local ver
+    local item
+    if [ "$VERSION" != "" ]; then
+        ver="$VERSION"
+        item="typedb-all-${platform}-${ver}.${ext}"
+    else
+        ver="latest"
+        item="download"
+    fi
+
+    print_status "Installing TypeDB ${ver} for $os ($arch)..."
 
     # Construct download URL
-    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/latest/download"
+    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/${ver}/${item}"
 
     # Set installation directory
     local install_dir="$HOME/.typedb"
@@ -84,7 +115,7 @@ install_typedb() {
     # Download and extract
     print_info "Downloading TypeDB..."
     if command -v curl >/dev/null 2>&1; then
-        curl -L "$download_url" -o "/tmp/typedb.tar.gz"
+        curl --fail -L "$download_url" -o "/tmp/typedb.tar.gz"
     elif command -v wget >/dev/null 2>&1; then
         wget "$download_url" -O "/tmp/typedb.tar.gz"
     else
@@ -153,4 +184,4 @@ install_typedb() {
 }
 
 # Run installation
-install_typedb
+install_typedb $@
