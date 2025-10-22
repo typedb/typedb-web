@@ -123,9 +123,9 @@ install_typedb() {
     fi
 
     print_info "Extracting to $install_dir..."
-    if [ "$os" == "windows" ]; then
+    if [ "$os" = "windows" ]; then
       unzip "/tmp/typedb.${ext}" -d "$install_dir"
-      folder=("$install_dir"/*)
+      folder=$(echo "$install_dir"/*)
       mv "$folder"/* "$install_dir"
       rm -rf "$folder"
     else
@@ -134,7 +134,7 @@ install_typedb() {
     rm "/tmp/typedb.${ext}"
 
     # Make executable
-    if [ "$os" == "windows" ]; then
+    if [ "$os" = "windows" ]; then
       chmod +x "$install_dir/typedb.bat"
     else
       chmod +x "$install_dir/typedb"
@@ -175,7 +175,7 @@ install_typedb() {
         echo "" >> "$shell_config"
         echo "# TypeDB PATH" >> "$shell_config"
         echo "export PATH=\"\$HOME/.typedb:\$PATH\"" >> "$shell_config"
-        if [ "$os" == "windows" ]; then
+        if [ "$os" = "windows" ]; then
           echo "alias typedb='\"\$HOME/.typedb/typedb.bat\"'" >> "$shell_config"
         fi
 
