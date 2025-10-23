@@ -5,6 +5,8 @@ ignore = "/bin/false"
 [build.processing.html]
 pretty_urls = true
 
+environment = { NODE_OPTIONS = "--max-old-space-size=4096" }
+
 [context.production]
 command = "ENV=production pnpm --filter typedb-web-main build && pnpm --filter typedb-web-main build-sitemap"
 publish = "main/dist/main/browser"
