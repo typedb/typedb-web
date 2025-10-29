@@ -6,5 +6,8 @@ export default defineCliConfig({
         projectId: config.projectId,
         dataset: config.dataset
     },
+    deployment: {
+        appId: "619a0e1398759b9641295962",
+    },
     studioHost: "typedb",
 });
