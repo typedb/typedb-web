@@ -6,12 +6,15 @@
     @if (page.benefitsSection1) {
       <td-illustration-section [data]="page.benefitsSection1"/>
     }
+    @if (page.hotTopicsSection) {
+      <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>
+    }
     @if (page.benefitsSection2) {
       <td-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
     }
     @if (page.benefitsSection3) {
       <td-section-core [section]="page.benefitsSection3"/>
-      <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection3.keyPoints" />
+      <td-illustration-section [data]="page.benefitsSection3" flexDirection="row"/>
     }
     @if (page.queryLanguageComparisonSection) {
       <section class="td-inverted-colors-section">
@@ -22,8 +25,8 @@
     @if (page.benefitsSection4) {
       <td-illustration-section [data]="page.benefitsSection4" flexDirection="row-reverse"/>
     }
-    @if (page.studioSection) {
-      <td-illustration-section [data]="page.studioSection" flexDirection="column"/>
+    @if (page.faqsSection) {
+      <td-section-core [section]="page.faqsSection"/>
     }
   }
 </article>

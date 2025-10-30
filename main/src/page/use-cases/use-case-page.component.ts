@@ -2,6 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { map } from "rxjs";
 import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCasePageSchemaName } from "typedb-web-schema";
+import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
 import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
@@ -15,7 +16,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe, KeyPointPanels2x2Component, PolyglotComparisonComponent, SectionCoreComponent,
-        IllustrationSectionComponent
+        IllustrationSectionComponent, HotTopicsComponent
     ]
 })
 export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance> {
