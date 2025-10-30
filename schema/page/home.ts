@@ -4,8 +4,10 @@ import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection
 import { IntegrationsGridSection, integrationsGridSectionSchemaName, SanityIntegrationsGridSection } from "../component/integrations-grid";
 import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
-    SanitySectionCore, SanityLinkPanelsSection, SectionCore, SanityIllustrationSection,
-    IllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection, titleBodyIllustrationSectionSchemaName,
+    SanitySectionCore, SectionCore, SanityIllustrationSection,
+    IllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection,
+    titleBodyIllustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchema, hotTopicsSectionSchemaName,
+
 } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule,
@@ -63,10 +65,6 @@ export interface SanityHomePage extends SanityPage {
     [sections.resources.id]: SanityResourceSection;
     [sections.drivers.id]: SanityDriversSection;
     conclusionSection: SanityConclusionSection;
-}
-
-interface SanityHotTopicsSection extends SanitySectionCore {
-    hotTopics: SanityReference<SanityResource>[];
 }
 
 interface SanitySocialValidationSection extends SanityTitleWithHighlights, SanityVisibleToggle {
@@ -142,7 +140,7 @@ export class HomePage extends Page {
     }
 }
 
-class HotTopicsSection extends SectionCore {
+export class HotTopicsSection extends SectionCore {
     readonly hotTopics: ResourceLink[];
 
     constructor(props: PropsOf<HotTopicsSection>) {
@@ -222,11 +220,6 @@ const sectionSchemas = [
         illustrationFieldOptional,
         isVisibleField,
     ]),
-    sectionSchema("hotTopics", [
-        titleFieldWithHighlights,
-        Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
-        isVisibleField,
-    ]),
     socialValidationSectionSchema,
     sectionSchema("community", [...titleBodyActionsFields, socialMediaLinksField, isVisibleField]),
     sectionSchema("benefits4", [...titleBodyActionsFields, keyPointsField(), isVisibleField]),
@@ -237,13 +230,6 @@ const introSectionField = defineField({
     name: sections.intro.id,
     title: `${sections.intro.title} Section`,
     type: sectionSchemaName("intro"),
-    options: collapsibleOptions,
-});
-
-const hotTopicsSectionField = defineField({
-    name: sections.hotTopics.id,
-    title: `${sections.hotTopics.title} Section`,
-    type: sectionSchemaName("hotTopics"),
     options: collapsibleOptions,
 });
 
@@ -337,6 +323,13 @@ const conclusionSectionField = defineField({
     type: conclusionSectionSchemaName,
     options: collapsibleOptions,
     validation: requiredRule,
+});
+
+export const hotTopicsSectionField = defineField({
+    name: "hotTopicsSection",
+    title: `Hot Topics Section`,
+    type: hotTopicsSectionSchemaName,
+    options: collapsibleOptions,
 });
 
 const homePageSchema = defineType({

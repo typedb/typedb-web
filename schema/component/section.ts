@@ -2,10 +2,12 @@ import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
 import {
     isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
-    titleBodyActionsFields,
+    titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
+import { ResourceLink } from "../resource/base";
+import { SanityResource } from "../resource/sanity";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleAndBody } from "../text";
 import { PropsOf } from "../util";
@@ -28,6 +30,10 @@ export interface SanitySimpleLinkPanelsSection extends SanitySectionCore {
 
 export interface SanityIllustrationSection extends SanitySectionCore {
     illustration: SanityReference<SanityIllustration>;
+}
+
+export interface SanityHotTopicsSection extends SanitySectionCore {
+    hotTopics: SanityReference<SanityResource>[];
 }
 
 export class SectionCore implements Partial<BodyTextField> {
@@ -206,7 +212,20 @@ const titleBodyIllustrationSectionSchema = defineType({
     ],
 });
 
+export const hotTopicsSectionSchemaName = "hotTopicsSection";
+
+export const hotTopicsSectionSchema = defineType({
+    name: hotTopicsSectionSchemaName,
+    title: "Hot Topics Section",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
+        isVisibleField,
+    ],
+});
+
 export const pageSectionSchemas = [
     coreSectionSchema, resourceSectionSchema, titleBodyPanelSectionSchema, linkPanelsSectionSchema,
-    simpleLinkPanelsSectionSchema, titleBodyIllustrationSectionSchema,
+    simpleLinkPanelsSectionSchema, titleBodyIllustrationSectionSchema, hotTopicsSectionSchema,
 ];
