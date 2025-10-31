@@ -101,7 +101,7 @@ export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
     type WordpressPosts, type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
     type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
-    articleFromApi,
+    articleFromWPApi as articleFromApi,
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";
 export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";

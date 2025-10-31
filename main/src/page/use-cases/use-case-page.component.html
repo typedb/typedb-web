@@ -4,7 +4,7 @@
       <td-illustration-section level="h1" [data]="page.introSection" [noWindowHeader]="true" textAlign="left"/>
     }
     @if (page.benefitsSection1) {
-      <td-illustration-section [data]="page.benefitsSection1"/>
+      <td-illustration-section [data]="page.benefitsSection1" class="narrow-section"/>
       <td-link-panels class="narrow-section" [panels]="page.benefitsSection1.panels" sectionId="key-points-section" />
     }
     @if (page.hotTopicsSection) {
@@ -23,7 +23,7 @@
       </section>
     }
     @if (page.benefitsSection4) {
-      <td-illustration-section [data]="page.benefitsSection4" flexDirection="column" textAlign="left"/>
+      <td-illustration-section [data]="page.benefitsSection4" flexDirection="column" textAlign="left" class="narrow-section"/>
     }
     @if (page.faqsSection) {
       <td-section-core [section]="page.faqsSection" textAlign="left"/>
