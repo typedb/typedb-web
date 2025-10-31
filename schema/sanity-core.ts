@@ -29,6 +29,13 @@ export class SanityDataset {
         throw new Error(`Failed to resolve reference`);
     }
 
+    tryResolveRef<T extends SanityDocument>(ref: SanityReference<T> | null | undefined): T | null {
+        if (!ref) return null;
+        const referencedObject = this._byId[`drafts.${ref._ref}`] || this._byId[ref._ref];
+        if (referencedObject != null) return referencedObject as T;
+        return null;
+    }
+
     resolveImageRef(ref: SanityReference<SanityImageRef>) {
         const imageRef = this.resolveRef(ref);
         return this.resolveRef(imageRef.assetRef.asset);

@@ -19,10 +19,12 @@ export class IllustrationSectionComponent {
     @Input() level: "h1" | "h2" = "h2";
     @Input() flexDirection: "row" | "row-reverse" | "column" = "row";
     @Input() isIntroSection = false;
+    @Input() noWindowHeader = false;
+    @Input() textAlign: "left" | "center" = "center";
 
     @HostBinding("class")
     get rootClasses(): string {
-        return `section ${this.isIntroSection ? "page-intro-section" : ""} td-${this.flexDirection}`;
+        return `section ${this.isIntroSection ? "page-intro-section" : ""} td-${this.flexDirection} text-align-${this.textAlign}`;
     }
 
     @HostBinding("class.has-code-snippet-illustration")
@@ -32,6 +34,6 @@ export class IllustrationSectionComponent {
 
     @HostBinding("class.has-window-header")
     get hasWindowHeader() {
-        return this.data.illustration instanceof ImageIllustration;
+        return this.data.illustration instanceof ImageIllustration && !this.noWindowHeader;
     }
 }

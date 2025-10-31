@@ -17,11 +17,12 @@ export class SectionCoreComponent {
     @Input() level: "h1" | "h2" | "h3" = "h2";
     @Input() noBody?: boolean;
     @Input() noSectionClass?: boolean;
+    @Input() textAlign: "left" | "center" = "center";
     themeColorHex = "#02DAC9";
 
     @HostBinding("class")
     get clazz(): string {
-        return this.noSectionClass ? this.levelClass : `section ${this.levelClass}`;
+        return this.noSectionClass ? this.levelClass : `section ${this.levelClass} text-align-${this.textAlign}`;
     }
 
     private get levelClass(): string {

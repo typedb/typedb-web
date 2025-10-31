@@ -4,6 +4,14 @@
 
 :host {
     display: block;
+
+    &.text-align-left td-heading-with-highlights, &.text-align-left td-rich-text {
+        text-align: left;
+    }
+
+    &.text-align-center td-heading-with-highlights, &.text-align-center td-rich-text {
+        text-align: center;
+    }
 }
 
 .td-root {

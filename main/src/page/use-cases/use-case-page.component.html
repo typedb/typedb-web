@@ -1,17 +1,20 @@
 <article>
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" class="td-intro"/>
+      <td-illustration-section level="h1" [data]="page.introSection" [noWindowHeader]="true" textAlign="left"/>
     }
     @if (page.benefitsSection1) {
-      <td-illustration-section [data]="page.benefitsSection1"/>
+      <td-illustration-section [data]="page.benefitsSection1" class="narrow-section"/>
+      <td-link-panels class="narrow-section" [panels]="page.benefitsSection1.panels" sectionId="key-points-section" />
+    }
+    @if (page.hotTopicsSection) {
+      <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics"/>
     }
     @if (page.benefitsSection2) {
-      <td-illustration-section [data]="page.benefitsSection2" flexDirection="row-reverse"/>
+      <td-illustration-section [data]="page.benefitsSection2" flexDirection="row"/>
     }
     @if (page.benefitsSection3) {
-      <td-section-core [section]="page.benefitsSection3"/>
-      <td-key-point-panels-2x2 [keyPoints]="page.benefitsSection3.keyPoints" />
+      <td-illustration-section [data]="page.benefitsSection3" flexDirection="row-reverse"/>
     }
     @if (page.queryLanguageComparisonSection) {
       <section class="td-inverted-colors-section">
@@ -20,10 +23,10 @@
       </section>
     }
     @if (page.benefitsSection4) {
-      <td-illustration-section [data]="page.benefitsSection4" flexDirection="row-reverse"/>
+      <td-illustration-section [data]="page.benefitsSection4" flexDirection="column" textAlign="left" class="narrow-section"/>
     }
-    @if (page.studioSection) {
-      <td-illustration-section [data]="page.studioSection" flexDirection="column"/>
+    @if (page.faqsSection) {
+      <td-section-core [section]="page.faqsSection" textAlign="left"/>
     }
   }
 </article>

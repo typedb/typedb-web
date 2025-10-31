@@ -38,6 +38,10 @@
             max-height: 338px;
         }
     }
+
+    &.text-align-left .td-text {
+        text-align: left;
+    }
 }
 
 @media (min-width: media.$min-width-tablet) {

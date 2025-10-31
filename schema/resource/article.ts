@@ -9,18 +9,9 @@ import { PropsOf } from "../util";
 import { SiteResource, resourceCommonFields, ResourceLink, resourcePropsFromSanity } from "./base";
 import { blogCategories, BlogCategoryID } from "./blog-category";
 import {
-    applicationArticleSchemaName,
-    blogPostBackupHeroImageURL,
-    BlogPostLevel,
-    blogPostSchemaName,
-    fundamentalArticleSchemaName,
-    isApplicationArticle,
-    isBlogPost,
-    isFundamentalArticle,
-    SanityApplicationArticle,
-    SanityArticle,
-    SanityBlogPost,
-    SanityFundamentalArticle,
+    applicationArticleSchemaName, blogPostBackupHeroImageURL, BlogPostLevel, blogPostSchemaName,
+    fundamentalArticleSchemaName, isApplicationArticle, isBlogPost, isFundamentalArticle,
+    SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle,
 } from "./sanity";
 
 export interface WordpressPosts {
@@ -80,11 +71,12 @@ export abstract class Article extends SiteResource {
     abstract pageTitle(): string;
 }
 
-function articlePropsFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
+function articlePropsFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
     return {
         ...resourcePropsFromSanity(data, db),
         contentHtml: wordpressPost.content,
         canonicalUrl: data.canonicalUrl,
+        imageURL: data.image && db.resolveRef(data.image.asset).url,
     };
 }
 
@@ -94,7 +86,7 @@ export class FundamentalArticle extends Article {
         db: SanityDataset,
         wordpressPost: WordpressPost
     ): FundamentalArticle {
-        return new FundamentalArticle(articlePropsFromApi(data, db, wordpressPost));
+        return new FundamentalArticle(articlePropsFromWPApi(data, db, wordpressPost));
     }
 
     pageTitle(): string {
@@ -108,7 +100,7 @@ export class ApplicationArticle extends Article {
         db: SanityDataset,
         wordpressPost: WordpressPost
     ): ApplicationArticle {
-        return new ApplicationArticle(articlePropsFromApi(data, db, wordpressPost));
+        return new ApplicationArticle(articlePropsFromWPApi(data, db, wordpressPost));
     }
 
     pageTitle(): string {
@@ -130,14 +122,13 @@ export class BlogPost extends Article {
         this.date = props.date;
     }
 
-    static fromApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
+    static fromSanityAndWPApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
         return new BlogPost(
-            Object.assign(articlePropsFromApi(data, db, wordpressPost), {
+            Object.assign(articlePropsFromWPApi(data, db, wordpressPost), {
                 level: data.level,
                 author: Person.fromSanity(db.resolveRef(data.author), db),
                 categories: data.categories,
                 date: new Date(data.date),
-                imageURL: data.image && db.resolveRef(data.image.asset).url,
             })
         );
     }
@@ -160,10 +151,10 @@ export class BlogPost extends Article {
     }
 }
 
-export function articleFromApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): Article {
+export function articleFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): Article {
     if (isFundamentalArticle(data)) return FundamentalArticle.fromApi(data, db, wordpressPost);
     else if (isApplicationArticle(data)) return ApplicationArticle.fromApi(data, db, wordpressPost);
-    else if (isBlogPost(data)) return BlogPost.fromApi(data, db, wordpressPost);
+    else if (isBlogPost(data)) return BlogPost.fromSanityAndWPApi(data, db, wordpressPost);
     else throw "Unreachable code";
 }
 
