@@ -60,6 +60,13 @@ export class Link {
         return Link.fromSanityLink(db.resolveRef(ref));
     }
 
+    static tryFromSanityLinkRef(ref: SanityReference<SanityLink> | null | undefined, db: SanityDataset) {
+        if (!ref) return null;
+        const linkData = db.tryResolveRef(ref);
+        if (!linkData) return null;
+        return Link.fromSanityLink(linkData);
+    }
+
     isForExternalDomain(): boolean {
         return this.destination.startsWith("http");
     }
@@ -78,6 +85,13 @@ export class TextLink extends Link {
     static fromSanityTextLink(data: SanityTextLink, db: SanityDataset): TextLink | undefined {
         const link = Link.fromSanityLinkRef(data.link, db);
         return link && new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab, comingSoon: data.comingSoon });
+    }
+
+    static tryFromSanityTextLink(data: SanityTextLink | null | undefined, db: SanityDataset): TextLink | undefined {
+        if (!data) return undefined;
+        const link = Link.tryFromSanityLinkRef(data.link, db);
+        if (!link) return undefined;
+        return new TextLink({ text: data.text, destination: link.destination, type: link.type, opensNewTab: link.opensNewTab, comingSoon: data.comingSoon });
     }
 }
 

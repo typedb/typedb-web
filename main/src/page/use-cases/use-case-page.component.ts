@@ -8,6 +8,8 @@ import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison
 import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
+import { SimpleLinkPanelsComponent } from "src/framework/link-panels/simple/simple-link-panels.component";
+import { LinkPanelsComponent } from "src/framework/link-panels/link-panels.component";
 
 @Component({
     selector: "td-use-case-page",
@@ -15,8 +17,8 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./use-case-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        AsyncPipe, KeyPointPanels2x2Component, PolyglotComparisonComponent, SectionCoreComponent,
-        IllustrationSectionComponent, HotTopicsComponent
+        AsyncPipe, PolyglotComparisonComponent, SectionCoreComponent,
+        IllustrationSectionComponent, HotTopicsComponent, LinkPanelsComponent
     ]
 })
 export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance> {
@@ -32,6 +34,6 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
 
     protected override onPageReady(page: UseCasePageInstance): void {
         super.onPageReady(page);
-        this.title.setTitle(`TypeDB for ${page.title}`);
+        this.title.setTitle(`TypeDB in ${page.title}`);
     }
 }

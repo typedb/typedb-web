@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
-import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, titleBodyIllustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchemaName } from "../component/section";
+import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, titleBodyIllustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchemaName, SanityLinkPanelsSection, LinkPanelsSection, linkPanelsSectionSchemaName } from "../component/section";
 import { SectionCore } from "../component/section";
 import {
     collapsibleOptions, routeField, titleField,
@@ -32,7 +32,7 @@ export const useCasePageSchemaName = "useCasePage";
 
 export interface SanityUseCasePageTemplate extends SanityPage {
     [sections.intro.id]: SanityIllustrationSection;
-    [sections.benefits1.id]: SanityKeyPointsSection;
+    [sections.benefits1.id]: SanityLinkPanelsSection;
     [sections.hotTopics.id]: SanityHotTopicsSection;
     [sections.benefits2.id]: SanityIllustrationSection;
     [sections.benefits3.id]: SanityIllustrationSection;
@@ -48,7 +48,7 @@ export interface SanityUseCasePageInstance extends SanityUseCasePageTemplate {
 
 export class UseCasePageTemplate extends Page {
     readonly [sections.intro.id]?: IllustrationSection;
-    readonly [sections.benefits1.id]?: KeyPointsSection;
+    readonly [sections.benefits1.id]?: LinkPanelsSection;
     readonly [sections.hotTopics.id]?: HotTopicsSection;
     readonly [sections.benefits2.id]?: IllustrationSection;
     readonly [sections.benefits3.id]?: IllustrationSection;
@@ -62,7 +62,7 @@ export class UseCasePageTemplate extends Page {
             ? IllustrationSection.fromSanity(data[sections.intro.id], db)
             : undefined;
         this[sections.benefits1.id] = data[sections.benefits1.id].isVisible
-            ? KeyPointsSection.fromSanity(data[sections.benefits1.id], db)
+            ? LinkPanelsSection.fromSanity(data[sections.benefits1.id], db)
             : undefined;
         this[sections.hotTopics.id] = data[sections.hotTopics.id].isVisible
             ? HotTopicsSection.fromSanity(data[sections.hotTopics.id], db)
@@ -131,7 +131,7 @@ const introSectionField = defineField({
 const benefitsSection1Field = defineField({
     name: sections.benefits1.id,
     title: `${sections.benefits1.title} Section`,
-    type: keyPointsSectionSchemaName,
+    type: linkPanelsSectionSchemaName,
     options: collapsibleOptions,
 });
 
