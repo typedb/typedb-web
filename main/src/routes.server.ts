@@ -137,8 +137,8 @@ export const getDynamicRoutes = () => {
                                 return await fetchApplicationArticleSlugs();
                             case 'fundamentalArticle':
                                 return await fetchFundamentalArticleSlugs();
-                            // case "useCasePage":
-                            //     return await fetchUseCasePageInstanceSlugs();
+                            case "useCasePage":
+                                return await fetchUseCasePageInstanceSlugs();
                             default:
                                 console.warn(`No slug fetcher implemented for schema: ${JSON.stringify(schema)}`);
                                 return [];
