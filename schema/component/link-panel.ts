@@ -34,7 +34,7 @@ export class LinkPanel implements Partial<BodyTextField> {
             body: data.body,
             iconName: data.iconName,
             iconVariant: data.iconVariant,
-            link: data.link ? TextLink.fromSanityTextLink(data.link, db) : undefined,
+            link: TextLink.tryFromSanityTextLink(data.link, db),
         });
     }
 }

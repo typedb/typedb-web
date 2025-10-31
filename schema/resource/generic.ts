@@ -1,6 +1,6 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { linkFieldOptional, nameField, nameFieldName, requiredRule, titleField } from "../common-fields";
+import { imageFieldOptional, linkFieldOptional, nameField, nameFieldName, requiredRule, titleField } from "../common-fields";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
@@ -50,6 +50,7 @@ export const genericResourceSchema = defineType({
             type: "string",
             validation: requiredRule,
         }),
+        imageFieldOptional,
     ],
     preview: {
         select: { name: nameFieldName, linkDestination: "link.destination.current", linkRoute: "link.route.current" },

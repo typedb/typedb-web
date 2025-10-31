@@ -193,7 +193,7 @@ export class ContentService {
                             ],
                     )
                     .filter(([_sanityPost, wpPost]) => !!wpPost)
-                    .map(([sanityPost, wpPost]) => BlogPost.fromApi(sanityPost, data, wpPost));
+                    .map(([sanityPost, wpPost]) => BlogPost.fromSanityAndWPApi(sanityPost, data, wpPost));
             }),
         );
     }
