@@ -18,6 +18,9 @@
           <div class="window-title">TypeDB Studio</div>
         </div>
       }
+      @if (hasPeekingBot) {
+        <img class="tp-logo" src="assets/logo/typedb-bot.svg" alt="TypeDB"/>
+      }
 
       <td-illustration [class]="hasCodeSnippetIllustration ? '' : ''" [illustration]="data.illustration" />
     </div>
