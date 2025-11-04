@@ -63,6 +63,11 @@
         top: -55px;
         left: 24px;
         z-index: -1;
+        transition: opacity 100ms;
+
+        &:hover {
+            opacity: 0.03;
+        }
     }
 }
 
