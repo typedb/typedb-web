@@ -54,6 +54,18 @@
     }
 }
 
+.illustration-container {
+    position: relative;
+
+    img.tp-logo {
+        position: absolute;
+        width: 100px;
+        top: -55px;
+        left: 24px;
+        z-index: -1;
+    }
+}
+
 :host.has-window-header {
 
     .illustration-container {
@@ -74,10 +86,10 @@
     .window-header {
         display: flex;
         align-items: center;
-        padding: 6px 16px;
+        padding: 4px 12px;
         background: linear-gradient(180deg, #383838 0%, #282828 100%);
         border-bottom: 1px solid #1a1a1a;
-        min-height: 32px;
+        min-height: 24px;
         position: relative;
     }
 
@@ -86,25 +98,25 @@
             border-color: #e1e5e9;
 
             .window-header {
-                background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+                background: linear-gradient(180deg, #d8d9da 0%, #c9cccf 100%);
                 border-bottom: 1px solid #dee2e6;
             }
 
             .window-title {
-                color: #495057;
+                color: #394047;
             }
         }
     }
 
     .traffic-lights {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         align-items: center;
     }
 
     .traffic-light {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         border: 0.5px solid rgba(0, 0, 0, 0.1);
     }
@@ -125,7 +137,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
         color: #e9ecef;
         white-space: nowrap;

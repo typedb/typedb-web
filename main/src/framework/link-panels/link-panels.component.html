@@ -1,5 +1,5 @@
 @for (panel of panels; track panel) {
-  <a class="lc-card lc-icon-card card hoverable" [tdLink]="panel.link" [attr.id]="panelID(panel)">
+  <a class="lc-card lc-icon-card hoverable" [tdLink]="panel.link" [attr.id]="panelID(panel)">
     @if (panel.iconName) {<div><i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i></div>}
     <div class="lc-flex-container">
       <h3 class="lc-title">{{ panel.title }}</h3>

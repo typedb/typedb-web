@@ -21,7 +21,6 @@
     align-items: flex-start;
     position: relative;
     gap: 12px;
-    @include colors.light-source-gradient(colors.$purple, colors.$black-purple);
 
     &.hoverable:hover {
         @include colors.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
