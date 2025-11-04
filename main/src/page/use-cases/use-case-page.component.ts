@@ -181,39 +181,39 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
         // The effective width of one diamond is gridSpacing (horizontal) * 2 * COS30
         // The effective height of one diamond is gridSpacing (vertical) * 2 * SIN30
         
-        const segmentLength = gridSpacing; // Length of one grid line segment
-        const horizontalStep = segmentLength * COS30; // Horizontal component of a 30-deg segment
-        const verticalStep = segmentLength * SIN30;   // Vertical component of a 30-deg segment
+        // const segmentLength = gridSpacing; // Length of one grid line segment
+        // const horizontalStep = segmentLength * COS30; // Horizontal component of a 30-deg segment
+        // const verticalStep = segmentLength * SIN30;   // Vertical component of a 30-deg segment
         
         this.ctx.beginPath();
         this.ctx.strokeStyle = gridColor;
         this.ctx.lineWidth = 1;
 
         // Draw lines from bottom-left to top-right
-        for (let x = -this.canvas.width; x < this.canvas.width * 2; x += 2 * horizontalStep) {
-          this.ctx.moveTo(x, 0);
-          this.ctx.lineTo(x + this.canvas.height / (2 * verticalStep) * (2 * horizontalStep), this.canvas.height);
-        }
+        // for (let x = -this.canvas.width; x < this.canvas.width * 2; x += 2 * horizontalStep) {
+        //   this.ctx.moveTo(x, 0);
+        //   this.ctx.lineTo(x + this.canvas.height / (2 * verticalStep) * (2 * horizontalStep), this.canvas.height);
+        // }
 
         // Draw lines from top-left to bottom-right
-        for (let x = -this.canvas.width; x < this.canvas.width * 2; x += 2 * horizontalStep) {
-          this.ctx.moveTo(x, this.canvas.height);
-          this.ctx.lineTo(x + this.canvas.height / (2 * verticalStep) * (2 * horizontalStep), 0);
-        }
+        // for (let x = -this.canvas.width; x < this.canvas.width * 2; x += 2 * horizontalStep) {
+        //   this.ctx.moveTo(x, this.canvas.height);
+        //   this.ctx.lineTo(x + this.canvas.height / (2 * verticalStep) * (2 * horizontalStep), 0);
+        // }
 
         // Draw vertical lines (these are truly vertical in screen space in a standard iso projection)
         // Adjust start/end points to cover the entire canvas, and respect the staggered grid
-        const effectiveVerticalOffset = verticalStep * 2; // Vertical distance between intersection rows
-        const effectiveHorizontalOffset = horizontalStep * 2; // Horizontal distance between vertical lines (at same y-level)
+        // const effectiveVerticalOffset = verticalStep * 2; // Vertical distance between intersection rows
+        // const effectiveHorizontalOffset = horizontalStep * 2; // Horizontal distance between vertical lines (at same y-level)
 
-        for (let x = -this.canvas.width; x < this.canvas.width * 2; x += effectiveHorizontalOffset) {
-            for (let y = -this.canvas.height; y < this.canvas.height * 2; y += effectiveVerticalOffset) {
-                // Apply a horizontal stagger for every other row of 'vertical' lines
-                const startX = x + (Math.floor(y / effectiveVerticalOffset) % 2 === 0 ? horizontalStep : 0);
-                this.ctx.moveTo(startX, y);
-                this.ctx.lineTo(startX, y + effectiveVerticalOffset);
-            }
-        }
+        // for (let x = -this.canvas.width; x < this.canvas.width * 2; x += effectiveHorizontalOffset) {
+        //     for (let y = -this.canvas.height; y < this.canvas.height * 2; y += effectiveVerticalOffset) {
+        //         // Apply a horizontal stagger for every other row of 'vertical' lines
+        //         const startX = x + (Math.floor(y / effectiveVerticalOffset) % 2 === 0 ? horizontalStep : 0);
+        //         this.ctx.moveTo(startX, y);
+        //         this.ctx.lineTo(startX, y + effectiveVerticalOffset);
+        //     }
+        // }
         
         this.ctx.stroke();
         // ---------------------------------

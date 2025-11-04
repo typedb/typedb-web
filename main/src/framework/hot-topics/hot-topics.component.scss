@@ -49,6 +49,8 @@ td-heading-with-highlights {
         user-drag: none;         /* Safari, Chrome */
         -webkit-user-drag: none; /* Old Safari */
         pointer-events: none;    /* Optional: prevents interaction during drag */
+        aspect-ratio: 16 / 9;
+        object-fit: cover
     }
 }
 
