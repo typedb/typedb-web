@@ -71,6 +71,14 @@
     }
 }
 
+:host.has-peeking-bot {
+    .illustration-container {
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 40px;
+        }
+    }
+}
+
 :host.has-window-header {
 
     .illustration-container {

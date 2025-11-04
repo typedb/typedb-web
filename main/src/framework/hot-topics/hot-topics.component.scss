@@ -18,7 +18,7 @@
     }
 
     &.news td-heading-with-highlights {
-        @media (min-width: media.$min-width-desktop) {
+        @media (min-width: 1520px) {
             flex: 0 0 400px;
         }
 
@@ -27,7 +27,7 @@
         }
     }
 
-    @media (max-width: media.$max-width-tablet) {
+    @media (max-width: 1519px) {
         flex-direction: column;
     }
 

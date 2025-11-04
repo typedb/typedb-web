@@ -105,15 +105,29 @@
     }
 }
 
+.panel-content {
+    @media (max-width: media.$max-width-mobile) {
+        margin-right: 8px;
+    }
+
+    @media (min-width: media.$min-width-tablet) {
+        width: 100%;
+    }
+}
+
 /* The track for the progress bar */
 .custom-progress-track {
-  width: 100%;
-  height: 2px; /* Or any height you prefer */
-  background-color: colors.$light-purple; /* A light grey for the track */
-  border-radius: 2px;
-  overflow: hidden; /* Ensures the bar stays contained */
-  margin-top: 4px; /* Add some space */
-  margin-bottom: 6px;
+    width: 100%;
+    height: 2px; /* Or any height you prefer */
+    background-color: colors.$light-purple; /* A light grey for the track */
+    border-radius: 2px;
+    overflow: hidden; /* Ensures the bar stays contained */
+    margin-top: 4px; /* Add some space */
+    margin-bottom: 6px;
+
+    @media (max-width: media.$max-width-mobile) {
+        display: none;
+    }
 }
 
 /* The "fill" part of the progress bar */
