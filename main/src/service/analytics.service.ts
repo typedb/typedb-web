@@ -82,9 +82,9 @@ export class AnalyticsService {
             document.head.appendChild(scriptEl2);
         },
         reportAdConversion: (event: keyof typeof googleAdsConversionIds) => {
-            if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
+            return;
 
-            window.gtag("event", "conversion", { send_to: googleAdsConversionIds[event] });
+            // window.gtag("event", "conversion", { send_to: googleAdsConversionIds[event] });
         },
     };
 
