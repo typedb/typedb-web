@@ -13,7 +13,7 @@ export type SanityBodyTextField = { body: PortableText };
 export type SanityTitleAndBody = SanityTitleWithHighlights & Partial<SanityBodyTextField>;
 
 export class ParagraphWithHighlights {
-    readonly spans: { text: string; highlight: boolean, newline?: boolean }[];
+    readonly spans: { id: string, text: string; highlight: boolean, newline?: boolean }[];
 
     constructor(props: PropsOf<ParagraphWithHighlights>) {
         this.spans = props.spans;
@@ -24,7 +24,7 @@ export class ParagraphWithHighlights {
             return new ParagraphWithHighlights({ spans: [] });
         }
 
-        const spans: { text: string; highlight: boolean; newline?: boolean }[] = [];
+        const spans: { id: string, text: string; highlight: boolean; newline?: boolean }[] = [];
 
         data.forEach((block, index) => {
             if (!block.children) return;
@@ -32,6 +32,7 @@ export class ParagraphWithHighlights {
             const blockSpans = block.children
                 .filter((child) => child._type === "span")
                 .map((child) => ({
+                    id: child._key,
                     text: child.text as string,
                     highlight: (child.marks as string[]).includes("strong"),
                 }));
@@ -39,7 +40,7 @@ export class ParagraphWithHighlights {
             spans.push(...blockSpans);
 
             if (index < data.length - 1) {
-                spans.push({ text: '', highlight: false, newline: true });
+                spans.push({ id: `${index}-${data.length - 1}`, text: '', highlight: false, newline: true });
             }
         });
 
@@ -51,7 +52,7 @@ export class ParagraphWithHighlights {
     }
 
     static fromPlainText(text: string): ParagraphWithHighlights {
-        return new ParagraphWithHighlights({ spans: [{ text, highlight: false }] });
+        return new ParagraphWithHighlights({ spans: [{ id: "0", text, highlight: false }] });
     }
 
     toSectionID(): string {

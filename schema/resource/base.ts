@@ -79,6 +79,10 @@ export class ResourceLink {
             imageURL: image ? db.resolveRef(image.asset).url : undefined,
         });
     }
+
+    static trackByFn(item: ResourceLink): string {
+        return `${item.title}-${item.link?.destination}`;
+    }
 }
 
 function siteResourceUrl(data: SanitySiteResource): string {

@@ -31,4 +31,6 @@ export class HotTopicsComponent {
     get clazz() {
         return `section section-margin ${this.appearance}`;
     }
+
+    readonly trackByFn = ResourceLink.trackByFn;
 }

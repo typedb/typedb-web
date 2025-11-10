@@ -26,6 +26,7 @@ export class AddToCalendarDialogComponent implements OnInit {
     ngOnInit() {
         this.actions = [
             new LinkButton({
+                id: "google",
                 style: "greenHollow",
                 text: "Google",
                 comingSoon: false,
@@ -36,6 +37,7 @@ export class AddToCalendarDialogComponent implements OnInit {
                 }),
             }),
             new LinkButton({
+                id: "outlook",
                 style: "greenHollow",
                 text: "Apple / Outlook",
                 comingSoon: false,

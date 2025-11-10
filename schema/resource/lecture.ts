@@ -62,6 +62,7 @@ export class Lecture extends EventBase {
 
     registrationButton(): LinkButton {
         return new LinkButton({
+            id: "register",
             style: "greenHollow",
             text: this.comingSoon ? "Coming soon!" : this.isStarted() ? "Watch now" : "Register",
             link: this.comingSoon

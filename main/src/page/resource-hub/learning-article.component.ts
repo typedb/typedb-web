@@ -40,6 +40,7 @@ export class LearningArticleComponent implements OnInit {
     resourceHubLink$!: Observable<string>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
+        id: "subscribe-to-newsletter",
         style: "greenHollow",
         link: Link.fromAddress("?dialog=newsletter"),
         text: "Subscribe to newsletter",

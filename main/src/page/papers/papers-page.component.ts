@@ -31,6 +31,7 @@ export class PapersPageComponent extends PageComponentBase<PapersPage> {
 
     accessResourceButton(paper: Paper, style: ButtonStyle, text: string): LinkButton {
         return new LinkButton({
+            id: text,
             style: style,
             text: text,
             link: paper.detailsPageLink(),

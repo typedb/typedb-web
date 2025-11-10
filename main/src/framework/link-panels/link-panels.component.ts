@@ -28,6 +28,8 @@ export class LinkPanelsComponent {
     panelID(panel: LinkPanel) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
     }
+
+    readonly trackByFn = LinkPanel.trackByFn;
 }
 
 @Component({
