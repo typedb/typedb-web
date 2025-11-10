@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -34,13 +34,14 @@ import { PageComponentBase } from "../page-component-base";
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     readonly allPapersHeading = new ParagraphWithHighlights({
         spans: [
-            { text: "TypeDB ", highlight: false },
-            { text: "Papers", highlight: true },
+            { id: "typeDB", text: "TypeDB ", highlight: false },
+            { id: "papers", text: "Papers", highlight: true },
         ],
     });
     readonly isSubmitting$: Observable<boolean>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
     private readonly subscribeButton = new LinkButton({
+        id: "subscribe-to-updates",
         style: "greenHollow",
         text: "Subscribe to updates",
         link: Link.fromAddress("?dialog=newsletter"),
@@ -50,6 +51,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
         filter(paper => !!paper),
         map(paper => paper!),
         map(paper => new ActionButton({
+            id: "download-paper",
             style: "greenHollow",
             text: "Download paper",
             onClick: () => this.download(paper),
@@ -61,10 +63,10 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     constructor(
         private plainTextPipe: PlainTextPipe,
         private popupNotificationService: PopupNotificationService, activatedRoute: ActivatedRoute,
-        private analytics: AnalyticsService, router: Router, title: Title,
+        private analytics: AnalyticsService, router: Router, title: Title, zone: NgZone,
         metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, zone, contentService);
         this.isSubmitting$ = this._isSubmitting$.asObservable();
     }
 

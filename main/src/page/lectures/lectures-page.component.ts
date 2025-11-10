@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, NgZone } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -36,10 +36,10 @@ export class LecturesPageComponent extends PageComponentBase<LecturesPage> {
     readonly allLectures$: Observable<Lecture[] | null>;
 
     constructor(
-        activatedRoute: ActivatedRoute, router: Router, title: Title,
+        activatedRoute: ActivatedRoute, router: Router, title: Title, zone: NgZone,
         metaTags: MetaTagsService, contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, zone, contentService);
         this.allLectures$ = contentService.data.pipe(
             map((data) => {
                 const sanityLectures = data.getDocumentsByType(lectureSchemaName) as SanityLecture[];
