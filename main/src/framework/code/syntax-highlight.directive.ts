@@ -25,7 +25,7 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     const pre = document.createElement('pre');
     const codeEl = document.createElement('code');
     codeEl.className = `language-${this.language}`;
-    codeEl.textContent = this.code.trim();
+    codeEl.textContent = this.code;
 
     pre.appendChild(codeEl);
     this.el.nativeElement.innerHTML = '';
