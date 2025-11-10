@@ -15,6 +15,6 @@
 </td-scroll-pane>
 @for (snippet of polyglotSnippet.snippets; track snippet) {
   <div class="td-snippet-container" [hidden]="(selectedSnippet$ | async) !== snippet">
-    <td-code-snippet [snippet]="snippet"/>
+    <td-code-snippet [language]="snippet.language" [code]="snippet.code"/>
   </div>
 }
