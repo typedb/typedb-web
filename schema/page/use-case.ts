@@ -99,6 +99,7 @@ export class UseCasePageInstance extends UseCasePageTemplate {
         instance.queryLanguageComparisonSection = Object.assign({}, template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection);
         instance.benefitsSection4 = Object.assign({}, template.benefitsSection4, instance.benefitsSection4);
         instance.faqsSection = Object.assign({}, template.faqsSection, instance.faqsSection);
+        instance.metaTags = Object.assign({}, template.metaTags, instance.metaTags);
         super(instance, db);
         this.title = instance.title;
         this.route = instance.route.current;
