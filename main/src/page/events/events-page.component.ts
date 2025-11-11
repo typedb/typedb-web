@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -35,10 +35,11 @@ export class EventsPageComponent extends PageComponentBase<EventsPage> {
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        metaTags: MetaTagsService,
+        metaTags: MetaTagsService, 
         contentService: ContentService,
+        zone: NgZone
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, zone, contentService);
     }
 
     protected override getPage(data: SanityDataset) {

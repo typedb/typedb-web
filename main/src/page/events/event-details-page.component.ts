@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -36,10 +36,10 @@ import { PageComponentBase } from "../page-component-base";
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
     constructor(
         private imageBuilder: ImageBuilder, private plainTextPipe: PlainTextPipe, activatedRoute: ActivatedRoute,
-        router: Router, title: Title, metaTags: MetaTagsService,
+        router: Router, title: Title, metaTags: MetaTagsService, zone: NgZone,
         contentService: ContentService,
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, zone, contentService);
     }
 
     protected override getPage(data: SanityDataset) {

@@ -22,7 +22,7 @@
 }
 
 <ng-template #content>
-  @for (span of value.spans; track span) {
+  @for (span of value.spans; track span.id) {
     @if (span.newline) {
       <br/>
     } @else {

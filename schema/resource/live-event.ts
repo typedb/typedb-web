@@ -51,6 +51,7 @@ export class LiveEvent extends EventBase {
 
     registrationButton(): LinkButton {
         return new LinkButton({
+            id: "register",
             style: "greenHollow",
             text: "Register Now",
             link: this.detailsPageLink(),

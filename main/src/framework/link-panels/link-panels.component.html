@@ -1,4 +1,4 @@
-@for (panel of panels; track panel) {
+@for (panel of panels; track trackByFn(panel)) {
   <a class="lc-card lc-icon-card hoverable" 
      [tdLink]="panel.link" 
      [attr.id]="panelID(panel)">

@@ -2,7 +2,7 @@ import { defineField } from "@sanity/types";
 import { descriptionFieldRichText, imageFieldOptional, requiredRule, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
-import { SanityDataset } from "../sanity-core";
+import { SanityDataset, SanityImage } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
 import { isApplicationArticle, isBlogPost, isFundamentalArticle, isGenericResource, isLiveEvent, isLecture, isPaper, SanityResource, SanitySiteResource } from "./sanity";
@@ -67,13 +67,21 @@ export class ResourceLink {
             link: Link.fromSanityLinkRef(data.link, db),
             linkText: data.linkText,
             imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
-        }); else return new ResourceLink({
+        });
+
+        const image = ("landscapeImage" in data ? data.landscapeImage : data.image) as SanityImage | undefined;
+        
+        return new ResourceLink({
             title: useLongTitle ? ParagraphWithHighlights.fromSanity(data.title).toPlainText() : data.shortTitle,
             description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
             linkText: resourceLinkText(data),
-            imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
+            imageURL: image ? db.resolveRef(image.asset).url : undefined,
         });
+    }
+
+    static trackByFn(item: ResourceLink): string {
+        return `${item.title}-${item.link?.destination}`;
     }
 }
 

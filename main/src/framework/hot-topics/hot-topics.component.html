@@ -1,7 +1,7 @@
 <td-heading-with-highlights level="h2" [value]="title"/>
 <td-scroll-pane [showControls]="true" [collectionItemWidth]="cardWidth" [hideLeftShadow]="true" class="hidden-scrollbar">
   <div #scrollContent class="td-cards narrow-section">
-    @for (hotTopic of resources; track hotTopic) {
+    @for (hotTopic of resources; track trackByFn(hotTopic)) {
       <a class="td-card" [tdLink]="hotTopic.link" draggable="false">
         <div class="td-card-overlay"></div>
         @if (hotTopic.imageURL) {

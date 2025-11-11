@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -48,10 +48,10 @@ export class RequestTechTalkPageComponent extends PageComponentBase<RequestTechT
     constructor(
         private forms: FormService, private popupNotificationService: PopupNotificationService,
         activatedRoute: ActivatedRoute, private analytics: AnalyticsService, router: Router, title: Title,
-        metaTags: MetaTagsService, contentService: ContentService,
+        metaTags: MetaTagsService, contentService: ContentService, zone: NgZone,
         private formBuilder: FormBuilder,
     ) {
-        super(activatedRoute, router, title, metaTags, contentService);
+        super(activatedRoute, router, title, metaTags, zone, contentService);
         this.page$.subscribe((page) => {
             if (page) {
                 this.formId = page.cioFormID;

@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, NgZone, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Observable, shareReplay, switchMap } from "rxjs";
+import { Observable, shareReplay, switchMap, tap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 import { ContentService } from "../service/content.service";
 import { MetaTagsService } from "../service/meta-tags.service";
@@ -22,6 +22,7 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected router: Router,
         protected title: Title,
         private metaTags: MetaTagsService,
+        protected zone: NgZone,
         contentService: ContentService,
     ) {
         this.page$ = contentService.data.pipe(

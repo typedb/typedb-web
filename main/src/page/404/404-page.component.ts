@@ -14,6 +14,7 @@ import { Link, LinkButton } from "typedb-web-schema";
 export class _404PageComponent {
     actions = [
         new LinkButton({
+            id: "home",
             text: "Go to home page",
             style: "greenHollow",
             link: new Link({

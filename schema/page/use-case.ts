@@ -92,13 +92,13 @@ export class UseCasePageInstance extends UseCasePageTemplate {
     constructor(instance: SanityUseCasePageInstance, db: SanityDataset) {
         const template = db.getDocumentByID<SanityUseCasePageTemplate>(useCasePageTemplateSchemaName);
         if (template == null) throw new Error(`Document not found: ${useCasePageTemplateSchemaName}`);
-        instance.introSection = Object.assign(template.introSection, instance.introSection);
-        instance.benefitsSection1 = Object.assign(template.benefitsSection1, instance.benefitsSection1);
-        instance.benefitsSection2 = Object.assign(template.benefitsSection2, instance.benefitsSection2);
-        instance.benefitsSection3 = Object.assign(template.benefitsSection3, instance.benefitsSection3);
-        instance.queryLanguageComparisonSection = Object.assign(template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection);
-        instance.benefitsSection4 = Object.assign(template.benefitsSection4, instance.benefitsSection4);
-        instance.faqsSection = Object.assign(template.faqsSection, instance.faqsSection);
+        instance.introSection = Object.assign({}, template.introSection, instance.introSection);
+        instance.benefitsSection1 = Object.assign({}, template.benefitsSection1, instance.benefitsSection1);
+        instance.benefitsSection2 = Object.assign({}, template.benefitsSection2, instance.benefitsSection2);
+        instance.benefitsSection3 = Object.assign({}, template.benefitsSection3, instance.benefitsSection3);
+        instance.queryLanguageComparisonSection = Object.assign({}, template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection);
+        instance.benefitsSection4 = Object.assign({}, template.benefitsSection4, instance.benefitsSection4);
+        instance.faqsSection = Object.assign({}, template.faqsSection, instance.faqsSection);
         super(instance, db);
         this.title = instance.title;
         this.route = instance.route.current;

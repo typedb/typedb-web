@@ -1,5 +1,5 @@
 <div class="cs-root cs-root-resizable text-code">
-  @if (snippet.language !== 'typedb-console') {
+  @if (language !== 'typedb-console') {
     <div class="cs-line-numbers">
       <ol>
         @for (lineNumber of lineNumbers$ | async; track lineNumber) {
@@ -8,7 +8,5 @@
       </ol>
     </div>
   }
-  <div class="cs-code-area">
-    <pre><code [class]="'language-' + snippet.language">{{ snippet.code }}</code></pre>
-  </div>
+  <div class="cs-code-area" tdSyntaxHighlight [language]="language" [code]="code"></div>
 </div>

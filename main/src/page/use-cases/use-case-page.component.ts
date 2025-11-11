@@ -172,6 +172,7 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
 
     // Animation loop
     animate() {
+        this.zone.runOutsideAngular(() => {
         if (!this.ctx || !this.canvas) return;
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -225,5 +226,6 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
         });
 
         requestAnimationFrame(() => this.animate());
+        });
     }
 }
