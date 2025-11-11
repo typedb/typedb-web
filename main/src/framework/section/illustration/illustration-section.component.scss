@@ -7,19 +7,19 @@
     align-items: center;
     margin-top: var(--section-margin);
 
-    @media (max-width: media.$max-width-mobile) {
+    @media (max-width: media.$max-width-tablet) {
         flex-direction: column;
         align-items: stretch;
     }
 
     &.td-row-reverse {
-        @media (min-width: media.$min-width-tablet) {
+        @media (min-width: media.$min-width-desktop) {
             flex-direction: row-reverse;
         }
     }
 
     &.td-column {
-        @media (min-width: media.$min-width-tablet) {
+        @media (min-width: media.$min-width-desktop) {
             flex-direction: column;
         }
 
