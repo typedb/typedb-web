@@ -113,11 +113,6 @@ status = 301
 # Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
 [[redirects]]
-from = "/docs/*"
-to = "/docs/:splat/"
-status = 301
-
-[[redirects]]
 from = "https://typedb.com/docs/*"
 to = "https://typedb-docs.netlify.app/:splat"
 status = 200
