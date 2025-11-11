@@ -109,43 +109,28 @@ status = 301
 # Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
 [[redirects]]
-from = "https://typedb.com/docs/*/"
-to = "https://typedb-docs.netlify.app/:splat/"
-status = 200
-
-[[redirects]]
-from = "https://master.typedb.com/docs/*/"
-to = "https://typedb-docs.netlify.app/:splat/"
-status = 200
-
-[[redirects]]
-from = "https://ssr.typedb.com/docs/*/"
-to = "https://typedb-docs.netlify.app/:splat/"
-status = 200
-
-[[redirects]]
-from = "https://development.typedb.com/docs/*/"
-to = "https://development--typedb-docs.netlify.app/:splat/"
-status = 200
+from = "/docs/*"
+to = "/docs/:splat/"
+status = 301
 
 [[redirects]]
 from = "https://typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat/"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://master.typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat/"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://ssr.typedb.com/docs/*"
-to = "https://typedb-docs.netlify.app/:splat/"
+to = "https://typedb-docs.netlify.app/:splat"
 status = 200
 
 [[redirects]]
 from = "https://development.typedb.com/docs/*"
-to = "https://development--typedb-docs.netlify.app/:splat/"
+to = "https://development--typedb-docs.netlify.app/:splat"
 status = 200
 
 # POSTHOG REVERSE PROXY
