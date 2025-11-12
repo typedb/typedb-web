@@ -267,6 +267,14 @@ button, td-button {
     //&.hoverable:hover {
     //    border-color: var(--color-secondary-light-grey);
     //}
+
+    &.fire {
+        @include colors.border-gradient(#F96480, #FDD257, var(--body-background));
+    }
+
+    &.water {
+        @include colors.border-gradient(#AC79EE, #03D0BF, var(--body-background));
+    }
 }
 
 .card-appearance {
