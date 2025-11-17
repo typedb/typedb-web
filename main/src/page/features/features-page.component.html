@@ -1,6 +1,7 @@
 <article>
   @if (page$ | async; as page) {
     <td-illustration-section sectionId="intro" [data]="page.introSection" class="td-intro zoomed" />
+    <td-features-navbar [items]="navbarItems"/>
     @for (section of page.featureSections; track section; let idx = $index) {
       <td-section-core [section]="section"/>
       @for (featureGrid of section.featureGrids; let idx = $index; track idx) {
@@ -14,3 +15,5 @@
     <td-conclusion-panel [panel]="page.finalSection.panel"/>
   }
 </article>
+
+<td-back-to-top-button/>

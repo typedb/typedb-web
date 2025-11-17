@@ -1,0 +1,61 @@
+@use "media";
+@use "shapes";
+
+:host {
+    height: 72px;
+    margin-bottom: 0;
+    border-bottom: shapes.$border;
+    border-top: shapes.$border;
+    border-radius: 0;
+    margin-top: var(--subsection-margin);
+
+    @media (max-width: media.$max-width-mobile) {
+        height: 54px;
+    }
+}
+
+td-scroll-pane {
+    height: 100%;
+    --shadow-size: 24px;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    list-style: none;
+    white-space: nowrap;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding: 0 8px;
+    }
+
+    li {
+        flex: 1;
+    }
+
+    h3 {
+        font-weight: var(--font-weight-regular);
+    }
+}
+
+a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+
+    @media (max-width: media.$max-width-mobile) {
+        padding: 0 16px;
+    }
+
+    &:hover {
+        color: var(--color-green);
+        text-decoration: underline;
+    }
+
+    &.td-active {
+        color: var(--color-green);
+    }
+}
