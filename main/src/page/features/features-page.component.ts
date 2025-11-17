@@ -4,6 +4,7 @@ import { of } from "rxjs";
 import { FeaturesPage, featuresPageSchemaName, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
+import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 
@@ -13,7 +14,7 @@ import { PageComponentBase } from "../page-component-base";
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
+        FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent, IllustrationSectionComponent,
     ],
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
