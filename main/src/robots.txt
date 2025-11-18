@@ -169,6 +169,42 @@ Disallow: /blog/identity-and-access-management-with-typedb-part-i-polymorphism
 Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
+User-agent: GrokBot  # Added
+Disallow: /docs/manual/
+Disallow: /docs/academy/2.x/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
+Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
+Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
+Disallow: /blog/modeling-collections-in-databases-relational-sql-vs-typedb
+Disallow: /blog/the-age-of-ai-is-upon-us-where-are-the-smart-databases
+Disallow: /blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show
+Disallow: /blog/identity-and-access-management-with-typedb-part-iii-inference
+Disallow: /blog/identity-and-access-management-with-typedb-part-ii-transitivity
+Disallow: /blog/identity-and-access-management-with-typedb-part-i-polymorphism
+Disallow: /blog/what-is-a-knowledge-graph
+Disallow: /blog/inference-in-typedb
+
+User-agent: DeepSeek-AI # Added
+Disallow: /docs/manual/
+Disallow: /docs/academy/2.x/
+Disallow: /docs/drivers/
+Disallow: /docs/typeql/
+Disallow: /docs/home/2.x/
+Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
+Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
+Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
+Disallow: /blog/modeling-collections-in-databases-relational-sql-vs-typedb
+Disallow: /blog/the-age-of-ai-is-upon-us-where-are-the-smart-databases
+Disallow: /blog/inheritance-and-polymorphism-where-the-cracks-in-sql-begin-to-show
+Disallow: /blog/identity-and-access-management-with-typedb-part-iii-inference
+Disallow: /blog/identity-and-access-management-with-typedb-part-ii-transitivity
+Disallow: /blog/identity-and-access-management-with-typedb-part-i-polymorphism
+Disallow: /blog/what-is-a-knowledge-graph
+Disallow: /blog/inference-in-typedb
+
 # Clankers
 
 User-agent: PetalBot
