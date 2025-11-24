@@ -3,22 +3,17 @@ const path = require('path');
 const crypto = require('crypto');
 
 // --- CONFIGURATION ---
-// adjust this to match your dist output path
+// Ensure this points to the browser folder
 const DIST_FOLDER = path.join(__dirname, 'dist/main/browser');
 
-// Regex to find the TransferState script
+// Regexes
 const STATE_REGEX = /<script id="ng-state" type="application\/json">([\s\S]*?)<\/script>/;
-
-// Regex to find ALL <style> blocks (Component styles injected by SSR)
-// We use a capture group for the content inside the tags
 const STYLE_REGEX = /<style[^>]*>([\s\S]*?)<\/style>/gi;
 
 // --- HELPERS ---
-
 function getAllHtmlFiles(dirPath, arrayOfFiles) {
     const files = fs.readdirSync(dirPath);
     arrayOfFiles = arrayOfFiles || [];
-
     files.forEach(function(file) {
         if (fs.statSync(dirPath + "/" + file).isDirectory()) {
             arrayOfFiles = getAllHtmlFiles(dirPath + "/" + file, arrayOfFiles);
@@ -28,7 +23,6 @@ function getAllHtmlFiles(dirPath, arrayOfFiles) {
             }
         }
     });
-
     return arrayOfFiles;
 }
 
@@ -37,15 +31,12 @@ function generateHash(content) {
 }
 
 // --- MAIN PROCESSOR ---
-
 function optimizeHtml(filePath) {
     let html = fs.readFileSync(filePath, 'utf8');
     let modified = false;
     const dirName = path.dirname(filePath);
 
-    // ---------------------------------------------------------
     // 1. EXTRACT TRANSFER STATE (JSON)
-    // ---------------------------------------------------------
     const stateMatch = html.match(STATE_REGEX);
     if (stateMatch && stateMatch[1]) {
         const stateContent = stateMatch[1];
@@ -56,19 +47,39 @@ function optimizeHtml(filePath) {
         fs.writeFileSync(jsonFilePath, stateContent);
         console.log(`[JSON] Extracted ${jsonFileName}`);
 
-        // Replacement Script (Synchronous XHR)
+        // --- REPLACEMENT SCRIPT (RUNTIME PATH RESOLUTION) ---
+        // Instead of calculating paths at build time, we use the browser's current location.
+        // 1. Get current path (e.g. /blog/post or /blog/post/)
+        // 2. Ensure it ends in a slash
+        // 3. Append filename
         const loaderScript = `
     <script>
       (function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', './${jsonFileName}', false);
-        xhr.send(null);
-        if (xhr.status === 200) {
-          var s = document.createElement('script');
-          s.id = 'ng-state';
-          s.type = 'application/json';
-          s.textContent = xhr.responseText;
-          document.body.appendChild(s);
+        try {
+          var path = window.location.pathname;
+          // If we are not at root and missing a trailing slash, add it
+          if (path.slice(-1) !== '/') { path += '/'; }
+          
+          // Construct the URL relative to the current route
+          var jsonUrl = path + '${jsonFileName}';
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', jsonUrl, false);
+          xhr.send(null);
+          
+          if (xhr.status === 200) {
+            var response = xhr.responseText;
+            // Safety check: ensure it's JSON, not a 404 HTML page
+            if (response && response.trim().charAt(0) === '{') {
+              var s = document.createElement('script');
+              s.id = 'ng-state';
+              s.type = 'application/json';
+              s.textContent = response;
+              document.body.appendChild(s);
+            }
+          }
+        } catch (e) {
+          console.warn('TransferState extraction failed, falling back to app bootstrap.');
         }
       })();
     </script>`;
@@ -77,62 +88,45 @@ function optimizeHtml(filePath) {
         modified = true;
     }
 
-    // ---------------------------------------------------------
     // 2. EXTRACT COMPONENT STYLES (CSS)
-    // ---------------------------------------------------------
-    // We find all matches first, then we replace them.
     const styleMatches = [...html.matchAll(STYLE_REGEX)];
-
     if (styleMatches.length > 0) {
         let combinedCss = '';
+        styleMatches.forEach(match => { combinedCss += match[1] + '\n'; });
 
-        // Aggregate all CSS content
-        styleMatches.forEach(match => {
-            combinedCss += match[1] + '\n';
-        });
-
-        // Only proceed if we actually found content
         if (combinedCss.trim().length > 0) {
             const cssFileName = `styles-ssr-${generateHash(combinedCss)}.css`;
             const cssFilePath = path.join(dirName, cssFileName);
 
-            // Write CSS file
+            // For CSS, we still use relative paths for the <link> tag
+            // Browsers handle <link href="./file.css"> correctly relative to the document
+            const cssLinkPath = `./${cssFileName}`;
+
             fs.writeFileSync(cssFilePath, combinedCss);
-            console.log(`[CSS]  Extracted ${styleMatches.length} blocks to ${cssFileName}`);
+            console.log(`[CSS]  Extracted to ${cssFileName}`);
 
-            // Remove all <style> blocks from HTML
             html = html.replace(STYLE_REGEX, '');
-
-            // Inject the <link> tag for the new CSS file
-            // We place it before the closing </head>
-            const linkTag = `<link rel="stylesheet" href="./${cssFileName}">`;
+            const linkTag = `<link rel="stylesheet" href="${cssLinkPath}">`;
 
             if (html.includes('</head>')) {
                 html = html.replace('</head>', `${linkTag}\n</head>`);
             } else {
-                // Fallback if no head tag (rare)
                 html = linkTag + html;
             }
-
             modified = true;
         }
     }
 
-    // ---------------------------------------------------------
-    // SAVE CHANGES
-    // ---------------------------------------------------------
     if (modified) {
         fs.writeFileSync(filePath, html);
     }
 }
 
 // --- EXECUTION ---
-
-console.log('Starting Post-Process Optimization...');
 if (fs.existsSync(DIST_FOLDER)) {
     const htmlFiles = getAllHtmlFiles(DIST_FOLDER);
     htmlFiles.forEach(optimizeHtml);
-    console.log(`Processed ${htmlFiles.length} HTML files.`);
+    console.log(`\n✅ Optimization complete. Processed ${htmlFiles.length} files.`);
 } else {
     console.error(`Error: Dist folder not found at ${DIST_FOLDER}`);
     process.exit(1);
