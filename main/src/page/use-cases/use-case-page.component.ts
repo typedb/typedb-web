@@ -1,5 +1,5 @@
-import { AsyncPipe, DOCUMENT } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { AsyncPipe, DOCUMENT, isPlatformServer } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from "@angular/core";
 import { map } from "rxjs";
 import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCasePageSchemaName } from "typedb-web-schema";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
@@ -124,6 +124,7 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
     ctx!: CanvasRenderingContext2D;
     particles: Particle[] = [];
     private document = inject(DOCUMENT);
+    private platformId = inject(PLATFORM_ID);
 
     protected override getPage(db: SanityDataset) {
         return this.activatedRoute.paramMap.pipe(
@@ -141,28 +142,30 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
     }
 
     ngAfterViewInit(): void {
-      this.canvas = this.document.getElementById('cyber-background') as HTMLCanvasElement;
-      if (!this.canvas) {
+        if (isPlatformServer(this.platformId)) return;
+
+        this.canvas = this.document.getElementById('cyber-background') as HTMLCanvasElement;
+        if (!this.canvas) {
           console.error('Canvas element #cyber-background not found!');
           return;
-      }
-      
-      const ctx = this.canvas.getContext('2d');
-      if (!ctx) {
+        }
+
+        const ctx = this.canvas.getContext('2d');
+        if (!ctx) {
           console.error('Failed to get canvas 2D context');
           return;
-      }
-      this.ctx = ctx;
+        }
+        this.ctx = ctx;
 
-      window.addEventListener('resize', this.resizeCanvas.bind(this));
-      this.resizeCanvas();
-      
-      // Create particles
-      for (let i = 0; i < particleCount; i++) {
+        window.addEventListener('resize', this.resizeCanvas.bind(this));
+        this.resizeCanvas();
+
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
           this.particles.push(new Particle(this.canvas, this.ctx));
-      }
+        }
 
-      this.animate();
+        this.animate();
     }
 
     resizeCanvas() {
