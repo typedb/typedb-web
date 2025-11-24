@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 // --- CONFIGURATION ---
 // adjust this to match your dist output path
-const DIST_FOLDER = path.join(__dirname, 'dist/typedb-web/browser');
+const DIST_FOLDER = path.join(__dirname, 'dist/main/browser');
 
 // Regex to find the TransferState script
 const STATE_REGEX = /<script id="ng-state" type="application\/json">([\s\S]*?)<\/script>/;
