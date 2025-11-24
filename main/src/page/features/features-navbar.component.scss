@@ -3,19 +3,14 @@
 
 :host {
     height: 72px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     border-bottom: shapes.$border;
-    margin-top: 0;
+    border-top: shapes.$border;
     border-radius: 0;
+    margin-top: var(--subsection-margin);
 
     @media (max-width: media.$max-width-mobile) {
         height: 54px;
-        margin-bottom: 0;
-    }
-
-    &.bn-variant-post-page {
-        height: 58px;
-        margin-bottom: 40px;
     }
 }
 

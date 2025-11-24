@@ -1,0 +1,9 @@
+<td-scroll-pane color="black-purple">
+  <ul class="text-p2">
+    @for (item of items; track item) {
+      <li>
+        <a [href]="item.href" [innerHtml]="item.text" tdSmoothScroll></a>
+      </li>
+    }
+  </ul>
+</td-scroll-pane>

@@ -298,6 +298,61 @@ table {
     font-family: var(--font-family-default);
 }
 
+.td-intro {
+    .button-frameless {
+        color: var(--color-white);
+
+        &:hover {
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    .td-illustration-wrapper {
+        @media (max-width: media.$max-width-mobile) {
+            transform: scale(0.86);
+        }
+    }
+
+    td-illustration {
+        flex: unset !important;
+        box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+        animation-play-state: running !important;
+        position: relative;
+        max-height: unset !important;
+        aspect-ratio: unset !important;
+        @include colors.border-gradient(#AC79EE, #03D0BF, var(--body-background));
+
+        @media (min-width: media.$min-width-tablet) {
+            margin-top: 32px;
+            padding: 12px;
+
+            td-code-snippet {
+                .cs-line-numbers, code {
+                    font-size: 20px;
+                    line-height: 32px;
+                }
+            }
+        }
+    }
+
+    td-illustration td-code-snippet {
+        text-align: start;
+    }
+}
+
+@media (max-width: media.$max-width-mobile) {
+    .td-intro .td-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+td-feature-grid + td-feature-grid {
+    display: block;
+    border-top: 1px solid var(--content-border-color);
+}
+
 mat-dialog-container {
     h1 {
         font-size: var(--font-size-h3);

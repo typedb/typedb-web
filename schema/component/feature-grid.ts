@@ -11,7 +11,7 @@ import { PropsOf } from "../util";
 import { SanitySectionCore, SectionCore } from "./section";
 
 export interface SanityFeatureGridSection extends SanitySectionCore {
-    featureGrid: SanityReference<SanityFeatureGrid>;
+    featureGrids: SanityReference<SanityFeatureGrid>[];
 }
 
 export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
@@ -103,32 +103,20 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
 }
 
 export class FeatureGridSection extends SectionCore {
-    readonly featureGridLayout: FeatureGridLayout;
-    readonly features: FeatureGridCell[][];
+    readonly featureGrids: FeatureGrid[];
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<FeatureGridSection>) {
         super(props);
-        this.featureGridLayout = props.featureGridLayout;
-        this.features = props.features;
+        this.featureGrids = props.featureGrids;
         this.illustration = props.illustration;
     }
 
     static override fromSanity(data: SanityFeatureGridSection, db: SanityDataset) {
-        const featureGrid = db.resolveRef(data.featureGrid);
-        const visibleFeatures = featureGrid.features.filter((x) => x.isVisible);
-        const featureCells = [];
-        for (let i = 0; i < visibleFeatures.length; i += featureGrid.columnCount) {
-            const chunk = visibleFeatures.slice(i, i + featureGrid.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
-            featureCells.push(chunk);
-        }
+        const featureGrids = data.featureGrids.map(x => db.resolveRef(x));
         return new FeatureGridSection(
             Object.assign(SectionCore.fromSanity(data, db), {
-                featureGridLayout: featureGrid.featureGridLayout,
-                features: featureCells,
-                illustration: featureGrid.illustration
-                    ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
-                    : undefined,
+                featureGrids: featureGrids.map(x => FeatureGrid.fromSanity(x, db)),
             })
         );
     }
@@ -216,10 +204,10 @@ const featureGridSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         defineField({
-            name: "featureGrid",
-            title: "Feature Grid",
-            type: "reference",
-            to: [{type: featureGridSchemaName}],
+            name: "featureGrids",
+            title: "Feature Grids",
+            type: "array",
+            of: [{type: "reference", to: [{type: featureGridSchemaName}]}],
             validation: requiredRule,
         }),
         isVisibleField,

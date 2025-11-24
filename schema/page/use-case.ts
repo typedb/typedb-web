@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
-import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, titleBodyIllustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchemaName, SanityLinkPanelsSection, LinkPanelsSection, linkPanelsSectionSchemaName } from "../component/section";
+import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, illustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchemaName, SanityLinkPanelsSection, LinkPanelsSection, linkPanelsSectionSchemaName } from "../component/section";
 import { SectionCore } from "../component/section";
 import {
     collapsibleOptions, routeField, titleField,
@@ -125,7 +125,7 @@ export class HotTopicsSection extends SectionCore {
 const introSectionField = defineField({
     name: sections.intro.id,
     title: `${sections.intro.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -146,14 +146,14 @@ const hotTopicsSectionField = defineField({
 const benefitsSection2Field = defineField({
     name: sections.benefits2.id,
     title: `${sections.benefits2.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const benefitsSection3Field = defineField({
     name: sections.benefits3.id,
     title: `${sections.benefits3.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -167,14 +167,14 @@ const queryLanguageComparisonSectionField = defineField({
 const benefitsSection4Field = defineField({
     name: sections.benefits4.id,
     title: `${sections.benefits4.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const faqsSectionField = defineField({
     name: sections.faqs.id,
     title: `${sections.faqs.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
