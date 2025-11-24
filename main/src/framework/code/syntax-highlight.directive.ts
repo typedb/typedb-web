@@ -12,8 +12,6 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   private el = inject(ElementRef);
   private document = inject(DOCUMENT);
 
-  constructor(private el: ElementRef) {}
-
   ngAfterViewInit() {
     this.highlight();
   }
