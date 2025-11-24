@@ -6,7 +6,7 @@ import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
     SanitySectionCore, SectionCore, SanityIllustrationSection,
     IllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection,
-    titleBodyIllustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchema, hotTopicsSectionSchemaName,
+    illustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchema, hotTopicsSectionSchemaName,
 
 } from "../component/section";
 import {
@@ -236,14 +236,14 @@ const introSectionField = defineField({
 const benefitsSection1Field = defineField({
     name: sections.benefits1.id,
     title: `${sections.benefits1.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const benefitsSection2Field = defineField({
     name: sections.benefits2.id,
     title: `${sections.benefits2.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -271,14 +271,14 @@ const useCasesSectionField = defineField({
 const benefitsSection3Field = defineField({
     name: sections.benefits3.id,
     title: `${sections.benefits3.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
 const studioSectionField = defineField({
     name: sections.studio.id,
     title: `${sections.studio.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -299,7 +299,7 @@ const benefitsSection4Field = defineField({
 const benefitsSection5Field = defineField({
     name: sections.benefits5.id,
     title: `${sections.benefits5.title} Section`,
-    type: titleBodyIllustrationSectionSchemaName,
+    type: illustrationSectionSchemaName,
     options: collapsibleOptions,
 });
 

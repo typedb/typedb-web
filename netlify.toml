@@ -6,7 +6,7 @@ ignore = "/bin/false"
 pretty_urls = false
 
 [context.production]
-command = "NODE_OPTIONS=--max-old-space-size=4096 ENV=production pnpm --filter typedb-web-main build && pnpm --filter typedb-web-main build-sitemap"
+command = "NODE_OPTIONS=--max-old-space-size=4096 ENV=production pnpm --filter typedb-web-main build:ssr"
 publish = "main/dist/main/browser"
 
 [context.master]
@@ -18,7 +18,7 @@ command = "ENV=development pnpm --filter typedb-web-main build"
 publish = "main/dist/main/browser"
 
 [context.ssr]
-command = "NODE_OPTIONS=--max-old-space-size=4096 ENV=ssr pnpm --filter typedb-web-main build && pnpm --filter typedb-web-main build-sitemap"
+command = "NODE_OPTIONS=--max-old-space-size=4096 ENV=ssr pnpm --filter typedb-web-main build:ssr"
 publish = "main/dist/main/browser"
 
 [context.deploy-preview]
