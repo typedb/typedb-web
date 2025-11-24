@@ -1,5 +1,5 @@
-import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, HostListener, signal } from "@angular/core";
+import { CommonModule, DOCUMENT } from "@angular/common";
+import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from "@angular/core";
 
 @Component({
     selector: 'td-back-to-top-button',
@@ -24,6 +24,7 @@ import { ChangeDetectionStrategy, Component, HostListener, signal } from "@angul
 export class BackToTopButtonComponent {
     // Signal to track button visibility
     showButton = signal(false);
+    document = inject(DOCUMENT);
 
     // Threshold in pixels to show the button
     private scrollThreshold = 200;
@@ -31,7 +32,7 @@ export class BackToTopButtonComponent {
     // Listen to the window's scroll event
     @HostListener('window:scroll', [])
     onWindowScroll(): void {
-        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const scrollY = window.scrollY || this.document.documentElement.scrollTop;
         this.showButton.set(scrollY > this.scrollThreshold);
     }
 

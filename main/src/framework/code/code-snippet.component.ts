@@ -1,7 +1,6 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
 import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject } from "@angular/core";
 import { map, Observable, of } from "rxjs";
-import { initCustomScrollbars } from "typedb-web-common/lib";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 import { SyntaxHighlightDirective } from "./syntax-highlight.directive";

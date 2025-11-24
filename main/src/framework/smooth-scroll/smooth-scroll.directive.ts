@@ -1,10 +1,12 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { DOCUMENT } from "@angular/common";
+import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 
 @Directive({
     selector: '[tdSmoothScroll]',
     standalone: true,
 })
 export class SmoothScrollDirective {
+    private document = inject(DOCUMENT);
     constructor(private el: ElementRef<HTMLAnchorElement>) {}
 
     @HostListener('click', ['$event'])
@@ -15,7 +17,7 @@ export class SmoothScrollDirective {
         // Check if the link is a simple anchor on the same page
         if (fragment && this.el.nativeElement.pathname === window.location.pathname) {
             try {
-                const targetElement = document.querySelector(fragment);
+                const targetElement = this.document.querySelector(fragment);
 
                 if (targetElement) {
                     // If the target exists, prevent the default "jump"
