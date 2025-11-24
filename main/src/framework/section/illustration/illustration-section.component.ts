@@ -20,6 +20,7 @@ export class IllustrationSectionComponent {
     @Input() flexDirection: "row" | "row-reverse" | "column" = "row";
     @Input() isIntroSection = false;
     @Input() noWindowHeader = false;
+    @Input() @HostBinding("class.has-peeking-bot") hasPeekingBot = false;
     @Input() textAlign: "left" | "center" = "center";
 
     @HostBinding("class")

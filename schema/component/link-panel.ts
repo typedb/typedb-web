@@ -37,6 +37,10 @@ export class LinkPanel implements Partial<BodyTextField> {
             link: TextLink.tryFromSanityTextLink(data.link, db),
         });
     }
+
+    static trackByFn(item: LinkPanel): string {
+        return `${item.title}-${item.link?.destination}`;
+    }
 }
 
 export const linkPanelSchemaName = `linkPanel`;

@@ -102,6 +102,14 @@
 
 @mixin button-water {
     @include colors.border-gradient(#AC79EE, #03D0BF, var(--body-background));
+
+    &:not(.td-button-disabled) {
+        &:hover,
+        &.container-hover {
+            box-shadow: 0 0 6px 3px rgba(colors.$green, 0.25);
+            color: #03D0BF;
+        }
+    }
 }
 
 @mixin button-fire {

@@ -1,6 +1,19 @@
-@for (panel of panels; track panel) {
-  <a class="lc-card lc-icon-card card hoverable" [tdLink]="panel.link" [attr.id]="panelID(panel)">
-    @if (panel.iconName) {<div><i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i></div>}
+@for (panel of panels; track trackByFn(panel)) {
+  <a class="lc-card lc-icon-card hoverable" 
+     [tdLink]="panel.link" 
+     [attr.id]="panelID(panel)">
+     
+    @if (panel.iconName) {
+      <div class="panel-content">
+        <i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i>
+        
+        <div class="custom-progress-track">
+          <div class="custom-progress-bar"></div>
+        </div>
+        
+      </div>
+    }
+
     <div class="lc-flex-container">
       <h3 class="lc-title">{{ panel.title }}</h3>
       @if (panel.body) {

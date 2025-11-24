@@ -200,6 +200,7 @@ export class NavPanelCta {
             title: data.title,
             description: data.description,
             linkButton: new LinkButton({
+                id: data.link.text,
                 text: data.link.text,
                 link: Link.fromSanityLinkRef(data.link.link, db),
                 style: "greenHollow",

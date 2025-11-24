@@ -2,7 +2,7 @@ import { defineField, defineType } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { collapsibleOptions } from "../common-fields";
 import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
-import { sectionCoreSchemaName, SanitySectionCore, SectionCore } from "../component/section";
+import { sectionCoreSchemaName, SanitySectionCore, SectionCore, SanityIllustrationSection, IllustrationSection, illustrationSectionSchemaName } from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
@@ -12,19 +12,19 @@ const featureSections = "featureSections";
 const finalSection = "finalSection";
 
 export interface SanityFeaturesPage extends SanityPage {
-    [introSection]: SanitySectionCore;
+    [introSection]: SanityIllustrationSection;
     [featureSections]: SanityFeatureGridSection[];
     [finalSection]: SanityConclusionSection;
 }
 
 export class FeaturesPage extends Page {
-    readonly [introSection]: SectionCore;
+    readonly [introSection]: IllustrationSection;
     readonly [featureSections]: FeatureGridSection[];
     readonly [finalSection]: ConclusionSection;
 
     constructor(data: SanityFeaturesPage, db: SanityDataset) {
         super(data, db);
-        this.introSection = SectionCore.fromSanity(data.introSection, db);
+        this.introSection = IllustrationSection.fromSanity(data.introSection, db);
         this.featureSections = data.featureSections.map((x) => FeatureGridSection.fromSanity(x, db));
         this.finalSection = ConclusionSection.fromSanity(data.finalSection, db);
     }
@@ -41,7 +41,7 @@ const featuresPageSchema = defineType({
         defineField({
             name: introSection,
             title: "Intro Section",
-            type: sectionCoreSchemaName,
+            type: illustrationSectionSchemaName,
             options: collapsibleOptions,
         }),
         defineField({

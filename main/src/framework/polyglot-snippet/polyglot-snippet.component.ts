@@ -17,8 +17,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ScrollPaneComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
-export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
-    private readonly platformId = inject(PLATFORM_ID);
+export class PolyglotSnippetComponent implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("snippet") polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
@@ -63,14 +62,6 @@ export class PolyglotSnippetComponent implements OnInit, AfterViewInit {
             throw `${this.constructor.name}'s native HTML element must have an id set`;
         }
         this._elementID = this._el.nativeElement.id;
-    }
-
-    ngAfterViewInit() {
-        if (isPlatformBrowser(this.platformId)) {
-            setTimeout(() => {
-                (window as any)["Prism"].highlightAllUnder(this._el.nativeElement);
-            });
-        }
     }
 
     snippetTabID(tab: CodeSnippet): string {

@@ -42,8 +42,8 @@ import { PopupNotificationService } from "../../service/popup-notification.servi
 export class LectureDetailsPageComponent implements OnInit {
     readonly allLecturesHeading = new ParagraphWithHighlights({
         spans: [
-            { text: "TypeDB ", highlight: false },
-            { text: "Lectures", highlight: true },
+            { id: "typeDB", text: "TypeDB ", highlight: false },
+            { id: "lectures", text: "Lectures", highlight: true },
         ],
     });
     readonly isSubmitting$: Observable<boolean>;
@@ -70,6 +70,7 @@ export class LectureDetailsPageComponent implements OnInit {
             shareReplay(1),
         );
         const subscribeButton = new LinkButton({
+            id: "subscribe-to-lectures",
             style: "greenHollow",
             text: "Subscribe to lectures",
             link: Link.fromAddress("?dialog=newsletter"),
@@ -81,6 +82,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new ActionButton({
+                            id: "add-to-calendar",
                             style: "greenHollow",
                             text: "Add to calendar",
                             onClick: () => {
@@ -96,6 +98,7 @@ export class LectureDetailsPageComponent implements OnInit {
                     return [
                         subscribeButton,
                         new LinkButton({
+                            id: "download-slides",
                             style: "greenHollow",
                             text: "Download slides",
                             link: Object.assign(Link.fromAddress(lecture.lectureSlidesURL), {

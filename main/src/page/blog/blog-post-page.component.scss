@@ -16,11 +16,7 @@ $post-content-width: 700px;
     margin-top: 0;
 
     div {
-        max-width: $post-content-width;
-
-        @media (max-width: media.$max-width-tablet) {
-            max-width: var(--section-max-width);
-        }
+        max-width: var(--section-max-width);
 
         ::ng-deep h1 {
             margin-top: 28px;

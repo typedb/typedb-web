@@ -9,6 +9,9 @@ import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
+import { MatProgressBar } from "@angular/material/progress-bar";
+
+const DEFAULT_PROGRESS = 20;
 
 @Component({
     selector: "td-link-panels",
@@ -25,6 +28,8 @@ export class LinkPanelsComponent {
     panelID(panel: LinkPanel) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;
     }
+
+    readonly trackByFn = LinkPanel.trackByFn;
 }
 
 @Component({

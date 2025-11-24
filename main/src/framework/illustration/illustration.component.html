@@ -5,7 +5,7 @@
   <p>TODO: video embed with URL {{ videoEmbed.url }}</p>
 }
 @if (codeSnippet) {
-  <td-code-snippet [snippet]="codeSnippet" />
+  <td-code-snippet [language]="codeSnippet.language" [code]="codeSnippet.code" />
 }
 @if (polyglotSnippet) {
   <td-polyglot-snippet [id]="polyglotSnippet.id" [snippet]="polyglotSnippet" />

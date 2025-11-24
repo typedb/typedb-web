@@ -7,9 +7,7 @@ hr {
 }
 
 .bp-blog-list ::ng-deep a:hover {
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
         color: var(--color-green);
         text-decoration: underline;
     }
