@@ -1,4 +1,4 @@
-import { AsyncPipe, isPlatformBrowser } from "@angular/common";
+import { AsyncPipe, DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -21,6 +21,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
 })
 export class LegalDocumentComponent implements OnInit {
     private readonly platformId = inject(PLATFORM_ID);
+    private document = inject(DOCUMENT);
     document$!: Observable<LegalDocument | null>;
 
     constructor(
@@ -43,7 +44,7 @@ export class LegalDocumentComponent implements OnInit {
                         setTimeout(() => {
                             (window as any)["Prism"].highlightAll();
                         }, 0);
-                        document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+                        this.document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                             el.setAttribute("rel", "noopener");
                         });
                     }
