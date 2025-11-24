@@ -3,12 +3,11 @@ const path = require('path');
 const crypto = require('crypto');
 
 // --- CONFIGURATION ---
-// Ensure this points to the browser folder
+// Ensure this points to your browser output folder
 const DIST_FOLDER = path.join(__dirname, 'dist/main/browser');
 
-// Regexes
+// Regex to find the TransferState script
 const STATE_REGEX = /<script id="ng-state" type="application\/json">([\s\S]*?)<\/script>/;
-const STYLE_REGEX = /<style[^>]*>([\s\S]*?)<\/style>/gi;
 
 // --- HELPERS ---
 function getAllHtmlFiles(dirPath, arrayOfFiles) {
@@ -45,13 +44,10 @@ function optimizeHtml(filePath) {
 
         // Write JSON file
         fs.writeFileSync(jsonFilePath, stateContent);
-        console.log(`[JSON] Extracted ${jsonFileName}`);
+        console.log(`[JSON] Extracted ${jsonFileName} from ${path.basename(filePath)}`);
 
         // --- REPLACEMENT SCRIPT (RUNTIME PATH RESOLUTION) ---
-        // Instead of calculating paths at build time, we use the browser's current location.
-        // 1. Get current path (e.g. /blog/post or /blog/post/)
-        // 2. Ensure it ends in a slash
-        // 3. Append filename
+        // Uses window.location.pathname to handle trailing slashes and subpaths automatically
         const loaderScript = `
     <script>
       (function() {
@@ -88,41 +84,15 @@ function optimizeHtml(filePath) {
         modified = true;
     }
 
-    // 2. EXTRACT COMPONENT STYLES (CSS)
-    const styleMatches = [...html.matchAll(STYLE_REGEX)];
-    if (styleMatches.length > 0) {
-        let combinedCss = '';
-        styleMatches.forEach(match => { combinedCss += match[1] + '\n'; });
-
-        if (combinedCss.trim().length > 0) {
-            const cssFileName = `styles-ssr-${generateHash(combinedCss)}.css`;
-            const cssFilePath = path.join(dirName, cssFileName);
-
-            // For CSS, we still use relative paths for the <link> tag
-            // Browsers handle <link href="./file.css"> correctly relative to the document
-            const cssLinkPath = `./${cssFileName}`;
-
-            fs.writeFileSync(cssFilePath, combinedCss);
-            console.log(`[CSS]  Extracted to ${cssFileName}`);
-
-            html = html.replace(STYLE_REGEX, '');
-            const linkTag = `<link rel="stylesheet" href="${cssLinkPath}">`;
-
-            if (html.includes('</head>')) {
-                html = html.replace('</head>', `${linkTag}\n</head>`);
-            } else {
-                html = linkTag + html;
-            }
-            modified = true;
-        }
-    }
-
+    // Save changes if we modified the file
     if (modified) {
         fs.writeFileSync(filePath, html);
     }
 }
 
 // --- EXECUTION ---
+console.log('Starting TransferState Optimization (Keeping Styles Inlined)...');
+
 if (fs.existsSync(DIST_FOLDER)) {
     const htmlFiles = getAllHtmlFiles(DIST_FOLDER);
     htmlFiles.forEach(optimizeHtml);

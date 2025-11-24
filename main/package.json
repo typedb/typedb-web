@@ -5,9 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build -c $ENV",
-    "build:ssr": "ng build -c $ENV && node declutter-html.js && node build-sitemap.js",
+    "build:ssr": "ng build -c $ENV && node isolate-ng-state.js && node build-sitemap.js",
     "build-sitemap": "node build-sitemap.js",
-    "declutter-html": "node declutter-html.js",
+    "isolate-ng-state": "node isolate-ng-state.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

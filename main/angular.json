@@ -74,22 +74,6 @@
               ]
             },
             "staging": {
-              "optimization": {
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "scripts": true,
-                "fonts": {
-                  "inline": false
-                }
-              },
-              "outputHashing": "all",
-              "server": "src/main.server.ts",
-              "outputMode": "server",
-              "ssr": {
-                "entry": "server.ts"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environment/environment.ts",
@@ -109,16 +93,6 @@
               ]
             },
             "ssr": {
-              "optimization": {
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "scripts": true,
-                "fonts": {
-                  "inline": false
-                }
-              },
               "outputHashing": "all",
               "server": "src/main.server.ts",
               "outputMode": "server",
