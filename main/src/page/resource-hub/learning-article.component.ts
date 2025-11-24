@@ -107,14 +107,14 @@ export class LearningArticleComponent implements OnInit {
 
     private decoratePost() {
         (window as any)["Prism"].highlightAll();
-        document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
+        this.doc.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });
         let anchorIndex = 0;
-        document.querySelectorAll("article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])").forEach((el) => {
+        this.doc.querySelectorAll("article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])").forEach((el) => {
             const sectionID = `${sanitiseHtmlID(el.textContent || "section")}-${anchorIndex}`;
             el.id = sectionID;
-            const anchorEl = document.createElement("a");
+            const anchorEl = this.doc.createElement("a");
             anchorEl.classList.add("anchor");
             anchorEl.href = `${window.location.origin}${window.location.pathname}#${sectionID}`;
             el.appendChild(anchorEl);

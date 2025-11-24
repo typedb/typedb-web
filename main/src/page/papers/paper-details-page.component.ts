@@ -1,5 +1,5 @@
-import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
+import { AsyncPipe, DOCUMENT } from "@angular/common";
+import { ChangeDetectionStrategy, Component, inject, NgZone } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -32,6 +32,7 @@ import { PageComponentBase } from "../page-component-base";
     ]
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
+    private document = inject(DOCUMENT);
     readonly allPapersHeading = new ParagraphWithHighlights({
         spans: [
             { id: "typeDB", text: "TypeDB ", highlight: false },
@@ -97,11 +98,11 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
             .then((resp) => resp.blob())
             .then((blob) => {
                 const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
+                const a = this.document.createElement("a");
                 a.style.display = "none";
                 a.href = url;
                 a.download = paper.fileName || "";
-                document.body.appendChild(a);
+                this.document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
             });

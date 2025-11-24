@@ -100,7 +100,7 @@ export class RootComponent {
                     }, 0);
                 } else if (anchor && !preventScrollToAnchor) {
                     setTimeout(() => {
-                        document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
+                        this.document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });
                 } else if (
                     this._originBeforeNavigation !== this.document.location?.origin || '' ||

@@ -1,5 +1,5 @@
-import { AsyncPipe } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component } from "@angular/core";
+import { AsyncPipe, DOCUMENT } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { map } from "rxjs";
 import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCasePageSchemaName } from "typedb-web-schema";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
@@ -123,6 +123,7 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
     canvas!: HTMLCanvasElement;
     ctx!: CanvasRenderingContext2D;
     particles: Particle[] = [];
+    private document = inject(DOCUMENT);
 
     protected override getPage(db: SanityDataset) {
         return this.activatedRoute.paramMap.pipe(
@@ -140,7 +141,7 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
     }
 
     ngAfterViewInit(): void {
-      this.canvas = document.getElementById('cyber-background') as HTMLCanvasElement;
+      this.canvas = this.document.getElementById('cyber-background') as HTMLCanvasElement;
       if (!this.canvas) {
           console.error('Canvas element #cyber-background not found!');
           return;

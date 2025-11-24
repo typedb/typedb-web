@@ -1,4 +1,4 @@
-import { isPlatformServer } from "@angular/common";
+import { DOCUMENT, isPlatformServer } from "@angular/common";
 import { inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { environment } from "../environment/environment";
 import { GOOGLE_TAG_ID, googleAdsConversionIds, GTM_ID } from "./marketing-tech-constants";
@@ -10,6 +10,7 @@ import { AnalyticsBrowser } from "@customerio/cdp-analytics-browser";
 })
 export class AnalyticsService {
     private readonly platformId = inject(PLATFORM_ID);
+    private document = inject(DOCUMENT);
     private _cio = AnalyticsBrowser.load({
         writeKey: environment.env === "production" ? "13252ebf8d339959b5b9" : "5fed4032be64c59cf336",
         cdnURL: "https://typedb.com/platform",
@@ -71,15 +72,15 @@ export class AnalyticsService {
         loadScriptTag: () => {
             if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
 
-            const scriptEl = document.createElement("script");
+            const scriptEl = this.document.createElement("script");
             scriptEl.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
-            const scriptEl2 = document.createElement("script");
+            const scriptEl2 = this.document.createElement("script");
             scriptEl2.innerHTML = `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '${GOOGLE_TAG_ID}');`;
-            document.head.appendChild(scriptEl);
-            document.head.appendChild(scriptEl2);
+            this.document.head.appendChild(scriptEl);
+            this.document.head.appendChild(scriptEl2);
         },
         reportAdConversion: (event: keyof typeof googleAdsConversionIds) => {
             return;

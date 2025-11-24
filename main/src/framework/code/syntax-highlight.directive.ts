@@ -1,4 +1,5 @@
-import { Directive, ElementRef, Input, AfterViewInit, OnChanges } from '@angular/core';
+import { DOCUMENT } from "@angular/common";
+import { Directive, ElementRef, Input, AfterViewInit, OnChanges, inject } from '@angular/core';
 import * as Prism from 'prismjs';
 
 @Directive({
@@ -8,6 +9,8 @@ import * as Prism from 'prismjs';
 export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   @Input({ required: true }) code = '';
   @Input({ required: true }) language = '';
+  private el = inject(ElementRef);
+  private document = inject(DOCUMENT);
 
   constructor(private el: ElementRef) {}
 
@@ -22,8 +25,8 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   private highlight() {
     if (!this.el.nativeElement) return;
 
-    const pre = document.createElement('pre');
-    const codeEl = document.createElement('code');
+    const pre = this.document.createElement('pre');
+    const codeEl = this.document.createElement('code');
     codeEl.className = `language-${this.language}`;
     codeEl.textContent = this.code;
 
