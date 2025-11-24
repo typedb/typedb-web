@@ -10,7 +10,7 @@ command = "NODE_OPTIONS=--max-old-space-size=4096 ENV=production pnpm --filter t
 publish = "main/dist/main/browser"
 
 [context.master]
-command = "ENV=staging pnpm --filter typedb-web-main build"
+command = "ENV=staging pnpm --filter typedb-web-main build:ssr"
 publish = "main/dist/main/browser"
 
 [context.development]
