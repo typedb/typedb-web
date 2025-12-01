@@ -1,8 +1,7 @@
 export const blogCategories = {
-    announcements: "Announcements",
-    applications: "Applications",
     engineering: "Engineering",
-    philosophy: "Philosophy",
+    community: "Community",
+    companyNews: "Company News",
     tutorials: "Tutorials",
 } as const;
 
