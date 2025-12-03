@@ -102,16 +102,28 @@ export class RootComponent {
                     setTimeout(() => {
                         this.document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });
-                } else if (
-                    this._originBeforeNavigation !== this.document.location?.origin || '' ||
-                    this._pathnameBeforeNavigation !== this.locationPathname()
-                ) {
+                } else if (this.shouldScrollToTop()) {
                     scrollTo(0, 0);
                 }
+
                 this._originBeforeNavigation = this.document.location?.origin || '';
                 this._pathnameBeforeNavigation = this.locationPathname();
             });
         });
+    }
+
+    private shouldScrollToTop(): boolean {
+        if (this.pathIsBlogLandingPage(this._pathnameBeforeNavigation) && this.pathIsBlogLandingPage(this.locationPathname())) {
+            return false;
+        }
+        
+        if (this._originBeforeNavigation !== this.document.location?.origin || '') return true;
+        if (this._pathnameBeforeNavigation !== this.locationPathname()) return true;
+        return false;
+    }
+
+    private pathIsBlogLandingPage(pathname: string) {
+        return pathname === "/blog" || pathname.startsWith("/blog/category/");
     }
 
     private locationPathname(): string {

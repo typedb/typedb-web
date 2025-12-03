@@ -18,14 +18,8 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
     styleUrls: ["./blog-row.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        LinkDirective,
-        AspectRatioComponent,
-        BlogCategoryChipsComponent,
-        RichTextComponent,
-        BlogAuthorshipBarComponent,
-        HeadingWithHighlightsComponent,
-        ResourcePanelsComponent,
-        PlainTextPipe
+        LinkDirective, AspectRatioComponent, BlogCategoryChipsComponent, RichTextComponent,
+        BlogAuthorshipBarComponent, HeadingWithHighlightsComponent, ResourcePanelsComponent, PlainTextPipe
     ]
 })
 export class BlogRowComponent {

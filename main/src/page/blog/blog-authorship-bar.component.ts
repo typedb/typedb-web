@@ -15,4 +15,5 @@ import { PersonInfoComponent } from "../../framework/person/person.component";
 export class BlogAuthorshipBarComponent {
     @Input() post!: BlogPost;
     @Input() size: "medium" | "small" = "small";
+    @Input() variant: "listPage" | "postPage" = "listPage";
 }

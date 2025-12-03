@@ -13,6 +13,41 @@ hr {
     }
 }
 
+.all-posts-header {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.newsletter-section {
+    margin-top: 0;
+    margin-bottom: 32px;
+
+    .newsletter-card {
+        padding: 12px 28px;
+        border-radius: shapes.$border-radius;
+        border: shapes.$border;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+
+        i {
+            font-size: 40px;
+        }
+
+        h4 {
+            font-weight: var(--font-weight-semi-bold);
+            margin-bottom: 4px;
+        }
+    }
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--body-background);
+}
+
 .posts {
     margin-top: 0;
 }

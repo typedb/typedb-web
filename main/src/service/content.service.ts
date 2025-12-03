@@ -81,8 +81,9 @@ export class ContentService {
             filter(([posts, _filter]) => !!posts?.length),
             map(([posts, filter]) => {
                 const postsList = posts || [];
-                if ("categorySlug" in filter)
-                    return postsList.filter((post) => (post.categories as string[]).includes(filter.categorySlug));
+                if ("categorySlug" in filter) {
+                    return [postsList[0]].concat(postsList.slice(1).filter((post) => (post.categories as string[]).includes(filter.categorySlug)));
+                }
                 return postsList;
             }),
             map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),

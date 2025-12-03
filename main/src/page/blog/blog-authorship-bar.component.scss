@@ -2,11 +2,7 @@
 @use "media";
 
 :host {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 8px 16px;
+    display: block;
     margin-top: 16px;
 
     &[size="medium"] {
@@ -20,4 +16,9 @@
 
 .bp-post-date {
     flex-shrink: 0;
+}
+
+td-person-info {
+    display: block;
+    margin-bottom: 8px;
 }

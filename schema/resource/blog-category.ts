@@ -1,9 +1,9 @@
 export const blogCategories = {
-    announcements: "Announcements",
-    applications: "Applications",
     engineering: "Engineering",
-    philosophy: "Philosophy",
-    tutorials: "Tutorials",
+    product: "Product",
+    useCases: "Use Cases",
+    insights: "Insights",
+    community: "Community",
 } as const;
 
 export type BlogCategoryID = keyof typeof blogCategories;

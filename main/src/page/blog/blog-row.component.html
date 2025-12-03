@@ -8,11 +8,11 @@
           </td-aspect-ratio>
         </a>
         <div class="bp-primary-post-summary">
-          <td-blog-category-chips [post]="posts.posts[0]" />
+          <td-blog-category-chips [post]="posts.posts[0]" [featured]="true" />
           <a [tdLink]="posts.posts[0].readPostLink()">
             <h2 class="bp-post-title bp-primary-post-title">{{ posts.posts[0].title | plainText }}</h2>
           </a>
-          <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].description" />
+          <!-- <td-rich-text class="bp-primary-post-description" [value]="posts.posts[0].description" /> -->
           <td-blog-authorship-bar [post]="posts.posts[0]" />
         </div>
       </div>
@@ -30,9 +30,9 @@
               <div class="bp-secondary-post-summary">
                 <td-blog-category-chips [post]="post" />
                 <a [tdLink]="post.readPostLink()">
-                  <h2 class="bp-post-title text-h3">{{ post.title | plainText }}</h2>
+                  <h2 class="bp-post-title text-h5">{{ post.title | plainText }}</h2>
                 </a>
-                <td-rich-text class="bp-secondary-post-description" [value]="post.description" />
+                <!-- <td-rich-text class="bp-secondary-post-description" [value]="post.description" /> -->
                 <td-blog-authorship-bar [post]="post" />
               </div>
             </div>
@@ -54,7 +54,7 @@
           <a [tdLink]="posts.posts[0].readPostLink()">
             <h2 class="bp-post-title text-h3">{{ posts.posts[0].title | plainText }}</h2>
           </a>
-          <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].description" />
+          <!-- <td-rich-text class="bp-tertiary-post-description" [value]="posts.posts[0].description" /> -->
           <td-blog-authorship-bar [post]="posts.posts[0]" />
         </div>
       </div>

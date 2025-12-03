@@ -16,6 +16,7 @@ $post-content-width: 700px;
     margin-top: 0;
 
     div {
+        width: 700px;
         max-width: var(--section-max-width);
 
         ::ng-deep h1 {
@@ -37,7 +38,7 @@ $post-content-width: 700px;
 }
 
 .bp-post-section {
-    margin-top: 40px;
+    margin-top: 0;
 
     @media (max-width: media.$max-width-mobile) {
         margin-top: 16px;
@@ -145,7 +146,7 @@ section {
         }
 
         .rt-reading-time {
-            display: none;
+            // display: none;
 
             + * {
                 margin-top: 0;

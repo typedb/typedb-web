@@ -1,11 +1,13 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewChild } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
+import { BehaviorSubject, combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
-    Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
+    Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName,
+    Link,
+    LinkButton,
     SanityBlog,
 } from "typedb-web-schema";
 
@@ -20,6 +22,9 @@ import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
+import { ButtonComponent } from "src/framework/button/button.component";
+import { MatPaginator } from "@angular/material/paginator";
+import { V } from "@angular/cdk/scrolling-module.d-C_w4tIrZ";
 
 @Component({
     selector: "td-blog-list-page",
@@ -27,13 +32,25 @@ import { BlogRowComponent } from "./blog-row.component";
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
-        BlogNavbarComponent, BlogRowComponent, AsyncPipe
+        BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, MatPaginator
     ]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
     readonly rows$: Observable<BlogRow[]>;
+    readonly displayedRows$: Observable<BlogRow[]>;
+    @ViewChild(MatPaginator) readonly paginator?: MatPaginator;
+    currentPage$ = new BehaviorSubject(1);
+    pageSize$ = new BehaviorSubject(9);
+    readonly posts$: Observable<BlogPost[]>;
+
+    readonly subscribeToNewsletterButton = new LinkButton({
+        id: "subscribe-to-newsletter",
+        style: "greenHollow",
+        link: Link.fromAddress("?dialog=newsletter"),
+        text: "Subscribe",
+        comingSoon: false,
+    });
 
     constructor(
         private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
@@ -65,13 +82,11 @@ export class BlogComponent implements OnInit {
                         i--;
                         continue;
                     }
-                    if (i === 0 || posts[i].level === "primary") {
+                    if (i === 0) {
                         rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
-                    } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
-                        rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
                     } else {
-                        rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
-                        i++;
+                        rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1], posts[i + 2]] }));
+                        i += 2;
                     }
                     currentRowIndex++;
                 }
@@ -82,6 +97,13 @@ export class BlogComponent implements OnInit {
                 return rows;
             }),
         );
+        this.displayedRows$ = combineLatest([this.rows$, this.currentPage$, this.pageSize$]).pipe(
+            map(([rows, currentPage, pageSize]) => {
+                const startIndex = (currentPage - 1) * pageSize / 3 + 1;
+                return rows.slice(startIndex, startIndex + pageSize / 3);
+            }),
+        );
+        this.posts$ = this.content.blogPosts;
     }
 
     ngOnInit(): void {
@@ -117,5 +139,10 @@ export class BlogComponent implements OnInit {
                 this.router.navigate(["404"], { skipLocationChange: true });
             },
         });
+    }
+
+    onPageChange(event: { pageIndex: number; pageSize: number }): void {
+        this.currentPage$.next(event.pageIndex + 1);
+        this.pageSize$.next(event.pageSize);
     }
 }

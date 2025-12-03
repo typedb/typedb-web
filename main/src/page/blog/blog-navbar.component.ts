@@ -27,7 +27,7 @@ export class BlogNavbarComponent {
     // }
 
     get fontSizeClass() {
-        return this.variant === "listPage" ? "text-p1" : "text-p2";
+        return "text-p2";
     }
 
     constructor() {

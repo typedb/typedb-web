@@ -1,7 +1,15 @@
-<td-person-info
-  [person]="post.author"
-  [variant]="size === 'small' ? 'articleDetails' : 'article'"
-  [disableLink]="size === 'small'"
-/>
+@if (variant === 'postPage') {
+  <td-person-info
+    [person]="post.author"
+    variant="articleDetails"
+    [disableLink]="size === 'small'"
+  />
+}
 
-<time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>
+<aside>
+  <time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: 'MMM d, y' }}</time>
+
+  <span aria-hidden="true"> · </span>
+
+  {{ post.readingTimeMins }} min read
+</aside>
