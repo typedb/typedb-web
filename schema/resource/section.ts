@@ -24,7 +24,7 @@ export class ResourceSection extends SectionCore {
 
     static fromSanityFurtherLearningSection(data: SanityResourceSection, db: SanityDataset): ResourceSection {
         return new ResourceSection({
-            title: new ParagraphWithHighlights({ spans: [{ id: "further-learning", text: "Further Learning", highlight: true }]}),
+            title: new ParagraphWithHighlights({ spans: [{ id: "further-learning", text: "Further Learning", highlight: false }]}),
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
