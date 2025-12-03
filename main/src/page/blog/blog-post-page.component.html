@@ -1,14 +1,13 @@
 <article>
   @if (post$ | async; as post) {
-    <section class="blog-landing-strip">
+    <!-- <section class="blog-landing-strip">
       <a tdLink="/blog">
         @if (blog$ | async; as blog) {
           <td-heading-with-highlights [value]="blog.blogTitle" class="bp-site-title" level="h2"/>
         }
       </a>
-    </section>
+    </section> -->
     <div class="section-background-solid bp-post-section">
-      <hr class="bp-intro-hr" />
       <nav td-blog-navbar variant="postPage" class="section"></nav>
       <section class="bp-intro-section">
         <div>

@@ -1,7 +1,11 @@
-<td-person-info
+<!-- <td-person-info
   [person]="post.author"
   [variant]="size === 'small' ? 'articleDetails' : 'article'"
   [disableLink]="size === 'small'"
-/>
+/> -->
 
-<time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: "longDate" }}</time>
+<time class="bp-post-date" [dateTime]="post.date">{{ post.date | date: 'MMM d, y' }}</time>
+
+<span aria-hidden="true"> · </span>
+
+{{ post.readingTimeMins }} min read

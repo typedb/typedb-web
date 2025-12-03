@@ -14,6 +14,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
 })
 export class BlogCategoryChipsComponent {
     @Input() post!: BlogPost;
+    @Input() featured: boolean = false;
 
     displayName(category: BlogCategoryID) {
         return blogCategories[category];

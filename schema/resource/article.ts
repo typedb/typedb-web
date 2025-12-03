@@ -61,11 +61,13 @@ export type BlogCategoryFilter = { categorySlug: string };
 export abstract class Article extends SiteResource {
     readonly contentHtml: string;
     readonly canonicalUrl?: string;
+    readonly readingTimeMins: number;
 
     protected constructor(props: PropsOf<Article>) {
         super(props);
         this.contentHtml = props.contentHtml;
         this.canonicalUrl = props.canonicalUrl;
+        this.readingTimeMins = props.readingTimeMins;
     }
 
     abstract pageTitle(): string;
@@ -77,6 +79,7 @@ function articlePropsFromWPApi(data: SanityArticle, db: SanityDataset, wordpress
         contentHtml: wordpressPost.content,
         canonicalUrl: data.canonicalUrl,
         imageURL: data.image && db.resolveRef(data.image.asset).url,
+        readingTimeMins: Math.max(1, Math.ceil((wordpressPost.content.match(/\s+/g)?.length || 0) / 200)),
     };
 }
 

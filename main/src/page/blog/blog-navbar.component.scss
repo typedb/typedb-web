@@ -2,19 +2,17 @@
 @use "shapes";
 
 :host {
-    height: 72px;
+    height: 40px;
     margin-bottom: 8px;
-    border-bottom: shapes.$border;
     margin-top: 0;
     border-radius: 0;
 
     @media (max-width: media.$max-width-mobile) {
-        height: 54px;
+        height: 40px;
         margin-bottom: 0;
     }
 
     &.bn-variant-post-page {
-        height: 58px;
         margin-bottom: 40px;
     }
 }
@@ -35,10 +33,6 @@ ul {
         padding: 0 8px;
     }
 
-    li {
-        flex: 1;
-    }
-
     h3 {
         font-weight: var(--font-weight-regular);
     }
@@ -50,6 +44,7 @@ a {
     justify-content: center;
     align-items: center;
     padding: 0 24px;
+    border-bottom: 2px solid transparent;
 
     @media (max-width: media.$max-width-mobile) {
         padding: 0 16px;
@@ -57,10 +52,14 @@ a {
 
     &:hover {
         color: var(--color-green);
-        text-decoration: underline;
     }
 
     &.td-active {
         color: var(--color-green);
+        border-bottom-color: var(--color-green);
     }
+}
+
+hr {
+    margin: 0;
 }

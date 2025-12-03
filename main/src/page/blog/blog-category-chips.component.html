@@ -1,5 +1,10 @@
+@if (featured) {
+  <aside>
+    <span class="chip">Featured</span>
+  </aside>
+}
 @for (category of post.categories; track category) {
   <aside>
-    <a [tdLink]="'/blog/category/' + category">{{ displayName(category) }}</a>
+    <a class="chip" [tdLink]="'/blog/category/' + category">{{ displayName(category) }}</a>
   </aside>
 }

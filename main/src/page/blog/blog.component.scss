@@ -13,6 +13,33 @@ hr {
     }
 }
 
+.all-posts-header {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.newsletter-section {
+    margin-top: 0;
+    margin-bottom: 32px;
+
+    .newsletter-card {
+        padding: shapes.$card-padding;
+        border-radius: shapes.$border-radius;
+        border: shapes.$border;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+
+        i {
+            font-size: 40px;
+        }
+
+        h4 {
+            margin-bottom: 4px;
+        }
+    }
+}
+
 .posts {
     margin-top: 0;
 }

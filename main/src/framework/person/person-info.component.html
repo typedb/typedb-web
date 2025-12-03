@@ -17,6 +17,8 @@
     <p class="pi-person-name" [class.text-p1]="variant === 'event'">
       <strong>{{ person.name }}</strong>
     </p>
-    <aside class="pi-person-details">{{ person.jobTitle }}, {{ person.organisation.name }}</aside>
+    @if (variant === 'event') {
+      <aside class="pi-person-details">{{ person.jobTitle }}, {{ person.organisation.name }}</aside>
+    }
   </div>
 </ng-template>

@@ -13,8 +13,13 @@ export class HeadingWithHighlightsComponent {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input("id") inputId?: string;
     @Input() level: "h1" | "h2" | "h3" | "h4" = "h2";
+    @Input("renderedLevel") _renderedLevel?: "h1" | "h2" | "h3" | "h4";
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex = "#02DAC9";
+
+    get renderedLevel(): "h1" | "h2" | "h3" | "h4" {
+        return this._renderedLevel || this.level;
+    }
 
     get id(): string {
         return (

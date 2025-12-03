@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
+    Link,
+    LinkButton,
     SanityBlog,
 } from "typedb-web-schema";
 
@@ -20,6 +22,7 @@ import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
+import { ButtonComponent } from "src/framework/button/button.component";
 
 @Component({
     selector: "td-blog-list-page",
@@ -27,13 +30,20 @@ import { BlogRowComponent } from "./blog-row.component";
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        LinkDirective, HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
-        BlogNavbarComponent, BlogRowComponent, AsyncPipe
+        BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent
     ]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
     readonly rows$: Observable<BlogRow[]>;
+
+    readonly subscribeToNewsletterButton = new LinkButton({
+        id: "subscribe-to-newsletter",
+        style: "greenHollow",
+        link: Link.fromAddress("?dialog=newsletter"),
+        text: "Subscribe",
+        comingSoon: false,
+    });
 
     constructor(
         private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
@@ -65,13 +75,11 @@ export class BlogComponent implements OnInit {
                         i--;
                         continue;
                     }
-                    if (i === 0 || posts[i].level === "primary") {
+                    if (i === 0) {
                         rows.push(new BlogPostsRow({ level: "primary", posts: [posts[i]] }));
-                    } else if (posts[i].level === "tertiary" || i === posts.length - 1) {
-                        rows.push(new BlogPostsRow({ level: "tertiary", posts: [posts[i]] }));
                     } else {
-                        rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1]] }));
-                        i++;
+                        rows.push(new BlogPostsRow({ level: "secondary", posts: [posts[i], posts[i + 1], posts[i + 2]] }));
+                        i += 2;
                     }
                     currentRowIndex++;
                 }

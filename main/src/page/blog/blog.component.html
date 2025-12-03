@@ -1,23 +1,39 @@
 <article>
   @if (blog$ | async; as blog) {
-    <section class="blog-landing-strip">
-      <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" /></a>
+    <!-- <section class="blog-landing-strip">
+      <a tdLink="/blog"><td-heading-with-highlights [value]="blog.blogTitle" level="h1" renderedLevel="h2" /></a>
       <td-p-with-highlights class="narrow-section subtitle-l text-p1" [value]="blog.blogSubtitle" />
-    </section>
+    </section> -->
   }
 
-  <div class="section-background-solid subsection-margin bp-blog-list">
-    <hr class="bp-intro-hr" />
-
-    <nav td-blog-navbar variant="listPage" class="section"></nav>
-
+  <div class="section-background-solid bp-blog-list">
     @if (rows$ | async; as rows) {
+      <td-blog-row class="section posts" [row]="rows[0]" />
+
+      <section class="newsletter-section">
+        <div class="newsletter-card">
+          <div>
+            <i class="fa-thin fa-envelope"></i>
+          </div>
+          <div>
+            <h4>Subscribe to the TypeDB newsletter</h4>
+            <p>Receive occasional emails about company news, releases, events and more.</p>
+          </div>
+          <div class="flex"></div>
+          <td-button [button]="subscribeToNewsletterButton" linkId="subscribe" />
+        </div>
+      </section>
+
+      <!-- <h2 class="section all-posts-header text-h3">All posts</h2> -->
+
+      <nav td-blog-navbar variant="listPage" class="section"></nav>
+
       <section class="posts">
-        @for (row of rows; track row) {
+        @for (row of rows.slice(1); track row) {
           <td-blog-row [row]="row" />
         }
       </section>
-    }
+  }
 
     <div class="subsection-margin"></div>
   </div>

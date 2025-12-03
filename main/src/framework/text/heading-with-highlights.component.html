@@ -1,21 +1,21 @@
 @switch (level) {
   @case ('h1') {
-    <h1 class="glow" [id]="id">
+    <h1 class="glow" [id]="id" [class]="'text-' + renderedLevel">
       <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
     </h1>
   }
   @case ('h2') {
-    <h2 [id]="id">
+    <h2 [id]="id" [class]="'text-' + renderedLevel">
       <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
     </h2>
   }
   @case ('h3') {
-    <h3 [id]="id">
+    <h3 [id]="id" [class]="'text-' + renderedLevel">
       <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
     </h3>
   }
   @case ('h4') {
-    <h4 [id]="id">
+    <h4 [id]="id" [class]="'text-' + renderedLevel">
       <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
     </h4>
   }
