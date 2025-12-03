@@ -20,6 +20,7 @@ import { StartupProgramPageComponent } from "./page/startup-program/startup-prog
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 import { UseCasePageComponent } from "./page/use-cases/use-case-page.component";
+import { blogCategories, blogCategoryList } from "typedb-web-schema";
 
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
@@ -45,7 +46,7 @@ export const genericPageSchemas = [
 export const dynamicPageSchemas = [
     { path: "applications/:slug", schemaName: "applicationArticle" },
     { path: "blog/:slug", schemaName: "blogPost" },
-    { path: "blog/category/:slug", slugs: ["announcements", "engineering", "applications", "philosophy", "tutorials"] },
+    { path: "blog/category/:slug", slugs: blogCategoryList },
     { path: "events/:slug", schemaName: "liveEvent" },
     { path: "fundamentals/:slug", schemaName: "fundamentalArticle" },
     { path: "lectures/:slug", schemaName: "lecture" },

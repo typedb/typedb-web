@@ -1,11 +1,11 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewChild } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
+import { BehaviorSubject, combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
-    Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPostsRow, BlogRow, blogSchemaName,
+    Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName,
     Link,
     LinkButton,
     SanityBlog,
@@ -23,6 +23,8 @@ import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
 import { ButtonComponent } from "src/framework/button/button.component";
+import { MatPaginator } from "@angular/material/paginator";
+import { V } from "@angular/cdk/scrolling-module.d-C_w4tIrZ";
 
 @Component({
     selector: "td-blog-list-page",
@@ -30,12 +32,17 @@ import { ButtonComponent } from "src/framework/button/button.component";
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent
+        BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, MatPaginator
     ]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
     readonly rows$: Observable<BlogRow[]>;
+    readonly displayedRows$: Observable<BlogRow[]>;
+    @ViewChild(MatPaginator) readonly paginator?: MatPaginator;
+    currentPage$ = new BehaviorSubject(1);
+    pageSize$ = new BehaviorSubject(9);
+    readonly posts$: Observable<BlogPost[]>;
 
     readonly subscribeToNewsletterButton = new LinkButton({
         id: "subscribe-to-newsletter",
@@ -90,6 +97,13 @@ export class BlogComponent implements OnInit {
                 return rows;
             }),
         );
+        this.displayedRows$ = combineLatest([this.rows$, this.currentPage$, this.pageSize$]).pipe(
+            map(([rows, currentPage, pageSize]) => {
+                const startIndex = (currentPage - 1) * pageSize / 3 + 1;
+                return rows.slice(startIndex, startIndex + pageSize / 3);
+            }),
+        );
+        this.posts$ = this.content.blogPosts;
     }
 
     ngOnInit(): void {
@@ -125,5 +139,10 @@ export class BlogComponent implements OnInit {
                 this.router.navigate(["404"], { skipLocationChange: true });
             },
         });
+    }
+
+    onPageChange(event: { pageIndex: number; pageSize: number }): void {
+        this.currentPage$.next(event.pageIndex + 1);
+        this.pageSize$.next(event.pageSize);
     }
 }

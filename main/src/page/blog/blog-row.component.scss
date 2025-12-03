@@ -1,6 +1,7 @@
 @use "media";
 @use "shapes";
 @use "mixins";
+@use "colors";
 
 :host {
     display: block;
@@ -10,12 +11,9 @@ hr {
     margin: 0;
 }
 
-.bp-blog-list ::ng-deep a:hover {
-    h1,
-    h2,
-    h3 {
+.bp-posts-row ::ng-deep a:hover {
+    h1, h2, h3 {
         color: var(--color-green);
-        text-decoration: underline;
     }
 }
 
@@ -49,7 +47,7 @@ hr {
     }
 
     .bp-primary-img-link {
-        flex: 0 0 60%;
+        flex: 0 0 50%;
 
         @media (max-width: media.$max-width-mobile) {
             flex-basis: auto;
@@ -75,7 +73,6 @@ hr {
 
     a:hover {
         color: var(--color-green);
-        text-decoration: underline;
     }
 }
 
@@ -119,9 +116,14 @@ hr {
 }
 
 td-aspect-ratio {
+    transition: border-color 250ms ease;
     border: shapes.$border;
     border-radius: var(--border-radius);
     overflow: hidden;
+
+    &:hover {
+        border-color: colors.$secondary-grey;
+    }
 }
 
 .bp-img {
