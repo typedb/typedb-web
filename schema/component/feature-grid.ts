@@ -6,7 +6,7 @@ import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, 
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
-import { BodyTextField, PortableText } from "../text";
+import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleField } from "../text";
 import { PropsOf } from "../util";
 import { SanitySectionCore, SectionCore } from "./section";
 
@@ -14,14 +14,15 @@ export interface SanityFeatureGridSection extends SanitySectionCore {
     featureGrids: SanityReference<SanityFeatureGrid>[];
 }
 
-export type FeatureGridLayout = "textCodeBlocks" | "textBlocks" | "tabs";
+export interface SanityFeatureGridRow {
+    cells: SanityFeatureGridCell[];
+}
 
 export interface SanityFeatureGrid extends SanityDocument {
     name: string;
-    featureGridLayout: FeatureGridLayout;
-    features: SanityFeatureGridCell[];
+    title?: PortableText;
+    rows: SanityFeatureGridRow[];
     illustration?: SanityReference<SanityIllustration>;
-    columnCount: number;
 }
 
 export interface SanityFeatureGridCell extends SanityVisibleToggle {
@@ -73,27 +74,25 @@ export class FeatureGridCell implements Partial<BodyTextField> {
 
 export class FeatureGrid { // not used in FeatureGridSection to flatten the structure, but used elsewhere
     readonly name: string;
-    readonly featureGridLayout: FeatureGridLayout;
+    readonly title?: ParagraphWithHighlights;
     readonly features: FeatureGridCell[][];
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<FeatureGrid>) {
         this.name = props.name;
-        this.featureGridLayout = props.featureGridLayout;
+        this.title = props.title;
         this.features = props.features;
         this.illustration = props.illustration;
     }
 
     static fromSanity(featureGrid: SanityFeatureGrid, db: SanityDataset) {
-        const visibleFeatures = featureGrid.features.filter((x) => x.isVisible);
-        const featureCells = [];
-        for (let i = 0; i < visibleFeatures.length; i += featureGrid.columnCount) {
-            const chunk = visibleFeatures.slice(i, i + featureGrid.columnCount).map((x) => FeatureGridCell.fromSanity(x, db));
-            featureCells.push(chunk);
-        }
+        const featureCells = featureGrid.rows.map(row => {
+            const visibleCells = row.cells.filter(cell => cell.isVisible);
+            return visibleCells.map(cell => FeatureGridCell.fromSanity(cell, db));
+        });
         return new FeatureGrid({
             name: featureGrid.name,
-            featureGridLayout: featureGrid.featureGridLayout,
+            title: featureGrid.title ? ParagraphWithHighlights.fromSanity(featureGrid.title) : undefined,
             features: featureCells,
             illustration: featureGrid.illustration
                 ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
@@ -155,6 +154,34 @@ const featureGridCellSchema = defineType({
     ],
 });
 
+export const featureGridRowSchemaName = `featureGridRow`;
+
+const featureGridRowSchema = defineType({
+    name: featureGridRowSchemaName,
+    title: "Feature Grid Row",
+    type: "object",
+    fields: [
+        defineField({
+            name: "cells",
+            title: "Cells",
+            type: "array",
+            of: [{ type: featureGridCellSchemaName }],
+            validation: (rule: ArrayRule<any>) => rule.required().min(1),
+        }),
+    ],
+    preview: {
+        select: {
+            cells: "cells",
+        },
+        prepare({ cells }) {
+            const titles = cells?.map((cell: any) => cell.title || "Untitled").join(", ") || "No cells";
+            return {
+                title: titles,
+            };
+        },
+    },
+});
+
 export const featureGridSchemaName = `featureGrid`;
 
 const featureGridSchema = defineType({
@@ -164,35 +191,28 @@ const featureGridSchema = defineType({
     icon: DashboardIcon,
     fields: [
         nameField,
-        defineField({
-            name: "layout",
-            title: "Layout",
-            type: "string",
-            options: {
-                layout: "dropdown",
-                list: [
-                    { title: "Text Blocks", value: "textBlocks" },
-                    { title: "Text + Illustration Blocks", value: "textIllustrationBlocks" },
-                ],
-            },
-            initialValue: "textBlocks",
-            validation: requiredRule,
+        Object.assign({}, titleFieldWithHighlights, {
+            description: "Optional title for the feature grid. Text marked as 'bold' will be rendered in the highlight color",
         }),
         defineField({
-            name: "columnCount",
-            title: "Column Count",
-            type: "number",
-            initialValue: 3,
-        }),
-        defineField({
-            name: "features",
-            title: "Features",
+            name: "rows",
+            title: "Rows",
             type: "array",
-            of: [{ type: featureGridCellSchemaName }],
-            validation: (rule: ArrayRule<any>) => rule.required(),
+            of: [{ type: featureGridRowSchemaName }],
+            validation: (rule: ArrayRule<any>) => rule.required().min(1),
         }),
         illustrationFieldOptional,
     ],
+    preview: {
+        select: {
+            name: "name",
+        },
+        prepare({ name }) {
+            return {
+                title: name || "Untitled Feature Grid",
+            };
+        },
+    },
 });
 
 export const featureGridSectionSchemaName = `featureGridSection`;
@@ -214,4 +234,4 @@ const featureGridSectionSchema = defineType({
     ],
 });
 
-export const featureGridSchemas = [featureGridSchema, featureGridSectionSchema, featureGridCellSchema];
+export const featureGridSchemas = [featureGridSchema, featureGridSectionSchema, featureGridRowSchema, featureGridCellSchema];

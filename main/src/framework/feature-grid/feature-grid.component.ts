@@ -4,7 +4,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, 
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import {
-    CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridLayout, GraphVisualisation, Illustration,
+    CodeSnippet, CodeSnippetShort, FeatureGridCell, GraphVisualisation, Illustration,
     ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
 } from "typedb-web-schema";
 
@@ -23,7 +23,6 @@ import { TagChipsComponent } from "./tag-chips.component";
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);
-    @Input() layout!: FeatureGridLayout;
     @Input() featureRows!: FeatureGridCell[][];
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
