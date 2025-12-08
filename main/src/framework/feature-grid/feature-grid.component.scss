@@ -9,11 +9,18 @@
     padding: 0;
 }
 
+.fg-grid-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .fg-grid-item,
 .fg-illustration-row {
     border: shapes.$border;
     border-width: 1px 0 0 1px;
     margin: -1px 0 0 -1px;
+    flex: 1;
 }
 
 .fg-grid-item,

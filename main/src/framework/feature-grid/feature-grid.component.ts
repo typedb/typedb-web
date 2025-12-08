@@ -4,7 +4,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, 
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import {
-    CodeSnippet, CodeSnippetShort, FeatureGridCell, GraphVisualisation, Illustration,
+    CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridRow, GraphVisualisation, Illustration,
     ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
 } from "typedb-web-schema";
 
@@ -23,7 +23,7 @@ import { TagChipsComponent } from "./tag-chips.component";
 })
 export class FeatureGridComponent implements OnInit, AfterViewInit {
     private readonly platformId = inject(PLATFORM_ID);
-    @Input() featureRows!: FeatureGridCell[][];
+    @Input() featureRows!: FeatureGridRow[];
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
@@ -32,14 +32,13 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
         return {
             section: !this.disableCardAppearance,
             "narrow-section": !this.disableCardAppearance,
-            ["fg-row-size-" + this.columnIndexes.length]: true,
         };
     }
 
     columnIndexes!: number[];
 
     ngOnInit() {
-        this.columnIndexes = [...Array(this.featureRows[0].length).keys()];
+        this.columnIndexes = [...Array(this.featureRows[0].cells.length).keys()];
     }
 
     ngAfterViewInit() {

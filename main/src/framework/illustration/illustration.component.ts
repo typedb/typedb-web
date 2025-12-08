@@ -12,7 +12,7 @@ import { MediaQueryService } from "../../service/media-query.service";
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { CodeSnippetComponent } from "../code/code-snippet.component";
 import { PolyglotSnippetComponent } from "../polyglot-snippet/polyglot-snippet.component";
-// import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
+import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
 import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
@@ -21,14 +21,14 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CodeSnippetComponent, PolyglotSnippetComponent, /*GraphVisualisationComponent,*/
+        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
         forwardRef(() => SplitPaneIllustrationComponent)
     ]
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
     // TODO: requiring the caller to set visible explicitly is counter-intuitive
-    @Input() visible = false;
+    @Input() visible = true;
     @Input() @HostBinding("class.il-blur") isBlurred = false;
 
     @HostBinding("class.is-code-snippet")

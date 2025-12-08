@@ -41,7 +41,7 @@ export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-field
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
-    FeatureGrid, FeatureGridSection, FeatureGridCell, featureGridSchemaName,
+    FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
 export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
 export { Integration, IntegrationsGridSection } from "./component/integrations-grid";

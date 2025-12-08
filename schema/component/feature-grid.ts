@@ -72,28 +72,40 @@ export class FeatureGridCell implements Partial<BodyTextField> {
     }
 }
 
+export class FeatureGridRow {
+    readonly cells: FeatureGridCell[];
+
+    constructor(props: PropsOf<FeatureGridRow>) {
+        this.cells = props.cells;
+    }
+
+    static fromSanity(data: SanityFeatureGridRow, db: SanityDataset) {
+        const visibleCells = data.cells.filter(cell => cell.isVisible);
+        return new FeatureGridRow({
+            cells: visibleCells.map(cell => FeatureGridCell.fromSanity(cell, db)),
+        });
+    }
+}
+
 export class FeatureGrid { // not used in FeatureGridSection to flatten the structure, but used elsewhere
     readonly name: string;
     readonly title?: ParagraphWithHighlights;
-    readonly features: FeatureGridCell[][];
+    readonly rows: FeatureGridRow[];
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<FeatureGrid>) {
         this.name = props.name;
         this.title = props.title;
-        this.features = props.features;
+        this.rows = props.rows;
         this.illustration = props.illustration;
     }
 
     static fromSanity(featureGrid: SanityFeatureGrid, db: SanityDataset) {
-        const featureCells = featureGrid.rows.map(row => {
-            const visibleCells = row.cells.filter(cell => cell.isVisible);
-            return visibleCells.map(cell => FeatureGridCell.fromSanity(cell, db));
-        });
+        const rows = featureGrid.rows.map(row => FeatureGridRow.fromSanity(row, db));
         return new FeatureGrid({
             name: featureGrid.name,
             title: featureGrid.title ? ParagraphWithHighlights.fromSanity(featureGrid.title) : undefined,
-            features: featureCells,
+            rows: rows,
             illustration: featureGrid.illustration
                 ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
                 : undefined,
