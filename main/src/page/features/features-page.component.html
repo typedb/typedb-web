@@ -1,19 +1,36 @@
-<article>
-  @if (page$ | async; as page) {
-    <td-illustration-section sectionId="intro" [data]="page.introSection" class="td-intro zoomed" />
-    <td-features-navbar [items]="navbarItems"/>
-    @for (section of page.featureSections; track section; let idx = $index) {
-      <td-section-core [section]="section"/>
-      @for (featureGrid of section.featureGrids; let idx = $index; track idx) {
-        <td-feature-grid
-          [layout]="featureGrid.featureGridLayout" [featureRows]="featureGrid.features" [illustration]="section.illustration"
-          [sectionId]="section.sectionId"
-        />
-      }
-    }
+@if (page$ | async; as page) {
+  <td-illustration-section sectionId="intro" [data]="page.introSection" class="td-intro zoomed" />
+
+  <article>
+    <div class="section features-content-wrapper">
+      <nav class="features-toc">
+        <h5 class="toc-back-to-top">
+          <a href="#" tdSmoothScroll>↑ Back to top</a>
+        </h5>
+        <ul class="text-aside">
+          @for (item of navbarItems; track item) {
+            <li>
+              <a [href]="item.href" [innerHtml]="item.text" tdSmoothScroll></a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="features-main-content">
+        @for (section of page.featureSections; track section; let idx = $index) {
+          <td-section-core [section]="section" [noSectionClass]="true"/>
+          @for (featureGrid of section.featureGrids; let idx = $index; track idx) {
+            <td-feature-grid
+              [data]="featureGrid" [illustration]="section.illustration"
+              [sectionId]="section.sectionId"
+            />
+          }
+        }
+      </div>
+    </div>
+      
     <td-section-core [section]="page.finalSection"/>
     <td-conclusion-panel [panel]="page.finalSection.panel"/>
-  }
-</article>
-
-<td-back-to-top-button/>
+  </article>
+  
+}

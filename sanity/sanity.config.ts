@@ -81,7 +81,7 @@ export default defineConfig({
                     s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
                     singletonListItem(s, cloudAnnouncementSchemaName, { title: "Announcement", icon: ConfettiIcon }),
                 ])),
-                s.listItem().title("Learning Resources & Events").icon(BookIcon).child(s.list().title("Learning Resources & Events").items([
+                s.listItem().title("Blogs, Resources & Events").icon(BookIcon).child(s.list().title("Blogs, Resources & Events").items([
                     s.documentTypeListItem(fundamentalArticleSchemaName).title("Fundamentals"),
                     s.documentTypeListItem(applicationArticleSchemaName).title("Applications"),
                     s.documentTypeListItem(blogPostSchemaName).title("Blog Posts"),
@@ -89,9 +89,6 @@ export default defineConfig({
                     s.documentTypeListItem(paperSchemaName).title("Papers"),
                     s.documentTypeListItem(liveEventSchemaName).title("Live Events"),
                     s.documentTypeListItem(genericResourceSchemaName).title("Generic Resources"),
-                ])),
-                s.listItem().title("Structure").icon(ComponentIcon).child(s.list().title("Structure").items([
-                    s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
                 ])),
                 s.listItem().title("Code Snippets").icon(CodeIcon).child(s.list().title("Code Snippets").items([
                     s.documentTypeListItem(codeSnippetSchemaName).title("Single Snippets"),
@@ -105,6 +102,7 @@ export default defineConfig({
                 ])),
                 s.documentTypeListItem(linkSchemaName).title("Links"),
                 s.listItem().title("Objects").icon(CubeIcon).child(s.list().title("Objects").items([
+                    s.documentTypeListItem(featureGridSchemaName).title("Feature Grids"),
                     s.documentTypeListItem(personSchemaName).title("People"),
                     s.documentTypeListItem(organisationSchemaName).title("Organisations"),
                     s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
