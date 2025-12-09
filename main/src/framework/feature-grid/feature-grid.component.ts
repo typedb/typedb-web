@@ -28,12 +28,11 @@ export class FeatureGridComponent {
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
 
-    @HostBinding("class") get classes() {
-        return {
-            section: !this.disableCardAppearance,
-            "narrow-section": !this.disableCardAppearance,
-        };
-    }
+    // @HostBinding("class") get classes() {
+    //     return {
+    //         section: !this.disableCardAppearance,
+    //     };
+    // }
 
     hasMediaIllustration(feature: FeatureGridCell) {
         return (
