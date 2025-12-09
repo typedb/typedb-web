@@ -6,7 +6,7 @@
       <td-section-core [section]="section"/>
       @for (featureGrid of section.featureGrids; let idx = $index; track idx) {
         <td-feature-grid
-          [featureRows]="featureGrid.rows" [illustration]="section.illustration"
+          [data]="featureGrid" [illustration]="section.illustration"
           [sectionId]="section.sectionId"
         />
       }

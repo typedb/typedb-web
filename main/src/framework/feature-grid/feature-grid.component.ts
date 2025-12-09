@@ -1,29 +1,29 @@
 
-import { isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Input, OnInit, inject, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import {
-    CodeSnippet, CodeSnippetShort, FeatureGridCell, FeatureGridRow, GraphVisualisation, Illustration,
+    CodeSnippet, CodeSnippetShort, FeatureGrid, FeatureGridCell, FeatureGridRow, GraphVisualisation, Illustration,
     ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { SyntaxHighlightDirective } from "../code/syntax-highlight.directive";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
 import { TagChipsComponent } from "./tag-chips.component";
+import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
 
 @Component({
     selector: "td-feature-grid",
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent]
+    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent, HeadingWithHighlightsComponent, SyntaxHighlightDirective]
 })
-export class FeatureGridComponent implements OnInit, AfterViewInit {
-    private readonly platformId = inject(PLATFORM_ID);
-    @Input() featureRows!: FeatureGridRow[];
+export class FeatureGridComponent {
+    @Input() data!: FeatureGrid;
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
@@ -33,18 +33,6 @@ export class FeatureGridComponent implements OnInit, AfterViewInit {
             section: !this.disableCardAppearance,
             "narrow-section": !this.disableCardAppearance,
         };
-    }
-
-    columnIndexes!: number[];
-
-    ngOnInit() {
-        this.columnIndexes = [...Array(this.featureRows[0].cells.length).keys()];
-    }
-
-    ngAfterViewInit() {
-        if (isPlatformBrowser(this.platformId)) {
-            (window as any)["Prism"].highlightAll();
-        }
     }
 
     hasMediaIllustration(feature: FeatureGridCell) {

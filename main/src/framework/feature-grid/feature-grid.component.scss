@@ -5,30 +5,64 @@
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
-    margin-top: 0;
+    margin-top: 28px;
     padding: 0;
+}
+
+td-heading-with-highlights {
+    margin-bottom: 28px;
 }
 
 .fg-grid-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
+
+    // Add bottom border to all rows except the last one
+    &:not(:last-child) {
+        border-bottom: shapes.$border;
+    }
+
+    &.grid-row-size-1 .fg-grid-item {
+        flex-direction: row;
+
+        > * {
+            flex: 1;
+        }
+    }
 }
 
-.fg-grid-item,
-.fg-illustration-row {
-    border: shapes.$border;
-    border-width: 1px 0 0 1px;
-    margin: -1px 0 0 -1px;
+.fg-grid-item, .fg-illustration-row {
     flex: 1;
     min-width: 0;
 }
 
-.fg-grid-item,
+.fg-grid-item {
+    // Add right border to all cells except the last one in each row
+    &:not(:last-child) {
+        border-right: shapes.$border;
+    }
+}
+
+.fg-grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media (max-width: media.$max-width-tablet) {
+        gap: 16px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        gap: 12px;
+    }
+}
+
 .fg-grid-item-text {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    flex: 1; // Allow text section to grow and push illustrations down
 
     @media (max-width: media.$max-width-tablet) {
         gap: 16px;
