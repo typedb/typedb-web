@@ -2,13 +2,13 @@ import { AsyncPipe, Location } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { of, tap } from "rxjs";
 import { FeaturesPage, featuresPageSchemaName, Link, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
-import { BackToTopButtonComponent } from "../../framework/back-to-top/back-to-top-button.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
 import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
+import { SmoothScrollDirective } from "../../framework/smooth-scroll/smooth-scroll.directive";
 import { PageComponentBase } from "../page-component-base";
-import { FeaturesNavbarComponent, FeaturesNavbarItem } from "./features-navbar.component";
+import { FeaturesNavbarItem } from "./features-navbar.component";
 
 @Component({
     selector: "td-features-page",
@@ -17,7 +17,7 @@ import { FeaturesNavbarComponent, FeaturesNavbarItem } from "./features-navbar.c
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent, IllustrationSectionComponent,
-        FeaturesNavbarComponent, BackToTopButtonComponent,
+        SmoothScrollDirective,
     ],
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {

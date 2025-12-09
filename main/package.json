@@ -36,6 +36,7 @@
     "fontfaceobserver": "2.3.0",
     "interactjs": "1.10.18",
     "ngx-cookieconsent": "4.0.2",
+    "pixi.js-legacy": "7.4.3",
     "posthog-js": "1.268.8",
     "prismjs": "1.29.0",
     "rxjs": "7.8.1",

@@ -16,7 +16,7 @@
   }
   @if (isFeatureGrid(item)) {
     <td-feature-grid
-      [disableCardAppearance]="true" [featureRows]="item.features" [layout]="item.featureGridLayout"
+      [disableCardAppearance]="true" [data]="item"
       [illustration]="item.illustration" [sectionId]="featureGridId(item)"
     />
   }

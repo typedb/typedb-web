@@ -43,7 +43,7 @@
 
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
-    --section-max-width: calc(100vw - 24px);
+    --section-max-width: calc(100vw - 40px);
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 

@@ -348,11 +348,6 @@ table {
     }
 }
 
-td-feature-grid + td-feature-grid {
-    display: block;
-    border-top: 1px solid var(--content-border-color);
-}
-
 mat-dialog-container {
     h1 {
         font-size: var(--font-size-h3);
