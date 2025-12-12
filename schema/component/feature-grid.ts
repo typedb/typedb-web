@@ -1,7 +1,7 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, tagsField, titleFieldOptional, titleFieldWithHighlights } from "../common-fields";
+import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, tagsField, titleFieldOptional, titleFieldWithHighlights, titleFieldWithHighlightsOptional } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -203,9 +203,7 @@ const featureGridSchema = defineType({
     icon: DashboardIcon,
     fields: [
         nameField,
-        Object.assign({}, titleFieldWithHighlights, {
-            description: "Optional title for the feature grid. Text marked as 'bold' will be rendered in the highlight color",
-        }),
+        titleFieldWithHighlightsOptional,
         defineField({
             name: "rows",
             title: "Rows",
