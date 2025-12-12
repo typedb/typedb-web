@@ -9,9 +9,6 @@
         <div class="fg-grid-item-text">
           @if (feature.title) {
             <div class="fg-feature-title-section">
-              @if (feature.iconURL) {
-                <img [src]="feature.iconURL" alt="" />
-              }
               <h4>{{ feature.title }}</h4>
               <div class="flex"></div>
               <td-tag-chips [tags]="feature.tags" [sectionId]="sectionId" />
@@ -28,10 +25,15 @@
             </div>
           }
         </div>
-        @if (hasMediaIllustration(feature)) {
+        @if (hasGraphVizIllustration(feature)) {
           <td-aspect-ratio ratio="16:9">
             <td-illustration [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
           </td-aspect-ratio>
+        }
+        @if (hasMediaIllustration(feature)) {
+<!--          <td-aspect-ratio [ratio]="row.cells.length > 3 ? '1:1' : '16:9'">-->
+            <td-illustration class="fg-media" [illustration]="$any(feature.illustration)" [isBlurred]="feature.isIllustrationBlurred" />
+<!--          </td-aspect-ratio>-->
         }
         @if (hasShortCodeSnippet(feature)) {
           <div class="fg-code-short-container">

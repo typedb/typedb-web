@@ -30,6 +30,15 @@ td-heading-with-highlights {
             flex: 1;
         }
     }
+
+    &.grid-row-size-4 .fg-media {
+        width: 120px;
+        height: 120px;
+
+        ::ng-deep img {
+            object-fit: contain;
+        }
+    }
 }
 
 .fg-grid-item, .fg-illustration-row {

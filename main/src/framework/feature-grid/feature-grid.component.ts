@@ -34,11 +34,14 @@ export class FeatureGridComponent {
     //     };
     // }
 
+    hasGraphVizIllustration(feature: FeatureGridCell) {
+        return feature.illustration instanceof GraphVisualisation;
+    }
+
     hasMediaIllustration(feature: FeatureGridCell) {
         return (
             feature.illustration instanceof ImageIllustration ||
             feature.illustration instanceof VideoEmbed ||
-            feature.illustration instanceof GraphVisualisation ||
             feature.illustration instanceof SplitPaneIllustration
         );
     }

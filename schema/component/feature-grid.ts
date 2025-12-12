@@ -28,7 +28,6 @@ export interface SanityFeatureGrid extends SanityDocument {
 export interface SanityFeatureGridCell extends SanityVisibleToggle {
     title: string;
     body: PortableText;
-    icon?: SanityReference<SanityImageRef>;
     links?: SanityTextLink[];
     illustration?: SanityReference<SanityIllustration>;
     tags: string[];
@@ -43,7 +42,6 @@ export function featureGridIllustrationFromSanity(data: SanityIllustration, db: 
 export class FeatureGridCell implements Partial<BodyTextField> {
     readonly title?: string;
     readonly body?: PortableText;
-    readonly iconURL?: string;
     readonly links?: TextLink[];
     readonly illustration?: Illustration;
     readonly tags: string[];
@@ -52,7 +50,6 @@ export class FeatureGridCell implements Partial<BodyTextField> {
     constructor(props: PropsOf<FeatureGridCell>) {
         this.title = props.title;
         this.body = props.body;
-        this.iconURL = props.iconURL;
         this.links = props.links;
         this.illustration = props.illustration;
         this.tags = props.tags;
@@ -63,7 +60,6 @@ export class FeatureGridCell implements Partial<BodyTextField> {
         return new FeatureGridCell({
             title: data.title,
             body: data.body,
-            iconURL: data.icon && db.resolveImageRef(data.icon).url,
             links: data.links?.map(x => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
             illustration: data.illustration && featureGridIllustrationFromSanity(db.resolveRef(data.illustration), db),
             tags: data.tags,
