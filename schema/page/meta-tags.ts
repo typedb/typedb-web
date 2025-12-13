@@ -75,7 +75,6 @@ export const metaTagsField = defineField({
         customMetaTagsField,
     ],
     options: collapsibleOptions,
-    validation: requiredRule,
 });
 
 export const metaTagsSchemas = [customMetaTagFieldSchema];
