@@ -13,6 +13,7 @@ import {
 } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { portableTextToPlainText } from "src/service/portable-text-utils";
 
 import { ActionsComponent } from "../../framework/actions/actions.component";
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
@@ -130,11 +131,21 @@ export class LectureDetailsPageComponent implements OnInit {
         this.lecture$.subscribe((lecture) => {
             if (lecture) {
                 this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
-                this.metaTags.register(lecture.metaTags);
+                this.metaTags.register(lecture.metaTags, this.getMetaTagFallbacks(lecture));
             } else {
                 this.router.navigate(["lectures"], { replaceUrl: true });
             }
         });
+    }
+
+    private getMetaTagFallbacks(lecture: Lecture) {
+        const description = portableTextToPlainText(lecture.description);
+
+        return {
+            title: `TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`,
+            description: description || lecture.shortDescription || `Learn about ${this._plainTextPipe.transform(lecture.title)}`,
+            ogImage: lecture.imageURL,
+        };
     }
 
     private onSubmit(_lecture: Lecture, _values: Record<string, unknown>) {

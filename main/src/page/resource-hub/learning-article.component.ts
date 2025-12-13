@@ -22,6 +22,7 @@ import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
+import { portableTextToPlainText } from "../../service/portable-text-utils";
 
 @Component({
     selector: "td-learning-article",
@@ -86,7 +87,7 @@ export class LearningArticleComponent implements OnInit {
             next: (post) => {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
-                    this.metaTags.register(post.metaTags);
+                    this.metaTags.register(post.metaTags, this.getMetaTagFallbacks(post));
                     if (isPlatformBrowser(this.platformId)) {
                         setTimeout(() => {
                             this.decoratePost();
@@ -103,6 +104,24 @@ export class LearningArticleComponent implements OnInit {
                 this.router.navigate(["learn"], { replaceUrl: true });
             },
         });
+    }
+
+    private getMetaTagFallbacks(article: Article) {
+        const description = this.extractDescription(article.contentHtml, 160);
+
+        return {
+            title: article.pageTitle(),
+            description: description || article.shortDescription,
+            ogImage: article.imageURL,
+        };
+    }
+
+    private extractDescription(html: string, maxLength: number): string {
+        const tempDiv = this.doc.createElement("div");
+        tempDiv.innerHTML = html;
+        const text = tempDiv.textContent || tempDiv.innerText || "";
+        const trimmed = text.trim().replace(/\s+/g, " ");
+        return trimmed.length > maxLength ? trimmed.substring(0, maxLength) + "..." : trimmed;
     }
 
     private decoratePost() {

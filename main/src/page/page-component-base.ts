@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable, shareReplay, switchMap, tap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 import { ContentService } from "../service/content.service";
-import { MetaTagsService } from "../service/meta-tags.service";
+import { MetaTagFallbacks, MetaTagsService } from "../service/meta-tags.service";
 
 @Component({
     template: ``,
@@ -45,7 +45,11 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         this.router.navigate(["404"], { skipLocationChange: true });
     }
 
+    protected getMetaTagFallbacks(_page: T): MetaTagFallbacks | undefined {
+        return undefined;
+    }
+
     protected onPageReady(page: T): void {
-        this.metaTags.register(page.metaTags);
+        this.metaTags.register(page.metaTags, this.getMetaTagFallbacks(page));
     }
 }

@@ -11,6 +11,7 @@ import { PlainTextPipe } from "src/framework/text/plain-text.pipe";
 import { ContentService } from "src/service/content.service";
 import { ImageBuilder } from "src/service/image-builder.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { portableTextToPlainText } from "src/service/portable-text-utils";
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
@@ -50,6 +51,16 @@ export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {
                 return sanityEvent ? LiveEvent.fromSanity(sanityEvent, data) : null;
             }),
         );
+    }
+
+    protected override getMetaTagFallbacks(page: LiveEvent) {
+        const description = portableTextToPlainText(page.description);
+
+        return {
+            title: `TypeDB Event: ${this.plainTextPipe.transform(page.title)}`,
+            description: description || page.shortDescription || `Join us for ${this.plainTextPipe.transform(page.title)}`,
+            ogImage: page.imageURL,
+        };
     }
 
     protected override onPageReady(page: LiveEvent): void {

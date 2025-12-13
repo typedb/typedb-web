@@ -44,14 +44,15 @@ export const titleFieldOptional = defineField({
 
 export const titleField = Object.assign({}, titleFieldOptional, { validation: requiredRule });
 
-export const titleFieldWithHighlights = defineField({
+export const titleFieldWithHighlightsOptional = defineField({
     name: titleFieldName,
     title: "Title",
     description: "Text marked as 'bold' will instead be rendered in the highlight color",
     type: "array",
     of: [{ type: "block" }],
-    validation: requiredRule,
 });
+
+export const titleFieldWithHighlights = Object.assign({}, titleFieldWithHighlightsOptional, { validation: requiredRule });
 
 export function titleWithHighlightsPreview(value: any[]): string {
     return ((value || [])[0]?.children.map((x: any) => x.text).join("") as string) || "Untitled";
