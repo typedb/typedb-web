@@ -8,6 +8,7 @@ import { BehaviorSubject, filter, map, Observable } from "rxjs";
 import { ParagraphWithHighlights, SanityDataset, SanityPaper, Paper, paperSchemaName, LinkButton, Link, ActionButton } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { portableTextToPlainText } from "src/service/portable-text-utils";
 import { ActionsComponent } from "../../framework/actions/actions.component";
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
@@ -79,6 +80,16 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
                 return page ? Paper.fromSanity(page, data) : null;
             }),
         );
+    }
+
+    protected override getMetaTagFallbacks(page: Paper) {
+        const description = portableTextToPlainText(page.description);
+
+        return {
+            title: `TypeDB Paper: ${this.plainTextPipe.transform(page.title)}`,
+            description: description || page.shortDescription || `Read the TypeDB paper on ${this.plainTextPipe.transform(page.title)}`,
+            ogImage: page.landscapeImageURL || page.portraitImageURL || page.imageURL,
+        };
     }
 
     protected override onPageReady(page: Paper): void {
