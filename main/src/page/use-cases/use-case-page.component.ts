@@ -10,6 +10,7 @@ import { SectionCoreComponent } from "../../framework/section/section-core.compo
 import { PageComponentBase } from "../page-component-base";
 import { SimpleLinkPanelsComponent } from "src/framework/link-panels/simple/simple-link-panels.component";
 import { LinkPanelsComponent } from "src/framework/link-panels/link-panels.component";
+import { portableTextToPlainText } from "src/service/portable-text-utils";
 // No need for 'After' from 'v8'
 
 // --- Settings ---
@@ -134,6 +135,15 @@ export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance>
                 return page ? new UseCasePageInstance(page, db) : null;
             }),
         );
+    }
+
+    protected override getMetaTagFallbacks(page: UseCasePageInstance) {
+        const bodyText = portableTextToPlainText(page.introSection?.body);
+
+        return {
+            title: `TypeDB in ${page.title}`,
+            description: bodyText || `Learn how TypeDB powers ${page.title} applications`,
+        };
     }
 
     protected override onPageReady(page: UseCasePageInstance): void {

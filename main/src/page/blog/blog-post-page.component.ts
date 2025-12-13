@@ -98,7 +98,7 @@ export class BlogPostPageComponent implements OnInit {
             next: (post) => {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
-                    this.metaTags.register(post.metaTags);
+                    this.metaTags.register(post.metaTags, this.getMetaTagFallbacks(post));
                     if (isPlatformBrowser(this.platformId)) {
                         setTimeout(() => {
                             this.decoratePost();
@@ -115,6 +115,22 @@ export class BlogPostPageComponent implements OnInit {
                 this.router.navigate(["blog"], { replaceUrl: true });
             },
         });
+    }
+
+    private getMetaTagFallbacks(post: BlogPost) {
+        return {
+            title: post.pageTitle(),
+            description: this.extractDescription(post.contentHtml, 160),
+            ogImage: post.heroImageURL(),
+        };
+    }
+
+    private extractDescription(html: string, maxLength: number): string {
+        const tempDiv = this.doc.createElement("div");
+        tempDiv.innerHTML = html;
+        const text = tempDiv.textContent || tempDiv.innerText || "";
+        const trimmed = text.trim().replace(/\s+/g, " ");
+        return trimmed.length > maxLength ? trimmed.substring(0, maxLength) + "..." : trimmed;
     }
 
     private decoratePost(): void {
