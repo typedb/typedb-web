@@ -24,9 +24,9 @@ td-heading-with-highlights {
     width: 100%;
 
     // Add bottom border to all rows except the last one
-    &:not(:last-child) {
-        border-bottom: shapes.$border;
-    }
+    // &:not(:last-child) {
+    //     border-bottom: shapes.$border;
+    // }
 
     &.grid-row-size-1 .fg-grid-item:not(.fg-layout-column):not(.fg-layout-row) {
         flex-direction: row;
@@ -51,12 +51,12 @@ td-heading-with-highlights {
     min-width: 0;
 }
 
-.fg-grid-item {
-    // Add right border to all cells except the last one in each row
-    &:not(:last-child) {
-        border-right: shapes.$border;
-    }
-}
+// .fg-grid-item {
+//     // Add right border to all cells except the last one in each row
+//     &:not(:last-child) {
+//         border-right: shapes.$border;
+//     }
+// }
 
 .fg-grid-item {
     display: flex;
