@@ -5,12 +5,17 @@
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
-    margin-top: 28px;
+    margin-top: 16px;
+    margin-bottom: 48px;
     padding: 0;
 }
 
 td-heading-with-highlights {
     margin-bottom: 28px;
+
+    ::ng-deep h3 {
+        font-style: italic;
+    }
 }
 
 .fg-grid-row {
