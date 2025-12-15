@@ -16,6 +16,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
 export class SectionCoreComponent {
     @Input() section!: SectionCore | IllustrationSection;
     @Input() level: "h1" | "h2" | "h3" = "h2";
+    @Input() bodyLevel: "p1" | "p2" = "p1";
     @Input() noBody?: boolean;
     @Input() noSectionClass?: boolean;
     @Input("textAlign") _textAlign?: "left" | "center";

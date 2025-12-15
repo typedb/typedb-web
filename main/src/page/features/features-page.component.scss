@@ -1,12 +1,18 @@
 @use "media";
 @use "shapes";
+@use "typography";
 
 .td-intro {
     justify-content: flex-start;
 
-    ::ng-deep .td-root {
+    ::ng-deep .td-text {
         flex: 0 0 50%;
         margin: 0;
+    }
+
+    ::ng-deep td-heading-with-highlights h1 {
+        font-size: var(--font-size-h2);
+        line-height: var(--line-height-h2);
     }
 }
 
