@@ -4,7 +4,6 @@ import { of, tap } from "rxjs";
 import { FeaturesPage, featuresPageSchemaName, Link, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
-import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SmoothScrollDirective } from "../../framework/smooth-scroll/smooth-scroll.directive";
 import { PageComponentBase } from "../page-component-base";
@@ -16,7 +15,7 @@ import { FeaturesNavbarItem } from "./features-navbar.component";
     styleUrls: ["./features-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent, IllustrationSectionComponent,
+        FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
         SmoothScrollDirective,
     ],
 })

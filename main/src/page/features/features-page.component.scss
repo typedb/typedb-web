@@ -1,6 +1,15 @@
 @use "media";
 @use "shapes";
 
+.td-intro {
+    justify-content: flex-start;
+
+    ::ng-deep .td-root {
+        flex: 0 0 50%;
+        margin: 0;
+    }
+}
+
 .features-content-wrapper {
     display: grid;
     grid-template-columns: 200px 1fr;

@@ -1,7 +1,7 @@
 @if (page$ | async; as page) {
-  <td-illustration-section sectionId="intro" [data]="page.introSection" class="td-intro zoomed" />
-
   <article>
+    <td-section-core sectionId="intro" [section]="page.introSection" level="h1" flexDirection="row" class="td-intro zoomed" />
+
     <div class="section features-content-wrapper">
       <nav class="features-toc">
         <h5 class="toc-back-to-top">
