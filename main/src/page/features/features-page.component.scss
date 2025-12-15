@@ -14,6 +14,23 @@
         font-size: var(--font-size-h2);
         line-height: var(--line-height-h2);
     }
+
+    ::ng-deep .td-illustration-wrapper {
+        flex: 0;
+    }
+
+    ::ng-deep td-illustration {
+        margin-top: 8px;
+        margin-left: 24px;
+        padding: 0;
+
+        td-code-snippet {
+            .cs-line-numbers, code {
+                font-size: var(--font-size-code);
+                line-height: var(--line-height-code);
+            }
+        }
+    }
 }
 
 .features-content-wrapper {
@@ -23,8 +40,8 @@
     width: var(--section-width);
     max-width: var(--section-max-width);
     margin: 0 auto;
-    padding: 0 var(--body-padding);
-    margin-top: var(--subsection-margin);
+    padding: 0;
+    margin-top: 80px;
     align-items: start;
 
     @media (max-width: media.$max-width-tablet) {
