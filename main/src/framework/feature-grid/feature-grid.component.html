@@ -1,9 +1,9 @@
 @if (data.title) {
-  <td-heading-with-highlights level="h3" [value]="data.title" />
+  <td-heading-with-highlights level="h3" [value]="data.title" [id]="gridId" />
 }
 
 @for (row of data.rows; track row) {
-  <div class="fg-grid-row" [class]="'grid-row-size-' + row.cells.length">
+  <div class="fg-grid-row" [class]="'grid-row-size-' + row.cells.length" [attr.id]="!data.title ? gridId : null">
     @for (feature of row.cells; track feature) {
       @let layout = getEffectiveLayoutDirection(feature, row);
       <div class="fg-grid-item card-padding" [class.fg-layout-row]="layout === 'row'" [class.fg-layout-column]="layout === 'column'">

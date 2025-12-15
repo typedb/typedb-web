@@ -27,6 +27,7 @@ export class FeatureGridComponent {
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
+    @Input() gridId?: string;
 
     // @HostBinding("class") get classes() {
     //     return {

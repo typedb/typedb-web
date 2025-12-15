@@ -1,6 +1,7 @@
 import { AsyncPipe, Location } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { of, tap } from "rxjs";
+import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { FeaturesPage, featuresPageSchemaName, Link, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.component";
@@ -27,6 +28,18 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
     navbarItems: NestedNavbarItem[] = [];
     location = inject(Location);
 
+    sanitiseGridId(sectionId: string, gridName: string): string {
+        const sanitizedGridName = sanitiseHtmlID(gridName);
+        const sanitizedSectionId = sanitiseHtmlID(sectionId);
+
+        // If the sanitized grid name starts with the sanitized section ID, don't duplicate it
+        if (sanitizedGridName.startsWith(sanitizedSectionId + '-')) {
+            return sanitizedGridName;
+        }
+
+        return `${sanitizedSectionId}-${sanitizedGridName}`;
+    }
+
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityFeaturesPage>(featuresPageSchemaName);
         return of(page ? new FeaturesPage(page, data) : null).pipe(
@@ -37,12 +50,12 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
                             .filter(grid => grid.title)
                             .map(grid => ({
                                 text: grid.title!.toPlainText(),
-                                href: `${location.pathname}#${section.sectionId}-${grid.name}`,
+                                href: `${this.location.path()}#${this.sanitiseGridId(section.sectionId, grid.name)}`,
                             }));
 
                         return {
                             text: section.title.toPlainText(),
-                            href: `${location.pathname}#${section.sectionId}`,
+                            href: `${this.location.path()}#${section.sectionId}`,
                             children: children.length > 0 ? children : undefined,
                         };
                     });

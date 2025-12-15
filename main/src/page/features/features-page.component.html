@@ -32,6 +32,7 @@
             <td-feature-grid
               [data]="featureGrid" [illustration]="section.illustration"
               [sectionId]="section.sectionId"
+              [gridId]="sanitiseGridId(section.sectionId, featureGrid.name)"
             />
           }
         }
