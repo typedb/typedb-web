@@ -32,6 +32,7 @@ export interface SanityFeatureGridCell extends SanityVisibleToggle {
     illustration?: SanityReference<SanityIllustration>;
     tags: string[];
     isIllustrationBlurred: boolean;
+    layoutDirection?: 'row' | 'column' | 'auto';
 }
 
 export function featureGridIllustrationFromSanity(data: SanityIllustration, db: SanityDataset): Illustration {
@@ -46,6 +47,7 @@ export class FeatureGridCell implements Partial<BodyTextField> {
     readonly illustration?: Illustration;
     readonly tags: string[];
     readonly isIllustrationBlurred: boolean;
+    readonly layoutDirection: 'row' | 'column' | 'auto';
 
     constructor(props: PropsOf<FeatureGridCell>) {
         this.title = props.title;
@@ -54,6 +56,7 @@ export class FeatureGridCell implements Partial<BodyTextField> {
         this.illustration = props.illustration;
         this.tags = props.tags;
         this.isIllustrationBlurred = props.isIllustrationBlurred;
+        this.layoutDirection = props.layoutDirection;
     }
 
     static fromSanity(data: SanityFeatureGridCell, db: SanityDataset) {
@@ -64,6 +67,7 @@ export class FeatureGridCell implements Partial<BodyTextField> {
             illustration: data.illustration && featureGridIllustrationFromSanity(db.resolveRef(data.illustration), db),
             tags: data.tags,
             isIllustrationBlurred: data.isIllustrationBlurred,
+            layoutDirection: data.layoutDirection || 'auto',
         });
     }
 }
@@ -157,6 +161,21 @@ const featureGridCellSchema = defineType({
             type: "boolean",
             initialValue: false,
             validation: requiredRule,
+        }),
+        defineField({
+            name: "layoutDirection",
+            title: "Layout Direction",
+            type: "string",
+            options: {
+                list: [
+                    { title: "Use row default", value: "auto" },
+                    { title: "Row", value: "row" },
+                    { title: "Column", value: "column" },
+                ],
+                layout: "radio",
+                direction: "horizontal",
+            },
+            initialValue: "auto",
         }),
         isVisibleField,
     ],
