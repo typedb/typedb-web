@@ -16,12 +16,12 @@ export class TagChipsComponent {
     // Color palette for tags
     private readonly tagColors = [
         { bg: '#1a182a', text: '#02dac9' },      // green
-        { bg: '#1a182a', text: '#ff87dc' },      // pink
         { bg: '#1a182a', text: '#7ba0ff' },      // blue
         { bg: '#1a182a', text: '#ffe49e' },      // yellow
         { bg: '#1a182a', text: '#ffa187' },      // prism-orange
         { bg: '#1a182a', text: '#55eae2' },      // prism-cyan
         { bg: '#1a182a', text: '#ffc980' },      // prism-yellow-orange
+        { bg: '#1a182a', text: '#ff7b72' },      // prism-red
     ];
 
     chipId(tag: string): string {
