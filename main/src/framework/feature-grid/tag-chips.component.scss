@@ -10,6 +10,7 @@
         background: var(--color-purple);
         border: shapes.$border;
         border-radius: var(--border-radius);
+        white-space: nowrap;
 
         &, a, a:visited {
             color: var(--color-secondary-pink);

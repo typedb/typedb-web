@@ -166,7 +166,7 @@ td-aspect-ratio {
 
 .fg-feature-title-section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
 
     img {
@@ -178,6 +178,10 @@ td-aspect-ratio {
             width: 32px;
             height: 32px;
         }
+    }
+
+    td-tag-chips {
+        margin-top: 4px;
     }
 }
 
