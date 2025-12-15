@@ -11,6 +11,15 @@
           @for (item of navbarItems; track item) {
             <li>
               <a [href]="item.href" [innerHtml]="item.text" tdSmoothScroll></a>
+              @if (item.children && item.children.length > 0) {
+                <ul class="toc-nested">
+                  @for (child of item.children; track child) {
+                    <li>
+                      <a [href]="child.href" [innerHtml]="child.text" tdSmoothScroll></a>
+                    </li>
+                  }
+                </ul>
+              }
             </li>
           }
         </ul>

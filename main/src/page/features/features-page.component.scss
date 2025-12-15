@@ -68,20 +68,6 @@
 
     .toc-back-to-top {
         margin: 0 0 16px 0;
-
-        a {
-            display: block;
-            padding: 8px 0;
-            padding-left: 12px;
-            color: var(--body-text-color);
-            text-decoration: none;
-            transition: color 0.2s ease;
-            border-left: 2px solid transparent;
-
-            &:hover {
-                color: var(--color-green);
-            }
-        }
     }
 
     ul {
@@ -114,6 +100,29 @@
         &.td-active {
             color: var(--color-green);
             border-left-color: var(--color-green);
+        }
+    }
+
+    .toc-nested {
+
+        li {
+            margin-left: 0;
+        }
+
+        a {
+            padding-left: 28px;
+
+            @media (max-width: media.$max-width-mobile) {
+                padding-left: 24px;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &.td-active {
+                opacity: 1;
+            }
         }
     }
 }

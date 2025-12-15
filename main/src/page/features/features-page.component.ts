@@ -9,6 +9,10 @@ import { SmoothScrollDirective } from "../../framework/smooth-scroll/smooth-scro
 import { PageComponentBase } from "../page-component-base";
 import { FeaturesNavbarItem } from "./features-navbar.component";
 
+export interface NestedNavbarItem extends FeaturesNavbarItem {
+    children?: FeaturesNavbarItem[];
+}
+
 @Component({
     selector: "td-features-page",
     templateUrl: "./features-page.component.html",
@@ -20,7 +24,7 @@ import { FeaturesNavbarItem } from "./features-navbar.component";
     ],
 })
 export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
-    navbarItems: FeaturesNavbarItem[] = [];
+    navbarItems: NestedNavbarItem[] = [];
     location = inject(Location);
 
     protected override getPage(data: SanityDataset) {
@@ -28,10 +32,20 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
         return of(page ? new FeaturesPage(page, data) : null).pipe(
             tap((page) => {
                 if (page) {
-                    this.navbarItems = page.featureSections.map((section) => ({
-                        text: section.title.toPlainText(),
-                        href: `${location.pathname}#${section.sectionId}`,
-                    }));
+                    this.navbarItems = page.featureSections.map((section) => {
+                        const children = section.featureGrids
+                            .filter(grid => grid.title)
+                            .map(grid => ({
+                                text: grid.title!.toPlainText(),
+                                href: `${location.pathname}#${section.sectionId}-${grid.name}`,
+                            }));
+
+                        return {
+                            text: section.title.toPlainText(),
+                            href: `${location.pathname}#${section.sectionId}`,
+                            children: children.length > 0 ? children : undefined,
+                        };
+                    });
                 }
             })
         );
