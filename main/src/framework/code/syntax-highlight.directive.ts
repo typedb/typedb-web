@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from "@angular/common";
-import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID } from '@angular/core';
+import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID, afterNextRender, ApplicationRef } from '@angular/core';
+import { filter, first } from "rxjs";
 
 @Directive({
   selector: '[tdSyntaxHighlight]',
@@ -9,6 +10,7 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   @Input({ required: true }) code = '';
   @Input({ required: true }) language = '';
   private el = inject(ElementRef);
+  private appRef = inject(ApplicationRef);
   private platformId = inject(PLATFORM_ID);
   private hasHighlighted = false;
 
@@ -28,8 +30,7 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     const codeElement = this.el.nativeElement.querySelector('code');
     if (!codeElement) throw new Error('[SyntaxHighlightDirective] No <code> element found inside host element.');
 
-    // Use requestAnimationFrame to ensure browser has completed painting after hydration
-    requestAnimationFrame(() => {
+    this.appRef.isStable.pipe(filter(x => x), first()).subscribe(() => {
       const Prism = (window as any)['Prism'];
       Prism.highlightElement(codeElement);
     });
