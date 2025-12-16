@@ -1,11 +1,11 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges, inject, PLATFORM_ID, afterNextRender } from '@angular/core';
+import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID } from '@angular/core';
 
 @Directive({
   selector: '[tdSyntaxHighlight]',
   standalone: true,
 })
-export class SyntaxHighlightDirective implements OnChanges {
+export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   @Input({ required: true }) code = '';
   @Input({ required: true }) language = '';
   private el = inject(ElementRef);
@@ -13,14 +13,8 @@ export class SyntaxHighlightDirective implements OnChanges {
   private platformId = inject(PLATFORM_ID);
   private hasRendered = false;
 
-  constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      afterNextRender(() => {
-        if (!this.hasRendered) {
-          this.highlight();
-        }
-      });
-    }
+  ngAfterViewInit() {
+    this.highlight();
   }
 
   ngOnChanges(changes: SimpleChanges) {
