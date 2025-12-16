@@ -29,7 +29,10 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   }
 
   private highlight() {
-    if (!isPlatformBrowser(this.platformId)) return;
+    if (!isPlatformBrowser(this.platformId)) {
+      console.log('[SyntaxHighlightDirective] Not running in browser, skipping highlight.');
+      return;
+    } 
 
     const codeElement = this.el.nativeElement.querySelector('code');
     if (!codeElement) throw new Error('[SyntaxHighlightDirective] No <code> element found inside host element.');
