@@ -41,6 +41,13 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     Prism.highlightElement(codeElement);
     console.log('[SyntaxHighlightDirective] Highlighted code block.');
 
+    setTimeout(() => {
+      const codeElement = this.el.nativeElement.querySelector('code');
+      if (codeElement) {
+        Prism.highlightElement(codeElement);
+      }
+    }, 1000);
+
     this.hasHighlighted = true;
   }
 }
