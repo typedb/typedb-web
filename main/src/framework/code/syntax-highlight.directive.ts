@@ -28,10 +28,13 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     const codeElement = this.el.nativeElement.querySelector('code');
     if (!codeElement) return;
 
-    const Prism = (window as any)['Prism'];
-    if (Prism) {
-      Prism.highlightElement(codeElement);
-    }
+    // Use requestAnimationFrame to ensure browser has completed painting after hydration
+    requestAnimationFrame(() => {
+      const Prism = (window as any)['Prism'];
+      if (Prism) {
+        Prism.highlightElement(codeElement);
+      }
+    });
 
     this.hasHighlighted = true;
   }
