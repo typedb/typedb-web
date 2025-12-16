@@ -26,14 +26,12 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const codeElement = this.el.nativeElement.querySelector('code');
-    if (!codeElement) return;
+    if (!codeElement) throw new Error('[SyntaxHighlightDirective] No <code> element found inside host element.');
 
     // Use requestAnimationFrame to ensure browser has completed painting after hydration
     requestAnimationFrame(() => {
       const Prism = (window as any)['Prism'];
-      if (Prism) {
-        Prism.highlightElement(codeElement);
-      }
+      Prism.highlightElement(codeElement);
     });
 
     this.hasHighlighted = true;
