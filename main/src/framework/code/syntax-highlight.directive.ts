@@ -16,21 +16,16 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.highlight();
-    console.log('[SyntaxHighlightDirective] AfterViewInit highlight called.');
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if ((changes['code'] || changes['language']) && this.hasHighlighted) {
-      console.log('[SyntaxHighlightDirective] Input changed, re-highlighting code block.');
       this.highlight();
-    } else {
-      console.log('[SyntaxHighlightDirective] Skipping highlight on initial input set.');
     }
   }
 
   private highlight() {
     if (!isPlatformBrowser(this.platformId)) {
-      console.log('[SyntaxHighlightDirective] Not running in browser, skipping highlight.');
       return;
     } 
 
@@ -39,14 +34,13 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
 
     const Prism = (window as any)['Prism'];
     Prism.highlightElement(codeElement);
-    console.log('[SyntaxHighlightDirective] Highlighted code block.');
 
     setTimeout(() => {
       const codeElement = this.el.nativeElement.querySelector('code');
       if (codeElement) {
         Prism.highlightElement(codeElement);
       }
-    }, 1000);
+    }, 200);
 
     this.hasHighlighted = true;
   }
