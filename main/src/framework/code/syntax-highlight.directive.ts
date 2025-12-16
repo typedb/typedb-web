@@ -39,10 +39,13 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     this.el.nativeElement.innerHTML = '';
     this.el.nativeElement.appendChild(pre);
 
-    const Prism = (window as any)['Prism'];
-    if (Prism) {
-      Prism.highlightElement(codeEl);
-    }
+    // Use setTimeout to ensure Prism runs after Angular's change detection
+    setTimeout(() => {
+      const Prism = (window as any)['Prism'];
+      if (Prism) {
+        Prism.highlightElement(codeEl);
+      }
+    }, 0);
 
     this.hasRendered = true;
   }
