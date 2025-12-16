@@ -1,6 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID } from '@angular/core';
-import * as Prism from 'prismjs';
 
 @Directive({
   selector: '[tdSyntaxHighlight]',
@@ -40,7 +39,11 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     this.el.nativeElement.innerHTML = '';
     this.el.nativeElement.appendChild(pre);
 
-    Prism.highlightElement(codeEl);
+    const Prism = (window as any)['Prism'];
+    if (Prism) {
+      Prism.highlightElement(codeEl);
+    }
+
     this.hasRendered = true;
   }
 }
