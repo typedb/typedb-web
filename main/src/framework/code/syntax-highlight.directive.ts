@@ -1,4 +1,4 @@
-import { DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { isPlatformBrowser } from "@angular/common";
 import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID } from '@angular/core';
 
 @Directive({
@@ -9,38 +9,30 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   @Input({ required: true }) code = '';
   @Input({ required: true }) language = '';
   private el = inject(ElementRef);
-  private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
-  private hasRendered = false;
+  private hasHighlighted = false;
 
   ngAfterViewInit() {
     this.highlight();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ((changes['code'] || changes['language']) && this.hasRendered) {
+    if ((changes['code'] || changes['language']) && this.hasHighlighted) {
       this.highlight();
     }
   }
 
   private highlight() {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (!this.el.nativeElement) return;
 
-    const pre = this.document.createElement('pre');
-    const codeEl = this.document.createElement('code');
-    codeEl.className = `language-${this.language}`;
-    codeEl.textContent = this.code;
-
-    pre.appendChild(codeEl);
-    this.el.nativeElement.innerHTML = '';
-    this.el.nativeElement.appendChild(pre);
+    const codeElement = this.el.nativeElement.querySelector('code');
+    if (!codeElement) return;
 
     const Prism = (window as any)['Prism'];
     if (Prism) {
-      Prism.highlightElement(codeEl);
+      Prism.highlightElement(codeElement);
     }
 
-    this.hasRendered = true;
+    this.hasHighlighted = true;
   }
 }
