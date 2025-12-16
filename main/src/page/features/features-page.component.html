@@ -5,7 +5,7 @@
     <div class="section features-content-wrapper">
       <nav class="features-toc">
         <h5 class="toc-back-to-top">
-          <a href="#" tdSmoothScroll>↑ Back to top</a>
+          <a (click)="scrollToTop($event)">↑ Back to top</a>
         </h5>
         <ul class="text-aside">
           @for (item of navbarItems; track item) {

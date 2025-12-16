@@ -40,6 +40,13 @@ export class FeaturesPageComponent extends PageComponentBase<FeaturesPage> {
         return `${sanitizedSectionId}-${sanitizedGridName}`;
     }
 
+    scrollToTop(event: Event): void {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Remove hash from URL
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityFeaturesPage>(featuresPageSchemaName);
         return of(page ? new FeaturesPage(page, data) : null).pipe(
