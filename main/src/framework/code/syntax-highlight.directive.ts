@@ -37,11 +37,9 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     const codeElement = this.el.nativeElement.querySelector('code');
     if (!codeElement) throw new Error('[SyntaxHighlightDirective] No <code> element found inside host element.');
 
-    this.appRef.isStable.pipe(filter(x => x), first()).subscribe(() => {
-      const Prism = (window as any)['Prism'];
-      Prism.highlightElement(codeElement);
-      console.log('[SyntaxHighlightDirective] Highlighted code block.');
-    });
+    const Prism = (window as any)['Prism'];
+    Prism.highlightElement(codeElement);
+    console.log('[SyntaxHighlightDirective] Highlighted code block.');
 
     this.hasHighlighted = true;
   }
