@@ -8,7 +8,7 @@
       </ol>
     </div>
   }
-  <div class="cs-code-area" tdSyntaxHighlight [code]="code" [language]="language">
+  <div class="cs-code-area" tdSyntaxHighlight ngSkipHydration [code]="code" [language]="language">
     <pre><code [class]="'language-' + language">{{ code }}</code></pre>
   </div>
 </div>
