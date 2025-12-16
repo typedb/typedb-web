@@ -1,11 +1,11 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { Directive, ElementRef, Input, AfterViewInit, OnChanges, SimpleChanges, inject, PLATFORM_ID } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, SimpleChanges, inject, PLATFORM_ID, afterNextRender } from '@angular/core';
 
 @Directive({
   selector: '[tdSyntaxHighlight]',
   standalone: true,
 })
-export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
+export class SyntaxHighlightDirective implements OnChanges {
   @Input({ required: true }) code = '';
   @Input({ required: true }) language = '';
   private el = inject(ElementRef);
@@ -13,9 +13,13 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   private platformId = inject(PLATFORM_ID);
   private hasRendered = false;
 
-  ngAfterViewInit() {
-    if (!this.hasRendered) {
-      this.highlight();
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      afterNextRender(() => {
+        if (!this.hasRendered) {
+          this.highlight();
+        }
+      });
     }
   }
 
@@ -26,7 +30,6 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
   }
 
   private highlight() {
-    // Skip if not in browser
     if (!isPlatformBrowser(this.platformId)) return;
     if (!this.el.nativeElement) return;
 
@@ -39,13 +42,10 @@ export class SyntaxHighlightDirective implements AfterViewInit, OnChanges {
     this.el.nativeElement.innerHTML = '';
     this.el.nativeElement.appendChild(pre);
 
-    // Use setTimeout to ensure Prism runs after Angular's change detection
-    setTimeout(() => {
-      const Prism = (window as any)['Prism'];
-      if (Prism) {
-        Prism.highlightElement(codeEl);
-      }
-    }, 0);
+    const Prism = (window as any)['Prism'];
+    if (Prism) {
+      Prism.highlightElement(codeEl);
+    }
 
     this.hasRendered = true;
   }
