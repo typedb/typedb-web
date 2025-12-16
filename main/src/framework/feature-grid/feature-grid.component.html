@@ -44,7 +44,9 @@
               tdSyntaxHighlight
               [language]="$any(feature.illustration).language"
               [code]="$any(feature.illustration).code"
-            ></div>
+            >
+              <pre><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
+            </div>
             @if (!feature.isIllustrationBlurred) {
               <button
                 class="fg-copy-button"
