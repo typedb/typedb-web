@@ -5,12 +5,17 @@
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
-    margin-top: 28px;
+    margin-top: 16px;
+    margin-bottom: 120px;
     padding: 0;
 }
 
 td-heading-with-highlights {
     margin-bottom: 28px;
+
+    ::ng-deep h3 {
+        font-style: italic;
+    }
 }
 
 .fg-grid-row {
@@ -19,11 +24,11 @@ td-heading-with-highlights {
     width: 100%;
 
     // Add bottom border to all rows except the last one
-    &:not(:last-child) {
-        border-bottom: shapes.$border;
-    }
+    // &:not(:last-child) {
+    //     border-bottom: shapes.$border;
+    // }
 
-    &.grid-row-size-1 .fg-grid-item {
+    &.grid-row-size-1 .fg-grid-item:not(.fg-layout-column):not(.fg-layout-row) {
         flex-direction: row;
 
         > * {
@@ -32,8 +37,8 @@ td-heading-with-highlights {
     }
 
     &.grid-row-size-4 .fg-media {
-        width: 120px;
-        height: 120px;
+        width: 64px;
+        height: 64px;
 
         ::ng-deep img {
             object-fit: contain;
@@ -46,12 +51,12 @@ td-heading-with-highlights {
     min-width: 0;
 }
 
-.fg-grid-item {
-    // Add right border to all cells except the last one in each row
-    &:not(:last-child) {
-        border-right: shapes.$border;
-    }
-}
+// .fg-grid-item {
+//     // Add right border to all cells except the last one in each row
+//     &:not(:last-child) {
+//         border-right: shapes.$border;
+//     }
+// }
 
 .fg-grid-item {
     display: flex;
@@ -64,6 +69,32 @@ td-heading-with-highlights {
 
     @media (max-width: media.$max-width-mobile) {
         gap: 12px;
+    }
+
+    // Row layout option
+    &.fg-layout-row {
+        flex-direction: row;
+
+        @media (max-width: media.$max-width-tablet) {
+            flex-direction: column;
+        }
+
+        > .fg-grid-item-text {
+            flex: 1;
+        }
+
+        > :not(.fg-grid-item-text) {
+            flex: 0 0 552px;
+
+            @media (max-width: media.$max-width-tablet) {
+                flex-basis: auto;
+            }
+        }
+    }
+
+    // Column layout (default)
+    &.fg-layout-column {
+        flex-direction: column;
     }
 }
 
@@ -82,7 +113,7 @@ td-heading-with-highlights {
     }
 }
 
-:host.fg-row-size-1 .fg-grid-item {
+:host.fg-row-size-1 .fg-grid-item:not(.fg-layout-column):not(.fg-layout-row) {
     flex-direction: row;
 
     @media (max-width: media.$max-width-tablet) {
@@ -161,7 +192,7 @@ td-aspect-ratio {
 
 .fg-feature-title-section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
 
     img {
@@ -173,6 +204,10 @@ td-aspect-ratio {
             width: 32px;
             height: 32px;
         }
+    }
+
+    td-tag-chips {
+        margin-top: 4px;
     }
 }
 

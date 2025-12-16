@@ -1,9 +1,28 @@
-<div class="td-root">
-  <td-heading-with-highlights [value]="section.title" [id]="section.sectionId" [themeColorHex]="themeColorHex" [level]="level"/>
+<div class="td-text">
+  <td-heading-with-highlights [value]="section.title" [level]="level" />
   @if (section.body && !noBody) {
-    <td-rich-text [value]="section.body" [class]="level === 'h3' ? 'text-p2' : 'text-p1'" />
+    <td-rich-text [value]="section.body" class="subtitle-l" [class]="'text-' + bodyLevel" />
   }
-  @if (section.actions) {
-    <td-actions [sectionId]="section.sectionId" [actions]="section.actions" />
-  }
+  <td-actions [actions]="section.actions" [sectionId]="section.sectionId" />
 </div>
+@if (hasIllustration) {
+  <div class="td-illustration-wrapper">
+    <div class="illustration-container light-mode">
+      @if (hasWindowHeader) {
+        <div class="window-header">
+          <div class="traffic-lights">
+            <div class="traffic-light red"></div>
+            <div class="traffic-light yellow"></div>
+            <div class="traffic-light green"></div>
+          </div>
+          <div class="window-title">TypeDB Studio</div>
+        </div>
+      }
+      @if (hasPeekingBot) {
+        <img class="tp-logo" src="assets/logo/typedb-bot.svg" alt="TypeDB"/>
+      }
+
+      <td-illustration [class]="hasCodeSnippetIllustration ? '' : ''" [illustration]="illustration!" />
+    </div>
+  </div>
+}

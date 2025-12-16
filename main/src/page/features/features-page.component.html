@@ -1,16 +1,25 @@
 @if (page$ | async; as page) {
-  <td-illustration-section sectionId="intro" [data]="page.introSection" class="td-intro zoomed" />
-
   <article>
+    <td-section-core sectionId="intro" [section]="page.introSection" level="h1" bodyLevel="p2" flexDirection="row" class="td-intro zoomed" />
+
     <div class="section features-content-wrapper">
       <nav class="features-toc">
         <h5 class="toc-back-to-top">
-          <a href="#" tdSmoothScroll>↑ Back to top</a>
+          <a (click)="scrollToTop($event)">↑ Back to top</a>
         </h5>
         <ul class="text-aside">
           @for (item of navbarItems; track item) {
             <li>
               <a [href]="item.href" [innerHtml]="item.text" tdSmoothScroll></a>
+              @if (item.children && item.children.length > 0) {
+                <ul class="toc-nested">
+                  @for (child of item.children; track child) {
+                    <li>
+                      <a [href]="child.href" [innerHtml]="child.text" tdSmoothScroll></a>
+                    </li>
+                  }
+                </ul>
+              }
             </li>
           }
         </ul>
@@ -23,6 +32,7 @@
             <td-feature-grid
               [data]="featureGrid" [illustration]="section.illustration"
               [sectionId]="section.sectionId"
+              [gridId]="sanitiseGridId(section.sectionId, featureGrid.name)"
             />
           }
         }

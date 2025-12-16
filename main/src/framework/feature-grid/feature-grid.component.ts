@@ -27,6 +27,7 @@ export class FeatureGridComponent {
     @Input() illustration?: Illustration;
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
+    @Input() gridId?: string;
 
     // @HostBinding("class") get classes() {
     //     return {
@@ -70,5 +71,13 @@ export class FeatureGridComponent {
 
     linkId(feature: FeatureGridCell, link: TextLink): string {
         return `${this.sectionId}_${sanitiseHtmlID(feature.title || "untitled")}_${sanitiseHtmlID(link.text)}`;
+    }
+
+    getEffectiveLayoutDirection(feature: FeatureGridCell, row: FeatureGridRow): 'row' | 'column' {
+        if (feature.layoutDirection === 'auto') {
+            // Use existing logic: row layout for single cell rows, column for multiple cells
+            return row.cells.length === 1 ? 'row' : 'column';
+        }
+        return feature.layoutDirection;
     }
 }

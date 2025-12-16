@@ -1,15 +1,16 @@
 @if (data.title) {
-  <td-heading-with-highlights level="h3" [value]="data.title" />
+  <td-heading-with-highlights level="h3" [value]="data.title" [id]="gridId" />
 }
 
 @for (row of data.rows; track row) {
-  <div class="fg-grid-row" [class]="'grid-row-size-' + row.cells.length">
+  <div class="fg-grid-row" [class]="'grid-row-size-' + row.cells.length" [attr.id]="!data.title ? gridId : null">
     @for (feature of row.cells; track feature) {
-      <div class="fg-grid-item card-padding">
+      @let layout = getEffectiveLayoutDirection(feature, row);
+      <div class="fg-grid-item card-padding" [class.fg-layout-row]="layout === 'row'" [class.fg-layout-column]="layout === 'column'">
         <div class="fg-grid-item-text">
           @if (feature.title) {
             <div class="fg-feature-title-section">
-              <h4>{{ feature.title }}</h4>
+              <h4 class="text-h3">{{ feature.title }}</h4>
               <div class="flex"></div>
               <td-tag-chips [tags]="feature.tags" [sectionId]="sectionId" />
             </div>
@@ -43,7 +44,9 @@
               tdSyntaxHighlight
               [language]="$any(feature.illustration).language"
               [code]="$any(feature.illustration).code"
-            ></div>
+            >
+              <pre><code [class]="'language-' + $any(feature.illustration).language">{{ $any(feature.illustration).code }}</code></pre>
+            </div>
             @if (!feature.isIllustrationBlurred) {
               <button
                 class="fg-copy-button"

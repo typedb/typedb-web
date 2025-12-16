@@ -7,13 +7,13 @@
 
     aside {
         padding: 2px 8px;
-        background: var(--color-purple);
         border: shapes.$border;
         border-radius: var(--border-radius);
+        white-space: nowrap;
 
         &, a, a:visited {
-            color: var(--color-secondary-pink);
             font-weight: var(--font-weight-light);
+            text-decoration: none;
         }
     }
 }

@@ -5,7 +5,6 @@ import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCaseP
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
-import { IllustrationSectionComponent } from "../../framework/section/illustration/illustration-section.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 import { SimpleLinkPanelsComponent } from "src/framework/link-panels/simple/simple-link-panels.component";
@@ -117,7 +116,7 @@ class Particle {
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe, PolyglotComparisonComponent, SectionCoreComponent,
-        IllustrationSectionComponent, HotTopicsComponent, LinkPanelsComponent
+        HotTopicsComponent, LinkPanelsComponent
     ]
 })
 export class UseCasePageComponent extends PageComponentBase<UseCasePageInstance> implements AfterViewInit {
