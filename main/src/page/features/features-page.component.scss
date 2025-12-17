@@ -106,8 +106,9 @@
         padding-left: 12px;
         color: var(--body-text-color);
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
         border-left: 2px solid transparent;
+        position: relative;
 
         @media (max-width: media.$max-width-mobile) {
             padding: 6px 0 6px 12px;
@@ -119,7 +120,19 @@
 
         &.td-active {
             color: var(--color-green);
-            border-left-color: var(--color-green);
+            font-weight: 500;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                left: -2px;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background-color: var(--color-green);
+                border-radius: 0 2px 2px 0;
+                transform: translateX(-2px);
+            }
         }
     }
 
