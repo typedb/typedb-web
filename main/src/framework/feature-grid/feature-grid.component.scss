@@ -2,8 +2,7 @@
 @use "shapes";
 
 :host {
-    display: flex;
-    flex-flow: row wrap;
+    display: block;
     overflow: hidden;
     margin-top: 16px;
     margin-bottom: 120px;
@@ -11,6 +10,7 @@
 }
 
 td-heading-with-highlights {
+    display: block;
     margin-bottom: 28px;
 
     ::ng-deep h3 {
