@@ -32,7 +32,7 @@ export class SectionCoreComponent {
 
     @HostBinding("class")
     get clazz(): string {
-        const baseClass = this.noSectionClass ? this.levelClass : `section ${this.levelClass} text-align-${this.textAlign}`;
+        const baseClass = this.noSectionClass ? `${this.levelClass} ${this.textAlignClass}` : `section ${this.levelClass} ${this.textAlignClass}`;
         const introClass = this.isIntroSection ? "page-intro-section" : "";
         const flexClass = this.hasIllustration ? `td-${this.flexDirection}` : "";
         return `${baseClass} ${introClass} ${flexClass}`.trim();
@@ -58,5 +58,9 @@ export class SectionCoreComponent {
 
     private get levelClass(): string {
         return `tb-level-${this.level}`;
+    }
+
+    private get textAlignClass(): string {
+        return `text-align-${this.textAlign}`;
     }
 }
