@@ -60,11 +60,30 @@
 .features-toc {
     position: sticky;
     top: 100px;
-    padding: 0;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding: 0 8px 20px 0;
     align-self: start;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-light-grey) transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-light-grey);
+        border-radius: 3px;
+    }
 
     @media (max-width: media.$max-width-tablet) {
         position: static;
+        max-height: none;
+        overflow-y: visible;
     }
 
     .toc-back-to-top {
@@ -87,8 +106,9 @@
         padding-left: 12px;
         color: var(--body-text-color);
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
         border-left: 2px solid transparent;
+        position: relative;
 
         @media (max-width: media.$max-width-mobile) {
             padding: 6px 0 6px 12px;
@@ -100,7 +120,19 @@
 
         &.td-active {
             color: var(--color-green);
-            border-left-color: var(--color-green);
+            font-weight: 500;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                left: -2px;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background-color: var(--color-green);
+                border-radius: 0 2px 2px 0;
+                transform: translateX(-2px);
+            }
         }
     }
 
