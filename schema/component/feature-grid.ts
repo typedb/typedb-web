@@ -21,6 +21,7 @@ export interface SanityFeatureGridRow {
 export interface SanityFeatureGrid extends SanityDocument {
     name: string;
     title?: PortableText;
+    description?: PortableText;
     rows: SanityFeatureGridRow[];
     illustration?: SanityReference<SanityIllustration>;
 }
@@ -90,12 +91,14 @@ export class FeatureGridRow {
 export class FeatureGrid { // not used in FeatureGridSection to flatten the structure, but used elsewhere
     readonly name: string;
     readonly title?: ParagraphWithHighlights;
+    readonly description?: PortableText;
     readonly rows: FeatureGridRow[];
     readonly illustration?: Illustration;
 
     constructor(props: PropsOf<FeatureGrid>) {
         this.name = props.name;
         this.title = props.title;
+        this.description = props.description;
         this.rows = props.rows;
         this.illustration = props.illustration;
     }
@@ -105,6 +108,7 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
         return new FeatureGrid({
             name: featureGrid.name,
             title: featureGrid.title ? ParagraphWithHighlights.fromSanity(featureGrid.title) : undefined,
+            description: featureGrid.description,
             rows: rows,
             illustration: featureGrid.illustration
                 ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
@@ -219,6 +223,12 @@ const featureGridSchema = defineType({
     fields: [
         nameField,
         titleFieldWithHighlightsOptional,
+        defineField({
+            name: "description",
+            title: "Description",
+            type: "array",
+            of: [{ type: "block" }],
+        }),
         defineField({
             name: "rows",
             title: "Rows",
