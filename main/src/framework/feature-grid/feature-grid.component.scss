@@ -106,7 +106,7 @@ td-heading-with-highlights {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    flex: 1; // Allow text section to grow and push illustrations down
+    //flex: 1; // Allow text section to grow and push illustrations down
 
     @media (max-width: media.$max-width-tablet) {
         gap: 16px;
