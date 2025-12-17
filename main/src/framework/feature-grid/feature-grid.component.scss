@@ -18,6 +18,10 @@ td-heading-with-highlights {
     }
 }
 
+.fg-grid-description {
+    margin-bottom: 28px;
+}
+
 .fg-grid-row {
     display: flex;
     flex-direction: row;
@@ -181,6 +185,10 @@ td-illustration.fg-code-snippet {
         @media (max-width: media.$max-width-mobile) {
             height: calc(var(--font-size-code) * var(--line-height-code) * $number-of-lines-mobile + 2px);
         }
+    }
+
+    &.fg-code-snippet-long {
+        height: unset;
     }
 }
 

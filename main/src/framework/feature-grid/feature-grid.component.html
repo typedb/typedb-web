@@ -1,6 +1,9 @@
 @if (data.title) {
   <td-heading-with-highlights level="h3" [value]="data.title" [id]="gridId" />
 }
+@if (data.description) {
+  <td-rich-text class="fg-grid-description" [value]="data.description"/>
+}
 
 @for (row of data.rows; track row) {
   <div class="fg-grid-row" [class]="'grid-row-size-' + row.cells.length" [attr.id]="!data.title ? gridId : null">
@@ -61,7 +64,7 @@
         }
         @if (hasCodeSnippetIllustration(feature)) {
           <td-illustration
-            class="fg-code-snippet fg-code-snippet-short"
+            class="fg-code-snippet" [class]="row.cells.length > 1 ? 'fg-code-snippet-short' : 'fg-code-snippet-long'"
             [illustration]="$any(feature.illustration)"
             [isBlurred]="feature.isIllustrationBlurred"
           />
