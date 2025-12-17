@@ -27,6 +27,10 @@ td-heading-with-highlights {
     flex-direction: row;
     width: 100%;
 
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+    }
+
     // Add bottom border to all rows except the last one
     // &:not(:last-child) {
     //     border-bottom: shapes.$border;
