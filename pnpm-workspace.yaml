@@ -3,3 +3,4 @@ packages:
   - "sanity"
   - "schema"
   - "common"
+  - "dev"
