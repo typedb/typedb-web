@@ -72,15 +72,15 @@ export class AnalyticsService {
         loadScriptTag: () => {
             if (environment.env !== "production" || isPlatformServer(this.platformId)) return;
 
-            // const scriptEl = this.document.createElement("script");
-            // scriptEl.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
-            const scriptEl2 = this.document.createElement("script");
-            scriptEl2.innerHTML = `window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GOOGLE_TAG_ID}');`;
-            // this.document.head.appendChild(scriptEl);
-            this.document.head.appendChild(scriptEl2);
+            const scriptEl = this.document.createElement("script");
+            scriptEl.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`;
+        //     const scriptEl2 = this.document.createElement("script");
+        //     scriptEl2.innerHTML = `window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        // gtag('config', '${GOOGLE_TAG_ID}');`;
+            this.document.head.appendChild(scriptEl);
+            // this.document.head.appendChild(scriptEl2);
         },
         reportAdConversion: (event: keyof typeof googleAdsConversionIds) => {
             return;
