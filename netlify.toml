@@ -29,8 +29,12 @@ publish = "main/dist/main/browser"
 # EDGE FUNCTIONS
 
 [[edge_functions]]
-function = "ua-blocker"
-path = "/*"
+function = "typedb2-content-blocker"
+path = "/docs/*"
+
+[[edge_functions]]
+function = "typedb2-content-blocker"
+path = "/blog/*"
 
 [[edge_functions]]
 function = "docs-trailing-slash"

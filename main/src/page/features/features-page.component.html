@@ -27,7 +27,7 @@
 
       <div class="features-main-content">
         @for (section of page.featureSections; track section; let idx = $index) {
-          <td-section-core [section]="section" [noSectionClass]="true"/>
+          <td-section-core [section]="section" [noSectionClass]="true" textAlign="left"/>
           @for (featureGrid of section.featureGrids; let idx = $index; track idx) {
             <td-feature-grid
               [data]="featureGrid" [illustration]="section.illustration"

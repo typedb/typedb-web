@@ -25,7 +25,7 @@ function getHtmlFiles(dir, files = []) {
         const stat = fs.statSync(fullPath);
         if (stat.isDirectory()) {
             getHtmlFiles(fullPath, files);
-        } else if (file.endsWith('.html')) {
+        } else if (file.endsWith('.html') && !file.endsWith('.csr.html')) {
             const relativePath = path.relative(DIST_FOLDER, fullPath);
             let urlPath = '/' + relativePath.replace(/index\.html$/, '').replace(/\\/g, '/');
             if (!urlPath.endsWith('/')) urlPath = urlPath.replace(/\.html$/, '');
