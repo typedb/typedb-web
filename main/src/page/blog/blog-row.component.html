@@ -4,7 +4,7 @@
       <div class="bp-posts-row bp-primary-post">
         <a class="bp-primary-img-link" [tdLink]="posts.posts[0].readPostLink()">
           <td-aspect-ratio ratio="16:9">
-            <img [src]="posts.posts[0].imageURL" alt="" loading="lazy" class="bp-img" />
+            <img [ngSrc]="posts.posts[0].imageURL!" alt="" fill class="bp-img" />
           </td-aspect-ratio>
         </a>
         <div class="bp-primary-post-summary">
@@ -24,7 +24,7 @@
             <div class="bp-secondary-post">
               <a [tdLink]="post.readPostLink()">
                 <td-aspect-ratio ratio="16:9">
-                  <img [src]="post.heroImageURL()" alt="" loading="lazy" class="bp-img" />
+                  <img [ngSrc]="post.heroImageURL()" alt="" fill class="bp-img" />
                 </td-aspect-ratio>
               </a>
               <div class="bp-secondary-post-summary">
@@ -45,7 +45,7 @@
         <div class="bp-img-tertiary-container">
           <a class="bp-tertiary-img-link" [tdLink]="posts.posts[0].readPostLink()">
             <td-aspect-ratio ratio="16:9" class="bp-img-tertiary">
-              <img [src]="posts.posts[0].imageURL" class="bp-img" alt="" loading="lazy" />
+              <img [ngSrc]="posts.posts[0].imageURL!" class="bp-img" alt="" fill />
             </td-aspect-ratio>
           </a>
         </div>

@@ -11,7 +11,7 @@
       @if (lecture.registrationButton().comingSoon) {
         <aside class="lp-coming-soon">coming soon</aside>
       }
-      <td-aspect-ratio ratio="16:9"><img [src]="lecture.imageURL" alt="" /></td-aspect-ratio>
+      <td-aspect-ratio ratio="16:9"><img [ngSrc]="lecture.imageURL!" alt="" fill /></td-aspect-ratio>
       <div>
         <h3>{{ lecture.title | plainText }}</h3>
         <p class="wp-speakers">

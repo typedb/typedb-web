@@ -2,7 +2,7 @@
   @for (integration of integrations.primary; track integration) {
     <a class="td-primary-item card" [tdLink]="integration.link">
       @if (integration.imageURL) {
-        <img [src]="integration.imageURL" alt="" />
+        <img [ngSrc]="integration.imageURL!" alt="" width="96" height="96" />
         <div class="flex"></div>
       }
       <aside class="text-muted">Develop with</aside>
@@ -15,7 +15,7 @@
   @for (integration of integrations.secondary; track integration) {
     <a class="td-secondary-item card-appearance" [tdLink]="integration.link">
       @if (integration.imageURL) {
-        <img [src]="integration.imageURL" alt="" />
+        <img [ngSrc]="integration.imageURL!" alt="" width="40" height="40" />
       }
       <h4>{{ integration.name }}</h4>
     </a>

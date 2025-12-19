@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewChild } from "@angular/core";
+import { NgOptimizedImage } from "@angular/common";
 import { ParagraphWithHighlights, ResourceLink } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 import { LinkDirective } from "../link/link.directive";
@@ -13,6 +14,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     standalone: true,
     imports: [
         ScrollPaneComponent, HeadingWithHighlightsComponent, LinkDirective, RichTextComponent,
+        NgOptimizedImage
     ],
 })
 export class HotTopicsComponent {

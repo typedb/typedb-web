@@ -1,4 +1,4 @@
-import { AsyncPipe, isPlatformBrowser } from "@angular/common";
+import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -34,7 +34,7 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, BlogNavbarComponent, BlogCategoryChipsComponent,
         RichTextComponent, BlogAuthorshipBarComponent, MatIconModule, ButtonComponent,
-        AspectRatioComponent, FurtherLearningComponent, AsyncPipe,
+        AspectRatioComponent, FurtherLearningComponent, AsyncPipe, NgOptimizedImage
     ]
 })
 export class BlogPostPageComponent implements OnInit {

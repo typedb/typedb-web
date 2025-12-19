@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { NgOptimizedImage } from "@angular/common";
 
 import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
 
@@ -19,7 +20,8 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         LinkDirective, AspectRatioComponent, BlogCategoryChipsComponent, RichTextComponent,
-        BlogAuthorshipBarComponent, HeadingWithHighlightsComponent, ResourcePanelsComponent, PlainTextPipe
+        BlogAuthorshipBarComponent, HeadingWithHighlightsComponent, ResourcePanelsComponent, PlainTextPipe,
+        NgOptimizedImage
     ]
 })
 export class BlogRowComponent {

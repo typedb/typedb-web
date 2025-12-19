@@ -1,4 +1,5 @@
 
+import { NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 
 import { Testimonial } from "typedb-web-schema";
@@ -10,7 +11,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     templateUrl: "testimonials-carousel.component.html",
     styleUrls: ["./testimonials-carousel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: []
+    imports: [NgOptimizedImage]
 })
 export class TestimonialsCarouselComponent implements OnInit {
     @Input() testimonials!: Testimonial[];

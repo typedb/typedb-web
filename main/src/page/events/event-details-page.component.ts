@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -31,7 +31,7 @@ import { PageComponentBase } from "../page-component-base";
     imports: [
         HeadingWithHighlightsComponent, MatIconModule, AspectRatioComponent,
         ButtonComponent, RichTextComponent, PersonInfoComponent, FurtherLearningComponent, AsyncPipe,
-        EventDatePipe, EventDurationPipe
+        EventDatePipe, EventDurationPipe, NgOptimizedImage
     ]
 })
 export class EventDetailsPageComponent extends PageComponentBase<LiveEvent> {

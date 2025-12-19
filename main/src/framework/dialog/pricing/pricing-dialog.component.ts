@@ -7,7 +7,7 @@ import { DialogCloseButtonComponent } from "../close-button/dialog-close-button.
 import { MatSelectModule } from "@angular/material/select";
 import { FormsModule } from "@angular/forms";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { NgClass } from "@angular/common";
+import { NgClass, NgOptimizedImage } from "@angular/common";
 
 type ProviderID = "gcp" | "aws" | "azure";
 
@@ -29,7 +29,7 @@ export class ProviderPipe implements PipeTransform {
     selector: "td-pricing-dialog",
     templateUrl: "./pricing-dialog.component.html",
     styleUrls: ["./pricing-dialog.component.scss"],
-    imports: [MatDialogTitle, MatDialogContent, DialogCloseButtonComponent, ProviderPipe, MatSelectModule, FormsModule, SpinnerComponent, MatTooltipModule, NgClass]
+    imports: [MatDialogTitle, MatDialogContent, DialogCloseButtonComponent, ProviderPipe, MatSelectModule, FormsModule, SpinnerComponent, MatTooltipModule, NgClass, NgOptimizedImage]
 })
 export class PricingDialogComponent implements OnInit {
     providerId: ProviderID = "gcp";
