@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject } from "@angular/core";
+import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, signal } from "@angular/core";
 import { map, Observable, of } from "rxjs";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
@@ -20,6 +20,7 @@ export class CodeSnippetComponent implements OnChanges {
     @Input({ required: true }) code!: string;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
+    copied = signal(false);
 
     lineNumbers$: Observable<number[]> = of([]);
 
@@ -38,5 +39,15 @@ export class CodeSnippetComponent implements OnChanges {
                 return [...Array(lines).keys()].map((n) => n + 1);
             }),
         );
+    }
+
+    async copyCode() {
+        await navigator.clipboard.writeText(this.code);
+        this.copied.set(true);
+        
+        // Reset copied state after 3 seconds
+        setTimeout(() => {
+            this.copied.set(false);
+        }, 3000);
     }
 }
