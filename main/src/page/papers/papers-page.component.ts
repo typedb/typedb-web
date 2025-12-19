@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { of } from "rxjs";
@@ -21,6 +21,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, PlainTextPipe, SectionCoreComponent,
+        NgOptimizedImage
     ]
 })
 export class PapersPageComponent extends PageComponentBase<PapersPage> {

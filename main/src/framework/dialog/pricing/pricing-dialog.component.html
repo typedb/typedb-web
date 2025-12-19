@@ -13,7 +13,7 @@
       @for (providerId of providerIds; track providerId) {
         <button type="button" class="provider-card" [ngClass]="providerCardClasses(providerId)" (click)="updateProviderId(providerId)">
           <div class="card-content">
-            <img [src]="providerImageUrl(providerId)" [alt]="providerId | provider" />
+            <img [ngSrc]="providerImageUrl(providerId)!" [alt]="providerId | provider" width="100" height="100" />
           </div>
         </button>
       }

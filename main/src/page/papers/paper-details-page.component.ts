@@ -1,4 +1,4 @@
-import { AsyncPipe, DOCUMENT } from "@angular/common";
+import { AsyncPipe, DOCUMENT, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, NgZone } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
@@ -29,7 +29,8 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, AspectRatioComponent,
-        MatProgressBarModule, RichTextComponent, FurtherLearningComponent, AsyncPipe, ActionsComponent
+        MatProgressBarModule, RichTextComponent, FurtherLearningComponent, AsyncPipe, ActionsComponent,
+        NgOptimizedImage
     ]
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {

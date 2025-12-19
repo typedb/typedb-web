@@ -12,7 +12,7 @@
       }
       <div class="subsection-margin card wd-form-card">
         <td-aspect-ratio ratio="17:22">
-          <img [src]="paper.portraitImageURL" class="wd-img" [alt]="paper.title" />
+          <img [ngSrc]="paper.portraitImageURL!" class="wd-img" [alt]="paper.title" fill />
         </td-aspect-ratio>
         <td-rich-text class="wd-description" [value]="paper.description" />
       </div>

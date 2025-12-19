@@ -76,10 +76,16 @@ td-heading-with-highlights {
     }
 }
 
-.td-hero {
+.td-hero-container {
+    position: relative;
     width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.td-hero {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: 1px solid var(--content-border-color);
+    object-fit: cover;
 }
 
 .td-card-overlay {

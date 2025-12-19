@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -26,7 +26,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, EventDatePipe, PlainTextPipe,
-        SectionCoreComponent
+        SectionCoreComponent, NgOptimizedImage
     ]
 })
 export class EventsPageComponent extends PageComponentBase<EventsPage> {

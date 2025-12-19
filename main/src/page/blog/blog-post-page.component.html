@@ -20,7 +20,9 @@
       </section>
       <section class="bp-content-section">
         <div class="bp-content">
-          <figure><img class="bp-featured-image" [src]="post.imageURL" alt="" /></figure>
+          <figure class="bp-featured-image-wrapper">
+            <img class="bp-featured-image" [ngSrc]="post.imageURL!" alt="" fill sizes="(max-width: 768px) 100vw, 50vw" />
+          </figure>
           <td-rich-text class="text-blog" [value]="post.contentHtml" />
         </div>
         @if (post$ | async; as post) {
@@ -57,7 +59,7 @@
                     <div class="bp-related-post">
                       <a [tdLink]="relatedPost.link">
                         <td-aspect-ratio ratio="16:9">
-                          <img [src]="relatedPost.imageURL" alt="" class="bp-img" />
+                          <img [ngSrc]="relatedPost.imageURL!" alt="" class="bp-img" fill />
                         </td-aspect-ratio>
                       </a>
                       <h3 class="bp-related-post-title">

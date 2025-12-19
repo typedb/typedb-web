@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
 
 import interact from "interactjs";
@@ -22,7 +22,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
-        forwardRef(() => SplitPaneIllustrationComponent)
+        forwardRef(() => SplitPaneIllustrationComponent), NgOptimizedImage
     ]
 })
 export class IllustrationComponent {
@@ -71,7 +71,7 @@ export class IllustrationComponent {
     templateUrl: "split-pane-illustration.component.html",
     styleUrls: ["split-pane-illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [IllustrationComponent, AsyncPipe]
+    imports: [IllustrationComponent, AsyncPipe, NgOptimizedImage]
 })
 export class SplitPaneIllustrationComponent implements OnInit {
     @Input() panes!: SplitPaneIllustration;

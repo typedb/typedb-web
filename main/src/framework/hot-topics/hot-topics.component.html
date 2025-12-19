@@ -5,7 +5,9 @@
       <a class="td-card" [tdLink]="hotTopic.link" draggable="false">
         <div class="td-card-overlay"></div>
         @if (hotTopic.imageURL) {
-          <img class="td-hero" loading="lazy" [src]="hotTopic.imageURL" alt="">
+          <div class="td-hero-container">
+            <img class="td-hero" [ngSrc]="hotTopic.imageURL" alt="" fill>
+          </div>
         }
         @if (!hotTopic.link) {
           <aside class="lp-coming-soon">coming soon</aside>

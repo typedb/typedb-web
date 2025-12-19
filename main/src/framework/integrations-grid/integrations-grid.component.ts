@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { IntegrationsGridSection } from "typedb-web-schema";
 import { LinkDirective } from "../link/link.directive";
@@ -8,7 +9,7 @@ import { LinkDirective } from "../link/link.directive";
     styleUrls: ["./integrations-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [LinkDirective],
+    imports: [LinkDirective, NgOptimizedImage],
 })
 export class IntegrationsGridComponent {
     @Input({ required: true }) integrations!: IntegrationsGridSection;
