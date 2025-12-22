@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -29,6 +29,7 @@ import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-h
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-lecture-details-page",
@@ -52,6 +53,7 @@ export class LectureDetailsPageComponent implements OnInit {
     readonly lecture$: Observable<Lecture | null>;
     readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
+    dialogService = inject(DialogService);
 
     constructor(
         private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
@@ -70,11 +72,11 @@ export class LectureDetailsPageComponent implements OnInit {
             }),
             shareReplay(1),
         );
-        const subscribeButton = new LinkButton({
+        const subscribeButton = new ActionButton({
             id: "subscribe-to-lectures",
             style: "greenHollow",
+            onClick: () => this.dialogService.openNewsletterDialog(),
             text: "Subscribe to lectures",
-            link: Link.fromAddress("?dialog=newsletter"),
             comingSoon: false,
         });
         this.actions$ = this.lecture$.pipe(

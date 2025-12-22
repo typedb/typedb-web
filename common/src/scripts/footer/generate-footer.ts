@@ -128,7 +128,11 @@ const generateCopyrightSection = () => {
 const getContactLink = (contactMedia: string, communityResources: Record<string, string>): Link | null => {
     switch (contactMedia) {
         case "contactForm":
-            return { destination: { current: "?dialog=contact" }, type: "route", opensNewTab: false };
+            return {
+                destination: { current: "/support#get-in-touch-about-typedb" },
+                type: "autoDetect",
+                opensNewTab: true
+            };
         case "discord":
             return {
                 destination: { current: communityResources["discordURL"] || "" },
