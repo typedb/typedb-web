@@ -11,7 +11,6 @@ import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
 import { CanonicalLinkService } from "./service/canonical-link.service";
 import { LocationStrategy, ViewportScroller, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { DialogService } from "./service/dialog.service";
 
 const SITE_URL = "https://typedb.com";
 
@@ -38,13 +37,11 @@ export class RootComponent {
     private readonly location = inject(Location);
     private readonly document = inject(DOCUMENT);
     private readonly platformId = inject(PLATFORM_ID);
-    private readonly dialogService = inject(DialogService);
 
     private _originBeforeNavigation = this.document.location?.origin || '';
     private _pathnameBeforeNavigation = this.locationPathname();
 
     constructor() {
-        this.dialogService.init();
         this.setCanonicalLinkOnNavigation();
         this.registerIcons();
 

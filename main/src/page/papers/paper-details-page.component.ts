@@ -21,6 +21,8 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
 import { PageComponentBase } from "../page-component-base";
+import { D } from "@angular/cdk/bidi-module.d-IN1Vp56w";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-paper-details-page",
@@ -35,6 +37,7 @@ import { PageComponentBase } from "../page-component-base";
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     private document = inject(DOCUMENT);
+    dialog = inject(DialogService);
     readonly allPapersHeading = new ParagraphWithHighlights({
         spans: [
             { id: "typeDB", text: "TypeDB ", highlight: false },
@@ -43,11 +46,11 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     });
     readonly isSubmitting$: Observable<boolean>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
-    private readonly subscribeButton = new LinkButton({
-        id: "subscribe-to-updates",
+    readonly subscribeButton = new ActionButton({
+        id: "subscribe-to-newsletter",
         style: "greenHollow",
-        text: "Subscribe to updates",
-        link: Link.fromAddress("?dialog=newsletter"),
+        onClick: () => this.dialog.openNewsletterDialog(),
+        text: "Subscribe to newsletter",
         comingSoon: false,
     });
     private readonly downloadButton$ = this.page$.pipe(
