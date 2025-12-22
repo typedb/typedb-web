@@ -95,7 +95,7 @@
         }
 
         li:not(:first-child) {
-            margin-top: 12px;
+            margin-top: 8px;
         }
 
         a {
@@ -141,7 +141,7 @@
         }
 
         li:not(:first-child) {
-            margin-top: 20px;
+            margin-top: 16px;
 
             @media (max-width: media.$max-width-mobile) {
                 margin-top: 12px;
