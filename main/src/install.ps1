@@ -19,7 +19,7 @@ if (Test-Path $installPath) {
             Write-Host "This installer cannot safely upgrade an installation with existing databases." -ForegroundColor Yellow
             Write-Host "" -ForegroundColor Yellow
             Write-Host "To proceed safely:" -ForegroundColor Yellow
-            Write-Host "  1. Export your databases using TypeDB's export feature. Choose a path outside the TypeDB directory." -ForegroundColor White
+            Write-Host "  1. Export your databases using TypeDB's export feature. Choose a path outside the TypeDB directory. If you have customized your config file, consider backing it up too." -ForegroundColor White
             Write-Host "     See: https://typedb.com/docs/maintenance-operation/database-export-import/" -ForegroundColor Gray
             Write-Host "  2. Stop any running TypeDB server instances" -ForegroundColor White
             Write-Host "  3. Delete the TypeDB installation directory:" -ForegroundColor White

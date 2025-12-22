@@ -121,7 +121,7 @@ install_typedb() {
                 print_warning "This installer cannot safely upgrade an installation with existing databases."
                 echo
                 print_warning "To proceed safely:"
-                echo "  1. Export your databases using TypeDB's export feature. Choose a path outside the TypeDB directory."
+                echo "  1. Export your databases using TypeDB's export feature. Choose a path outside the TypeDB directory. If you have customized your config file, consider backing it up too."
                 echo "     See: https://typedb.com/docs/maintenance-operation/database-export-import/"
                 echo "  2. Stop any running TypeDB server instances"
                 echo "  3. Delete the TypeDB installation directory:"
