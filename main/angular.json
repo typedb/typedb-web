@@ -66,6 +66,7 @@
               "ssr": {
                 "entry": "server.ts"
               },
+              "index": "src/index.prod.html",
               "fileReplacements": [
                 {
                   "replace": "src/environment/environment.ts",
