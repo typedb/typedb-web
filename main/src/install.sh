@@ -102,14 +102,58 @@ install_typedb() {
 
     print_status "Installing TypeDB ${ver} for $os ($arch)..."
 
-    # Construct download URL
-    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/${ver}/${item}"
-
     # Set installation directory
     local install_dir="$HOME/.typedb"
 
+    # Check for existing installation with data BEFORE downloading
+    if [ -d "$install_dir" ]; then
+        print_warning "Existing TypeDB installation found."
+
+        # Check if there's a data directory that might contain databases
+        local data_path="$install_dir/server/data"
+        if [ -d "$data_path" ]; then
+            local data_file_count=$(find "$data_path" -type f 2>/dev/null | wc -l)
+            if [ "$data_file_count" -gt 0 ]; then
+                echo
+                print_error "ERROR: Existing TypeDB data directory found at:"
+                echo "  $data_path"
+                echo
+                print_warning "This installer cannot safely upgrade an installation with existing databases."
+                echo
+                print_warning "To proceed safely:"
+                echo "  1. Export your databases using TypeDB's export feature. Choose a path outside the TypeDB directory."
+                echo "     See: https://typedb.com/docs/maintenance-operation/database-export-import/"
+                echo "  2. Stop any running TypeDB server instances"
+                echo "  3. Delete the TypeDB installation directory:"
+                echo "     rm -rf '$install_dir'"
+                echo "  4. Run this installer again"
+                echo "  5. Import your databases back using TypeDB's import feature"
+                echo
+                exit 1
+            fi
+        fi
+
+        # No data found, safe to remove
+        print_info "Removing existing installation..."
+        if ! rm -rf "$install_dir"; then
+            echo
+            print_error "ERROR: Failed to remove existing TypeDB installation."
+            print_warning "This usually means TypeDB is currently running."
+            echo
+            print_warning "Please stop any running TypeDB processes and try again:"
+            echo "  1. Close any TypeDB server instances"
+            echo "  2. Check for 'typedb' processes: ps aux | grep typedb"
+            echo "  3. Run this installer again"
+            echo
+            exit 1
+        fi
+    fi
+
     # Create installation directory
     mkdir -p "$install_dir"
+
+    # Construct download URL
+    local download_url="https://repo.typedb.com/public/public-release/raw/names/typedb-all-${platform}/versions/${ver}/${item}"
 
     # Download and extract
     print_info "Downloading TypeDB..."
@@ -123,14 +167,24 @@ install_typedb() {
     fi
 
     print_info "Extracting to $install_dir..."
+    local temp_extract_dir="/tmp/typedb_extract_$$"
+    mkdir -p "$temp_extract_dir"
+
     if [ "$os" = "windows" ]; then
-      unzip "/tmp/typedb.${ext}" -d "$install_dir"
-      folder=$(echo "$install_dir"/*)
-      mv "$folder"/* "$install_dir"
-      rm -rf "$folder"
+      unzip "/tmp/typedb.${ext}" -d "$temp_extract_dir"
     else
-      tar -xzf "/tmp/typedb.${ext}" -C "$install_dir" --strip-components=1
+      tar -xzf "/tmp/typedb.${ext}" -C "$temp_extract_dir"
     fi
+
+    # Find the extracted folder to get version info
+    local extracted_folder=$(find "$temp_extract_dir" -mindepth 1 -maxdepth 1 -type d -name "typedb-all-*" | head -n 1)
+    local version_string=$(basename "$extracted_folder" | sed "s/typedb-all-${platform}-//")
+
+    # Move contents to install directory
+    mv "$extracted_folder"/* "$install_dir/"
+
+    # Clean up
+    rm -rf "$temp_extract_dir"
     rm "/tmp/typedb.${ext}"
 
     # Make executable
@@ -184,6 +238,9 @@ install_typedb() {
 
     echo
     print_status "TypeDB installed successfully!"
+    echo
+    print_info "Installation directory: $install_dir"
+    print_info "Installed version: $version_string"
     echo
     print_info "Get started using the following commands:"
     echo
