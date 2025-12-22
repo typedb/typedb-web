@@ -6,6 +6,7 @@ import { ScrollPaneComponent } from "../scroll-pane/scroll-pane.component";
 import { RichTextComponent } from "../text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.component";
 import { ActionsComponent } from "../actions/actions.component";
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
     selector: 'td-hot-topics',
@@ -13,10 +14,9 @@ import { ActionsComponent } from "../actions/actions.component";
     styleUrls: ['hot-topics.component.scss'],
     standalone: true,
     imports: [
-        ScrollPaneComponent, HeadingWithHighlightsComponent, LinkDirective, RichTextComponent,
-        NgOptimizedImage
+        ScrollPaneComponent, HeadingWithHighlightsComponent, LinkDirective, RichTextComponent, NgOptimizedImage,
         ActionsComponent
-],
+    ],
 })
 export class HotTopicsComponent {
     @Input() title!: ParagraphWithHighlights;
