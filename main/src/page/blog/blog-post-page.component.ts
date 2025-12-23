@@ -2,7 +2,7 @@ import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from "@angular/common"
 import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
@@ -55,7 +55,7 @@ export class BlogPostPageComponent implements OnInit {
     });
 
     constructor(
-        private canonicalLink: CanonicalLinkService, private router: Router, private _activatedRoute: ActivatedRoute,
+        private canonicalLink: CanonicalLinkService, private _activatedRoute: ActivatedRoute,
         private content: ContentService, private metaTags: MetaTagsService, private title: Title,
         destroyRef: DestroyRef, topbarMenuService: TopbarMenuService, @Inject(DOCUMENT) private doc: Document,
     ) {
@@ -111,11 +111,11 @@ export class BlogPostPageComponent implements OnInit {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
                 } else {
-                    this.router.navigate(["blog"], { replaceUrl: true });
+                    this.content.handleContentNotFound();
                 }
             },
             error: (_err) => {
-                this.router.navigate(["blog"], { replaceUrl: true });
+                this.content.handleContentNotFound();
             },
         });
     }
