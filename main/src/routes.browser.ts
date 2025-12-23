@@ -12,7 +12,6 @@ import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
 import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
 import { PapersPageComponent } from "./page/papers/papers-page.component";
-import { PhilosophyPageComponent } from "./page/philosophy/philosophy-page.component";
 import { PricingPageComponent } from "./page/pricing/pricing-page.component";
 import { LearningArticleComponent } from "./page/resource-hub/learning-article.component";
 import { ResourceHubComponent } from "./page/resource-hub/resource-hub.component";
@@ -29,7 +28,6 @@ export const staticPageSchemas = [
     { path: "events", schemaName: "eventsPage" },
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
-    { path: "philosophy", schemaName: "philosophyPage" },
     { path: "learn", schemaName: "learningCenter" },
     { path: "fundamentals", schemaName: "fundamentalsPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
@@ -64,7 +62,6 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
     papers: { component: PapersPageComponent, title: "TypeDB Papers" },
-    philosophy: { component: PhilosophyPageComponent, title: "TypeDB Philosophy" },
     pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
