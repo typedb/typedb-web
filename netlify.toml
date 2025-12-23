@@ -90,7 +90,12 @@ status = 302
 
 [[redirects]]
 from = "/introduction"
-to = "/philosophy"
+to = "/docs/home/what-is-typedb"
+status = 301
+
+[[redirects]]
+from = "/philosophy"
+to = "/docs/home/what-is-typedb"
 status = 301
 
 [[redirects]]
