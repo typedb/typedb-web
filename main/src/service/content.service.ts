@@ -1,9 +1,12 @@
+import { isPlatformServer } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { Injectable, makeStateKey, StateKey, TransferState } from "@angular/core";
+import { Injectable, makeStateKey, PLATFORM_ID, StateKey, TransferState, inject } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { SanityDocument } from "@sanity/types";
 import {
-    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, shareReplay, switchMap,
+    BehaviorSubject, combineLatest, filter, first, iif, map, Observable, of, ReplaySubject, retry, shareReplay,
+    switchMap, timer,
 } from "rxjs";
 import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
 import {
@@ -18,6 +21,16 @@ import { environment } from "src/environment/environment";
 import { WordpressService } from "./wordpress.service";
 
 const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts`;
+
+/**
+ * Retry configuration for HTTP calls with exponential backoff.
+ * Retries: 3 attempts with delays of 1s, 2s, 4s (max ~7s total per request).
+ * This handles intermittent network failures during prerendering.
+ */
+const RETRY_CONFIG = {
+    count: 3,
+    delay: (_error: any, retryCount: number) => timer(Math.min(1000 * Math.pow(2, retryCount - 1), 4000)),
+};
 
 @Injectable({
     providedIn: "root",
@@ -34,6 +47,8 @@ export class ContentService {
 
     private readonly footerData: Observable<FooterData>;
     private readonly topnavData: Observable<TopnavData>;
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly router = inject(Router);
 
     constructor(
         private http: HttpClient,
@@ -53,10 +68,13 @@ export class ContentService {
         this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
 
         const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPost[]>("wordpressPosts");
-        this.wordpressPosts = this.handleTransferState(WORDPRESS_POSTS_KEY, this.wordpress.listPosts()).pipe(
+        this.wordpressPosts = this.handleTransferState(
+            WORDPRESS_POSTS_KEY,
+            this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)),
+        ).pipe(
             switchMap((data) => {
                 if (data?.length) return of(data);
-                else return this.wordpress.listPosts(); // fall back to loading live (handles WP flakiness)
+                else return this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)); // fall back to loading live (handles WP flakiness)
             }),
             shareReplay(),
         );
@@ -100,20 +118,28 @@ export class ContentService {
     }
 
     getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
-        return articles$.pipe(
-            switchMap((articles) => {
-                const article = articles.find((article) => article.slug === slug);
-                return iif(
-                    () => !!article,
-                    concat(of(article as T), this.fetchArticleBySlug<T>(schemaName, slug)),
-                    this.fetchArticleBySlug<T>(schemaName, slug),
-                );
-            }),
+        const STATE_KEY = makeStateKey<T>(`article-${schemaName}-${slug}`);
+        return this.handleTransferState(
+            STATE_KEY,
+            articles$.pipe(
+                switchMap((articles) => {
+                    const article = articles.find((article) => article.slug === slug);
+                    return iif(
+                        () => !!article,
+                        of(article as T),
+                        this.fetchArticleBySlug<T>(schemaName, slug),
+                    );
+                }),
+                first(),
+            ),
         );
     }
 
     private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
-        return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
+        return combineLatest([
+            this.data,
+            this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`).pipe(retry(RETRY_CONFIG)),
+        ]).pipe(
             map(([data, wpPost]) => {
                 const sanityArticles = data.getDocumentsByType<SanityArticle>(schemaName);
                 return articleFromApi(sanityArticles.find((x) => x.slug.current === slug)!, data, wpPost) as T;
@@ -123,20 +149,28 @@ export class ContentService {
     }
 
     getLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
-        return this.legalDocuments.pipe(
-            switchMap((documents) => {
-                const document = documents.find((document) => document.slug === slug);
-                return iif(
-                    () => !!document,
-                    concat(of(document), this.fetchLegalDocumentBySlug(slug)),
-                    this.fetchLegalDocumentBySlug(slug),
-                ) as Observable<LegalDocument>;
-            }),
+        const STATE_KEY = makeStateKey<LegalDocument>(`legalDocument-${slug}`);
+        return this.handleTransferState(
+            STATE_KEY,
+            this.legalDocuments.pipe(
+                switchMap((documents) => {
+                    const document = documents.find((document) => document.slug === slug);
+                    return iif(
+                        () => !!document,
+                        of(document),
+                        this.fetchLegalDocumentBySlug(slug),
+                    ) as Observable<LegalDocument>;
+                }),
+                first(),
+            ),
         );
     }
 
     private fetchLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
-        return combineLatest([this.data, this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`)]).pipe(
+        return combineLatest([
+            this.data,
+            this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`).pipe(retry(RETRY_CONFIG)),
+        ]).pipe(
             map(([data, wpPost]) => {
                 const sanityLegalDocuments = data.getDocumentsByType<SanityLegalDocument>(legalDocumentSchemaName);
                 return LegalDocument.fromApi(sanityLegalDocuments.find((x) => x.slug.current === slug)!, data, wpPost);
@@ -158,7 +192,7 @@ export class ContentService {
                 ["production", "staging", "local"].includes(environment.env)
                     ? { params: { query, perspective: "published" } }
                     : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
-            )
+            ).pipe(retry(RETRY_CONFIG))
         ).pipe(
             first(),
             map(({ result }) => result),
@@ -241,5 +275,22 @@ export class ContentService {
                     .map(([sanityDocument, wpPost]) => LegalDocument.fromApi(sanityDocument, data, wpPost));
             }),
         );
+    }
+
+    /**
+     * Handles content not found errors during prerendering.
+     * During SSR, this will fail the build immediately to prevent deploying broken pages.
+     * In the browser, this navigates to the 404 page.
+     */
+    handleContentNotFound(): void {
+        if (isPlatformServer(this.platformId)) {
+            const route = this.router.url;
+            console.error(`\n❌ Prerender failed: Content not found during SSR`);
+            console.error(`   Route: ${route}`);
+            console.error(`\nBuild failed: A page failed to load content during prerendering.\n`);
+            process.exit(1);
+        }
+
+        this.router.navigate(["404"], { skipLocationChange: true });
     }
 }

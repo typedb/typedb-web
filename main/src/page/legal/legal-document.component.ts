@@ -1,7 +1,7 @@
 import { AsyncPipe, DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import Prism from "prismjs";
 import { map, Observable, of, shareReplay, switchMap } from "rxjs";
@@ -25,8 +25,10 @@ export class LegalDocumentComponent implements OnInit {
     document$!: Observable<LegalDocument | null>;
 
     constructor(
-        private router: Router, private activatedRoute: ActivatedRoute, private content: ContentService,
-        private metaTags: MetaTagsService, private title: Title,
+        private activatedRoute: ActivatedRoute,
+        private content: ContentService,
+        private metaTags: MetaTagsService,
+        private title: Title,
     ) {}
 
     ngOnInit() {
@@ -49,11 +51,12 @@ export class LegalDocumentComponent implements OnInit {
                         });
                     }
                 } else {
-                    this.router.navigate(["404"], { skipLocationChange: true });
+                    this.content.handleContentNotFound();
                 }
             },
-            error: () => {
-                this.router.navigate(["404"], { skipLocationChange: true });
+            error: (err) => {
+                console.error('Error loading legal document:', err);
+                this.content.handleContentNotFound();
             },
         });
     }

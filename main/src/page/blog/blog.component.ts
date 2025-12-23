@@ -112,7 +112,7 @@ export class BlogComponent implements OnInit {
     ngOnInit(): void {
         this.blog$.subscribe((blog) => {
             if (!blog) {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.content.handleContentNotFound();
                 return;
             }
         });
@@ -139,7 +139,7 @@ export class BlogComponent implements OnInit {
                 this.metaTags.register(blog.tabs[categorySlug].metaTags);
             },
             error: () => {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.content.handleContentNotFound();
             },
         });
     }
