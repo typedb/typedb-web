@@ -83,7 +83,6 @@ export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from ".
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
 export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection } from "./page/home";
 export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
-export { PhilosophyPage, philosophyPageSchemaName, type SanityPhilosophyPage } from "./page/philosophy";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {
     type SanityRequestTechTalkPage, RequestTechTalkPage, requestTechTalkPageSchemaName,

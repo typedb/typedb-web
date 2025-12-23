@@ -13,7 +13,7 @@ import { StructureBuilder } from "sanity/lib/exports/desk";
 import { presentationTool } from "sanity/presentation";
 
 import {
-    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, philosophyPageSchemaName, linkSchemaName,
+    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, linkSchemaName,
     schemaTypes, topnavSchemaNames, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
@@ -54,7 +54,6 @@ export default defineConfig({
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
                     s.divider(),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
-                    singletonListItem(s, philosophyPageSchemaName, { title: "Philosophy", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     s.divider(),
