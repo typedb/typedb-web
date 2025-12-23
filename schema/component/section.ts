@@ -3,6 +3,7 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
     titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
+    actionsFieldOptional,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -221,6 +222,7 @@ export const hotTopicsSectionSchema = defineType({
     fields: [
         titleFieldWithHighlights,
         Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
+        actionsFieldOptional,
         isVisibleField,
     ],
 });

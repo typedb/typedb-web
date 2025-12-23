@@ -1,4 +1,5 @@
 
+import { NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
@@ -70,7 +71,7 @@ export class LinkPanelsCols2Component {
     templateUrl: "lecture-panels.component.html",
     styleUrls: ["lecture-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe]
+    imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe, NgOptimizedImage]
 })
 export class LecturePanelsComponent {
     @Input() lectures!: Lecture[];

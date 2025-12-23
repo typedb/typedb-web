@@ -7,7 +7,7 @@
       }
       @if (page?.introSection?.featuredLecture; as primaryLecture) {
         <td-aspect-ratio ratio="16:9">
-          <img [src]="primaryLecture.imageURL" class="wp-img wp-img-primary" alt="" />
+          <img [ngSrc]="primaryLecture.imageURL!" class="wp-img wp-img-primary" alt="" fill />
         </td-aspect-ratio>
         <div class="wp-primary-lecture-summary">
           <h3 class="wp-lecture-title-container">
@@ -42,7 +42,7 @@
             <li class="wp-lecture-list-item">
               <div class="wp-img-tertiary-container">
                 <td-aspect-ratio ratio="16:9" class="wp-img-tertiary">
-                  <img [src]="lecture.imageURL" class="wp-img" alt="" />
+                  <img [ngSrc]="lecture.imageURL!" class="wp-img" alt="" fill />
                 </td-aspect-ratio>
                 <h3 class="wp-lecture-title hide-gt-mobile">{{ lecture.title | plainText }}</h3>
               </div>

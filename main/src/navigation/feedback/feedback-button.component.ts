@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from "@angular/core";
 
-import { LinkDirective } from "../../framework/link/link.directive";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-feedback-button",
-    template: `<a tdLink="?dialog=feedback" id="feedback-floating-button">Feedback</a>`,
+    template: `<a (click)="dialog.openFeedbackDialog()" id="feedback-floating-button">Feedback</a>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [LinkDirective]
 })
 export class FeedbackButtonComponent {
     @HostBinding("class.td-feedback-button") hasFeedbackButtonClass = true;
+    dialog = inject(DialogService);
 }

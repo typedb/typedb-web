@@ -1,4 +1,5 @@
 
+import { NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -12,7 +13,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     styleUrls: ["./services-table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [RichTextComponent, MatIconModule],
+    imports: [RichTextComponent, MatIconModule, NgOptimizedImage],
 })
 export class ServicesTableComponent {
     @Input() keyPoints!: ServicesKeyPoint[];

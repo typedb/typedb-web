@@ -11,4 +11,8 @@
   <div class="cs-code-area" tdSyntaxHighlight ngSkipHydration [code]="code" [language]="language">
     <pre><code [class]="'language-' + language">{{ code }}</code></pre>
   </div>
+
+  <div class="copy-overlay visible" (click)="copyCode()">
+    <i [class]="copied() ? 'fal fa-check' : 'fal fa-copy'"></i>
+  </div>
 </div>

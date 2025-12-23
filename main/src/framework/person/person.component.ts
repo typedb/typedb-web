@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from "@angular/common";
+import { NgOptimizedImage, NgTemplateOutlet } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -11,7 +11,7 @@ import { ImageBuilder } from "src/service/image-builder.service";
     templateUrl: "./avatar.component.html",
     styleUrls: ["./avatar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule]
+    imports: [MatIconModule, NgOptimizedImage]
 })
 export class AvatarComponent {
     @Input() person!: Person;
@@ -63,7 +63,7 @@ export class PersonInfoComponent {
     templateUrl: "./person-card.component.html",
     styleUrls: ["./person-card.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [PersonInfoComponent]
+    imports: [PersonInfoComponent, NgOptimizedImage]
 })
 export class PersonCardComponent {
     @Input() person!: Person;

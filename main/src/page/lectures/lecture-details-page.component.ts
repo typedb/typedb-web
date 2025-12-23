@@ -1,10 +1,10 @@
 import { AsyncPipe, DatePipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
@@ -29,6 +29,7 @@ import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-h
 import { AnalyticsService } from "../../service/analytics.service";
 import { ContentService } from "../../service/content.service";
 import { PopupNotificationService } from "../../service/popup-notification.service";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-lecture-details-page",
@@ -52,9 +53,10 @@ export class LectureDetailsPageComponent implements OnInit {
     readonly lecture$: Observable<Lecture | null>;
     readonly safeVideoURL$: Observable<SafeResourceUrl | null>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
+    dialogService = inject(DialogService);
 
     constructor(
-        private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
+        private activatedRoute: ActivatedRoute, private contentService: ContentService,
         private metaTags: MetaTagsService, private _popupNotificationService: PopupNotificationService,
         private _title: Title, private _analytics: AnalyticsService, private _plainTextPipe: PlainTextPipe,
         private sanitizer: DomSanitizer, private dialog: MatDialog,
@@ -70,11 +72,11 @@ export class LectureDetailsPageComponent implements OnInit {
             }),
             shareReplay(1),
         );
-        const subscribeButton = new LinkButton({
+        const subscribeButton = new ActionButton({
             id: "subscribe-to-lectures",
             style: "greenHollow",
+            onClick: () => this.dialogService.openNewsletterDialog(),
             text: "Subscribe to lectures",
-            link: Link.fromAddress("?dialog=newsletter"),
             comingSoon: false,
         });
         this.actions$ = this.lecture$.pipe(
@@ -128,13 +130,18 @@ export class LectureDetailsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.lecture$.subscribe((lecture) => {
-            if (lecture) {
-                this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
-                this.metaTags.register(lecture.metaTags, this.getMetaTagFallbacks(lecture));
-            } else {
-                this.router.navigate(["lectures"], { replaceUrl: true });
-            }
+        this.lecture$.subscribe({
+            next: (lecture) => {
+                if (lecture) {
+                    this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
+                    this.metaTags.register(lecture.metaTags, this.getMetaTagFallbacks(lecture));
+                } else {
+                    this.contentService.handleContentNotFound();
+                }
+            },
+            error: (_err) => {
+                this.contentService.handleContentNotFound();
+            },
         });
     }
 

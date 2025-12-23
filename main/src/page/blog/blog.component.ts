@@ -1,10 +1,11 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, ViewChild } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { BehaviorSubject, combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
+    ActionButton,
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName,
     Link,
     LinkButton,
@@ -25,6 +26,7 @@ import { BlogRowComponent } from "./blog-row.component";
 import { ButtonComponent } from "src/framework/button/button.component";
 import { MatPaginator } from "@angular/material/paginator";
 import { V } from "@angular/cdk/scrolling-module.d-C_w4tIrZ";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-blog-list-page",
@@ -43,12 +45,13 @@ export class BlogComponent implements OnInit {
     currentPage$ = new BehaviorSubject(1);
     pageSize$ = new BehaviorSubject(9);
     readonly posts$: Observable<BlogPost[]>;
+    dialog = inject(DialogService);
 
-    readonly subscribeToNewsletterButton = new LinkButton({
+    readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
         style: "greenHollow",
-        link: Link.fromAddress("?dialog=newsletter"),
-        text: "Subscribe",
+        onClick: () => this.dialog.openNewsletterDialog(),
+        text: "Subscribe to newsletter",
         comingSoon: false,
     });
 
@@ -109,7 +112,7 @@ export class BlogComponent implements OnInit {
     ngOnInit(): void {
         this.blog$.subscribe((blog) => {
             if (!blog) {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.content.handleContentNotFound();
                 return;
             }
         });
@@ -136,7 +139,7 @@ export class BlogComponent implements OnInit {
                 this.metaTags.register(blog.tabs[categorySlug].metaTags);
             },
             error: () => {
-                this.router.navigate(["404"], { skipLocationChange: true });
+                this.content.handleContentNotFound();
             },
         });
     }

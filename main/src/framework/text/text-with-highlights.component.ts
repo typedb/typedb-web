@@ -16,6 +16,7 @@ export class HeadingWithHighlightsComponent {
     @Input("renderedLevel") _renderedLevel?: "h1" | "h2" | "h3" | "h4";
     @Input() value!: ParagraphWithHighlights;
     @Input() themeColorHex = "#02DAC9";
+    @Input() noGlow = false;
 
     get renderedLevel(): "h1" | "h2" | "h3" | "h4" {
         return this._renderedLevel || this.level;

@@ -37,7 +37,7 @@
           </h3>
           <td-aspect-ratio ratio="16:9">
             @if (getEventImageUrl(event); as imageURL) {
-              <img [src]="imageURL" class="ed-img" alt="" />
+              <img [ngSrc]="imageURL!" class="ed-img" alt="" fill />
             }
           </td-aspect-ratio>
           @if (event.externalUrlButton) {

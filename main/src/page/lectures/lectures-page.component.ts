@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe } from "@angular/common";
+import { AsyncPipe, DatePipe, NgOptimizedImage } from "@angular/common";
 import { Component, NgZone } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
@@ -29,7 +29,7 @@ import { PageComponentBase } from "../page-component-base";
     imports: [
         AspectRatioComponent, RichTextComponent,
         ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,
-        EventDurationPipe, OrdinalDatePipe, PlainTextPipe
+        EventDurationPipe, OrdinalDatePipe, PlainTextPipe, NgOptimizedImage
     ]
 })
 export class LecturesPageComponent extends PageComponentBase<LecturesPage> {

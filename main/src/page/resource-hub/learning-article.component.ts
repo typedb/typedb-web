@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, inject, Inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -10,6 +10,7 @@ import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
     Article, blogCategories, BlogCategoryID, fundamentalArticleSchemaName, ResourceHub,
     learningCenterSchemaName, Link, LinkButton, SanityResourceHub, fundamentalsPageSchemaName,
+    ActionButton,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -23,6 +24,7 @@ import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-h
 import { ContentService } from "../../service/content.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { portableTextToPlainText } from "../../service/portable-text-utils";
+import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-learning-article",
@@ -39,11 +41,12 @@ export class LearningArticleComponent implements OnInit {
     article$!: Observable<Article | null>;
     resourceHub$!: Observable<ResourceHub | null>;
     resourceHubLink$!: Observable<string>;
+    dialog = inject(DialogService);
 
-    readonly subscribeToNewsletterButton = new LinkButton({
+    readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
         style: "greenHollow",
-        link: Link.fromAddress("?dialog=newsletter"),
+        onClick: () => this.dialog.openNewsletterDialog(),
         text: "Subscribe to newsletter",
         comingSoon: false,
     });
@@ -97,11 +100,11 @@ export class LearningArticleComponent implements OnInit {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
                 } else {
-                    this.router.navigate(["learn"], { replaceUrl: true });
+                    this.content.handleContentNotFound();
                 }
             },
             error: (_err) => {
-                this.router.navigate(["learn"], { replaceUrl: true });
+                this.content.handleContentNotFound();
             },
         });
     }

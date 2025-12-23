@@ -16,37 +16,6 @@ export class DialogService {
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly dialog = inject(MatDialog);
 
-    init() {
-        this._router.events.subscribe((e) => {
-            if (e instanceof NavigationEnd) {
-                // Extract query string from NavigationEnd.url
-                const queryIndex = e.url.indexOf('?');
-                const searchParams = queryIndex !== -1
-                    ? new URLSearchParams(e.url.substring(queryIndex))
-                    : new URLSearchParams();
-
-                const dialogParam = searchParams.get("dialog");
-
-                switch (dialogParam) {
-                    case "contact":
-                        this.openContactDialog();
-                        break;
-                    case "newsletter":
-                        this.openNewsletterDialog();
-                        break;
-                    case "feedback":
-                        this.openFeedbackDialog();
-                        break;
-                    case "pricing":
-                        this.openPricingDialog();
-                        break;
-                    default:
-                        this.closeCurrent();
-                }
-            }
-        });
-    }
-
     open<T>(component: ComponentType<T>, config?: MatDialogConfig<unknown> | undefined) {
         this.closeCurrent();
         const newDialog = this.dialog.open(component, config);

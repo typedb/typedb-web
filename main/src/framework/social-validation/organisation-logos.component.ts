@@ -1,4 +1,4 @@
-import { NgClass } from "@angular/common";
+import { NgClass, NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Organisation } from "typedb-web-schema";
@@ -11,7 +11,7 @@ import { ScrollPaneComponent } from "../scroll-pane/scroll-pane.component";
     templateUrl: "organisation-logos.component.html",
     styleUrls: ["organisation-logos.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass]
+    imports: [NgClass, NgOptimizedImage]
 })
 export class OrganisationLogosComponent {
     @Input() organisations!: Organisation[];
