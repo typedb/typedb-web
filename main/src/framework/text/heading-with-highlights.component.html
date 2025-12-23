@@ -1,6 +1,6 @@
 @switch (level) {
   @case ('h1') {
-    <h1 [class]="noGlow ? '' : 'glow'" [id]="id" [class]="'text-' + renderedLevel">
+    <h1 [id]="id" [class]="noGlow ? '' : 'glow ' + 'text-' + renderedLevel">
       <ng-container *ngTemplateOutlet="content; context: { value, themeColorHex }" />
     </h1>
   }
