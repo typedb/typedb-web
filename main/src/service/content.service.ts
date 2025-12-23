@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 
 import { SanityDocument } from "@sanity/types";
 import {
-    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, retry, shareReplay,
+    BehaviorSubject, combineLatest, filter, first, iif, map, Observable, of, ReplaySubject, retry, shareReplay,
     switchMap, timer,
 } from "rxjs";
 import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
@@ -118,15 +118,20 @@ export class ContentService {
     }
 
     getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
-        return articles$.pipe(
-            switchMap((articles) => {
-                const article = articles.find((article) => article.slug === slug);
-                return iif(
-                    () => !!article,
-                    concat(of(article as T), this.fetchArticleBySlug<T>(schemaName, slug)),
-                    this.fetchArticleBySlug<T>(schemaName, slug),
-                );
-            }),
+        const STATE_KEY = makeStateKey<T>(`article-${schemaName}-${slug}`);
+        return this.handleTransferState(
+            STATE_KEY,
+            articles$.pipe(
+                switchMap((articles) => {
+                    const article = articles.find((article) => article.slug === slug);
+                    return iif(
+                        () => !!article,
+                        of(article as T),
+                        this.fetchArticleBySlug<T>(schemaName, slug),
+                    );
+                }),
+                first(),
+            ),
         );
     }
 
@@ -144,15 +149,20 @@ export class ContentService {
     }
 
     getLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
-        return this.legalDocuments.pipe(
-            switchMap((documents) => {
-                const document = documents.find((document) => document.slug === slug);
-                return iif(
-                    () => !!document,
-                    concat(of(document), this.fetchLegalDocumentBySlug(slug)),
-                    this.fetchLegalDocumentBySlug(slug),
-                ) as Observable<LegalDocument>;
-            }),
+        const STATE_KEY = makeStateKey<LegalDocument>(`legalDocument-${slug}`);
+        return this.handleTransferState(
+            STATE_KEY,
+            this.legalDocuments.pipe(
+                switchMap((documents) => {
+                    const document = documents.find((document) => document.slug === slug);
+                    return iif(
+                        () => !!document,
+                        of(document),
+                        this.fetchLegalDocumentBySlug(slug),
+                    ) as Observable<LegalDocument>;
+                }),
+                first(),
+            ),
         );
     }
 
