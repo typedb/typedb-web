@@ -38,7 +38,7 @@ export class LegalDocumentComponent implements OnInit {
         this.document$.subscribe({
             next: (doc) => {
                 if (doc) {
-                    this.title.setTitle(doc.pageTitle());
+                    this.title.setTitle(doc.title.toPlainText());
                     this.metaTags.register(doc.metaTags);
                     if (isPlatformBrowser(this.platformId)) {
                         setTimeout(() => {
