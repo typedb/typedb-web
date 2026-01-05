@@ -71,13 +71,7 @@ export class ContentService {
         this.wordpressPosts = this.handleTransferState(
             WORDPRESS_POSTS_KEY,
             this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)),
-        ).pipe(
-            switchMap((data) => {
-                if (data?.length) return of(data);
-                else return this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)); // fall back to loading live (handles WP flakiness)
-            }),
-            shareReplay(),
-        );
+        ).pipe(shareReplay());
 
         this.listPosts().subscribe((data) => {
             this.blogPosts.next(data);
@@ -123,7 +117,7 @@ export class ContentService {
                 const article = articles.find((article) => article.slug === slug);
                 return iif(
                     () => !!article,
-                    concat(of(article as T), this.fetchArticleBySlug<T>(schemaName, slug)),
+                    of(article as T),
                     this.fetchArticleBySlug<T>(schemaName, slug),
                 );
             }),
