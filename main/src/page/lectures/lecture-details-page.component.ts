@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { DomSanitizer, SafeResourceUrl, Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { BehaviorSubject, combineLatest, map, Observable, shareReplay } from "rxjs";
 import {
@@ -56,7 +56,7 @@ export class LectureDetailsPageComponent implements OnInit {
     dialogService = inject(DialogService);
 
     constructor(
-        private router: Router, private activatedRoute: ActivatedRoute, private contentService: ContentService,
+        private activatedRoute: ActivatedRoute, private contentService: ContentService,
         private metaTags: MetaTagsService, private _popupNotificationService: PopupNotificationService,
         private _title: Title, private _analytics: AnalyticsService, private _plainTextPipe: PlainTextPipe,
         private sanitizer: DomSanitizer, private dialog: MatDialog,
@@ -130,13 +130,18 @@ export class LectureDetailsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.lecture$.subscribe((lecture) => {
-            if (lecture) {
-                this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
-                this.metaTags.register(lecture.metaTags, this.getMetaTagFallbacks(lecture));
-            } else {
-                this.router.navigate(["lectures"], { replaceUrl: true });
-            }
+        this.lecture$.subscribe({
+            next: (lecture) => {
+                if (lecture) {
+                    this._title.setTitle(`TypeDB Lecture: ${this._plainTextPipe.transform(lecture.title)}`);
+                    this.metaTags.register(lecture.metaTags, this.getMetaTagFallbacks(lecture));
+                } else {
+                    this.contentService.handleContentNotFound();
+                }
+            },
+            error: (_err) => {
+                this.contentService.handleContentNotFound();
+            },
         });
     }
 

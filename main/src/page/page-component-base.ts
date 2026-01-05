@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Observable, shareReplay, switchMap, tap } from "rxjs";
+import { Observable, shareReplay, switchMap } from "rxjs";
 import { MetaTags, SanityDataset } from "typedb-web-schema";
 import { ContentService } from "../service/content.service";
 import { MetaTagFallbacks, MetaTagsService } from "../service/meta-tags.service";
@@ -23,7 +23,7 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
         protected title: Title,
         private metaTags: MetaTagsService,
         protected zone: NgZone,
-        contentService: ContentService,
+        private contentService: ContentService,
     ) {
         this.page$ = contentService.data.pipe(
             switchMap((data) => this.getPage(data)),
@@ -42,7 +42,7 @@ export abstract class PageComponentBase<T extends { metaTags: MetaTags }> implem
     }
 
     protected onPageNotFound(): void {
-        this.router.navigate(["404"], { skipLocationChange: true });
+        this.contentService.handleContentNotFound();
     }
 
     protected getMetaTagFallbacks(_page: T): MetaTagFallbacks | undefined {

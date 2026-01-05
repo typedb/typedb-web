@@ -100,11 +100,11 @@ export class LearningArticleComponent implements OnInit {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
                 } else {
-                    this.router.navigate(["learn"], { replaceUrl: true });
+                    this.content.handleContentNotFound();
                 }
             },
             error: (_err) => {
-                this.router.navigate(["learn"], { replaceUrl: true });
+                this.content.handleContentNotFound();
             },
         });
     }
