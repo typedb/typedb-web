@@ -16,6 +16,11 @@ export class WordpressService {
     listPosts(limit = 100, offset = 0): Observable<WordpressPost[]> {
         return this.http
             .get<WordpressPosts>(`${postsApiUrl}?meta=sharing-buttons&number=${limit}&offset=${offset}`)
-            .pipe(map((res) => res.posts));
+            .pipe(
+                map((res) => {
+                    if (res.posts.length === 0) throw new Error('No posts found');
+                    return res.posts;
+                })
+            );
     }
 }
