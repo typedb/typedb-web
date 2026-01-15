@@ -16,6 +16,9 @@ pnpm-audit.json
 local
 dist
 
+# AI tools
+.claude/
+
 # Common
 common/lib
 

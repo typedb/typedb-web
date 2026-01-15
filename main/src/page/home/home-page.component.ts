@@ -11,12 +11,10 @@ import { ConclusionPanelComponent } from "../../framework/conclusion-panel/concl
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
-import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
 import { PolyglotComparisonComponent } from "../../framework/polyglot-comparison/polyglot-comparison.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SocialMediaPanelsComponent } from "../../framework/social-media/social-media-panels.component";
-import { SocialValidationSectionComponent } from "../../framework/social-validation/social-validation-section.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -26,7 +24,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
-        SocialValidationSectionComponent, PolyglotComparisonComponent,
+        PolyglotComparisonComponent,
         SimpleLinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
 })

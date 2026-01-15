@@ -7,7 +7,6 @@ import { SectionCoreComponent } from "../../framework/section/section-core.compo
 import { ContactPanelComponent } from "../../framework/contact-panel/contact-panel.component";
 import { FeatureTableComponent } from "../../framework/feature-table/feature-table.component";
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
-import { TestimonialsCarouselComponent } from "../../framework/testimonials-carousel/testimonials-carousel.component";
 import { PageComponentBase } from "../page-component-base";
 
 @Component({
@@ -16,7 +15,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         LinkPanelsComponent, SectionCoreComponent,
-        FeatureTableComponent, TestimonialsCarouselComponent, ContactPanelComponent, AsyncPipe
+        FeatureTableComponent, ContactPanelComponent, AsyncPipe
     ]
 })
 export class SupportPageComponent extends PageComponentBase<SupportPage> {

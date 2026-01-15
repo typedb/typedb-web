@@ -2,8 +2,6 @@ import { Route, Routes } from "@angular/router";
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
-import { EventDetailsPageComponent } from "./page/events/event-details-page.component";
-import { EventsPageComponent } from "./page/events/events-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { GenericPageComponent } from "./page/generic/generic-page.component";
 import { HomePageComponent } from "./page/home/home-page.component";
@@ -25,7 +23,6 @@ export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
     { path: "blog", schemaName: "blog" },
     { path: "pricing", schemaName: "pricingPage" },
-    { path: "events", schemaName: "eventsPage" },
     { path: "lectures", schemaName: "lecturesPage" },
     { path: "features", schemaName: "featuresPage" },
     { path: "learn", schemaName: "learningCenter" },
@@ -45,7 +42,6 @@ export const dynamicPageSchemas = [
     { path: "applications/:slug", schemaName: "applicationArticle" },
     { path: "blog/:slug", schemaName: "blogPost" },
     { path: "blog/category/:slug", slugs: blogCategoryList },
-    { path: "events/:slug", schemaName: "liveEvent" },
     { path: "fundamentals/:slug", schemaName: "fundamentalArticle" },
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
@@ -56,7 +52,6 @@ export const dynamicPageSchemas = [
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
-    events: { component: EventsPageComponent, title: "TypeDB Events" },
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
@@ -76,7 +71,6 @@ const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> =
 const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {
     "blog/:slug": { component: BlogPostPageComponent },
     "blog/category/:slug": { component: BlogComponent },
-    "events/:slug": { component: EventDetailsPageComponent },
     "lectures/:slug": { component: LectureDetailsPageComponent },
     "legal/:slug": { component: LegalDocumentComponent },
     "papers/:slug": { component: PaperDetailsPageComponent },
