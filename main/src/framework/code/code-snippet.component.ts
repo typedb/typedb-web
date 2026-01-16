@@ -10,7 +10,7 @@ const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
 @Component({
     selector: "td-code-snippet",
     templateUrl: "code-snippet.component.html",
-    styleUrls: ["code-snippet.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [AsyncPipe, SyntaxHighlightDirective]

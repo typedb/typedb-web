@@ -9,7 +9,7 @@ import { ContentService } from "../../service/content.service";
 @Component({
     selector: "td-footer",
     template: ``,
-    styleUrls: ["./footer.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

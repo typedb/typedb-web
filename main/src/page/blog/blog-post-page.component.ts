@@ -31,7 +31,7 @@ import { DialogService } from "src/service/dialog.service";
 @Component({
     selector: "td-blog-post-page",
     templateUrl: "./blog-post-page.component.html",
-    styleUrls: ["./blog-post-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

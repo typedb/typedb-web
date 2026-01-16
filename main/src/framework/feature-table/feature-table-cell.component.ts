@@ -11,7 +11,7 @@ import { InfoButtonComponent } from "../info-button/info-button.component";
 @Component({
     selector: "td-feature-table-cell",
     templateUrl: "feature-table-cell.component.html",
-    styleUrls: ["./feature-table-cell.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [NgClass, MatIconModule, ButtonComponent]

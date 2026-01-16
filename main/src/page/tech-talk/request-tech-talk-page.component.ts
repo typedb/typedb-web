@@ -27,7 +27,7 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
 @Component({
     selector: "td-request-tech-talk-page",
     templateUrl: "./request-tech-talk-page.component.html",
-    styleUrls: ["./request-tech-talk-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

@@ -12,7 +12,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-pricing-page",
     templateUrl: "./pricing-page.component.html",
-    styleUrls: ["./pricing-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

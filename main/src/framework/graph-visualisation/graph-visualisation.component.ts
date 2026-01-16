@@ -37,7 +37,7 @@ import VertexEncoding = GraphVisualisation.VertexEncoding;
 @Component({
     selector: "td-graph-visualisation",
     templateUrl: "graph-visualisation.component.html",
-    styleUrls: ["graph-visualisation.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

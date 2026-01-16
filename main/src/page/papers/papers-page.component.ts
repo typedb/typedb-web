@@ -17,7 +17,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-papers-page",
     templateUrl: "./papers-page.component.html",
-    styleUrls: ["./papers-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

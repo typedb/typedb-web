@@ -25,7 +25,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-lectures-page",
     templateUrl: "./lectures-page.component.html",
-    styleUrls: ["./lectures-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

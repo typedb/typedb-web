@@ -11,7 +11,7 @@ import { NgOptimizedImage } from "@angular/common";
 @Component({
     selector: 'td-hot-topics',
     templateUrl: 'hot-topics.component.html',
-    styleUrls: ['hot-topics.component.scss'],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

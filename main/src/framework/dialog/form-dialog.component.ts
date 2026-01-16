@@ -8,7 +8,7 @@ import { DialogCloseButtonComponent } from "./close-button/dialog-close-button.c
 @Component({
     selector: "td-form-dialog",
     templateUrl: "form-dialog.component.html",
-    styleUrls: ["./form-dialog.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

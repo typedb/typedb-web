@@ -112,7 +112,7 @@ class Particle {
 @Component({
     selector: "td-use-case-page",
     templateUrl: "./use-case-page.component.html",
-    styleUrls: ["./use-case-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

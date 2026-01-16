@@ -10,7 +10,7 @@ import { LinkDirective } from "../link/link.directive";
 @Component({
     selector: "td-social-media-panels",
     templateUrl: "social-media-panels.component.html",
-    styleUrls: ["./social-media-panels.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, MatIconModule]

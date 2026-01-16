@@ -18,7 +18,7 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-illustration",
     templateUrl: "illustration.component.html",
-    styleUrls: ["illustration.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -69,7 +69,7 @@ export class IllustrationComponent {
 @Component({
     selector: "td-captioned-illustration",
     templateUrl: "captioned-illustration.component.html",
-    styleUrls: ["captioned-illustration.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent]

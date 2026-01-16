@@ -17,7 +17,7 @@ const DEFAULT_PROGRESS = 20;
 @Component({
     selector: "td-link-panels",
     templateUrl: "link-panels.component.html",
-    styleUrls: ["link-panels.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, RichTextComponent]
@@ -37,7 +37,7 @@ export class LinkPanelsComponent {
 @Component({
     selector: "td-resource-panels",
     templateUrl: "resource-panels.component.html",
-    styleUrls: ["resource-panels.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, RichTextComponent]
@@ -55,7 +55,7 @@ export class ResourcePanelsComponent {
 @Component({
     selector: "td-resource-panels-cols-2",
     templateUrl: "link-panels-cols-2.component.html",
-    styleUrls: ["link-panels-cols-2.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, RichTextComponent]
@@ -72,7 +72,7 @@ export class LinkPanelsCols2Component {
 @Component({
     selector: "td-lecture-panels",
     templateUrl: "lecture-panels.component.html",
-    styleUrls: ["lecture-panels.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, AspectRatioComponent, ButtonComponent, PlainTextPipe, NgOptimizedImage]

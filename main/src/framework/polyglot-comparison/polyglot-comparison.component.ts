@@ -15,7 +15,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
 @Component({
     selector: "td-polyglot-comparison",
     templateUrl: "./polyglot-comparison.component.html",
-    styleUrls: ["./polyglot-comparison.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [IllustrationComponent, RichTextComponent]

@@ -9,7 +9,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-startup-program-page",
     templateUrl: "./startup-program-page.component.html",
-    styleUrls: ["./startup-program-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

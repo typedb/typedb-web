@@ -29,7 +29,7 @@ import { DialogService } from "src/service/dialog.service";
 @Component({
     selector: "td-learning-article",
     templateUrl: "./learning-article.component.html",
-    styleUrls: ["./learning-article.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

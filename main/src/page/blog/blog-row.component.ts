@@ -16,7 +16,7 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
 @Component({
     selector: "td-blog-row",
     templateUrl: "./blog-row.component.html",
-    styleUrls: ["./blog-row.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

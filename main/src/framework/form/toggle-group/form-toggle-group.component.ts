@@ -7,7 +7,7 @@ import { FormOption } from "../select/form-select.component";
 @Component({
     selector: "td-form-toggle-group",
     templateUrl: "./form-toggle-group.component.html",
-    styleUrls: ["./form-toggle-group.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatButtonToggleModule, FormsModule, ReactiveFormsModule]

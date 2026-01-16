@@ -12,7 +12,7 @@ import { FeatureTableCellComponent } from "./feature-table-cell.component";
 @Component({
     selector: "td-feature-table",
     templateUrl: "feature-table.component.html",
-    styleUrls: ["./feature-table.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [InfoButtonComponent, FeatureTableCellComponent, ButtonComponent]

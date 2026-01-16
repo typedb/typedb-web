@@ -27,7 +27,7 @@ import { DialogService } from "src/service/dialog.service";
 @Component({
     selector: "td-paper-details-page",
     templateUrl: "./paper-details-page.component.html",
-    styleUrls: ["./paper-details-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

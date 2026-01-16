@@ -10,7 +10,7 @@ import { RichTextComponent } from "../../text/rich-text.component";
 @Component({
     selector: "td-simple-link-panels",
     templateUrl: "simple-link-panels.component.html",
-    styleUrls: ["simple-link-panels.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective]

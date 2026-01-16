@@ -9,7 +9,7 @@ import { ScrollPaneComponent } from "../../framework/scroll-pane/scroll-pane.com
 @Component({
     selector: "td-blog-navbar, [td-blog-navbar]",
     templateUrl: "./blog-navbar.component.html",
-    styleUrls: ["./blog-navbar.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [ScrollPaneComponent, LinkDirective]

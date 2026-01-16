@@ -10,7 +10,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-resource-hub",
     templateUrl: "./resource-hub.component.html",
-    styleUrls: ["./resource-hub.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

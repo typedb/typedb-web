@@ -6,7 +6,7 @@ import { LinkDirective } from "../link/link.directive";
 @Component({
     selector: "td-integrations-grid",
     templateUrl: "./integrations-grid.component.html",
-    styleUrls: ["./integrations-grid.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

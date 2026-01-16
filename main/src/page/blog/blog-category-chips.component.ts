@@ -8,7 +8,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
 @Component({
     selector: "td-blog-category-chips",
     templateUrl: "./blog-category-chips.component.html",
-    styleUrls: ["./blog-category-chips.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective]

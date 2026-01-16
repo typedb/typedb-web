@@ -20,7 +20,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-home-page",
     templateUrl: "./home-page.component.html",
-    styleUrls: ["./home-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

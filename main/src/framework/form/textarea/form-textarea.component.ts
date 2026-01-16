@@ -6,7 +6,7 @@ import { MatInputModule } from "@angular/material/input";
 @Component({
     selector: "td-form-textarea",
     templateUrl: "./form-textarea.component.html",
-    styleUrls: ["./form-textarea.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]

@@ -8,7 +8,7 @@ import { SectionCoreComponent } from "../section/section-core.component";
 @Component({
     selector: "td-further-learning",
     templateUrl: "./further-learning.component.html",
-    styleUrls: ["./further-learning.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,

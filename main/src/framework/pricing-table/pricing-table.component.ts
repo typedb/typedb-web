@@ -8,7 +8,7 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-pricing-table",
     templateUrl: "./pricing-table.component.html",
-    styleUrls: ["./pricing-table.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [RichTextComponent, ButtonComponent, LinkDirective]

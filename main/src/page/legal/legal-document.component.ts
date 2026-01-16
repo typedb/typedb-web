@@ -15,7 +15,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
 @Component({
     selector: "td-legal-document",
     templateUrl: "./legal-document.component.html",
-    styleUrls: ["./legal-document.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe]

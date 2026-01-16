@@ -10,7 +10,7 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-generic-page",
     templateUrl: "./generic-page.component.html",
-    styleUrls: ["./generic-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

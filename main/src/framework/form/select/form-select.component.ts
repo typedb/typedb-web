@@ -9,7 +9,7 @@ export type FormOptionGroup<VALUE> = { name: string, options: FormOption<VALUE>[
 @Component({
     selector: "tp-form-select",
     templateUrl: "./form-select.component.html",
-    styleUrls: ["./form-select.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule]

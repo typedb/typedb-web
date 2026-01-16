@@ -9,7 +9,7 @@ import { DialogCloseButtonComponent } from "../close-button/dialog-close-button.
 @Component({
     selector: "td-add-to-calendar-dialog",
     templateUrl: "./add-to-calendar-dialog.component.html",
-    styleUrls: ["./add-to-calendar-dialog.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ActionsComponent, MatProgressBarModule]

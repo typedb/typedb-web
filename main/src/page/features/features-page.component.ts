@@ -19,7 +19,7 @@ export interface NestedNavbarItem extends FeaturesNavbarItem {
 @Component({
     selector: "td-features-page",
     templateUrl: "./features-page.component.html",
-    styleUrls: ["./features-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [

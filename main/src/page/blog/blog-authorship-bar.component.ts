@@ -8,7 +8,7 @@ import { PersonInfoComponent } from "../../framework/person/person.component";
 @Component({
     selector: "td-blog-authorship-bar",
     templateUrl: "./blog-authorship-bar.component.html",
-    styleUrls: ["./blog-authorship-bar.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [PersonInfoComponent, DatePipe]
