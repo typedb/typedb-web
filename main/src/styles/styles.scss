@@ -12,6 +12,9 @@
 @forward "reset";
 @forward "scrollbars";
 @forward "vars";
+@forward "../framework/framework";
+@forward "../navigation/navigation";
+@forward "../page/page";
 
 $default-typography: mat.m2-define-typography-level(
     $font-size: inherit,

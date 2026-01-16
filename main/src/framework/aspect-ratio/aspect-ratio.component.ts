@@ -1,11 +1,11 @@
 import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 @Component({
     selector: "td-aspect-ratio",
     templateUrl: "./aspect-ratio.component.html",
-    styleUrls: ["./aspect-ratio.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [NgClass]
 })
 export class AspectRatioComponent {

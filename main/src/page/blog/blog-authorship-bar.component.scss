@@ -1,7 +1,7 @@
 @use "colors";
 @use "media";
 
-:host {
+td-blog-authorship-bar {
     display: block;
     margin-top: 16px;
 
@@ -12,13 +12,13 @@
             margin-top: 16px;
         }
     }
-}
 
-.bp-post-date {
-    flex-shrink: 0;
-}
+    .bp-post-date {
+        flex-shrink: 0;
+    }
 
-td-person-info {
-    display: block;
-    margin-bottom: 8px;
+    td-person-info {
+        display: block;
+        margin-bottom: 8px;
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
@@ -9,7 +9,9 @@ export type FormOptionGroup<VALUE> = { name: string, options: FormOption<VALUE>[
 @Component({
     selector: "tp-form-select",
     templateUrl: "./form-select.component.html",
-    styleUrls: ["./form-select.component.scss"],
+    
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule]
 })
 export class FormSelectComponent<VALUE, FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit {

@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 
 import { map, Observable, Subject, tap } from "rxjs";
@@ -17,6 +17,7 @@ import { FormDialogComponent } from "../form-dialog.component";
     selector: "td-feedback-dialog",
     templateUrl: "./feedback-dialog.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         FormDialogComponent, AsyncPipe, FormToggleGroupComponent, FormTextareaComponent, FormsModule,
         ReactiveFormsModule, FormComponent, FormActionsComponent, FormInputComponent

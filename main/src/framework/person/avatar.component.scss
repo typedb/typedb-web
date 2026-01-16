@@ -2,7 +2,7 @@
 @use "media";
 @use "shapes";
 
-:host {
+td-avatar {
     display: block;
     position: relative;
     flex-shrink: 0;
@@ -56,10 +56,10 @@
             }
         }
     }
-}
 
-img {
-    display: block;
-    width: var(--av-image-size);
-    height: var(--av-image-size);
+    img {
+        display: block;
+        width: var(--av-image-size);
+        height: var(--av-image-size);
+    }
 }

@@ -11,9 +11,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 @Component({
     selector: "td-topbar",
     template: ``,
-    styleUrls: ["./topbar-menu.component.scss"],
-    encapsulation: ViewEncapsulation.None,
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class TopbarMenuComponent implements OnInit {

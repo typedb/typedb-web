@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewChild, ViewEncapsulation } from "@angular/core";
 import { ActionButton, LinkButton, ParagraphWithHighlights, ResourceLink } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 import { LinkDirective } from "../link/link.directive";
@@ -11,7 +11,9 @@ import { NgOptimizedImage } from "@angular/common";
 @Component({
     selector: 'td-hot-topics',
     templateUrl: 'hot-topics.component.html',
-    styleUrls: ['hot-topics.component.scss'],
+    
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
         ScrollPaneComponent, HeadingWithHighlightsComponent, LinkDirective, RichTextComponent, NgOptimizedImage,

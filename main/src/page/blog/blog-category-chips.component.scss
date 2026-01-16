@@ -1,7 +1,7 @@
 @use "media";
 @use "shapes";
 
-:host {
+td-blog-category-chips {
     font-weight: var(--font-weight-regular);
     display: flex;
     flex-direction: row;

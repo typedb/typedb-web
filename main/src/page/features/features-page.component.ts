@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser, Location } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Inject, OnDestroy, PLATFORM_ID, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Inject, OnDestroy, PLATFORM_ID, ViewChild, ViewEncapsulation } from "@angular/core";
 import { of, tap } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { FeaturesPage, featuresPageSchemaName, SanityDataset, SanityFeaturesPage } from "typedb-web-schema";
@@ -8,7 +8,8 @@ import { FeatureGridComponent } from "../../framework/feature-grid/feature-grid.
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { SmoothScrollDirective } from "../../framework/smooth-scroll/smooth-scroll.directive";
 import { PageComponentBase } from "../page-component-base";
-import { FeaturesNavbarItem } from "./features-navbar.component";
+
+export type FeaturesNavbarItem = { text: string; slug?: string; href: string };
 
 export interface NestedNavbarItem extends FeaturesNavbarItem {
     children?: (FeaturesNavbarItem & { sectionId?: string })[];
@@ -18,8 +19,9 @@ export interface NestedNavbarItem extends FeaturesNavbarItem {
 @Component({
     selector: "td-features-page",
     templateUrl: "./features-page.component.html",
-    styleUrls: ["./features-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         FeatureGridComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
         SmoothScrollDirective,

@@ -1,10 +1,12 @@
-.gv-root {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: var(--body-background);
-    z-index: 25;
-    border-radius: var(--border-radius);
+td-graph-visualisation {
+    .gv-root {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: var(--body-background);
+        z-index: 25;
+        border-radius: var(--border-radius);
+    }
 }

@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import { ActionButton } from "typedb-web-schema";
@@ -9,8 +9,8 @@ import { ButtonComponent } from "../button/button.component";
 @Component({
     selector: "td-actions",
     templateUrl: "actions.component.html",
-    styleUrls: ["./actions.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [ButtonComponent]
 })
 export class ActionsComponent {

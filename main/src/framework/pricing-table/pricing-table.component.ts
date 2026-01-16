@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { PricingPanel } from "typedb-web-schema";
 import { ButtonComponent } from "../button/button.component";
@@ -8,8 +8,9 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-pricing-table",
     templateUrl: "./pricing-table.component.html",
-    styleUrls: ["./pricing-table.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [RichTextComponent, ButtonComponent, LinkDirective]
 })
 export class PricingTableComponent {

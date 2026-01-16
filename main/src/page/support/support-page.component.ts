@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { of } from "rxjs";
 import { SanitySupportPage, SupportPage, supportPageSchemaName } from "typedb-web-schema";
 import { SanityDataset } from "typedb-web-schema";
@@ -13,6 +13,7 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-support-page",
     templateUrl: "./support-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkPanelsComponent, SectionCoreComponent,
         FeatureTableComponent, ContactPanelComponent, AsyncPipe

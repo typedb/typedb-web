@@ -1,7 +1,9 @@
-mat-button-toggle-group {
-    width: 100%;
-}
+td-form-toggle-group {
+    mat-button-toggle-group {
+        width: 100%;
+    }
 
-mat-button-toggle {
-    flex: 1;
+    mat-button-toggle {
+        flex: 1;
+    }
 }

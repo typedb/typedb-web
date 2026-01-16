@@ -1,5 +1,5 @@
 import { AsyncPipe, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 
 import { of } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
@@ -17,8 +17,9 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-papers-page",
     templateUrl: "./papers-page.component.html",
-    styleUrls: ["./papers-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, PlainTextPipe, SectionCoreComponent,
         NgOptimizedImage

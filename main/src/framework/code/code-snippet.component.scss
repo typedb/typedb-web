@@ -1,4 +1,4 @@
-:host {
+td-code-snippet {
     display: block;
     height: 100%;
     overflow: auto;
@@ -9,35 +9,35 @@
     //     width: 0;
     //     height: 0;
     // }
-}
 
-.cs-root {
-    min-height: 100%;
-    width: 100%;
-    display: flex;
-    gap: 4px;
-}
-
-.cs-line-numbers {
-    flex-shrink: 0;
-    padding: 0 7px;
-    font-family: var(--font-family-code);
-    color: #66637f;
-    overflow: hidden;
-    user-select: none;
-}
-
-.cs-code-area {
-    flex: 1;
-    padding-right: 14px;
-    cursor: text;
-
-    &:first-child {
-        padding: 2px 14px 2px 8px;
+    .cs-root {
+        min-height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 4px;
     }
-}
 
-ol {
-    list-style: none;
-    height: 0;
+    .cs-line-numbers {
+        flex-shrink: 0;
+        padding: 0 7px;
+        font-family: var(--font-family-code);
+        color: #66637f;
+        overflow: hidden;
+        user-select: none;
+    }
+
+    .cs-code-area {
+        flex: 1;
+        padding-right: 14px;
+        cursor: text;
+
+        &:first-child {
+            padding: 2px 14px 2px 8px;
+        }
+    }
+
+    ol {
+        list-style: none;
+        height: 0;
+    }
 }
