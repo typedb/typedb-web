@@ -204,35 +204,3 @@ Disallow: /blog/identity-and-access-management-with-typedb-part-ii-transitivity
 Disallow: /blog/identity-and-access-management-with-typedb-part-i-polymorphism
 Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
-
-# Clankers
-
-User-agent: PetalBot
-Disallow: /
-
-User-agent: Factset_spyderbot
-Disallow: /
-
-User-agent: LinerBot
-Disallow: /
-
-User-agent: Timpibot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: AhrefsSiteAudit
-Disallow: /
-
-User-agent: AwarioBot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
