@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, NgZone } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone, ViewEncapsulation } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -29,6 +29,7 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
     templateUrl: "./request-tech-talk-page.component.html",
     styleUrls: ["./request-tech-talk-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         HeadingWithHighlightsComponent, MatProgressBarModule, ParagraphWithHighlightsComponent,
         RichTextComponent, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent

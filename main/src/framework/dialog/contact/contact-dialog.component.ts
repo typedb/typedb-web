@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogRef } from "@angular/material/dialog";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -9,6 +9,7 @@ import { FormDialogComponent } from "../form-dialog.component";
     selector: "td-contact-dialog",
     templateUrl: "./contact-dialog.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         FormDialogComponent, FormsModule, ReactiveFormsModule,
         MatCheckboxModule, ContactPanelComponent,

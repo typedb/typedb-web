@@ -1,6 +1,6 @@
 import { AsyncPipe } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { ChangeDetectionStrategy, Component, Input, NgZone } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, NgZone, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { combineLatest, map, Observable, of } from "rxjs";
@@ -22,6 +22,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./home-page.component.html",
     styleUrls: ["./home-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
         PolyglotComparisonComponent,

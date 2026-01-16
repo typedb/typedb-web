@@ -1,69 +1,71 @@
 @use "media";
 @use "shapes";
 
-.wp-root {
-    display: flex;
-    gap: 40px;
-
-    @media (max-width: media.$max-width-mobile) {
-        flex-direction: column;
-        gap: 16px;
-    }
-}
-
-.wp-card {
-    flex: 1;
-    min-width: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-
-    @media (max-width: media.$max-width-tablet) {
-        gap: 20px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        padding: 12px;
-        gap: 12px;
-    }
-
-    img {
-        border: shapes.$border;
-        border-radius: var(--border-radius);
-    }
-
-    h3,
-    .wp-speakers {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .wp-speakers {
-        margin-top: 12px;
+td-lecture-panels {
+    .wp-root {
+        display: flex;
+        gap: 40px;
 
         @media (max-width: media.$max-width-mobile) {
-            margin-top: 8px;
+            flex-direction: column;
+            gap: 16px;
         }
     }
 
-    p {
-        margin-top: 4px;
-    }
-}
+    .wp-card {
+        flex: 1;
+        min-width: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
 
-.lp-coming-soon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 98px;
-    height: 32px;
-    background-color: var(--color-secondary-purple);
-    border-left: shapes.$border;
-    border-bottom: shapes.$border;
-    border-bottom-left-radius: var(--border-radius);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        @media (max-width: media.$max-width-tablet) {
+            gap: 20px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 12px;
+            gap: 12px;
+        }
+
+        img {
+            border: shapes.$border;
+            border-radius: var(--border-radius);
+        }
+
+        h3,
+        .wp-speakers {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .wp-speakers {
+            margin-top: 12px;
+
+            @media (max-width: media.$max-width-mobile) {
+                margin-top: 8px;
+            }
+        }
+
+        p {
+            margin-top: 4px;
+        }
+    }
+
+    .lp-coming-soon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 98px;
+        height: 32px;
+        background-color: var(--color-secondary-purple);
+        border-left: shapes.$border;
+        border-bottom: shapes.$border;
+        border-bottom-left-radius: var(--border-radius);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

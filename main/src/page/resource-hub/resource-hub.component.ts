@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
 import { ResourceHub, SanityDataset, SanityResourceHub } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
@@ -12,6 +12,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./resource-hub.component.html",
     styleUrls: ["./resource-hub.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkPanelsCols2Component, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent,
     ],

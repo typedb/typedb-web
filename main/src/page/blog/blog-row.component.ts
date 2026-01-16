@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 import { NgOptimizedImage } from "@angular/common";
 
 import { BlogPostsRow, BlogRow, ResourcePanelsRow } from "typedb-web-schema";
@@ -18,6 +18,7 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
     templateUrl: "./blog-row.component.html",
     styleUrls: ["./blog-row.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkDirective, AspectRatioComponent, BlogCategoryChipsComponent, RichTextComponent,
         BlogAuthorshipBarComponent, HeadingWithHighlightsComponent, ResourcePanelsComponent, PlainTextPipe,

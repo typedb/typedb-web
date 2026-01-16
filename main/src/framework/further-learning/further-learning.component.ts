@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { ResourceSection } from "typedb-web-schema";
 
@@ -10,6 +10,7 @@ import { SectionCoreComponent } from "../section/section-core.component";
     templateUrl: "./further-learning.component.html",
     styleUrls: ["./further-learning.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [SectionCoreComponent, ResourcePanelsComponent],
 })

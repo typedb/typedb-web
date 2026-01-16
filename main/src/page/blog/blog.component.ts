@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -33,6 +33,7 @@ import { DialogService } from "src/service/dialog.service";
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, MatPaginator
     ]

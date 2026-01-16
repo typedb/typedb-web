@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -8,6 +8,8 @@ import { FormOption } from "../select/form-select.component";
     selector: "td-form-toggle-group",
     templateUrl: "./form-toggle-group.component.html",
     styleUrls: ["./form-toggle-group.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatButtonToggleModule, FormsModule, ReactiveFormsModule]
 })
 export class FormToggleGroupComponent<VALUE, FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit {

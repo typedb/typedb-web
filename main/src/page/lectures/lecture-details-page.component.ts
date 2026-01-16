@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -35,6 +35,8 @@ import { DialogService } from "src/service/dialog.service";
     selector: "td-lecture-details-page",
     templateUrl: "./lecture-details-page.component.html",
     styleUrls: ["./lecture-details-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, MatIconModule,
         ActionsComponent, AspectRatioComponent, MatProgressBarModule, RichTextComponent, PersonCardComponent,

@@ -1,5 +1,5 @@
 import { DatePipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { BlogPost } from "typedb-web-schema";
 
@@ -10,6 +10,7 @@ import { PersonInfoComponent } from "../../framework/person/person.component";
     templateUrl: "./blog-authorship-bar.component.html",
     styleUrls: ["./blog-authorship-bar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [PersonInfoComponent, DatePipe]
 })
 export class BlogAuthorshipBarComponent {

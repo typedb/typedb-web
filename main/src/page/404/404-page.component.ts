@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { ActionsComponent } from "../../framework/actions/actions.component";
 import { Link, LinkButton } from "typedb-web-schema";
 
@@ -7,6 +7,7 @@ import { Link, LinkButton } from "typedb-web-schema";
     templateUrl: "./404-page.component.html",
     styleUrls: ["./404-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         ActionsComponent
     ]

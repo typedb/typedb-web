@@ -1,26 +1,26 @@
-:host {
+td-dialog-close-button {
     display: flex;
-}
 
-button {
-    color: var(--color-secondary-grey);
-    transition: color 100ms ease;
+    button {
+        color: var(--color-secondary-grey);
+        transition: color 100ms ease;
 
-    &:hover,
-    &:active,
-    &:focus {
-        color: var(--color-white);
-    }
+        &:hover,
+        &:active,
+        &:focus {
+            color: var(--color-white);
+        }
 
-    &:active,
-    &:focus {
-        .mat-icon {
-            background: var(--color-light-purple);
+        &:active,
+        &:focus {
+            .mat-icon {
+                background: var(--color-light-purple);
+            }
         }
     }
-}
 
-.mat-icon {
-    border-radius: var(--border-radius);
-    transition: background 100ms ease;
+    .mat-icon {
+        border-radius: var(--border-radius);
+        transition: background 100ms ease;
+    }
 }

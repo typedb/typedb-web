@@ -1,0 +1,5 @@
+// Navigation Component Styles Index
+// These styles are imported globally to avoid inline CSS in SSR output
+
+@use "footer/footer.component";
+@use "topbar/topbar-menu.component";

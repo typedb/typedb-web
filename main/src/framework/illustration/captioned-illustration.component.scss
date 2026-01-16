@@ -1,48 +1,50 @@
 @use "media";
 @use "shapes";
 
-.ci-root {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 24px 64px;
+td-captioned-illustration {
+    .ci-root {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 24px 64px;
 
-    @media (max-width: media.$max-width-tablet) {
-        column-gap: 56px;
-    }
-}
-
-.ci-illustration {
-    flex: 0 0 700px;
-
-    @media (max-width: media.$max-width-tablet) {
-        flex: 1 1 600px;
+        @media (max-width: media.$max-width-tablet) {
+            column-gap: 56px;
+        }
     }
 
-    .ci-illustration-header,
-    .ci-illustration-footer {
-        background: var(--color-purple);
-        border: shapes.$border;
-        height: 13px;
+    .ci-illustration {
+        flex: 0 0 700px;
+
+        @media (max-width: media.$max-width-tablet) {
+            flex: 1 1 600px;
+        }
+
+        .ci-illustration-header,
+        .ci-illustration-footer {
+            background: var(--color-purple);
+            border: shapes.$border;
+            height: 13px;
+        }
+
+        .ci-illustration-header {
+            border-bottom: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="5" viewBox="0 0 22 5"><circle cx="19.0577" cy="2.29383" r="2.09754" fill="%2344A461"/><circle cx="10.6737" cy="2.29383" r="2.09754" fill="%23C0A851"/><circle cx="2.28968" cy="2.29383" r="2.09754" fill="%23F66B65"/></svg>');
+            background-position: 4px center;
+            background-repeat: no-repeat;
+        }
+
+        .ci-illustration-footer {
+            border-top: none;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
     }
 
-    .ci-illustration-header {
-        border-bottom: none;
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="5" viewBox="0 0 22 5"><circle cx="19.0577" cy="2.29383" r="2.09754" fill="%2344A461"/><circle cx="10.6737" cy="2.29383" r="2.09754" fill="%23C0A851"/><circle cx="2.28968" cy="2.29383" r="2.09754" fill="%23F66B65"/></svg>');
-        background-position: 4px center;
-        background-repeat: no-repeat;
+    td-illustration {
+        height: 100%;
     }
 
-    .ci-illustration-footer {
-        border-top: none;
-        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    td-rich-text {
+        flex: 999 0 250px;
     }
-}
-
-td-illustration {
-    height: 100%;
-}
-
-td-rich-text {
-    flex: 999 0 250px;
 }

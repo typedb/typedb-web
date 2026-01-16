@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { of } from "rxjs";
 import { SanityDataset, SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "typedb-web-schema";
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
@@ -11,6 +11,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./startup-program-page.component.html",
     styleUrls: ["./startup-program-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [SectionCoreComponent, LinkPanelsComponent, AsyncPipe],
 })

@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject, Input, PLATFORM_ID } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject, Input, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
@@ -17,6 +17,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "./polyglot-comparison.component.html",
     styleUrls: ["./polyglot-comparison.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [IllustrationComponent, RichTextComponent]
 })
 export class PolyglotComparisonComponent implements AfterViewInit {

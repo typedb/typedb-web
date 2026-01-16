@@ -2,12 +2,10 @@
 @use "shapes";
 @use "mixins";
 
-:host {
+td-rich-text {
     display: block;
     color: var(--body-font-color);
-}
 
-:host ::ng-deep {
     > :first-child {
         margin-top: 0;
     }

@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { blogCategories, BlogCategoryID, BlogPost } from "typedb-web-schema";
 
@@ -10,6 +10,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
     templateUrl: "./blog-category-chips.component.html",
     styleUrls: ["./blog-category-chips.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective]
 })
 export class BlogCategoryChipsComponent {

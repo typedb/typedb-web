@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser, NgClass } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnInit, PLATFORM_ID } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Input, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { defer, filter, map, merge, Observable, shareReplay, startWith, Subject } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
@@ -15,6 +15,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     templateUrl: "./polyglot-snippet.component.html",
     styleUrls: ["./polyglot-snippet.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [ScrollPaneComponent, NgClass, CodeSnippetComponent, AsyncPipe]
 })
 export class PolyglotSnippetComponent implements OnInit {

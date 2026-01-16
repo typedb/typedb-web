@@ -1,5 +1,5 @@
 import { AsyncPipe, DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
@@ -17,6 +17,7 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     templateUrl: "./legal-document.component.html",
     styleUrls: ["./legal-document.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe]
 })
 export class LegalDocumentComponent implements OnInit {

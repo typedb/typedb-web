@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
 import { GenericPage, SanityDataset, SanityGenericPage } from "typedb-web-schema";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
@@ -12,6 +12,7 @@ import { PageComponentBase } from "../page-component-base";
     templateUrl: "./generic-page.component.html",
     styleUrls: ["./generic-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         ContentPanelComponent, ConclusionPanelComponent, AsyncPipe, SectionCoreComponent
     ],

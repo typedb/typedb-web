@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap } from "@angular/router";
@@ -33,6 +33,7 @@ import { DialogService } from "src/service/dialog.service";
     templateUrl: "./blog-post-page.component.html",
     styleUrls: ["./blog-post-page.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, BlogNavbarComponent, BlogCategoryChipsComponent,
         RichTextComponent, BlogAuthorshipBarComponent, MatIconModule, ButtonComponent,

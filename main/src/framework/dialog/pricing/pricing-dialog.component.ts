@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, Pipe, PipeTransform, ViewEncapsulation } from "@angular/core";
 import { MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
 import { first } from "rxjs";
 import { MediaQueryService } from "../../../service/media-query.service";
@@ -29,6 +29,8 @@ export class ProviderPipe implements PipeTransform {
     selector: "td-pricing-dialog",
     templateUrl: "./pricing-dialog.component.html",
     styleUrls: ["./pricing-dialog.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatDialogTitle, MatDialogContent, DialogCloseButtonComponent, ProviderPipe, MatSelectModule, FormsModule, SpinnerComponent, MatTooltipModule, NgClass, NgOptimizedImage]
 })
 export class PricingDialogComponent implements OnInit {

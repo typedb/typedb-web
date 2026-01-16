@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Output, EventEmitter, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Output, EventEmitter, Input, ViewEncapsulation } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { Subject } from "rxjs";
@@ -26,8 +26,8 @@ const contactFormTopics = [
 @Component({
     selector: "td-contact-panel",
     templateUrl: "contact-panel.component.html",
-    styleUrls: ["contact-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         MatProgressBarModule, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent,
         MatCheckboxModule, FormsModule, ReactiveFormsModule

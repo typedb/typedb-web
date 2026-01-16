@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 @Component({
     selector: "td-tooltip",
     templateUrl: "tooltip.component.html",
-    styleUrls: ["./tooltip.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class TooltipComponent {

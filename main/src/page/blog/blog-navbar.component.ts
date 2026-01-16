@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 
 import { blogCategories, blogCategoryList, Link } from "typedb-web-schema";
 
@@ -11,6 +11,7 @@ import { ScrollPaneComponent } from "../../framework/scroll-pane/scroll-pane.com
     templateUrl: "./blog-navbar.component.html",
     styleUrls: ["./blog-navbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [ScrollPaneComponent, LinkDirective]
 })
 export class BlogNavbarComponent {

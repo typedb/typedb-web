@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import {
@@ -20,6 +20,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     templateUrl: "./feature-grid.component.html",
     styleUrls: ["./feature-grid.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent, HeadingWithHighlightsComponent, SyntaxHighlightDirective]
 })
 export class FeatureGridComponent {

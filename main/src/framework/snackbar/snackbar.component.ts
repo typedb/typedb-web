@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, inject, ViewEncapsulation } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from "@angular/material/snack-bar";
@@ -11,8 +11,8 @@ export interface SnackbarData {
 @Component({
     selector: "td-snackbar",
     templateUrl: "snackbar.component.html",
-    styleUrls: ["./snackbar.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatIconModule, MatButtonModule]
 })
 export class SnackbarComponent {

@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, inject, Inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, inject, Inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -31,6 +31,7 @@ import { DialogService } from "src/service/dialog.service";
     templateUrl: "./learning-article.component.html",
     styleUrls: ["./learning-article.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, RichTextComponent,
         MatIconModule, ButtonComponent, FurtherLearningComponent, AsyncPipe

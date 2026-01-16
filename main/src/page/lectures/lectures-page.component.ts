@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe, NgOptimizedImage } from "@angular/common";
-import { Component, NgZone } from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgZone, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -26,6 +26,8 @@ import { PageComponentBase } from "../page-component-base";
     selector: "td-lectures-page",
     templateUrl: "./lectures-page.component.html",
     styleUrls: ["./lectures-page.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         AspectRatioComponent, RichTextComponent,
         ButtonComponent, SectionCoreComponent, LecturePanelsComponent, MatIconModule, AsyncPipe, DatePipe,

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -7,6 +7,8 @@ import { MatInputModule } from "@angular/material/input";
     selector: "td-form-input",
     templateUrl: "./form-input.component.html",
     styleUrls: ["./form-input.component.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule]
 })
 export class FormInputComponent<FORM extends { [K in keyof FORM & string]: AbstractControl; } & { [key: string]: AbstractControl }> implements OnInit, AfterViewInit {

@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
@@ -12,6 +12,7 @@ import { LinkDirective } from "../link/link.directive";
     templateUrl: "social-media-panels.component.html",
     styleUrls: ["./social-media-panels.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [LinkDirective, MatIconModule]
 })
 export class SocialMediaPanelsComponent {

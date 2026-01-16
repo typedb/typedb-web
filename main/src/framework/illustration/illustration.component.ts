@@ -1,5 +1,5 @@
 import { AsyncPipe, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 
 import interact from "interactjs";
 import { map, Observable } from "rxjs";
@@ -20,6 +20,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     templateUrl: "illustration.component.html",
     styleUrls: ["illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
     ]
@@ -70,6 +71,7 @@ export class IllustrationComponent {
     templateUrl: "captioned-illustration.component.html",
     styleUrls: ["captioned-illustration.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent]
 })
 export class CaptionedIllustrationComponent {
