@@ -13,7 +13,7 @@ td-blog-category-chips {
         background: var(--color-purple);
         border: shapes.$border;
         border-radius: var(--border-radius);
-        color: var(--color-secondary-pink);
+        color: var(--color-secondary-pink) !important;
     }
 
     @media (max-width: media.$max-width-mobile) {
