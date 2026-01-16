@@ -11,6 +11,7 @@ import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
 import { CanonicalLinkService } from "./service/canonical-link.service";
 import { LocationStrategy, ViewportScroller, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { environment } from "./environment/environment";
 
 const SITE_URL = "https://typedb.com";
 
@@ -46,9 +47,17 @@ export class RootComponent {
         this.registerIcons();
 
         if (isPlatformBrowser(this.platformId)) {
-            this.initScrollBehaviour();
             this.analyticsService.google.loadScriptTag();
-            this.capturePageViewOnNavigation();
+
+            if (environment.env === "production") {
+                // Production: static pages, no SPA navigation
+                // PostHog auto-captures pageviews; Customer.io needs manual call on load
+                this.analyticsService.cio.page();
+            } else {
+                // Development: SPA mode with client-side navigation
+                this.initScrollBehaviour();
+                this.capturePageViewOnNavigation();
+            }
         }
 
         this.contentService.data.subscribe((data) => {
