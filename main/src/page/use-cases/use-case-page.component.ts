@@ -1,5 +1,5 @@
 import { AsyncPipe, DOCUMENT, isPlatformServer } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, inject, PLATFORM_ID } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
 import { SanityDataset, SanityUseCasePageInstance, UseCasePageInstance, useCasePageSchemaName } from "typedb-web-schema";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
@@ -112,8 +112,9 @@ class Particle {
 @Component({
     selector: "td-use-case-page",
     templateUrl: "./use-case-page.component.html",
-    styleUrls: ["./use-case-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         AsyncPipe, PolyglotComparisonComponent, SectionCoreComponent,
         HotTopicsComponent, LinkPanelsComponent

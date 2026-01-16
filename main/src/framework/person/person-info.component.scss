@@ -1,7 +1,7 @@
 @use "colors";
 @use "media";
 
-:host {
+td-person-info {
     &.pi-article,
     &.pi-article-details {
         overflow: hidden;
@@ -16,59 +16,59 @@
             color: var(--body-font-color);
         }
     }
-}
 
-.pi-person {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    color: inherit;
+    .pi-person {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        color: inherit;
 
-    @media (max-width: media.$max-width-mobile) {
-        gap: 8px;
-    }
-}
-
-.pi-person-details {
-    color: var(--color-secondary-light-grey);
-}
-
-.pi-person-text {
-    overflow: hidden;
-}
-
-.pi-person-name {
-    color: var(--body-heading-color);
-
-    &.text-p1 {
-        margin-top: -2px;
-    }
-}
-
-@media (hover: hover) {
-    :host:hover a.pi-person,
-    a.pi-person:hover {
-        .pi-person-name {
-            color: inherit;
+        @media (max-width: media.$max-width-mobile) {
+            gap: 8px;
         }
     }
 
-    :host:hover td-avatar {
-        border-color: var(--color-green);
+    .pi-person-details {
+        color: var(--color-secondary-light-grey);
+    }
 
-        ::ng-deep .av-linkedin-overlay {
-            opacity: 1;
+    .pi-person-text {
+        overflow: hidden;
+    }
+
+    .pi-person-name {
+        color: var(--body-heading-color);
+
+        &.text-p1 {
+            margin-top: -2px;
         }
     }
-}
 
-@media (max-width: media.$max-width-tablet) {
-    a.pi-person {
-        color: var(--color-green);
+    @media (hover: hover) {
+        &:hover a.pi-person,
+        a.pi-person:hover {
+            .pi-person-name {
+                color: inherit;
+            }
+        }
 
-        .pi-person-name {
-            color: inherit;
+        &:hover td-avatar {
+            border-color: var(--color-green);
+
+            .av-linkedin-overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    @media (max-width: media.$max-width-tablet) {
+        a.pi-person {
+            color: var(--color-green);
+
+            .pi-person-name {
+                color: inherit;
+            }
         }
     }
 }

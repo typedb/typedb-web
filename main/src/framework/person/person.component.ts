@@ -1,5 +1,5 @@
 import { NgOptimizedImage, NgTemplateOutlet } from "@angular/common";
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 
 import { Person } from "typedb-web-schema";
@@ -9,8 +9,9 @@ import { ImageBuilder } from "src/service/image-builder.service";
 @Component({
     selector: "td-avatar",
     templateUrl: "./avatar.component.html",
-    styleUrls: ["./avatar.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [MatIconModule, NgOptimizedImage]
 })
 export class AvatarComponent {
@@ -26,8 +27,9 @@ export class AvatarComponent {
 @Component({
     selector: "td-person-info",
     templateUrl: "./person-info.component.html",
-    styleUrls: ["./person-info.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [NgTemplateOutlet, AvatarComponent]
 })
 export class PersonInfoComponent {
@@ -61,8 +63,9 @@ export class PersonInfoComponent {
 @Component({
     selector: "td-person-card",
     templateUrl: "./person-card.component.html",
-    styleUrls: ["./person-card.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [PersonInfoComponent, NgOptimizedImage]
 })
 export class PersonCardComponent {

@@ -286,7 +286,7 @@ body {
         }
 
         .mdc-dialog__content {
-            padding: 0;
+            padding: 0 2px; /* prevent borders of form fields causing content overflow */
         }
 
         @include mat.button-toggle-overrides((

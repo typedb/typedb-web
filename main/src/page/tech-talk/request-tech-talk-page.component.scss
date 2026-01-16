@@ -1,55 +1,57 @@
 @use "media";
 
-.rt-details {
-    text-align: start;
+td-request-tech-talk-page {
+    .rt-details {
+        text-align: start;
 
-    @media (max-width: media.$max-width-mobile) {
+        @media (max-width: media.$max-width-mobile) {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 24px;
+        }
+    }
+
+    .rt-form-card {
+        position: relative;
+        float: right;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        max-width: 560px;
+
+        padding: 32px;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 24px;
-    }
-}
 
-.rt-form-card {
-    position: relative;
-    float: right;
-    margin-left: 40px;
-    margin-bottom: 20px;
-    max-width: 560px;
+        @media (max-width: media.$max-width-tablet) {
+            max-width: 405px;
+        }
 
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-
-    @media (max-width: media.$max-width-tablet) {
-        max-width: 405px;
+        @media (max-width: media.$max-width-mobile) {
+            margin-left: 0;
+            max-width: auto;
+        }
     }
 
-    @media (max-width: media.$max-width-mobile) {
-        margin-left: 0;
-        max-width: auto;
+    .rt-details-title {
+        display: block;
+        margin-bottom: 40px;
+        color: var(--body-heading-color);
+        font-weight: var(--font-weight-semi-bold);
+
+        @media (max-width: media.$max-width-tablet) {
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-bottom: 24px;
+        }
     }
-}
 
-.rt-details-title {
-    display: block;
-    margin-bottom: 40px;
-    color: var(--body-heading-color);
-    font-weight: var(--font-weight-semi-bold);
-
-    @media (max-width: media.$max-width-tablet) {
-        margin-bottom: 32px;
+    .mat-mdc-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-bottom: 24px;
-    }
-}
-
-.mat-mdc-progress-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }

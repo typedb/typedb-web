@@ -2,66 +2,69 @@
 @use "colors";
 @use "sass:color";
 
-#cyber-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    // background: radial-gradient(#000 0%, #0e0e0e 85%, #222 100%);
-}
-
-.sp-intro-section-body {
-    margin-top: 32px;
-
-    @media (max-width: media.$max-width-tablet) {
-        margin-top: 16px;
+td-use-case-page {
+    #cyber-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        // background: radial-gradient(#000 0%, #0e0e0e 85%, #222 100%);
     }
-}
 
-.hot-topics-section {
-    max-width: none;
-    border-radius: 0;
-    padding: 64px 0;
-    background:
-        linear-gradient(rgba(156, 163, 175, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom,var(--body-background) 0%,  colors.$secondary-extra-light-grey 0.5%, #eee 45%, colors.$secondary-extra-light-grey 99.5%, var(--body-background) 100%);
-    z-index: 2;
-    background-size: 20px 20px, 20px 20px, auto;
-    margin-top: var(--section-margin);
+    .sp-intro-section-body {
+        margin-top: 32px;
 
-    td-hot-topics {
-        margin-top: 0;
-
-        @media (min-width: 1520px) {
-            ::ng-deep td-heading-with-highlights {
-                flex: 0 0 320px;
-            }
+        @media (max-width: media.$max-width-tablet) {
+            margin-top: 16px;
         }
+    }
 
-        @media (min-width: 900px) {
-            ::ng-deep td-scroll-pane {
-                overflow: visible;
+    .hot-topics-section {
+        max-width: none;
+        border-radius: 0;
+        padding: 64px 0;
+        background:
+            linear-gradient(rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom,var(--body-background) 0%,  colors.$secondary-extra-light-grey 0.5%, #eee 45%, colors.$secondary-extra-light-grey 99.5%, var(--body-background) 100%);
+        z-index: 2;
+        background-size: 20px 20px, 20px 20px, auto;
+        margin-top: var(--section-margin);
+
+        td-hot-topics {
+            margin-top: 0;
+            display: block;
+
+            @media (min-width: 1520px) {
+                td-heading-with-highlights {
+                    flex: 0 0 320px;
+                }
             }
 
-            ::ng-deep .ss-container {
-                overflow: visible;
+            @media (min-width: 900px) {
+                td-scroll-pane {
+                    overflow: visible;
+                }
+
+                .ss-container {
+                    overflow: visible;
+                }
+
+                .td-card {
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+                }
             }
 
-            ::ng-deep .td-card {
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+            td-heading-with-highlights h2 {
+                color: #000;
+                font-weight: var(--font-weight-semi-bold);
             }
-        }
 
-        ::ng-deep td-heading-with-highlights h2 {
-            color: #000;
-            font-weight: var(--font-weight-semi-bold);
-        }
-
-        ::ng-deep .td-cards {
-            max-width: unset;
+            .td-cards {
+                max-width: unset;
+            }
         }
     }
 }

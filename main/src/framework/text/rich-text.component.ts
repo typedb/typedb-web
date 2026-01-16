@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, inject, PLATFORM_ID } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, inject, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 import { PortableText } from "typedb-web-schema";
@@ -8,8 +8,8 @@ import { HtmlPipe } from "./html.pipe";
 @Component({
     selector: "td-rich-text",
     template: ``,
-    styleUrls: ["rich-text.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class RichTextComponent {

@@ -1,5 +1,5 @@
 import { NgClass } from "@angular/common";
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 
 import { CodeSnippet, ContentTextPanel, ContentTextTab } from "typedb-web-schema";
 
@@ -11,8 +11,8 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-content-panel",
     templateUrl: "content-panel.component.html",
-    styleUrls: ["content-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [IllustrationComponent, AspectRatioComponent, RichTextComponent, LinkDirective]
 })
 export class ContentPanelComponent {

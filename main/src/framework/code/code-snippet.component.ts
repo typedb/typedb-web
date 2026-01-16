@@ -1,5 +1,5 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, signal } from "@angular/core";
+import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, signal, ViewEncapsulation } from "@angular/core";
 import { map, Observable, of } from "rxjs";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
@@ -10,8 +10,9 @@ const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
 @Component({
     selector: "td-code-snippet",
     templateUrl: "code-snippet.component.html",
-    styleUrls: ["code-snippet.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [AsyncPipe, SyntaxHighlightDirective]
 })
 export class CodeSnippetComponent implements OnChanges {

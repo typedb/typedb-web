@@ -1,5 +1,5 @@
 import { NgClass, NgStyle } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { ActionButton, LinkButton } from "typedb-web-schema";
 
@@ -9,8 +9,8 @@ import { TooltipComponent } from "../tooltip/tooltip.component";
 @Component({
     selector: "td-button",
     templateUrl: "button.component.html",
-    styleUrls: ["./button.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [TooltipComponent, NgClass, LinkDirective, NgStyle]
 })
 export class ButtonComponent {

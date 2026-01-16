@@ -1,9 +1,11 @@
 @use "colors";
 
-mat-form-field {
-    width: 100%;
-}
+td-form-textarea {
+    mat-form-field {
+        width: 100%;
+    }
 
-mat-hint {
-    color: colors.$green;
+    mat-hint {
+        color: colors.$green;
+    }
 }

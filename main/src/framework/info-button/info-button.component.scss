@@ -1,46 +1,46 @@
 @use "colors";
 @use "media";
 
-:host {
+td-info-button {
     position: relative;
 
-    ::ng-deep .ib-tooltip-text-box {
+    .ib-tooltip-text-box {
         transform: translateX(-50%) translateX(12px); // centre inside parent container, then offset half the info button width
 
         @media (max-width: media.$max-width-mobile) {
             transform: translateX(-50%) translateX(8px);
         }
     }
-}
 
-.mdc-icon-button {
-    display: block;
-    margin: 0;
-    padding: 2px;
-    width: 24px;
-    height: 24px;
-    color: var(--color-secondary-grey);
-    transition: 100ms ease;
-    border-radius: var(--border-radius);
-    font-size: 20px;
+    .mdc-icon-button {
+        display: block;
+        margin: 0;
+        padding: 2px;
+        width: 24px;
+        height: 24px;
+        color: var(--color-secondary-grey);
+        transition: 100ms ease;
+        border-radius: var(--border-radius);
+        font-size: 20px;
 
-    @media (max-width: media.$max-width-mobile) {
-        padding: 0;
-        width: 16px;
-        height: 16px;
-        font-size: 16px;
-    }
-
-    &:hover,
-    &:focus {
-        color: var(--color-white);
-
-        [class^="ib-tooltip"] {
-            opacity: 1;
+        @media (max-width: media.$max-width-mobile) {
+            padding: 0;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
         }
-    }
 
-    &:focus {
-        background: rgba(colors.$secondary-blue, 0.15);
+        &:hover,
+        &:focus {
+            color: var(--color-white);
+
+            [class^="ib-tooltip"] {
+                opacity: 1;
+            }
+        }
+
+        &:focus {
+            background: rgba(colors.$secondary-blue, 0.15);
+        }
     }
 }

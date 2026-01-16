@@ -8,10 +8,6 @@
       <td-section-core [section]="page.featureTableSection"/>
       <td-feature-table [table]="page.featureTableSection.featureTable" [sectionId]="page.featureTableSection.sectionId"/>
     }
-    @if (page.testimonialsSection) {
-      <td-section-core [section]="page.testimonialsSection"/>
-      <td-testimonials-carousel [testimonials]="page.testimonialsSection.testimonials" [sectionId]="page.testimonialsSection.sectionId"/>
-    }
     @if (page.contactSection) {
       <td-section-core [section]="page.contactSection"/>
       <td-contact-panel class="narrow-section card" [showPersonalDataNotice]="true"/>

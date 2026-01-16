@@ -3,109 +3,111 @@
 @use "mixins";
 @use "shapes";
 
-.title-and-cards {
-    overflow-x: visible;
-    display: flex;
-    gap: 32px;
-    --scroll-shadow-size: 360px;
+td-hot-topics {
+    .title-and-cards {
+        overflow-x: visible;
+        display: flex;
+        gap: 32px;
+        --scroll-shadow-size: 360px;
 
-    &.resources {
+        &.resources {
+            flex-direction: column;
+
+            td-heading-with-highlights {
+                margin: 0 auto 24px;
+            }
+        }
+
+        &.news td-heading-with-highlights {
+            @media (min-width: 1520px) {
+                flex: 0 0 400px;
+            }
+
+            @media (max-width: media.$max-width-tablet) {
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 1519px) {
+            flex-direction: column;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            --scroll-shadow-size: 100px;
+        }
+    }
+
+    td-heading-with-highlights {
+        display: block;
+    }
+
+    .td-cards {
+        display: flex;
+        gap: 24px;
+        margin: 0 auto;
+
+        img {
+            user-drag: none;         /* Safari, Chrome */
+            -webkit-user-drag: none; /* Old Safari */
+            pointer-events: none;    /* Optional: prevents interaction during drag */
+            aspect-ratio: 16 / 9;
+            object-fit: cover
+        }
+    }
+
+    .td-card {
+        @include mixins.card-appearance;
+        flex: 0 0 360px;
+        height: 512px;
+        display: flex;
         flex-direction: column;
+        transition: background 100ms ease, border-color 100ms ease;
+        @include colors.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
+        position: relative;
 
-        td-heading-with-highlights {
-            margin: 0 auto 24px;
+        &:hover {
+            .td-card-overlay {
+                opacity: 0.04;
+            }
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            flex-basis: 280px;
+            height: 454px;
         }
     }
 
-    &.news td-heading-with-highlights {
-        @media (min-width: 1520px) {
-            flex: 0 0 400px;
-        }
-
-        @media (max-width: media.$max-width-tablet) {
-            margin-bottom: 24px;
-        }
-    }
-
-    @media (max-width: 1519px) {
-        flex-direction: column;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        --scroll-shadow-size: 100px;
-    }
-}
-
-td-heading-with-highlights {
-    display: block;
-}
-
-.td-cards {
-    display: flex;
-    gap: 24px;
-    margin: 0 auto;
-
-    img {
-        user-drag: none;         /* Safari, Chrome */
-        -webkit-user-drag: none; /* Old Safari */
-        pointer-events: none;    /* Optional: prevents interaction during drag */
+    .td-hero-container {
+        position: relative;
+        width: 100%;
         aspect-ratio: 16 / 9;
-        object-fit: cover
-    }
-}
-
-.td-card {
-    @include mixins.card-appearance;
-    flex: 0 0 360px;
-    height: 512px;
-    display: flex;
-    flex-direction: column;
-    transition: background 100ms ease, border-color 100ms ease;
-    @include colors.light-source-gradient(colors.$purple, colors.$black-purple, 80px, 250px);
-    position: relative;
-
-    &:hover {
-        .td-card-overlay {
-            opacity: 0.04;
-        }
     }
 
-    @media (max-width: media.$max-width-mobile) {
-        flex-basis: 280px;
-        height: 454px;
+    .td-hero {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        border-bottom: 1px solid var(--content-border-color);
+        object-fit: cover;
     }
-}
 
-.td-hero-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-}
+    .td-card-overlay {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--border-radius);
+        z-index: 1;
+        pointer-events: none;
+        background: #BBF;
+        opacity: 0;
+        transition: opacity 100ms ease;
+    }
 
-.td-hero {
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    border-bottom: 1px solid var(--content-border-color);
-    object-fit: cover;
-}
+    .td-card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 
-.td-card-overlay {
-    position: absolute;
-    inset: 0;
-    border-radius: var(--border-radius);
-    z-index: 1;
-    pointer-events: none;
-    background: #BBF;
-    opacity: 0;
-    transition: opacity 100ms ease;
-}
-
-.td-card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-td-actions {
-    justify-content: center;
+    td-actions {
+        justify-content: center;
+    }
 }

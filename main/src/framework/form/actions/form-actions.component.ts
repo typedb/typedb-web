@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from "@angular/core";
 import { ButtonComponent } from "../../button/button.component";
 import { SpinnerComponent } from "../../spinner/spinner.component";
 
 @Component({
     selector: "td-form-actions",
     templateUrl: "form-actions.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [ButtonComponent, SpinnerComponent]
 })
 export class FormActionsComponent {

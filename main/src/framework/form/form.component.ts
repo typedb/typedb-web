@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from "@angular/core";
 import { AbstractControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { filter, Subject, Subscription } from "rxjs";
 
 @Component({
     selector: "td-form",
     templateUrl: "form.component.html",
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [ReactiveFormsModule]
 })
 export class FormComponent<CONTROLS extends { [K in keyof CONTROLS]: AbstractControl<any, any>; }> implements OnInit, OnDestroy {
