@@ -25,13 +25,11 @@ import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
 import { ButtonComponent } from "src/framework/button/button.component";
 import { MatPaginator } from "@angular/material/paginator";
-import { V } from "@angular/cdk/scrolling-module.d-C_w4tIrZ";
 import { DialogService } from "src/service/dialog.service";
 
 @Component({
     selector: "td-blog-list-page",
     templateUrl: "./blog.component.html",
-    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
