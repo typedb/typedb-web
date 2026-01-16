@@ -3,7 +3,7 @@
 @use "shapes";
 @use "mixins";
 
-:host {
+td-conclusion-panel {
     @include mixins.card-appearance;
     display: flex;
     gap: 40px;
@@ -29,64 +29,64 @@
         flex-direction: column;
         padding-top: 12px;
     }
-}
 
-.cp-main-area {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    h2 {
-        width: 400px;
-        max-width: 100%;
-        margin-bottom: 4px;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        border-radius: var(--border-radius) var(--border-radius) 0 0;
-        gap: 8px;
-    }
-
-    ::ng-deep .ac-root {
-        margin-top: 16px;
-    }
-
-    ::ng-deep td-actions a.button-water {
-        @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-purple));
-    }
-}
-
-.cp-resources-area {
-    &.cp-resources-area-with-illustration {
+    .cp-main-area {
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
         flex: 1;
-    }
-
-    @media (max-width: media.$max-width-tablet) {
-        min-width: auto;
-    }
-
-    @media (max-width: media.$max-width-mobile) {
-        border-radius: 0 0 var(--border-radius) var(--border-radius);
-        border-top: shapes.$border;
-        border-left: none;
-        width: auto;
-    }
-
-    ul {
-        margin-top: 26px;
-        list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 16px;
+
+        h2 {
+            width: 400px;
+            max-width: 100%;
+            margin-bottom: 4px;
+        }
 
         @media (max-width: media.$max-width-mobile) {
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            gap: 8px;
+        }
+
+        .ac-root {
             margin-top: 16px;
         }
 
-        a {
-            line-height: 32px;
+        td-actions a.button-water {
+            @include colors.border-gradient(#AC79EE, #03D0BF, var(--color-purple));
+        }
+    }
+
+    .cp-resources-area {
+        &.cp-resources-area-with-illustration {
+            flex: 1;
+        }
+
+        @media (max-width: media.$max-width-tablet) {
+            min-width: auto;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            border-top: shapes.$border;
+            border-left: none;
+            width: auto;
+        }
+
+        ul {
+            margin-top: 26px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            @media (max-width: media.$max-width-mobile) {
+                margin-top: 16px;
+            }
+
+            a {
+                line-height: 32px;
+            }
         }
     }
 }

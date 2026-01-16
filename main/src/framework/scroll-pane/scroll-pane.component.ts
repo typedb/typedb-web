@@ -7,13 +7,14 @@ import {
     Input,
     NgZone,
     ViewChild,
+    ViewEncapsulation,
 } from "@angular/core";
 
 @Component({
     selector: "td-scroll-pane",
     templateUrl: "./scroll-pane.component.html",
-    styleUrls: ["./scroll-pane.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class ScrollPaneComponent implements AfterViewInit {

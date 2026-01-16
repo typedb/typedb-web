@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { MatDialogContent, MatDialogTitle } from "@angular/material/dialog";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ParagraphWithHighlights } from "typedb-web-schema";
@@ -8,8 +8,9 @@ import { DialogCloseButtonComponent } from "./close-button/dialog-close-button.c
 @Component({
     selector: "td-form-dialog",
     templateUrl: "form-dialog.component.html",
-    styleUrls: ["./form-dialog.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         MatDialogTitle, DialogCloseButtonComponent, MatDialogContent, ParagraphWithHighlightsComponent,
         MatProgressBarModule

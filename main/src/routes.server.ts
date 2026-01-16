@@ -125,8 +125,6 @@ export const getDynamicRoutes = () => {
                         switch (schema.schemaName) {
                             case 'blogPost':
                                 return await fetchBlogPostSlugs();
-                            case 'liveEvent':
-                                return await fetchEventSlugs();
                             case 'lecture':
                                 return await fetchLectureSlugs();
                             case 'legalDocument':

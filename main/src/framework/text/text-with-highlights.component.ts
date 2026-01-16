@@ -1,5 +1,5 @@
 import { NgStyle, NgTemplateOutlet } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { ParagraphWithHighlights } from "typedb-web-schema";
 
@@ -7,6 +7,8 @@ import { ParagraphWithHighlights } from "typedb-web-schema";
     selector: "td-heading-with-highlights",
     templateUrl: "heading-with-highlights.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    encapsulation: ViewEncapsulation.None,
     imports: [NgTemplateOutlet, NgStyle]
 })
 export class HeadingWithHighlightsComponent {
@@ -39,6 +41,7 @@ export class HeadingWithHighlightsComponent {
     selector: "td-p-with-highlights",
     template: '<p [class]="rootClass">@for (span of value.spans; track span) {<span [ngStyle]="span.highlight ? { \'color\': themeColorHex } : undefined">{{ span.text }}</span>}</p>\n',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [NgStyle]
 })
 export class ParagraphWithHighlightsComponent {

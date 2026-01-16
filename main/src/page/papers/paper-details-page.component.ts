@@ -1,5 +1,5 @@
 import { AsyncPipe, DOCUMENT, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, NgZone } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, NgZone, ViewEncapsulation } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -27,8 +27,9 @@ import { DialogService } from "src/service/dialog.service";
 @Component({
     selector: "td-paper-details-page",
     templateUrl: "./paper-details-page.component.html",
-    styleUrls: ["./paper-details-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, AspectRatioComponent,
         MatProgressBarModule, RichTextComponent, FurtherLearningComponent, AsyncPipe, ActionsComponent,

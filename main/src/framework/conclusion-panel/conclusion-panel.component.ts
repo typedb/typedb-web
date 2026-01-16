@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import { ConclusionPanel, TextLink } from "typedb-web-schema";
@@ -12,8 +12,8 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-conclusion-panel",
     templateUrl: "conclusion-panel.component.html",
-    styleUrls: ["conclusion-panel.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [RichTextComponent, ActionsComponent, LinkDirective, IllustrationComponent]
 })
 export class ConclusionPanelComponent {

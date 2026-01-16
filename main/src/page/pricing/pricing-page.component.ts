@@ -1,5 +1,5 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { of } from "rxjs";
 import { PricingPage, pricingPageSchemaName, SanityDataset, SanityPricingPage } from "typedb-web-schema";
 import { ContactPanelComponent } from "../../framework/contact-panel/contact-panel.component";
@@ -12,8 +12,9 @@ import { PageComponentBase } from "../page-component-base";
 @Component({
     selector: "td-pricing-page",
     templateUrl: "./pricing-page.component.html",
-    styleUrls: ["./pricing-page.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         FeatureTableComponent, SectionCoreComponent,
         AsyncPipe, PricingTableComponent, ContactPanelComponent,

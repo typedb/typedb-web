@@ -1,7 +1,7 @@
 @use "colors";
 @use "sass:color";
 
-:host {
+td-snackbar {
     margin: 16px;
     width: 372px;
     border-radius: var(--border-radius);
@@ -27,25 +27,25 @@
             color: var(--color-red);
         }
     }
-}
 
-:host-context(.mat-mdc-snack-bar-handset) {
-    width: 100%;
-    margin: 0;
-}
+    .sb-text {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--color-white);
 
-.sb-text {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--color-white);
+        .mat-icon {
+            flex-shrink: 0;
+        }
+    }
 
-    .mat-icon {
-        flex-shrink: 0;
+    .sb-button .mat-icon {
+        color: rgba(colors.$white, 0.8);
     }
 }
 
-.sb-button .mat-icon {
-    color: rgba(colors.$white, 0.8);
+.mat-mdc-snack-bar-handset td-snackbar {
+    width: 100%;
+    margin: 0;
 }

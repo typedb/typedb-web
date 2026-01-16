@@ -3,7 +3,7 @@
 @use "shapes";
 @use "mixins";
 
-:host {
+td-link-panels {
     display: flex;
     justify-content: space-between;
     gap: 40px;
@@ -12,195 +12,184 @@
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 32px;
     }
-}
 
-.lc-card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    gap: 12px;
+    .lc-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        gap: 12px;
+        transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
+        cursor: initial;
 
-    // &.hoverable:hover {
-    //     @include colors.light-source-gradient(rgba(colors.$light-purple, 0.6), colors.$deep-purple);
-    // }
-
-    transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
-    cursor: initial;
-
-    // &:not(.hoverable) {
-    //     cursor: initial;
-    // }
-
-    img {
-        width: 48px;
-        height: 48px;
-    }
-
-    i {
-        font-size: 36px;
-        margin-bottom: 12px;
-        color: var(--body-font-color);
-        transition: color 100ms;
-    }
-
-    &.lc-card-cols-3 {
-        h3 {
-            @include mixins.line-clamp(1);
-        }
-    }
-
-    &.lc-card-cols-4 {
-        text-align: start;
-
-        h3 {
-            height: calc(var(--font-size-h3) * var(--line-height-h3) * 2);
+        img {
+            width: 48px;
+            height: 48px;
         }
 
-        td-rich-text {
-            margin-top: 12px;
+        i {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: var(--body-font-color);
+            transition: color 100ms;
         }
 
-        .link-tertiary {
-            margin-top: 8px;
-        }
-
-        @media (max-width: media.$max-width-tablet) {
+        &.lc-card-cols-3 {
             h3 {
-                height: calc(33px * 2);
+                @include mixins.line-clamp(1);
+            }
+        }
+
+        &.lc-card-cols-4 {
+            text-align: start;
+
+            h3 {
+                height: calc(var(--font-size-h3) * var(--line-height-h3) * 2);
             }
 
             td-rich-text {
-                @include mixins.line-clamp(7);
-                max-height: 24px * 7;
+                margin-top: 12px;
+            }
+
+            .link-tertiary {
+                margin-top: 8px;
+            }
+
+            @media (max-width: media.$max-width-tablet) {
+                h3 {
+                    height: calc(33px * 2);
+                }
+
+                td-rich-text {
+                    @include mixins.line-clamp(7);
+                    max-height: 24px * 7;
+                }
             }
         }
+
+        .lc-cta-weak {
+            @media (min-width: media.$min-width-tablet) {
+                display: block;
+                margin-top: 4px;
+            }
+        }
+
+        .lp-coming-soon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 98px;
+            height: 32px;
+            background-color: var(--color-secondary-purple);
+            border-left: shapes.$border;
+            border-bottom: shapes.$border;
+            border-bottom-left-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &:hover h3 {
+            text-decoration: none;
+        }
     }
 
-    .lc-cta-weak {
+    .panel-content {
+        @media (max-width: media.$max-width-mobile) {
+            margin-right: 8px;
+        }
+
         @media (min-width: media.$min-width-tablet) {
-            display: block;
-            margin-top: 4px;
+            width: 100%;
         }
     }
 
-    .lp-coming-soon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 98px;
-        height: 32px;
-        background-color: var(--color-secondary-purple);
-        border-left: shapes.$border;
-        border-bottom: shapes.$border;
-        border-bottom-left-radius: var(--border-radius);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &:hover h3 {
-        text-decoration: none;
-    }
-}
-
-.panel-content {
-    @media (max-width: media.$max-width-mobile) {
-        margin-right: 8px;
-    }
-
-    @media (min-width: media.$min-width-tablet) {
+    /* The track for the progress bar */
+    .custom-progress-track {
         width: 100%;
-    }
-}
+        height: 2px; /* Or any height you prefer */
+        background-color: colors.$light-purple; /* A light grey for the track */
+        border-radius: 2px;
+        overflow: hidden; /* Ensures the bar stays contained */
+        margin-top: 4px; /* Add some space */
+        margin-bottom: 6px;
 
-/* The track for the progress bar */
-.custom-progress-track {
-    width: 100%;
-    height: 2px; /* Or any height you prefer */
-    background-color: colors.$light-purple; /* A light grey for the track */
-    border-radius: 2px;
-    overflow: hidden; /* Ensures the bar stays contained */
-    margin-top: 4px; /* Add some space */
-    margin-bottom: 6px;
-
-    @media (max-width: media.$max-width-mobile) {
-        display: none;
-    }
-}
-
-/* The "fill" part of the progress bar */
-.custom-progress-bar {
-  height: 100%;
-  background-color: colors.$secondary-blue; /* Your app's primary color */
-  border-radius: 2px;
-  
-  width: 12.5%; 
-  
-  /* 2. Smooth transition for the width change */
-  transition: width 0.5s ease-out; 
-}
-
-/* 3. Hover state: 100% width */
-.lc-card:hover .custom-progress-bar {
-  width: 100%; 
-}
-
-.lc-card:hover i {
-    color: colors.$secondary-blue;
-}
-
-td-button {
-    @media (min-width: media.$min-width-tablet) {
-        margin-top: 24px;
-    }
-}
-
-.lc-flex-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-    gap: 20px;
-
-    .button-frameless {
-        margin-top: 8px;
-        width: unset;
-    }
-}
-
-@media (max-width: media.$max-width-mobile) {
-    :host {
-        flex-direction: column;
-        gap: 48px;
-    }
-
-    .lc-card img {
-        width: 36px;
-        height: 36px;
-    }
-
-    .lc-card.lc-card-cols-4 {
-        h3 {
-            height: auto;
-        }
-
-        td-rich-text {
-            margin-top: 8px;
+        @media (max-width: media.$max-width-mobile) {
+            display: none;
         }
     }
 
-    .lc-card.lc-icon-card {
-        flex-direction: row;
-        gap: 12px;
+    /* The "fill" part of the progress bar */
+    .custom-progress-bar {
+        height: 100%;
+        background-color: colors.$secondary-blue; /* Your app's primary color */
+        border-radius: 2px;
+        
+        width: 12.5%; 
+        
+        /* 2. Smooth transition for the width change */
+        transition: width 0.5s ease-out; 
+    }
 
-        td-rich-text {
-            margin-top: 0;
+    /* 3. Hover state: 100% width */
+    .lc-card:hover .custom-progress-bar {
+        width: 100%; 
+    }
+
+    .lc-card:hover i {
+        color: colors.$secondary-blue;
+    }
+
+    td-button {
+        @media (min-width: media.$min-width-tablet) {
+            margin-top: 24px;
         }
     }
 
     .lc-flex-container {
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+        gap: 20px;
+
+        .button-frameless {
+            margin-top: 8px;
+            width: unset;
+        }
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        flex-direction: column;
+        gap: 48px;
+
+        .lc-card img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .lc-card.lc-card-cols-4 {
+            h3 {
+                height: auto;
+            }
+
+            td-rich-text {
+                margin-top: 8px;
+            }
+        }
+
+        .lc-card.lc-icon-card {
+            flex-direction: row;
+            gap: 12px;
+
+            td-rich-text {
+                margin-top: 0;
+            }
+        }
+
+        .lc-flex-container {
+            gap: 12px;
+        }
     }
 }

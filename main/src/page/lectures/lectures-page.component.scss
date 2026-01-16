@@ -2,149 +2,151 @@
 @use "shapes";
 @use "mixins";
 
-.wp-primary-placeholder {
-    padding-bottom: calc(100% * 2 / 3);
-}
-
-.wp-img {
-    border: shapes.$border;
-    border-radius: var(--border-radius);
-}
-
-.wp-primary-lecture {
-    padding: 40px;
-
-    @media (max-width: media.$max-width-mobile) {
-        padding: 12px;
-    }
-}
-
-.wp-primary-lecture-summary {
-    margin-top: 40px;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 20px;
-    }
-}
-
-.wp-lecture-title-container {
-    color: var(--body-font-color);
-}
-
-.wp-title-separator {
-    margin: 0 8px;
-}
-
-.wp-lecture-title {
-    font-weight: var(--font-weight-regular);
-}
-
-.wp-lecture-text-container {
-    margin-top: 16px;
-    display: flex;
-    gap: 40px;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 8px;
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-.wp-lecture-description {
-    @include mixins.line-clamp(2);
-    max-height: 24px * 2;
-
-    @media (max-width: media.$max-width-mobile) {
-        @include mixins.line-clamp(3);
-        max-height: 21px * 3;
-    }
-}
-
-.wp-primary-lecture-actions {
-    align-self: flex-end;
-
-    @media (max-width: media.$max-width-mobile) {
-        margin-top: 24px;
-    }
-}
-
-.wp-lecture-list-section {
-    margin-top: 40px;
-}
-
-.wp-lecture-list {
-    list-style: none;
-}
-
-.wp-lecture-list-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
-    padding: 24px;
-
-    & + & {
-        border-top: shapes.$border;
+td-lectures-page {
+    .wp-primary-placeholder {
+        padding-bottom: calc(100% * 2 / 3);
     }
 
-    @media (max-width: media.$max-width-mobile) {
-        padding: 16px 12px;
-        flex-direction: column;
-        align-items: stretch;
+    .wp-img {
+        border: shapes.$border;
+        border-radius: var(--border-radius);
+    }
+
+    .wp-primary-lecture {
+        padding: 40px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 12px;
+        }
+    }
+
+    .wp-primary-lecture-summary {
+        margin-top: 40px;
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 20px;
+        }
+    }
+
+    .wp-lecture-title-container {
+        color: var(--body-font-color);
+    }
+
+    .wp-title-separator {
+        margin: 0 8px;
+    }
+
+    .wp-lecture-title {
+        font-weight: var(--font-weight-regular);
+    }
+
+    .wp-lecture-text-container {
+        margin-top: 16px;
+        display: flex;
+        gap: 40px;
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 8px;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    .wp-lecture-description {
+        @include mixins.line-clamp(2);
+        max-height: 24px * 2;
+
+        @media (max-width: media.$max-width-mobile) {
+            @include mixins.line-clamp(3);
+            max-height: 21px * 3;
+        }
+    }
+
+    .wp-primary-lecture-actions {
+        align-self: flex-end;
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 24px;
+        }
+    }
+
+    .wp-lecture-list-section {
+        margin-top: 40px;
+    }
+
+    .wp-lecture-list {
+        list-style: none;
+    }
+
+    .wp-lecture-list-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+        padding: 24px;
+
+        & + & {
+            border-top: shapes.$border;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 16px 12px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .wp-speaker {
+            @include mixins.line-clamp(1);
+
+            > span + span {
+                margin-left: 16px;
+            }
+        }
+
+        td-button {
+            width: 126px;
+            flex-shrink: 0;
+
+            @media (max-width: media.$max-width-mobile) {
+                width: auto;
+            }
+        }
+    }
+
+    .wp-img-tertiary-container {
+        display: flex;
         gap: 12px;
     }
 
-    .wp-speaker {
-        @include mixins.line-clamp(1);
-
-        > span + span {
-            margin-left: 16px;
-        }
-    }
-
-    td-button {
-        width: 126px;
+    .wp-img-tertiary {
+        width: 150px;
         flex-shrink: 0;
 
         @media (max-width: media.$max-width-mobile) {
-            width: auto;
+            width: 100px;
         }
     }
-}
 
-.wp-img-tertiary-container {
-    display: flex;
-    gap: 12px;
-}
-
-.wp-img-tertiary {
-    width: 150px;
-    flex-shrink: 0;
-
-    @media (max-width: media.$max-width-mobile) {
-        width: 100px;
-    }
-}
-
-.wp-lecture-text {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.wp-timing {
-    display: flex;
-    gap: 24px;
-
-    > span {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
+    .wp-lecture-text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
     }
 
-    .mat-icon {
-        font-size: 16px;
+    .wp-timing {
+        display: flex;
+        gap: 24px;
+
+        > span {
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mat-icon {
+            font-size: 16px;
+        }
     }
 }

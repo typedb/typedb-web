@@ -1,7 +1,7 @@
 @use "media";
 @use "mixins";
 
-:host {
+td-key-point-panels-2x2 {
     display: flex;
     flex-direction: row;
     gap: 40px;
@@ -15,12 +15,12 @@
         gap: var(--subsection-margin);
         flex-wrap: wrap;
     }
-}
 
-.kpp-panel {
-    flex: 1 1 660px;
-}
+    .kpp-panel {
+        flex: 1 1 660px;
+    }
 
-td-rich-text {
-    margin-top: 8px;
+    td-rich-text {
+        margin-top: 8px;
+    }
 }

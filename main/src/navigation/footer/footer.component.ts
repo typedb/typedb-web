@@ -9,9 +9,9 @@ import { ContentService } from "../../service/content.service";
 @Component({
     selector: "td-footer",
     template: ``,
-    styleUrls: ["./footer.component.scss"],
-    encapsulation: ViewEncapsulation.None,
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class FooterComponent implements OnInit {

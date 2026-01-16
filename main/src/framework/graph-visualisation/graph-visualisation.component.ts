@@ -9,6 +9,7 @@ import {
     NgZone,
     OnDestroy,
     ViewChild,
+    ViewEncapsulation,
 } from "@angular/core";
 
 import * as d3 from "d3-force";
@@ -36,8 +37,9 @@ import VertexEncoding = GraphVisualisation.VertexEncoding;
 @Component({
     selector: "td-graph-visualisation",
     templateUrl: "graph-visualisation.component.html",
-    styleUrls: ["graph-visualisation.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
 })
 export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { CodeSnippet, PolyglotSnippet, IllustrationSection, ImageIllustration, SectionCore } from "typedb-web-schema";
 import { ActionsComponent } from "../actions/actions.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
@@ -8,8 +8,8 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
 @Component({
     selector: "td-section-core",
     templateUrl: "section-core.component.html",
-    styleUrls: ["./section-core.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [HeadingWithHighlightsComponent, RichTextComponent, ActionsComponent, IllustrationComponent],
 })

@@ -1,5 +1,5 @@
 import { AsyncPipe, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, Host, HostBinding, Input, NgZone, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 
 import interact from "interactjs";
 import { map, Observable } from "rxjs";
@@ -18,11 +18,11 @@ import { RichTextComponent } from "../text/rich-text.component";
 @Component({
     selector: "td-illustration",
     templateUrl: "illustration.component.html",
-    styleUrls: ["illustration.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [
         CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
-        forwardRef(() => SplitPaneIllustrationComponent), NgOptimizedImage
     ]
 })
 export class IllustrationComponent {
@@ -67,62 +67,11 @@ export class IllustrationComponent {
 }
 
 @Component({
-    selector: "td-split-pane-illustration",
-    templateUrl: "split-pane-illustration.component.html",
-    styleUrls: ["split-pane-illustration.component.scss"],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [IllustrationComponent, AsyncPipe, NgOptimizedImage]
-})
-export class SplitPaneIllustrationComponent implements OnInit {
-    @Input() panes!: SplitPaneIllustration;
-    @Input() visible = false;
-    @ViewChild("sliderEl") sliderEl!: ElementRef<HTMLElement>;
-
-    readonly resizablePaneID: string;
-    readonly sliderImageSrc$: Observable<string>;
-
-    constructor(
-        private ngZone: NgZone,
-        mediaQuery: MediaQueryService,
-    ) {
-        this.resizablePaneID = `resizable_${Math.floor(Math.random() * 1e9)}`;
-        this.sliderImageSrc$ = mediaQuery.isMobile$.pipe(
-            map((isMobile) => `/assets/graphic/${isMobile ? "split-pane-slider-mobile.svg" : "split-pane-slider.svg"}`),
-        );
-    }
-
-    ngOnInit() {
-        this.ngZone.runOutsideAngular(() => {
-            interact(`#${this.resizablePaneID}`)
-                .resizable({
-                    edges: { right: true },
-                    listeners: {
-                        move: (event: Interact.InteractEvent) => {
-                            const scale =
-                                event.target.getBoundingClientRect().width / (event.target as HTMLElement).offsetWidth;
-                            let width = event.rect.width / scale;
-                            if (width < 50) width = 50;
-                            if (width > 600) width = 600;
-                            event.target.style.width = `${width}px`;
-                            this.sliderEl.nativeElement.style.left = `${width - 28}px`;
-                        },
-                    },
-                })
-                .on("resizestart", (event: Interact.InteractEvent) => {
-                    event.target.style.userSelect = "none";
-                })
-                .on("resizeend", (event: Interact.InteractEvent) => {
-                    event.target.style.userSelect = "text";
-                });
-        });
-    }
-}
-
-@Component({
     selector: "td-captioned-illustration",
     templateUrl: "captioned-illustration.component.html",
-    styleUrls: ["captioned-illustration.component.scss"],
+    
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [AspectRatioComponent, IllustrationComponent, RichTextComponent]
 })
 export class CaptionedIllustrationComponent {
