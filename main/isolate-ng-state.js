@@ -32,61 +32,13 @@ function generateHash(content) {
 // --- MAIN PROCESSOR ---
 function optimizeHtml(filePath) {
     let html = fs.readFileSync(filePath, 'utf8');
-    let modified = false;
-    const dirName = path.dirname(filePath);
 
-    // 1. EXTRACT TRANSFER STATE (JSON)
+    // Remove TransferState script entirely - we don't need it for static page behavior
     const stateMatch = html.match(STATE_REGEX);
-    if (stateMatch && stateMatch[1]) {
-        const stateContent = stateMatch[1];
-        const jsonFileName = `ng-state-${generateHash(stateContent)}.json`;
-        const jsonFilePath = path.join(dirName, jsonFileName);
-
-        // Write JSON file
-        fs.writeFileSync(jsonFilePath, stateContent);
-        console.log(`[JSON] Extracted ${jsonFileName} from ${path.basename(filePath)}`);
-
-        // --- REPLACEMENT SCRIPT (RUNTIME PATH RESOLUTION) ---
-        // Uses window.location.pathname to handle trailing slashes and subpaths automatically
-        const loaderScript = `
-    <script>
-      (function() {
-        try {
-          var path = window.location.pathname;
-          // If we are not at root and missing a trailing slash, add it
-          if (path.slice(-1) !== '/') { path += '/'; }
-          
-          // Construct the URL relative to the current route
-          var jsonUrl = path + '${jsonFileName}';
-
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', jsonUrl, false);
-          xhr.send(null);
-          
-          if (xhr.status === 200) {
-            var response = xhr.responseText;
-            // Safety check: ensure it's JSON, not a 404 HTML page
-            if (response && response.trim().charAt(0) === '{') {
-              var s = document.createElement('script');
-              s.id = 'ng-state';
-              s.type = 'application/json';
-              s.textContent = response;
-              document.body.appendChild(s);
-            }
-          }
-        } catch (e) {
-          console.warn('TransferState extraction failed, falling back to app bootstrap.');
-        }
-      })();
-    </script>`;
-
-        html = html.replace(STATE_REGEX, loaderScript);
-        modified = true;
-    }
-
-    // Save changes if we modified the file
-    if (modified) {
+    if (stateMatch) {
+        html = html.replace(STATE_REGEX, '');
         fs.writeFileSync(filePath, html);
+        console.log(`[ng-state] Removed from ${path.basename(filePath)}`);
     }
 }
 
