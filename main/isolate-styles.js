@@ -29,6 +29,13 @@ files.forEach(file => {
   // This uses a non-greedy match to ensure it doesn't delete content between two separate style tags
   html = html.replace(/<style[^>]*>[\s\S]*?<\/style>/g, '');
 
+    // 4. Add FOUC shield to hide content until styles are applied
+    const foucShield = '<style id="fouc-shield">html{visibility:hidden;opacity:0}</style><script>const show=()=>document.getElementById("fouc-shield").remove();window.addEventListener("DOMContentLoaded",show);setTimeout(show,2000);</script>';
+
+    if (!html.includes('fouc-shield')) {
+        html = html.replace('<head>', `<head>${foucShield}`);
+    }
+
   fs.writeFileSync(file, html);
   console.log(`Isolated styles: ${file}`);
 });
