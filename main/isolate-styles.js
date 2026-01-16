@@ -30,7 +30,7 @@ files.forEach(file => {
   html = html.replace(/<style[^>]*>[\s\S]*?<\/style>/g, '');
 
     // 4. Add FOUC shield to hide content until styles are applied
-    const foucShield = '<style id="fouc-shield">html{visibility:hidden;opacity:0}</style><script>const show=()=>document.getElementById("fouc-shield").remove();window.addEventListener("DOMContentLoaded",show);setTimeout(show,2000);</script>';
+    const foucShield = '<style id="fouc-shield">html{visibility:hidden;opacity:0}</style><script>const show=()=>document.getElementById("fouc-shield").remove();window.addEventListener("DOMContentLoaded",show);</script>';
 
     if (!html.includes('fouc-shield')) {
         html = html.replace('<head>', `<head>${foucShield}`);
