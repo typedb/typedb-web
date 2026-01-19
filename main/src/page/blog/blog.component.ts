@@ -20,6 +20,7 @@ import {
     ParagraphWithHighlightsComponent,
 } from "../../framework/text/text-with-highlights.component";
 import { ContentService } from "../../service/content.service";
+import { JsonLdService } from "../../service/json-ld.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
@@ -33,8 +34,10 @@ import { DialogService } from "src/service/dialog.service";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, MatPaginator
-    ]
+    BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, MatPaginator,
+    HeadingWithHighlightsComponent,
+    ParagraphWithHighlightsComponent
+]
 })
 export class BlogComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
@@ -55,8 +58,9 @@ export class BlogComponent implements OnInit {
     });
 
     constructor(
-        private router: Router, private route: ActivatedRoute, private content: ContentService, private title: Title,
-        private metaTags: MetaTagsService, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
+        private router: Router, private route: ActivatedRoute, private content: ContentService,
+        private jsonLd: JsonLdService, private metaTags: MetaTagsService, private title: Title,
+        destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -128,14 +132,20 @@ export class BlogComponent implements OnInit {
             next: ([blog, filter]) => {
                 this.content.blogFilter.next(filter);
                 let categorySlug: "all" | BlogCategoryID = "all";
+                let pageTitle: string;
+                let pageUrl: string;
                 if ("categorySlug" in filter) {
                     categorySlug = filter.categorySlug as BlogCategoryID;
                     if (!blogCategoryList.includes(categorySlug)) throw `Unknown category slug: ${categorySlug}`;
-                    this.title.setTitle(`TypeDB Blog: ${blogCategories[categorySlug]}`);
+                    pageTitle = `TypeDB Blog: ${blogCategories[categorySlug]}`;
+                    pageUrl = `https://typedb.com/blog/category/${categorySlug}`;
                 } else {
-                    this.title.setTitle(`TypeDB Blog`);
+                    pageTitle = `TypeDB Blog`;
+                    pageUrl = `https://typedb.com/blog`;
                 }
+                this.title.setTitle(pageTitle);
                 this.metaTags.register(blog.tabs[categorySlug].metaTags);
+                this.jsonLd.setForBlogListing(pageTitle, blog.tabs[categorySlug].metaTags.description, pageUrl);
             },
             error: () => {
                 this.content.handleContentNotFound();

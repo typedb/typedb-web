@@ -8,7 +8,6 @@ import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.
 import { ResourcePanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { LinkDirective } from "../../framework/link/link.directive";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
-import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { BlogAuthorshipBarComponent } from "./blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
@@ -16,11 +15,10 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
 @Component({
     selector: "td-blog-row",
     templateUrl: "./blog-row.component.html",
-    
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        LinkDirective, AspectRatioComponent, BlogCategoryChipsComponent, RichTextComponent,
+        LinkDirective, AspectRatioComponent, BlogCategoryChipsComponent,
         BlogAuthorshipBarComponent, HeadingWithHighlightsComponent, ResourcePanelsComponent, PlainTextPipe,
         NgOptimizedImage
     ]
