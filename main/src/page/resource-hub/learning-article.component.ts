@@ -117,6 +117,7 @@ export class LearningArticleComponent implements OnInit {
             title: article.pageTitle(),
             description: description || article.shortDescription,
             ogImage: article.imageURL,
+            ogType: "article" as const,
         };
     }
 

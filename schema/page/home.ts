@@ -6,8 +6,7 @@ import { LinkPanel, linkPanelSchemaName } from "../component/link-panel";
 import {
     SanitySectionCore, SectionCore, SanityIllustrationSection,
     IllustrationSection, simpleLinkPanelsSectionSchemaName, SanitySimpleLinkPanelsSection, SimpleLinkPanelsSection,
-    illustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchema, hotTopicsSectionSchemaName,
-
+    illustrationSectionSchemaName,
 } from "../component/section";
 import {
     collapsibleOptions, isVisibleField, actionsFieldOptional, requiredRule,
@@ -16,9 +15,9 @@ import {
 } from "../common-fields";
 import { illustrationFieldOptional } from "../illustration";
 import { KeyPointsSection, KeyPointsWithIconsSection, SanityKeyPointsSection, SanityKeyPointsWithIconsSection } from "../key-point";
+import { LinkButton, SanityOptionalActions } from "../button";
 import { Organisation, organisationLogosField, SanityOrganisation } from "../organisation";
-import { ResourceLink } from "../resource/base";
-import { SanityResource, SanityResourceSection } from "../resource/sanity";
+import { SanityResourceSection } from "../resource/sanity";
 import { ResourceSection } from "../resource/section";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { SocialMediaID, socialMediaLinksField } from "../social-media";
@@ -48,9 +47,12 @@ const sections = {
 type SectionKey = keyof typeof sections;
 type SectionID = (typeof sections)[SectionKey]["id"];
 
+/** Hot topics section for home page - posts are auto-populated from latest blog posts */
+interface SanityLatestPostsSection extends SanityTitleWithHighlights, SanityOptionalActions, SanityVisibleToggle {}
+
 export interface SanityHomePage extends SanityPage {
     [sections.intro.id]: SanityIllustrationSection;
-    [sections.hotTopics.id]: SanityHotTopicsSection;
+    [sections.hotTopics.id]: SanityLatestPostsSection;
     [sections.benefits1.id]: SanityIllustrationSection;
     [sections.benefits2.id]: SanityIllustrationSection;
     [sections.socialValidation.id]: SanitySocialValidationSection;
@@ -79,7 +81,7 @@ interface SanityCommunitySection extends SanitySectionCore {
 
 export class HomePage extends Page {
     readonly [sections.intro.id]?: SectionCore;
-    readonly [sections.hotTopics.id]?: HotTopicsSection;
+    readonly [sections.hotTopics.id]?: LatestPostsSection;
     readonly [sections.benefits1.id]?: IllustrationSection;
     readonly [sections.benefits2.id]?: IllustrationSection;
     readonly [sections.socialValidation.id]?: SocialValidationSection;
@@ -97,7 +99,7 @@ export class HomePage extends Page {
     constructor(data: SanityHomePage, db: SanityDataset) {
         super(data, db);
         this.introSection = data.introSection.isVisible ? IllustrationSection.fromSanity(data.introSection, db) : undefined;
-        this.hotTopicsSection = data.hotTopicsSection.isVisible ? HotTopicsSection.fromSanity(data.hotTopicsSection, db) : undefined;
+        this.hotTopicsSection = data.hotTopicsSection.isVisible ? LatestPostsSection.fromSanity(data.hotTopicsSection, db) : undefined;
         this.benefitsSection1 = data.benefitsSection1.isVisible
             ? IllustrationSection.fromSanity(data.benefitsSection1, db)
             : undefined;
@@ -140,18 +142,10 @@ export class HomePage extends Page {
     }
 }
 
-export class HotTopicsSection extends SectionCore {
-    readonly hotTopics: ResourceLink[];
-
-    constructor(props: PropsOf<HotTopicsSection>) {
-        super(props);
-        this.hotTopics = props.hotTopics;
-    }
-
-    static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
-        return new HotTopicsSection(Object.assign(SectionCore.fromSanity(data, db), {
-            hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, false)) || [],
-        }));
+/** Section for displaying latest blog posts - posts are auto-populated from the blog */
+export class LatestPostsSection extends SectionCore {
+    static override fromSanity(data: SanityLatestPostsSection, db: SanityDataset) {
+        return new LatestPostsSection(SectionCore.fromSanity(data, db));
     }
 }
 
@@ -325,10 +319,24 @@ const conclusionSectionField = defineField({
     validation: requiredRule,
 });
 
-export const hotTopicsSectionField = defineField({
+const latestPostsSectionSchemaName = "latestPostsSection";
+
+const latestPostsSectionSchema = defineType({
+    name: latestPostsSectionSchemaName,
+    title: "Latest Posts Section",
+    description: "Displays the latest blog posts automatically - no manual selection needed",
+    type: "object",
+    fields: [
+        titleFieldWithHighlights,
+        actionsFieldOptional,
+        isVisibleField,
+    ],
+});
+
+const latestPostsSectionField = defineField({
     name: "hotTopicsSection",
-    title: `Hot Topics Section`,
-    type: hotTopicsSectionSchemaName,
+    title: `Latest Posts Section`,
+    type: latestPostsSectionSchemaName,
     options: collapsibleOptions,
 });
 
@@ -339,7 +347,7 @@ const homePageSchema = defineType({
     fields: [
         metaTagsField,
         introSectionField,
-        hotTopicsSectionField,
+        latestPostsSectionField,
         benefitsSection1Field,
         benefitsSection2Field,
         socialValidationSectionField,
@@ -357,4 +365,4 @@ const homePageSchema = defineType({
     preview: { prepare: (_selection) => ({ title: "Home Page" }) },
 });
 
-export const homePageSchemas = [homePageSchema, ...sectionSchemas];
+export const homePageSchemas = [homePageSchema, latestPostsSectionSchema, ...sectionSchemas];

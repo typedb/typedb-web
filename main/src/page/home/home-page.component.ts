@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input, NgZone, ViewEncapsulation } 
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { combineLatest, map, Observable, of } from "rxjs";
-import { HomePage, homePageSchemaName, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
+import { blogPostLinkOf, HomePage, homePageSchemaName, ResourceLink, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
@@ -31,18 +31,26 @@ import { PageComponentBase } from "../page-component-base";
 })
 export class HomePageComponent extends PageComponentBase<HomePage> {
     readonly socialMediaLinks$!: Observable<SocialMediaLink[]>;
+    readonly latestPosts$: Observable<ResourceLink[]>;
 
     constructor(
         activatedRoute: ActivatedRoute,
         router: Router,
         title: Title,
-        metaTags: MetaTagsService, 
+        metaTags: MetaTagsService,
         contentService: ContentService,
         zone: NgZone
     ) {
         super(activatedRoute, router, title, metaTags, zone, contentService);
         this.socialMediaLinks$ = combineLatest([this.page$, contentService.data]).pipe(
             map(([page, data]) => page?.communitySection?.socialMedias.map((x) => new SocialMediaLink(x, data)) || []),
+        );
+        this.latestPosts$ = contentService.blogPosts.pipe(
+            map(posts => posts
+                .sort((a, b) => b.date.getTime() - a.date.getTime())
+                .slice(0, 5)
+                .map(post => blogPostLinkOf(post))
+            ),
         );
     }
 

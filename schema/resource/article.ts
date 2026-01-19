@@ -152,6 +152,10 @@ export class BlogPost extends Article {
     pageTitle(): string {
         return `TypeDB Blog: ${this.title.toPlainText()}`;
     }
+
+    canonicalURL(): string {
+        return this.canonicalUrl || `https://typedb.com/blog/${this.slug}`;
+    }
 }
 
 export function articleFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): Article {
