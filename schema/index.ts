@@ -81,7 +81,7 @@ export {
 } from "./page/learn";
 export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
-export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection } from "./page/home";
+export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection, LatestPostsSection } from "./page/home";
 export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {

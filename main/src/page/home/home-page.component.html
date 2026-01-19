@@ -3,8 +3,8 @@
     @if (page.introSection) {
       <td-section-core level="h1" [section]="page.introSection" class="td-intro" flexDirection="column" />
     }
-    @if (page.hotTopicsSection) {
-      <td-hot-topics [title]="page.hotTopicsSection.title" [resources]="page.hotTopicsSection.hotTopics" [actions]="page.hotTopicsSection.actions"/>
+    @if (page.hotTopicsSection; as hotTopics) {
+      <td-hot-topics [title]="hotTopics.title" [resources]="(latestPosts$ | async) || []" [actions]="hotTopics.actions"/>
     }
     @if (page.benefitsSection1) {
       <td-section-core [section]="page.benefitsSection1" flexDirection="row"/>

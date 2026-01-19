@@ -22,6 +22,7 @@ import { LinkDirective } from "../../framework/link/link.directive";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { ContentService } from "../../service/content.service";
+import { JsonLdService } from "../../service/json-ld.service";
 import { MetaTagsService } from "../../service/meta-tags.service";
 import { BlogAuthorshipBarComponent } from "./blog-authorship-bar.component";
 import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
@@ -57,8 +58,9 @@ export class BlogPostPageComponent implements OnInit {
 
     constructor(
         private canonicalLink: CanonicalLinkService, private _activatedRoute: ActivatedRoute,
-        private content: ContentService, private metaTags: MetaTagsService, private title: Title,
-        destroyRef: DestroyRef, topbarMenuService: TopbarMenuService, @Inject(DOCUMENT) private doc: Document,
+        private content: ContentService, private jsonLd: JsonLdService, private metaTags: MetaTagsService,
+        private title: Title, destroyRef: DestroyRef, topbarMenuService: TopbarMenuService,
+        @Inject(DOCUMENT) private doc: Document,
     ) {
         topbarMenuService.registerPageOffset(100, destroyRef);
         this.blog$ = this.content.data.pipe(
@@ -103,13 +105,12 @@ export class BlogPostPageComponent implements OnInit {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags, this.getMetaTagFallbacks(post));
+                    this.canonicalLink.setCanonical(post.canonicalURL());
+                    this.jsonLd.setForBlogPost(post, post.canonicalURL());
                     if (isPlatformBrowser(this.platformId)) {
                         setTimeout(() => {
                             this.decoratePost();
                         }, 0);
-                    }
-                    if (post.canonicalUrl) {
-                        this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
                 } else {
                     this.content.handleContentNotFound();
@@ -126,6 +127,13 @@ export class BlogPostPageComponent implements OnInit {
             title: post.pageTitle(),
             description: this.extractDescription(post.contentHtml, 160),
             ogImage: post.heroImageURL(),
+            ogType: "article" as const,
+            article: {
+                publishedTime: post.date,
+                author: post.author.name,
+                section: post.categories[0] ? blogCategories[post.categories[0]] : undefined,
+                tags: post.categories.map(c => blogCategories[c]),
+            },
         };
     }
 
