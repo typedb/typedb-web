@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, HostBinding, inject, PLATFORM_ID } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet, Scroll, NavigationStart } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutlet, Scroll } from "@angular/router";
 import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
 import { FooterComponent } from "./navigation/footer/footer.component";
 import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
@@ -9,10 +9,8 @@ import { ContentService } from "./service/content.service";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
-import { CanonicalLinkService } from "./service/canonical-link.service";
 import { LocationStrategy, ViewportScroller, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
-
-const SITE_URL = "https://typedb.com";
+import { environment } from "./environment/environment";
 
 @Component({
     selector: "td-web-main",
@@ -31,7 +29,6 @@ export class RootComponent {
     private readonly analyticsService = inject(AnalyticsService);
     private readonly router = inject(Router);
     private readonly activatedRoute = inject(ActivatedRoute);
-    private readonly canonicalLink = inject(CanonicalLinkService);
     private readonly viewportScroller = inject(ViewportScroller);
     private readonly locationStrategy = inject(LocationStrategy);
     private readonly location = inject(Location);
@@ -42,13 +39,20 @@ export class RootComponent {
     private _pathnameBeforeNavigation = this.locationPathname();
 
     constructor() {
-        this.setCanonicalLinkOnNavigation();
         this.registerIcons();
 
         if (isPlatformBrowser(this.platformId)) {
-            this.initScrollBehaviour();
             this.analyticsService.google.loadScriptTag();
-            this.capturePageViewOnNavigation();
+
+            if (environment.env === "production") {
+                // Production: static pages, no SPA navigation
+                // PostHog auto-captures pageviews; Customer.io needs manual call on load
+                this.analyticsService.cio.page();
+            } else {
+                // Development: SPA mode with client-side navigation
+                this.initScrollBehaviour();
+                this.capturePageViewOnNavigation();
+            }
         }
 
         this.contentService.data.subscribe((data) => {
@@ -61,17 +65,6 @@ export class RootComponent {
         this.router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
             this.analyticsService.posthog.capturePageView();
             this.analyticsService.cio.page();
-        });
-    }
-
-    private setCanonicalLinkOnNavigation() {
-        this.router.events.subscribe((e) => {
-            if (e instanceof NavigationStart) {
-                this.canonicalLink.removeCanonical();
-            }
-            if (e instanceof NavigationEnd) {
-                this.canonicalLink.setCanonical(`${SITE_URL}${e.url.split(/[#?]/)[0]}`);
-            }
         });
     }
 

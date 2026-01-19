@@ -3,10 +3,22 @@ import { Meta, MetaDefinition } from "@angular/platform-browser";
 
 import { MetaTags } from "typedb-web-schema";
 
+export type OgType = "website" | "article";
+
+export interface ArticleMeta {
+    publishedTime: Date;
+    modifiedTime?: Date;
+    author?: string;
+    section?: string;
+    tags?: string[];
+}
+
 export interface MetaTagFallbacks {
     title?: string;
     description?: string;
     ogImage?: string;
+    ogType?: OgType;
+    article?: ArticleMeta;
 }
 
 @Injectable({
@@ -30,10 +42,30 @@ export class MetaTagsService {
         metaDefinitions.push({ name: "twitter:title", content: title });
 
         metaDefinitions.push({ name: "description", content: description });
+        metaDefinitions.push({ property: "og:description", content: description });
         metaDefinitions.push({ name: "twitter:description", content: description });
 
         metaDefinitions.push({ property: "og:image", content: ogImage });
         metaDefinitions.push({ name: "twitter:image", content: ogImage });
+
+        metaDefinitions.push({ property: "og:type", content: fallbacks?.ogType || "website" });
+
+        if (fallbacks?.article) {
+            const { publishedTime, modifiedTime, author, section, tags } = fallbacks.article;
+            metaDefinitions.push({ property: "article:published_time", content: publishedTime.toISOString() });
+            if (modifiedTime) {
+                metaDefinitions.push({ property: "article:modified_time", content: modifiedTime.toISOString() });
+            }
+            if (author) {
+                metaDefinitions.push({ property: "article:author", content: author });
+            }
+            if (section) {
+                metaDefinitions.push({ property: "article:section", content: section });
+            }
+            if (tags) {
+                tags.forEach(tag => metaDefinitions.push({ property: "article:tag", content: tag }));
+            }
+        }
 
         if (metaTags.keywords?.length) {
             metaDefinitions.push({ name: "keywords", content: metaTags.keywords });
