@@ -91,9 +91,13 @@ export class BlogComponent implements OnInit {
 
         this.posts$ = this.content.displayedPosts;
 
-        // Calculate total pages based on post count
+        // Total pages: hero is always shown, then BLOG_PAGE_SIZE posts per page
+        // Posts 1-9 on page 1, posts 10-18 on page 2, etc.
         this.totalPages$ = this.posts$.pipe(
-            map((posts) => Math.ceil(posts.length / BLOG_PAGE_SIZE)),
+            map((posts) => {
+                if (posts.length <= 1) return 1;
+                return Math.ceil((posts.length - 1) / BLOG_PAGE_SIZE);
+            }),
             shareReplay(1),
         );
 
@@ -131,20 +135,28 @@ export class BlogComponent implements OnInit {
             }),
         );
 
-        // Paginate rows based on current page
-        // Each "page" shows BLOG_PAGE_SIZE posts (1 primary + (BLOG_PAGE_SIZE-1)/3 secondary rows)
-        // Note: rows[0] is rendered separately in template as the "hero" post
-        const rowsPerPage = 1 + (BLOG_PAGE_SIZE - 1) / 3; // 1 primary row + 2-3 secondary rows
-        this.displayedRows$ = combineLatest([this.rows$, this.currentPage$]).pipe(
-            map(([rows, currentPage]) => {
-                if (currentPage === 1) {
-                    // First page: skip first row (rendered separately as hero) and show remaining rows
-                    // rowsPerPage ≈ 3.67, so we show rows[1..3] (indices 1,2,3) plus the hero = 4 rows total
-                    return rows.slice(1, Math.ceil(rowsPerPage));
+        // Paginate by posts: hero (post 0) always shown, then 9 posts per page
+        // Page 1: posts 1-9, Page 2: posts 10-18, etc.
+        this.displayedRows$ = combineLatest([this.blog$, this.content.displayedPosts, this.currentPage$]).pipe(
+            map(([blog, posts, currentPage]) => {
+                if (!blog || posts.length <= 1) return [];
+
+                // Calculate which posts to show on this page (excluding hero)
+                const startPostIndex = 1 + (currentPage - 1) * BLOG_PAGE_SIZE;
+                const endPostIndex = Math.min(startPostIndex + BLOG_PAGE_SIZE, posts.length);
+                const pagePosts = posts.slice(startPostIndex, endPostIndex);
+
+                if (pagePosts.length === 0) return [];
+
+                // Build rows from the page's posts (groups of 3)
+                const rows: BlogRow[] = [];
+
+                for (let i = 0; i < pagePosts.length; i += 3) {
+                    const rowPosts = pagePosts.slice(i, Math.min(i + 3, pagePosts.length));
+                    rows.push(new BlogPostsRow({ level: "secondary", posts: rowPosts }));
                 }
-                // Subsequent pages: skip the first row (primary from page 1) and paginate the rest
-                const startIndex = 1 + (currentPage - 1) * rowsPerPage;
-                return rows.slice(startIndex, startIndex + rowsPerPage);
+
+                return rows;
             }),
         );
     }
