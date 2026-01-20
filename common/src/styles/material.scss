@@ -781,6 +781,33 @@ body {
         width: 34px;
     }
 
+    /* Tabs */
+    .mat-mdc-tab, .mat-mdc-tab-nav-bar {
+        --mat-tab-label-text-font: #{typography.$font-family-default};
+        --mat-tab-label-text-size: 14px;
+        --mat-tab-label-text-weight: #{typography.$regular};
+        --mat-tab-label-text-tracking: #{typography.$letter-spacing};
+        --mat-tab-active-label-text-color: #{colors.$white};
+        --mat-tab-active-hover-label-text-color: #{colors.$white};
+        --mat-tab-active-focus-label-text-color: #{colors.$white};
+        --mat-tab-inactive-label-text-color: #{colors.$secondary-light-grey};
+        --mat-tab-inactive-hover-label-text-color: #{colors.$grey};
+        --mat-tab-inactive-focus-label-text-color: #{colors.$grey};
+        --mat-tab-active-indicator-color: #{colors.$secondary-light-grey};
+        --mat-tab-active-focus-indicator-color: #{colors.$secondary-light-grey};
+        --mat-tab-active-hover-indicator-color: #{colors.$secondary-light-grey};
+        --mat-tab-active-ripple-color: #{rgba(colors.$light-purple, 0.3)};
+        --mat-tab-inactive-ripple-color: #{rgba(colors.$light-purple, 0.3)};
+    }
+
+    .mat-mdc-tab.mdc-tab--active {
+        background: #{rgba(colors.$light-purple, 0.5)};
+    }
+
+    .mat-mdc-tab:hover:not(.mdc-tab--active) {
+        background: #{rgba(colors.$light-purple, 0.3)};
+    }
+
     /* Toolbar */
     @include mat.toolbar-overrides((
         container-background-color: colors.$deep-purple,
