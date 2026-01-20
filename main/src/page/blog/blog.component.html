@@ -6,7 +6,7 @@
     </section>
   }
 
-  <div class="section-background-solid bp-blog-list">
+  <div class="section-background-solid bp-blog-list" ngSkipHydration>
     @if (rows$ | async; as rows) {
       <td-blog-row class="narrow-section posts" [row]="rows[0]" [priorityImage]="true" />
 
