@@ -11,11 +11,11 @@ publish = "main/dist/main/browser"
 
 [context.master]
 command = "pnpm --filter typedb-web-main build:staging"
-publish = "main/dist/main"
+publish = "main/dist/main/browser"
 
 [context.development]
 command = "pnpm --filter typedb-web-main build:dev"
-publish = "main/dist/main"
+publish = "main/dist/main/browser"
 
 [context.ssr]
 command = "NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter typedb-web-main build:ssr"
@@ -23,7 +23,7 @@ publish = "main/dist/main/browser"
 
 [context.deploy-preview]
 command = "pnpm --filter typedb-web-main build:dev"
-publish = "main/dist/main"
+publish = "main/dist/main/browser"
 
 
 # EDGE FUNCTIONS
