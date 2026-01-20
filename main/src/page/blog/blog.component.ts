@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, ViewEnc
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 
-import { combineLatest, filter, map, Observable, shareReplay, startWith } from "rxjs";
+import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName,
@@ -129,7 +129,6 @@ export class BlogComponent implements OnInit {
                 rows.push(...furtherAdditionalRows);
                 return rows;
             }),
-            startWith([] as BlogRow[]),
         );
 
         // Paginate rows based on current page
