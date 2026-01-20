@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, ViewEnc
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 
-import { combineLatest, filter, map, Observable, shareReplay } from "rxjs";
+import { combineLatest, distinctUntilChanged, filter, map, Observable, shareReplay } from "rxjs";
 import {
     ActionButton,
     Blog, blogCategories, BlogCategoryID, blogCategoryList, blogNullFilter, BlogPost, BlogPostsRow, BlogRow, blogSchemaName,
@@ -165,29 +165,33 @@ export class BlogComponent implements OnInit {
             }
         });
 
+        // Update blog filter separately from the metadata subscription to avoid circular dependencies
+        this.route.paramMap.pipe(
+            map((params) => {
+                const categorySlug = params.get("slug");
+                return categorySlug ? { categorySlug } : blogNullFilter();
+            }),
+            distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
+        ).subscribe((blogFilter) => {
+            this.content.blogFilter.next(blogFilter);
+        });
+
         combineLatest([
             this.blog$.pipe(filter((blog): blog is Blog => !!blog)),
-            this.route.paramMap.pipe(
-                map((params) => {
-                    const categorySlug = params.get("slug");
-                    return categorySlug ? { categorySlug } : blogNullFilter();
-                }),
-            ),
+            this.categorySlug$,
             this.currentPage$,
-            this.totalPages$,
+            this.totalPages$.pipe(distinctUntilChanged()),
         ]).subscribe({
-            next: ([blog, blogFilter, currentPage, totalPages]) => {
-                this.content.blogFilter.next(blogFilter);
-                let categorySlug: "all" | BlogCategoryID = "all";
+            next: ([blog, routeCategorySlug, currentPage, totalPages]) => {
+                const tabSlug: "all" | BlogCategoryID = routeCategorySlug || "all";
                 let pageTitle: string;
                 let pageUrl: string;
                 let basePath: string;
-                if ("categorySlug" in blogFilter) {
-                    categorySlug = blogFilter.categorySlug as BlogCategoryID;
-                    if (!blogCategoryList.includes(categorySlug)) throw `Unknown category slug: ${categorySlug}`;
-                    pageTitle = `TypeDB Blog: ${blogCategories[categorySlug]}`;
-                    pageUrl = `https://typedb.com/blog/category/${categorySlug}`;
-                    basePath = `/blog/category/${categorySlug}`;
+                if (routeCategorySlug) {
+                    if (!blogCategoryList.includes(routeCategorySlug)) throw `Unknown category slug: ${routeCategorySlug}`;
+                    pageTitle = `TypeDB Blog: ${blogCategories[routeCategorySlug]}`;
+                    pageUrl = `https://typedb.com/blog/category/${routeCategorySlug}`;
+                    basePath = `/blog/category/${routeCategorySlug}`;
                 } else {
                     pageTitle = `TypeDB Blog`;
                     pageUrl = `https://typedb.com/blog`;
@@ -199,8 +203,8 @@ export class BlogComponent implements OnInit {
                     pageUrl += `/page/${currentPage}`;
                 }
                 this.title.setTitle(pageTitle);
-                this.metaTags.register(blog.tabs[categorySlug].metaTags);
-                this.jsonLd.setForBlogListing(pageTitle, blog.tabs[categorySlug].metaTags.description, pageUrl);
+                this.metaTags.register(blog.tabs[tabSlug].metaTags);
+                this.jsonLd.setForBlogListing(pageTitle, blog.tabs[tabSlug].metaTags.description, pageUrl);
 
                 // Set canonical URL to base path for page 1 (e.g., /blog/page/1 -> /blog)
                 if (currentPage === 1) {

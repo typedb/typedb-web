@@ -1,7 +1,6 @@
 import { provideHttpClient, withFetch } from "@angular/common/http";
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
-import { provideClientHydration, withEventReplay } from "@angular/platform-browser";
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { PlainTextPipe } from "./framework/text/plain-text.pipe";
 
@@ -20,7 +19,6 @@ export const appConfig: ApplicationConfig = {
             })
         ),
         provideHttpClient(withFetch()),
-        provideClientHydration(withEventReplay()),
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: "outline" } },
     ]
 };

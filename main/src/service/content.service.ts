@@ -90,10 +90,10 @@ export class ContentService {
 
         this.displayedPosts = combineLatest([this.blogPosts, this.blogFilter]).pipe(
             filter(([posts, _filter]) => !!posts?.length),
-            map(([posts, filter]) => {
+            map(([posts, blogFilter]) => {
                 const postsList = posts || [];
-                if ("categorySlug" in filter) {
-                    return [postsList[0]].concat(postsList.slice(1).filter((post) => (post.categories as string[]).includes(filter.categorySlug)));
+                if ("categorySlug" in blogFilter) {
+                    return postsList.filter((post) => (post.categories as string[]).includes(blogFilter.categorySlug));
                 }
                 return postsList;
             }),

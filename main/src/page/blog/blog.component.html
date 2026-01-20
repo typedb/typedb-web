@@ -29,7 +29,7 @@
       <nav td-blog-navbar variant="listPage" class="narrow-section"></nav>
 
       <section class="narrow-section posts">
-        @for (row of displayedRows$ | async; track row) {
+        @for (row of displayedRows$ | async; track $index) {
           <td-blog-row [row]="row" />
         }
         @if (totalPages$ | async; as totalPages) {
