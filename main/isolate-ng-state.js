@@ -33,17 +33,44 @@ function generateHash(content) {
 function optimizeHtml(filePath) {
     let html = fs.readFileSync(filePath, 'utf8');
 
-    // Remove TransferState script entirely - we don't need it for static page behavior
+    // Extract TransferState to a separate JS file for better caching
     const stateMatch = html.match(STATE_REGEX);
     if (stateMatch) {
-        html = html.replace(STATE_REGEX, '');
+        const stateContent = stateMatch[1];
+        const stateHash = generateHash(stateContent);
+        const stateFileName = `ng-state.${stateHash}.js`;
+
+        // Get the directory of the HTML file (for placing the state file alongside it)
+        const htmlDir = path.dirname(filePath);
+        const stateFilePath = path.join(htmlDir, stateFileName);
+
+        // Create JS file that injects the state into a script element before Angular bootstraps
+        // This ensures TransferState is available when Angular looks for it
+        const stateJs = `(function(){
+  var s = document.createElement('script');
+  s.id = 'ng-state';
+  s.type = 'application/json';
+  s.textContent = ${JSON.stringify(stateContent)};
+  document.body.appendChild(s);
+})();`;
+
+        fs.writeFileSync(stateFilePath, stateJs);
+
+        // Calculate the absolute path from the dist root to the state file
+        // This ensures the script loads correctly regardless of URL structure
+        const absolutePath = '/' + path.relative(DIST_FOLDER, stateFilePath).replace(/\\/g, '/');
+
+        // Replace the inline state with a script tag that loads the external file
+        // Use a blocking script to ensure state is available before Angular bootstraps
+        html = html.replace(STATE_REGEX, `<script src="${absolutePath}"></script>`);
+
         fs.writeFileSync(filePath, html);
-        console.log(`[ng-state] Removed from ${path.basename(filePath)}`);
+        console.log(`[ng-state] Extracted to ${stateFileName} for ${path.basename(filePath)}`);
     }
 }
 
 // --- EXECUTION ---
-console.log('Starting TransferState Optimization (Keeping Styles Inlined)...');
+console.log('Starting TransferState Optimization (Extracting to separate files)...');
 
 if (fs.existsSync(DIST_FOLDER)) {
     const htmlFiles = getAllHtmlFiles(DIST_FOLDER);

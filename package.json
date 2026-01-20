@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd main && ng serve",
-    "build": "cd main && ng build -c $ENV",
+    "start": "cd main && npm run start",
+    "build:dev": "cd main && npm run build:dev",
+    "build:prod": "cd main && npm run build:prod",
+    "build:staging": "cd main && npm run build:staging",
+    "build:ssr": "cd main && npm run build:ssr",
     "build-sitemap": "cd main && npm run build-sitemap",
+    "clean": "cd main && npm run clean",
     "sanity:dev": "cd sanity && npx sanity dev",
     "sanity:deploy": "cd sanity && npx sanity deploy",
     "sanity:login": "cd sanity && npx sanity login"

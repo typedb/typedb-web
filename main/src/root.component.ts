@@ -113,7 +113,7 @@ export class RootComponent {
     }
 
     private pathIsBlogLandingPage(pathname: string) {
-        return pathname === "/blog" || pathname.startsWith("/blog/category/");
+        return pathname === "/blog" || pathname.startsWith("/blog/page/") || pathname.startsWith("/blog/category/");
     }
 
     private locationPathname(): string {
