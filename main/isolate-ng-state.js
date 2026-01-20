@@ -56,13 +56,13 @@ function optimizeHtml(filePath) {
 
         fs.writeFileSync(stateFilePath, stateJs);
 
-        // Calculate the relative path from the HTML file to the state file
-        // For the script src, we need a path relative to the HTML file's URL
-        const relativePath = stateFileName;
+        // Calculate the absolute path from the dist root to the state file
+        // This ensures the script loads correctly regardless of URL structure
+        const absolutePath = '/' + path.relative(DIST_FOLDER, stateFilePath).replace(/\\/g, '/');
 
         // Replace the inline state with a script tag that loads the external file
         // Use a blocking script to ensure state is available before Angular bootstraps
-        html = html.replace(STATE_REGEX, `<script src="${relativePath}"></script>`);
+        html = html.replace(STATE_REGEX, `<script src="${absolutePath}"></script>`);
 
         fs.writeFileSync(filePath, html);
         console.log(`[ng-state] Extracted to ${stateFileName} for ${path.basename(filePath)}`);
