@@ -4,7 +4,7 @@
       <div class="bp-posts-row bp-primary-post">
         <a class="bp-primary-img-link" [tdLink]="posts.posts[0].readPostLink()">
           <td-aspect-ratio ratio="16:9">
-            <img [ngSrc]="posts.posts[0].imageURL!" [alt]="posts.posts[0].title | plainText" fill class="bp-img" />
+            <img [ngSrc]="posts.posts[0].heroImageURL()" [alt]="posts.posts[0].title | plainText" fill [priority]="priorityImage" class="bp-img" />
           </td-aspect-ratio>
         </a>
         <div class="bp-primary-post-summary">

@@ -49,6 +49,12 @@ export const dynamicPageSchemas = [
     { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
+// Blog pagination routes (separate from dynamicPageSchemas due to different path pattern)
+export const blogPaginationRoutes = [
+    { path: "blog/page/:page" },
+    { path: "blog/category/:slug/page/:page" },
+] as const;
+
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
@@ -126,6 +132,9 @@ export const routes: Routes = [
         path,
         ...dynamicPages[path],
     })),
+    // Blog pagination routes
+    { path: "blog/page/:page", component: BlogComponent, title: "TypeDB Blog" },
+    { path: "blog/category/:slug/page/:page", component: BlogComponent },
     { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
     { path: "**", component: _404PageComponent },
 ];

@@ -4,11 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build -c $ENV",
-    "build:ssr": "ng build -c $ENV && node isolate-ng-state.js && node isolate-styles.js && node build-sitemap.js",
+    "build:dev": "ng build -c development",
+    "build:prod": "ng build -c production && node isolate-ng-state.js && node isolate-styles.js && node build-sitemap.js",
+    "build:staging": "ng build -c staging",
+    "build:ssr": "ng build -c ssr && node isolate-ng-state.js && node isolate-styles.js && node build-sitemap.js",
     "build-sitemap": "node build-sitemap.js",
     "isolate-ng-state": "node isolate-ng-state.js",
     "isolate-styles": "node isolate-styles.js",
+    "clean": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

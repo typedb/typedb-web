@@ -237,4 +237,48 @@ td-blog-list-page {
             @include mixins.line-clamp(3);
         }
     }
+
+    .blog-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 40px 0;
+        border-top: shapes.$border;
+        margin-top: 40px;
+
+        .pagination-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: shapes.$border;
+            border-radius: var(--border-radius);
+            font-weight: var(--font-weight-semi-bold);
+            transition: background-color 200ms ease, border-color 200ms ease;
+
+            &:hover {
+                background-color: var(--color-green);
+                border-color: var(--color-green);
+                color: var(--body-background);
+            }
+
+            i {
+                font-size: 12px;
+            }
+        }
+
+        .pagination-info {
+            font-weight: var(--font-weight-light);
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 12px;
+
+            .pagination-link {
+                padding: 10px 16px;
+            }
+        }
+    }
 }
