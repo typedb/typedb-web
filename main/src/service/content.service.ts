@@ -36,9 +36,9 @@ const RETRY_CONFIG = {
     providedIn: "root",
 })
 export class ContentService {
-    public data = new ReplaySubject<SanityDataset>();
+    public data: Observable<SanityDataset>;
     readonly wordpressPosts: Observable<WordpressPost[]>;
-    readonly blogPosts = new ReplaySubject<BlogPost[]>();
+    readonly blogPosts: Observable<BlogPost[]>;
     readonly displayedPosts: Observable<BlogPost[]>;
     readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
     readonly applicationArticles = new ReplaySubject<ApplicationArticle[]>();
@@ -55,14 +55,14 @@ export class ContentService {
         private wordpress: WordpressService,
         private transferState: TransferState
     ) {
-        this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content").subscribe((result) => {
-            this.data.next(
-                new SanityDataset({
-                    byType: groupBy(result, (x) => x._type),
-                    byId: associateBy(result, (x) => x._id),
-                }),
-            );
-        });
+        // Sanity data - use shareReplay to cache and replay synchronously
+        this.data = this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content").pipe(
+            map((result) => new SanityDataset({
+                byType: groupBy(result, (x) => x._type),
+                byId: associateBy(result, (x) => x._id),
+            })),
+            shareReplay(1),
+        );
 
         this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
         this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
@@ -71,11 +71,10 @@ export class ContentService {
         this.wordpressPosts = this.handleTransferState(
             WORDPRESS_POSTS_KEY,
             this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)),
-        ).pipe(shareReplay());
+        ).pipe(shareReplay(1));
 
-        this.listPosts().subscribe((data) => {
-            this.blogPosts.next(data);
-        });
+        // Blog posts - derived from data and wordpressPosts, both of which use TransferState
+        this.blogPosts = this.listPosts().pipe(shareReplay(1));
 
         this.listFundamentalArticles().subscribe((data) => {
             this.fundamentalArticles.next(data);
@@ -99,7 +98,7 @@ export class ContentService {
                 return postsList;
             }),
             map((posts) => posts.sort((a, b) => b.date.getTime() - a.date.getTime())),
-            shareReplay(),
+            shareReplay(1),
         );
     }
 

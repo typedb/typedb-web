@@ -133,12 +133,14 @@ export class BlogComponent implements OnInit {
 
         // Paginate rows based on current page
         // Each "page" shows BLOG_PAGE_SIZE posts (1 primary + (BLOG_PAGE_SIZE-1)/3 secondary rows)
+        // Note: rows[0] is rendered separately in template as the "hero" post
         const rowsPerPage = 1 + (BLOG_PAGE_SIZE - 1) / 3; // 1 primary row + 2-3 secondary rows
         this.displayedRows$ = combineLatest([this.rows$, this.currentPage$]).pipe(
             map(([rows, currentPage]) => {
                 if (currentPage === 1) {
-                    // First page: show first row (primary) + next rows up to page size
-                    return rows.slice(0, rowsPerPage);
+                    // First page: skip first row (rendered separately as hero) and show remaining rows
+                    // rowsPerPage ≈ 3.67, so we show rows[1..3] (indices 1,2,3) plus the hero = 4 rows total
+                    return rows.slice(1, Math.ceil(rowsPerPage));
                 }
                 // Subsequent pages: skip the first row (primary from page 1) and paginate the rest
                 const startIndex = 1 + (currentPage - 1) * rowsPerPage;

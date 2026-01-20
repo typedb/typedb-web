@@ -8,7 +8,7 @@
 
   <div class="section-background-solid bp-blog-list">
     @if (rows$ | async; as rows) {
-      <td-blog-row class="narrow-section posts" [row]="rows[0]" />
+      <td-blog-row class="narrow-section posts" [row]="rows[0]" [priorityImage]="true" />
 
       <section class="newsletter-section narrow-section">
         <div class="newsletter-card">

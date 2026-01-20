@@ -25,6 +25,7 @@ import { BlogCategoryChipsComponent } from "./blog-category-chips.component";
 })
 export class BlogRowComponent {
     @Input() row!: BlogRow;
+    @Input() priorityImage = false;
 
     get posts(): BlogPostsRow | undefined {
         return this.row instanceof BlogPostsRow ? this.row : undefined;
