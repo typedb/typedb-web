@@ -6,52 +6,52 @@
     </section>
   }
 
-  <div class="section-background-solid bp-blog-list" ngSkipHydration>
-    @if (rows$ | async; as rows) {
-      <td-blog-row class="narrow-section posts" [row]="rows[0]" [priorityImage]="true" />
+  <div class="section-background-solid bp-blog-list">
+    @if ((rows$ | async)?.[0]; as firstRow) {
+      <td-blog-row class="narrow-section posts" [row]="firstRow" [priorityImage]="true" />
+    }
 
-      <section class="newsletter-section narrow-section">
-        <div class="newsletter-card">
-          <div>
-            <i class="fa-thin fa-envelope"></i>
-          </div>
-          <div>
-            <h4>Subscribe to the TypeDB newsletter</h4>
-            <p>Receive occasional emails about company news, releases, events and more.</p>
-          </div>
-          <div class="flex"></div>
-          <td-button [button]="subscribeToNewsletterButton" linkId="subscribe" />
+    <section class="newsletter-section narrow-section">
+      <div class="newsletter-card">
+        <div>
+          <i class="fa-thin fa-envelope"></i>
         </div>
-      </section>
+        <div>
+          <h4>Subscribe to the TypeDB newsletter</h4>
+          <p>Receive occasional emails about company news, releases, events and more.</p>
+        </div>
+        <div class="flex"></div>
+        <td-button [button]="subscribeToNewsletterButton" linkId="subscribe" />
+      </div>
+    </section>
 
-      <!-- <h2 class="section all-posts-header text-h3">All posts</h2> -->
+    <!-- <h2 class="section all-posts-header text-h3">All posts</h2> -->
 
-      <nav td-blog-navbar variant="listPage" class="narrow-section"></nav>
+    <nav td-blog-navbar variant="listPage" class="narrow-section"></nav>
 
-      <section class="narrow-section posts">
-        @for (row of displayedRows$ | async; track row) {
-          <td-blog-row [row]="row" />
-        }
-        @if (totalPages$ | async; as totalPages) {
-          @if (currentPage$ | async; as currentPage) {
-            @if (totalPages > 1) {
-              <nav class="blog-pagination" aria-label="Blog pagination">
-                @if (currentPage > 1) {
-                  <a [routerLink]="getPageUrl(currentPage - 1)" class="pagination-link pagination-prev">
-                    <i class="fa-solid fa-chevron-left"></i> Previous
-                  </a>
-                }
-                <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
-                @if (currentPage < totalPages) {
-                  <a [routerLink]="getPageUrl(currentPage + 1)" class="pagination-link pagination-next">
-                    Next <i class="fa-solid fa-chevron-right"></i>
-                  </a>
-                }
-              </nav>
-            }
+    <section class="narrow-section posts">
+      @for (row of displayedRows$ | async; track row) {
+        <td-blog-row [row]="row" />
+      }
+      @if (totalPages$ | async; as totalPages) {
+        @if (currentPage$ | async; as currentPage) {
+          @if (totalPages > 1) {
+            <nav class="blog-pagination" aria-label="Blog pagination">
+              @if (currentPage > 1) {
+                <a [routerLink]="getPageUrl(currentPage - 1)" class="pagination-link pagination-prev">
+                  <i class="fa-solid fa-chevron-left"></i> Previous
+                </a>
+              }
+              <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
+              @if (currentPage < totalPages) {
+                <a [routerLink]="getPageUrl(currentPage + 1)" class="pagination-link pagination-next">
+                  Next <i class="fa-solid fa-chevron-right"></i>
+                </a>
+              }
+            </nav>
           }
         }
-      </section>
-    }
+      }
+    </section>
   </div>
 </article>
