@@ -11,11 +11,19 @@ const SITE_URL = "https://typedb.com";
 export class CanonicalLinkService {
     private href$ = new BehaviorSubject<string | null>(null);
     private override$ = new BehaviorSubject<string | null>(null);
+    private prevLinkEl: HTMLLinkElement;
+    private nextLinkEl: HTMLLinkElement;
 
-    constructor(@Inject(DOCUMENT) doc: Document, private meta: Meta, router: Router) {
+    constructor(@Inject(DOCUMENT) private doc: Document, private meta: Meta, router: Router) {
         const linkEl = doc.createElement("link");
         linkEl.rel = "canonical";
         doc.head.appendChild(linkEl);
+
+        // Create prev/next link elements for pagination
+        this.prevLinkEl = doc.createElement("link");
+        this.prevLinkEl.rel = "prev";
+        this.nextLinkEl = doc.createElement("link");
+        this.nextLinkEl.rel = "next";
 
         // Set default canonical on navigation
         router.events.pipe(
@@ -24,6 +32,7 @@ export class CanonicalLinkService {
         ).subscribe((url) => {
             this.href$.next(url);
             this.override$.next(null);
+            this.clearPaginationLinks();
         });
 
         // Effective canonical = override if set, otherwise default
@@ -47,5 +56,25 @@ export class CanonicalLinkService {
     /** Override the default canonical URL for this page */
     setCanonical(val: string): void {
         this.override$.next(val);
+    }
+
+    /** Set pagination links (rel="prev" and rel="next") for SEO */
+    setPaginationLinks(prevUrl: string | null, nextUrl: string | null): void {
+        this.clearPaginationLinks();
+
+        if (prevUrl) {
+            this.prevLinkEl.href = `${SITE_URL}${prevUrl}`;
+            this.doc.head.appendChild(this.prevLinkEl);
+        }
+
+        if (nextUrl) {
+            this.nextLinkEl.href = `${SITE_URL}${nextUrl}`;
+            this.doc.head.appendChild(this.nextLinkEl);
+        }
+    }
+
+    private clearPaginationLinks(): void {
+        this.prevLinkEl.remove();
+        this.nextLinkEl.remove();
     }
 }
