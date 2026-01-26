@@ -1,4 +1,5 @@
 import { RenderMode, ServerRoute } from "@angular/ssr";
+import { blogCategoryList } from "typedb-web-schema";
 import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./routes.browser";
 import axios from "axios";
 
@@ -102,6 +103,40 @@ async function fetchUseCasePageInstanceSlugs(): Promise<Array<{ slug: string }>>
     return allSlugs["useCasePage"] || [];
 }
 
+const BLOG_PAGE_SIZE = 9;
+
+async function fetchBlogPostCount(): Promise<number> {
+    try {
+        const query = `count(*[_type == 'blogPost'])`;
+        const { data } = await axios.get<{ result: number }>(SANITY_URL, {
+            params: { query }
+        });
+        return data.result;
+    } catch (error) {
+        console.error('Error fetching blog post count:', error);
+        return 0;
+    }
+}
+
+async function fetchBlogPostCountByCategory(categorySlug: string): Promise<number> {
+    try {
+        const query = `count(*[_type == 'blogPost' && '${categorySlug}' in categories[]->slug.current])`;
+        const { data } = await axios.get<{ result: number }>(SANITY_URL, {
+            params: { query }
+        });
+        return data.result;
+    } catch (error) {
+        console.error(`Error fetching blog post count for category ${categorySlug}:`, error);
+        return 0;
+    }
+}
+
+function generatePageNumbers(totalPosts: number, pageSize: number): Array<{ page: string }> {
+    const totalPages = Math.ceil(totalPosts / pageSize);
+    // Include page 1 (canonical URL will point to /blog or /blog/category/:slug)
+    return Array.from({ length: totalPages }, (_, i) => ({ page: String(i + 1) }));
+}
+
 export const getDynamicRoutes = () => {
     const routes: ServerRoute[] = [];
 
@@ -186,12 +221,42 @@ async function getStaticRoutes(): Promise<ServerRoute[]> {
 export async function getServerRoutes(): Promise<ServerRoute[]> {
     const staticRoutes = await getStaticRoutes();
     const dynamicRoutes = getDynamicRoutes();
-    
+
+    // Blog pagination routes
+    const blogPaginationRoutes: ServerRoute[] = [
+        {
+            path: 'blog/page/:page',
+            renderMode: RenderMode.Prerender,
+            getPrerenderParams: async () => {
+                const totalPosts = await fetchBlogPostCount();
+                return generatePageNumbers(totalPosts, BLOG_PAGE_SIZE);
+            },
+        },
+        // Paginated category routes - single parameterized route for all categories
+        {
+            path: 'blog/category/:slug/page/:page',
+            renderMode: RenderMode.Prerender,
+            getPrerenderParams: async () => {
+                const params: Array<{ slug: string; page: string }> = [];
+                for (const categorySlug of blogCategoryList) {
+                    const totalPosts = await fetchBlogPostCountByCategory(categorySlug);
+                    const pageNumbers = generatePageNumbers(totalPosts, BLOG_PAGE_SIZE);
+                    for (const { page } of pageNumbers) {
+                        params.push({ slug: categorySlug, page });
+                    }
+                }
+                return params;
+            },
+        },
+    ];
+
     return [
         // Static routes from Sanity
         ...staticRoutes,
         // Dynamic routes with parameters
         ...dynamicRoutes,
+        // Blog pagination routes
+        ...blogPaginationRoutes,
         // 404 route and fallback route - when wired up with Netlify, this will handle all unrecognized routes
         {
             path: '404',

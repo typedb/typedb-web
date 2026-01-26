@@ -11,7 +11,6 @@ import {
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 
 import { Link } from "typedb-web-schema";
-import { environment } from "../../environment/environment";
 
 @Directive({
     selector: "[tdLink]",
@@ -70,18 +69,14 @@ export class LinkDirective implements OnChanges {
         this.el.nativeElement.href = this.router.createUrlTree(commands, navigationExtras).toString();
         this.el.nativeElement.tabIndex = 0;
 
-        // In production, let the href work naturally (full page navigation)
-        // In development, use SPA navigation for faster iteration
-        if (environment.env !== "production") {
-            this.el.nativeElement.addEventListener("click", (e: MouseEvent) => {
-                if (e.ctrlKey || e.metaKey) {
-                    return; // fall back to default browser behaviour (open in new tab)
-                }
-                e.preventDefault();
-                this.router.navigate(commands, navigationExtras);
-                this.clicked.emit(e);
-            });
-        }
+        this.el.nativeElement.addEventListener("click", (e: MouseEvent) => {
+            if (e.ctrlKey || e.metaKey) {
+                return; // fall back to default browser behaviour (open in new tab)
+            }
+            e.preventDefault();
+            this.router.navigate(commands, navigationExtras);
+            this.clicked.emit(e);
+        });
     }
 
     private constructHrefLink() {

@@ -8,7 +8,7 @@
 
   <div class="section-background-solid bp-blog-list">
     @if (rows$ | async; as rows) {
-      <td-blog-row class="narrow-section posts" [row]="rows[0]" />
+      <td-blog-row class="narrow-section posts" [row]="rows[0]" [priorityImage]="true" />
 
       <section class="newsletter-section narrow-section">
         <div class="newsletter-card">
@@ -29,14 +29,27 @@
       <nav td-blog-navbar variant="listPage" class="narrow-section"></nav>
 
       <section class="narrow-section posts">
-        @for (row of displayedRows$ | async; track row) {
+        @for (row of displayedRows$ | async; track $index) {
           <td-blog-row [row]="row" />
         }
-        @if (posts$ | async; as posts) {
-          <mat-paginator
-            [length]="posts.length - 1" [pageSize]="pageSize$ | async" [pageSizeOptions]="[9, 18, 45, 90]"
-            (page)="onPageChange($event)" aria-label="Select page"
-          />
+        @if (totalPages$ | async; as totalPages) {
+          @if (currentPage$ | async; as currentPage) {
+            @if (totalPages > 1) {
+              <nav class="blog-pagination" aria-label="Blog pagination">
+                @if (currentPage > 1) {
+                  <a [routerLink]="getPageUrl(currentPage - 1)" class="pagination-link pagination-prev">
+                    <i class="fa-solid fa-chevron-left"></i> Previous
+                  </a>
+                }
+                <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
+                @if (currentPage < totalPages) {
+                  <a [routerLink]="getPageUrl(currentPage + 1)" class="pagination-link pagination-next">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                }
+              </nav>
+            }
+          }
         }
       </section>
     }
