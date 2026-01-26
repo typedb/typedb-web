@@ -114,7 +114,8 @@ const linkSchema = defineType({
                 if (value.current.startsWith("https://")) return true;
                 if (value.current.startsWith("/")) return true;
                 if (value.current.startsWith("?")) return true;
-                return "URL must start with either '/', '?', 'http://' or 'https://'";
+                if (value.current.startsWith("#")) return true;
+                return "URL must start with '/', '?', '#', 'http://' or 'https://'";
             }),
         }),
         defineField({

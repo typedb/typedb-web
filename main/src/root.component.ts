@@ -6,6 +6,7 @@ import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
 import { FooterComponent } from "./navigation/footer/footer.component";
 import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
 import { ContentService } from "./service/content.service";
+import { DialogService } from "./service/dialog.service";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
@@ -25,6 +26,7 @@ export class RootComponent {
     private readonly matIconRegistry = inject(MatIconRegistry);
     private readonly domSanitizer = inject(DomSanitizer);
     private readonly contentService = inject(ContentService);
+    private readonly dialogService = inject(DialogService);
     private readonly changeDet = inject(ChangeDetectorRef);
     private readonly analyticsService = inject(AnalyticsService);
     private readonly router = inject(Router);
@@ -43,6 +45,7 @@ export class RootComponent {
 
         if (isPlatformBrowser(this.platformId)) {
             this.analyticsService.google.loadScriptTag();
+            this.dialogService.initHashListener();
 
             if (environment.env === "production") {
                 // Production: static pages, no SPA navigation

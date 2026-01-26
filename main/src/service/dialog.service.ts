@@ -1,32 +1,68 @@
 import { ComponentType } from "@angular/cdk/portal";
-import { inject, Injectable } from "@angular/core";
+import { DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs";
 import { ContactDialogComponent } from "../framework/dialog/contact/contact-dialog.component";
 import { FeedbackDialogComponent } from "../framework/dialog/feedback/feedback-dialog.component";
 import { NewsletterDialogComponent } from "../framework/dialog/newsletter/newsletter-dialog.component";
 import { PricingDialogComponent } from "../framework/dialog/pricing/pricing-dialog.component";
+
+type DialogType = "newsletter" | "feedback" | "contact" | "pricing";
 
 @Injectable({
     providedIn: "root",
 })
 export class DialogService {
     current?: MatDialogRef<unknown>;
-    private readonly _router = inject(Router);
-    private readonly activatedRoute = inject(ActivatedRoute);
+    private readonly router = inject(Router);
     private readonly dialog = inject(MatDialog);
+    private readonly document = inject(DOCUMENT);
+    private readonly platformId = inject(PLATFORM_ID);
+    private hashListenerInitialised = false;
 
-    open<T>(component: ComponentType<T>, config?: MatDialogConfig<unknown> | undefined) {
-        this.closeCurrent();
-        const newDialog = this.dialog.open(component, config);
-        newDialog.afterClosed().subscribe(() => {
-            this._router.navigate([], {
-                relativeTo: this.activatedRoute,
-                queryParams: { dialog: undefined },
-                queryParamsHandling: "merge",
-            });
+    initHashListener() {
+        if (this.hashListenerInitialised || !isPlatformBrowser(this.platformId)) return;
+        this.hashListenerInitialised = true;
+
+        this.checkAndOpenDialogFromHash();
+
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe(() => {
+            this.checkAndOpenDialogFromHash();
         });
-        this.current = newDialog;
+    }
+
+    private checkAndOpenDialogFromHash() {
+        const hash = this.document.location?.hash?.slice(1) as DialogType | undefined;
+        if (!hash) return;
+
+        const dialogOpeners: Record<DialogType, () => void> = {
+            newsletter: () => this.openNewsletterDialog(),
+            feedback: () => this.openFeedbackDialog(),
+            contact: () => this.openContactDialog(),
+            pricing: () => this.openPricingDialog(),
+        };
+
+        const opener = dialogOpeners[hash];
+        if (opener) {
+            opener();
+            this.clearHash();
+        }
+    }
+
+    private clearHash() {
+        const location = this.document.location;
+        if (location) {
+            history.replaceState(null, "", location.pathname + location.search);
+        }
+    }
+
+    private open<T>(component: ComponentType<T>, config?: MatDialogConfig<unknown> | undefined) {
+        this.closeCurrent();
+        this.current = this.dialog.open(component, config);
     }
 
     closeCurrent() {
