@@ -150,6 +150,11 @@ export class BlogPostPageComponent implements OnInit {
         this.doc.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });
+        // Fix hash-only links broken by <base href="/"> - rewrite to include current path
+        this.doc.querySelectorAll("article a[href^='#']").forEach((el) => {
+            const anchor = el as HTMLAnchorElement;
+            anchor.href = `${window.location.pathname}${anchor.getAttribute("href")}`;
+        });
         let anchorIndex = 0;
         this.doc.querySelectorAll(
             "article h2:not([id]), article h3:not([id]), article h4:not([id]), article h5:not([id]), article h6:not([id])",
