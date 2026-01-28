@@ -10,7 +10,7 @@ import { DialogService } from "./service/dialog.service";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 import { AnalyticsService } from "./service/analytics.service";
 import { filter } from "rxjs";
-import { LocationStrategy, ViewportScroller, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { LocationStrategy, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { environment } from "./environment/environment";
 
 @Component({
@@ -31,7 +31,6 @@ export class RootComponent {
     private readonly analyticsService = inject(AnalyticsService);
     private readonly router = inject(Router);
     private readonly activatedRoute = inject(ActivatedRoute);
-    private readonly viewportScroller = inject(ViewportScroller);
     private readonly locationStrategy = inject(LocationStrategy);
     private readonly location = inject(Location);
     private readonly document = inject(DOCUMENT);
@@ -72,7 +71,6 @@ export class RootComponent {
     }
 
     private initScrollBehaviour() {
-        this.viewportScroller.setOffset([0, 112]);
         this.router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
             const { anchor, position } = ev;
             this.contentService.data.subscribe((_data) => {
