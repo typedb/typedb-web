@@ -17,7 +17,9 @@ export class RichTextComponent {
     @Input() value!: string | PortableText;
 
     @HostBinding("innerHtml") get innerHtml(): SafeHtml {
-        return typeof this.value === "string" ? this.value : new HtmlPipe(this.sanitizer, this.platformId).transform(this.value);
+        return typeof this.value === "string"
+            ? this.sanitizer.bypassSecurityTrustHtml(this.value)
+            : new HtmlPipe(this.sanitizer, this.platformId).transform(this.value);
     }
 
     constructor(private sanitizer: DomSanitizer) {}
