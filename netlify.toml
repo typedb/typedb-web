@@ -6,7 +6,7 @@ ignore = "/bin/false"
 pretty_urls = false
 
 [context.production]
-command = "NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter typedb-web-main build:prod"
+command = "NODE_OPTIONS=--max-old-space-size=8192 pnpm --filter typedb-web-main build:prod"
 publish = "main/dist/main/browser"
 
 [context.master]
@@ -18,7 +18,7 @@ command = "pnpm --filter typedb-web-main build:dev"
 publish = "main/dist/main/browser"
 
 [context.ssr]
-command = "NODE_OPTIONS=--max-old-space-size=4096 pnpm --filter typedb-web-main build:ssr"
+command = "NODE_OPTIONS=--max-old-space-size=8192 pnpm --filter typedb-web-main build:ssr"
 publish = "main/dist/main/browser"
 
 [context.deploy-preview]

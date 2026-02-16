@@ -6,6 +6,10 @@ td-actions {
     gap: 16px;
     margin-top: 40px;
 
+    > td-button:first-child > a.button-frameless {
+        padding-left: 0;
+    }
+
     @media (max-width: media.$max-width-mobile) {
         margin-top: 32px;
     }
