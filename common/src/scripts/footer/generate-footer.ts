@@ -129,9 +129,9 @@ const getContactLink = (contactMedia: string, communityResources: Record<string,
     switch (contactMedia) {
         case "contactForm":
             return {
-                destination: { current: "/support#get-in-touch-about-typedb" },
-                type: "autoDetect",
-                opensNewTab: true
+                destination: { current: "#contact" },
+                type: "route",
+                opensNewTab: false
             };
         case "discord":
             return {

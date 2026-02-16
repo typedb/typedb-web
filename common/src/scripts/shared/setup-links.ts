@@ -15,7 +15,7 @@ export const setupLinks = (el: HTMLElement | null, router: AbstractRouter) => {
             }
             ev.preventDefault();
 
-            const url = href.startsWith("?") ? `${window.location.pathname}${href}` : href;
+            const url = href.startsWith("?") || href.startsWith("#") ? `${window.location.pathname}${href}` : href;
             router.navigateByUrl(url);
         }),
     );
