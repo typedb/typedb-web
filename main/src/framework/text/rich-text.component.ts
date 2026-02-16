@@ -14,12 +14,13 @@ import { HtmlPipe } from "./html.pipe";
 })
 export class RichTextComponent {
     private readonly platformId = inject(PLATFORM_ID);
-    @Input() value!: string | PortableText;
 
-    @HostBinding("innerHtml") get innerHtml(): SafeHtml {
-        return typeof this.value === "string"
-            ? this.sanitizer.bypassSecurityTrustHtml(this.value)
-            : new HtmlPipe(this.sanitizer, this.platformId).transform(this.value);
+    @HostBinding("innerHtml") safeHtml: SafeHtml = "";
+
+    @Input() set value(value: string | PortableText) {
+        this.safeHtml = typeof value === "string"
+            ? this.sanitizer.bypassSecurityTrustHtml(value)
+            : new HtmlPipe(this.sanitizer, this.platformId).transform(value);
     }
 
     constructor(private sanitizer: DomSanitizer) {}
