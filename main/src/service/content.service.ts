@@ -20,7 +20,13 @@ import { environment } from "src/environment/environment";
 
 import { WordpressService } from "./wordpress.service";
 
-const postsApiUrl = `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts`;
+const postsApiUrl = `https://public-api.wordpress.com/wp/v2/sites/typedb.wordpress.com/posts`;
+
+interface WPV2Post {
+    id: number;
+    slug: string;
+    content: { rendered: string };
+}
 
 /**
  * Retry configuration for HTTP calls with exponential backoff.
@@ -126,9 +132,10 @@ export class ContentService {
     private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
         return combineLatest([
             this.data,
-            this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`).pipe(retry(RETRY_CONFIG)),
+            this.http.get<WPV2Post[]>(`${postsApiUrl}?slug=${slug}`).pipe(retry(RETRY_CONFIG)),
         ]).pipe(
-            map(([data, wpPost]) => {
+            map(([data, wpPosts]) => {
+                const wpPost: WordpressPost = { ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered };
                 const sanityArticles = data.getDocumentsByType<SanityArticle>(schemaName);
                 return articleFromApi(sanityArticles.find((x) => x.slug.current === slug)!, data, wpPost) as T;
             }),
@@ -152,9 +159,10 @@ export class ContentService {
     private fetchLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
         return combineLatest([
             this.data,
-            this.http.get<WordpressPost>(`${postsApiUrl}/slug:${slug}`).pipe(retry(RETRY_CONFIG)),
+            this.http.get<WPV2Post[]>(`${postsApiUrl}?slug=${slug}`).pipe(retry(RETRY_CONFIG)),
         ]).pipe(
-            map(([data, wpPost]) => {
+            map(([data, wpPosts]) => {
+                const wpPost: WordpressPost = { ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered };
                 const sanityLegalDocuments = data.getDocumentsByType<SanityLegalDocument>(legalDocumentSchemaName);
                 return LegalDocument.fromApi(sanityLegalDocuments.find((x) => x.slug.current === slug)!, data, wpPost);
             }),

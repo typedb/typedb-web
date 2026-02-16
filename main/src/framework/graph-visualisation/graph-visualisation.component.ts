@@ -1,13 +1,16 @@
 /* eslint-disable */
 import { BreakpointObserver } from "@angular/cdk/layout";
+import { isPlatformBrowser } from "@angular/common";
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    inject,
     Input,
     NgZone,
     OnDestroy,
+    PLATFORM_ID,
     ViewChild,
     ViewEncapsulation,
 } from "@angular/core";
@@ -46,6 +49,7 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     @Input() graph!: GraphVisualisation;
     @ViewChild("graphContainer") graphContainerEl!: ElementRef<HTMLElement>;
 
+    private platformId = inject(PLATFORM_ID);
     private onDestroy = () => {};
     private breakpointSubscription = Subscription.EMPTY;
 
@@ -55,6 +59,7 @@ export class GraphVisualisationComponent implements AfterViewInit, OnDestroy {
     ) {}
 
     ngAfterViewInit() {
+        if (!isPlatformBrowser(this.platformId)) return;
         this.breakpointSubscription = this.breakpointObserver.observe("(max-width:960px)").subscribe(({ matches }) => {
             this.onDestroy();
             this.onDestroy = this._ngZone.runOutsideAngular(
