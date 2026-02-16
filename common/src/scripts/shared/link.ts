@@ -22,9 +22,13 @@ export const linkHtml = ({ content, link, id, urlPrefix, attributes = {} }: {
 };
 
 const href = (link: Link, urlPrefix: string) => {
+    const dest = link.destination.current;
+    if (dest.startsWith("#") || dest.startsWith("?")) {
+        return dest;
+    }
     try {
-        return new URL(link.destination.current, urlPrefix).toString();
+        return new URL(dest, urlPrefix).toString();
     } catch {
-        return link.destination.current;
+        return dest;
     }
 };
