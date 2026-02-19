@@ -75,7 +75,7 @@ const generateNavSection = (params: GenerateParams) => {
             const contactMedias: Record<string, string> = {
                 forum: "Discuss on Forum",
                 discord: "Chat on Discord",
-                contactForm: "Contact Us",
+                contactForm: "Get in Touch",
                 feedbackForm: "Provide Feedback",
             };
             const iconClasses = ["td-footer-icon", `td-footer-icon-${contactMedia}`].join(" ");
