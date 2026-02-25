@@ -9,7 +9,7 @@ import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
 import { AnalyticsService } from "./service/analytics.service";
-import { filter } from "rxjs";
+import { filter, first } from "rxjs";
 import { LocationStrategy, Location, DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { environment } from "./environment/environment";
 
@@ -73,7 +73,12 @@ export class RootComponent {
     private initScrollBehaviour() {
         this.router.events.pipe(filter((ev: RouterEvent): ev is Scroll => ev instanceof Scroll)).subscribe((ev) => {
             const { anchor, position } = ev;
-            this.contentService.data.subscribe((_data) => {
+            const originBefore = this._originBeforeNavigation;
+            const pathnameBefore = this._pathnameBeforeNavigation;
+            this._originBeforeNavigation = this.document.location?.origin || '';
+            this._pathnameBeforeNavigation = this.locationPathname();
+
+            this.contentService.data.pipe(first()).subscribe((_data) => {
                 const state = this.location.getState();
                 const preventScrollToAnchor =
                     typeof state === "object" &&
@@ -93,23 +98,20 @@ export class RootComponent {
                     setTimeout(() => {
                         this.document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" });
                     });
-                } else if (this.shouldScrollToTop()) {
+                } else if (this.shouldScrollToTop(originBefore, pathnameBefore)) {
                     scrollTo(0, 0);
                 }
-
-                this._originBeforeNavigation = this.document.location?.origin || '';
-                this._pathnameBeforeNavigation = this.locationPathname();
             });
         });
     }
 
-    private shouldScrollToTop(): boolean {
-        if (this.pathIsBlogLandingPage(this._pathnameBeforeNavigation) && this.pathIsBlogLandingPage(this.locationPathname())) {
+    private shouldScrollToTop(originBefore: string, pathnameBefore: string): boolean {
+        if (this.pathIsBlogLandingPage(pathnameBefore) && this.pathIsBlogLandingPage(this.locationPathname())) {
             return false;
         }
-        
-        if (this._originBeforeNavigation !== this.document.location?.origin || '') return true;
-        if (this._pathnameBeforeNavigation !== this.locationPathname()) return true;
+
+        if (originBefore !== (this.document.location?.origin || '')) return true;
+        if (pathnameBefore !== this.locationPathname()) return true;
         return false;
     }
 
