@@ -75,7 +75,7 @@ const generateNavSection = (params: GenerateParams) => {
             const contactMedias: Record<string, string> = {
                 forum: "Discuss on Forum",
                 discord: "Chat on Discord",
-                contactForm: "Contact Us",
+                contactForm: "Get in Touch",
                 feedbackForm: "Provide Feedback",
             };
             const iconClasses = ["td-footer-icon", `td-footer-icon-${contactMedia}`].join(" ");
@@ -129,9 +129,9 @@ const getContactLink = (contactMedia: string, communityResources: Record<string,
     switch (contactMedia) {
         case "contactForm":
             return {
-                destination: { current: "/support#get-in-touch-about-typedb" },
-                type: "autoDetect",
-                opensNewTab: true
+                destination: { current: "#contact" },
+                type: "route",
+                opensNewTab: false
             };
         case "discord":
             return {
