@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, Pipe, PipeTransform, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, Pipe, PipeTransform, signal, ViewEncapsulation } from "@angular/core";
 import { MatDialogContent, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
 import { first } from "rxjs";
 import { MediaQueryService } from "../../../service/media-query.service";
@@ -36,13 +36,13 @@ export class ProviderPipe implements PipeTransform {
 export class PricingDialogComponent implements OnInit {
     providerId: ProviderID = "gcp";
     providerIds: ProviderID[] = ["gcp", "aws"];
-    loading = true;
+    loading = signal(true);
 
     constructor(public dialogRef: MatDialogRef<PricingDialogComponent>, private mediaQuery: MediaQueryService) {}
 
     ngOnInit() {
         setTimeout(() => {
-            this.loading = false;
+            this.loading.set(false);
         }, 250 + Math.random() * 100);
     }
 
@@ -61,9 +61,9 @@ export class PricingDialogComponent implements OnInit {
         this.providerId = value;
         this.mediaQuery.isMobile$.pipe(first()).subscribe((isMobile) => {
             if (isMobile) {
-                this.loading = true;
+                this.loading.set(true);
                 setTimeout(() => {
-                    this.loading = false;
+                    this.loading.set(false);
                 }, 250 + Math.random() * 100);
             }
         });
