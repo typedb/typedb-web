@@ -4,7 +4,6 @@
 @use "shapes";
 
 html, body {
-    color-scheme: dark;
     background-color: var(--body-background);
     color: var(--color-secondary-extra-light-grey);
     font-size: var(--font-size-base);
@@ -84,7 +83,7 @@ button {
 input, select, textarea {
     font-family: var(--font-family-default);
     &::placeholder {
-        color: rgba(colors.$secondary-light-grey, 0.8);
+        color: var(--theme-secondary-light-grey-08);
         font-style: italic;
     }
 }
@@ -339,12 +338,12 @@ td-form-actions, .td-form-actions {
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
         border: shapes.$border;
-        box-shadow: 0 3px 26px 0 rgba(colors.$purple, 0.4);
+        box-shadow: 0 3px 26px 0 var(--theme-purple-04);
 
         &:hover {
             transform: translateY(0);
             background-color: var(--color-light-purple);
-            box-shadow: 0 3px 26px 0 rgba(colors.$secondary-light-grey, 0.2);
+            box-shadow: 0 3px 26px 0 var(--theme-secondary-light-grey-02);
         }
     }
 
@@ -374,14 +373,14 @@ td-form .form-row {
 }
 
 .admonitionblock {
-    --important-color: #{colors.$secondary-yellow};
-    --important-background: #{rgba(colors.$secondary-yellow, 0.09)};
-    --note-color: #{colors.$secondary-blue};
-    --note-background: #{rgba(colors.$secondary-blue, 0.09)};
-    --tip-color: #{colors.$green};
-    --tip-background: #{rgba(colors.$green, 0.09)};
-    --warning-color: #{colors.$red};
-    --warning-background: #{rgba(colors.$red, 0.09)};
+    --important-color: var(--theme-secondary-yellow);
+    --important-background: var(--theme-secondary-yellow-009);
+    --note-color: var(--theme-secondary-blue);
+    --note-background: var(--theme-secondary-blue-009);
+    --tip-color: var(--theme-green);
+    --tip-background: var(--theme-green-009);
+    --warning-color: var(--theme-red);
+    --warning-background: var(--theme-red-009);
 
     position: relative;
     margin: 0.5rem 0 1.5rem;
@@ -462,7 +461,7 @@ td-form .form-row {
 }
 
 .admonitionblock.attention i {
-    color: colors.$secondary-yellow;
+    color: var(--theme-secondary-yellow);
 }
 
 td-feedback-dialog {
@@ -485,10 +484,10 @@ td-feedback-dialog {
     justify-content: center;
     width: 32px;
     height: 32px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--theme-overlay-bg);
     backdrop-filter: blur(8px);
     border: shapes.$border;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--theme-overlay-text);
     border-radius: 8px;
     cursor: pointer;
     opacity: 0;
@@ -513,10 +512,10 @@ td-feedback-dialog {
     }
 
     &:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: colors.$secondary-mid-deep-grey;
-        color: rgba(255, 255, 255, 1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background: var(--theme-overlay-bg);
+        border-color: var(--theme-secondary-mid-deep-grey);
+        color: var(--theme-overlay-text-hover);
+        box-shadow: 0 4px 12px var(--theme-overlay-shadow);
     }
 }
 

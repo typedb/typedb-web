@@ -1,8 +1,6 @@
-@use "colors";
-
 $border-radius: 16px;
 $border-radius-small: 8px;
-$border: 1px solid colors.$light-purple;
+$border: 1px solid var(--theme-light-purple);
 
 $section-page-margin: 20px;
 $section-width: 1536px;

@@ -1,41 +1,42 @@
-@use "colors";
 @use "media";
 @use "shapes" as *;
 @use "typography";
 
+@forward "theme-tokens";
+
 :root {
-    /* colors */
-    --color-white: #{colors.$white};
-    --color-grey: #{colors.$grey};
-    --color-light-purple: #{colors.$light-purple};
-    --color-purple: #{colors.$purple};
-    --color-deep-purple: #{colors.$deep-purple};
-    --color-black-purple: #{colors.$black-purple};
-    --color-black: #{colors.$black};
-    --color-green: #{colors.$green};
-    --color-red: #{colors.$red};
+    /* colors - aliased from theme tokens for backward compatibility */
+    --color-white: var(--theme-white);
+    --color-grey: var(--theme-grey);
+    --color-light-purple: var(--theme-light-purple);
+    --color-purple: var(--theme-purple);
+    --color-deep-purple: var(--theme-deep-purple);
+    --color-black-purple: var(--theme-black-purple);
+    --color-black: var(--theme-black);
+    --color-green: var(--theme-green);
+    --color-red: var(--theme-red);
 
-    --color-secondary-extra-light-grey: #{colors.$secondary-extra-light-grey};
-    --color-secondary-light-grey: #{colors.$secondary-light-grey};
-    --color-secondary-grey: #{colors.$secondary-grey};
-    --color-secondary-mid-deep-grey: #{colors.$secondary-mid-deep-grey};
-    --color-secondary-deep-grey: #{colors.$secondary-deep-grey};
-    --color-secondary-purple: #{colors.$secondary-purple};
-    --color-secondary-yellow: #{colors.$secondary-yellow};
-    --color-secondary-pink: #{colors.$secondary-pink};
-    --color-secondary-blue: #{colors.$secondary-blue};
+    --color-secondary-extra-light-grey: var(--theme-secondary-extra-light-grey);
+    --color-secondary-light-grey: var(--theme-secondary-light-grey);
+    --color-secondary-grey: var(--theme-secondary-grey);
+    --color-secondary-mid-deep-grey: var(--theme-secondary-mid-deep-grey);
+    --color-secondary-deep-grey: var(--theme-secondary-deep-grey);
+    --color-secondary-purple: var(--theme-secondary-purple);
+    --color-secondary-yellow: var(--theme-secondary-yellow);
+    --color-secondary-pink: var(--theme-secondary-pink);
+    --color-secondary-blue: var(--theme-secondary-blue);
 
-    --content-border-color: var(--color-light-purple);
+    --content-border-color: var(--theme-light-purple);
 
-    --body-background: var(--color-black);
-    --body-font-color: var(--color-secondary-extra-light-grey);
-    --body-heading-color: var(--color-white);
-    --code-background: var(--color-deep-purple);
-    --code-font-color: var(--color-secondary-pink);
-    --pre-font-color: #{colors.$prism-white};
-    --table-header-background: var(--color-deep-purple);
-    --table-body-background: var(--color-purple);
-    --table-footer-background: var(--color-purple);
+    --body-background: var(--theme-black);
+    --body-font-color: var(--theme-secondary-extra-light-grey);
+    --body-heading-color: var(--theme-white);
+    --code-background: var(--theme-deep-purple);
+    --code-font-color: var(--theme-secondary-pink);
+    --pre-font-color: var(--theme-prism-white);
+    --table-header-background: var(--theme-deep-purple);
+    --table-body-background: var(--theme-purple);
+    --table-footer-background: var(--theme-purple);
 
     /* sizes */
     --border-radius: #{$border-radius};

@@ -1,32 +1,30 @@
-@use "colors" as *;
-
 code[class*="language-"],
 pre[class*="language-"] {
-    color: $prism-white;
+    color: var(--theme-prism-white);
 }
 
 .token.argument {
-    color: $prism-white;
+    color: var(--theme-prism-white);
     font-style: italic;
 }
 
 .token.comment {
-    color: $prism-very-grey;
+    color: var(--theme-prism-very-grey);
     font-style: italic;
 }
 
 .token.super,
 .token.type {
-    color: $prism-cyan;
+    color: var(--theme-prism-cyan);
     font-style: italic;
 }
 
 .token.variable {
-    color: $prism-cyan;
+    color: var(--theme-prism-cyan);
 }
 
 .token.modifier {
-    color: $prism-blue;
+    color: var(--theme-prism-blue);
     font-style: italic;
 }
 
@@ -34,55 +32,55 @@ pre[class*="language-"] {
 .token.number,
 .token.datetime,
 .token.constant {
-    color: $prism-blue;
+    color: var(--theme-prism-blue);
 }
 
 .token.function {
-    color: $prism-light-green;
+    color: var(--theme-prism-light-green);
 }
 
 .token.string {
-    color: $prism-yellow;
+    color: var(--theme-prism-yellow);
 }
 
 .token.operator,
 .token.keyword,
 .token.punctuation,
 .token.special {
-    color: $prism-pink;
+    color: var(--theme-prism-pink);
 }
 
 .token.constraint,
 .token.local-name {
-    color: $prism-purple;
+    color: var(--theme-prism-purple);
 }
 
 .token.object_label {
-    color: $prism-grey;
+    color: var(--theme-prism-grey);
 }
 
 .token.irrelevant {
-    color: $prism-very-grey;
+    color: var(--theme-prism-very-grey);
 }
 
 .token.annotation {
-    color: $prism-orange;
+    color: var(--theme-prism-orange);
 }
 
 .token.command {
-    color: $prism-yellow-orange;
+    color: var(--theme-prism-yellow-orange);
 }
 
 .token.intention {
-    color: $prism-orange;
+    color: var(--theme-prism-orange);
     font-style: italic;
 }
 
 .token.console {
-    color: $prism-yellow-orange;
+    color: var(--theme-prism-yellow-orange);
     font-style: italic;
 }
 
 .token.error {
-    color: $prism-red;
+    color: var(--theme-prism-red);
 }

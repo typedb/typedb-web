@@ -1,7 +1,6 @@
 @use "colors";
 @use "media";
 @use "shapes";
-@use "sass:color";
 
 @mixin section-width($offset: 0px) {
     & {
@@ -88,14 +87,14 @@
     border-color: var(--color-green);
     background: transparent;
     color: var(--color-green);
-    box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.25);
+    box-shadow: 0 0 6px 3px var(--theme-secondary-blue-025);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            border-color: #81EDE4;
-            color: color.mix(colors.$green, colors.$white, 35%);
-            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+            border-color: var(--theme-green-mix-white-35);
+            color: var(--theme-green-mix-white-35);
+            box-shadow: 0 0 6px 3px var(--theme-secondary-blue-035);
         }
     }
 }
@@ -106,7 +105,7 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 0 6px 3px rgba(colors.$green, 0.25);
+            box-shadow: 0 0 6px 3px var(--theme-green-025);
             color: #03D0BF;
         }
     }
@@ -118,7 +117,7 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 0 6px 3px rgba(colors.$red, 0.25);
+            box-shadow: 0 0 6px 3px var(--theme-red-025);
             color: #FDD257;
         }
     }
