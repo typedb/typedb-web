@@ -823,7 +823,7 @@ body {
         supporting-text-size: 14px,
         supporting-text-line-height: 18px,
         supporting-text-tracking: var(--body-letter-spacing),
-        container-color: colors.$secondary-mid-deep-grey,
+        container-color: var(--theme-secondary-mid-deep-grey),
         container-shape: shapes.$border-radius-small,
     ));
 
@@ -1075,7 +1075,10 @@ html.theme-light body {
     --mat-toolbar-container-background-color: var(--theme-deep-purple);
 
     /* Tooltip */
-    --mdc-plain-tooltip-container-color: var(--theme-secondary-mid-deep-grey);
+    --mdc-plain-tooltip-container-color: #4e4b63;
+    --mat-tooltip-container-color: #4e4b63;
+    --mat-tooltip-supporting-text-color: #f3f3f3;
+    --mat-tooltip-supporting-text-weight: var(--font-weight-regular);
 
     /* Tree */
     --mat-tree-node-text-color: var(--theme-white);
