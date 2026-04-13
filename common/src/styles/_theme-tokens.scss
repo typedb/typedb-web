@@ -1,0 +1,222 @@
+/*
+ * Theme Tokens
+ *
+ * Defines CSS custom properties for both dark and light themes.
+ * All themeable colors should be consumed via var(--theme-xxx) in components.
+ *
+ * Naming convention:
+ *   --theme-<color-name>         Raw palette color
+ *   --theme-<color-name>-<N>     Translucent variant at opacity N% (e.g. --theme-white-15 = 15% opacity)
+ *   --theme-prism-<name>         Syntax highlighting color
+ *   --theme-concept-<name>       TypeDB concept color (entity, relation, attribute, role)
+ */
+
+// ============================================================
+// DARK THEME (default)
+// ============================================================
+:root, html.dark {
+    // Core palette
+    --theme-white: #f3f3f3;
+    --theme-grey: #d7d4e5;
+    --theme-light-purple: #2d2a46;
+    --theme-purple: #1a182a;
+    --theme-deep-purple: #151322;
+    --theme-black-purple: #0e0d17;
+    --theme-black: #0e0e0e;
+    --theme-green: #02dac9;
+    --theme-red: #e96464;
+
+    // Secondary colors
+    --theme-secondary-extra-light-grey: #c4c4c4;
+    --theme-secondary-light-grey: #958fa8;
+    --theme-secondary-grey: #63607c;
+    --theme-secondary-mid-deep-grey: #4e4b63;
+    --theme-secondary-deep-grey: #383649;
+    --theme-secondary-dark-grey: #282634;
+    --theme-secondary-purple: #232135;
+    --theme-secondary-deep-green: #0cc7b8;
+    --theme-secondary-yellow: #ffe49e;
+    --theme-secondary-dark-yellow: #3d300f;
+    --theme-secondary-pink: #ff87dc;
+    --theme-secondary-blue: #7ba0ff;
+
+    // Translucent variants (pre-computed for use where rgba() with SCSS vars was needed)
+    --theme-green-015: rgba(2, 218, 201, 0.15);
+    --theme-green-008: rgba(2, 218, 201, 0.08);
+    --theme-green-009: rgba(2, 218, 201, 0.09);
+    --theme-green-025: rgba(2, 218, 201, 0.25);
+    --theme-green-04: rgba(2, 218, 201, 0.4);
+    --theme-red-015: rgba(233, 100, 100, 0.15);
+    --theme-red-009: rgba(233, 100, 100, 0.09);
+    --theme-red-025: rgba(233, 100, 100, 0.25);
+    --theme-white-015: rgba(243, 243, 243, 0.15);
+    --theme-white-08: rgba(243, 243, 243, 0.8);
+    --theme-black-05: rgba(14, 14, 14, 0.5);
+    --theme-purple-04: rgba(26, 24, 42, 0.4);
+    --theme-purple-02: rgba(26, 24, 42, 0.2);
+    --theme-light-purple-02: rgba(45, 42, 70, 0.2);
+    --theme-light-purple-03: rgba(45, 42, 70, 0.3);
+    --theme-light-purple-04: rgba(45, 42, 70, 0.4);
+    --theme-light-purple-05: rgba(45, 42, 70, 0.5);
+    --theme-light-purple-06: rgba(45, 42, 70, 0.6);
+    --theme-light-purple-09: rgba(45, 42, 70, 0.9);
+    --theme-secondary-light-grey-08: rgba(149, 143, 168, 0.8);
+    --theme-secondary-light-grey-02: rgba(149, 143, 168, 0.2);
+    --theme-secondary-blue-015: rgba(123, 160, 255, 0.15);
+    --theme-secondary-blue-025: rgba(123, 160, 255, 0.25);
+    --theme-secondary-blue-035: rgba(123, 160, 255, 0.35);
+    --theme-secondary-yellow-015: rgba(255, 228, 158, 0.15);
+    --theme-secondary-yellow-009: rgba(255, 228, 158, 0.09);
+    --theme-secondary-blue-009: rgba(123, 160, 255, 0.09);
+    --theme-relation-yellow-025: rgba(246, 201, 76, 0.25);
+
+    // Bento box subtle variants
+    --theme-deep-purple-045: rgba(21, 19, 34, 0.45);
+    --theme-light-purple-045: rgba(45, 42, 70, 0.45);
+    --theme-light-purple-027: rgba(45, 42, 70, 0.27);
+
+    // Pre-computed color.mix() results for dark theme
+    --theme-green-mix-purple: #017a6e;     // color.mix(green, purple)
+    --theme-green-mix-white-35: #81ede4;   // color.mix(green, white, 35%)
+    --theme-green-mix-black-15: #013330;   // color.mix(green, black, 15%)
+    --theme-red-mix-black-15: #2c1515;     // color.mix(red, black, 15%)
+
+    // Prism syntax highlighting
+    --theme-prism-white: #ece0ff;
+    --theme-prism-cyan: #55eae2;
+    --theme-prism-light-green: #02dac9;
+    --theme-prism-green: #4dc97c;
+    --theme-prism-red: #ff8080;
+    --theme-prism-pink: #ff7abd;
+    --theme-prism-blue: #82b6ff;
+    --theme-prism-purple: #c099f3;
+    --theme-prism-orange: #ffa187;
+    --theme-prism-yellow-orange: #ffc980;
+    --theme-prism-yellow: #ffe4a7;
+    --theme-prism-grey: #c69ec3;
+    --theme-prism-very-grey: #999999;
+    --theme-prism-brick: #b88484;
+
+    // TypeDB concept colors
+    --theme-attribute-blue: #78a0ff;
+    --theme-relation-yellow: #f6c94c;
+    --theme-entity-pink: #ff87dc;
+    --theme-role-orange: #b0740c;
+
+    // Copy overlay (semi-transparent white on dark bg)
+    --theme-overlay-bg: rgba(255, 255, 255, 0.1);
+    --theme-overlay-text: rgba(255, 255, 255, 0.8);
+    --theme-overlay-text-hover: rgba(255, 255, 255, 1);
+    --theme-overlay-shadow: rgba(0, 0, 0, 0.15);
+
+    color-scheme: dark;
+}
+
+// ============================================================
+// LIGHT THEME
+// ============================================================
+html.light {
+    // Core palette
+    --theme-white: #1a1a2e;
+    --theme-grey: #3a3a52;
+    --theme-light-purple: #d0cde4;
+    --theme-purple: #e8e6f2;
+    --theme-deep-purple: #f0eef6;
+    --theme-black-purple: #f5f3fa;
+    --theme-black: #fafafa;
+    --theme-green: #00a896;
+    --theme-red: #d14545;
+
+    // Secondary colors
+    --theme-secondary-extra-light-grey: #4a4a5a;
+    --theme-secondary-light-grey: #6b6580;
+    --theme-secondary-grey: #8a86a0;
+    --theme-secondary-mid-deep-grey: #b0adc0;
+    --theme-secondary-deep-grey: #d0cde0;
+    --theme-secondary-dark-grey: #e0dee8;
+    --theme-secondary-purple: #e8e5f0;
+    --theme-secondary-deep-green: #009e90;
+    --theme-secondary-yellow: #b89a30;
+    --theme-secondary-dark-yellow: #f5ecd0;
+    --theme-secondary-pink: #c050a0;
+    --theme-secondary-blue: #4070dd;
+
+    // Translucent variants
+    --theme-green-015: rgba(0, 168, 150, 0.15);
+    --theme-green-008: rgba(0, 168, 150, 0.08);
+    --theme-green-009: rgba(0, 168, 150, 0.09);
+    --theme-green-025: rgba(0, 168, 150, 0.25);
+    --theme-green-04: rgba(0, 168, 150, 0.4);
+    --theme-red-015: rgba(209, 69, 69, 0.15);
+    --theme-red-009: rgba(209, 69, 69, 0.09);
+    --theme-red-025: rgba(209, 69, 69, 0.25);
+    --theme-white-015: rgba(26, 26, 46, 0.15);
+    --theme-white-08: rgba(26, 26, 46, 0.8);
+    --theme-black-05: rgba(250, 250, 250, 0.5);
+    --theme-purple-04: rgba(232, 230, 242, 0.4);
+    --theme-purple-02: rgba(232, 230, 242, 0.2);
+    --theme-light-purple-02: rgba(208, 205, 228, 0.2);
+    --theme-light-purple-03: rgba(208, 205, 228, 0.3);
+    --theme-light-purple-04: rgba(208, 205, 228, 0.4);
+    --theme-light-purple-05: rgba(208, 205, 228, 0.5);
+    --theme-light-purple-06: rgba(208, 205, 228, 0.6);
+    --theme-light-purple-09: rgba(208, 205, 228, 0.9);
+    --theme-secondary-light-grey-08: rgba(107, 101, 128, 0.8);
+    --theme-secondary-light-grey-02: rgba(107, 101, 128, 0.2);
+    --theme-secondary-blue-015: rgba(64, 112, 221, 0.15);
+    --theme-secondary-blue-025: rgba(64, 112, 221, 0.25);
+    --theme-secondary-blue-035: rgba(64, 112, 221, 0.35);
+    --theme-secondary-yellow-015: rgba(184, 154, 48, 0.15);
+    --theme-secondary-yellow-009: rgba(184, 154, 48, 0.09);
+    --theme-secondary-blue-009: rgba(64, 112, 221, 0.09);
+    --theme-relation-yellow-025: rgba(184, 154, 48, 0.25);
+
+    // Bento box subtle variants
+    --theme-deep-purple-045: rgba(240, 238, 246, 0.45);
+    --theme-light-purple-045: rgba(208, 205, 228, 0.45);
+    --theme-light-purple-027: rgba(208, 205, 228, 0.27);
+
+    // Pre-computed color.mix() results for light theme
+    --theme-green-mix-purple: #74c7be;
+    --theme-green-mix-white-35: #005c52;
+    --theme-green-mix-black-15: #d9f5f2;
+    --theme-red-mix-black-15: #f5dada;
+
+    // Prism syntax highlighting (light-mode optimized for contrast on white bg)
+    --theme-prism-white: #2a2040;
+    --theme-prism-cyan: #007a6e;
+    --theme-prism-light-green: #008577;
+    --theme-prism-green: #2a8a50;
+    --theme-prism-red: #cc3333;
+    --theme-prism-pink: #c040a0;
+    --theme-prism-blue: #3366cc;
+    --theme-prism-purple: #7b44c0;
+    --theme-prism-orange: #cc5530;
+    --theme-prism-yellow-orange: #b87a10;
+    --theme-prism-yellow: #8a6d10;
+    --theme-prism-grey: #885080;
+    --theme-prism-very-grey: #666666;
+    --theme-prism-brick: #8a5050;
+
+    // TypeDB concept colors (slightly darker for white bg contrast)
+    --theme-attribute-blue: #4070dd;
+    --theme-relation-yellow: #b89a30;
+    --theme-entity-pink: #c050a0;
+    --theme-role-orange: #a06800;
+
+    // Copy overlay (semi-transparent dark on light bg)
+    --theme-overlay-bg: rgba(0, 0, 0, 0.08);
+    --theme-overlay-text: rgba(0, 0, 0, 0.6);
+    --theme-overlay-text-hover: rgba(0, 0, 0, 0.85);
+    --theme-overlay-shadow: rgba(0, 0, 0, 0.08);
+
+    color-scheme: light;
+
+    // Bump all font weights by 100 for better legibility on light backgrounds
+    --font-weight-bold: 800;
+    --font-weight-semi-bold: 700;
+    --font-weight-medium: 600;
+    --font-weight-regular: 500;
+    --font-weight-light: 400;
+    --font-weight-thin: 300;
+}

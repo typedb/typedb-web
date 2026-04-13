@@ -122,7 +122,7 @@ body {
     @include mat.button-overrides((
         text-label-text-size: 14px,
         text-label-text-tracking: typography.$letter-spacing,
-        text-label-text-weight: typography.$regular,
+        text-label-text-weight: var(--font-weight-regular),
         text-label-text-color: colors.$grey,
         text-container-height: 32px,
         text-container-shape: 16px,
@@ -131,7 +131,7 @@ body {
 
         filled-label-text-size: 14px,
         filled-label-text-tracking: typography.$letter-spacing,
-        filled-label-text-weight: typography.$regular,
+        filled-label-text-weight: var(--font-weight-regular),
         filled-label-text-color: colors.$grey,
         filled-disabled-container-color: rgba(255, 255, 255, 0.12),
         filled-disabled-label-text-color: rgba(255, 255, 255, 0.25),
@@ -146,7 +146,7 @@ body {
 
         outlined-label-text-size: 14px,
         outlined-label-text-tracking: #{typography.$letter-spacing},
-        outlined-label-text-weight: #{typography.$regular},
+        outlined-label-text-weight: var(--font-weight-regular),
         outlined-disabled-outline-color: #{rgba(255, 255, 255, 0.12)},
         outlined-disabled-label-text-color: rgba(255, 255, 255, 0.25),
         outlined-disabled-state-layer-color: transparent,
@@ -265,7 +265,7 @@ body {
         supporting-text-color: colors.$white,
         supporting-text-size: 14px,
         supporting-text-tracking: var(--body-letter-spacing),
-        supporting-text-weight: typography.$regular,
+        supporting-text-weight: var(--font-weight-regular),
     ));
 
     .mdc-dialog {
@@ -338,7 +338,7 @@ body {
         outlined-container-shape: shapes.$border-radius-small,
         outlined-label-text-size: 14px,
         outlined-label-text-tracking: var(--body-letter-spacing),
-        outlined-label-text-weight: typography.$regular,
+        outlined-label-text-weight: var(--font-weight-regular),
         outlined-label-text-color: rgba(colors.$secondary-light-grey, 0.8),
         outlined-outline-color: colors.$light-purple,
         outlined-hover-outline-color: colors.$secondary-grey,
@@ -352,7 +352,7 @@ body {
         --mat-form-field-container-text-line-height: 22px !important;
         --mat-form-field-container-text-size: 14px !important;
         --mat-form-field-container-text-tracking: #{typography.$letter-spacing !important};
-        --mat-form-field-container-text-weight: #{typography.$regular !important};
+        --mat-form-field-container-text-weight: var(--font-weight-regular) !important;
     }
 
     .mat-mdc-form-field-input-control {
@@ -550,7 +550,7 @@ body {
 
     @include mat.option-overrides((
         label-text-size: 14px,
-        label-text-weight: typography.$regular,
+        label-text-weight: var(--font-weight-regular),
         label-text-tracking: var(--body-letter-spacing),
     ));
 
@@ -701,7 +701,7 @@ body {
         header-container-height: 40px,
         header-headline-color: colors.$white,
         header-headline-size: 14px,
-        header-headline-weight: typography.$semi-bold,
+        header-headline-weight: var(--font-weight-semi-bold),
         row-item-container-height: 40px,
         row-item-outline-color: rgba(colors.$light-purple, 0.6),
     ));
@@ -785,7 +785,7 @@ body {
     .mat-mdc-tab, .mat-mdc-tab-nav-bar {
         --mat-tab-label-text-font: #{typography.$font-family-default};
         --mat-tab-label-text-size: 14px;
-        --mat-tab-label-text-weight: #{typography.$regular};
+        --mat-tab-label-text-weight: var(--font-weight-regular);
         --mat-tab-label-text-tracking: #{typography.$letter-spacing};
         --mat-tab-active-label-text-color: #{colors.$white};
         --mat-tab-active-hover-label-text-color: #{colors.$white};
@@ -836,7 +836,7 @@ body {
         container-background-color: transparent,
         node-min-height: 30px,
         node-text-size: 14px,
-        node-text-weight: typography.$regular,
+        node-text-weight: var(--font-weight-regular),
     ));
 
     mat-tree-node[aria-level="2"] {
@@ -852,4 +852,234 @@ body {
     @include mat.autocomplete-overrides((
         background-color: colors.$purple,
     ));
+}
+
+/* ============================================================
+ * LIGHT THEME Material overrides
+ *
+ * Overrides the Material CSS custom properties for light mode.
+ * The dark theme values above are baked at compile time; these
+ * runtime overrides swap them when html.light is active.
+ * ============================================================ */
+html.light body {
+    /* App background */
+    --mat-app-background-color: var(--theme-black);
+    --mat-app-text-color: var(--theme-white);
+    color: var(--theme-white);
+
+    /* System-level font weight tokens — most Material components fall back to these */
+    --mat-sys-body-large-weight: var(--font-weight-regular);
+    --mat-sys-body-medium-weight: var(--font-weight-regular);
+    --mat-sys-body-small-weight: var(--font-weight-regular);
+    --mat-sys-label-large-weight: var(--font-weight-medium);
+    --mat-sys-label-medium-weight: var(--font-weight-medium);
+    --mat-sys-label-small-weight: var(--font-weight-medium);
+    --mat-sys-title-small-weight: var(--font-weight-semi-bold);
+    --mat-sys-title-medium-weight: var(--font-weight-semi-bold);
+    --mat-sys-title-large-weight: var(--font-weight-semi-bold);
+
+    /* Ensure headings and icons inherit the light-mode text color */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--theme-white);
+    }
+
+    i {
+        color: inherit;
+    }
+
+    /* Icon button */
+    --mat-icon-button-icon-color: var(--theme-grey);
+    --mat-icon-button-disabled-icon-color: var(--theme-secondary-mid-deep-grey);
+
+    /* Button */
+    --mdc-text-button-label-text-color: var(--theme-grey);
+    --mat-button-text-label-text-color: var(--theme-grey);
+    --mdc-filled-button-label-text-color: var(--theme-grey);
+    --mat-button-filled-label-text-color: var(--theme-grey);
+    --mdc-outlined-button-label-text-color: var(--theme-grey);
+    --mat-button-outlined-label-text-color: var(--theme-grey);
+    --mdc-outlined-button-outline-color: var(--theme-light-purple);
+    --mat-button-outlined-outline-color: var(--theme-light-purple);
+    --mdc-text-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
+    --mdc-filled-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
+    --mdc-filled-button-disabled-container-color: rgba(0, 0, 0, 0.08);
+
+    .mat-mdc-unelevated-button {
+        border-color: var(--theme-light-purple);
+    }
+
+    .mat-mdc-unelevated-button:not(:disabled) {
+        background: var(--theme-deep-purple);
+    }
+
+    /* Button toggle */
+    --mat-button-toggle-divider-color: var(--theme-light-purple);
+    --mat-button-toggle-background-color: var(--theme-deep-purple);
+    --mat-button-toggle-text-color: var(--theme-white);
+    --mat-button-toggle-selected-state-background-color: var(--theme-secondary-purple);
+    --mat-button-toggle-selected-state-text-color: var(--theme-green);
+    --mat-button-toggle-disabled-state-background-color: var(--theme-secondary-dark-grey);
+    --mat-button-toggle-disabled-selected-state-background-color: var(--theme-secondary-deep-grey);
+    --mat-button-toggle-disabled-selected-state-text-color: var(--theme-grey);
+    --mat-button-toggle-label-text-weight: var(--font-weight-regular);
+
+    .mat-button-toggle:hover button:not([disabled]) {
+        color: var(--theme-green);
+    }
+
+    /* Checkbox */
+    --mdc-checkbox-selected-checkmark-color: var(--theme-purple);
+
+    /* Chips */
+    --mdc-chip-elevated-container-color: var(--theme-secondary-purple);
+
+    .mat-mdc-chip.mat-mdc-standard-chip {
+        &:hover, &.cdk-focused {
+            border-color: var(--theme-secondary-grey);
+        }
+
+        &.mat-mdc-chip-selected.mat-primary {
+            --mdc-chip-label-text-color: var(--theme-purple);
+            border-color: var(--theme-green);
+            --mdc-chip-with-icon-selected-icon-color: var(--theme-purple);
+        }
+    }
+
+    /* Dialog */
+    --mdc-dialog-container-color: var(--theme-deep-purple);
+    --mdc-dialog-subhead-color: var(--theme-white);
+    --mdc-dialog-supporting-text-color: var(--theme-white);
+
+    .mdc-dialog {
+        --mat-button-toggle-divider-color: var(--theme-secondary-mid-deep-grey);
+        --mat-button-toggle-background-color: var(--theme-secondary-purple);
+        --mat-button-toggle-selected-state-background-color: var(--theme-secondary-mid-deep-grey);
+        --mat-button-toggle-selected-state-text-color: var(--theme-green);
+    }
+
+    /* Divider */
+    --mat-divider-color: var(--theme-light-purple);
+
+    /* Form field */
+    --mdc-outlined-text-field-label-text-color: var(--theme-secondary-light-grey-08);
+    --mdc-outlined-text-field-outline-color: var(--theme-light-purple);
+    --mdc-outlined-text-field-hover-outline-color: var(--theme-secondary-grey);
+    --mdc-outlined-text-field-focus-outline-color: var(--theme-secondary-grey);
+    --mdc-outlined-text-field-input-text-color: var(--theme-white);
+    --mat-form-field-container-text-color: var(--theme-white);
+    --mdc-outlined-text-field-input-text-placeholder-color: var(--theme-secondary-grey);
+
+    /* FAB */
+    .mdc-fab.mat-accent {
+        --mat-fab-foreground-color: var(--theme-grey);
+        --mat-fab-disabled-state-foreground-color: var(--theme-secondary-mid-deep-grey);
+    }
+
+    /* Menu */
+    --mat-menu-container-color: var(--theme-secondary-purple);
+    --mat-menu-item-label-text-color: var(--theme-white);
+    --mat-menu-item-label-text-weight: var(--font-weight-regular);
+    --mat-menu-item-hover-state-layer-color: var(--theme-light-purple);
+    --mat-menu-item-focus-state-layer-color: var(--theme-light-purple);
+
+    .mat-mdc-menu-panel {
+        border-color: var(--theme-secondary-deep-grey);
+        --mat-divider-color: var(--theme-secondary-deep-grey);
+
+        aside {
+            color: var(--theme-secondary-light-grey);
+        }
+    }
+
+    /* Paginator */
+    --mat-paginator-container-text-color: var(--theme-white-08);
+
+    /* Progress spinner */
+    --mdc-circular-progress-active-indicator-color: var(--theme-grey);
+
+    /* Select */
+    --mat-select-panel-background-color: var(--theme-purple);
+    --mat-select-enabled-trigger-text-color: var(--theme-white);
+    --mat-select-trigger-text-color: var(--theme-white);
+    --mat-select-trigger-text-weight: var(--font-weight-regular);
+    --mat-select-enabled-arrow-color: var(--theme-secondary-light-grey);
+    --mat-select-focused-arrow-color: var(--theme-secondary-light-grey);
+    --mat-option-label-text-color: var(--theme-white);
+    --mat-option-label-text-weight: var(--font-weight-regular);
+    --mat-option-selected-state-label-text-color: var(--theme-green);
+
+    div.mat-mdc-select-panel {
+        border-color: var(--theme-secondary-deep-grey);
+    }
+
+    /* Sidenav */
+    --mat-sidenav-content-background-color: var(--theme-black);
+
+    /* Slide toggle */
+    .mat-mdc-slide-toggle {
+        .mdc-switch:enabled, .mdc-switch:enabled:focus, .mdc-switch:enabled:hover:not(:focus) {
+            .mdc-switch__track::after {
+                background: var(--theme-light-purple);
+            }
+        }
+    }
+
+    /* Stepper */
+    .mat-horizontal-stepper-header {
+        --mat-icon-color: var(--theme-purple);
+        --mat-stepper-header-icon-foreground-color: var(--theme-purple);
+        --mat-stepper-header-selected-state-icon-foreground-color: var(--theme-purple);
+    }
+
+    .mat-step-label.mat-step-label-selected {
+        color: var(--theme-white);
+    }
+
+    /* Table */
+    --mat-table-header-headline-color: var(--theme-white);
+    --mat-table-header-headline-weight: var(--font-weight-semi-bold);
+    --mat-table-row-item-label-text-color: var(--theme-white);
+    --mat-table-row-item-label-text-weight: var(--font-weight-regular);
+    --mat-table-row-item-outline-color: var(--theme-light-purple-06);
+
+    .mat-mdc-table tr.table-row-clickable:hover th,
+    .mat-mdc-table tr.table-row-clickable:hover td {
+        background-color: var(--theme-light-purple-06);
+    }
+
+    /* Tabs */
+    .mat-mdc-tab, .mat-mdc-tab-nav-bar {
+        --mat-tab-label-text-weight: var(--font-weight-regular);
+        --mat-tab-active-label-text-color: var(--theme-white);
+        --mat-tab-active-hover-label-text-color: var(--theme-white);
+        --mat-tab-active-focus-label-text-color: var(--theme-white);
+        --mat-tab-inactive-label-text-color: var(--theme-secondary-light-grey);
+        --mat-tab-inactive-hover-label-text-color: var(--theme-grey);
+        --mat-tab-inactive-focus-label-text-color: var(--theme-grey);
+        --mat-tab-active-indicator-color: var(--theme-secondary-light-grey);
+        --mat-tab-active-focus-indicator-color: var(--theme-secondary-light-grey);
+        --mat-tab-active-hover-indicator-color: var(--theme-secondary-light-grey);
+        --mat-tab-active-ripple-color: var(--theme-light-purple-03);
+        --mat-tab-inactive-ripple-color: var(--theme-light-purple-03);
+    }
+
+    .mat-mdc-tab.mdc-tab--active {
+        background: var(--theme-light-purple-05);
+    }
+
+    .mat-mdc-tab:hover:not(.mdc-tab--active) {
+        background: var(--theme-light-purple-03);
+    }
+
+    /* Toolbar */
+    --mat-toolbar-container-background-color: var(--theme-deep-purple);
+
+    /* Tooltip */
+    --mdc-plain-tooltip-container-color: var(--theme-secondary-mid-deep-grey);
+
+    /* Tree */
+    --mat-tree-node-text-color: var(--theme-white);
+
+    /* Autocomplete */
+    --mat-autocomplete-background-color: var(--theme-purple);
 }
