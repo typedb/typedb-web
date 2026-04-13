@@ -14,7 +14,7 @@
 // ============================================================
 // DARK THEME (default)
 // ============================================================
-:root, html.dark {
+:root, html.theme-dark {
     // Core palette
     --theme-white: #f3f3f3;
     --theme-grey: #d7d4e5;
@@ -115,7 +115,7 @@
 // ============================================================
 // LIGHT THEME
 // ============================================================
-html.light {
+html.theme-light {
     // Core palette
     --theme-white: #1a1a2e;
     --theme-grey: #3a3a52;

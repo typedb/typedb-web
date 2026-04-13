@@ -861,7 +861,7 @@ body {
  * The dark theme values above are baked at compile time; these
  * runtime overrides swap them when html.light is active.
  * ============================================================ */
-html.light body {
+html.theme-light body {
     /* App background */
     --mat-app-background-color: var(--theme-black);
     --mat-app-text-color: var(--theme-white);
