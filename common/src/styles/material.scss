@@ -359,6 +359,10 @@ body {
         -webkit-font-smoothing: auto !important; // overrides hacky Angular Material style
     }
 
+    .mat-internal-form-field {
+        -webkit-font-smoothing: auto;
+    }
+
     .mat-mdc-form-field {
         --mat-select-trigger-text-size: 14px;
 
