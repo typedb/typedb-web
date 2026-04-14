@@ -904,6 +904,7 @@ html.theme-light body {
     --mat-button-outlined-label-text-color: var(--theme-grey);
     --mdc-outlined-button-outline-color: var(--theme-light-purple);
     --mat-button-outlined-outline-color: var(--theme-light-purple);
+    --mat-button-outlined-state-layer-color: var(--theme-white);
     --mdc-text-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
     --mdc-filled-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
     --mdc-filled-button-disabled-container-color: rgba(0, 0, 0, 0.08);
@@ -926,6 +927,8 @@ html.theme-light body {
     --mat-button-toggle-disabled-selected-state-background-color: var(--theme-secondary-deep-grey);
     --mat-button-toggle-disabled-selected-state-text-color: var(--theme-grey);
     --mat-button-toggle-label-text-weight: var(--font-weight-regular);
+    --mat-button-toggle-state-layer-color: var(--theme-secondary-grey);
+    --mat-button-toggle-hover-state-layer-opacity: 0.15;
 
     .mat-button-toggle:hover button:not([disabled]) {
         color: var(--theme-green);
