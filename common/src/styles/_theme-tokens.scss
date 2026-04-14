@@ -11,97 +11,100 @@
  *   --theme-concept-<name>       TypeDB concept color (entity, relation, attribute, role)
  */
 
+@use "colors" as dark;
+@use "colors-light" as light;
+
 // ============================================================
 // DARK THEME (default)
 // ============================================================
 :root, html.theme-dark {
     // Core palette
-    --theme-white: #f3f3f3;
-    --theme-grey: #d7d4e5;
-    --theme-light-purple: #2d2a46;
-    --theme-purple: #1a182a;
-    --theme-deep-purple: #151322;
-    --theme-black-purple: #0e0d17;
-    --theme-black: #0e0e0e;
-    --theme-green: #02dac9;
-    --theme-red: #e96464;
+    --theme-white: #{dark.$white};
+    --theme-grey: #{dark.$grey};
+    --theme-light-purple: #{dark.$light-purple};
+    --theme-purple: #{dark.$purple};
+    --theme-deep-purple: #{dark.$deep-purple};
+    --theme-black-purple: #{dark.$black-purple};
+    --theme-black: #{dark.$black};
+    --theme-green: #{dark.$green};
+    --theme-red: #{dark.$red};
 
     // Secondary colors
-    --theme-secondary-extra-light-grey: #c4c4c4;
-    --theme-secondary-light-grey: #958fa8;
-    --theme-secondary-grey: #63607c;
-    --theme-secondary-mid-deep-grey: #4e4b63;
-    --theme-secondary-deep-grey: #383649;
-    --theme-secondary-dark-grey: #282634;
-    --theme-secondary-purple: #232135;
-    --theme-secondary-deep-green: #0cc7b8;
-    --theme-secondary-yellow: #ffe49e;
-    --theme-secondary-dark-yellow: #3d300f;
-    --theme-secondary-pink: #ff87dc;
-    --theme-secondary-blue: #7ba0ff;
+    --theme-secondary-extra-light-grey: #{dark.$secondary-extra-light-grey};
+    --theme-secondary-light-grey: #{dark.$secondary-light-grey};
+    --theme-secondary-grey: #{dark.$secondary-grey};
+    --theme-secondary-mid-deep-grey: #{dark.$secondary-mid-deep-grey};
+    --theme-secondary-deep-grey: #{dark.$secondary-deep-grey};
+    --theme-secondary-dark-grey: #{dark.$secondary-dark-grey};
+    --theme-secondary-purple: #{dark.$secondary-purple};
+    --theme-secondary-deep-green: #{dark.$secondary-deep-green};
+    --theme-secondary-yellow: #{dark.$secondary-yellow};
+    --theme-secondary-dark-yellow: #{dark.$secondary-dark-yellow};
+    --theme-secondary-pink: #{dark.$secondary-pink};
+    --theme-secondary-blue: #{dark.$secondary-blue};
 
-    // Translucent variants (pre-computed for use where rgba() with SCSS vars was needed)
-    --theme-green-015: rgba(2, 218, 201, 0.15);
-    --theme-green-008: rgba(2, 218, 201, 0.08);
-    --theme-green-009: rgba(2, 218, 201, 0.09);
-    --theme-green-025: rgba(2, 218, 201, 0.25);
-    --theme-green-04: rgba(2, 218, 201, 0.4);
-    --theme-red-015: rgba(233, 100, 100, 0.15);
-    --theme-red-009: rgba(233, 100, 100, 0.09);
-    --theme-red-025: rgba(233, 100, 100, 0.25);
-    --theme-white-015: rgba(243, 243, 243, 0.15);
-    --theme-white-08: rgba(243, 243, 243, 0.8);
-    --theme-black-05: rgba(14, 14, 14, 0.5);
-    --theme-purple-04: rgba(26, 24, 42, 0.4);
-    --theme-purple-02: rgba(26, 24, 42, 0.2);
-    --theme-light-purple-02: rgba(45, 42, 70, 0.2);
-    --theme-light-purple-03: rgba(45, 42, 70, 0.3);
-    --theme-light-purple-04: rgba(45, 42, 70, 0.4);
-    --theme-light-purple-05: rgba(45, 42, 70, 0.5);
-    --theme-light-purple-06: rgba(45, 42, 70, 0.6);
-    --theme-light-purple-09: rgba(45, 42, 70, 0.9);
-    --theme-secondary-light-grey-08: rgba(149, 143, 168, 0.8);
-    --theme-secondary-light-grey-02: rgba(149, 143, 168, 0.2);
-    --theme-secondary-blue-015: rgba(123, 160, 255, 0.15);
-    --theme-secondary-blue-025: rgba(123, 160, 255, 0.25);
-    --theme-secondary-blue-035: rgba(123, 160, 255, 0.35);
-    --theme-secondary-yellow-015: rgba(255, 228, 158, 0.15);
-    --theme-secondary-yellow-009: rgba(255, 228, 158, 0.09);
-    --theme-secondary-blue-009: rgba(123, 160, 255, 0.09);
-    --theme-relation-yellow-025: rgba(246, 201, 76, 0.25);
+    // Translucent variants
+    --theme-green-015: #{rgba(dark.$green, 0.15)};
+    --theme-green-008: #{rgba(dark.$green, 0.08)};
+    --theme-green-009: #{rgba(dark.$green, 0.09)};
+    --theme-green-025: #{rgba(dark.$green, 0.25)};
+    --theme-green-04: #{rgba(dark.$green, 0.4)};
+    --theme-red-015: #{rgba(dark.$red, 0.15)};
+    --theme-red-009: #{rgba(dark.$red, 0.09)};
+    --theme-red-025: #{rgba(dark.$red, 0.25)};
+    --theme-white-015: #{rgba(dark.$white, 0.15)};
+    --theme-white-08: #{rgba(dark.$white, 0.8)};
+    --theme-black-05: #{rgba(dark.$black, 0.5)};
+    --theme-purple-04: #{rgba(dark.$purple, 0.4)};
+    --theme-purple-02: #{rgba(dark.$purple, 0.2)};
+    --theme-light-purple-02: #{rgba(dark.$light-purple, 0.2)};
+    --theme-light-purple-03: #{rgba(dark.$light-purple, 0.3)};
+    --theme-light-purple-04: #{rgba(dark.$light-purple, 0.4)};
+    --theme-light-purple-05: #{rgba(dark.$light-purple, 0.5)};
+    --theme-light-purple-06: #{rgba(dark.$light-purple, 0.6)};
+    --theme-light-purple-09: #{rgba(dark.$light-purple, 0.9)};
+    --theme-secondary-light-grey-08: #{rgba(dark.$secondary-light-grey, 0.8)};
+    --theme-secondary-light-grey-02: #{rgba(dark.$secondary-light-grey, 0.2)};
+    --theme-secondary-blue-015: #{rgba(dark.$secondary-blue, 0.15)};
+    --theme-secondary-blue-025: #{rgba(dark.$secondary-blue, 0.25)};
+    --theme-secondary-blue-035: #{rgba(dark.$secondary-blue, 0.35)};
+    --theme-secondary-yellow-015: #{rgba(dark.$secondary-yellow, 0.15)};
+    --theme-secondary-yellow-009: #{rgba(dark.$secondary-yellow, 0.09)};
+    --theme-secondary-blue-009: #{rgba(dark.$secondary-blue, 0.09)};
+    --theme-relation-yellow-025: #{rgba(dark.$relation-yellow, 0.25)};
 
     // Bento box subtle variants
-    --theme-deep-purple-045: rgba(21, 19, 34, 0.45);
-    --theme-light-purple-045: rgba(45, 42, 70, 0.45);
-    --theme-light-purple-027: rgba(45, 42, 70, 0.27);
+    --theme-deep-purple-045: #{rgba(dark.$deep-purple, 0.45)};
+    --theme-light-purple-045: #{rgba(dark.$light-purple, 0.45)};
+    --theme-light-purple-027: #{rgba(dark.$light-purple, 0.27)};
 
     // Pre-computed color.mix() results for dark theme
-    --theme-green-mix-purple: #017a6e;     // color.mix(green, purple)
-    --theme-green-mix-white-35: #81ede4;   // color.mix(green, white, 35%)
-    --theme-green-mix-black-15: #013330;   // color.mix(green, black, 15%)
-    --theme-red-mix-black-15: #2c1515;     // color.mix(red, black, 15%)
+    --theme-green-mix-purple: #017a6e;
+    --theme-green-mix-white-35: #81ede4;
+    --theme-green-mix-black-15: #013330;
+    --theme-red-mix-black-15: #2c1515;
 
     // Prism syntax highlighting
-    --theme-prism-white: #ece0ff;
-    --theme-prism-cyan: #55eae2;
-    --theme-prism-light-green: #02dac9;
-    --theme-prism-green: #4dc97c;
-    --theme-prism-red: #ff8080;
-    --theme-prism-pink: #ff7abd;
-    --theme-prism-blue: #82b6ff;
-    --theme-prism-purple: #c099f3;
-    --theme-prism-orange: #ffa187;
-    --theme-prism-yellow-orange: #ffc980;
-    --theme-prism-yellow: #ffe4a7;
-    --theme-prism-grey: #c69ec3;
-    --theme-prism-very-grey: #999999;
-    --theme-prism-brick: #b88484;
+    --theme-prism-white: #{dark.$prism-white};
+    --theme-prism-cyan: #{dark.$prism-cyan};
+    --theme-prism-light-green: #{dark.$prism-light-green};
+    --theme-prism-green: #{dark.$prism-green};
+    --theme-prism-red: #{dark.$prism-red};
+    --theme-prism-pink: #{dark.$prism-pink};
+    --theme-prism-blue: #{dark.$prism-blue};
+    --theme-prism-purple: #{dark.$prism-purple};
+    --theme-prism-orange: #{dark.$prism-orange};
+    --theme-prism-yellow-orange: #{dark.$prism-yellow-orange};
+    --theme-prism-yellow: #{dark.$prism-yellow};
+    --theme-prism-grey: #{dark.$prism-grey};
+    --theme-prism-very-grey: #{dark.$prism-very-grey};
+    --theme-prism-brick: #{dark.$prism-brick};
 
     // TypeDB concept colors
-    --theme-attribute-blue: #78a0ff;
-    --theme-relation-yellow: #f6c94c;
-    --theme-entity-pink: #ff87dc;
-    --theme-role-orange: #b0740c;
+    --theme-attribute-blue: #{dark.$attribute-blue};
+    --theme-relation-yellow: #{dark.$relation-yellow};
+    --theme-entity-pink: #{dark.$entity-pink};
+    --theme-role-orange: #{dark.$role-orange};
 
     // Copy overlay (semi-transparent white on dark bg)
     --theme-overlay-bg: rgba(255, 255, 255, 0.1);
@@ -117,64 +120,64 @@
 // ============================================================
 html.theme-light {
     // Core palette
-    --theme-white: #1a1a2e;
-    --theme-grey: #3a3a52;
-    --theme-light-purple: #d0cde4;
-    --theme-purple: #e8e6f2;
-    --theme-deep-purple: #f0eef6;
-    --theme-black-purple: #f5f3fa;
-    --theme-black: #fafafa;
-    --theme-green: #00a896;
-    --theme-red: #d14545;
+    --theme-white: #{light.$white};
+    --theme-grey: #{light.$grey};
+    --theme-light-purple: #{light.$light-purple};
+    --theme-purple: #{light.$purple};
+    --theme-deep-purple: #{light.$deep-purple};
+    --theme-black-purple: #{light.$black-purple};
+    --theme-black: #{light.$black};
+    --theme-green: #{light.$green};
+    --theme-red: #{light.$red};
 
     // Secondary colors
-    --theme-secondary-extra-light-grey: #4a4a5a;
-    --theme-secondary-light-grey: #6b6580;
-    --theme-secondary-grey: #8a86a0;
-    --theme-secondary-mid-deep-grey: #b0adc0;
-    --theme-secondary-deep-grey: #d0cde0;
-    --theme-secondary-dark-grey: #e0dee8;
-    --theme-secondary-purple: #e8e5f0;
-    --theme-secondary-deep-green: #009e90;
-    --theme-secondary-yellow: #b89a30;
-    --theme-secondary-dark-yellow: #f5ecd0;
-    --theme-secondary-pink: #c050a0;
-    --theme-secondary-blue: #4070dd;
+    --theme-secondary-extra-light-grey: #{light.$secondary-extra-light-grey};
+    --theme-secondary-light-grey: #{light.$secondary-light-grey};
+    --theme-secondary-grey: #{light.$secondary-grey};
+    --theme-secondary-mid-deep-grey: #{light.$secondary-mid-deep-grey};
+    --theme-secondary-deep-grey: #{light.$secondary-deep-grey};
+    --theme-secondary-dark-grey: #{light.$secondary-dark-grey};
+    --theme-secondary-purple: #{light.$secondary-purple};
+    --theme-secondary-deep-green: #{light.$secondary-deep-green};
+    --theme-secondary-yellow: #{light.$secondary-yellow};
+    --theme-secondary-dark-yellow: #{light.$secondary-dark-yellow};
+    --theme-secondary-pink: #{light.$secondary-pink};
+    --theme-secondary-blue: #{light.$secondary-blue};
 
     // Translucent variants
-    --theme-green-015: rgba(0, 168, 150, 0.15);
-    --theme-green-008: rgba(0, 168, 150, 0.08);
-    --theme-green-009: rgba(0, 168, 150, 0.09);
-    --theme-green-025: rgba(0, 168, 150, 0.25);
-    --theme-green-04: rgba(0, 168, 150, 0.4);
-    --theme-red-015: rgba(209, 69, 69, 0.15);
-    --theme-red-009: rgba(209, 69, 69, 0.09);
-    --theme-red-025: rgba(209, 69, 69, 0.25);
-    --theme-white-015: rgba(26, 26, 46, 0.15);
-    --theme-white-08: rgba(26, 26, 46, 0.8);
-    --theme-black-05: #f0eef6;
-    --theme-purple-04: rgba(232, 230, 242, 0.4);
-    --theme-purple-02: rgba(232, 230, 242, 0.2);
-    --theme-light-purple-02: rgba(208, 205, 228, 0.2);
-    --theme-light-purple-03: rgba(208, 205, 228, 0.3);
-    --theme-light-purple-04: rgba(208, 205, 228, 0.4);
-    --theme-light-purple-05: rgba(208, 205, 228, 0.5);
-    --theme-light-purple-06: rgba(208, 205, 228, 0.6);
-    --theme-light-purple-09: rgba(208, 205, 228, 0.9);
-    --theme-secondary-light-grey-08: rgba(107, 101, 128, 0.8);
-    --theme-secondary-light-grey-02: rgba(107, 101, 128, 0.2);
-    --theme-secondary-blue-015: rgba(64, 112, 221, 0.15);
-    --theme-secondary-blue-025: rgba(64, 112, 221, 0.25);
-    --theme-secondary-blue-035: rgba(64, 112, 221, 0.35);
-    --theme-secondary-yellow-015: rgba(184, 154, 48, 0.15);
-    --theme-secondary-yellow-009: rgba(184, 154, 48, 0.09);
-    --theme-secondary-blue-009: rgba(64, 112, 221, 0.09);
-    --theme-relation-yellow-025: rgba(184, 154, 48, 0.25);
+    --theme-green-015: #{rgba(light.$green, 0.15)};
+    --theme-green-008: #{rgba(light.$green, 0.08)};
+    --theme-green-009: #{rgba(light.$green, 0.09)};
+    --theme-green-025: #{rgba(light.$green, 0.25)};
+    --theme-green-04: #{rgba(light.$green, 0.4)};
+    --theme-red-015: #{rgba(light.$red, 0.15)};
+    --theme-red-009: #{rgba(light.$red, 0.09)};
+    --theme-red-025: #{rgba(light.$red, 0.25)};
+    --theme-white-015: #{rgba(light.$white, 0.15)};
+    --theme-white-08: #{rgba(light.$white, 0.8)};
+    --theme-black-05: #{light.$deep-purple};
+    --theme-purple-04: #{rgba(light.$purple, 0.4)};
+    --theme-purple-02: #{rgba(light.$purple, 0.2)};
+    --theme-light-purple-02: #{rgba(light.$light-purple, 0.2)};
+    --theme-light-purple-03: #{rgba(light.$light-purple, 0.3)};
+    --theme-light-purple-04: #{rgba(light.$light-purple, 0.4)};
+    --theme-light-purple-05: #{rgba(light.$light-purple, 0.5)};
+    --theme-light-purple-06: #{rgba(light.$light-purple, 0.6)};
+    --theme-light-purple-09: #{rgba(light.$light-purple, 0.9)};
+    --theme-secondary-light-grey-08: #{rgba(light.$secondary-light-grey, 0.8)};
+    --theme-secondary-light-grey-02: #{rgba(light.$secondary-light-grey, 0.2)};
+    --theme-secondary-blue-015: #{rgba(light.$secondary-blue, 0.15)};
+    --theme-secondary-blue-025: #{rgba(light.$secondary-blue, 0.25)};
+    --theme-secondary-blue-035: #{rgba(light.$secondary-blue, 0.35)};
+    --theme-secondary-yellow-015: #{rgba(light.$secondary-yellow, 0.15)};
+    --theme-secondary-yellow-009: #{rgba(light.$secondary-yellow, 0.09)};
+    --theme-secondary-blue-009: #{rgba(light.$secondary-blue, 0.09)};
+    --theme-relation-yellow-025: #{rgba(light.$secondary-yellow, 0.25)};
 
     // Bento box subtle variants
-    --theme-deep-purple-045: rgba(240, 238, 246, 0.45);
-    --theme-light-purple-045: rgba(208, 205, 228, 0.45);
-    --theme-light-purple-027: rgba(208, 205, 228, 0.27);
+    --theme-deep-purple-045: #{rgba(light.$deep-purple, 0.45)};
+    --theme-light-purple-045: #{rgba(light.$light-purple, 0.45)};
+    --theme-light-purple-027: #{rgba(light.$light-purple, 0.27)};
 
     // Pre-computed color.mix() results for light theme
     --theme-green-mix-purple: #74c7be;
@@ -199,9 +202,9 @@ html.theme-light {
     --theme-prism-brick: #8a5050;
 
     // TypeDB concept colors (slightly darker for white bg contrast)
-    --theme-attribute-blue: #4070dd;
-    --theme-relation-yellow: #b89a30;
-    --theme-entity-pink: #c050a0;
+    --theme-attribute-blue: #{light.$secondary-blue};
+    --theme-relation-yellow: #{light.$secondary-yellow};
+    --theme-entity-pink: #{light.$secondary-pink};
     --theme-role-orange: #a06800;
 
     // Copy overlay (semi-transparent dark on light bg)
