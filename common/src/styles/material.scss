@@ -882,13 +882,9 @@ html.theme-light body {
     --mat-sys-title-medium-weight: var(--font-weight-semi-bold);
     --mat-sys-title-large-weight: var(--font-weight-semi-bold);
 
-    /* Ensure headings and icons inherit the light-mode text color */
+    /* Ensure headings inherit the light-mode text color */
     h1, h2, h3, h4, h5, h6 {
         color: var(--theme-white);
-    }
-
-    i {
-        color: inherit;
     }
 
     /* Icon button */
@@ -958,8 +954,11 @@ html.theme-light body {
 
     /* Dialog */
     --mdc-dialog-container-color: var(--theme-deep-purple);
+    --mat-dialog-container-color: var(--theme-deep-purple);
     --mdc-dialog-subhead-color: var(--theme-white);
+    --mat-dialog-subhead-color: var(--theme-white);
     --mdc-dialog-supporting-text-color: var(--theme-white);
+    --mat-dialog-supporting-text-color: var(--theme-white);
 
     .mdc-dialog {
         --mat-button-toggle-divider-color: var(--theme-secondary-mid-deep-grey);
@@ -977,6 +976,11 @@ html.theme-light body {
     --mdc-outlined-text-field-hover-outline-color: var(--theme-secondary-grey);
     --mdc-outlined-text-field-focus-outline-color: var(--theme-secondary-grey);
     --mdc-outlined-text-field-input-text-color: var(--theme-white);
+    --mat-form-field-outlined-outline-color: var(--theme-light-purple);
+    --mat-form-field-outlined-hover-outline-color: var(--theme-secondary-grey);
+    --mat-form-field-outlined-focus-outline-color: var(--theme-secondary-grey);
+    --mat-form-field-outlined-hover-label-text-color: var(--theme-secondary-grey);
+    --mat-form-field-outlined-focus-label-text-color: var(--theme-secondary-grey);
     --mat-form-field-container-text-color: var(--theme-white);
     --mdc-outlined-text-field-input-text-placeholder-color: var(--theme-secondary-grey);
 
