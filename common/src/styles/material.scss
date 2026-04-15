@@ -894,6 +894,10 @@ html.theme-light body {
     /* Icon button */
     --mat-icon-button-icon-color: var(--theme-grey);
     --mat-icon-button-disabled-icon-color: var(--theme-secondary-mid-deep-grey);
+    --mat-icon-button-state-layer-color: var(--theme-grey);
+    --mat-icon-button-hover-state-layer-opacity: 0.12;
+    --mat-icon-button-focus-state-layer-opacity: 0.16;
+    --mat-icon-button-pressed-state-layer-opacity: 0.2;
 
     /* Button */
     --mdc-text-button-label-text-color: var(--theme-grey);
