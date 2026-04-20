@@ -908,6 +908,8 @@ html.theme-light body {
     --mdc-text-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
     --mdc-filled-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
     --mdc-filled-button-disabled-container-color: rgba(0, 0, 0, 0.08);
+    --mat-button-filled-state-layer-color: var(--theme-white);
+    --mat-button-filled-ripple-color: var(--theme-white-015);
 
     .mat-mdc-unelevated-button {
         border-color: var(--theme-light-purple);
