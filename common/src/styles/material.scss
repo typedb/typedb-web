@@ -651,6 +651,7 @@ body {
     @include mat.snack-bar-overrides((
         supporting-text-size: 14px,
         supporting-text-line-height: 20px,
+        supporting-text-weight: var(--font-weight-regular),
     ));
 
     .mat-mdc-snack-bar-container {
