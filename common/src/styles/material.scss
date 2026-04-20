@@ -986,6 +986,7 @@ html.theme-light body {
     --mat-form-field-outlined-input-text-color: var(--theme-white);
     --mat-form-field-outlined-input-text-placeholder-color: var(--theme-secondary-grey);
     --mat-form-field-outlined-caret-color: var(--theme-white);
+    --mat-form-field-subscript-text-weight: var(--font-weight-regular);
 
     .mat-mdc-form-field-input-control {
         font-weight: var(--font-weight-regular); // font: inherit on the input resets weight; re-apply it
