@@ -907,6 +907,9 @@ html.theme-light body {
     --mat-button-outlined-outline-color: var(--theme-light-purple);
     --mat-button-outlined-state-layer-color: var(--theme-white);
     --mdc-text-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
+    --mat-button-text-disabled-label-text-color: rgba(0, 0, 0, 0.25);
+    --mat-button-text-state-layer-color: var(--theme-white);
+    --mat-button-text-ripple-color: var(--theme-white-015);
     --mdc-filled-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
     --mdc-filled-button-disabled-container-color: rgba(0, 0, 0, 0.08);
     --mdc-outlined-button-disabled-label-text-color: rgba(0, 0, 0, 0.25);
