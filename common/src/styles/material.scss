@@ -601,6 +601,7 @@ body {
 
     .mat-mdc-option {
         //padding-left: 32px; // makes padding consistent whether or not the option is part of an optgroup
+        transition: background-color 75ms linear;
 
         .mdc-list-item__primary-text {
             width: 100%;
@@ -1041,6 +1042,8 @@ html.theme-light body {
     --mat-option-label-text-color: var(--theme-white);
     --mat-option-label-text-weight: var(--font-weight-regular);
     --mat-option-selected-state-label-text-color: var(--theme-green);
+    --mat-option-hover-state-layer-color: var(--theme-light-purple);
+    --mat-option-focus-state-layer-color: var(--theme-light-purple);
 
     div.mat-mdc-select-panel {
         border-color: var(--theme-secondary-deep-grey);
