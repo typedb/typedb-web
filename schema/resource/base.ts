@@ -70,9 +70,10 @@ export class ResourceLink {
         });
 
         const image = ("landscapeImage" in data ? data.landscapeImage : data.image) as SanityImage | undefined;
-        
+        const longTitle = ParagraphWithHighlights.fromSanity(data.title).toPlainText();
+
         return new ResourceLink({
-            title: useLongTitle ? ParagraphWithHighlights.fromSanity(data.title).toPlainText() : data.shortTitle,
+            title: useLongTitle ? longTitle : (data.shortTitle || longTitle),
             description: data.shortDescription,
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
             linkText: resourceLinkText(data),
