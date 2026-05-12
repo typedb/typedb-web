@@ -74,7 +74,7 @@ export class ResourceLink {
 
         return new ResourceLink({
             title: useLongTitle ? longTitle : (data.shortTitle || longTitle),
-            description: data.shortDescription,
+            description: data.shortDescription || ParagraphWithHighlights.fromSanity(data.description).toPlainText(),
             link: new Link({ destination: siteResourceUrl(data), type: "route", opensNewTab: false }),
             linkText: resourceLinkText(data),
             imageURL: image ? db.resolveRef(image.asset).url : undefined,
