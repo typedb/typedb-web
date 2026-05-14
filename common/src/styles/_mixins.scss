@@ -1,7 +1,6 @@
 @use "colors";
 @use "media";
 @use "shapes";
-@use "sass:color";
 
 @mixin section-width($offset: 0px) {
     & {
@@ -85,17 +84,17 @@
 }
 
 @mixin button-greenHollow {
-    border-color: var(--color-green);
+    border-color: var(--theme-green);
     background: transparent;
-    color: var(--color-green);
-    box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.25);
+    color: var(--theme-green);
+    box-shadow: 0 0 6px 3px color-mix(in srgb, var(--theme-secondary-blue) 25%, transparent);
 
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
             border-color: #81EDE4;
-            color: color.mix(colors.$green, colors.$white, 35%);
-            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+            color: color-mix(in srgb, var(--theme-green) 35%, var(--theme-white));
+            box-shadow: 0 0 6px 3px color-mix(in srgb, var(--theme-secondary-blue) 35%, transparent);
         }
     }
 }
@@ -106,7 +105,7 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 0 6px 3px rgba(colors.$green, 0.25);
+            box-shadow: 0 0 6px 3px color-mix(in srgb, var(--theme-green) 25%, transparent);
             color: #03D0BF;
         }
     }
@@ -118,7 +117,7 @@
     &:not(.td-button-disabled) {
         &:hover,
         &.container-hover {
-            box-shadow: 0 0 6px 3px rgba(colors.$red, 0.25);
+            box-shadow: 0 0 6px 3px color-mix(in srgb, var(--theme-red) 25%, transparent);
             color: #FDD257;
         }
     }
@@ -127,18 +126,18 @@
 @mixin button-frameless {
     border-color: transparent;
     background: transparent;
-    color: var(--color-secondary-blue);
+    color: var(--theme-secondary-blue);
 
     &:not(.td-button-disabled) {
         &:hover, &.container-hover {
-            color: var(--color-white);
+            color: var(--theme-white);
         }
     }
 }
 
 @mixin card-appearance {
     border-radius: var(--border-radius);
-    background-color: var(--color-deep-purple);
+    background-color: var(--theme-deep-purple);
     border: shapes.$border;
 }
 
@@ -157,7 +156,7 @@
 
         > * {
             padding: 0.75rem 1.25rem;
-            color: var(--color-white);
+            color: var(--theme-white);
             font-size: 1rem;
             line-height: 1.75;
         }
