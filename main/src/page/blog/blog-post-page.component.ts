@@ -146,6 +146,14 @@ export class BlogPostPageComponent implements OnInit {
     }
 
     private decoratePost(): void {
+        // WordPress Code blocks emit each line wrapped in <div class="cm-line">
+        // (CodeMirror DOM) with no actual newlines between them. Prism reads
+        // textContent and would otherwise collapse the whole block to one line.
+        this.doc.querySelectorAll("article pre code").forEach((codeEl) => {
+            const lineEls = codeEl.querySelectorAll(".cm-line");
+            if (lineEls.length === 0) return;
+            codeEl.textContent = Array.from(lineEls).map((el) => el.textContent || "").join("\n");
+        });
         (window as any)["Prism"].highlightAll();
         this.doc.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
