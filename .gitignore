@@ -30,6 +30,7 @@ posthog/credential/*
 !posthog/credential/apiKey.template.mjs
 
 # Sanity
+sanity/.env
 sanity/data.json
 sanity/scripts/credentials/**/*
 !sanity/scripts/credentials/token.template.js

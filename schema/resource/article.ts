@@ -14,11 +14,6 @@ import {
     SanityApplicationArticle, SanityArticle, SanityBlogPost, SanityFundamentalArticle,
 } from "./sanity";
 
-export interface WordpressPosts {
-    found: number;
-    posts: WordpressPost[];
-}
-
 export interface WordpressPost {
     ID: number;
     slug: string;
@@ -165,14 +160,12 @@ export function articleFromWPApi(data: SanityArticle, db: SanityDataset, wordpre
     else throw "Unreachable code";
 }
 
-const blogPostBySlugUrl = (slug: string) => `https://public-api.wordpress.com/rest/v1.1/sites/typedb.wordpress.com/posts/slug:${slug}`;
+const blogPostBySlugUrl = (slug: string) => `https://public-api.wordpress.com/wp/v2/sites/typedb.wordpress.com/posts?slug=${slug}&_fields=id`;
 
 async function wordpressPostExists(slug: string): Promise<boolean> {
     try {
-        await axios.get<any>(blogPostBySlugUrl(slug), {
-            params: { fields: "slug" },
-        });
-        return true;
+        const res = await axios.get<any[]>(blogPostBySlugUrl(slug));
+        return res.data.length > 0;
     } catch (err) {
         if (err instanceof AxiosError && err.response?.status === 404) {
             return false;

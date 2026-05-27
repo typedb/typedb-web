@@ -61,7 +61,7 @@ td-resource-panels {
 
         &.lc-card-cols-3 {
             h3 {
-                @include mixins.line-clamp(1);
+                @include mixins.line-clamp(2);
             }
         }
 

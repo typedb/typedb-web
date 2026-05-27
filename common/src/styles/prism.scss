@@ -52,7 +52,8 @@ pre[class*="language-"] {
     color: $prism-pink;
 }
 
-.token.constraint {
+.token.constraint,
+.token.local-name {
     color: $prism-purple;
 }
 

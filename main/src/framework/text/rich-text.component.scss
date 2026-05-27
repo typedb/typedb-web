@@ -85,15 +85,8 @@ td-rich-text {
         figcaption {
             margin-top: 8px;
             font-style: italic;
-            font-size: 20px;
-
-            @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
-                font-size: 14px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                font-size: 12px;
-            }
+            font-size: var(--font-size-aside);
+            line-height: var(--line-height-aside);
         }
     }
 

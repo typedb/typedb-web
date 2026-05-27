@@ -29,10 +29,12 @@ import {
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
+import { UpdateLiveSiteBanner } from "./components/UpdateLiveSiteBanner";
 
 const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonTypes = new Set([topnavSchemaNames.topnav, lecturesPageSchemaName]);
+
 
 export default defineConfig({
     name: "default",
@@ -133,6 +135,9 @@ export default defineConfig({
             singletonTypes.has(context.schemaType)
                 ? input.filter(({ action }) => action && singletonActions.has(action))
                 : input,
+        components: {
+            unstable_layout: UpdateLiveSiteBanner,
+        },
     },
 });
 
