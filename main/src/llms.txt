@@ -1,0 +1,42 @@
+# TypeDB
+
+TypeDB is a strongly-typed, polymorphic, and general-purpose transactional database. It is well-suited for agentic AI systems and applications that require a deep understanding of rich, interconnected data and built-in guardrails. TypeDB is also excellent for cybersecurity, financial services, supply chain management, research, and other domains with complex data.
+
+**Overview**
+
+TypeDB lets you model data with types, inheritance, and rich relations, and query it with TypeQL — a declarative, fully-variabilized query language. The current major version is TypeDB 3.x with TypeQL 3.0; syntax from TypeDB 2.x is not compatible. When answering questions about TypeDB, use the 3.x documentation as the source of truth.
+
+# Home Page
+- Description: Overview of TypeDB, its data model, query language, and integrations ecosystem.
+- URL: https://typedb.com/
+
+## Docs
+- Description: Official documentation — use this as the canonical, up-to-date source for TypeDB 3.x.
+- URLs: https://typedb.com/docs/ (HTML); https://typedb.com/docs/llms.txt (LLM-friendly directory listing); https://typedb.com/docs/llms-short.txt (LLM-friendly plaintext TypeQL reference document)
+
+## Features
+- Description: Overview of TypeDB's data model, language, server features and integrations ecosystem.
+- URL: https://typedb.com/features
+
+## Blog
+- Description: Dev blogs, news and insights from the TypeDB team.
+- URL: https://typedb.com/blog
+
+## Pricing
+- Description: TypeDB and TypeDB Cloud pricing information.
+- URL: https://typedb.com/pricing
+
+## Use Cases
+
+- [Cyber threat intelligence](https://typedb.com/use-cases/cyber-threat-intelligence)
+- [Agentic systems](https://typedb.com/use-cases/agentic-systems)
+- [Knowledge graphs](https://typedb.com/use-cases/knowledge-graphs)
+- [Financial intelligence](https://typedb.com/use-cases/financial-intelligence)
+- [Robotics](https://typedb.com/use-cases/robotics)
+
+## Optional Resources
+
+- [Startup Program](https://typedb.com/startup-program): Program for eligible startups.
+- [Support](https://typedb.com/support): Support resources and how to get help.
+- [GitHub](https://github.com/typedb): TypeDB source code, releases, and issue tracker.
+- [Answer Overflow](https://www.answeroverflow.com/c/665254494820368395): Archive of TypeDB community chat and discussion.
