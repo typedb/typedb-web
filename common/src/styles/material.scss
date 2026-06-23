@@ -1040,6 +1040,17 @@ html.theme-light body {
 
     /* Paginator */
     --mat-paginator-container-text-color: var(--theme-white-08);
+    /* Match the heavier light-mode text weight used across the other components
+       (checkbox, menu, select, table rows, …); the baked default is lighter. */
+    --mat-paginator-container-text-weight: var(--font-weight-regular);
+    /* The baked dark theme leaves the nav-arrow fill a light colour that's
+       invisible on the light background. Re-set on the component class (->
+       `html.theme-light body .mat-mdc-paginator`) so it reliably wins the
+       cascade and inherits down to the `.mat-mdc-paginator-icon` fill. */
+    .mat-mdc-paginator {
+        --mat-paginator-enabled-icon-color: var(--theme-grey);
+        --mat-paginator-disabled-icon-color: var(--theme-secondary-grey);
+    }
 
     /* Progress spinner */
     --mdc-circular-progress-active-indicator-color: var(--theme-grey);
