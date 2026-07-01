@@ -3,6 +3,8 @@
 @use "shapes" as *;
 @use "typography";
 
+@forward "theme-tokens";
+
 :root {
     /* colors */
     --color-white: #{colors.$white};

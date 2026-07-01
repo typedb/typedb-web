@@ -55,9 +55,8 @@ export class DialogService {
 
     private clearHash() {
         const location = this.document.location;
-        if (location) {
-            history.replaceState(null, "", location.pathname + location.search);
-        }
+        if (!location) return;
+        this.router.navigateByUrl(location.pathname + location.search, { replaceUrl: true });
     }
 
     private open<T>(component: ComponentType<T>, config?: MatDialogConfig<unknown> | undefined) {

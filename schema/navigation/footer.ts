@@ -10,7 +10,7 @@ export const footerSchemaName = "footer";
 export const contactMedias = {
     forum: "Discuss on Forum",
     discord: "Chat on Discord",
-    contactForm: "Contact Us",
+    contactForm: "Get in Touch",
     feedbackForm: "Provide Feedback",
 } as const;
 

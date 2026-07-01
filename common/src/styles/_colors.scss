@@ -71,5 +71,5 @@ $role-orange: #b0740c;
 }
 
 @mixin light-source-gradient($light-source-color, $background-color, $left: 80px, $top: 50px) {
-    background: $background-color radial-gradient(ellipse at $left $top, $light-source-color 0%, 60%, rgba($background-color, 0));
+    background: $background-color radial-gradient(ellipse at $left $top, $light-source-color 0%, 60%, transparent);
 }
