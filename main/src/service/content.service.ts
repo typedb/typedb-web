@@ -163,7 +163,7 @@ export class ContentService {
     }
 
     private getSanityResult<T>(query: string, key: string): Observable<T> {
-        const STATE_KEY = makeStateKey<{ result: T }>(key);
+        const STATE_KEY = makeStateKey<T>(key);
         return this.handleTransferState(
             STATE_KEY,
             this.http.get<{ result: T }>(
@@ -171,11 +171,14 @@ export class ContentService {
                 ["production", "staging", "local"].includes(environment.env)
                     ? { params: { query, perspective: "published" } }
                     : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
-            ).pipe(retry(RETRY_CONFIG))
-        ).pipe(
-            first(),
-            map(({ result }) => result),
-        );
+            ).pipe(
+                retry(RETRY_CONFIG),
+                // Transfer only the query result. The response envelope carries per-request
+                // syncTags, which would make otherwise-identical page states differ
+                // byte-for-byte and defeat cross-page sharing in isolate-ng-state.js.
+                map(({ result }) => result),
+            )
+        ).pipe(first());
     }
 
     private handleTransferState<T>(stateKey: StateKey<T>, fetch$: Observable<T>): Observable<T> { // Ensure stateKey is StateKey<T>
