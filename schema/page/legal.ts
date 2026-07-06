@@ -1,7 +1,7 @@
 import { DocumentZipIcon } from "@sanity/icons";
 import { SanityDocument, Slug, defineType } from "@sanity/types";
 import { titleFieldWithHighlights } from "../common-fields";
-import { WordpressPost, wordpressSlugField } from "../resource/article";
+import { WordpressPost, WordpressPostSummary, wordpressSlugField } from "../resource/article";
 import { SanityDataset } from "../sanity-core";
 import { ParagraphWithHighlights, PortableText } from "../text";
 import { PropsOf } from "../util";
@@ -26,12 +26,12 @@ export class LegalDocument {
         this.contentHtml = props.contentHtml;
     }
 
-    static fromApi(data: SanityLegalDocument, db: SanityDataset, wordpressPost: WordpressPost): LegalDocument {
+    static fromApi(data: SanityLegalDocument, db: SanityDataset, wordpressPost: WordpressPost | WordpressPostSummary): LegalDocument {
         return new LegalDocument({
             slug: data.slug.current,
             metaTags: MetaTags.fromSanity(data.metaTags || {}, db),
             title: ParagraphWithHighlights.fromSanity(data.title),
-            contentHtml: wordpressPost.content,
+            contentHtml: "content" in wordpressPost ? wordpressPost.content : "",
         });
     }
 

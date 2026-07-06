@@ -73,7 +73,7 @@ export class BlogPostPageComponent implements OnInit {
             map((params: ParamMap) => params.get("slug")),
             switchMap((slug: string | null) =>
                 slug
-                    ? this.content.getArticleBySlug<BlogPost>(this.content.blogPosts, blogPostSchemaName, slug)
+                    ? this.content.getArticleBySlug<BlogPost>(blogPostSchemaName, slug)
                     : of(null),
             ),
             shareReplay(1),

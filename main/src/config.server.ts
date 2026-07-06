@@ -1,5 +1,5 @@
 import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
-import { provideClientHydration, withEventReplay, ɵSharedStylesHost } from "@angular/platform-browser";
+import { provideClientHydration, withEventReplay, withNoHttpTransferCache, ɵSharedStylesHost } from "@angular/platform-browser";
 import { provideServerRendering, withRoutes } from "@angular/ssr";
 import { appConfig } from "./config";
 import { serverRoutesPromise } from "./routes.server";
@@ -17,7 +17,10 @@ export async function getServerConfig() {
         providers: [
             provideServerRendering(withRoutes(routes)),
             { provide: ɵSharedStylesHost, useClass: NoopStylesHost },
-            provideClientHydration(withEventReplay())
+            // The automatic HTTP transfer cache would embed every SSR HTTP response (the full
+            // WordPress and Sanity payloads) in each page's state; ContentService transfers
+            // what each page needs via explicit TransferState keys instead.
+            provideClientHydration(withEventReplay(), withNoHttpTransferCache())
         ]
     };
 
