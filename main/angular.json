@@ -24,6 +24,7 @@
               "src/assets",
               "src/install.ps1",
               "src/install.sh",
+              "src/llms.txt",
               "src/robots.txt",
               "src/site.webmanifest",
               "src/sitemap.xml",
