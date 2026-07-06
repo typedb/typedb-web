@@ -949,6 +949,17 @@ html.theme-light body {
     --mdc-checkbox-selected-checkmark-color: var(--theme-purple);
     --mat-checkbox-label-text-color: var(--theme-white);
     --mat-checkbox-label-text-weight: var(--font-weight-regular);
+    /* The baked dark theme sets the unselected-icon tokens on
+       `.mat-mdc-checkbox.mat-primary` (specificity 0,2,0), which outranks this
+       block — so they must be re-set on an equally/more specific selector or the
+       unchecked box keeps its dark-theme (light) border and is invisible on the
+       light background. Nesting under `.mat-mdc-checkbox` here resolves to
+       `html.theme-light body .mat-mdc-checkbox` (0,2,2), which wins. */
+    .mat-mdc-checkbox {
+        --mat-checkbox-unselected-icon-color: var(--theme-secondary-grey);
+        --mat-checkbox-unselected-hover-icon-color: var(--theme-secondary-light-grey);
+        --mat-checkbox-unselected-focus-icon-color: var(--theme-secondary-light-grey);
+    }
 
     /* Chips */
     --mdc-chip-elevated-container-color: var(--theme-secondary-purple);
@@ -1029,6 +1040,17 @@ html.theme-light body {
 
     /* Paginator */
     --mat-paginator-container-text-color: var(--theme-white-08);
+    /* Match the heavier light-mode text weight used across the other components
+       (checkbox, menu, select, table rows, …); the baked default is lighter. */
+    --mat-paginator-container-text-weight: var(--font-weight-regular);
+    /* The baked dark theme leaves the nav-arrow fill a light colour that's
+       invisible on the light background. Re-set on the component class (->
+       `html.theme-light body .mat-mdc-paginator`) so it reliably wins the
+       cascade and inherits down to the `.mat-mdc-paginator-icon` fill. */
+    .mat-mdc-paginator {
+        --mat-paginator-enabled-icon-color: var(--theme-grey);
+        --mat-paginator-disabled-icon-color: var(--theme-secondary-grey);
+    }
 
     /* Progress spinner */
     --mdc-circular-progress-active-indicator-color: var(--theme-grey);
