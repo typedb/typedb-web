@@ -98,9 +98,9 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
-    type WordpressPost, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
+    type WordpressPost, type WordpressPostSummary, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
     type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
-    articleFromWPApi as articleFromApi,
+    articleFromWPApi as articleFromApi, wordpressReadingTimeMins,
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";
 export { blogCategories, blogCategoryList, type BlogCategoryID } from "./resource/blog-category";
