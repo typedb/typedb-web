@@ -8,6 +8,7 @@ export default defineCliConfig({
     },
     deployment: {
         appId: "619a0e1398759b9641295962",
+        autoUpdates: true,
     },
     studioHost: "typedb",
 });
