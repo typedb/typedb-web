@@ -92,17 +92,21 @@ export class UseCasePageInstance extends UseCasePageTemplate {
     constructor(instance: SanityUseCasePageInstance, db: SanityDataset) {
         const template = db.getDocumentByID<SanityUseCasePageTemplate>(useCasePageTemplateSchemaName);
         if (template == null) throw new Error(`Document not found: ${useCasePageTemplateSchemaName}`);
-        instance.introSection = Object.assign({}, template.introSection, instance.introSection);
-        instance.benefitsSection1 = Object.assign({}, template.benefitsSection1, instance.benefitsSection1);
-        instance.benefitsSection2 = Object.assign({}, template.benefitsSection2, instance.benefitsSection2);
-        instance.benefitsSection3 = Object.assign({}, template.benefitsSection3, instance.benefitsSection3);
-        instance.queryLanguageComparisonSection = Object.assign({}, template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection);
-        instance.benefitsSection4 = Object.assign({}, template.benefitsSection4, instance.benefitsSection4);
-        instance.faqsSection = Object.assign({}, template.faqsSection, instance.faqsSection);
-        instance.metaTags = Object.assign({}, template.metaTags, instance.metaTags);
-        super(instance, db);
-        this.title = instance.title;
-        this.route = instance.route.current;
+        // Merge into a copy - `instance` lives inside the shared Sanity dataset, and mutating it
+        // would leak the merged sections into this page's serialized TransferState.
+        const merged: SanityUseCasePageInstance = Object.assign({}, instance, {
+            introSection: Object.assign({}, template.introSection, instance.introSection),
+            benefitsSection1: Object.assign({}, template.benefitsSection1, instance.benefitsSection1),
+            benefitsSection2: Object.assign({}, template.benefitsSection2, instance.benefitsSection2),
+            benefitsSection3: Object.assign({}, template.benefitsSection3, instance.benefitsSection3),
+            queryLanguageComparisonSection: Object.assign({}, template.queryLanguageComparisonSection, instance.queryLanguageComparisonSection),
+            benefitsSection4: Object.assign({}, template.benefitsSection4, instance.benefitsSection4),
+            faqsSection: Object.assign({}, template.faqsSection, instance.faqsSection),
+            metaTags: Object.assign({}, template.metaTags, instance.metaTags),
+        });
+        super(merged, db);
+        this.title = merged.title;
+        this.route = merged.route.current;
     }
 }
 

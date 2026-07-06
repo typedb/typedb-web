@@ -34,7 +34,7 @@ export class WordpressService {
 
     private fetchPage(offset: number): Observable<WordpressPost[]> {
         return this.http
-            .get<WPV2Post[]>(`${postsApiUrl}?per_page=${pageSize}&offset=${offset}`)
+            .get<WPV2Post[]>(`${postsApiUrl}?per_page=${pageSize}&offset=${offset}&_fields=id,slug,content`)
             .pipe(map((posts) => posts.map((post) => ({ ID: post.id, slug: post.slug, content: post.content.rendered }))));
     }
 }

@@ -78,13 +78,9 @@ export class LearningArticleComponent implements OnInit {
         );
         this.article$ = combineLatest([this.activatedRoute.data, this.activatedRoute.paramMap]).pipe(
             map(([routeData, params]) => ({ resourceType: routeData["resourceType"], slug: params.get("slug") })),
-            switchMap(({ resourceType, slug }) => {
-                const articleStream =
-                    resourceType === fundamentalArticleSchemaName
-                        ? this.content.fundamentalArticles
-                        : this.content.applicationArticles;
-                return slug ? this.content.getArticleBySlug(articleStream, resourceType, slug) : of(null);
-            }),
+            switchMap(({ resourceType, slug }) =>
+                slug ? this.content.getArticleBySlug(resourceType, slug) : of(null),
+            ),
             shareReplay(),
         );
         this.article$.subscribe({
