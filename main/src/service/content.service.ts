@@ -5,15 +5,14 @@ import { Router } from "@angular/router";
 
 import { SanityDocument } from "@sanity/types";
 import {
-    BehaviorSubject, combineLatest, concat, filter, first, iif, map, Observable, of, ReplaySubject, retry, shareReplay,
-    switchMap, timer,
+    BehaviorSubject, combineLatest, filter, first, map, Observable, of, ReplaySubject, retry, shareReplay, timer,
 } from "rxjs";
 import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
 import {
     ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogCategoryID, BlogFilter,
     blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
     LegalDocument, legalDocumentSchemaName, SanityArticle, SanityBlogPost, SanityDataset, SanityLegalDocument,
-    WordpressPost,
+    WordpressPost, WordpressPostSummary, wordpressReadingTimeMins,
 } from "typedb-web-schema";
 
 import { environment } from "src/environment/environment";
@@ -43,7 +42,7 @@ const RETRY_CONFIG = {
 })
 export class ContentService {
     public data: Observable<SanityDataset>;
-    readonly wordpressPosts: Observable<WordpressPost[]>;
+    readonly wordpressPosts: Observable<WordpressPostSummary[]>;
     readonly blogPosts: Observable<BlogPost[]>;
     readonly displayedPosts: Observable<BlogPost[]>;
     readonly fundamentalArticles = new ReplaySubject<FundamentalArticle[]>();
@@ -73,10 +72,20 @@ export class ContentService {
         this.footerData = this.getSanityResult<FooterData>(footerQuery, "footerContent").pipe(shareReplay(1));
         this.topnavData = this.getSanityResult<TopnavData>(topbarQuery, "topbarContent").pipe(shareReplay(1));
 
-        const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPost[]>("wordpressPosts");
+        // Only summaries are transferred to the browser - embedding every post's full HTML body
+        // in each page's TransferState made prerendered pages ~10MB each and OOMed CI builds.
+        // Article pages transfer their own post's content via getWordpressPostBySlug.
+        const WORDPRESS_POSTS_KEY = makeStateKey<WordpressPostSummary[]>("wordpressPosts");
         this.wordpressPosts = this.handleTransferState(
             WORDPRESS_POSTS_KEY,
-            this.wordpress.listPosts().pipe(retry(RETRY_CONFIG)),
+            this.wordpress.listPosts().pipe(
+                retry(RETRY_CONFIG),
+                map((posts) => posts.map((post) => ({
+                    ID: post.ID,
+                    slug: post.slug,
+                    readingTimeMins: wordpressReadingTimeMins(post.content),
+                }))),
+            ),
         ).pipe(shareReplay(1));
 
         // Blog posts - derived from data and wordpressPosts, both of which use TransferState
@@ -116,26 +125,9 @@ export class ContentService {
         return this.topnavData;
     }
 
-    getArticleBySlug<T extends Article>(articles$: Observable<T[]>, schemaName: string, slug: string): Observable<T> {
-        return articles$.pipe(
-            switchMap((articles) => {
-                const article = articles.find((article) => article.slug === slug);
-                return iif(
-                    () => !!article,
-                    of(article as T),
-                    this.fetchArticleBySlug<T>(schemaName, slug),
-                );
-            }),
-        );
-    }
-
-    private fetchArticleBySlug<T extends Article>(schemaName: string, slug: string): Observable<T> {
-        return combineLatest([
-            this.data,
-            this.http.get<WPV2Post[]>(`${postsApiUrl}?slug=${slug}`).pipe(retry(RETRY_CONFIG)),
-        ]).pipe(
-            map(([data, wpPosts]) => {
-                const wpPost: WordpressPost = { ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered };
+    getArticleBySlug<T extends Article = Article>(schemaName: string, slug: string): Observable<T> {
+        return combineLatest([this.data, this.getWordpressPostBySlug(slug)]).pipe(
+            map(([data, wpPost]) => {
                 const sanityArticles = data.getDocumentsByType<SanityArticle>(schemaName);
                 return articleFromApi(sanityArticles.find((x) => x.slug.current === slug)!, data, wpPost) as T;
             }),
@@ -144,29 +136,25 @@ export class ContentService {
     }
 
     getLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
-        return this.legalDocuments.pipe(
-            switchMap((documents) => {
-                const document = documents.find((document) => document.slug === slug);
-                return iif(
-                    () => !!document,
-                    concat(of(document), this.fetchLegalDocumentBySlug(slug)),
-                    this.fetchLegalDocumentBySlug(slug),
-                ) as Observable<LegalDocument>;
-            }),
-        );
-    }
-
-    private fetchLegalDocumentBySlug(slug: string): Observable<LegalDocument> {
-        return combineLatest([
-            this.data,
-            this.http.get<WPV2Post[]>(`${postsApiUrl}?slug=${slug}`).pipe(retry(RETRY_CONFIG)),
-        ]).pipe(
-            map(([data, wpPosts]) => {
-                const wpPost: WordpressPost = { ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered };
+        return combineLatest([this.data, this.getWordpressPostBySlug(slug)]).pipe(
+            map(([data, wpPost]) => {
                 const sanityLegalDocuments = data.getDocumentsByType<SanityLegalDocument>(legalDocumentSchemaName);
                 return LegalDocument.fromApi(sanityLegalDocuments.find((x) => x.slug.current === slug)!, data, wpPost);
             }),
             shareReplay(),
+        );
+    }
+
+    // Transferred under a per-slug key, so each prerendered article page carries only its own
+    // post body to the browser rather than the whole collection.
+    private getWordpressPostBySlug(slug: string): Observable<WordpressPost> {
+        const POST_KEY = makeStateKey<WordpressPost>(`wordpressPost-${slug}`);
+        return this.handleTransferState(
+            POST_KEY,
+            this.http.get<WPV2Post[]>(`${postsApiUrl}?slug=${slug}`).pipe(
+                retry(RETRY_CONFIG),
+                map((wpPosts) => ({ ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered })),
+            ),
         );
     }
 
@@ -175,7 +163,7 @@ export class ContentService {
     }
 
     private getSanityResult<T>(query: string, key: string): Observable<T> {
-        const STATE_KEY = makeStateKey<{ result: T }>(key);
+        const STATE_KEY = makeStateKey<T>(key);
         return this.handleTransferState(
             STATE_KEY,
             this.http.get<{ result: T }>(
@@ -183,11 +171,14 @@ export class ContentService {
                 ["production", "staging", "local"].includes(environment.env)
                     ? { params: { query, perspective: "published" } }
                     : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
-            ).pipe(retry(RETRY_CONFIG))
-        ).pipe(
-            first(),
-            map(({ result }) => result),
-        );
+            ).pipe(
+                retry(RETRY_CONFIG),
+                // Transfer only the query result. The response envelope carries per-request
+                // syncTags, which would make otherwise-identical page states differ
+                // byte-for-byte and defeat cross-page sharing in isolate-ng-state.js.
+                map(({ result }) => result),
+            )
+        ).pipe(first());
     }
 
     private handleTransferState<T>(stateKey: StateKey<T>, fetch$: Observable<T>): Observable<T> { // Ensure stateKey is StateKey<T>
@@ -215,7 +206,7 @@ export class ContentService {
                         (sanityPost) =>
                             [sanityPost, wpPosts.find((wpPost) => wpPost.slug === sanityPost.slug.current)] as [
                                 SanityBlogPost,
-                                WordpressPost,
+                                WordpressPostSummary,
                             ],
                     )
                     .filter(([_sanityPost, wpPost]) => !!wpPost)
@@ -241,7 +232,7 @@ export class ContentService {
                         (sanityPost) =>
                             [sanityPost, wpPosts.find((wpPost) => wpPost.slug === sanityPost.slug.current)] as [
                                 SanityArticle,
-                                WordpressPost,
+                                WordpressPostSummary,
                             ],
                     )
                     .filter(([_sanityPost, wpPost]) => !!wpPost)
@@ -259,7 +250,7 @@ export class ContentService {
                         (sanityDocument) =>
                             [sanityDocument, wpPosts.find((wpPost) => wpPost.slug === sanityDocument.slug.current)] as [
                                 SanityLegalDocument,
-                                WordpressPost,
+                                WordpressPostSummary,
                             ],
                     )
                     .filter(([_sanityDocument, wpPost]) => !!wpPost)

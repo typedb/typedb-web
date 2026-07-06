@@ -20,6 +20,18 @@ export interface WordpressPost {
     content: string;
 }
 
+// Lightweight form used when transferring the full post list to the browser - carries what
+// list views need without the post body, which is only transferred for the article being viewed.
+export interface WordpressPostSummary {
+    ID: number;
+    slug: string;
+    readingTimeMins: number;
+}
+
+export function wordpressReadingTimeMins(content: string): number {
+    return Math.max(1, Math.ceil((content.match(/\s+/g)?.length || 0) / 200));
+}
+
 export class BlogPostLink extends ResourceLink {
     readonly author: Person;
 
@@ -68,13 +80,20 @@ export abstract class Article extends SiteResource {
     abstract pageTitle(): string;
 }
 
-function articlePropsFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): PropsOf<Article> {
+function articlePropsFromWPApi(
+    data: SanityArticle,
+    db: SanityDataset,
+    wordpressPost: WordpressPost | WordpressPostSummary
+): PropsOf<Article> {
+    const contentHtml = "content" in wordpressPost ? wordpressPost.content : "";
     return {
         ...resourcePropsFromSanity(data, db),
-        contentHtml: wordpressPost.content,
+        contentHtml,
         canonicalUrl: data.canonicalUrl,
         imageURL: data.image && db.resolveRef(data.image.asset).url,
-        readingTimeMins: Math.max(1, Math.ceil((wordpressPost.content.match(/\s+/g)?.length || 0) / 200)),
+        readingTimeMins: "readingTimeMins" in wordpressPost
+            ? wordpressPost.readingTimeMins
+            : wordpressReadingTimeMins(contentHtml),
     };
 }
 
@@ -82,7 +101,7 @@ export class FundamentalArticle extends Article {
     static fromApi(
         data: SanityFundamentalArticle,
         db: SanityDataset,
-        wordpressPost: WordpressPost
+        wordpressPost: WordpressPost | WordpressPostSummary
     ): FundamentalArticle {
         return new FundamentalArticle(articlePropsFromWPApi(data, db, wordpressPost));
     }
@@ -96,7 +115,7 @@ export class ApplicationArticle extends Article {
     static fromApi(
         data: SanityApplicationArticle,
         db: SanityDataset,
-        wordpressPost: WordpressPost
+        wordpressPost: WordpressPost | WordpressPostSummary
     ): ApplicationArticle {
         return new ApplicationArticle(articlePropsFromWPApi(data, db, wordpressPost));
     }
@@ -120,7 +139,7 @@ export class BlogPost extends Article {
         this.date = props.date;
     }
 
-    static fromSanityAndWPApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost): BlogPost {
+    static fromSanityAndWPApi(data: SanityBlogPost, db: SanityDataset, wordpressPost: WordpressPost | WordpressPostSummary): BlogPost {
         return new BlogPost(
             Object.assign(articlePropsFromWPApi(data, db, wordpressPost), {
                 level: data.level,
@@ -153,7 +172,7 @@ export class BlogPost extends Article {
     }
 }
 
-export function articleFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost): Article {
+export function articleFromWPApi(data: SanityArticle, db: SanityDataset, wordpressPost: WordpressPost | WordpressPostSummary): Article {
     if (isFundamentalArticle(data)) return FundamentalArticle.fromApi(data, db, wordpressPost);
     else if (isApplicationArticle(data)) return ApplicationArticle.fromApi(data, db, wordpressPost);
     else if (isBlogPost(data)) return BlogPost.fromSanityAndWPApi(data, db, wordpressPost);
