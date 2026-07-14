@@ -68,14 +68,10 @@ export default async (
       || (request.headers.get("x-forwarded-for") || "").split(",")[0].trim()
       || "unknown";
 
-    const signals = policySignals(request);
-    if (signals) {
-      console.log(`[policy] ${JSON.stringify({
-        ip: clientIp,
-        path,
-        country: context?.geo?.country?.code,
-        signals,
-      })}`);
+    if (policySignals(request)) {
+      console.log(
+        `Blocked request ${request.method} ${path} (403, traffic policy); IP: ${clientIp}; Country: ${context?.geo?.country?.code ?? "-"}; UA: ${request.headers.get("user-agent")}`
+      );
       return new Response("Forbidden", { status: 403 });
     }
 
@@ -89,6 +85,8 @@ export default async (
         ua: request.headers.get("user-agent"),
         acceptLanguage: request.headers.get("accept-language"),
         referer: request.headers.get("referer"),
+        secChUa: request.headers.get("sec-ch-ua"),
+        secFetchSite: request.headers.get("sec-fetch-site"),
       })}`);
     }
 
