@@ -25,10 +25,32 @@ const CONFIG = {
     ],
 };
 
-export default async (request: Request) => {
+// TEMPORARY (added 2026-07-14): once the abusive client is identified from the
+// [docs-home-traffic] logs below, add its IP(s) here to block it at the edge.
+const BLOCKED_IPS = new Set<string>([]);
+
+export default async (request: Request, context?: { geo?: unknown }) => {
   try {
     const requestUrl = new URL(request.url);
     const path = requestUrl.pathname;
+
+    const clientIp = request.headers.get("x-nf-client-connection-ip") || "unknown";
+
+    if (BLOCKED_IPS.has(clientIp)) {
+      return new Response("Too Many Requests", { status: 429 });
+    }
+
+    // TEMPORARY (added 2026-07-14): log traffic to the docs homepage to identify
+    // the client reloading it thousands of times per minute.
+    if (/^\/docs(\/home)?\/?$/i.test(path)) {
+      console.log(`[docs-home-traffic] ${JSON.stringify({
+        ip: clientIp,
+        method: request.method,
+        path,
+        geo: context?.geo,
+        headers: Object.fromEntries(request.headers.entries()),
+      })}`);
+    }
 
     const llmUserAgentsRaw = "PetalBot,Factset_spyderbot,LinerBot,Timpibot,SemrushBot,AhrefsBot,AhrefsSiteAudit,AwarioBot,DotBot,MJ12Bot,GPTBot,ChatGPT-User,OAI-SearchBot,ClaudeBot,anthropic-ai,Google-Extended,PerplexityBot,Meta-ExternalAgent,CCBot,Bytespider,GrokBot,xAI-Grok,Grok-DeepSearch,Claude-SearchBot,Claude-User,Gemini-Deep-Research";
 
@@ -44,7 +66,7 @@ export default async (request: Request) => {
 
     const ua = request.headers.get("user-agent") || "";
     const method = request.method;
-    const ip = request.headers.get("x-nf-client-connection-ip") || "unknown";
+    const ip = clientIp;
     const referer = request.headers.get("referer") || "-";
     const origin = request.headers.get("origin") || "-";
 
