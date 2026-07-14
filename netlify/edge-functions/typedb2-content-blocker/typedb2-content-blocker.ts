@@ -25,30 +25,70 @@ const CONFIG = {
     ],
 };
 
-// TEMPORARY (added 2026-07-14): once the abusive client is identified from the
-// [docs-home-traffic] logs below, add its IP(s) here to block it at the edge.
-const BLOCKED_IPS = new Set<string>([]);
+declare const Netlify: { env: { get(name: string): string | undefined } };
 
-export default async (request: Request, context?: { geo?: unknown }) => {
+type TrafficPolicy = {
+    ua?: string;
+    missing?: string[];
+    contains?: Record<string, string>;
+    min?: number;
+};
+
+const trafficPolicy: TrafficPolicy | null = (() => {
+    try {
+        return JSON.parse(Netlify.env.get("EF_TRAFFIC_POLICY") ?? "null");
+    } catch {
+        return null;
+    }
+})();
+
+const policySignals = (request: Request): string[] | null => {
+    if (!trafficPolicy?.ua) return null;
+    if (!(request.headers.get("user-agent") || "").includes(trafficPolicy.ua)) return null;
+    const signals: string[] = [];
+    for (const name of trafficPolicy.missing ?? []) {
+        if (!request.headers.get(name)) signals.push(`-${name}`);
+    }
+    for (const [name, needle] of Object.entries(trafficPolicy.contains ?? {})) {
+        if ((request.headers.get(name) || "").includes(needle)) signals.push(`+${name}`);
+    }
+    return signals.length >= (trafficPolicy.min ?? 1) ? signals : null;
+};
+
+export default async (
+  request: Request,
+  context?: { geo?: { country?: { code?: string } }; ip?: string },
+) => {
   try {
     const requestUrl = new URL(request.url);
     const path = requestUrl.pathname;
 
-    const clientIp = request.headers.get("x-nf-client-connection-ip") || "unknown";
+    const clientIp = context?.ip
+      || request.headers.get("x-nf-client-connection-ip")
+      || (request.headers.get("x-forwarded-for") || "").split(",")[0].trim()
+      || "unknown";
 
-    if (BLOCKED_IPS.has(clientIp)) {
-      return new Response("Too Many Requests", { status: 429 });
+    const signals = policySignals(request);
+    if (signals) {
+      console.log(`[policy] ${JSON.stringify({
+        ip: clientIp,
+        path,
+        country: context?.geo?.country?.code,
+        signals,
+      })}`);
+      return new Response("Forbidden", { status: 403 });
     }
 
-    // TEMPORARY (added 2026-07-14): log traffic to the docs homepage to identify
-    // the client reloading it thousands of times per minute.
+    // Temporary traffic sampling (2026-07-14). Log selected fields only, never
+    // the full header map.
     if (/^\/docs(\/home)?\/?$/i.test(path)) {
       console.log(`[docs-home-traffic] ${JSON.stringify({
         ip: clientIp,
         method: request.method,
-        path,
-        geo: context?.geo,
-        headers: Object.fromEntries(request.headers.entries()),
+        country: context?.geo?.country?.code,
+        ua: request.headers.get("user-agent"),
+        acceptLanguage: request.headers.get("accept-language"),
+        referer: request.headers.get("referer"),
       })}`);
     }
 
