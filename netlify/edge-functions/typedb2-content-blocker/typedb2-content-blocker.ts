@@ -129,8 +129,9 @@ export default async (
     }
 
     // Temporary traffic sampling (2026-07-14)
-    if (/^\/docs(\/home)?\/?$/i.test(path)) {
-      console.log(`[docs-home-traffic] ${JSON.stringify({
+    if (/^\/(docs(\/home)?\/?$|blog(\/|$))/i.test(path)) {
+      console.log(`[traffic-sample] ${JSON.stringify({
+        path,
         ip: clientIp,
         method: request.method,
         country: context?.geo?.country?.code,
