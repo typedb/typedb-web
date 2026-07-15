@@ -27,32 +27,83 @@ const CONFIG = {
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
-type TrafficPolicy = {
+type TrafficRule = {
     ua?: string;
+    uaPattern?: string;
+    countries?: string[];
+    ipPrefixes?: string[];
     missing?: string[];
     contains?: Record<string, string>;
     min?: number;
 };
 
-const trafficPolicy: TrafficPolicy | null = (() => {
+const trafficPolicy: TrafficRule[] = (() => {
     try {
-        return JSON.parse(Netlify.env.get("EF_TRAFFIC_POLICY") ?? "null");
+        const parsed = JSON.parse(Netlify.env.get("EF_TRAFFIC_POLICY") ?? "null");
+        if (!parsed) return [];
+        return Array.isArray(parsed) ? parsed : [parsed];
     } catch {
-        return null;
+        return [];
     }
 })();
 
-const policySignals = (request: Request): string[] | null => {
-    if (!trafficPolicy?.ua) return null;
-    if (!(request.headers.get("user-agent") || "").includes(trafficPolicy.ua)) return null;
+const uaPatterns = trafficPolicy.map((rule) => {
+    try {
+        return rule.uaPattern ? new RegExp(rule.uaPattern, "i") : null;
+    } catch {
+        return null;
+    }
+});
+
+const ipv4ToInt = (ip: string): number | null => {
+    const parts = ip.split(".");
+    if (parts.length !== 4) return null;
+    let result = 0;
+    for (const part of parts) {
+        const n = Number(part);
+        if (!Number.isInteger(n) || n < 0 || n > 255) return null;
+        result = result * 256 + n;
+    }
+    return result;
+};
+
+const ipMatches = (ip: string, prefixes: string[]): boolean =>
+    prefixes.some((prefix) => {
+        const [base, bits] = prefix.split("/");
+        if (bits === undefined) return ip.startsWith(prefix);
+        const ipInt = ipv4ToInt(ip);
+        const baseInt = ipv4ToInt(base);
+        const maskBits = Number(bits);
+        if (ipInt === null || baseInt === null || !Number.isInteger(maskBits) || maskBits < 0 || maskBits > 32) return false;
+        const mask = maskBits === 0 ? 0 : (~0 << (32 - maskBits)) >>> 0;
+        return ((ipInt & mask) >>> 0) === ((baseInt & mask) >>> 0);
+    });
+
+const ruleSignals = (rule: TrafficRule, uaPattern: RegExp | null, request: Request, ip: string, country: string): string[] | null => {
+    const hasGates = !!(rule.ua || rule.uaPattern || rule.countries?.length || rule.ipPrefixes?.length);
+    const hasSignalChecks = !!(rule.missing?.length || Object.keys(rule.contains ?? {}).length);
+    if (!hasGates && !hasSignalChecks) return null;
+    const ua = request.headers.get("user-agent") || "";
+    if (rule.ua && !ua.includes(rule.ua)) return null;
+    if (rule.uaPattern && !uaPattern?.test(ua)) return null;
+    if (rule.countries?.length && !rule.countries.includes(country)) return null;
+    if (rule.ipPrefixes?.length && !ipMatches(ip, rule.ipPrefixes)) return null;
     const signals: string[] = [];
-    for (const name of trafficPolicy.missing ?? []) {
+    for (const name of rule.missing ?? []) {
         if (!request.headers.get(name)) signals.push(`-${name}`);
     }
-    for (const [name, needle] of Object.entries(trafficPolicy.contains ?? {})) {
+    for (const [name, needle] of Object.entries(rule.contains ?? {})) {
         if ((request.headers.get(name) || "").includes(needle)) signals.push(`+${name}`);
     }
-    return signals.length >= (trafficPolicy.min ?? 1) ? signals : null;
+    return signals.length >= (rule.min ?? (hasSignalChecks ? 1 : 0)) ? signals : null;
+};
+
+const policySignals = (request: Request, ip: string, country: string): string[] | null => {
+    for (let i = 0; i < trafficPolicy.length; i++) {
+        const signals = ruleSignals(trafficPolicy[i], uaPatterns[i], request, ip, country);
+        if (signals) return [`rule:${i}`, ...signals];
+    }
+    return null;
 };
 
 export default async (
@@ -68,15 +119,16 @@ export default async (
       || (request.headers.get("x-forwarded-for") || "").split(",")[0].trim()
       || "unknown";
 
-    if (policySignals(request)) {
+    const country = context?.geo?.country?.code ?? "-";
+    const signals = policySignals(request, clientIp, country);
+    if (signals) {
       console.log(
-        `Blocked request ${request.method} ${path} (403, traffic policy); IP: ${clientIp}; Country: ${context?.geo?.country?.code ?? "-"}; UA: ${request.headers.get("user-agent")}`
+        `Blocked request ${request.method} ${path} (403, traffic policy ${signals.join(",")}); IP: ${clientIp}; Country: ${country}; UA: ${request.headers.get("user-agent")}`
       );
       return new Response("Forbidden", { status: 403 });
     }
 
-    // Temporary traffic sampling (2026-07-14). Log selected fields only, never
-    // the full header map.
+    // Temporary traffic sampling (2026-07-14)
     if (/^\/docs(\/home)?\/?$/i.test(path)) {
       console.log(`[docs-home-traffic] ${JSON.stringify({
         ip: clientIp,
