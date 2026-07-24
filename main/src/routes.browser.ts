@@ -2,6 +2,7 @@ import { Route, Routes } from "@angular/router";
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
+import { ComposablePageComponent } from "./page/composable/composable-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { GenericPageComponent } from "./page/generic/generic-page.component";
 import { HomePageComponent } from "./page/home/home-page.component";
@@ -54,6 +55,18 @@ export const blogPaginationRoutes = [
     { path: "blog/page/:page" },
     { path: "blog/category/:slug/page/:page" },
 ] as const;
+
+// Marketer-built pages (composablePage documents in Sanity) are served at the top level, e.g. /graph-database.
+// The ":slug" route must stay ordered after every fixed route (including "404") so it only catches leftovers.
+// The same list is duplicated in schema/page/composable.ts (reservedRoutes) to validate routes in Sanity Studio.
+export const composablePageSchemaInfo = { schemaName: "composablePage", schemaSlugAccessor: "route.current" } as const;
+
+export const reservedTopLevelRoutes: readonly string[] = [
+    ...staticPageSchemas.map((x) => x.path),
+    ...genericPageSchemas.map((x) => x.path),
+    ...dynamicPageSchemas.map((x) => x.path.split("/")[0]),
+    "404",
+];
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "": { component: HomePageComponent },
@@ -136,5 +149,6 @@ export const routes: Routes = [
     { path: "blog/page/:page", component: BlogComponent, title: "TypeDB Blog" },
     { path: "blog/category/:slug/page/:page", component: BlogComponent },
     { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
+    { path: ":slug", component: ComposablePageComponent },
     { path: "**", component: _404PageComponent },
 ];

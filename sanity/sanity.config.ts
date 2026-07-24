@@ -1,8 +1,8 @@
 import "./styles.css";
 
 import {
-    AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, CubeIcon,
-    DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
+    AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, ComposeIcon,
+    CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon, CodeIcon, ImageIcon,
 } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
@@ -25,7 +25,7 @@ import {
     learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName,
     surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName,
     cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
-    useCasePageTemplateSchemaName, useCasePageSchemaName,
+    useCasePageTemplateSchemaName, useCasePageSchemaName, composablePageSchemaName,
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -76,6 +76,7 @@ export default defineConfig({
                     s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
+                s.documentTypeListItem(composablePageSchemaName).title("Pages (new)").icon(ComposeIcon),
                 s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
                     singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
