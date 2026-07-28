@@ -11,11 +11,12 @@ import {
   useElementSize,
   useTheme,
 } from '@sanity/ui'
+import type {Theme} from '@sanity/ui'
 import {CloseIcon} from '@sanity/icons'
 import styled, {css} from 'styled-components'
 
 const BlueColor = css`
-  color: ${({theme}) => theme.sanity.color.muted.primary.enabled.fg};
+  color: ${({theme}) => (theme as Theme).sanity.color.muted.primary.enabled.fg};
 `
 
 const LabelContainer = styled(Label)`

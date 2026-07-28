@@ -8,8 +8,7 @@ import {
 import { defineConfig, isDev } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { media } from "sanity-plugin-media";
-import { deskTool } from "sanity/desk";
-import { StructureBuilder } from "sanity/lib/exports/desk";
+import { structureTool, StructureBuilder } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 
 import {
@@ -44,7 +43,7 @@ export default defineConfig({
     dataset: config.dataset,
 
     plugins: [
-        deskTool({
+        structureTool({
             structure: (s: StructureBuilder) => s.list().title("Content").items([
                 s.listItem().title("Site Navigation").icon(BlockElementIcon).child(s.list().title("Site Navigation").items([
                     singletonListItem(s, siteBannerSchemaName, { title: "Site Banner", icon: SparklesIcon }),
@@ -52,6 +51,7 @@ export default defineConfig({
                     singletonListItem(s, topnavSchemaNames.topnav, { title: "Topnav", icon: MasterDetailIcon }),
                     singletonListItem(s, footerSchemaName, { title: "Footer", icon: ThListIcon }),
                 ])),
+                s.documentTypeListItem(composablePageSchemaName).title("Page Builder (new)").icon(ComposeIcon),
                 s.listItem().title("Pages - Main Site").icon(DocumentsIcon).child(s.list().title("Pages - Main Site").items([
                     singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
                     s.divider(),
@@ -76,7 +76,6 @@ export default defineConfig({
                     s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
-                s.documentTypeListItem(composablePageSchemaName).title("Pages (new)").icon(ComposeIcon),
                 s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
                     singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
