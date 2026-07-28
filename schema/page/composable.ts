@@ -23,6 +23,13 @@ interface SanityKeyed {
     _key: string;
 }
 
+export const composablePageBackgrounds = [
+    { title: "None", value: "none" },
+    { title: "Floating Dots", value: "floatingDots" },
+] as const;
+
+export type ComposablePageBackground = (typeof composablePageBackgrounds)[number]["value"];
+
 export type SanityComposableSection = SanityKeyed &
     (
         | ({ _type: typeof sectionCoreSchemaName } & SanitySectionCore)
@@ -37,6 +44,7 @@ export type SanityComposableSection = SanityKeyed &
 export interface SanityComposablePage extends SanityPage {
     title: string;
     route: Slug;
+    background?: ComposablePageBackground;
     sections?: SanityComposableSection[];
 }
 
@@ -73,12 +81,14 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
 export class ComposablePage extends Page {
     readonly title: string;
     readonly route: string;
+    readonly background: ComposablePageBackground;
     readonly sections: ComposablePageSection[];
 
     constructor(data: SanityComposablePage, db: SanityDataset) {
         super(data, db);
         this.title = data.title;
         this.route = data.route.current;
+        this.background = data.background || "none";
         this.sections = (data.sections || [])
             .filter((x) => x.isVisible)
             .map((x) => sectionFromSanity(x, db))
@@ -116,6 +126,18 @@ const composablePageSchema = defineType({
                     return true;
                 }),
             ],
+        }),
+        defineField({
+            name: "background",
+            title: "Background",
+            type: "string",
+            description: "Animated effect rendered behind the whole page",
+            options: {
+                layout: "radio",
+                direction: "horizontal",
+                list: [...composablePageBackgrounds],
+            },
+            initialValue: "none",
         }),
         defineField({
             name: "sections",

@@ -1,5 +1,8 @@
 <article>
   @if (page$ | async; as page) {
+    @if (page.background === "floatingDots") {
+      <td-floating-dots-background />
+    }
     @for (item of page.sections; track item.key; let idx = $index; let isFirst = $first) {
       @switch (item.type) {
         @case ("coreSection") {

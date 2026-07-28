@@ -2,6 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
 import { ComposablePage, composablePageSchemaName, SanityComposablePage, SanityDataset } from "typedb-web-schema";
+import { FloatingDotsBackgroundComponent } from "../../framework/background/floating-dots-background.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
@@ -18,8 +19,8 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe, ConclusionPanelComponent, ContentPanelComponent, KeyPointPanels2x2Component,
-        LinkPanelsComponent, SectionCoreComponent, SimpleLinkPanelsComponent,
+        AsyncPipe, ConclusionPanelComponent, ContentPanelComponent, FloatingDotsBackgroundComponent,
+        KeyPointPanels2x2Component, LinkPanelsComponent, SectionCoreComponent, SimpleLinkPanelsComponent,
     ],
 })
 export class ComposablePageComponent extends PageComponentBase<ComposablePage> {

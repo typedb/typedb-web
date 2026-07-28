@@ -7,6 +7,7 @@ import { combineLatest, map, Observable, of } from "rxjs";
 import { blogPostLinkOf, HomePage, homePageSchemaName, ResourceLink, SanityDataset, SanityHomePage, SocialMediaLink } from "typedb-web-schema";
 import { ContentService } from "src/service/content.service";
 import { MetaTagsService } from "src/service/meta-tags.service";
+import { FloatingDotsBackgroundComponent } from "../../framework/background/floating-dots-background.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { IntegrationsGridComponent } from "../../framework/integrations-grid/integrations-grid.component";
@@ -24,7 +25,7 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
+        AsyncPipe, FloatingDotsBackgroundComponent, SectionCoreComponent, IntegrationsGridComponent, HotTopicsComponent,
         PolyglotComparisonComponent,
         SimpleLinkPanelsComponent, SocialMediaPanelsComponent, ConclusionPanelComponent, KeyPointPanels2x2Component
     ]
