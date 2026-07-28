@@ -1,5 +1,5 @@
 import { defineField, defineType } from "@sanity/types";
-import { Illustration, illustrationField, illustrationFromSanity, SanityIllustrationField } from "../illustration";
+import { Illustration, illustrationField, illustrationFieldValueFromSanity, SanityIllustrationField } from "../illustration";
 import { Link, linkSchemaName, SanityLink } from "../link";
 import { bodyFieldRichText, learnMoreLinkFieldName, titleField } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -17,7 +17,7 @@ export class ContentTextPanel implements BodyTextField {
     readonly learnMoreLink?: Link;
 
     constructor(data: SanityContentTextPanel, db: SanityDataset) {
-        this.illustration = illustrationFromSanity(db.resolveRef(data.illustration), db);
+        this.illustration = illustrationFieldValueFromSanity(data.illustration, db)!;
         this.body = data.body;
         this.learnMoreLink = data.learnMoreLink ? Link.fromSanityLinkRef(data.learnMoreLink, db) : undefined;
     }

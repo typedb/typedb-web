@@ -1,7 +1,7 @@
 import { CodeBlockIcon, CodeIcon, DocumentVideoIcon, ImageIcon, SplitVerticalIcon, SunIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, ReferenceRule, SanityDocument, Slug, SlugRule, StringRule, TextRule } from "@sanity/types";
 import { CodeSnippet, isCodeSnippet, isPolyglotSnippet, PolyglotSnippet, SanityCodeSnippet, SanityPolyglotSnippet } from "./code";
-import { codeSnippetSchemaName, polyglotSnippetSchemaName, titleField } from "./common-fields";
+import { codeSnippetSchemaName, polyglotSnippetSchemaName, requiredRule, titleField } from "./common-fields";
 import { Document, SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
 
@@ -31,8 +31,29 @@ export interface SanitySplitPaneIllustration extends SanityDocument {
 
 export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | SanityCodeSnippet | SanityPolyglotSnippet | SanityGraphVisualisation | SanitySplitPaneIllustration;
 
+export const illustrationObjectSchemaName = "illustration";
+
+export type IllustrationKind = "image" | "code" | "video" | "graph" | "splitPane";
+
+export interface SanityIllustrationObject {
+    _type: typeof illustrationObjectSchemaName;
+    kind: IllustrationKind;
+    image?: SanityImage;
+    code?: SanityReference<SanityCodeSnippet | SanityPolyglotSnippet>;
+    video?: SanityReference<SanityVideoEmbed>;
+    graph?: SanityReference<SanityGraphVisualisation>;
+    splitPane?: SanityReference<SanitySplitPaneIllustration>;
+}
+
+/** Documents published before the illustration migration still hold the legacy reference shape */
+export type SanityIllustrationFieldValue = SanityIllustrationObject | SanityReference<SanityIllustration>;
+
 export interface SanityIllustrationField {
-    illustration: SanityReference<SanityIllustration>;
+    illustration: SanityIllustrationFieldValue;
+}
+
+export function isLegacyIllustrationRef(value: SanityIllustrationFieldValue): value is SanityReference<SanityIllustration> {
+    return "_ref" in value;
 }
 
 export function isImageIllustration(doc: SanityDocument): doc is SanityImageIllustration {
@@ -67,6 +88,15 @@ export class ImageIllustration extends Document {
             url: imageAsset.url,
             altText: imageAsset.altText || "",
         }));
+    }
+
+    static fromSanityImageField(image: SanityImage, db: SanityDataset): ImageIllustration {
+        const imageAsset = db.resolveRef(image.asset);
+        return new ImageIllustration({
+            id: image.asset._ref,
+            url: imageAsset.url,
+            altText: imageAsset.altText || "",
+        });
     }
 }
 
@@ -161,6 +191,32 @@ export function illustrationFromSanity(data: SanityIllustration, db: SanityDatas
     else throw `Found illustration with illegal document type '${(data as any)._type}'`;
 }
 
+/**
+ * Transforms an illustration field value in either shape: the current inline object
+ * (kind + one content field) or the legacy reference to an illustration document.
+ * Returns undefined for an object whose content field is not yet filled in (e.g. a half-edited draft).
+ */
+export function illustrationFieldValueFromSanity(value: SanityIllustrationFieldValue, db: SanityDataset): Illustration | undefined {
+    if (isLegacyIllustrationRef(value)) return illustrationFromSanity(db.resolveRef(value), db);
+    switch (value.kind) {
+        case "image":
+            return value.image?.asset ? ImageIllustration.fromSanityImageField(value.image, db) : undefined;
+        case "code": {
+            if (!value.code) return undefined;
+            const snippet = db.resolveRef(value.code);
+            return isPolyglotSnippet(snippet) ? PolyglotSnippet.fromSanity(snippet, db) : CodeSnippet.fromSanity(snippet);
+        }
+        case "video":
+            return value.video ? VideoEmbed.fromSanity(db.resolveRef(value.video)) : undefined;
+        case "graph":
+            return value.graph ? GraphVisualisation.fromSanity(db.resolveRef(value.graph)) : undefined;
+        case "splitPane":
+            return value.splitPane ? SplitPaneIllustration.fromSanity(db.resolveRef(value.splitPane), db) : undefined;
+        default:
+            return undefined;
+    }
+}
+
 const imageIllustrationSchema = defineType({
     name: imageIllustrationSchemaName,
     title: "Image",
@@ -174,10 +230,11 @@ const imageIllustrationSchema = defineType({
         }),
     ],
     preview: {
-        select: { assetTitle: "image.asset.title", originalFilename: "image.asset.originalFilename", dimensions: "image.asset.metadata.dimensions" },
+        select: { media: "image", assetTitle: "image.asset.title", originalFilename: "image.asset.originalFilename", dimensions: "image.asset.metadata.dimensions" },
         prepare: (selection) => ({
             title: selection.assetTitle || selection.originalFilename,
-            subtitle: `${selection.dimensions.width}x${selection.dimensions.height}`,
+            subtitle: selection.dimensions ? `Image · ${selection.dimensions.width}x${selection.dimensions.height}` : "Image",
+            media: selection.media,
         }),
     },
 });
@@ -196,6 +253,13 @@ const videoEmbedSchema = defineType({
             validation: (rule: SlugRule) => rule.required(),
         }),
     ],
+    preview: {
+        select: { title: "title", url: "url.current" },
+        prepare: (selection) => ({
+            title: selection.title,
+            subtitle: selection.url ? `Video · ${selection.url}` : "Video",
+        }),
+    },
 });
 
 const graphVisualisationSchema = defineType({
@@ -221,6 +285,17 @@ const graphVisualisationSchema = defineType({
             }),
         }),
     ],
+    preview: {
+        select: { title: "title", json: "json" },
+        prepare: (selection) => {
+            let subtitle = "Graph visualisation";
+            try {
+                const { vertices, edges } = JSON.parse(selection.json);
+                subtitle = `Graph · ${vertices?.length ?? 0} vertices, ${edges?.length ?? 0} edges`;
+            } catch (e) { /* fall back to the generic subtitle */ }
+            return { title: selection.title, subtitle };
+        },
+    },
 });
 
 const splitPaneIllustrationSchema = defineType({
@@ -243,6 +318,14 @@ const splitPaneIllustrationSchema = defineType({
             to: [{ type: imageIllustrationSchemaName }, { type: codeSnippetSchemaName }, { type: graphVisualisationSchemaName }],
         }),
     ],
+    preview: {
+        select: { title: "title", leftTitle: "left.title", rightTitle: "right.title" },
+        prepare: (selection) => ({
+            title: selection.title,
+            // only image illustrations have no title field
+            subtitle: `Split pane · ${selection.leftTitle || "Image"} | ${selection.rightTitle || "Image"}`,
+        }),
+    },
 });
 
 export const illustrationFieldName = "illustration";
@@ -252,19 +335,101 @@ export const illustrationFieldTargetTypes = [
     { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
 ];
 
+const illustrationKinds: { title: string; value: IllustrationKind }[] = [
+    { title: "Image", value: "image" },
+    { title: "Code", value: "code" },
+    { title: "Video", value: "video" },
+    { title: "Graph", value: "graph" },
+    { title: "Split Pane", value: "splitPane" },
+];
+
+const illustrationKindTitles = Object.fromEntries(illustrationKinds.map((x) => [x.value, x.title]));
+
+const hiddenUnlessKind = (kind: IllustrationKind) =>
+    (ctx: { parent?: SanityIllustrationObject }) => ctx.parent?.kind !== kind;
+
+const illustrationObjectSchema = defineType({
+    name: illustrationObjectSchemaName,
+    title: "Illustration",
+    type: "object",
+    fields: [
+        defineField({
+            name: "kind",
+            title: "Illustration Type",
+            type: "string",
+            options: { list: illustrationKinds, layout: "radio", direction: "horizontal" },
+            initialValue: "image",
+            validation: requiredRule,
+        }),
+        defineField({
+            name: "image",
+            title: "Image",
+            type: "image",
+            options: { hotspot: true },
+            hidden: hiddenUnlessKind("image"),
+        }),
+        defineField({
+            name: "code",
+            title: "Code Snippet",
+            type: "reference",
+            to: [{ type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }],
+            hidden: hiddenUnlessKind("code"),
+        }),
+        defineField({
+            name: "video",
+            title: "Video",
+            type: "reference",
+            to: [{ type: videoEmbedSchemaName }],
+            hidden: hiddenUnlessKind("video"),
+        }),
+        defineField({
+            name: "graph",
+            title: "Graph Visualisation",
+            type: "reference",
+            to: [{ type: graphVisualisationSchemaName }],
+            hidden: hiddenUnlessKind("graph"),
+        }),
+        defineField({
+            name: "splitPane",
+            title: "Split Pane",
+            type: "reference",
+            to: [{ type: splitPaneIllustrationSchemaName }],
+            hidden: hiddenUnlessKind("splitPane"),
+        }),
+    ],
+    validation: (rule) => rule.custom((value: any) => {
+        if (!value || !value.kind) return true; // absence is handled by the field-level required() rule
+        return value[value.kind]
+            ? true
+            : `Select the content for this ${(illustrationKindTitles[value.kind] || "illustration").toLowerCase()} illustration`;
+    }),
+    preview: {
+        select: {
+            kind: "kind", media: "image", imageTitle: "image.asset.title", imageFilename: "image.asset.originalFilename",
+            codeTitle: "code.title", videoTitle: "video.title", graphTitle: "graph.title", splitPaneTitle: "splitPane.title",
+        },
+        prepare: (selection) => ({
+            title: selection.imageTitle || selection.imageFilename || selection.codeTitle || selection.videoTitle
+                || selection.graphTitle || selection.splitPaneTitle || "No content selected",
+            subtitle: illustrationKindTitles[selection.kind] || "Illustration",
+            media: selection.media,
+        }),
+    },
+});
+
 export const illustrationField = defineField({
     name: illustrationFieldName,
     title: "Illustration",
-    type: "reference",
-    to: illustrationFieldTargetTypes,
-    validation: (rule: ReferenceRule) => rule.required(),
+    type: illustrationObjectSchemaName,
+    options: { collapsible: true, collapsed: false },
+    validation: requiredRule,
 });
 
 export const illustrationFieldOptional = defineField({
     name: illustrationFieldName,
     title: "Illustration (optional)",
-    type: "reference",
-    to: illustrationFieldTargetTypes,
+    type: illustrationObjectSchemaName,
+    options: { collapsible: true, collapsed: false },
 });
 
-export const illustrationSchemas = [imageIllustrationSchema, videoEmbedSchema, graphVisualisationSchema, splitPaneIllustrationSchema];
+export const illustrationSchemas = [illustrationObjectSchema, imageIllustrationSchema, videoEmbedSchema, graphVisualisationSchema, splitPaneIllustrationSchema];

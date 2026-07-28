@@ -5,7 +5,7 @@ import {
     titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
     actionsFieldOptional,
 } from "../common-fields";
-import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSanity, SanityIllustrationFieldValue } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { ResourceLink } from "../resource/base";
 import { SanityResource } from "../resource/sanity";
@@ -30,7 +30,7 @@ export interface SanitySimpleLinkPanelsSection extends SanitySectionCore {
 }
 
 export interface SanityIllustrationSection extends SanitySectionCore {
-    illustration: SanityReference<SanityIllustration>;
+    illustration?: SanityIllustrationFieldValue;
 }
 
 export interface SanityHotTopicsSection extends SanitySectionCore {
@@ -120,7 +120,7 @@ export class IllustrationSection extends SectionCore {
     static override fromSanity(data: SanityIllustrationSection, db: SanityDataset) {
         return new IllustrationSection({
             ...SectionCore.fromSanity(data, db),
-            illustration: data.illustration ? illustrationFromSanity(db.resolveRef(data.illustration), db) : undefined,
+            illustration: data.illustration ? illustrationFieldValueFromSanity(data.illustration, db) : undefined,
         });
     }
 }

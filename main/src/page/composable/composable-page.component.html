@@ -1,0 +1,34 @@
+<article>
+  @if (page$ | async; as page) {
+    @for (item of page.sections; track item.key; let idx = $index; let isFirst = $first) {
+      @switch (item.type) {
+        @case ("coreSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" />
+        }
+        @case ("titleBodyIllustrationSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" />
+        }
+        @case ("titleBodyPanelSection") {
+          <td-section-core [section]="item.section" />
+          <td-content-panel [panel]="item.section.panel" [panelId]="'section-' + idx" />
+        }
+        @case ("keyPointsSection") {
+          <td-section-core [section]="item.section" />
+          <td-key-point-panels-2x2 [keyPoints]="item.section.keyPoints" />
+        }
+        @case ("linkPanelsSection") {
+          <td-section-core [section]="item.section" />
+          <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" />
+        }
+        @case ("simpleLinkPanelsSection") {
+          <td-section-core [section]="item.section" />
+          <td-simple-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" />
+        }
+        @case ("conclusionSection") {
+          <td-section-core [section]="item.section" />
+          <td-conclusion-panel [panel]="item.section.panel" />
+        }
+      }
+    }
+  }
+</article>

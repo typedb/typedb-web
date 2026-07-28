@@ -72,6 +72,10 @@ export {
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
 export { Page, type SanityPage } from "./page/common";
+export {
+    ComposablePage, composablePageSchemaName, type ComposablePageSection, type SanityComposablePage,
+    type SanityComposableSection,
+} from "./page/composable";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "../button";
-import { Illustration, illustrationFieldOptional, illustrationFromSanity, SanityIllustration } from "../illustration";
+import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSanity, SanityIllustrationFieldValue } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import {
     bodyFieldRichText, isVisibleField, actionsFieldOptional, requiredRule, SanityVisibleToggle,
@@ -14,7 +14,7 @@ import { SanitySectionCore, SectionCore } from "./section";
 export interface SanityConclusionPanel extends SanityTitleField, SanityBodyTextField, SanityOptionalActions {
     resourceListTitle?: string;
     resources?: SanityTextLink[];
-    illustration?: SanityReference<SanityIllustration>;
+    illustration?: SanityIllustrationFieldValue;
 }
 
 export interface SanityConclusionSection extends SanitySectionCore {
@@ -45,7 +45,7 @@ export class ConclusionPanel implements Partial<BodyTextField> {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resourceListTitle: data.resourceListTitle,
             resources: data.resources?.map((x) => TextLink.fromSanityTextLink(x, db)).filter(x => !!x) as TextLink[],
-            illustration: data.illustration && illustrationFromSanity(db.resolveRef(data.illustration), db),
+            illustration: data.illustration && illustrationFieldValueFromSanity(data.illustration, db),
         });
     }
 }

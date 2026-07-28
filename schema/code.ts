@@ -165,6 +165,14 @@ const codeSnippetSchema = defineType({
         languageField,
         codeField,
     ],
+    preview: {
+        select: { title: "title", language: "language", code: "code" },
+        prepare: (selection) => ({
+            title: selection.title,
+            subtitle: [languages[selection.language as Language] || selection.language, (selection.code || "").split("\n")[0]]
+                .filter(Boolean).join(" · "),
+        }),
+    },
 });
 
 const codeSnippetShortSchema = defineField({
@@ -194,6 +202,17 @@ const polyglotSnippetSchema = defineType({
             validation: requiredRule,
         }),
     ],
+    preview: {
+        select: {
+            title: "title", lang0: "snippets.0.language", lang1: "snippets.1.language",
+            lang2: "snippets.2.language", lang3: "snippets.3.language", lang4: "snippets.4.language",
+        },
+        prepare: (selection) => {
+            const langs = [selection.lang0, selection.lang1, selection.lang2, selection.lang3, selection.lang4]
+                .filter(Boolean).map((lang) => languages[lang as Language] || lang);
+            return { title: selection.title, subtitle: langs.length ? `Polyglot · ${langs.join(", ")}` : "Polyglot" };
+        },
+    },
 });
 
 const queryLanguageComparisonSectionSchema = defineType({
