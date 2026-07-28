@@ -1,5 +1,6 @@
 import { blogSchemas } from "./blog";
 import { basePageSchemas } from "./common";
+import { composablePageSchemas } from "./composable";
 import { eventsPageSchemas } from "./events";
 import { featuresPageSchemas } from "./features";
 import { genericPageSchemas } from "./generic";
@@ -17,7 +18,7 @@ import { metaTagsSchemas } from "./meta-tags";
 import { useCasePageSchemas } from "./use-case";
 
 export const pageSchemas: any[] = [
-    ...basePageSchemas, ...blogSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
+    ...basePageSchemas, ...blogSchemas, ...composablePageSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
     ...genericPageSchemas, ...homePageSchemas, ...learnPageSchemas, ...lecturesPageSchemas, legalDocumentSchema,
     ...metaTagsSchemas, papersPageSchema, ...pricingPageSchemas, requestTechTalkPageSchema,
     ...servicesPageSchemas, ...startupProgramPageSchemas, ...supportPageSchemas, ...useCasePageSchemas,

@@ -1,6 +1,8 @@
 import { RenderMode, ServerRoute } from "@angular/ssr";
 import { blogCategoryList } from "typedb-web-schema";
-import { dynamicPageSchemas, genericPageSchemas, staticPageSchemas } from "./routes.browser";
+import {
+    composablePageSchemaInfo, dynamicPageSchemas, genericPageSchemas, reservedTopLevelRoutes, staticPageSchemas,
+} from "./routes.browser";
 import axios from "axios";
 
 // Sanity.io configuration
@@ -101,6 +103,26 @@ async function fetchFundamentalArticleSlugs(): Promise<Array<{ slug: string }>> 
 async function fetchUseCasePageInstanceSlugs(): Promise<Array<{ slug: string }>> {
     const allSlugs = await getCachedSlugs();
     return allSlugs["useCasePage"] || [];
+}
+
+/**
+ * Fetches the routes of marketer-built composable pages, which are served at the top level (e.g. /graph-database).
+ * Routes that collide with a fixed page's route are dropped - the fixed page wins.
+ */
+async function fetchComposablePageSlugs(): Promise<Array<{ slug: string }>> {
+    try {
+        const { schemaName, schemaSlugAccessor } = composablePageSchemaInfo;
+        const query = `*[_type == '${schemaName}']{"slug": ${schemaSlugAccessor}}`;
+        const { data } = await axios.get<{ result: Array<{ slug: string | null }> }>(SANITY_URL, {
+            params: { query },
+        });
+        return (data.result || []).filter(
+            (x): x is { slug: string } => !!x.slug && !reservedTopLevelRoutes.includes(x.slug),
+        );
+    } catch (error) {
+        console.error("Error fetching composable page slugs from Sanity:", error);
+        return [];
+    }
 }
 
 const BLOG_PAGE_SIZE = 9;
@@ -261,6 +283,12 @@ export async function getServerRoutes(): Promise<ServerRoute[]> {
         {
             path: '404',
             renderMode: RenderMode.Prerender,
+        },
+        // Marketer-built composable pages, served at the top level. Ordered after '404' so /404 stays a real page.
+        {
+            path: ':slug',
+            renderMode: RenderMode.Prerender,
+            getPrerenderParams: fetchComposablePageSlugs,
         },
         {
             path: '**',

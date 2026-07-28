@@ -2,7 +2,10 @@ import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
 import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, tagsField, titleFieldOptional, titleFieldWithHighlights, titleFieldWithHighlightsOptional } from "../common-fields";
-import { Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFromSanity, SanityIllustration } from "../illustration";
+import {
+    Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFieldValueFromSanity,
+    illustrationFromSanity, isLegacyIllustrationRef, SanityIllustration, SanityIllustrationFieldValue,
+} from "../illustration";
 import { SanityImageRef } from "../image";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import { SanityDataset, SanityReference } from "../sanity-core";
@@ -23,7 +26,7 @@ export interface SanityFeatureGrid extends SanityDocument {
     title?: PortableText;
     description?: PortableText;
     rows: SanityFeatureGridRow[];
-    illustration?: SanityReference<SanityIllustration>;
+    illustration?: SanityIllustrationFieldValue;
 }
 
 export interface SanityFeatureGridCell extends SanityVisibleToggle {
@@ -111,7 +114,10 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
             description: featureGrid.description,
             rows: rows,
             illustration: featureGrid.illustration
-                ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
+                ? isLegacyIllustrationRef(featureGrid.illustration)
+                    // legacy references could point at a codeSnippetShort, which the generic transform rejects
+                    ? featureGridIllustrationFromSanity(db.resolveRef(featureGrid.illustration), db)
+                    : illustrationFieldValueFromSanity(featureGrid.illustration, db)
                 : undefined,
         });
     }
