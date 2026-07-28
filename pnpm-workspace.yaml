@@ -4,3 +4,12 @@ packages:
   - "schema"
   - "common"
   - "dev"
+
+# Single source of truth for React versions - all workspaces reference these via "catalog:".
+# @types/react is additionally forced globally via the root package.json pnpm.overrides,
+# so transitive dependencies can never introduce a second copy (which breaks the schema
+# build: @sanity/* type declarations resolve whichever copy pnpm hoists).
+catalog:
+  react: 19.2.8
+  react-dom: 19.2.8
+  "@types/react": 19.2.17

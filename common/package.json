@@ -13,7 +13,7 @@
   "devDependencies": {
     "@sanity/types": "3.97.1",
     "@types/prismjs": "1.26.2",
-    "@types/react": "^18.0.0",
+    "@types/react": "catalog:",
     "typescript": "5.5.4"
   },
   "optionalDependencies": {

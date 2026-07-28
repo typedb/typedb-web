@@ -4,6 +4,18 @@ settings:
   autoInstallPeers: false
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    react:
+      specifier: 19.2.8
+      version: 19.2.8
+    react-dom:
+      specifier: 19.2.8
+      version: 19.2.8
+
+overrides:
+  '@types/react': 19.2.17
+
 importers:
 
   .: {}
@@ -16,13 +28,13 @@ importers:
     devDependencies:
       '@sanity/types':
         specifier: 3.97.1
-        version: 3.97.1(@types/react@18.3.23)
+        version: 3.97.1(@types/react@19.2.17)
       '@types/prismjs':
         specifier: 1.26.2
         version: 1.26.2
       '@types/react':
-        specifier: ^18.0.0
-        version: 18.3.23
+        specifier: 19.2.17
+        version: 19.2.17
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -162,7 +174,7 @@ importers:
         version: 3.4.0(react@18.3.1)
       '@sanity/types':
         specifier: 3.97.1
-        version: 3.97.1(@types/react@18.2.17)
+        version: 3.97.1(@types/react@19.2.17)
       '@sanity/webhook':
         specifier: 4.0.4
         version: 4.0.4
@@ -182,8 +194,8 @@ importers:
         specifier: 1.26.0
         version: 1.26.0
       '@types/react':
-        specifier: 18.2.17
-        version: 18.2.17
+        specifier: 19.2.17
+        version: 19.2.17
       axios:
         specifier: 1.4.0
         version: 1.4.0
@@ -224,10 +236,10 @@ importers:
         specifier: 1.13.1
         version: 1.13.1
       react:
-        specifier: 19.2.8
+        specifier: 'catalog:'
         version: 19.2.8
       react-dom:
-        specifier: 19.2.8
+        specifier: 'catalog:'
         version: 19.2.8(react@19.2.8)
       react-is:
         specifier: 19.2.8
@@ -271,19 +283,19 @@ importers:
         version: 1.3.2
       '@sanity/icons':
         specifier: 3.7.4
-        version: 3.7.4(react@18.3.1)
+        version: 3.7.4(react@19.2.8)
       '@sanity/types':
         specifier: 3.97.1
-        version: 3.97.1(@types/react@18.2.17)
+        version: 3.97.1(@types/react@19.2.17)
       '@types/react':
-        specifier: 18.2.17
-        version: 18.2.17
+        specifier: 19.2.17
+        version: 19.2.17
       axios:
         specifier: 1.10.0
         version: 1.10.0
       react:
-        specifier: 18.3.1
-        version: 18.3.1
+        specifier: 'catalog:'
+        version: 19.2.8
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -2398,7 +2410,7 @@ packages:
   '@mux/mux-player-react@3.13.2':
     resolution: {integrity: sha512-yjAmiqVPYTKi88LAuHxSwKiYrZUDy1ofUYjrDP91mvPfz8BfTvUanzpyE8+a6pRIZFp55rmiAnWyjWKuqSGASw==}
     peerDependencies:
-      '@types/react': ^17.0.0 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
+      '@types/react': 19.2.17
       '@types/react-dom': '*'
       react: ^17.0.2 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
       react-dom: ^17.0.2 || ^17.0.2-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
@@ -3831,12 +3843,12 @@ packages:
   '@sanity/types@3.97.1':
     resolution: {integrity: sha512-ibOauea3H1DYZKqpL56HM92u+upd1bn+KKH+AxZGdypGWaYlUPDyU8moByO+A3rJTEaD554jRdqDCfqySYCFkg==}
     peerDependencies:
-      '@types/react': 18 || 19
+      '@types/react': 19.2.17
 
   '@sanity/types@6.6.0':
     resolution: {integrity: sha512-CJxadjPS6CZNev/BZiV/E5S2UbRneW+QBbTa6z9bOxXX+gM6MP95a0/VXq8/GN/yp28tROz++fSyqXoxqIOgLg==}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': 19.2.17
 
   '@sanity/ui@3.5.0':
     resolution: {integrity: sha512-V3uDrE5DLIwkOQIU5Rxa9DhUh/s4EySOzTqeQyM/4tPXBy5FtDGzWfvQXB06j/R0E8DCYlA+w73AC7EX2us38Q==}
@@ -4575,7 +4587,7 @@ packages:
   '@types/hoist-non-react-statics@3.3.7':
     resolution: {integrity: sha512-PQTyIulDkIDro8P+IHbKCsw7U2xxBYflVzW/FgWdCAePD9xGSidgA76/GeJ6lBKoblyhf9pBY763gbrN+1dI8g==}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': 19.2.17
 
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
@@ -4607,9 +4619,6 @@ packages:
   '@types/prismjs@1.26.2':
     resolution: {integrity: sha512-/r7Cp7iUIk7gts26mHXD66geUC+2Fo26TZYjQK6Nr4LDfi6lmdRmMqM0oPwfiMhUwoBAOFe8GstKi2pf6hZvwA==}
 
-  '@types/prop-types@15.7.15':
-    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
-
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
 
@@ -4619,22 +4628,13 @@ packages:
   '@types/react-transition-group@4.4.12':
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
     peerDependencies:
-      '@types/react': '*'
-
-  '@types/react@18.2.17':
-    resolution: {integrity: sha512-u+e7OlgPPh+aryjOm5UJMX32OvB2E3QASOAqVMY6Ahs90djagxwv2ya0IctglNbNTexC12qCSMZG47KPfy1hAA==}
-
-  '@types/react@18.3.23':
-    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
+      '@types/react': 19.2.17
 
   '@types/react@19.2.17':
     resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
-
-  '@types/scheduler@0.26.0':
-    resolution: {integrity: sha512-WFHp9YUJQ6CKshqoC37iOlHnQSmxNc795UhB26CyBBttrN9svdIrUjl/NjnNmfcwtncN0h/0PPAFWv9ovP8mLA==}
 
   '@types/send@0.17.5':
     resolution: {integrity: sha512-z6F2D3cOStZvuk2SaP6YrwkNO65iTZcwA2ZkSABegdkAh/lf+Aa/YQndZVfmEXT5vgAp6zv06VQ3ejSVjAny4w==}
@@ -7108,7 +7108,7 @@ packages:
   react-focus-lock@2.13.7:
     resolution: {integrity: sha512-20lpZHEQrXPb+pp1tzd4ULL6DyO5D2KnR0G69tTDdydrmNhU7pdFmbQUYVyHUgp+xN29IuFR0PVuhOmvaZL9Og==}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': 19.2.17
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     peerDependenciesMeta:
       '@types/react':
@@ -7145,7 +7145,7 @@ packages:
   react-redux@9.3.0:
     resolution: {integrity: sha512-KQopgqFo/p/fgmAs5qz6p5RWaNAzq40WAu7fJIXnQpYxFPbJYtsJPWvGeF2rOBaY/kEuV77AVsX8TsQzKm+A/g==}
     peerDependencies:
-      '@types/react': ^18.2.25 || ^19
+      '@types/react': 19.2.17
       react: ^18.0 || ^19
       redux: ^5.0.0
     peerDependenciesMeta:
@@ -7882,7 +7882,7 @@ packages:
     resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': 19.2.17
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     peerDependenciesMeta:
       '@types/react':
@@ -7916,7 +7916,7 @@ packages:
     resolution: {integrity: sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': 19.2.17
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     peerDependenciesMeta:
       '@types/react':
@@ -8264,7 +8264,7 @@ packages:
     resolution: {integrity: sha512-/8tAspM5LMPr28b3fwLYrtdj77ECpfZviaP75CMTnwO8ISyaE4GDIG/9rDDYq/cH9D2Xw2A2RXglLInmVBQB/g==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
-      '@types/react': '>=18.0.0'
+      '@types/react': 19.2.17
       immer: '>=9.0.6'
       react: '>=18.0.0'
       use-sync-external-store: '>=1.2.0'
@@ -9817,7 +9817,7 @@ snapshots:
       '@emotion/memoize': 0.9.0
       '@emotion/unitless': 0.10.0
       '@emotion/utils': 1.4.2
-      csstype: 3.1.3
+      csstype: 3.2.3
 
   '@emotion/sheet@1.4.0': {}
 
@@ -11969,10 +11969,6 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@sanity/icons@3.7.4(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
   '@sanity/icons@3.7.4(react@19.2.8)':
     dependencies:
       react: 19.2.8
@@ -12211,19 +12207,11 @@ snapshots:
       '@actions/github': 9.1.1
       yaml: 2.9.0
 
-  '@sanity/types@3.97.1(@types/react@18.2.17)':
+  '@sanity/types@3.97.1(@types/react@19.2.17)':
     dependencies:
       '@sanity/client': 7.12.0
       '@sanity/media-library-types': 1.0.0
-      '@types/react': 18.2.17
-    transitivePeerDependencies:
-      - debug
-
-  '@sanity/types@3.97.1(@types/react@18.3.23)':
-    dependencies:
-      '@sanity/client': 7.12.0
-      '@sanity/media-library-types': 1.0.0
-      '@types/react': 18.3.23
+      '@types/react': 19.2.17
     transitivePeerDependencies:
       - debug
 
@@ -13173,9 +13161,9 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/hoist-non-react-statics@3.3.7(@types/react@18.2.17)':
+  '@types/hoist-non-react-statics@3.3.7(@types/react@19.2.17)':
     dependencies:
-      '@types/react': 18.2.17
+      '@types/react': 19.2.17
       hoist-non-react-statics: 3.3.2
 
   '@types/http-errors@2.0.5': {}
@@ -13203,8 +13191,6 @@ snapshots:
 
   '@types/prismjs@1.26.2': {}
 
-  '@types/prop-types@15.7.15': {}
-
   '@types/qs@6.14.0': {}
 
   '@types/range-parser@1.2.7': {}
@@ -13213,17 +13199,6 @@ snapshots:
     dependencies:
       '@types/react': 19.2.17
 
-  '@types/react@18.2.17':
-    dependencies:
-      '@types/prop-types': 15.7.15
-      '@types/scheduler': 0.26.0
-      csstype: 3.1.3
-
-  '@types/react@18.3.23':
-    dependencies:
-      '@types/prop-types': 15.7.15
-      csstype: 3.1.3
-
   '@types/react@19.2.17':
     dependencies:
       csstype: 3.2.3
@@ -13231,8 +13206,6 @@ snapshots:
   '@types/sax@1.2.7':
     dependencies:
       '@types/node': 18.19.123
-
-  '@types/scheduler@0.26.0': {}
 
   '@types/send@0.17.5':
     dependencies:
@@ -13247,8 +13220,8 @@ snapshots:
 
   '@types/styled-components@5.1.35':
     dependencies:
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@18.2.17)
-      '@types/react': 18.2.17
+      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.17)
+      '@types/react': 19.2.17
       csstype: 3.1.3
 
   '@types/stylis@4.2.5': {}
@@ -13950,7 +13923,7 @@ snapshots:
   dom-helpers@5.2.1:
     dependencies:
       '@babel/runtime': 7.29.7
-      csstype: 3.1.3
+      csstype: 3.2.3
 
   dom-serializer@2.0.0:
     dependencies:
