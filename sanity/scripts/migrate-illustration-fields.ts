@@ -40,8 +40,12 @@ interface Stats {
 }
 
 async function main() {
+    // perspective "raw" is essential: newer API versions default to the "published" perspective,
+    // which hides drafts.* documents - draft detection would silently break without it
     const allDocs = await client.fetch<any[]>(
-        `*[!(_id in path("_.**")) && !(_type in ["sanity.imageAsset", "sanity.fileAsset"])]`
+        `*[!(_id in path("_.**")) && !(_type in ["sanity.imageAsset", "sanity.fileAsset"])]`,
+        {},
+        { perspective: "raw" }
     )
     const byId = new Map<string, any>(allDocs.map((doc) => [doc._id, doc]))
     const resolveDoc = (ref: string) => byId.get(`drafts.${ref}`) ?? byId.get(ref)
