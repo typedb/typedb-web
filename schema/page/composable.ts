@@ -16,7 +16,7 @@ import { metaTagsField } from "./meta-tags";
 // Keep in sync manually - the schema package cannot import from the Angular app.
 const reservedRoutes = [
     "404", "applications", "blog", "cloud", "deploy", "events", "features", "fundamentals", "learn", "lectures",
-    "legal", "papers", "pricing", "request-tech-talk", "startup-program", "studio", "support", "use-cases",
+    "legal", "papers", "pricing", "request-tech-talk", "startup-program", "support", "use-cases",
 ];
 
 interface SanityKeyed {

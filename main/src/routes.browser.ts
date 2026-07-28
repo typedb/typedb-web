@@ -36,7 +36,6 @@ export const staticPageSchemas = [
 
 export const genericPageSchemas = [
     { path: "cloud", documentID: "cloudPage" },
-    { path: "studio", documentID: "studioPage" },
 ] as const satisfies readonly GenericPage[];
 
 export const dynamicPageSchemas = [
@@ -84,7 +83,6 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
 
 const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
     cloud: { component: GenericPageComponent, title: "TypeDB Cloud" },
-    studio: { component: GenericPageComponent, title: "TypeDB Studio" },
 };
 
 const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {

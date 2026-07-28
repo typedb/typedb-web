@@ -57,7 +57,6 @@ export default defineConfig({
                     s.divider(),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
                     singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
-                    singletonListItem(s, genericPageSchemaName, { title: "Studio", icon: DocumentIcon, documentID: "studioPage" }),
                     s.divider(),
                     singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, fundamentalsPageSchemaName, { title: "Fundamentals", icon: DocumentIcon }),
