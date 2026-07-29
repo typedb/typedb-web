@@ -1,16 +1,7 @@
-@use "media";
 @use "colors";
-@use "sass:color";
 
-td-use-case-page {
-    .sp-intro-section-body {
-        margin-top: 32px;
-
-        @media (max-width: media.$max-width-tablet) {
-            margin-top: 16px;
-        }
-    }
-
+td-composable-page {
+    // Light band with subtle grid behind the hot topics cards - mirrors the use case pages
     .hot-topics-section {
         max-width: none;
         border-radius: 0;

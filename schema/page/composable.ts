@@ -1,9 +1,11 @@
 import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { HotTopicsSection } from "../component/hot-topics-section";
 import {
-    IllustrationSection, illustrationSectionSchemaName, LinkPanelsSection, linkPanelsSectionSchemaName,
-    SanityIllustrationSection, SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
+    hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
+    LinkPanelsSection, linkPanelsSectionSchemaName, SanityHotTopicsSection, SanityIllustrationSection,
+    SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
     SanityTitleBodyPanelSection, SectionCore, sectionCoreSchemaName, SimpleLinkPanelsSection,
     simpleLinkPanelsSectionSchemaName, TitleBodyPanelSection, titleBodyPanelSectionSchemaName,
 } from "../component/section";
@@ -23,6 +25,13 @@ interface SanityKeyed {
     _key: string;
 }
 
+export const composablePageBackgrounds = [
+    { title: "None", value: "none" },
+    { title: "Floating Dots", value: "floatingDots" },
+] as const;
+
+export type ComposablePageBackground = (typeof composablePageBackgrounds)[number]["value"];
+
 export type SanityComposableSection = SanityKeyed &
     (
         | ({ _type: typeof sectionCoreSchemaName } & SanitySectionCore)
@@ -32,11 +41,13 @@ export type SanityComposableSection = SanityKeyed &
         | ({ _type: typeof simpleLinkPanelsSectionSchemaName } & SanitySimpleLinkPanelsSection)
         | ({ _type: typeof keyPointsSectionSchemaName } & SanityKeyPointsSection)
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
+        | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
     title: string;
     route: Slug;
+    background?: ComposablePageBackground;
     sections?: SanityComposableSection[];
 }
 
@@ -47,7 +58,8 @@ export type ComposablePageSection =
     | { type: typeof linkPanelsSectionSchemaName; key: string; section: LinkPanelsSection }
     | { type: typeof simpleLinkPanelsSectionSchemaName; key: string; section: SimpleLinkPanelsSection }
     | { type: typeof keyPointsSectionSchemaName; key: string; section: KeyPointsSection }
-    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection };
+    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
+    | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
@@ -65,6 +77,8 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: KeyPointsSection.fromSanity(data, db) };
         case conclusionSectionSchemaName:
             return { type: data._type, key: data._key, section: ConclusionSection.fromSanity(data, db) };
+        case hotTopicsSectionSchemaName:
+            return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -73,12 +87,14 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
 export class ComposablePage extends Page {
     readonly title: string;
     readonly route: string;
+    readonly background: ComposablePageBackground;
     readonly sections: ComposablePageSection[];
 
     constructor(data: SanityComposablePage, db: SanityDataset) {
         super(data, db);
         this.title = data.title;
         this.route = data.route.current;
+        this.background = data.background || "none";
         this.sections = (data.sections || [])
             .filter((x) => x.isVisible)
             .map((x) => sectionFromSanity(x, db))
@@ -118,6 +134,18 @@ const composablePageSchema = defineType({
             ],
         }),
         defineField({
+            name: "background",
+            title: "Background",
+            type: "string",
+            description: "Animated effect rendered behind the whole page",
+            options: {
+                layout: "radio",
+                direction: "horizontal",
+                list: [...composablePageBackgrounds],
+            },
+            initialValue: "none",
+        }),
+        defineField({
             name: "sections",
             title: "Page Sections",
             type: "array",
@@ -130,6 +158,7 @@ const composablePageSchema = defineType({
                 defineArrayMember({ type: linkPanelsSectionSchemaName }),
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
+                defineArrayMember({ type: hotTopicsSectionSchemaName }),
             ],
             options: {
                 insertMenu: {
@@ -143,7 +172,7 @@ const composablePageSchema = defineType({
                         {
                             name: "content",
                             title: "Content",
-                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
+                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName, hotTopicsSectionSchemaName],
                         },
                         {
                             name: "links",

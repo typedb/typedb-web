@@ -242,6 +242,57 @@ export const tagsField = defineField({
     initialValue: [],
 });
 
+export const sectionWidths = [
+    { title: "Default", value: "default" },
+    { title: "Narrow", value: "narrow" },
+] as const;
+
+export type SectionWidth = (typeof sectionWidths)[number]["value"];
+
+export const sectionWidthField = defineField({
+    name: "width",
+    title: "Width",
+    type: "string",
+    description: "Horizontal width of this section's content",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionWidths] },
+    initialValue: "default",
+});
+
+export const sectionTextAligns = [
+    { title: "Auto", value: "auto" },
+    { title: "Left", value: "left" },
+    { title: "Center", value: "center" },
+] as const;
+
+export type SectionTextAlign = (typeof sectionTextAligns)[number]["value"];
+
+export const sectionTextAlignField = defineField({
+    name: "textAlign",
+    title: "Text Alignment",
+    type: "string",
+    description: "Auto aligns left when the layout places an illustration beside the text, and centers otherwise",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionTextAligns] },
+    initialValue: "auto",
+});
+
+export const sectionLayoutDirections = [
+    { title: "Auto", value: "auto" },
+    { title: "Illustration Right", value: "row" },
+    { title: "Illustration Left", value: "row-reverse" },
+    { title: "Illustration Below", value: "column" },
+] as const;
+
+export type SectionLayoutDirection = (typeof sectionLayoutDirections)[number]["value"];
+
+export const sectionLayoutDirectionField = defineField({
+    name: "layoutDirection",
+    title: "Layout",
+    type: "string",
+    description: "How the text and illustration are arranged. Auto places the illustration to the right in an intro (first) section, and below the text otherwise",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionLayoutDirections] },
+    initialValue: "auto",
+});
+
 export interface SanityVisibleToggle {
     isVisible: boolean;
 }

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
+import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, sectionTextAlignField, sectionWidthField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
 import { SanitySectionCore, SectionCore } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
@@ -63,11 +63,8 @@ export class KeyPointsSection extends SectionCore {
 
     static override fromSanity(data: SanityKeyPointsSection, db: SanityDataset) {
         return new KeyPointsSection({
-            title: ParagraphWithHighlights.fromSanity(data.title),
-            body: data.body,
-            actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
+            ...SectionCore.fromSanity(data, db),
             keyPoints: data.keyPoints.map((x) => SectionCore.fromSanity(x, db)),
-            sectionId: ParagraphWithHighlights.fromSanity(data.title).toSectionID(),
         });
     }
 }
@@ -140,6 +137,8 @@ const keyPointsSectionSchema = defineType({
             type: "array",
             of: [{ type: keyPointSchemaName }],
         }),
+        sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });
