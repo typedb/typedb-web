@@ -2,7 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { of } from "rxjs";
 import { PricingPage, pricingPageSchemaName, SanityDataset, SanityPricingPage } from "typedb-web-schema";
-import { ContactPanelComponent } from "../../framework/contact-panel/contact-panel.component";
+import { ContactFormComponent } from "../../framework/contact-form/contact-form.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
 import { FeatureTableComponent } from "../../framework/feature-table/feature-table.component";
 import { PricingTableComponent } from "../../framework/pricing-table/pricing-table.component";
@@ -17,7 +17,7 @@ import { PageComponentBase } from "../page-component-base";
     encapsulation: ViewEncapsulation.None,
     imports: [
         FeatureTableComponent, SectionCoreComponent,
-        AsyncPipe, PricingTableComponent, ContactPanelComponent,
+        AsyncPipe, PricingTableComponent, ContactFormComponent,
     ]
 })
 export class PricingPageComponent extends PageComponentBase<PricingPage> {

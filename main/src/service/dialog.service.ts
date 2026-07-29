@@ -79,7 +79,7 @@ export class DialogService {
 
     openContactDialog() {
         this.open(ContactDialogComponent, {
-            width: "1088px", maxWidth: "100vw", maxHeight: "100vh", autoFocus: "input",
+            width: "560px", maxWidth: "100vw", maxHeight: "100vh", autoFocus: "input",
         });
     }
 

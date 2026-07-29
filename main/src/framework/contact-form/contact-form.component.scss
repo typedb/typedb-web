@@ -1,0 +1,14 @@
+td-contact-form {
+    position: relative;
+
+    .mat-mdc-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    aside {
+        margin-top: 12px;
+    }
+}
