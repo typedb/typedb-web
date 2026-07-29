@@ -256,7 +256,7 @@ export const hotTopicsSectionSchemaName = "hotTopicsSection";
 
 export const hotTopicsSectionSchema = defineType({
     name: hotTopicsSectionSchemaName,
-    title: "Hot Topics",
+    title: "Hot Topics / Related Articles",
     type: "object",
     fields: [
         titleFieldWithHighlights,
@@ -264,7 +264,7 @@ export const hotTopicsSectionSchema = defineType({
         actionsFieldOptional,
         isVisibleField,
     ],
-    preview: sectionPreview("Hot Topics"),
+    preview: sectionPreview("Hot Topics / Related Articles"),
 });
 
 export const pageSectionSchemas = [
