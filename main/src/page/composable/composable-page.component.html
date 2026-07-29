@@ -26,7 +26,8 @@
         }
         @case ("linkPanelsSection") {
           <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
-          <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" />
+          <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId"
+            [class.narrow-section]="item.section.width === 'narrow'" />
         }
         @case ("simpleLinkPanelsSection") {
           <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
