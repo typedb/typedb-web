@@ -37,7 +37,7 @@ export class ContactFormSection extends SectionCore {
 
 const contactFormSectionSchema = defineType({
     name: contactFormSectionSchemaName,
-    title: "Contact Form Section",
+    title: "Contact Form",
     icon: EnvelopeIcon,
     type: "object",
     fields: [

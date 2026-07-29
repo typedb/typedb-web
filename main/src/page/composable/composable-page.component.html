@@ -5,11 +5,6 @@
     }
     @for (item of page.sections; track item.key; let idx = $index; let isFirst = $first) {
       @switch (item.type) {
-        @case ("coreSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst"
-            [textAlign]="textAlignOf(item.section)"
-            [class.narrow-section]="item.section.width === 'narrow'" />
-        }
         @case ("titleBodyIllustrationSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst"
             [flexDirection]="flexDirectionOf(item.section, isFirst)"

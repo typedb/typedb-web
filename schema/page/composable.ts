@@ -6,8 +6,8 @@ import { HotTopicsSection } from "../component/hot-topics-section";
 import {
     hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
     LinkPanelsSection, linkPanelsSectionSchemaName, SanityHotTopicsSection, SanityIllustrationSection,
-    SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
-    SanityTitleBodyPanelSection, SectionCore, sectionCoreSchemaName, SimpleLinkPanelsSection,
+    SanityLinkPanelsSection, SanitySimpleLinkPanelsSection,
+    SanityTitleBodyPanelSection, SimpleLinkPanelsSection,
     simpleLinkPanelsSectionSchemaName, TitleBodyPanelSection, titleBodyPanelSectionSchemaName,
 } from "../component/section";
 import { KeyPointsSection, keyPointsSectionSchemaName, SanityKeyPointsSection } from "../key-point";
@@ -35,7 +35,6 @@ export type ComposablePageBackground = (typeof composablePageBackgrounds)[number
 
 export type SanityComposableSection = SanityKeyed &
     (
-        | ({ _type: typeof sectionCoreSchemaName } & SanitySectionCore)
         | ({ _type: typeof illustrationSectionSchemaName } & SanityIllustrationSection)
         | ({ _type: typeof titleBodyPanelSectionSchemaName } & SanityTitleBodyPanelSection)
         | ({ _type: typeof linkPanelsSectionSchemaName } & SanityLinkPanelsSection)
@@ -54,7 +53,6 @@ export interface SanityComposablePage extends SanityPage {
 }
 
 export type ComposablePageSection =
-    | { type: typeof sectionCoreSchemaName; key: string; section: SectionCore }
     | { type: typeof illustrationSectionSchemaName; key: string; section: IllustrationSection }
     | { type: typeof titleBodyPanelSectionSchemaName; key: string; section: TitleBodyPanelSection }
     | { type: typeof linkPanelsSectionSchemaName; key: string; section: LinkPanelsSection }
@@ -66,8 +64,6 @@ export type ComposablePageSection =
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
-        case sectionCoreSchemaName:
-            return { type: data._type, key: data._key, section: SectionCore.fromSanity(data, db) };
         case illustrationSectionSchemaName:
             return { type: data._type, key: data._key, section: IllustrationSection.fromSanity(data, db) };
         case titleBodyPanelSectionSchemaName:
@@ -157,7 +153,6 @@ const composablePageSchema = defineType({
             description: "The page is built from these sections, rendered top to bottom",
             of: [
                 defineArrayMember({ type: illustrationSectionSchemaName }),
-                defineArrayMember({ type: sectionCoreSchemaName }),
                 defineArrayMember({ type: titleBodyPanelSectionSchemaName }),
                 defineArrayMember({ type: keyPointsSectionSchemaName }),
                 defineArrayMember({ type: linkPanelsSectionSchemaName }),
@@ -171,19 +166,14 @@ const composablePageSchema = defineType({
                     filter: true,
                     groups: [
                         {
-                            name: "intro",
-                            title: "Intro & Heroes",
-                            of: [illustrationSectionSchemaName, sectionCoreSchemaName],
-                        },
-                        {
                             name: "content",
                             title: "Content",
-                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName, hotTopicsSectionSchemaName],
+                            of: [illustrationSectionSchemaName, titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
                         },
                         {
                             name: "links",
-                            title: "Links & Navigation",
-                            of: [linkPanelsSectionSchemaName, simpleLinkPanelsSectionSchemaName],
+                            title: "Links",
+                            of: [linkPanelsSectionSchemaName, simpleLinkPanelsSectionSchemaName, hotTopicsSectionSchemaName],
                         },
                         {
                             name: "conversion",
