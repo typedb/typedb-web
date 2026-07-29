@@ -1,7 +1,7 @@
 import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
-import { ComposablePage, composablePageSchemaName, IllustrationSection, SanityComposablePage, SanityDataset } from "typedb-web-schema";
+import { ComposablePage, composablePageSchemaName, IllustrationSection, SanityComposablePage, SanityDataset, SectionCore } from "typedb-web-schema";
 import { FloatingDotsBackgroundComponent } from "../../framework/background/floating-dots-background.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
@@ -39,6 +39,10 @@ export class ComposablePageComponent extends PageComponentBase<ComposablePage> {
 
     flexDirectionOf(section: IllustrationSection, isFirst: boolean): "row" | "row-reverse" | "column" {
         return section.layoutDirection === "auto" ? (isFirst ? "row" : "column") : section.layoutDirection;
+    }
+
+    textAlignOf(section: SectionCore): "left" | "center" | undefined {
+        return section.textAlign === "auto" ? undefined : section.textAlign;
     }
 
     protected override getMetaTagFallbacks(page: ComposablePage) {

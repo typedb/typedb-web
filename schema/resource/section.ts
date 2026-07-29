@@ -30,6 +30,7 @@ export class ResourceSection extends SectionCore {
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
             sectionId: "further-learning",
             width: data.width || "default",
+            textAlign: data.textAlign || "auto",
         });
     }
 }

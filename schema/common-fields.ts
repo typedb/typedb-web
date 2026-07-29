@@ -258,6 +258,23 @@ export const sectionWidthField = defineField({
     initialValue: "default",
 });
 
+export const sectionTextAligns = [
+    { title: "Auto", value: "auto" },
+    { title: "Left", value: "left" },
+    { title: "Center", value: "center" },
+] as const;
+
+export type SectionTextAlign = (typeof sectionTextAligns)[number]["value"];
+
+export const sectionTextAlignField = defineField({
+    name: "textAlign",
+    title: "Text Alignment",
+    type: "string",
+    description: "Auto aligns left when the layout places an illustration beside the text, and centers otherwise",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionTextAligns] },
+    initialValue: "auto",
+});
+
 export const sectionLayoutDirections = [
     { title: "Auto", value: "auto" },
     { title: "Illustration Right", value: "row" },

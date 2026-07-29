@@ -25,6 +25,13 @@ td-section-core {
         }
     }
 
+    // explicit so it wins over .page-intro-section's flex-direction: column
+    &.td-row {
+        @media (min-width: media.$min-width-desktop) {
+            flex-direction: row;
+        }
+    }
+
     &.td-row-reverse {
         @media (min-width: media.$min-width-desktop) {
             flex-direction: row-reverse;

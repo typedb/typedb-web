@@ -2,7 +2,7 @@
   <td-floating-dots-background />
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" class="td-intro" flexDirection="column" />
+      <td-section-core level="h1" [section]="page.introSection" class="td-intro" flexDirection="column" [isIntroSection]="true" />
     }
     @if (page.hotTopicsSection; as hotTopics) {
       <td-hot-topics [title]="hotTopics.title" [resources]="(latestPosts$ | async) || []" [actions]="hotTopics.actions"/>

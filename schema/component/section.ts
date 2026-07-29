@@ -3,8 +3,8 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
     titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
-    actionsFieldOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionWidthField, SectionWidth,
-    titleWithHighlightsPreview,
+    actionsFieldOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionTextAlignField, SectionTextAlign,
+    sectionWidthField, SectionWidth, titleWithHighlightsPreview,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSanity, SanityIllustrationFieldValue } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -17,6 +17,7 @@ import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "./link-panel";
 
 export interface SanitySectionCore extends SanityTitleAndBody, SanityOptionalActions, SanityVisibleToggle {
     width?: SectionWidth;
+    textAlign?: SectionTextAlign;
 }
 
 export interface SanityTitleBodyPanelSection extends SanitySectionCore {
@@ -46,6 +47,7 @@ export class SectionCore implements Partial<BodyTextField> {
     readonly actions?: LinkButton[];
     readonly sectionId: string;
     readonly width: SectionWidth;
+    readonly textAlign: SectionTextAlign;
 
     constructor(props: PropsOf<SectionCore>) {
         this.title = props.title;
@@ -53,6 +55,7 @@ export class SectionCore implements Partial<BodyTextField> {
         this.actions = props.actions;
         this.sectionId = props.sectionId;
         this.width = props.width;
+        this.textAlign = props.textAlign;
     }
 
     static fromSanity(data: SanitySectionCore, db: SanityDataset) {
@@ -63,6 +66,7 @@ export class SectionCore implements Partial<BodyTextField> {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             sectionId: title.toSectionID(),
             width: data.width || "default",
+            textAlign: data.textAlign || "auto",
         });
     }
 }
@@ -140,7 +144,7 @@ const coreSectionSchema = defineType({
     name: sectionCoreSchemaName,
     title: "Section",
     type: "document",
-    fields: [...titleBodyActionsFields, keywordFieldOptional, sectionWidthField, isVisibleField],
+    fields: [...titleBodyActionsFields, keywordFieldOptional, sectionWidthField, sectionTextAlignField, isVisibleField],
 });
 
 export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
@@ -157,6 +161,7 @@ const titleBodyPanelSectionSchema = defineType({
             type: contentTextPanelSchemaName,
         },
         sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });
@@ -187,6 +192,7 @@ const linkPanelsSectionSchema = defineType({
             validation: (rule) => rule.required().length(3),
         }),
         sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });
@@ -208,6 +214,7 @@ const simpleLinkPanelsSectionSchema = defineType({
             validation: (rule) => rule.required(),
         }),
         sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });
@@ -223,6 +230,7 @@ const titleBodyIllustrationSectionSchema = defineType({
         illustrationFieldOptional,
         sectionLayoutDirectionField,
         sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });

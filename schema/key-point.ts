@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, sectionWidthField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
+import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, sectionTextAlignField, sectionWidthField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
 import { SanitySectionCore, SectionCore } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
@@ -138,6 +138,7 @@ const keyPointsSectionSchema = defineType({
             of: [{ type: keyPointSchemaName }],
         }),
         sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
 });
