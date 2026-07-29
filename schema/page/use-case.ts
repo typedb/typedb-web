@@ -2,6 +2,7 @@ import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType, Slug } from "@sanity/types";
 import { QueryLanguageComparisonSection, queryLanguageComparisonSectionSchemaName, SanityQueryLanguageComparisonSection } from "../code";
 import { sectionCoreSchemaName, SanitySectionCore, SanityIllustrationSection, IllustrationSection, illustrationSectionSchemaName, SanityHotTopicsSection, hotTopicsSectionSchemaName, SanityLinkPanelsSection, LinkPanelsSection, linkPanelsSectionSchemaName } from "../component/section";
+import { HotTopicsSection } from "../component/hot-topics-section";
 import { SectionCore } from "../component/section";
 import {
     collapsibleOptions, routeField, titleField,
@@ -107,22 +108,6 @@ export class UseCasePageInstance extends UseCasePageTemplate {
         super(merged, db);
         this.title = merged.title;
         this.route = merged.route.current;
-    }
-}
-
-// TODO: copy pasta-ed from home.ts on 30/10/25
-export class HotTopicsSection extends SectionCore {
-    readonly hotTopics: ResourceLink[];
-
-    constructor(props: PropsOf<HotTopicsSection>) {
-        super(props);
-        this.hotTopics = props.hotTopics;
-    }
-
-    static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
-        return new HotTopicsSection(Object.assign(SectionCore.fromSanity(data, db), {
-            hotTopics: data.hotTopics?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db, false)) || [],
-        }));
     }
 }
 

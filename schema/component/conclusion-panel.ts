@@ -4,7 +4,7 @@ import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSani
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
 import {
     bodyFieldRichText, isVisibleField, actionsFieldOptional, requiredRule, SanityVisibleToggle,
-    titleField, titleBodyActionsFields,
+    sectionWidthField, titleField, titleBodyActionsFields,
 } from "../common-fields";
 import { SanityDataset, SanityReference } from "../sanity-core";
 import { BodyTextField, PortableText, SanityBodyTextField, SanityTitleField } from "../text";
@@ -106,6 +106,7 @@ const conclusionSectionSchema = defineType({
             type: conclusionPanelSchemaName,
             validation: requiredRule,
         }),
+        sectionWidthField,
         isVisibleField,
     ],
 });

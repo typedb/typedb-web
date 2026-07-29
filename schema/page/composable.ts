@@ -1,9 +1,11 @@
 import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { HotTopicsSection } from "../component/hot-topics-section";
 import {
-    IllustrationSection, illustrationSectionSchemaName, LinkPanelsSection, linkPanelsSectionSchemaName,
-    SanityIllustrationSection, SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
+    hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
+    LinkPanelsSection, linkPanelsSectionSchemaName, SanityHotTopicsSection, SanityIllustrationSection,
+    SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
     SanityTitleBodyPanelSection, SectionCore, sectionCoreSchemaName, SimpleLinkPanelsSection,
     simpleLinkPanelsSectionSchemaName, TitleBodyPanelSection, titleBodyPanelSectionSchemaName,
 } from "../component/section";
@@ -39,6 +41,7 @@ export type SanityComposableSection = SanityKeyed &
         | ({ _type: typeof simpleLinkPanelsSectionSchemaName } & SanitySimpleLinkPanelsSection)
         | ({ _type: typeof keyPointsSectionSchemaName } & SanityKeyPointsSection)
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
+        | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
@@ -55,7 +58,8 @@ export type ComposablePageSection =
     | { type: typeof linkPanelsSectionSchemaName; key: string; section: LinkPanelsSection }
     | { type: typeof simpleLinkPanelsSectionSchemaName; key: string; section: SimpleLinkPanelsSection }
     | { type: typeof keyPointsSectionSchemaName; key: string; section: KeyPointsSection }
-    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection };
+    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
+    | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
@@ -73,6 +77,8 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: KeyPointsSection.fromSanity(data, db) };
         case conclusionSectionSchemaName:
             return { type: data._type, key: data._key, section: ConclusionSection.fromSanity(data, db) };
+        case hotTopicsSectionSchemaName:
+            return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -152,6 +158,7 @@ const composablePageSchema = defineType({
                 defineArrayMember({ type: linkPanelsSectionSchemaName }),
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
+                defineArrayMember({ type: hotTopicsSectionSchemaName }),
             ],
             options: {
                 insertMenu: {
@@ -165,7 +172,7 @@ const composablePageSchema = defineType({
                         {
                             name: "content",
                             title: "Content",
-                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
+                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName, hotTopicsSectionSchemaName],
                         },
                         {
                             name: "links",
