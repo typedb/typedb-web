@@ -203,7 +203,9 @@ table {
     }
 }
 
-.page-intro-section {
+// the .section/section variants outweigh the margin-top in td-section-core's
+// .td-row/.td-column layout classes, which would otherwise win on specificity
+.page-intro-section, .section.page-intro-section, section.page-intro-section {
     margin-top: var(--first-section-margin);
 }
 
