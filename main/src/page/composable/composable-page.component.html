@@ -37,6 +37,11 @@
           <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-conclusion-panel [panel]="item.section.panel" />
         }
+        @case ("contactFormSection") {
+          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
+            [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-contact-form class="narrow-section card subsection-margin" [variant]="item.section.variant" [showPersonalDataNotice]="true" />
+        }
         @case ("hotTopicsSection") {
           <div class="hot-topics-section">
             <td-hot-topics [title]="item.section.title" [resources]="item.section.hotTopics" [actions]="item.section.actions" />

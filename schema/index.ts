@@ -39,6 +39,10 @@ export {
 } from "./code";
 export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-fields";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
+export {
+    ContactFormSection, contactFormSectionSchemaName, contactFormVariants, type ContactFormVariant,
+    type SanityContactFormSection,
+} from "./component/contact-form-section";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
     FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName,

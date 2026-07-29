@@ -1,9 +1,9 @@
 <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
-  <td-form-input [form]="form" field="name" label="Name" autocomplete="name" [required]="true"/>
-  <td-form-input [form]="form" field="email" label="Email" autocomplete="email" [required]="true"/>
-  <td-form-input [form]="form" field="company" label="Company" autocomplete="organization" [required]="true"/>
-  <td-form-input [form]="form" field="country" label="Country" autocomplete="country-name"/>
-  <td-form-textarea [form]="form" field="contact_request_body" label="Message" [rows]="4"/>
+  <td-form-input [form]="form" field="name" [label]="labels.name" autocomplete="name" [required]="true"/>
+  <td-form-input [form]="form" field="email" [label]="labels.email" autocomplete="email" [required]="true"/>
+  <td-form-input [form]="form" field="company" [label]="labels.company" autocomplete="organization" [required]="true"/>
+  <td-form-input [form]="form" field="country" [label]="labels.country" autocomplete="country-name"/>
+  <td-form-textarea [form]="form" field="contact_request_body" [label]="labels.message" [rows]="4"/>
 
   @if (showPersonalDataNotice) {
     <aside>

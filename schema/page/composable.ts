@@ -1,6 +1,7 @@
 import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { ContactFormSection, contactFormSectionSchemaName, SanityContactFormSection } from "../component/contact-form-section";
 import { HotTopicsSection } from "../component/hot-topics-section";
 import {
     hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
@@ -42,6 +43,7 @@ export type SanityComposableSection = SanityKeyed &
         | ({ _type: typeof keyPointsSectionSchemaName } & SanityKeyPointsSection)
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
         | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
+        | ({ _type: typeof contactFormSectionSchemaName } & SanityContactFormSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
@@ -59,7 +61,8 @@ export type ComposablePageSection =
     | { type: typeof simpleLinkPanelsSectionSchemaName; key: string; section: SimpleLinkPanelsSection }
     | { type: typeof keyPointsSectionSchemaName; key: string; section: KeyPointsSection }
     | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
-    | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection };
+    | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection }
+    | { type: typeof contactFormSectionSchemaName; key: string; section: ContactFormSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
@@ -79,6 +82,8 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: ConclusionSection.fromSanity(data, db) };
         case hotTopicsSectionSchemaName:
             return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
+        case contactFormSectionSchemaName:
+            return { type: data._type, key: data._key, section: ContactFormSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -159,6 +164,7 @@ const composablePageSchema = defineType({
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
                 defineArrayMember({ type: hotTopicsSectionSchemaName }),
+                defineArrayMember({ type: contactFormSectionSchemaName }),
             ],
             options: {
                 insertMenu: {
@@ -182,7 +188,7 @@ const composablePageSchema = defineType({
                         {
                             name: "conversion",
                             title: "Conversion",
-                            of: [conclusionSectionSchemaName],
+                            of: [conclusionSectionSchemaName, contactFormSectionSchemaName],
                         },
                     ],
                     views: [

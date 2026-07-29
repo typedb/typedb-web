@@ -10,6 +10,13 @@ import { AnalyticsService } from "../../service/analytics.service";
 import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../form";
 import { FormBuilder } from "@angular/forms";
 import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
+import { ContactFormVariant } from "typedb-web-schema";
+
+// payload field names are fixed for CRM compatibility - variants only change the visible labels
+const LABELS: Record<ContactFormVariant, { name: string; email: string; company: string; country: string; message: string }> = {
+    default: { name: "Name", email: "Email", company: "Company", country: "Country", message: "Message" },
+    enterprise: { name: "Full Name", email: "Business Email", company: "Company", country: "Country/Region", message: "Message" },
+};
 
 @Component({
     selector: "td-contact-form",
@@ -22,7 +29,12 @@ import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
 })
 export class ContactFormComponent {
     @Input() showPersonalDataNotice = false;
+    @Input() variant: ContactFormVariant = "default";
     @Output() readonly submitDone = new EventEmitter();
+
+    get labels() {
+        return LABELS[this.variant];
+    }
 
     formId!: string;
     readonly isSubmitting$ = new Subject<boolean>();
