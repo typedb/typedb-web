@@ -10,9 +10,6 @@
           [tdLink]="resource.link"
           [attr.id]="panelID(resource)"
         >
-          @if (!resource.link) {
-            <aside class="lp-coming-soon">coming soon</aside>
-          }
           <h3>{{ resource.title }}</h3>
           <td-rich-text [value]="resource.description" class="flex" />
         </a>
@@ -28,9 +25,6 @@
           [class.hoverable]="!!resource.link"
           [attr.id]="panelID(resource)"
         >
-          @if (!resource.link) {
-            <aside class="lp-coming-soon">coming soon</aside>
-          }
           <h3>{{ resource.title }}</h3>
           <td-rich-text [value]="resource.description" class="flex" />
         </a>

@@ -10,9 +10,6 @@
               <img class="td-hero" [ngSrc]="hotTopic.imageURL" alt="" fill>
             }
           </div>
-          @if (!hotTopic.link) {
-            <aside class="lp-coming-soon">coming soon</aside>
-          }
           <div class="td-card-body card-padding">
             <h3>{{ hotTopic.title }}</h3>
             <td-rich-text [value]="hotTopic.description" class="flex" />
