@@ -106,8 +106,8 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
-    type WordpressPost, type WordpressPostSummary, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
-    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
+    type WordpressPost, type WordpressPostSummary, type BlogFilter, type BlogCategoryFilter,
+    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost, BlogPostLink,
     articleFromWPApi as articleFromApi, wordpressReadingTimeMins,
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";

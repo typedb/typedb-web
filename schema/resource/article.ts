@@ -60,11 +60,6 @@ export class BlogPostLink extends ResourceLink {
     }
 }
 
-export type RelatedBlogPosts = {
-    categorySlug: BlogCategoryID;
-    posts: BlogPostLink[];
-}[];
-
 export type BlogFilter = BlogNullFilter | BlogCategoryFilter;
 
 export type BlogNullFilter = {};

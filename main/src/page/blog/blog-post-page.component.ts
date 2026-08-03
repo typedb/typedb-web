@@ -4,12 +4,12 @@ import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
-import { combineLatest, map, Observable, of, shareReplay, switchMap } from "rxjs";
+import { map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
     ActionButton,
-    Article, Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, blogPostSchemaName, blogSchemaName,
-    Link, LinkButton, RelatedBlogPosts, SanityBlog,
+    Article, Blog, blogCategories, BlogCategoryID, BlogPost, blogPostLinkOf, BlogPostLink, blogPostSchemaName,
+    blogSchemaName, Link, LinkButton, SanityBlog,
 } from "typedb-web-schema";
 
 import { TopbarMenuService } from "src/navigation/topbar/topbar-menu.service";
@@ -46,7 +46,7 @@ export class BlogPostPageComponent implements OnInit {
     readonly blog$: Observable<Blog | null>;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
-    readonly relatedPostGroups$?: Observable<RelatedBlogPosts | null>;
+    readonly relatedPosts$?: Observable<BlogPostLink[] | null>;
     dialog = inject(DialogService);
     readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
@@ -79,21 +79,15 @@ export class BlogPostPageComponent implements OnInit {
             shareReplay(1),
         );
         this.categories$ = this.post$.pipe(map((post) => (post ? post.categories : null)));
-        this.relatedPostGroups$ = this.post$.pipe(
+        this.relatedPosts$ = this.post$.pipe(
             switchMap((post) => {
                 if (!post) return of(null);
-                return combineLatest(
-                    post.categories.map((category) => {
-                        return this.content.getPostsByCategory(category).pipe(
-                            map((posts) => ({
-                                categorySlug: category,
-                                posts: posts
-                                    .filter((p) => p.slug !== post.slug)
-                                    .slice(0, 3)
-                                    .map((x) => blogPostLinkOf(x)),
-                            })),
-                        );
-                    }),
+                return this.content.blogPosts.pipe(
+                    map((posts) => posts
+                        .filter((p) => p.slug !== post.slug && p.categories.some((c) => post.categories.includes(c)))
+                        .sort((a, b) => b.date.getTime() - a.date.getTime())
+                        .slice(0, 3)
+                        .map((x) => blogPostLinkOf(x))),
                 );
             }),
         );
@@ -175,10 +169,6 @@ export class BlogPostPageComponent implements OnInit {
             el.appendChild(anchorEl);
             anchorIndex++;
         });
-    }
-
-    categoryDisplayName(category: BlogCategoryID): string {
-        return blogCategories[category];
     }
 
     shareOnTwitterURL(post: BlogPost): string {
