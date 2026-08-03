@@ -32,8 +32,16 @@ export function wordpressReadingTimeMins(content: string): number {
     return Math.max(1, Math.ceil((content.match(/\s+/g)?.length || 0) / 200));
 }
 
+// Tolerate a missing or dangling author reference (possible in drafts, since Sanity
+// validation only blocks publishing) so one bad post doesn't 404 the whole blog
+function blogPostAuthor(data: SanityBlogPost, db: SanityDataset): Person | null {
+    const person = db.tryResolveRef(data.author);
+    if (!person) console.warn(`Blog post '${data.slug.current}' references an author that could not be resolved: `, data.author);
+    return person ? Person.fromSanity(person, db) : null;
+}
+
 export class BlogPostLink extends ResourceLink {
-    readonly author: Person;
+    readonly author: Person | null;
 
     constructor(props: PropsOf<BlogPostLink>) {
         super(props);
@@ -43,7 +51,7 @@ export class BlogPostLink extends ResourceLink {
     static override fromSanity(data: SanityBlogPost, db: SanityDataset): BlogPostLink {
         return new BlogPostLink(
             Object.assign(super.fromSanity(data, db), {
-                author: Person.fromSanity(db.resolveRef(data.author), db),
+                author: blogPostAuthor(data, db),
                 imageURL: data.image
                     ? db.resolveRef(data.image.asset).url
                     : blogPostBackupHeroImageURL(data.slug.current),
@@ -127,7 +135,7 @@ export class ApplicationArticle extends Article {
 
 export class BlogPost extends Article {
     readonly level: BlogPostLevel;
-    readonly author: Person;
+    readonly author: Person | null;
     readonly categories: BlogCategoryID[];
     readonly date: Date;
 
@@ -143,7 +151,7 @@ export class BlogPost extends Article {
         return new BlogPost(
             Object.assign(articlePropsFromWPApi(data, db, wordpressPost), {
                 level: data.level,
-                author: Person.fromSanity(db.resolveRef(data.author), db),
+                author: blogPostAuthor(data, db),
                 categories: data.categories,
                 date: new Date(data.date),
             })

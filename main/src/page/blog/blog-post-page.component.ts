@@ -130,7 +130,7 @@ export class BlogPostPageComponent implements OnInit {
             ogType: "article" as const,
             article: {
                 publishedTime: post.date,
-                author: post.author.name,
+                author: post.author?.name,
                 section: post.categories[0] ? blogCategories[post.categories[0]] : undefined,
                 tags: post.categories.map(c => blogCategories[c]),
             },
