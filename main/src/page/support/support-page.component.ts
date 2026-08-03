@@ -4,7 +4,7 @@ import { of } from "rxjs";
 import { SanitySupportPage, SupportPage, supportPageSchemaName } from "typedb-web-schema";
 import { SanityDataset } from "typedb-web-schema";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
-import { ContactPanelComponent } from "../../framework/contact-panel/contact-panel.component";
+import { ContactFormComponent } from "../../framework/contact-form/contact-form.component";
 import { FeatureTableComponent } from "../../framework/feature-table/feature-table.component";
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { PageComponentBase } from "../page-component-base";
@@ -16,7 +16,7 @@ import { PageComponentBase } from "../page-component-base";
     encapsulation: ViewEncapsulation.None,
     imports: [
         LinkPanelsComponent, SectionCoreComponent,
-        FeatureTableComponent, ContactPanelComponent, AsyncPipe
+        FeatureTableComponent, ContactFormComponent, AsyncPipe
     ]
 })
 export class SupportPageComponent extends PageComponentBase<SupportPage> {

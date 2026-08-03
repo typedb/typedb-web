@@ -1,4 +1,4 @@
-@if (variant === 'postPage') {
+@if (variant === 'postPage' && post.author) {
   <td-person-info
     [person]="post.author"
     variant="articleDetails"

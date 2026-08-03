@@ -1,4 +1,5 @@
 import { conclusionPanelSchemas } from "./conclusion-panel";
+import { contactFormSectionSchemas } from "./contact-form-section";
 import { contentTextPanelSchemas } from "./content-text-panel";
 import { featureGridSchemas } from "./feature-grid";
 import { featureTableSchemas } from "./feature-table";
@@ -9,7 +10,7 @@ import { pricingPanelSchemas } from "./pricing-panel";
 import { publicationSchemas } from "./publication-panel";
 
 export const componentSchemas: any[] = [
-    ...conclusionPanelSchemas, ...contentTextPanelSchemas, ...featureGridSchemas, ...featureTableSchemas,
+    ...conclusionPanelSchemas, ...contactFormSectionSchemas, ...contentTextPanelSchemas, ...featureGridSchemas, ...featureTableSchemas,
     ...integrationsGridSchemas, ...linkPanelSchemas, ...pageSectionSchemas, ...pricingPanelSchemas,
     ...publicationSchemas,
 ];

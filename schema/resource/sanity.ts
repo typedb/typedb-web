@@ -49,7 +49,8 @@ export interface SanityApplicationArticle extends SanityArticle {
 export interface SanityBlogPost extends SanityArticle {
     _type: typeof blogPostSchemaName;
     level: BlogPostLevel;
-    author: SanityReference<SanityPerson>;
+    // Required for publishing, but may be absent in drafts
+    author?: SanityReference<SanityPerson>;
     date: string;
     categories: BlogCategoryID[];
 }

@@ -9,7 +9,7 @@ import {
 } from "rxjs";
 import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
 import {
-    ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogCategoryID, BlogFilter,
+    ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogFilter,
     blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
     LegalDocument, legalDocumentSchemaName, SanityArticle, SanityBlogPost, SanityDataset, SanityLegalDocument,
     WordpressPost, WordpressPostSummary, wordpressReadingTimeMins,
@@ -156,10 +156,6 @@ export class ContentService {
                 map((wpPosts) => ({ ID: wpPosts[0].id, slug: wpPosts[0].slug, content: wpPosts[0].content.rendered })),
             ),
         );
-    }
-
-    getPostsByCategory(categorySlug: BlogCategoryID): Observable<BlogPost[]> {
-        return this.blogPosts.pipe(map((posts) => posts.filter((post) => post.categories.includes(categorySlug))));
     }
 
     private getSanityResult<T>(query: string, key: string): Observable<T> {

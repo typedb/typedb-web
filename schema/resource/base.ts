@@ -61,13 +61,19 @@ export class ResourceLink {
     }
 
     static fromSanity(data: SanityResource, db: SanityDataset, useLongTitle: boolean = false): ResourceLink {
-        if (isGenericResource(data)) return new ResourceLink({
-            title: data.title,
-            description: data.description,
-            link: Link.fromSanityLinkRef(data.link, db),
-            linkText: data.linkText,
-            imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
-        });
+        if (isGenericResource(data)) {
+            // Tolerate a dangling link reference (e.g. unpublished or deleted link document)
+            // so one bad resource doesn't prevent the whole page from rendering
+            const linkData = db.tryResolveRef(data.link);
+            if (!linkData) console.warn(`Resource '${data.title}' references a link document that could not be resolved: `, data.link);
+            return new ResourceLink({
+                title: data.title,
+                description: data.description,
+                link: linkData ? Link.fromSanityLink(linkData) : undefined,
+                linkText: data.linkText,
+                imageURL: data.image ? db.resolveRef(data.image.asset).url : undefined,
+            });
+        }
 
         const image = ("landscapeImage" in data ? data.landscapeImage : data.image) as SanityImage | undefined;
         const longTitle = ParagraphWithHighlights.fromSanity(data.title).toPlainText();

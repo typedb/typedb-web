@@ -16,7 +16,12 @@ export class HotTopicsSection extends SectionCore {
 
     static override fromSanity(data: SanityHotTopicsSection, db: SanityDataset) {
         return new HotTopicsSection(Object.assign(SectionCore.fromSanity(data, db), {
-            hotTopics: data.hotTopics?.map((x) => ResourceLink.fromSanity(db.resolveRef(x), db, false)) || [],
+            hotTopics: data.hotTopics?.flatMap((x) => {
+                const resource = db.tryResolveRef(x);
+                // A missing resource document leaves nothing to render - skip the entry
+                if (!resource) console.warn(`Hot topics section references a resource that could not be resolved: `, x);
+                return resource ? [ResourceLink.fromSanity(resource, db, false)] : [];
+            }) || [],
         }));
     }
 }

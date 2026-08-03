@@ -49,13 +49,11 @@
               <p>Stay up to date with the latest TypeDB announcements and events.</p>
               <td-button [button]="subscribeToNewsletterButton" [linkId]="subscribeNewsletterLinkId(post)" />
             </div>
-            @for (relatedPostGroup of relatedPostGroups$ | async; track relatedPostGroup) {
-              @if (relatedPostGroup.posts.length) {
+            @if (relatedPosts$ | async; as relatedPosts) {
+              @if (relatedPosts.length) {
                 <aside>
-                  <h4 class="bp-related-post-group-heading">
-                    More on {{ categoryDisplayName(relatedPostGroup.categorySlug) }}
-                  </h4>
-                  @for (relatedPost of relatedPostGroup.posts; track relatedPost) {
+                  <h4 class="bp-related-post-group-heading">Related articles</h4>
+                  @for (relatedPost of relatedPosts; track relatedPost) {
                     <div class="bp-related-post">
                       <a [tdLink]="relatedPost.link">
                         <td-aspect-ratio ratio="16:9">
@@ -66,7 +64,9 @@
                         <a [tdLink]="relatedPost.link">{{ relatedPost.title }}</a>
                       </h3>
                       <td-rich-text class="bp-related-post-description" [value]="relatedPost.description" />
-                      <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
+                      @if (relatedPost.author) {
+                        <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
+                      }
                     </div>
                   }
                 </aside>

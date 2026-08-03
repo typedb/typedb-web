@@ -33,7 +33,7 @@ export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | Sa
 
 export const illustrationObjectSchemaName = "illustration";
 
-export type IllustrationKind = "image" | "code" | "video" | "graph" | "splitPane";
+export type IllustrationKind = "none" | "image" | "code" | "video" | "graph" | "splitPane";
 
 export interface SanityIllustrationObject {
     _type: typeof illustrationObjectSchemaName;
@@ -199,6 +199,8 @@ export function illustrationFromSanity(data: SanityIllustration, db: SanityDatas
 export function illustrationFieldValueFromSanity(value: SanityIllustrationFieldValue, db: SanityDataset): Illustration | undefined {
     if (isLegacyIllustrationRef(value)) return illustrationFromSanity(db.resolveRef(value), db);
     switch (value.kind) {
+        case "none":
+            return undefined;
         case "image":
             return value.image?.asset ? ImageIllustration.fromSanityImageField(value.image, db) : undefined;
         case "code": {
@@ -336,6 +338,7 @@ export const illustrationFieldTargetTypes = [
 ];
 
 const illustrationKinds: { title: string; value: IllustrationKind }[] = [
+    { title: "None", value: "none" },
     { title: "Image", value: "image" },
     { title: "Code", value: "code" },
     { title: "Video", value: "video" },
@@ -355,7 +358,7 @@ const illustrationObjectSchema = defineType({
     fields: [
         defineField({
             name: "kind",
-            title: "Illustration Type",
+            title: "Content Type",
             type: "string",
             options: { list: illustrationKinds, layout: "radio", direction: "horizontal" },
             initialValue: "image",
@@ -398,7 +401,8 @@ const illustrationObjectSchema = defineType({
         }),
     ],
     validation: (rule) => rule.custom((value: any) => {
-        if (!value || !value.kind) return true; // absence is handled by the field-level required() rule
+        // absence and an explicit "none" are both valid; field-level required() rules govern presence
+        if (!value || !value.kind || value.kind === "none") return true;
         return value[value.kind]
             ? true
             : `Select the content for this ${(illustrationKindTitles[value.kind] || "illustration").toLowerCase()} illustration`;

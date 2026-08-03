@@ -4,6 +4,7 @@ import { map } from "rxjs";
 import { ComposablePage, composablePageSchemaName, IllustrationSection, SanityComposablePage, SanityDataset, SectionCore } from "typedb-web-schema";
 import { FloatingDotsBackgroundComponent } from "../../framework/background/floating-dots-background.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
+import { ContactFormComponent } from "../../framework/contact-form/contact-form.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
@@ -21,9 +22,9 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe, ConclusionPanelComponent, ContentPanelComponent, FloatingDotsBackgroundComponent,
-        HotTopicsComponent, KeyPointPanels2x2Component, LinkPanelsComponent, SectionCoreComponent,
-        SimpleLinkPanelsComponent,
+        AsyncPipe, ConclusionPanelComponent, ContactFormComponent, ContentPanelComponent,
+        FloatingDotsBackgroundComponent, HotTopicsComponent, KeyPointPanels2x2Component, LinkPanelsComponent,
+        SectionCoreComponent, SimpleLinkPanelsComponent,
     ],
 })
 export class ComposablePageComponent extends PageComponentBase<ComposablePage> {

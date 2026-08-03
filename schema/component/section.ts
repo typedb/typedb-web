@@ -3,8 +3,8 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
     titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
-    actionsFieldOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionTextAlignField, SectionTextAlign,
-    sectionWidthField, SectionWidth, titleWithHighlightsPreview,
+    actionsFieldOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionPreview, sectionTextAlignField,
+    SectionTextAlign, sectionWidthField, SectionWidth, titleWithHighlightsPreview,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSanity, SanityIllustrationFieldValue } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -151,7 +151,7 @@ export const titleBodyPanelSectionSchemaName = "titleBodyPanelSection";
 
 const titleBodyPanelSectionSchema = defineType({
     name: titleBodyPanelSectionSchemaName,
-    title: "Title, Body & Panel",
+    title: "Text & Panel",
     type: "document",
     fields: [
         ...titleBodyActionsFields,
@@ -164,6 +164,7 @@ const titleBodyPanelSectionSchema = defineType({
         sectionTextAlignField,
         isVisibleField,
     ],
+    preview: sectionPreview("Text & Panel"),
 });
 
 export const resourceSectionSchemaName = `resourceSection`;
@@ -179,7 +180,7 @@ export const linkPanelsSectionSchemaName = `linkPanelsSection`;
 
 const linkPanelsSectionSchema = defineType({
     name: linkPanelsSectionSchemaName,
-    title: "Link Panels Section",
+    title: "Link Panels",
     type: "object",
     fields: [
         ...titleBodyActionsFields,
@@ -195,13 +196,14 @@ const linkPanelsSectionSchema = defineType({
         sectionTextAlignField,
         isVisibleField,
     ],
+    preview: sectionPreview("Link Panels"),
 });
 
 export const simpleLinkPanelsSectionSchemaName = `simpleLinkPanelsSection`;
 
 const simpleLinkPanelsSectionSchema = defineType({
     name: simpleLinkPanelsSectionSchemaName,
-    title: "Simple Link Panels Section",
+    title: "Simple Link Panels",
     type: "object",
     fields: [
         ...titleBodyActionsFields,
@@ -217,29 +219,44 @@ const simpleLinkPanelsSectionSchema = defineType({
         sectionTextAlignField,
         isVisibleField,
     ],
+    preview: sectionPreview("Simple Link Panels"),
 });
 
 export const illustrationSectionSchemaName = "titleBodyIllustrationSection";
 
 const titleBodyIllustrationSectionSchema = defineType({
     name: illustrationSectionSchemaName,
-    title: 'Title, Body & Illustration',
+    title: 'Text & Optional Content',
     type: 'document',
     fields: [
         ...titleBodyActionsFields,
-        illustrationFieldOptional,
+        Object.assign({}, illustrationFieldOptional, { title: "Content (optional)" }),
         sectionLayoutDirectionField,
         sectionWidthField,
-        sectionTextAlignField,
+        Object.assign({}, sectionTextAlignField, {
+            description: "Auto aligns left when the layout places content beside the text, and centers otherwise",
+        }),
         isVisibleField,
     ],
+    preview: {
+        select: { title: "title", illustration: "illustration" },
+        prepare: (selection: { title?: any[]; illustration?: any }) => {
+            const value = selection.illustration;
+            const hasContent = !!value
+                && ("_ref" in value ? true : !!(value.kind && value.kind !== "none" && value[value.kind]));
+            return {
+                title: titleWithHighlightsPreview(selection.title || []),
+                subtitle: hasContent ? "Text + Content" : "Text",
+            };
+        },
+    },
 });
 
 export const hotTopicsSectionSchemaName = "hotTopicsSection";
 
 export const hotTopicsSectionSchema = defineType({
     name: hotTopicsSectionSchemaName,
-    title: "Hot Topics Section",
+    title: "Hot Topics / Related Articles",
     type: "object",
     fields: [
         titleFieldWithHighlights,
@@ -247,13 +264,7 @@ export const hotTopicsSectionSchema = defineType({
         actionsFieldOptional,
         isVisibleField,
     ],
-    preview: {
-        select: { title: "title" },
-        prepare: (selection) => ({
-            title: titleWithHighlightsPreview(selection.title),
-            subtitle: "Hot Topics / Related Articles",
-        }),
-    },
+    preview: sectionPreview("Hot Topics / Related Articles"),
 });
 
 export const pageSectionSchemas = [

@@ -58,6 +58,15 @@ export function titleWithHighlightsPreview(value: any[]): string {
     return ((value || [])[0]?.children.map((x: any) => x.text).join("") as string) || "Untitled";
 }
 
+/** Standard section preview: the section's title, subtitled with the type name as shown in the CMS */
+export const sectionPreview = (subtitle: string) => ({
+    select: { title: "title" },
+    prepare: (selection: { title?: any[] }) => ({
+        title: titleWithHighlightsPreview(selection.title || []),
+        subtitle,
+    }),
+});
+
 export const textFieldWithHighlights = defineField({
     name: textFieldName,
     title: "Text",
@@ -270,16 +279,16 @@ export const sectionTextAlignField = defineField({
     name: "textAlign",
     title: "Text Alignment",
     type: "string",
-    description: "Auto aligns left when the layout places an illustration beside the text, and centers otherwise",
+    description: "'Auto' centers the text",
     options: { layout: "radio", direction: "horizontal", list: [...sectionTextAligns] },
     initialValue: "auto",
 });
 
 export const sectionLayoutDirections = [
     { title: "Auto", value: "auto" },
-    { title: "Illustration Right", value: "row" },
-    { title: "Illustration Left", value: "row-reverse" },
-    { title: "Illustration Below", value: "column" },
+    { title: "Content Right", value: "row" },
+    { title: "Content Left", value: "row-reverse" },
+    { title: "Content Below", value: "column" },
 ] as const;
 
 export type SectionLayoutDirection = (typeof sectionLayoutDirections)[number]["value"];
@@ -288,7 +297,7 @@ export const sectionLayoutDirectionField = defineField({
     name: "layoutDirection",
     title: "Layout",
     type: "string",
-    description: "How the text and illustration are arranged. Auto places the illustration to the right in an intro (first) section, and below the text otherwise",
+    description: "How the text and content are arranged. Auto places the content to the right in an intro (first) section, and below the text otherwise",
     options: { layout: "radio", direction: "horizontal", list: [...sectionLayoutDirections] },
     initialValue: "auto",
 });

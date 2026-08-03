@@ -39,6 +39,10 @@ export {
 } from "./code";
 export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-fields";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
+export {
+    ContactFormSection, contactFormSectionSchemaName, contactFormVariants, type ContactFormVariant,
+    type SanityContactFormSection,
+} from "./component/contact-form-section";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
     FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName,
@@ -102,8 +106,8 @@ export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";
 export {
-    type WordpressPost, type WordpressPostSummary, type RelatedBlogPosts, type BlogFilter, type BlogCategoryFilter,
-    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost,
+    type WordpressPost, type WordpressPostSummary, type BlogFilter, type BlogCategoryFilter,
+    type BlogNullFilter, blogNullFilter, Article, FundamentalArticle, ApplicationArticle, BlogPost, BlogPostLink,
     articleFromWPApi as articleFromApi, wordpressReadingTimeMins,
 } from "./resource/article";
 export { ResourceLink } from "./resource/base";
