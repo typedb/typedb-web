@@ -1,5 +1,14 @@
-// /netlify/edge-functions/ua-blocker.ts
+// /netlify/edge-functions/request-filter/request-filter.ts
 
+// Netlify enforces rateLimit before this function is invoked
+export const config = {
+    path: "/*",
+    rateLimit: {
+        windowLimit: 300,
+        windowSize: 180,
+        aggregateBy: ["ip", "domain"],
+    },
+};
 
 // Centralized configuration
 const CONFIG = {
