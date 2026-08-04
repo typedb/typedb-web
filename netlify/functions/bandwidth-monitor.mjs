@@ -67,6 +67,7 @@ export default async () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+            content: "<@708327677165043833>",
             embeds: [
                 {
                     title: "🚨 Netlify bandwidth usage anomaly",
