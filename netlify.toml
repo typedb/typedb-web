@@ -113,6 +113,11 @@ from = "/docs/reference/typeql/*"
 to = "/docs/typeql-reference/:splat"
 status = 301
 
+[[redirects]]
+from = "/docs/llms-short.txt"
+to = "/docs/llms-full.txt"
+status = 301
+
 # DOCS SUBDOMAIN POSING AS A SUBDIRECTORY
 # Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
