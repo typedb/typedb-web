@@ -16,7 +16,8 @@
   },
   "private": true,
   "dependencies": {
-    "@netlify/blobs": "^8.0.0"
+    "@netlify/blobs": "^8.0.0",
+    "posthog-js": "1.413.3"
   },
   "engines": {
     "node": ">=22.16 <23"
