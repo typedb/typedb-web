@@ -1,8 +1,7 @@
 import { getStore } from "@netlify/blobs";
 
 // Alert when account bandwidth is consumed faster than this rate.
-// TEMPORARY: lowered from 2 to 0.001 (~1MB/hour) to test that the Discord alert fires. Revert after testing.
-const DEFAULT_ALERT_GB_PER_HOUR = 0.001;
+const DEFAULT_ALERT_GB_PER_HOUR = 2;
 
 const ACCOUNT_SLUG = "typedb";
 
