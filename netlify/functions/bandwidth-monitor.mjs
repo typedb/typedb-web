@@ -6,10 +6,10 @@ const DEFAULT_ALERT_GB_PER_HOUR = 2;
 const ACCOUNT_SLUG = "typedb";
 
 export default async () => {
-    const apiToken = process.env.NETLIFY_ADMIN_API_TOKEN;
+    const apiToken = process.env.NETLIFY_ADMIN_API_KEY;
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!apiToken || !discordWebhook) {
-        console.error("Environment variables 'NETLIFY_ADMIN_API_TOKEN' and 'DISCORD_WEBHOOK_URL' must be set");
+        console.error("Environment variables 'NETLIFY_ADMIN_API_KEY' and 'DISCORD_WEBHOOK_URL' must be set");
         return;
     }
     const thresholdGbPerHour = Number(process.env.BANDWIDTH_ALERT_GB_PER_HOUR) || DEFAULT_ALERT_GB_PER_HOUR;
