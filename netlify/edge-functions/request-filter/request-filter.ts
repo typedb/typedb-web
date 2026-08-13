@@ -5,7 +5,7 @@ export const config = {
     path: "/*",
     rateLimit: {
         windowLimit: 300,
-        windowSize: 180,
+        windowSize: 60,
         aggregateBy: ["ip", "domain"],
     },
 };
