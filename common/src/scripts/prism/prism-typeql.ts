@@ -11,15 +11,15 @@ Prism.languages["typeql"] = {
         pattern: /(".*?")|('.*?')/,
     },
     keyword: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|redefine|match|with|fun|struct|return|reduce|groupby|get|select|assert|insert|delete|update|put|std|median|mean|max|min|first|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(define|undefine|redefine|match|with|fun|struct|return|reduce|groupby|get|select|assert|insert|delete|update|put|let|std|median|mean|max|min|first|sum|count|group|where|limit|offset|sort|asc|desc|when|then|fetch|rule|like|floor|ceil|round|abs)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     constraint: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|has!|owns|relates|relates!|links|links!|plays|value|isa!|isa|contains|iid|is|or|try|not)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(as|sub!|sub|has|has!|owns|relates|relates!|links|links!|plays|label|value|isa!|isa|contains|iid|is|or|try|not)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     annotation: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@values|@abstract|@regex|@key|@unique|@card|@distinct|@independent|@cascade|@debug|@replace)(?![-a-zA-Z_0-9])/,
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(@values|@abstract|@regex|@key|@unique|@card|@distinct|@independent|@cascade|@debug|@replace|@doc|@meta)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     type: {
@@ -36,6 +36,12 @@ Prism.languages["typeql"] = {
     variable: {
         pattern: /[$?][-a-zA-Z_0-9]+/,
         alias: "variable",
+    },
+    duration: {
+        // ISO-8601-style TypeQL duration literals, e.g. P7D, P1Y2M, P2W, P1DT2H30M, PT0.5S
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)P(?=\d|T\d)(?:\d+W|(?:\d+Y)?(?:\d+M)?(?:\d+D)?(?:T(?:\d+H)?(?:\d+M)?(?:\d+(?:\.\d+)?S)?)?)(?![-a-zA-Z_0-9])/,
+        lookbehind: true,
+        alias: "datetime",
     },
     datetime: {
         pattern: /\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(:\d{2})?)?)?/,
