@@ -15,6 +15,9 @@ export class ImageBuilder {
     });
 
     image(source: string) {
-        return this.imageBuilder.image(source).auto("format").fit("max").dpr(typeof window !== "undefined" ? window.devicePixelRatio : 1);
+        // Asset URLs from SanityDataset carry CDN params (?auto=format), but the builder parses
+        // the URL's filename back into an asset id and chokes on a query string. Strip it; the
+        // builder re-applies its own params below.
+        return this.imageBuilder.image(source.split("?")[0]).auto("format").fit("max").dpr(typeof window !== "undefined" ? window.devicePixelRatio : 1);
     }
 }
