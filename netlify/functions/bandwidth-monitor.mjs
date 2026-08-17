@@ -6,10 +6,11 @@ const DEFAULT_ALERT_GB_PER_HOUR = 2;
 const ACCOUNT_SLUG = "typedb";
 
 export default async () => {
+    console.log("bandwidth-monitor invoked");
     const apiToken = process.env.NETLIFY_ADMIN_API_TOKEN;
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!apiToken || !discordWebhook) {
-        console.error("Environment variables 'NETLIFY_ADMIN_API_TOKEN' and 'DISCORD_WEBHOOK_URL' must be set");
+        console.error("Environment variables 'NETLIFY_ADMIN_API_KEY' and 'DISCORD_WEBHOOK_URL' must be set");
         return;
     }
     const thresholdGbPerHour = Number(process.env.BANDWIDTH_ALERT_GB_PER_HOUR) || DEFAULT_ALERT_GB_PER_HOUR;
@@ -24,10 +25,12 @@ export default async () => {
     const bandwidth = await response.json();
     const usedBytes = bandwidth.used;
     const updatedAt = new Date(bandwidth.last_updated_at).getTime();
+    console.log(`Fetched bandwidth reading: ${usedBytes} bytes used, last updated ${new Date(updatedAt).toISOString()}`);
 
     const store = getStore("bandwidth-monitor");
     const previous = await store.get("last-reading", { type: "json" });
     await store.setJSON("last-reading", { usedBytes, updatedAt });
+    console.log(`Wrote reading to blob store (previous: ${previous ? new Date(previous.updatedAt).toISOString() : "none"})`);
 
     if (!previous || previous.updatedAt >= updatedAt) return; // first run, or the API has no fresh data yet
     if (usedBytes < previous.usedBytes) return; // counter reset at the start of a new billing period
@@ -72,7 +75,7 @@ export default async () => {
                 {
                     title: "🚨 Netlify bandwidth usage anomaly",
                     description:
-                        `Account bandwidth is being consumed at **${gbPerHour.toFixed(1)}GB/hour** ` +
+                        `Bandwidth is being consumed at **${gbPerHour.toFixed(1)}GB/hour** ` +
                         `(${deltaGb.toFixed(1)}GB over the last ${elapsedHours.toFixed(1)}h). ` +
                         `${(usedBytes / 1e9).toFixed(0)}GB used so far this billing period.`,
                     color: 0xe96464,
@@ -83,4 +86,5 @@ export default async () => {
     });
 };
 
-export const config = { schedule: "@hourly" };
+// TEMPORARY: every-minute schedule to test that Netlify's cron fires at all. Revert to "@hourly" after testing.
+export const config = { schedule: "* * * * *" };
