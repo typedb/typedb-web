@@ -75,7 +75,7 @@ export default async () => {
                 {
                     title: "🚨 Netlify bandwidth usage anomaly",
                     description:
-                        `Account bandwidth is being consumed at **${gbPerHour.toFixed(1)}GB/hour** ` +
+                        `Bandwidth is being consumed at **${gbPerHour.toFixed(1)}GB/hour** ` +
                         `(${deltaGb.toFixed(1)}GB over the last ${elapsedHours.toFixed(1)}h). ` +
                         `${(usedBytes / 1e9).toFixed(0)}GB used so far this billing period.`,
                     color: 0xe96464,
