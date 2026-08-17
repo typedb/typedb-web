@@ -44,6 +44,7 @@
             <div
               class="fg-code-short"
               [class.fg-blur]="feature.isIllustrationBlurred"
+              [class.fg-typeql-snippet]="$any(feature.illustration).language === 'typeql'"
               tdSyntaxHighlight
               [language]="$any(feature.illustration).language"
               [code]="$any(feature.illustration).code"
