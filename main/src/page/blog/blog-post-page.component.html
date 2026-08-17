@@ -13,7 +13,9 @@
         <div>
           <td-blog-category-chips [post]="post" />
           <td-heading-with-highlights level="h1" renderedLevel="h2" [value]="post.title" />
-          <td-rich-text class="text-p1 bp-short-description" [value]="post.shortDescription" />
+          @if (post.description && post.description.length ? post.description : post.shortDescription; as description) {
+            <td-rich-text class="text-p1 bp-short-description" [value]="description" />
+          }
         </div>
         <div class="bp-author-section"><td-blog-authorship-bar [post]="post" size="medium" variant="postPage" /></div>
         <hr class="bp-author-section-hr" />
