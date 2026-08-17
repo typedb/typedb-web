@@ -31,12 +31,29 @@ export class MetaTagsService {
 
     constructor(private meta: Meta) {}
 
+    /**
+     * Pins the format of Sanity CDN images used in link preview cards, per
+     * https://www.sanity.io/docs/apis-and-sdks/image-urls#troubleshooting-images-for-social-and-open-graph-previews:
+     * social crawlers are less format-tolerant than browsers and cache whatever they fetch first,
+     * so pin fm=jpg (which takes precedence over auto=format). Dimensions are deliberately left
+     * untouched so images are never cropped; crawlers scale to fit themselves.
+     * Non-Sanity URLs and SVGs (untransformable) pass through unchanged.
+     */
+    private ogImageURL(url: string): string {
+        if (!url.startsWith("https://cdn.sanity.io/images/")) return url;
+        const parsed = new URL(url);
+        if (parsed.pathname.endsWith(".svg")) return url;
+        parsed.searchParams.delete("auto");
+        parsed.searchParams.set("fm", "jpg");
+        return parsed.toString();
+    }
+
     register(metaTags: MetaTags, fallbacks?: MetaTagFallbacks) {
         const metaDefinitions: MetaDefinition[] = [];
 
         const title = metaTags.title || fallbacks?.title || this.DEFAULT_TITLE;
         const description = metaTags.description || fallbacks?.description || this.DEFAULT_DESCRIPTION;
-        const ogImage = metaTags.ogImage || fallbacks?.ogImage || this.DEFAULT_OG_IMAGE;
+        const ogImage = this.ogImageURL(metaTags.ogImage || fallbacks?.ogImage || this.DEFAULT_OG_IMAGE);
 
         metaDefinitions.push({ property: "og:title", content: title });
         metaDefinitions.push({ name: "twitter:title", content: title });
