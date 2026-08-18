@@ -1,3 +1,4 @@
+import { getExtension, getImageDimensions } from "@sanity/asset-utils";
 import { BlockContentIcon, LinkIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, RuleDef } from "@sanity/types";
 import { SanityImageRef } from "./image";
@@ -211,6 +212,52 @@ export const imageFieldOptional = defineField({
 });
 
 export const imageField = Object.assign({}, imageFieldOptional, { validation: requiredRule });
+
+// Images render in fixed-ratio slots and are downscaled by the image CDN, never upscaled;
+// warn (don't block) when an upload would look cropped or soft. Dimensions are read from the
+// asset ID, so these checks are synchronous. SVGs are scalable and are exempt.
+const IMAGE_RATIO_TOLERANCE = 0.05;
+
+// getExtension/getImageDimensions throw on refs they can't parse (e.g. mid-upload); treat those as valid.
+const rasterImageDimensions = (value?: { asset?: { _ref: string } }) => {
+    if (!value?.asset?._ref) return null;
+    try {
+        if (getExtension(value.asset._ref) === "svg") return null;
+        return getImageDimensions(value.asset._ref);
+    } catch {
+        return null;
+    }
+};
+
+const imageDimensionWarnings = (
+    minWidth: number,
+    ratio: number,
+    cropMessage: (dimensions: { width: number; height: number }) => string,
+) => (rule: RuleDef<any>) => [
+    rule.custom((value?: { asset?: { _ref: string } }) => {
+        const dimensions = rasterImageDimensions(value);
+        if (!dimensions) return true;
+        return dimensions.width >= minWidth
+            || `Image is ${dimensions.width}px wide - upload at least ${minWidth}px so it stays sharp on high-density screens (larger is fine: it is downscaled automatically)`;
+    }).warning(),
+    rule.custom((value?: { asset?: { _ref: string } }) => {
+        const dimensions = rasterImageDimensions(value);
+        if (!dimensions) return true;
+        return Math.abs(dimensions.aspectRatio - ratio) <= ratio * IMAGE_RATIO_TOLERANCE
+            || cropMessage(dimensions);
+    }).warning(),
+];
+
+export const heroImageWarnings = imageDimensionWarnings(1600, 16 / 9, ({ width, height }) =>
+    `Image is ${width}x${height} - card slots display 16:9 (e.g. 1920x1080), so the edges of this image will be cropped off`);
+
+export const headshotImageWarnings = imageDimensionWarnings(256, 1, ({ width, height }) =>
+    `Image is ${width}x${height} - headshots display in square avatars (e.g. 256x256), so the edges of this image will be cropped off`);
+
+export const heroImageFieldOptional = defineField({
+    ...imageFieldOptional,
+    validation: heroImageWarnings,
+});
 
 export const videoEmbedFieldName = "videoEmbed";
 

@@ -1,5 +1,5 @@
 import { defineField } from "@sanity/types";
-import { descriptionFieldRichText, imageFieldOptional, requiredRule, titleFieldWithHighlights } from "../common-fields";
+import { descriptionFieldRichText, heroImageFieldOptional, requiredRule, titleFieldWithHighlights } from "../common-fields";
 import { Link } from "../link";
 import { MetaTags, metaTagsField } from "../page/meta-tags";
 import { SanityDataset, SanityImage } from "../sanity-core";
@@ -129,6 +129,6 @@ export const resourceCommonFields = [
         description: "Displayed in link panels, etc.",
         type: "text",
     }),
-    imageFieldOptional,
+    heroImageFieldOptional,
     furtherLearningFieldOptional,
 ];
