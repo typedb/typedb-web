@@ -1,6 +1,6 @@
 import { UserIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument, Slug } from "@sanity/types";
-import { nameField, nameFieldName, requiredRule, titleFieldName } from "./common-fields";
+import { headshotImageWarnings, nameField, nameFieldName, requiredRule, titleFieldName } from "./common-fields";
 import { Organisation, organisationSchemaName, SanityOrganisation } from "./organisation";
 import { SanityDataset, SanityImage, SanityReference } from "./sanity-core";
 import { PropsOf } from "./util";
@@ -82,7 +82,7 @@ const personSchema = defineType({
             name: "headshot",
             title: "Headshot",
             type: "image",
-            validation: requiredRule,
+            validation: (rule) => [rule.required(), ...headshotImageWarnings(rule)],
         }),
         defineField({
             name: "linkedInURL",
