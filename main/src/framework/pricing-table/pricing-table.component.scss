@@ -95,18 +95,18 @@ td-pricing-table {
             margin-top: 6px;
         }
 
-        i {
+        td-icon {
             color: var(--color-secondary-light-grey);
         }
 
-        td:nth-of-type(2) i {
+        td:nth-of-type(2) td-icon {
             color: var(--color-green);
         }
 
-        td:nth-of-type(3) i {
-            background: linear-gradient(105deg, #F96480, #FDD257);
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        td:nth-of-type(3) td-icon svg {
+            // SVG equivalent of the old background-clip:text gradient trick (which only works
+            // on font glyphs); the gradient is defined in this component's template
+            stroke: url(#td-check-gradient);
         }
     }
 

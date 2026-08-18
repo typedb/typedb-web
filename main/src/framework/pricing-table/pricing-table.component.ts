@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { PricingPanel } from "typedb-web-schema";
 import { ButtonComponent } from "../button/button.component";
+import { IconComponent } from "../icon/icon.component";
 import { LinkDirective } from "../link/link.directive";
 import { RichTextComponent } from "../text/rich-text.component";
 
@@ -11,7 +12,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [RichTextComponent, ButtonComponent, LinkDirective]
+    imports: [RichTextComponent, ButtonComponent, IconComponent, LinkDirective]
 })
 export class PricingTableComponent {
     @Input() caption?: string;

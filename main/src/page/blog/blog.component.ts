@@ -23,6 +23,7 @@ import { CanonicalLinkService } from "../../service/canonical-link.service";
 import { BlogNavbarComponent } from "./blog-navbar.component";
 import { BlogRowComponent } from "./blog-row.component";
 import { ButtonComponent } from "src/framework/button/button.component";
+import { IconComponent } from "src/framework/icon/icon.component";
 import { DialogService } from "src/service/dialog.service";
 
 export const BLOG_PAGE_SIZE = 9;
@@ -34,7 +35,7 @@ export const BLOG_PAGE_SIZE = 9;
     encapsulation: ViewEncapsulation.None,
     imports: [
         BlogNavbarComponent, BlogRowComponent, AsyncPipe, ButtonComponent, RouterLink,
-        HeadingWithHighlightsComponent, ParagraphWithHighlightsComponent,
+        HeadingWithHighlightsComponent, IconComponent, ParagraphWithHighlightsComponent,
     ]
 })
 export class BlogComponent implements OnInit {

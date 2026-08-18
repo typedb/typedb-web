@@ -10,12 +10,15 @@ import {
     ViewEncapsulation,
 } from "@angular/core";
 
+import { IconComponent } from "../icon/icon.component";
+
 @Component({
     selector: "td-scroll-pane",
     templateUrl: "./scroll-pane.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,
+    imports: [IconComponent],
 })
 export class ScrollPaneComponent implements AfterViewInit {
     @Input() color: "deep-purple" | "black-purple" = "black-purple";

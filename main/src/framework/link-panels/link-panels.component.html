@@ -5,7 +5,7 @@
      
     @if (panel.iconName) {
       <div class="panel-content">
-        <i [class]="'fa-' + panel.iconVariant + ' fa-' + panel.iconName"></i>
+        <td-icon [icon]="$any(panel.iconName)" />
         
         <div class="custom-progress-track">
           <div class="custom-progress-bar"></div>

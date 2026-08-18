@@ -6,6 +6,7 @@ import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { FeatureTable, FeatureTableCell, LinkButton } from "typedb-web-schema";
 
 import { ButtonComponent } from "../button/button.component";
+import { IconComponent } from "../icon/icon.component";
 import { InfoButtonComponent } from "../info-button/info-button.component";
 
 @Component({
@@ -14,7 +15,7 @@ import { InfoButtonComponent } from "../info-button/info-button.component";
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [NgClass, MatIconModule, ButtonComponent]
+    imports: [NgClass, MatIconModule, ButtonComponent, IconComponent]
 })
 export class FeatureTableCellComponent {
     @Input({ required: true }) table!: FeatureTable;

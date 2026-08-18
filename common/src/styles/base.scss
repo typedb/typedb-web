@@ -495,7 +495,7 @@ td-feedback-dialog {
     transform: translateY(-4px);
     transition: all 100ms;
 
-    i {
+    i, td-icon {
         font-size: 14px;
         transition: all 100ms;
         display: flex;
