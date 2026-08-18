@@ -39,6 +39,17 @@ td-blog-list-page {
                 font-weight: var(--font-weight-semi-bold);
                 margin-bottom: 4px;
             }
+
+            @media (max-width: media.$max-width-mobile) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px;
+
+                i {
+                    font-size: 32px;
+                }
+            }
         }
     }
 
