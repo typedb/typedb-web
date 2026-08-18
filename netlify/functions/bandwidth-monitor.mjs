@@ -86,5 +86,6 @@ export default async () => {
     });
 };
 
-// TEMPORARY: every-minute schedule to test that Netlify's cron fires at all. Revert to "@hourly" after testing.
-export const config = { schedule: "* * * * *" };
+// TEMPORARY: the schedule is declared in netlify.toml while we debug why the cron
+// never fires via this in-source config. Restore it here once scheduling works:
+// export const config = { schedule: "@hourly" };
