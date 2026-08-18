@@ -28,11 +28,15 @@ td-link-panels {
             height: 48px;
         }
 
-        i {
+        td-icon {
             font-size: 36px;
             margin-bottom: 12px;
             color: var(--body-font-color);
             transition: color 100ms;
+
+            svg {
+                stroke-width: 1.5;
+            }
         }
 
         &.lc-card-cols-3 {
@@ -137,7 +141,7 @@ td-link-panels {
         width: 100%; 
     }
 
-    .lc-card:hover i {
+    .lc-card:hover td-icon {
         color: colors.$secondary-blue;
     }
 

@@ -31,8 +31,12 @@ td-blog-list-page {
             align-items: center;
             gap: 24px;
 
-            i {
+            td-icon {
                 font-size: 40px;
+
+                svg {
+                    stroke-width: 1; // light stroke, matching the previous fa-thin style
+                }
             }
 
             h4 {
@@ -46,7 +50,7 @@ td-blog-list-page {
                 gap: 16px;
                 padding: 20px;
 
-                i {
+                td-icon {
                     font-size: 32px;
                 }
             }
@@ -274,8 +278,12 @@ td-blog-list-page {
                 color: var(--body-background);
             }
 
-            i {
+            td-icon {
                 font-size: 12px;
+
+                svg {
+                    stroke-width: 3; // heavier stroke, matching the previous fa-solid style
+                }
             }
         }
 

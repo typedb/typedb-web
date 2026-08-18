@@ -3,6 +3,7 @@ import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, El
 import { map, Observable, of } from "rxjs";
 import { CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
+import { IconComponent } from "../icon/icon.component";
 import { SyntaxHighlightDirective } from "./syntax-highlight.directive";
 
 const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
@@ -13,7 +14,7 @@ const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [AsyncPipe, SyntaxHighlightDirective]
+    imports: [AsyncPipe, IconComponent, SyntaxHighlightDirective]
 })
 export class CodeSnippetComponent implements OnChanges {
     private readonly platformId = inject(PLATFORM_ID);

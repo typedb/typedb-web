@@ -2,6 +2,16 @@
   <h3 class="text-h3">{{ caption }}</h3>
 }
 
+<!-- Gradient definition for the third column's check icons (referenced from SCSS via stroke: url(#...)) -->
+<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="td-check-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F96480" />
+      <stop offset="100%" stop-color="#FDD257" />
+    </linearGradient>
+  </defs>
+</svg>
+
 <table role="presentation" class="hide-mobile">
   <colgroup>
     <col style="width: 33.33%" />
@@ -46,7 +56,7 @@
           <ul>
             @for (keyPoint of panel.keyPoints; track keyPoint) {
               <li>
-                <i class="fa-regular fa-check"></i> {{ keyPoint }}
+                <td-icon icon="check" /> {{ keyPoint }}
               </li>
             }
           </ul>
@@ -86,7 +96,7 @@
         <ul>
           @for (keyPoint of panel.keyPoints; track keyPoint) {
             <li>
-              <i class="fa-regular fa-check"></i> {{ keyPoint }}
+              <td-icon icon="check" /> {{ keyPoint }}
             </li>
           }
         </ul>
