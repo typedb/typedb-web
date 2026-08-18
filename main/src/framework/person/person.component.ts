@@ -4,12 +4,10 @@ import { MatIconModule } from "@angular/material/icon";
 
 import { Person } from "typedb-web-schema";
 
-import { ImageBuilder } from "src/service/image-builder.service";
-
 @Component({
     selector: "td-avatar",
     templateUrl: "./avatar.component.html",
-    
+
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [MatIconModule, NgOptimizedImage]
@@ -17,10 +15,8 @@ import { ImageBuilder } from "src/service/image-builder.service";
 export class AvatarComponent {
     @Input() person!: Person;
 
-    constructor(private imageBuilder: ImageBuilder) {}
-
     getPersonImage(): string {
-        return this.imageBuilder.image(this.person.headshotURL).width(88).url();
+        return this.person.headshotURL;
     }
 }
 
@@ -71,9 +67,7 @@ export class PersonInfoComponent {
 export class PersonCardComponent {
     @Input() person!: Person;
 
-    constructor(private imageBuilder: ImageBuilder) {}
-
     getLogoUrl(): string {
-        return this.imageBuilder.image(this.person.organisation.logoURL).height(64).url();
+        return this.person.organisation.logoURL;
     }
 }

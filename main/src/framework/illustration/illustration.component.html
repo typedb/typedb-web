@@ -1,5 +1,10 @@
-@if (imageIllustration) {
-  <img class="il-image" [src]="imageIllustration.url!" [alt]="imageIllustration.altText" />
+@if (imageIllustration; as image) {
+  @if (image.width && image.height) {
+    <img class="il-image" [ngSrc]="image.url" [alt]="image.altText" [width]="image.width" [height]="image.height"
+         [priority]="priority" sizes="(max-width: 768px) 100vw, 50vw" />
+  } @else {
+    <img class="il-image" [src]="image.url" [alt]="image.altText" [attr.loading]="priority ? null : 'lazy'" />
+  }
 }
 @if (videoEmbed) {
   <p>TODO: video embed with URL {{ videoEmbed.url }}</p>

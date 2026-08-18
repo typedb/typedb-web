@@ -75,11 +75,15 @@ export function isSplitPaneIllustration(doc: SanityDocument): doc is SanitySplit
 export class ImageIllustration extends Document {
     readonly url: string;
     readonly altText: string;
+    readonly width?: number;
+    readonly height?: number;
 
     constructor(data: PropsOf<ImageIllustration>) {
         super({ _id: data.id });
         this.url = data.url;
         this.altText = data.altText;
+        this.width = data.width;
+        this.height = data.height;
     }
 
     static fromSanity(data: SanityImageIllustration, db: SanityDataset): ImageIllustration {
@@ -87,6 +91,8 @@ export class ImageIllustration extends Document {
         return new ImageIllustration(Object.assign(new Document(data), {
             url: imageAsset.url,
             altText: imageAsset.altText || "",
+            width: imageAsset.metadata?.dimensions?.width,
+            height: imageAsset.metadata?.dimensions?.height,
         }));
     }
 
@@ -96,6 +102,8 @@ export class ImageIllustration extends Document {
             id: image.asset._ref,
             url: imageAsset.url,
             altText: imageAsset.altText || "",
+            width: imageAsset.metadata?.dimensions?.width,
+            height: imageAsset.metadata?.dimensions?.height,
         });
     }
 }

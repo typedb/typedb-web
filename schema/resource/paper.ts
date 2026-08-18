@@ -1,6 +1,6 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { requiredRule, slugField } from "../common-fields";
+import { heroImageWarnings, requiredRule, slugField } from "../common-fields";
 import { cioFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -67,7 +67,7 @@ export const paperSchema = defineType({
             name: "landscapeImage",
             title: "Landscape Image",
             type: "image",
-            validation: requiredRule,
+            validation: (rule) => [rule.required(), ...heroImageWarnings(rule)],
         }),
     ],
 });
