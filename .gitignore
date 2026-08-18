@@ -45,3 +45,7 @@ main/src/service/credentials/**/*
 
 # Netlify
 .netlify
+
+# Font Awesome Pro assets - vendored at build time by main/fetch-fontawesome.js;
+# must not be committed (public repo, FA Pro license forbids it)
+main/src/assets/fonts/fontawesome/
