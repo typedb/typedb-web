@@ -27,7 +27,9 @@ Prism.languages["typeql"] = {
         lookbehind: true,
     },
     modifier: {
-        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(boolean|double|long|int|string|datetime)(?![-a-zA-Z_0-9])/,
+        // TypeQL 3.x value types (see typeql grammar value_type_primitive), plus legacy 2.x long/int.
+        // datetime-tz before datetime before date: longest-first so prefixes don't shadow longer names.
+        pattern: /((?:(?![-a-zA-Z_0-9]|\$|\?).)|^|\s)(boolean|integer|long|int|double|decimal|datetime-tz|datetime|date|duration|string)(?![-a-zA-Z_0-9])/,
         lookbehind: true,
     },
     special: {
