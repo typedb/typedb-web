@@ -78,6 +78,10 @@ td-section-core {
             overflow: hidden;
             background: #1e1e1e;
             border: 1px solid #404040;
+            // Definite width, not shrink-to-fit: with a responsive srcset the image's natural
+            // width tracks its layout width (sizes="auto, ..."), so sizing this container from
+            // the image's natural size is circular and collapses it to a tiny stable size.
+            width: 100%;
             max-width: 100%;
         }
 
