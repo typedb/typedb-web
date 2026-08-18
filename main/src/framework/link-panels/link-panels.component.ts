@@ -8,6 +8,7 @@ import { Lecture, LinkPanel, ResourceLink } from "typedb-web-schema";
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../button/button.component";
 import { LinkDirective } from "../link/link.directive";
+import { IconComponent } from "../icon/icon.component";
 import { PlainTextPipe } from "../text/plain-text.pipe";
 import { RichTextComponent } from "../text/rich-text.component";
 import { MatProgressBar } from "@angular/material/progress-bar";
@@ -20,7 +21,7 @@ const DEFAULT_PROGRESS = 20;
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [LinkDirective, RichTextComponent]
+    imports: [IconComponent, LinkDirective, RichTextComponent]
 })
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanel[];

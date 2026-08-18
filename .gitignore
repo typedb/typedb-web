@@ -45,3 +45,6 @@ main/src/service/credentials/**/*
 
 # Netlify
 .netlify
+
+# Font Awesome
+main/src/assets/fonts/fontawesome/

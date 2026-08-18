@@ -15,7 +15,7 @@
       <section class="newsletter-section narrow-section">
         <div class="newsletter-card">
           <div>
-            <i class="fa-thin fa-envelope"></i>
+            <td-icon icon="envelope" />
           </div>
           <div>
             <h4>Subscribe to the TypeDB newsletter</h4>
@@ -40,13 +40,13 @@
               <nav class="blog-pagination" aria-label="Blog pagination">
                 @if (currentPage > 1) {
                   <a [routerLink]="getPageUrl(currentPage - 1)" class="pagination-link pagination-prev">
-                    <i class="fa-solid fa-chevron-left"></i> Previous
+                    <td-icon icon="chevron-left" /> Previous
                   </a>
                 }
                 <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
                 @if (currentPage < totalPages) {
                   <a [routerLink]="getPageUrl(currentPage + 1)" class="pagination-link pagination-next">
-                    Next <i class="fa-solid fa-chevron-right"></i>
+                    Next <td-icon icon="chevron-right" />
                   </a>
                 }
               </nav>
