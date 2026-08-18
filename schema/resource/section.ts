@@ -29,6 +29,8 @@ export class ResourceSection extends SectionCore {
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
             resources: data.resources?.map(x => ResourceLink.fromSanity(db.resolveRef(x), db)) || [],
             sectionId: "further-learning",
+            width: data.width || "default",
+            textAlign: data.textAlign || "auto",
         });
     }
 }

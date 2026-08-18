@@ -9,6 +9,22 @@ export class SanityDataset {
     constructor(props: { byType: { [key: string]: SanityDocument[] }; byId: { [id: string]: SanityDocument } }) {
         this._byType = props.byType;
         this._byId = props.byId;
+        this.optimiseImageAssetUrls();
+    }
+
+    /**
+     * Rewrites every image asset's URL to request an optimised rendition from Sanity's image CDN.
+     * `auto=format` makes the CDN content-negotiate via the Accept header, e.g. serving WebP
+     * to browsers that support it while crawlers and older browsers receive the original format.
+     * SVGs are excluded: the image pipeline doesn't transform them.
+     */
+    private optimiseImageAssetUrls(): void {
+        for (const doc of Object.values(this._byId)) {
+            if (doc._type !== "sanity.imageAsset") continue;
+            const asset = doc as unknown as { url?: string; extension?: string };
+            if (!asset.url || asset.extension === "svg" || asset.url.includes("?")) continue;
+            asset.url = `${asset.url}?auto=format`;
+        }
     }
 
     getDocumentByID<T extends SanityDocument>(id: string): T | undefined {

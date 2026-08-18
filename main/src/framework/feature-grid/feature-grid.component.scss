@@ -1,3 +1,4 @@
+@use "colors";
 @use "media";
 @use "shapes";
 
@@ -241,6 +242,12 @@ td-feature-grid {
 
         @media (max-width: media.$max-width-mobile) {
             padding: 12px;
+        }
+
+        &.fg-typeql-snippet {
+            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+            @include colors.border-gradient(#AC79EE, #03D0BF, var(--body-background));
+            animation-play-state: running !important;
         }
     }
 

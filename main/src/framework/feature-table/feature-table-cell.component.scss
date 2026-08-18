@@ -16,16 +16,9 @@ td-feature-table-cell {
         }
     }
 
-    i {
+    td-icon {
         font-size: 20px;
-
-        &.fa-check {
-            color: var(--color-green);
-        }
-
-        &.fa-xmark {
-            color: var(--color-secondary-light-grey);
-        }
+        color: var(--color-green);
     }
 
     td-button {

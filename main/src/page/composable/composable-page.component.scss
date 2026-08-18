@@ -1,0 +1,51 @@
+@use "colors";
+
+td-composable-page {
+    // Light band with subtle grid behind the hot topics cards - mirrors the use case pages
+    .hot-topics-section {
+        max-width: none;
+        border-radius: 0;
+        padding: 64px 0;
+        background:
+            linear-gradient(rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom,var(--body-background) 0%,  colors.$secondary-extra-light-grey 0.5%, #eee 45%, colors.$secondary-extra-light-grey 99.5%, var(--body-background) 100%);
+        z-index: 2;
+        background-size: 20px 20px, 20px 20px, auto;
+        margin-top: var(--section-margin);
+
+        td-hot-topics {
+            margin-top: 0;
+            display: block;
+
+            @media (min-width: 1520px) {
+                td-heading-with-highlights {
+                    flex: 0 0 320px;
+                }
+            }
+
+            @media (min-width: 900px) {
+                td-scroll-pane {
+                    overflow: visible;
+                }
+
+                .ss-container {
+                    overflow: visible;
+                }
+
+                .td-card {
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+                }
+            }
+
+            td-heading-with-highlights h2 {
+                color: #000;
+                font-weight: var(--font-weight-semi-bold);
+            }
+
+            .td-cards {
+                max-width: unset;
+            }
+        }
+    }
+}

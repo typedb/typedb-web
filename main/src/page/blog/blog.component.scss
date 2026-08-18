@@ -31,13 +31,28 @@ td-blog-list-page {
             align-items: center;
             gap: 24px;
 
-            i {
+            td-icon {
                 font-size: 40px;
+
+                svg {
+                    stroke-width: 1; // light stroke, matching the previous fa-thin style
+                }
             }
 
             h4 {
                 font-weight: var(--font-weight-semi-bold);
                 margin-bottom: 4px;
+            }
+
+            @media (max-width: media.$max-width-mobile) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px;
+
+                td-icon {
+                    font-size: 32px;
+                }
             }
         }
     }
@@ -263,8 +278,12 @@ td-blog-list-page {
                 color: var(--body-background);
             }
 
-            i {
+            td-icon {
                 font-size: 12px;
+
+                svg {
+                    stroke-width: 3; // heavier stroke, matching the previous fa-solid style
+                }
             }
         }
 

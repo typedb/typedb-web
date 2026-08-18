@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+﻿import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Output, EventEmitter, Input, ViewEncapsulation } from "@angular/core";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 
@@ -8,47 +8,44 @@ import { FormService } from "src/service/form.service";
 import { PopupNotificationService } from "src/service/popup-notification.service";
 import { AnalyticsService } from "../../service/analytics.service";
 import { FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent, patternValidator, requiredValidator } from "../form";
-import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { emailPattern, emailPatternErrorText, namePattern, namePatternErrorText } from "typedb-web-common/lib";
-import { MatCheckboxModule } from "@angular/material/checkbox";
+import { FormBuilder } from "@angular/forms";
+import { emailPattern, emailPatternErrorText } from "typedb-web-common/lib";
+import { ContactFormVariant } from "typedb-web-schema";
 
-const contactRequestTopicFieldPrefix = `contact_request_topic_`;
-const contactFormTopics = [
-    { value: `${contactRequestTopicFieldPrefix}support`, viewValue: "Support" },
-    { value: `${contactRequestTopicFieldPrefix}consulting`, viewValue: "Consulting" },
-    { value: `${contactRequestTopicFieldPrefix}sales`, viewValue: "Sales" },
-    { value: `${contactRequestTopicFieldPrefix}training`, viewValue: "Training" },
-    { value: `${contactRequestTopicFieldPrefix}careers`, viewValue: "Careers" },
-    { value: `${contactRequestTopicFieldPrefix}products_and_services`, viewValue: "Products and Services" },
-    { value: `${contactRequestTopicFieldPrefix}pr_and_analysts`, viewValue: "PR and Analysts" },
-] as const;
+// payload field names are fixed for CRM compatibility - variants only change the visible labels
+const LABELS: Record<ContactFormVariant, { name: string; email: string; company: string; country: string; message: string }> = {
+    default: { name: "Name", email: "Email", company: "Company", country: "Country", message: "Message" },
+    enterprise: { name: "Full Name", email: "Business Email", company: "Company", country: "Country/Region", message: "Message" },
+};
 
 @Component({
-    selector: "td-contact-panel",
-    templateUrl: "contact-panel.component.html",
+    selector: "td-contact-form",
+    templateUrl: "contact-form.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatProgressBarModule, AsyncPipe, FormActionsComponent, FormComponent, FormInputComponent, FormTextareaComponent,
-        MatCheckboxModule, FormsModule, ReactiveFormsModule
     ]
 })
-export class ContactPanelComponent {
+export class ContactFormComponent {
     @Input() showPersonalDataNotice = false;
+    @Input() variant: ContactFormVariant = "default";
     @Output() readonly submitDone = new EventEmitter();
+
+    get labels() {
+        return LABELS[this.variant];
+    }
 
     formId!: string;
     readonly isSubmitting$ = new Subject<boolean>();
 
+    // field names double as the Customer.io form field names - see FormService.submit
     readonly form = this.formBuilder.nonNullable.group({
-        first_name: ["", [patternValidator(namePattern, namePatternErrorText), requiredValidator]],
-        last_name: ["", [patternValidator(namePattern, namePatternErrorText), requiredValidator]],
+        name: ["", [requiredValidator]],
         email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
-        company: ["", []],
-        job_function: ["", []],
+        company: ["", [requiredValidator]],
         country: ["", []],
-        contact_request_body: ["", []],
-        ...Object.fromEntries(contactFormTopics.map(topic => ([topic.value, [false, []]]))),
+        contact_request_body: ["", [requiredValidator]],
     });
 
     constructor(
@@ -78,6 +75,4 @@ export class ContactPanelComponent {
             },
         });
     }
-
-    readonly topics = contactFormTopics;
 }

@@ -1,3 +1,4 @@
+import { getExtension, getImageDimensions } from "@sanity/asset-utils";
 import { BlockContentIcon, LinkIcon, PlayIcon } from "@sanity/icons";
 import { ArrayRule, defineField, RuleDef } from "@sanity/types";
 import { SanityImageRef } from "./image";
@@ -57,6 +58,15 @@ export const titleFieldWithHighlights = Object.assign({}, titleFieldWithHighligh
 export function titleWithHighlightsPreview(value: any[]): string {
     return ((value || [])[0]?.children.map((x: any) => x.text).join("") as string) || "Untitled";
 }
+
+/** Standard section preview: the section's title, subtitled with the type name as shown in the CMS */
+export const sectionPreview = (subtitle: string) => ({
+    select: { title: "title" },
+    prepare: (selection: { title?: any[] }) => ({
+        title: titleWithHighlightsPreview(selection.title || []),
+        subtitle,
+    }),
+});
 
 export const textFieldWithHighlights = defineField({
     name: textFieldName,
@@ -203,6 +213,52 @@ export const imageFieldOptional = defineField({
 
 export const imageField = Object.assign({}, imageFieldOptional, { validation: requiredRule });
 
+// Images render in fixed-ratio slots and are downscaled by the image CDN, never upscaled;
+// warn (don't block) when an upload would look cropped or soft. Dimensions are read from the
+// asset ID, so these checks are synchronous. SVGs are scalable and are exempt.
+const IMAGE_RATIO_TOLERANCE = 0.05;
+
+// getExtension/getImageDimensions throw on refs they can't parse (e.g. mid-upload); treat those as valid.
+const rasterImageDimensions = (value?: { asset?: { _ref: string } }) => {
+    if (!value?.asset?._ref) return null;
+    try {
+        if (getExtension(value.asset._ref) === "svg") return null;
+        return getImageDimensions(value.asset._ref);
+    } catch {
+        return null;
+    }
+};
+
+const imageDimensionWarnings = (
+    minWidth: number,
+    ratio: number,
+    cropMessage: (dimensions: { width: number; height: number }) => string,
+) => (rule: RuleDef<any>) => [
+    rule.custom((value?: { asset?: { _ref: string } }) => {
+        const dimensions = rasterImageDimensions(value);
+        if (!dimensions) return true;
+        return dimensions.width >= minWidth
+            || `Image is ${dimensions.width}px wide - upload at least ${minWidth}px so it stays sharp on high-density screens (larger is fine: it is downscaled automatically)`;
+    }).warning(),
+    rule.custom((value?: { asset?: { _ref: string } }) => {
+        const dimensions = rasterImageDimensions(value);
+        if (!dimensions) return true;
+        return Math.abs(dimensions.aspectRatio - ratio) <= ratio * IMAGE_RATIO_TOLERANCE
+            || cropMessage(dimensions);
+    }).warning(),
+];
+
+export const heroImageWarnings = imageDimensionWarnings(1600, 16 / 9, ({ width, height }) =>
+    `Image is ${width}x${height} - card slots display 16:9 (e.g. 1920x1080), so the edges of this image will be cropped off`);
+
+export const headshotImageWarnings = imageDimensionWarnings(256, 1, ({ width, height }) =>
+    `Image is ${width}x${height} - headshots display in square avatars (e.g. 256x256), so the edges of this image will be cropped off`);
+
+export const heroImageFieldOptional = defineField({
+    ...imageFieldOptional,
+    validation: heroImageWarnings,
+});
+
 export const videoEmbedFieldName = "videoEmbed";
 
 export const videoEmbedField = defineField({
@@ -240,6 +296,57 @@ export const tagsField = defineField({
     type: "array",
     of: [{ type: "string" }],
     initialValue: [],
+});
+
+export const sectionWidths = [
+    { title: "Default", value: "default" },
+    { title: "Narrow", value: "narrow" },
+] as const;
+
+export type SectionWidth = (typeof sectionWidths)[number]["value"];
+
+export const sectionWidthField = defineField({
+    name: "width",
+    title: "Width",
+    type: "string",
+    description: "Horizontal width of this section's content",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionWidths] },
+    initialValue: "default",
+});
+
+export const sectionTextAligns = [
+    { title: "Auto", value: "auto" },
+    { title: "Left", value: "left" },
+    { title: "Center", value: "center" },
+] as const;
+
+export type SectionTextAlign = (typeof sectionTextAligns)[number]["value"];
+
+export const sectionTextAlignField = defineField({
+    name: "textAlign",
+    title: "Text Alignment",
+    type: "string",
+    description: "'Auto' centers the text",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionTextAligns] },
+    initialValue: "auto",
+});
+
+export const sectionLayoutDirections = [
+    { title: "Auto", value: "auto" },
+    { title: "Content Right", value: "row" },
+    { title: "Content Left", value: "row-reverse" },
+    { title: "Content Below", value: "column" },
+] as const;
+
+export type SectionLayoutDirection = (typeof sectionLayoutDirections)[number]["value"];
+
+export const sectionLayoutDirectionField = defineField({
+    name: "layoutDirection",
+    title: "Layout",
+    type: "string",
+    description: "How the text and content are arranged. Auto places the content to the right in an intro (first) section, and below the text otherwise",
+    options: { layout: "radio", direction: "horizontal", list: [...sectionLayoutDirections] },
+    initialValue: "auto",
 });
 
 export interface SanityVisibleToggle {

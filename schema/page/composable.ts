@@ -1,10 +1,13 @@
 import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
+import { ContactFormSection, contactFormSectionSchemaName, SanityContactFormSection } from "../component/contact-form-section";
+import { HotTopicsSection } from "../component/hot-topics-section";
 import {
-    IllustrationSection, illustrationSectionSchemaName, LinkPanelsSection, linkPanelsSectionSchemaName,
-    SanityIllustrationSection, SanityLinkPanelsSection, SanitySectionCore, SanitySimpleLinkPanelsSection,
-    SanityTitleBodyPanelSection, SectionCore, sectionCoreSchemaName, SimpleLinkPanelsSection,
+    hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
+    LinkPanelsSection, linkPanelsSectionSchemaName, SanityHotTopicsSection, SanityIllustrationSection,
+    SanityLinkPanelsSection, SanitySimpleLinkPanelsSection,
+    SanityTitleBodyPanelSection, SimpleLinkPanelsSection,
     simpleLinkPanelsSectionSchemaName, TitleBodyPanelSection, titleBodyPanelSectionSchemaName,
 } from "../component/section";
 import { KeyPointsSection, keyPointsSectionSchemaName, SanityKeyPointsSection } from "../key-point";
@@ -23,36 +26,44 @@ interface SanityKeyed {
     _key: string;
 }
 
+export const composablePageBackgrounds = [
+    { title: "None", value: "none" },
+    { title: "Floating Dots", value: "floatingDots" },
+] as const;
+
+export type ComposablePageBackground = (typeof composablePageBackgrounds)[number]["value"];
+
 export type SanityComposableSection = SanityKeyed &
     (
-        | ({ _type: typeof sectionCoreSchemaName } & SanitySectionCore)
         | ({ _type: typeof illustrationSectionSchemaName } & SanityIllustrationSection)
         | ({ _type: typeof titleBodyPanelSectionSchemaName } & SanityTitleBodyPanelSection)
         | ({ _type: typeof linkPanelsSectionSchemaName } & SanityLinkPanelsSection)
         | ({ _type: typeof simpleLinkPanelsSectionSchemaName } & SanitySimpleLinkPanelsSection)
         | ({ _type: typeof keyPointsSectionSchemaName } & SanityKeyPointsSection)
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
+        | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
+        | ({ _type: typeof contactFormSectionSchemaName } & SanityContactFormSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
     title: string;
     route: Slug;
+    background?: ComposablePageBackground;
     sections?: SanityComposableSection[];
 }
 
 export type ComposablePageSection =
-    | { type: typeof sectionCoreSchemaName; key: string; section: SectionCore }
     | { type: typeof illustrationSectionSchemaName; key: string; section: IllustrationSection }
     | { type: typeof titleBodyPanelSectionSchemaName; key: string; section: TitleBodyPanelSection }
     | { type: typeof linkPanelsSectionSchemaName; key: string; section: LinkPanelsSection }
     | { type: typeof simpleLinkPanelsSectionSchemaName; key: string; section: SimpleLinkPanelsSection }
     | { type: typeof keyPointsSectionSchemaName; key: string; section: KeyPointsSection }
-    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection };
+    | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
+    | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection }
+    | { type: typeof contactFormSectionSchemaName; key: string; section: ContactFormSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
-        case sectionCoreSchemaName:
-            return { type: data._type, key: data._key, section: SectionCore.fromSanity(data, db) };
         case illustrationSectionSchemaName:
             return { type: data._type, key: data._key, section: IllustrationSection.fromSanity(data, db) };
         case titleBodyPanelSectionSchemaName:
@@ -65,6 +76,10 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: KeyPointsSection.fromSanity(data, db) };
         case conclusionSectionSchemaName:
             return { type: data._type, key: data._key, section: ConclusionSection.fromSanity(data, db) };
+        case hotTopicsSectionSchemaName:
+            return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
+        case contactFormSectionSchemaName:
+            return { type: data._type, key: data._key, section: ContactFormSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -73,12 +88,14 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
 export class ComposablePage extends Page {
     readonly title: string;
     readonly route: string;
+    readonly background: ComposablePageBackground;
     readonly sections: ComposablePageSection[];
 
     constructor(data: SanityComposablePage, db: SanityDataset) {
         super(data, db);
         this.title = data.title;
         this.route = data.route.current;
+        this.background = data.background || "none";
         this.sections = (data.sections || [])
             .filter((x) => x.isVisible)
             .map((x) => sectionFromSanity(x, db))
@@ -118,42 +135,50 @@ const composablePageSchema = defineType({
             ],
         }),
         defineField({
+            name: "background",
+            title: "Background",
+            type: "string",
+            description: "Animated effect rendered behind the whole page",
+            options: {
+                layout: "radio",
+                direction: "horizontal",
+                list: [...composablePageBackgrounds],
+            },
+            initialValue: "none",
+        }),
+        defineField({
             name: "sections",
             title: "Page Sections",
             type: "array",
             description: "The page is built from these sections, rendered top to bottom",
             of: [
                 defineArrayMember({ type: illustrationSectionSchemaName }),
-                defineArrayMember({ type: sectionCoreSchemaName }),
                 defineArrayMember({ type: titleBodyPanelSectionSchemaName }),
                 defineArrayMember({ type: keyPointsSectionSchemaName }),
                 defineArrayMember({ type: linkPanelsSectionSchemaName }),
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
+                defineArrayMember({ type: hotTopicsSectionSchemaName }),
+                defineArrayMember({ type: contactFormSectionSchemaName }),
             ],
             options: {
                 insertMenu: {
                     filter: true,
                     groups: [
                         {
-                            name: "intro",
-                            title: "Intro & Heroes",
-                            of: [illustrationSectionSchemaName, sectionCoreSchemaName],
-                        },
-                        {
                             name: "content",
                             title: "Content",
-                            of: [titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
+                            of: [illustrationSectionSchemaName, titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
                         },
                         {
                             name: "links",
-                            title: "Links & Navigation",
-                            of: [linkPanelsSectionSchemaName, simpleLinkPanelsSectionSchemaName],
+                            title: "Links",
+                            of: [linkPanelsSectionSchemaName, simpleLinkPanelsSectionSchemaName, hotTopicsSectionSchemaName],
                         },
                         {
                             name: "conversion",
                             title: "Conversion",
-                            of: [conclusionSectionSchemaName],
+                            of: [conclusionSectionSchemaName, contactFormSectionSchemaName],
                         },
                     ],
                     views: [

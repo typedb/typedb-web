@@ -9,6 +9,8 @@ import { AnalyticsService } from "./analytics.service";
 import { ContentService } from "./content.service";
 import { HttpClient } from "@angular/common/http";
 
+// Basic auth for the Customer.io track API (base64 "site_id:api_key" of the prod/dev workspace).
+// These ship in the browser bundle by design - they are the same credentials the CDP snippet uses.
 const authToken = environment.env === "production"
     ? `MmY2YjZmNWM1ZWYyOTNhY2ZiZjA6MzQ3NTUwNjZiOGZmYjlmYjdhNTY=`
     : `ZTVjMDIzODRiNTk1ZTUzYzYyNWY6ZDcyYmI5ZmRlMDQyZTY5MWE4MzE=`;
@@ -33,6 +35,12 @@ export class FormService {
             });
     }
 
+    /**
+     * Submits to the Customer.io Forms API. The typedb.com/forms/* path is a Netlify redirect
+     * (see netlify.toml) to track.customer.io/api/v1/forms/* - it is not a first-party endpoint.
+     * Form IDs come from the "Forms" singleton in Sanity; field names must match the form's
+     * fields as configured in Customer.io. Also identifies the submitter in Customer.io and PostHog.
+     */
     submit(formId: string, data: { email: string } & Record<string, unknown>): Observable<unknown> {
         if (isPlatformServer(this.platformId)) return of(null);
         const props = Object.fromEntries(Object.entries(data).filter(([_, v]) => v != null && v.toString().trim().length).map(([k, v]) => [k, v!.toString()]));

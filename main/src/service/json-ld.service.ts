@@ -11,7 +11,7 @@ export interface BlogPostingSchema {
     image?: string;
     datePublished: string;
     dateModified?: string;
-    author: {
+    author?: {
         "@type": "Person";
         name: string;
         url?: string;
@@ -71,10 +71,10 @@ export class JsonLdService {
             description: post.shortDescription,
             image: post.heroImageURL(),
             datePublished: post.date.toISOString(),
-            author: {
+            author: post.author ? {
                 "@type": "Person",
                 name: post.author.name,
-            },
+            } : undefined,
             publisher: this.PUBLISHER,
             mainEntityOfPage: {
                 "@type": "WebPage",

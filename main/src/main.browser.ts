@@ -3,11 +3,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { environment } from "./environment/environment";
 import { RootComponent } from "./root.component";
 import { appConfig } from './config';
-import "posthog-js/dist/recorder";
-import "posthog-js/dist/surveys";
 import "posthog-js/dist/exception-autocapture";
-import "posthog-js/dist/tracing-headers";
-import "posthog-js/dist/web-vitals";
 import "posthog-js/dist/dead-clicks-autocapture";
 import posthog from "posthog-js/dist/module.no-external";
 

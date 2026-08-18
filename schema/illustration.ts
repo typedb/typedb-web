@@ -33,7 +33,7 @@ export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | Sa
 
 export const illustrationObjectSchemaName = "illustration";
 
-export type IllustrationKind = "image" | "code" | "video" | "graph" | "splitPane";
+export type IllustrationKind = "none" | "image" | "code" | "video" | "graph" | "splitPane";
 
 export interface SanityIllustrationObject {
     _type: typeof illustrationObjectSchemaName;
@@ -75,11 +75,15 @@ export function isSplitPaneIllustration(doc: SanityDocument): doc is SanitySplit
 export class ImageIllustration extends Document {
     readonly url: string;
     readonly altText: string;
+    readonly width?: number;
+    readonly height?: number;
 
     constructor(data: PropsOf<ImageIllustration>) {
         super({ _id: data.id });
         this.url = data.url;
         this.altText = data.altText;
+        this.width = data.width;
+        this.height = data.height;
     }
 
     static fromSanity(data: SanityImageIllustration, db: SanityDataset): ImageIllustration {
@@ -87,6 +91,8 @@ export class ImageIllustration extends Document {
         return new ImageIllustration(Object.assign(new Document(data), {
             url: imageAsset.url,
             altText: imageAsset.altText || "",
+            width: imageAsset.metadata?.dimensions?.width,
+            height: imageAsset.metadata?.dimensions?.height,
         }));
     }
 
@@ -96,6 +102,8 @@ export class ImageIllustration extends Document {
             id: image.asset._ref,
             url: imageAsset.url,
             altText: imageAsset.altText || "",
+            width: imageAsset.metadata?.dimensions?.width,
+            height: imageAsset.metadata?.dimensions?.height,
         });
     }
 }
@@ -199,6 +207,8 @@ export function illustrationFromSanity(data: SanityIllustration, db: SanityDatas
 export function illustrationFieldValueFromSanity(value: SanityIllustrationFieldValue, db: SanityDataset): Illustration | undefined {
     if (isLegacyIllustrationRef(value)) return illustrationFromSanity(db.resolveRef(value), db);
     switch (value.kind) {
+        case "none":
+            return undefined;
         case "image":
             return value.image?.asset ? ImageIllustration.fromSanityImageField(value.image, db) : undefined;
         case "code": {
@@ -336,6 +346,7 @@ export const illustrationFieldTargetTypes = [
 ];
 
 const illustrationKinds: { title: string; value: IllustrationKind }[] = [
+    { title: "None", value: "none" },
     { title: "Image", value: "image" },
     { title: "Code", value: "code" },
     { title: "Video", value: "video" },
@@ -355,7 +366,7 @@ const illustrationObjectSchema = defineType({
     fields: [
         defineField({
             name: "kind",
-            title: "Illustration Type",
+            title: "Content Type",
             type: "string",
             options: { list: illustrationKinds, layout: "radio", direction: "horizontal" },
             initialValue: "image",
@@ -398,7 +409,8 @@ const illustrationObjectSchema = defineType({
         }),
     ],
     validation: (rule) => rule.custom((value: any) => {
-        if (!value || !value.kind) return true; // absence is handled by the field-level required() rule
+        // absence and an explicit "none" are both valid; field-level required() rules govern presence
+        if (!value || !value.kind || value.kind === "none") return true;
         return value[value.kind]
             ? true
             : `Select the content for this ${(illustrationKindTitles[value.kind] || "illustration").toLowerCase()} illustration`;

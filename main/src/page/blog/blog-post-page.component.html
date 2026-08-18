@@ -13,7 +13,9 @@
         <div>
           <td-blog-category-chips [post]="post" />
           <td-heading-with-highlights level="h1" renderedLevel="h2" [value]="post.title" />
-          <td-rich-text class="text-p1 bp-short-description" [value]="post.shortDescription" />
+          @if (post.description && post.description.length ? post.description : post.shortDescription; as description) {
+            <td-rich-text class="text-p1 bp-short-description" [value]="description" />
+          }
         </div>
         <div class="bp-author-section"><td-blog-authorship-bar [post]="post" size="medium" variant="postPage" /></div>
         <hr class="bp-author-section-hr" />
@@ -21,7 +23,7 @@
       <section class="bp-content-section">
         <div class="bp-content">
           <figure class="bp-featured-image-wrapper">
-            <img class="bp-featured-image" [ngSrc]="post.imageURL!" alt="" fill sizes="(max-width: 768px) 100vw, 50vw" />
+            <img class="bp-featured-image" [ngSrc]="post.imageURL!" alt="" fill priority sizes="(max-width: 768px) 100vw, 50vw" />
           </figure>
           <td-rich-text class="text-blog" [value]="post.contentHtml" />
         </div>
@@ -49,13 +51,11 @@
               <p>Stay up to date with the latest TypeDB announcements and events.</p>
               <td-button [button]="subscribeToNewsletterButton" [linkId]="subscribeNewsletterLinkId(post)" />
             </div>
-            @for (relatedPostGroup of relatedPostGroups$ | async; track relatedPostGroup) {
-              @if (relatedPostGroup.posts.length) {
+            @if (relatedPosts$ | async; as relatedPosts) {
+              @if (relatedPosts.length) {
                 <aside>
-                  <h4 class="bp-related-post-group-heading">
-                    More on {{ categoryDisplayName(relatedPostGroup.categorySlug) }}
-                  </h4>
-                  @for (relatedPost of relatedPostGroup.posts; track relatedPost) {
+                  <h4 class="bp-related-post-group-heading">Related articles</h4>
+                  @for (relatedPost of relatedPosts; track relatedPost) {
                     <div class="bp-related-post">
                       <a [tdLink]="relatedPost.link">
                         <td-aspect-ratio ratio="16:9">
@@ -66,7 +66,9 @@
                         <a [tdLink]="relatedPost.link">{{ relatedPost.title }}</a>
                       </h3>
                       <td-rich-text class="bp-related-post-description" [value]="relatedPost.description" />
-                      <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
+                      @if (relatedPost.author) {
+                        <aside class="bp-related-post-author">{{ relatedPost.author.name }}</aside>
+                      }
                     </div>
                   }
                 </aside>

@@ -25,6 +25,13 @@ td-section-core {
         }
     }
 
+    // explicit so it wins over .page-intro-section's flex-direction: column
+    &.td-row {
+        @media (min-width: media.$min-width-desktop) {
+            flex-direction: row;
+        }
+    }
+
     &.td-row-reverse {
         @media (min-width: media.$min-width-desktop) {
             flex-direction: row-reverse;
@@ -71,6 +78,10 @@ td-section-core {
             overflow: hidden;
             background: #1e1e1e;
             border: 1px solid #404040;
+            // Definite width, not shrink-to-fit: with a responsive srcset the image's natural
+            // width tracks its layout width (sizes="auto, ..."), so sizing this container from
+            // the image's natural size is circular and collapses it to a tiny stable size.
+            width: 100%;
             max-width: 100%;
         }
 

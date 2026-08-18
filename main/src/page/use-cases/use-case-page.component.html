@@ -1,8 +1,8 @@
 <article>
-  <canvas id="cyber-background"></canvas>
+  <td-floating-dots-background />
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" [noWindowHeader]="true" flexDirection="row" [hasPeekingBot]="true"/>
+      <td-section-core level="h1" [section]="page.introSection" [noWindowHeader]="true" flexDirection="row" [hasPeekingBot]="true" [isIntroSection]="true"/>
     }
     @if (page.benefitsSection1) {
       <td-section-core [section]="page.benefitsSection1" class="narrow-section" textAlign="left"/>
