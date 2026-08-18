@@ -11,7 +11,7 @@ export default async () => {
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!apiToken || !discordWebhook) {
         console.error("Environment variables 'NETLIFY_ADMIN_API_KEY' and 'DISCORD_WEBHOOK_URL' must be set");
-        return;
+        return new Response("Missing env vars", { status: 500 });
     }
     const thresholdGbPerHour = Number(process.env.BANDWIDTH_ALERT_GB_PER_HOUR) || DEFAULT_ALERT_GB_PER_HOUR;
 
@@ -20,7 +20,7 @@ export default async () => {
     });
     if (!response.ok) {
         console.error(`Netlify bandwidth API responded ${response.status}`);
-        return;
+        return new Response("Bandwidth API error", { status: 500 });
     }
     const bandwidth = await response.json();
     const usedBytes = bandwidth.used;
@@ -32,8 +32,8 @@ export default async () => {
     await store.setJSON("last-reading", { usedBytes, updatedAt });
     console.log(`Wrote reading to blob store (previous: ${previous ? new Date(previous.updatedAt).toISOString() : "none"})`);
 
-    if (!previous || previous.updatedAt >= updatedAt) return; // first run, or the API has no fresh data yet
-    if (usedBytes < previous.usedBytes) return; // counter reset at the start of a new billing period
+    if (!previous || previous.updatedAt >= updatedAt) return new Response("No fresh data"); // first run, or the API has no fresh data yet
+    if (usedBytes < previous.usedBytes) return new Response("Counter reset"); // counter reset at the start of a new billing period
 
     const elapsedHours = (updatedAt - previous.updatedAt) / (1000 * 60 * 60);
     const deltaGb = (usedBytes - previous.usedBytes) / 1e9;
@@ -64,7 +64,7 @@ export default async () => {
         console.error("Failed to record reading in PostHog:", error);
     }
 
-    if (gbPerHour < thresholdGbPerHour) return;
+    if (gbPerHour < thresholdGbPerHour) return new Response("Below threshold");
 
     await fetch(discordWebhook, {
         method: "POST",
@@ -84,6 +84,7 @@ export default async () => {
             ],
         }),
     });
+    return new Response("Alert sent");
 };
 
 // TEMPORARY: the schedule is declared in netlify.toml while we debug why the cron
