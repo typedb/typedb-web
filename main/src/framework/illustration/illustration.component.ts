@@ -22,11 +22,14 @@ import { RichTextComponent } from "../text/rich-text.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent,
+        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent, NgOptimizedImage,
     ]
 })
 export class IllustrationComponent {
     @Input() illustration!: Illustration;
+    // Set for above-the-fold illustrations (e.g. page intro sections): loads eagerly with high
+    // fetch priority instead of the lazy default, as they are usually the page's LCP element.
+    @Input() priority = false;
     // TODO: requiring the caller to set visible explicitly is counter-intuitive
     @Input() visible = true;
     @Input() @HostBinding("class.il-blur") isBlurred = false;

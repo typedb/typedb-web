@@ -7,7 +7,7 @@ const ACCOUNT_SLUG = "typedb";
 
 export default async () => {
     console.log("bandwidth-monitor invoked");
-    const apiToken = process.env.NETLIFY_ADMIN_API_TOKEN;
+    const apiToken = process.env.NETLIFY_ADMIN_API_KEY;
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!apiToken || !discordWebhook) {
         console.error("Environment variables 'NETLIFY_ADMIN_API_KEY' and 'DISCORD_WEBHOOK_URL' must be set");
