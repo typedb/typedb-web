@@ -61,7 +61,10 @@ function findSharedKeys(pages) {
 function writeSharedStateFile(sharedState) {
     const sharedJson = JSON.stringify(sharedState);
     const fileName = `ng-state-shared.${generateHash(sharedJson)}.js`;
-    fs.writeFileSync(path.join(DIST_FOLDER, fileName), `window.__ngStateShared = ${sharedJson};`);
+    // Stored as a JSON *string* (not an object literal) so the per-page script can merge by
+    // string splicing - the browser never parses or re-serializes the multi-MB blob; only
+    // Angular's own single JSON.parse of the final ng-state element touches it.
+    fs.writeFileSync(path.join(DIST_FOLDER, fileName), `window.__ngStateSharedJson = ${JSON.stringify(sharedJson)};`);
     return { fileName, size: sharedJson.length };
 }
 
@@ -77,11 +80,16 @@ function optimizeHtml({ filePath, html, state }, sharedKeys, sharedFileName) {
 
     // Create a JS file that merges the shared state with this page's own state and injects it
     // as the script element Angular's TransferState looks for before bootstrapping.
+    // The merge splices the two JSON object strings together instead of parse/assign/stringify:
+    // duplicate keys keep the same last-key-wins semantics (page state overrides shared), and
+    // the multi-MB shared blob is never parsed on the main thread here.
     const stateJs = `(function(){
+  var shared = window.__ngStateSharedJson;
+  var page = ${JSON.stringify(pageJson)};
   var s = document.createElement('script');
   s.id = 'ng-state';
   s.type = 'application/json';
-  s.textContent = JSON.stringify(Object.assign({}, window.__ngStateShared, JSON.parse(${JSON.stringify(pageJson)})));
+  s.textContent = page === '{}' ? shared : shared === '{}' ? page : shared.slice(0, -1) + ',' + page.slice(1);
   document.body.appendChild(s);
 })();`;
 

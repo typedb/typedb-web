@@ -60,8 +60,18 @@ export class ContentService {
         private wordpress: WordpressService,
         private transferState: TransferState
     ) {
-        // Sanity data - use shareReplay to cache and replay synchronously
-        this.data = this.getSanityResult<SanityDocument[]>("*[!(_type match 'system.**')]", "content").pipe(
+        // Sanity data - use shareReplay to cache and replay synchronously.
+        // Image assets are projected down to the fields the site reads: full asset documents
+        // carry ~700KB of unused metadata (lqip previews, palettes, exif) which would otherwise
+        // dominate the TransferState payload shipped with every page (see isolate-ng-state.js).
+        // NOTE: the SanityImageAsset type still declares the stripped fields - don't start
+        // reading e.g. metadata.lqip without adding it to this projection.
+        const contentQuery = `{
+            "documents": *[!(_type match 'system.**') && _type != 'sanity.imageAsset'],
+            "assets": *[_type == 'sanity.imageAsset']{ _id, _type, url, altText, extension, mimeType, metadata { dimensions } }
+        }`;
+        this.data = this.getSanityResult<{ documents: SanityDocument[]; assets: SanityDocument[] }>(contentQuery, "content").pipe(
+            map(({ documents, assets }) => [...documents, ...assets]),
             map((result) => new SanityDataset({
                 byType: groupBy(result, (x) => x._type),
                 byId: associateBy(result, (x) => x._id),
