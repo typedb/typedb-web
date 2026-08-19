@@ -26,15 +26,6 @@ command = "pnpm --filter typedb-web-main build:dev"
 publish = "main/dist/main/browser"
 
 
-# FUNCTIONS
-
-# TEMPORARY: schedule declared here instead of via in-source config while debugging
-# why the cron never fires (every-minute cadence is also temporary, for testing).
-# Restore to hourly ("0 * * * *") once scheduling is confirmed working.
-[functions."bandwidth-monitor"]
-schedule = "* * * * *"
-
-
 # EDGE FUNCTIONS
 
 # request-filter declares its paths via in-source config
