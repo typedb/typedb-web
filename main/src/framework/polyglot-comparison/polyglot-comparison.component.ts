@@ -1,6 +1,7 @@
-import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject, Input, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { afterNextRender, AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject, Injector, Input, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
+import Prism from "prismjs";
 import { Subject } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import { CodeSnippet, languages, PolyglotSnippet } from "typedb-web-schema";
@@ -21,7 +22,7 @@ const DEFAULT_MIN_LINES = { desktop: 33, mobile: 13 };
     imports: [IllustrationComponent, RichTextComponent]
 })
 export class PolyglotComparisonComponent implements AfterViewInit {
-    private readonly platformId = inject(PLATFORM_ID);
+    private readonly injector = inject(Injector);
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input({ required: true, alias: "snippet" }) polyglotSnippet!: PolyglotSnippet;
     @Input() setWindowHashOnTabClick = false;
@@ -40,11 +41,7 @@ export class PolyglotComparisonComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        if (isPlatformBrowser(this.platformId)) {
-            setTimeout(() => {
-                (window as any)["Prism"].highlightAllUnder(this._el.nativeElement);
-            });
-        }
+        afterNextRender(() => Prism.highlightAllUnder(this._el.nativeElement), { injector: this.injector });
     }
 
     snippetTabID(tab: CodeSnippet): string {

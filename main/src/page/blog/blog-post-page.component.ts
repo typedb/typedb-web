@@ -1,9 +1,10 @@
-import { AsyncPipe, isPlatformBrowser, NgOptimizedImage } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
+import { AsyncPipe, NgOptimizedImage } from "@angular/common";
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, Inject, inject, Injector, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
+import Prism from "prismjs";
 import { map, Observable, of, shareReplay, switchMap } from "rxjs";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 import {
@@ -42,12 +43,12 @@ import { DialogService } from "src/service/dialog.service";
     ]
 })
 export class BlogPostPageComponent implements OnInit {
-    private readonly platformId = inject(PLATFORM_ID);
     readonly blog$: Observable<Blog | null>;
     readonly post$: Observable<BlogPost | null>;
     readonly categories$: Observable<BlogCategoryID[] | null>;
     readonly relatedPosts$?: Observable<BlogPostLink[] | null>;
     dialog = inject(DialogService);
+    private readonly injector = inject(Injector);
     readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
         style: "greenHollow",
@@ -101,11 +102,11 @@ export class BlogPostPageComponent implements OnInit {
                     this.metaTags.register(post.metaTags, this.getMetaTagFallbacks(post));
                     this.canonicalLink.setCanonical(post.canonicalURL());
                     this.jsonLd.setForBlogPost(post, post.canonicalURL());
-                    if (isPlatformBrowser(this.platformId)) {
-                        setTimeout(() => {
-                            this.decoratePost();
-                        }, 0);
-                    }
+                    // See learning-article.component.ts: afterNextRender guarantees the
+                    // post HTML is in the DOM before Prism scans it. This component
+                    // previously won that race only by accident, via the synchronous
+                    // .cm-line normalisation in decoratePost().
+                    afterNextRender(() => this.decoratePost(), { injector: this.injector });
                 } else {
                     this.content.handleContentNotFound();
                 }
@@ -148,7 +149,7 @@ export class BlogPostPageComponent implements OnInit {
             if (lineEls.length === 0) return;
             codeEl.textContent = Array.from(lineEls).map((el) => el.textContent || "").join("\n");
         });
-        (window as any)["Prism"].highlightAll();
+        Prism.highlightAll();
         this.doc.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });
