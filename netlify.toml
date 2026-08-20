@@ -118,6 +118,12 @@ from = "/docs/llms-short.txt"
 to = "/docs/llms-full.txt"
 status = 301
 
+[[redirects]]
+from = "/fundamentals/symbolic-reasoning-engine"
+to = "/docs/typeql-reference/functions/functions-vs-rules/"
+status = 301
+force = true
+
 # DOCS SUBDOMAIN POSING AS A SUBDIRECTORY
 # Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
