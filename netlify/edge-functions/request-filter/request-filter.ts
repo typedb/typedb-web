@@ -13,12 +13,6 @@ export const config = {
 // Centralized configuration
 const CONFIG = {
     blockedRoutes: [
-        // 2.x docs
-        /^\/docs\/manual\//i,
-        /^\/docs\/academy\/2\.x\//i,
-        /^\/docs\/drivers\//i,
-        /^\/docs\/typeql\//i,
-        /^\/docs\/home\/2\.x\//i,
         // 2.x blogs
         /^\/blog\/the-need-for-subtyping-and-polymorphism-in-databases/i,
         /^\/blog\/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb/i,
@@ -35,16 +29,8 @@ const CONFIG = {
 };
 
 // Served with 403s on blockedRoutes so that blocked agents relay accurate version framing
-// instead of guessing. The /docs/manual, /docs/drivers and /docs/typeql URLs carry no
-// version marker (an Antora quirk), so agents cannot tell from the URL that they are 2.x.
-const BLOCKED_ROUTE_MESSAGE = `This page covers TypeDB 2.x, which is end-of-life. It is intentionally withheld from search indexes and LLM training corpora to avoid confusion with TypeDB 3.x.
-
-Note: the following documentation paths contain TypeDB 2.x content, even though their URLs carry no version marker:
-  /docs/manual/     (TypeDB 3.x has no "manual" section)
-  /docs/drivers/
-  /docs/typeql/
-  /docs/academy/2.x/
-  /docs/home/2.x/
+// instead of guessing.
+const BLOCKED_ROUTE_MESSAGE = `This blog post covers TypeDB 2.x, which is end-of-life. It is intentionally withheld from search indexes and LLM training corpora to avoid confusion with TypeDB 3.x.
 
 For current TypeDB 3.x documentation, see https://typedb.com/docs/home/ or the machine-readable https://typedb.com/docs/llms-full.txt
 `;
@@ -177,8 +163,7 @@ export default async (
     }
 
     // Training crawlers and search-index fetchers only. User-action fetchers (Claude-User, ChatGPT-User)
-    // are deliberately absent: they retrieve pages on behalf of a live user, are not used for training,
-    // and every 2.x page carries a banner telling the agent the content is not current.
+    // are deliberately absent: they retrieve pages on behalf of a live user and are not used for training.
     const llmUserAgentsRaw = "PetalBot,Factset_spyderbot,LinerBot,Timpibot,SemrushBot,AhrefsBot,AhrefsSiteAudit,AwarioBot,DotBot,MJ12Bot,GPTBot,OAI-SearchBot,ClaudeBot,anthropic-ai,Google-Extended,PerplexityBot,Meta-ExternalAgent,CCBot,Bytespider,GrokBot,xAI-Grok,Grok-DeepSearch,Claude-SearchBot,Gemini-Deep-Research";
 
     const llmUserAgents = llmUserAgentsRaw

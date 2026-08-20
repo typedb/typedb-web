@@ -6,13 +6,8 @@ Disallow:
 Host: https://typedb.com
 Sitemap: https://typedb.com/sitemap.xml
 
-# AI agents should not crawl 2.x docs or specific blog posts
+# AI agents should not crawl legacy 2.x-era blog posts
 User-agent: GPTBot
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -26,11 +21,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: OAI-SearchBot
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -44,11 +34,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: anthropic-ai
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -62,11 +47,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: ClaudeBot
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -80,11 +60,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: claude-web
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -98,11 +73,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: PerplexityBot
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -116,11 +86,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: Google-Extended
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -134,11 +99,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: GoogleOther
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -152,11 +112,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: GrokBot  # Added
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
@@ -170,11 +125,6 @@ Disallow: /blog/what-is-a-knowledge-graph
 Disallow: /blog/inference-in-typedb
 
 User-agent: DeepSeek-AI # Added
-Disallow: /docs/manual/
-Disallow: /docs/academy/2.x/
-Disallow: /docs/drivers/
-Disallow: /docs/typeql/
-Disallow: /docs/home/2.x/
 Disallow: /blog/the-need-for-subtyping-and-polymorphism-in-databases
 Disallow: /blog/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb
 Disallow: /blog/building-a-cyber-threat-intelligence-database-with-typedb
