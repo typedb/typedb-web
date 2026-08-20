@@ -87,6 +87,4 @@ export default async () => {
     return new Response("Alert sent");
 };
 
-// TEMPORARY: the schedule is declared in netlify.toml while we debug why the cron
-// never fires via this in-source config. Restore it here once scheduling works:
-// export const config = { schedule: "@hourly" };
+export const config = { schedule: "@hourly" };
