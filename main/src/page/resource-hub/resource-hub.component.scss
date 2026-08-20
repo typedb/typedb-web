@@ -1,0 +1,17 @@
+// The resource panel grid is capped at 1240px (link-panels-cols-2.component.scss),
+// but .section runs to 1536px, so section text was measurably wider than the cards
+// beneath it. Match the two, and hold body copy to a comfortable measure.
+td-resource-hub {
+    td-section-core .td-text {
+        max-width: 1240px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    td-section-core.text-align-center td-rich-text {
+        display: block;
+        max-width: 820px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

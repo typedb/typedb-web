@@ -13,6 +13,16 @@ td-section-core {
         text-align: center;
     }
 
+    // td-actions is a flex row, so text-align on the container does not reach the
+    // buttons; they need justify-content to follow the section's alignment.
+    &.text-align-left td-actions {
+        justify-content: flex-start;
+    }
+
+    &.text-align-center td-actions {
+        justify-content: center;
+    }
+
     // Illustration section styles
     &.td-row, &.td-row-reverse, &.td-column {
         gap: 24px;
