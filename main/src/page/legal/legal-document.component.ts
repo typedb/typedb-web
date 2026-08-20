@@ -1,5 +1,5 @@
-import { AsyncPipe, DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
+import { AsyncPipe, DOCUMENT } from "@angular/common";
+import { afterNextRender, ChangeDetectionStrategy, Component, inject, Injector, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
@@ -21,8 +21,8 @@ import { MetaTagsService } from "../../service/meta-tags.service";
     imports: [HeadingWithHighlightsComponent, RichTextComponent, AsyncPipe]
 })
 export class LegalDocumentComponent implements OnInit {
-    private readonly platformId = inject(PLATFORM_ID);
     private document = inject(DOCUMENT);
+    private readonly injector = inject(Injector);
     document$!: Observable<LegalDocument | null>;
 
     constructor(
@@ -43,14 +43,15 @@ export class LegalDocumentComponent implements OnInit {
                 if (doc) {
                     this.title.setTitle(doc.title.toPlainText());
                     this.metaTags.register(doc.metaTags);
-                    if (isPlatformBrowser(this.platformId)) {
-                        setTimeout(() => {
-                            (window as any)["Prism"].highlightAll();
-                        }, 0);
+                    // Both the highlight pass and the rel fix-up read the rendered
+                    // document, so both must wait for the next render rather than a
+                    // macrotask that can beat <td-rich-text> to the DOM.
+                    afterNextRender(() => {
+                        Prism.highlightAll();
                         this.document.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
                             el.setAttribute("rel", "noopener");
                         });
-                    }
+                    }, { injector: this.injector });
                 } else {
                     this.content.handleContentNotFound();
                 }

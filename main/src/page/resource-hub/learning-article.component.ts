@@ -1,5 +1,5 @@
-import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, inject, Inject, OnInit, PLATFORM_ID, ViewEncapsulation } from "@angular/core";
+import { AsyncPipe } from "@angular/common";
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, DOCUMENT, inject, Inject, Injector, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -38,11 +38,11 @@ import { DialogService } from "src/service/dialog.service";
     ]
 })
 export class LearningArticleComponent implements OnInit {
-    private readonly platformId = Inject(PLATFORM_ID);
     article$!: Observable<Article | null>;
     resourceHub$!: Observable<ResourceHub | null>;
     resourceHubLink$!: Observable<string>;
     dialog = inject(DialogService);
+    private readonly injector = inject(Injector);
 
     readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
@@ -88,11 +88,12 @@ export class LearningArticleComponent implements OnInit {
                 if (post) {
                     this.title.setTitle(post.pageTitle());
                     this.metaTags.register(post.metaTags, this.getMetaTagFallbacks(post));
-                    if (isPlatformBrowser(this.platformId)) {
-                        setTimeout(() => {
-                            this.decoratePost();
-                        }, 0);
-                    }
+                    // afterNextRender, not setTimeout: the article HTML is rendered by
+                    // <td-rich-text> on a later change detection cycle, so a macrotask
+                    // scheduled here can run before the <pre><code> elements exist.
+                    // Prism.highlightAll() queries the DOM once and never retries, so
+                    // losing that race leaves every snippet unhighlighted.
+                    afterNextRender(() => this.decoratePost(), { injector: this.injector });
                     if (post.canonicalUrl) {
                         this.canonicalLink.setCanonical(post.canonicalUrl);
                     }
@@ -126,7 +127,7 @@ export class LearningArticleComponent implements OnInit {
     }
 
     private decoratePost() {
-        (window as any)["Prism"].highlightAll();
+        Prism.highlightAll();
         this.doc.querySelectorAll("article a[rel*='noreferrer']").forEach((el) => {
             el.setAttribute("rel", "noopener");
         });

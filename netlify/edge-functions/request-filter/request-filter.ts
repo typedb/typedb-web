@@ -13,12 +13,6 @@ export const config = {
 // Centralized configuration
 const CONFIG = {
     blockedRoutes: [
-        // 2.x docs
-        /^\/docs\/manual\//i,
-        /^\/docs\/academy\/2\.x\//i,
-        /^\/docs\/drivers\//i,
-        /^\/docs\/typeql\//i,
-        /^\/docs\/home\/2\.x\//i,
         // 2.x blogs
         /^\/blog\/the-need-for-subtyping-and-polymorphism-in-databases/i,
         /^\/blog\/accelerating-drug-discovery-with-applied-knowledge-engineering-and-typedb/i,
@@ -33,6 +27,22 @@ const CONFIG = {
         /^\/blog\/inference-in-typedb/i,
     ],
 };
+
+// Served with 403s on blockedRoutes so that blocked agents relay accurate version framing
+// instead of guessing.
+const BLOCKED_ROUTE_MESSAGE = `This blog post covers TypeDB 2.x, which is end-of-life. It is intentionally withheld from search indexes and LLM training corpora to avoid confusion with TypeDB 3.x.
+
+For current TypeDB 3.x documentation, see https://typedb.com/docs/home/ or the machine-readable https://typedb.com/docs/llms-full.txt
+`;
+
+const blockedRouteResponse = () =>
+    new Response(BLOCKED_ROUTE_MESSAGE, {
+        status: 403,
+        headers: {
+            "content-type": "text/plain; charset=utf-8",
+            "x-robots-tag": "noindex",
+        },
+    });
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
@@ -152,7 +162,9 @@ export default async (
       })}`);
     }
 
-    const llmUserAgentsRaw = "PetalBot,Factset_spyderbot,LinerBot,Timpibot,SemrushBot,AhrefsBot,AhrefsSiteAudit,AwarioBot,DotBot,MJ12Bot,GPTBot,ChatGPT-User,OAI-SearchBot,ClaudeBot,anthropic-ai,Google-Extended,PerplexityBot,Meta-ExternalAgent,CCBot,Bytespider,GrokBot,xAI-Grok,Grok-DeepSearch,Claude-SearchBot,Claude-User,Gemini-Deep-Research";
+    // Training crawlers and search-index fetchers only. User-action fetchers (Claude-User, ChatGPT-User)
+    // are deliberately absent: they retrieve pages on behalf of a live user and are not used for training.
+    const llmUserAgentsRaw = "PetalBot,Factset_spyderbot,LinerBot,Timpibot,SemrushBot,AhrefsBot,AhrefsSiteAudit,AwarioBot,DotBot,MJ12Bot,GPTBot,OAI-SearchBot,ClaudeBot,anthropic-ai,Google-Extended,PerplexityBot,Meta-ExternalAgent,CCBot,Bytespider,GrokBot,xAI-Grok,Grok-DeepSearch,Claude-SearchBot,Gemini-Deep-Research";
 
     const llmUserAgents = llmUserAgentsRaw
       .split(",")
@@ -175,14 +187,14 @@ export default async (
       console.log(
         `Blocked request with empty/null User-Agent; IP: ${ip}; Referer: ${referer}; Origin: ${origin}`
       );
-      return new Response("Forbidden", { status: 403 });
+      return blockedRouteResponse();
     }
 
     // Check against blocked UA patterns
     const matchedPattern = llmUserAgents.find((pattern) => pattern.test(ua));
     if (matchedPattern) {
       console.log(`Blocked request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
-      return new Response("Forbidden", { status: 403 });
+      return blockedRouteResponse();
     }
 
     // console.info(`Allowed request ${method} ${path} from ${ua} (matched: ${matchedPattern}); IP: ${ip}; Referer: ${referer}; Origin: ${origin}`);
