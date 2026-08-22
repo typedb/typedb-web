@@ -1,6 +1,10 @@
+import { ThListIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType } from "@sanity/types";
 import { buttonSchemaName, LinkButton, SanityLinkButton } from "../button";
-import { buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, titleAndBodyFields } from "../common-fields";
+import {
+    buttonField, descriptionField, isVisibleField, nameField, plainTextField, requiredRule, sectionPreview,
+    sectionTextAlignField, sectionWidthField, titleBodyActionsFields,
+} from "../common-fields";
 import { SanityDataset } from "../sanity-core";
 import { PropsOf } from "../util";
 import { SanitySectionCore, SectionCore } from "./section";
@@ -12,8 +16,8 @@ export interface SanityFeatureTable {
 
 interface SanityProduct {
     name: string;
-    priceString: string;
-    button: SanityLinkButton;
+    priceString?: string;
+    button?: SanityLinkButton;
 }
 
 interface SanityFeatureTableRow {
@@ -69,8 +73,8 @@ export class FeatureTable {
 
 class Product {
     readonly name: string;
-    readonly priceString: string;
-    readonly button: LinkButton;
+    readonly priceString?: string;
+    readonly button?: LinkButton;
 
     constructor(props: PropsOf<Product>) {
         this.name = props.name;
@@ -82,7 +86,7 @@ class Product {
         return new Product({
             name: data.name,
             priceString: data.priceString,
-            button: LinkButton.fromSanity(data.button, db),
+            button: data.button ? LinkButton.fromSanity(data.button, db) : undefined,
         });
     }
 }
@@ -178,15 +182,15 @@ const productSchema = defineType({
         nameField,
         defineField({
             name: "priceString",
-            title: "Price String",
+            title: "Price String (optional)",
+            description: "Shown under the column heading - e.g. a price, or a short tagline",
             type: "string",
-            validation: requiredRule,
         }),
-        buttonField,
+        Object.assign({}, buttonField, { title: "Button (optional)", validation: undefined }),
     ],
     preview: {
-        select: { name: "name" },
-        prepare: (selection) => ({ title: selection.name }),
+        select: { name: "name", priceString: "priceString" },
+        prepare: (selection) => ({ title: selection.name, subtitle: selection.priceString }),
     },
 });
 
@@ -242,18 +246,33 @@ const featureTableSchema = defineType({
 
 const featureTableSectionSchema = defineType({
     name: featureTableSectionSchemaName,
-    title: "Feature Table Section",
+    title: "Feature Table",
+    icon: ThListIcon,
     type: "object",
     fields: [
-        ...titleAndBodyFields,
+        ...titleBodyActionsFields,
         defineField({
             name: "featureTable",
             title: "Feature Table",
             type: featureTableSchemaName,
             validation: requiredRule,
         }),
+        sectionWidthField,
+        sectionTextAlignField,
         isVisibleField,
     ],
+    preview: sectionPreview("Feature Table"),
+    validation: (rule) =>
+        rule.custom((value: any) => {
+            const table = value?.featureTable;
+            if (!table?.products || !table?.rows) return true;
+            const expected = table.products.length;
+            const invalidRow = (table.rows as { heading: string; cells?: any[] }[])
+                .find((x) => x.cells?.length !== expected);
+            if (invalidRow)
+                return `Every row must have one cell per product (${expected}), but "${invalidRow.heading}" has ${invalidRow.cells?.length ?? 0}`;
+            return true;
+        }),
 });
 
 export const featureTableSchemas = [

@@ -12,28 +12,41 @@
             [class.narrow-section]="item.section.width === 'narrow'" />
         }
         @case ("titleBodyPanelSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-content-panel [panel]="item.section.panel" [panelId]="'section-' + idx" />
         }
         @case ("keyPointsSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-key-point-panels-2x2 [keyPoints]="item.section.keyPoints" />
         }
         @case ("linkPanelsSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId"
             [class.narrow-section]="item.section.width === 'narrow'" />
         }
         @case ("simpleLinkPanelsSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-simple-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" />
         }
         @case ("conclusionSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
           <td-conclusion-panel [panel]="item.section.panel" />
         }
+        @case ("featureTableSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
+            [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-feature-table [table]="item.section.featureTable" [sectionId]="item.section.sectionId"
+            [class.narrow-section]="item.section.width === 'narrow'" />
+        }
+        @case ("pricingPanelsSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst"
+            [textAlign]="textAlignOf(item.section)"
+            [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-pricing-table [caption]="item.section.panelsCaption" [panels]="item.section.panels"
+            [sectionId]="item.section.sectionId" />
+        }
         @case ("contactFormSection") {
-          <td-section-core [section]="item.section" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
             [class.narrow-section]="item.section.width === 'narrow'" />
           <td-contact-form class="narrow-section card subsection-margin" [variant]="item.section.variant" [showPersonalDataNotice]="true" />
         }
