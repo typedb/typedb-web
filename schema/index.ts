@@ -47,11 +47,17 @@ export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel
 export {
     FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName,
 } from "./component/feature-grid";
-export { FeatureTable, featureTableSchemaName, type FeatureTableCell } from "./component/feature-table";
+export {
+    FeatureTable, featureTableSchemaName, FeatureTableSection, featureTableSectionSchemaName,
+    type FeatureTableCell, type SanityFeatureTableSection,
+} from "./component/feature-table";
 export { Integration, IntegrationsGridSection } from "./component/integrations-grid";
 export { LinkPanel } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
+export {
+    PricingPanelsSection, pricingPanelsSectionSchemaName, type SanityPricingPanelsSection,
+} from "./component/pricing-panels-section";
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";

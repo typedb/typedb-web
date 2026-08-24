@@ -99,6 +99,20 @@ td-feature-table {
         }
     }
 
+    // Comparison tables have no per-column call-to-action, so the header only needs room for the name
+    &.ft-no-buttons thead th {
+        height: 64px;
+
+        .td-product-price-tag {
+            justify-content: flex-end;
+            padding-bottom: 8px;
+        }
+
+        .td-product-price-tag aside {
+            margin-bottom: 0;
+        }
+    }
+
     tbody tr {
         position: relative;
     }
