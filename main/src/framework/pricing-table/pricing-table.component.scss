@@ -27,6 +27,8 @@ td-pricing-table {
         border: 1px solid var(--color-light-purple);
         border-width: 0 1px;
         text-align: start;
+        // Opaque so animated page backgrounds (e.g. floating dots) don't show through the cards
+        background: var(--body-background);
     }
 
     tr:first-of-type td {

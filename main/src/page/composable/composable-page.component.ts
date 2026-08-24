@@ -6,9 +6,11 @@ import { FloatingDotsBackgroundComponent } from "../../framework/background/floa
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContactFormComponent } from "../../framework/contact-form/contact-form.component";
 import { ContentPanelComponent } from "../../framework/content-panel/content-panel.component";
+import { FeatureTableComponent } from "../../framework/feature-table/feature-table.component";
 import { HotTopicsComponent } from "../../framework/hot-topics/hot-topics.component";
 import { KeyPointPanels2x2Component } from "../../framework/key-point/key-point-panels-2x2.component";
 import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
+import { PricingTableComponent } from "../../framework/pricing-table/pricing-table.component";
 import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { portableTextToPlainText } from "../../service/portable-text-utils";
@@ -22,9 +24,9 @@ import { PageComponentBase } from "../page-component-base";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe, ConclusionPanelComponent, ContactFormComponent, ContentPanelComponent,
+        AsyncPipe, ConclusionPanelComponent, ContactFormComponent, ContentPanelComponent, FeatureTableComponent,
         FloatingDotsBackgroundComponent, HotTopicsComponent, KeyPointPanels2x2Component, LinkPanelsComponent,
-        SectionCoreComponent, SimpleLinkPanelsComponent,
+        PricingTableComponent, SectionCoreComponent, SimpleLinkPanelsComponent,
     ],
 })
 export class ComposablePageComponent extends PageComponentBase<ComposablePage> {

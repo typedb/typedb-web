@@ -73,6 +73,16 @@ td-section-core {
         text-align: left;
     }
 
+    // Headings and body copy read better at a shorter measure than the content beneath them
+    // (tables, panels, grids), which keep the section's full width. Applies only when the text
+    // is centered above its content; side-by-side illustration layouts already constrain
+    // .td-text via flex, so capping it there would fight the column sizing.
+    &.text-align-center .td-text {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     &.has-peeking-bot {
         .illustration-container {
             @media (max-width: media.$max-width-mobile) {

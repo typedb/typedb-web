@@ -21,4 +21,9 @@ export class FeatureTableComponent {
     @Input() table!: FeatureTable;
     @Input({ required: true }) sectionId!: string;
     @HostBinding("class") clazz = "section";
+
+    /** Compact headers when no column offers a call-to-action, e.g. on a product comparison table */
+    @HostBinding("class.ft-no-buttons") get hasNoButtons(): boolean {
+        return !this.table?.products.some((x) => !!x.button);
+    }
 }

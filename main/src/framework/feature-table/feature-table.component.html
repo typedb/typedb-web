@@ -15,9 +15,13 @@
         <th>
           <div class="td-product-price-tag">
             <p>{{ product.name }}</p>
-            <aside class="text-quiet">{{ product.priceString }}</aside>
+            @if (product.priceString) {
+              <aside class="text-quiet">{{ product.priceString }}</aside>
+            }
             <div class="flex"></div>
-            <td-button [button]="product.button" size="small"/>
+            @if (product.button) {
+              <td-button [button]="product.button" size="small"/>
+            }
             <hr/>
           </div>
         </th>

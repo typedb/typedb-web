@@ -2,6 +2,10 @@ import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContactFormSection, contactFormSectionSchemaName, SanityContactFormSection } from "../component/contact-form-section";
+import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
+import {
+    PricingPanelsSection, pricingPanelsSectionSchemaName, SanityPricingPanelsSection,
+} from "../component/pricing-panels-section";
 import { HotTopicsSection } from "../component/hot-topics-section";
 import {
     hotTopicsSectionSchemaName, IllustrationSection, illustrationSectionSchemaName,
@@ -43,6 +47,8 @@ export type SanityComposableSection = SanityKeyed &
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
         | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
         | ({ _type: typeof contactFormSectionSchemaName } & SanityContactFormSection)
+        | ({ _type: typeof featureTableSectionSchemaName } & SanityFeatureTableSection)
+        | ({ _type: typeof pricingPanelsSectionSchemaName } & SanityPricingPanelsSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
@@ -60,7 +66,9 @@ export type ComposablePageSection =
     | { type: typeof keyPointsSectionSchemaName; key: string; section: KeyPointsSection }
     | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
     | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection }
-    | { type: typeof contactFormSectionSchemaName; key: string; section: ContactFormSection };
+    | { type: typeof contactFormSectionSchemaName; key: string; section: ContactFormSection }
+    | { type: typeof featureTableSectionSchemaName; key: string; section: FeatureTableSection }
+    | { type: typeof pricingPanelsSectionSchemaName; key: string; section: PricingPanelsSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
@@ -80,6 +88,10 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
         case contactFormSectionSchemaName:
             return { type: data._type, key: data._key, section: ContactFormSection.fromSanity(data, db) };
+        case featureTableSectionSchemaName:
+            return { type: data._type, key: data._key, section: FeatureTableSection.fromSanity(data, db) };
+        case pricingPanelsSectionSchemaName:
+            return { type: data._type, key: data._key, section: PricingPanelsSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -159,6 +171,8 @@ const composablePageSchema = defineType({
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
                 defineArrayMember({ type: hotTopicsSectionSchemaName }),
+                defineArrayMember({ type: featureTableSectionSchemaName }),
+                defineArrayMember({ type: pricingPanelsSectionSchemaName }),
                 defineArrayMember({ type: contactFormSectionSchemaName }),
             ],
             options: {
@@ -168,7 +182,10 @@ const composablePageSchema = defineType({
                         {
                             name: "content",
                             title: "Content",
-                            of: [illustrationSectionSchemaName, titleBodyPanelSectionSchemaName, keyPointsSectionSchemaName],
+                            of: [
+                                illustrationSectionSchemaName, titleBodyPanelSectionSchemaName,
+                                keyPointsSectionSchemaName, featureTableSectionSchemaName,
+                            ],
                         },
                         {
                             name: "links",
@@ -178,7 +195,10 @@ const composablePageSchema = defineType({
                         {
                             name: "conversion",
                             title: "Conversion",
-                            of: [conclusionSectionSchemaName, contactFormSectionSchemaName],
+                            of: [
+                                pricingPanelsSectionSchemaName, conclusionSectionSchemaName,
+                                contactFormSectionSchemaName,
+                            ],
                         },
                     ],
                     views: [
