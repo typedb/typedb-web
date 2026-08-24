@@ -87,4 +87,6 @@ export default async () => {
     return new Response("Alert sent");
 };
 
-export const config = { schedule: "@hourly" };
+// TEMPORARY: every-minute schedule while testing the domain-alias fix for the
+// never-firing scheduler. Revert to "@hourly" once scheduled invocations appear.
+export const config = { schedule: "* * * * *" };
