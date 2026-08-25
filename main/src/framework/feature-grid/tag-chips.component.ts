@@ -1,6 +1,35 @@
-
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@angular/core";
-import { sanitiseHtmlID } from "typedb-web-common/lib";
+
+interface TagColor {
+    bg: string;
+    text: string;
+}
+
+const CHIP_BACKGROUND = "#1a182a";
+
+/**
+ * Tags are meant to be visually distinct from one another, which a hash alone can't guarantee.
+ * Every tag currently in use is assigned a colour explicitly here; anything else falls back to
+ * hashing over FALLBACK_COLORS, which is disjoint from this map so a new tag can't collide with
+ * an established one. Add new tags here rather than relying on the fallback.
+ */
+const TAG_COLORS: Record<string, string> = {
+    // Editions - these render side by side, so they need clearly separated hues
+    "Community Edition": "#c099f3", // prism-purple
+    "Cloud": "#02dac9",             // green
+    "Enterprise": "#ffc980",        // prism-yellow-orange (gold)
+
+    // Roadmap status
+    "Planned": "#ff87dc",           // pink
+    "In development": "#ffa187",    // prism-orange
+};
+
+const FALLBACK_COLORS = [
+    "#7ba0ff", // blue
+    "#55eae2", // prism-cyan
+    "#4dc97c", // prism-green
+    "#c69ec3", // prism-grey
+];
 
 @Component({
     selector: "td-tag-chips",
@@ -12,31 +41,18 @@ import { sanitiseHtmlID } from "typedb-web-common/lib";
 })
 export class TagChipsComponent {
     @Input() tags!: string[];
-    @Input({ required: true }) sectionId!: string;
 
-    // Color palette for tags
-    private readonly tagColors = [
-        { bg: '#1a182a', text: '#02dac9' },      // green
-        { bg: '#1a182a', text: '#7ba0ff' },      // blue
-        { bg: '#1a182a', text: '#ffe49e' },      // yellow
-        { bg: '#1a182a', text: '#ffa187' },      // prism-orange
-        { bg: '#1a182a', text: '#55eae2' },      // prism-cyan
-        { bg: '#1a182a', text: '#ffc980' },      // prism-yellow-orange
-        { bg: '#1a182a', text: '#ff7b72' },      // prism-red
-    ];
-
-    chipId(tag: string): string {
-        return sanitiseHtmlID(`${this.sectionId}_${tag}`);
+    getTagColor(tag: string): TagColor {
+        return { bg: CHIP_BACKGROUND, text: TAG_COLORS[tag] ?? this.fallbackColor(tag) };
     }
 
-    getTagColor(tag: string): { bg: string; text: string } {
-        // Simple hash function to generate consistent index from tag name
+    /** Consistent per-tag colour for tags with no explicit assignment. */
+    private fallbackColor(tag: string): string {
         let hash = 0;
         for (let i = 0; i < tag.length; i++) {
             hash = ((hash << 5) - hash) + tag.charCodeAt(i);
             hash = hash & hash; // Convert to 32bit integer
         }
-        const index = Math.abs(hash) % this.tagColors.length;
-        return this.tagColors[index];
+        return FALLBACK_COLORS[Math.abs(hash) % FALLBACK_COLORS.length];
     }
 }
