@@ -218,6 +218,14 @@ td-feature-grid {
     .fg-links-section {
         display: flex;
         gap: 24px;
+
+        .link-tertiary, .link-tertiary:visited {
+            color: var(--theme-secondary-blue);
+
+            &:hover, &:focus {
+                color: var(--theme-white);
+            }
+        }
     }
 
     .fg-blur {

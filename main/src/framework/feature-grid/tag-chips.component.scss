@@ -10,10 +10,6 @@ td-tag-chips {
         border: shapes.$border;
         border-radius: var(--border-radius);
         white-space: nowrap;
-
-        &, a, a:visited {
-            font-weight: var(--font-weight-light);
-            text-decoration: none;
-        }
+        font-weight: var(--font-weight-light);
     }
 }
