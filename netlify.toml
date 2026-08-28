@@ -47,6 +47,10 @@ path = "/api/calendar-link"
 function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
 
+[[edge_functions]]
+function = "send-circleci-notification-discord"
+path = "/api/send-circleci-notification-discord"
+
 
 # REDIRECTS AND REWRITES
 
