@@ -11,27 +11,25 @@
  *
  * Optional environment variables:
  *   CIRCLECI_NOTIFY_ON_SUCCESS   - set to "true" to also notify on successful workflows
- *   CIRCLECI_FAILURE_MENTION     - Discord mention(s) pinged on every failure, regardless of project
- *   CIRCLECI_DISCORD_SUBSCRIBERS - per-person routing table; see below
+ *   CIRCLECI_FAILURE_MENTION     - Discord mention(s) pinged on every failure, regardless of who triggered it
+ *   CIRCLECI_GITHUB_DISCORD_MAP  - maps GitHub logins to Discord IDs, to ping whoever broke the build
  *
  * PER-PERSON PINGS
  *
  * Pings only ever fire on a genuine failure ('failed' or 'error'); a success, cancellation or
- * unauthorized run never pings anyone, no matter who is subscribed.
+ * unauthorized run never pings anyone.
  *
- * Subscribers can be named two ways, and both are additive (the union is pinged, deduplicated):
+ * CIRCLECI_GITHUB_DISCORD_MAP is a 'github-login=discord-id;github-login=discord-id' table. On a
+ * failure, the GitHub login of whoever triggered the pipeline (a push, a rerun, or CircleCI's UI) is
+ * looked up in this table, and that person is pinged - on any project, since the table has no
+ * per-project scoping. This pings the triggerer, which is usually but not always whoever broke the
+ * build: a rerun or a scheduled/cron trigger will ping the wrong person, or nobody. For example:
  *
- * 1. CIRCLECI_DISCORD_SUBSCRIBERS, a routing table of 'pattern=id,id;pattern=id' where the pattern is
- *    matched against '<project>/<workflow>' and may use '*' as a wildcard. Preferred for anything
- *    long-lived, since editing it needs no CircleCI admin rights. For example:
+ *      alexjpwalker=708327677165043833;sam-butcher=123456789012345678
  *
- *      typedb/release=708327677165043833;typedb-driver/*=123,456;*=789
- *
- * 2. A '?ping=' query parameter appended to the receiver URL in CircleCI, holding a comma-separated
- *    list of Discord user IDs. Handy for a one-off subscription to a single project, though adding
- *    it requires org admin rights on CircleCI. For example:
- *
- *      https://typedb.com/api/send-circleci-notification-discord?ping=708327677165043833
+ * This is additive with CIRCLECI_FAILURE_MENTION and with the '?ping=<id>,<id>' query parameter that
+ * may be appended to the receiver URL in CircleCI for a one-off subscription (adding it requires org
+ * admin rights on CircleCI, unlike the two env vars). All matching mentions are pinged, deduplicated.
  *
  * A Discord user ID is the raw number (Discord > Settings > Advanced > Developer Mode, then
  * right-click a user > Copy User ID). Role IDs work too, via the 'role:' prefix: 'role:12345'.
@@ -77,46 +75,38 @@ const toMention = (subscriber: string): string | null => {
     return role ? `<@&${id}>` : `<@${id}>`;
 };
 
-/* Matches a 'project/workflow' pattern that may use '*' as a wildcard. */
-const patternMatches = (pattern: string, target: string): boolean => {
-    const escaped = pattern
-        .trim()
-        .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
-        .replace(/\*/g, ".*");
-    return new RegExp(`^${escaped}$`, "i").test(target);
-};
-
-/* Parses CIRCLECI_DISCORD_SUBSCRIBERS ('pattern=id,id;pattern=id') and returns the ids whose
- * pattern matches this project and workflow. */
-const subscribersFromTable = (table: string, project: string, workflow: string): string[] => {
-    const target = `${project}/${workflow}`;
+/* Parses CIRCLECI_GITHUB_DISCORD_MAP ('github-login=discord-id;github-login=discord-id') and looks
+ * up the Discord id(s) for a GitHub login. Case-insensitive, since GitHub logins are. */
+const discordIdsForGithubLogin = (table: string, githubLogin: string): string[] => {
     const matched: string[] = [];
     for (const entry of table.split(";")) {
         if (!entry.trim()) continue;
         const separator = entry.indexOf("=");
         if (separator === -1) {
             console.warn(
-                `Ignoring malformed CIRCLECI_DISCORD_SUBSCRIBERS entry '${entry.trim()}' (expected 'pattern=ids')`,
+                `Ignoring malformed CIRCLECI_GITHUB_DISCORD_MAP entry '${entry.trim()}' (expected 'login=id')`,
             );
             continue;
         }
-        const pattern = entry.slice(0, separator);
-        if (patternMatches(pattern, target)) matched.push(...entry.slice(separator + 1).split(","));
+        const login = entry.slice(0, separator).trim();
+        if (login.toLowerCase() === githubLogin.toLowerCase()) matched.push(...entry.slice(separator + 1).split(","));
     }
     return matched;
 };
 
-/* Collects everyone to ping for this event: the always-on mention, the routing table, and the URL's
- * '?ping=' list. Returns '' for any status that must not ping. */
+/* Collects everyone to ping for this event: the always-on mention, whoever triggered the pipeline (if
+ * they're in the GitHub->Discord map), and the URL's '?ping=' list. Returns '' for any status that
+ * must not ping. */
 const resolveMentions = (request: Request, payload: any, status: string): string => {
     if (!PINGABLE_STATUSES.includes(status)) return "";
 
-    const project = payload.project?.name ?? "";
-    const workflow = payload.workflow?.name ?? "";
+    const triggerLogin = payload.pipeline?.trigger?.actor?.login ?? "";
 
     const candidates = [
         ...(Netlify.env.get("CIRCLECI_FAILURE_MENTION") ?? "").split(","),
-        ...subscribersFromTable(Netlify.env.get("CIRCLECI_DISCORD_SUBSCRIBERS") ?? "", project, workflow),
+        ...(triggerLogin
+            ? discordIdsForGithubLogin(Netlify.env.get("CIRCLECI_GITHUB_DISCORD_MAP") ?? "", triggerLogin)
+            : []),
         ...(new URL(request.url).searchParams.get("ping") ?? "").split(","),
     ];
 
