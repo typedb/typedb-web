@@ -141,9 +141,11 @@ export default async (
     const country = context?.geo?.country?.code ?? "-";
     const signals = policySignals(request, clientIp, country);
     if (signals) {
-      console.log(
-        `Blocked request ${request.method} ${path} (403, traffic policy ${signals.join(",")}); IP: ${clientIp}; Country: ${country}; UA: ${request.headers.get("user-agent")}`
-      );
+      // Block logging temporarily disabled (2026-09-03): filters catch ~78% of an
+      // ongoing attack and the log volume drowns out traffic samples. Re-enable after.
+      // console.log(
+      //   `Blocked request ${request.method} ${path} (403, traffic policy ${signals.join(",")}); IP: ${clientIp}; Country: ${country}; UA: ${request.headers.get("user-agent")}`
+      // );
       return new Response("Forbidden", { status: 403 });
     }
 
