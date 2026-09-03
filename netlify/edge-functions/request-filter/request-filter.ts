@@ -149,8 +149,8 @@ export default async (
       return new Response("Forbidden", { status: 403 });
     }
 
-    // Temporary traffic sampling (2026-07-14; widened to all paths 2026-09-03 to locate bandwidth spike)
-    {
+    // Temporary traffic sampling (2026-07-14; widened to all non-asset paths 2026-09-03 to locate bandwidth spike)
+    if (!/\.(css|js|mjs|map|ico|png|jpe?g|gif|webp|avif|svg|ttf|otf|woff2?|eot|mp4|webm|webmanifest)$/i.test(path)) {
       console.log(`[traffic-sample] ${JSON.stringify({
         path,
         ip: clientIp,
