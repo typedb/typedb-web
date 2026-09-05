@@ -46,6 +46,26 @@ const blockedRouteResponse = () =>
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
+const ASSET_PATH_PATTERN = /\.(css|js|mjs|map|ico|png|jpe?g|gif|webp|avif|svg|ttf|otf|woff2?|eot|mp4|webm|webmanifest)$/i;
+// PostHog proxy, Netlify functions, platform API — machine traffic, not page views
+const API_PATH_PATTERN = /^\/(ph|api|platform)(\/|$)/i;
+
+// Counters are per-isolate: to get site-wide rates, sum [traffic-rate] lines with overlapping windows across isolate ids
+const RATE_LOG_INTERVAL_MS = 60_000;
+const isolateId = Math.random().toString(36).slice(2, 8);
+let rateWindow = { start: Date.now(), page: 0, asset: 0, api: 0, blocked: 0 };
+
+const recordRequest = (kind: "page" | "asset" | "api" | "blocked") => {
+    rateWindow[kind]++;
+    const now = Date.now();
+    if (now - rateWindow.start < RATE_LOG_INTERVAL_MS) return;
+    const { start, ...counts } = rateWindow;
+    const windowSecs = Math.round((now - start) / 1000);
+    const total = counts.page + counts.asset + counts.api + counts.blocked;
+    console.log(`[traffic-rate] ${JSON.stringify({ isolate: isolateId, windowSecs, total, ...counts })}`);
+    rateWindow = { start: now, page: 0, asset: 0, api: 0, blocked: 0 };
+};
+
 type TrafficRule = {
     ua?: string;
     uaPattern?: string;
@@ -141,16 +161,18 @@ export default async (
     const country = context?.geo?.country?.code ?? "-";
     const signals = policySignals(request, clientIp, country);
     if (signals) {
-      // Block logging temporarily disabled (2026-09-03): filters catch ~78% of an
-      // ongoing attack and the log volume drowns out traffic samples. Re-enable after.
-      // console.log(
-      //   `Blocked request ${request.method} ${path} (403, traffic policy ${signals.join(",")}); IP: ${clientIp}; Country: ${country}; UA: ${request.headers.get("user-agent")}`
-      // );
+      recordRequest("blocked");
+      console.log(
+        `Blocked request ${request.method} ${path} (403, traffic policy ${signals.join(",")}); IP: ${clientIp}; Country: ${country}; UA: ${request.headers.get("user-agent")}`
+      );
       return new Response("Forbidden", { status: 403 });
     }
 
-    // Temporary traffic sampling (2026-07-14; widened to all non-asset paths 2026-09-03 to locate bandwidth spike)
-    if (!/\.(css|js|mjs|map|ico|png|jpe?g|gif|webp|avif|svg|ttf|otf|woff2?|eot|mp4|webm|webmanifest)$/i.test(path)) {
+    const pathKind = API_PATH_PATTERN.test(path) ? "api" : ASSET_PATH_PATTERN.test(path) ? "asset" : "page";
+    recordRequest(pathKind);
+
+    // Temporary traffic sampling (2026-07-14; page bodies only since 2026-09-05)
+    if (pathKind === "page") {
       console.log(`[traffic-sample] ${JSON.stringify({
         path,
         ip: clientIp,
