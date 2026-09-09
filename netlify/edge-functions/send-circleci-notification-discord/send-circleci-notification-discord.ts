@@ -10,7 +10,6 @@
  *   DISCORD_CIRCLECI_WEBHOOK_URL - Discord channel webhook URL
  *
  * Optional environment variables:
- *   CIRCLECI_NOTIFY_ON_SUCCESS   - set to "true" to also notify on successful workflows
  *   CIRCLECI_FAILURE_MENTION     - Discord mention(s) pinged on every failure, regardless of who triggered it
  *   CIRCLECI_GITHUB_DISCORD_MAP  - maps GitHub logins to Discord IDs, to ping whoever broke the build
  *
@@ -50,10 +49,6 @@ const STATUS_DISPLAY: Record<string, { color: number; emoji: string; label: stri
     canceled: { color: COLOR_NEUTRAL, emoji: "🚫", label: "was canceled" },
     unauthorized: { color: COLOR_NEUTRAL, emoji: "🔒", label: "was unauthorized" },
 };
-
-/* Successful workflows run constantly and would drown the channel, so they are dropped unless
- * CIRCLECI_NOTIFY_ON_SUCCESS is set. */
-const MUTED_STATUSES = ["success"];
 
 /* The only statuses that may ping a person. This is the single gate on pinging: no subscription, from
  * any source, can cause a green build to ping anyone. */
@@ -301,12 +296,6 @@ export default async (request: Request, context: Context) => {
         }
 
         const status = payload.workflow?.status;
-        const notifyOnSuccess = Netlify.env.get("CIRCLECI_NOTIFY_ON_SUCCESS") === "true";
-        if (!notifyOnSuccess && MUTED_STATUSES.includes(status)) {
-            console.log(`Ignoring workflow '${payload.workflow?.name}' with status '${status}'`);
-            return new Response(`Ignored workflow with status '${status}'`, { status: 202 });
-        }
-
         const mentions = resolveMentions(request, payload, status);
         const discordResponse = await fetch(discordWebhook, {
             method: "POST",
