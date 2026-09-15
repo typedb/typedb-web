@@ -84,6 +84,6 @@ export class DialogService {
     }
 
     openPricingDialog() {
-        this.open(PricingDialogComponent, { width: "880px", maxWidth: "100vw", maxHeight: "100vh" });
+        this.open(PricingDialogComponent, { width: "960px", maxWidth: "100vw", maxHeight: "100vh" });
     }
 }

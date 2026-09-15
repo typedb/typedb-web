@@ -1,6 +1,6 @@
 import { defineField, defineType } from "@sanity/types";
 import { LinkButton, SanityOptionalActions } from "./button";
-import { actionsFieldOptional, bodyFieldRichText, iconFieldName, isVisibleField, sectionPreview, sectionTextAlignField, sectionWidthField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
+import { actionsFieldOptional, bodyFieldRichText, isVisibleField, sectionPreview, sectionTextAlignField, sectionWidthField, titleBodyActionsFields, titleField, titleFieldWithHighlights } from "./common-fields";
 import { SanitySectionCore, SectionCore } from "./component/section";
 import { SanityImageRef } from "./image";
 import { SanityDataset, SanityReference } from "./sanity-core";
@@ -11,7 +11,7 @@ export interface SanityKeyPointWithIcon extends SanitySectionCore {
     icon: SanityReference<SanityImageRef>;
 }
 
-export interface SanityServicesKeyPoint extends SanityKeyPointWithIcon {
+export interface SanityServicesKeyPoint extends SanitySectionCore {
     checklist: string[];
 }
 
@@ -38,7 +38,7 @@ export class KeyPointWithIcon extends SectionCore {
     }
 }
 
-export class ServicesKeyPoint extends KeyPointWithIcon {
+export class ServicesKeyPoint extends SectionCore {
     readonly checklist: string[];
 
     constructor(props: PropsOf<ServicesKeyPoint>) {
@@ -47,7 +47,7 @@ export class ServicesKeyPoint extends KeyPointWithIcon {
     }
 
     static override fromSanity(data: SanityServicesKeyPoint, db: SanityDataset) {
-        return Object.assign(KeyPointWithIcon.fromSanity(data, db), {
+        return Object.assign(SectionCore.fromSanity(data, db), {
             checklist: data.checklist,
         });
     }
@@ -112,13 +112,6 @@ const servicesKeyPointSchema = defineType({
             options: {
                 layout: "grid",
             },
-        }),
-        defineField({
-            name: iconFieldName,
-            title: "Icon",
-            type: "reference",
-            to: [{ type: "sectionIcon" }],
-            options: { disableNew: true },
         }),
     ],
 });

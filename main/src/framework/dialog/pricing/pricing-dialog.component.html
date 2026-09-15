@@ -4,8 +4,8 @@
 </div>
 <div mat-dialog-content>
   <div>
-    <p>Clusters are billed hourly, and invoiced monthly (pay-as-you-go). Monthly estimates are based on 100% cluster uptime over a 30-day period.</p>
-    <p>These prices are per node in a given cluster. The table below shows sample configurations to illustrate scale, but machine (compute and storage) can be further fine-tuned in TypeDB Cloud.</p>
+    <p>Clusters are billed hourly, and invoiced monthly (pay-as-you-go). Monthly estimates are based on 100% cluster uptime over a 30-day period. Prices are per node in a cluster. The table below shows sample configurations to illustrate scale - compute and storage can be fine-tuned.</p>
+    <p>Your first cluster is free, running on the burstable tier shown below.</p>
   </div>
   <hr/>
   <div>
@@ -37,18 +37,25 @@
           @switch (providerId) {
             @case ("gcp") {
               <tr>
-                <td>c2d-highcpu-2</td>
+                <td>e2-medium</td>
                 <td>10 GB</td>
+                <td>2 burstable vCPU, 4 GB RAM</td>
+                <td><strong>$0.07/hr</strong></td>
+                <td>$50/mo</td>
+              </tr>
+              <tr>
+                <td>c2d-highcpu-2</td>
+                <td>50 GB</td>
                 <td>2 vCPU, 4 GB RAM</td>
                 <td><strong>$0.16/hr</strong></td>
                 <td>$115/mo</td>
               </tr>
               <tr>
                 <td>c2d-highcpu-4</td>
-                <td>50 GB</td>
+                <td>100 GB</td>
                 <td>4 vCPU, 8 GB RAM</td>
-                <td><strong>$0.32/hr</strong></td>
-                <td>$230/mo</td>
+                <td><strong>$0.33/hr</strong></td>
+                <td>$238/mo</td>
               </tr>
               <tr>
                 <td>c2d-highcpu-8</td>
@@ -67,18 +74,25 @@
             }
             @case ("aws") {
               <tr>
-                <td>c8g.large</td>
+                <td>t4g.medium</td>
                 <td>10 GB</td>
+                <td>2 burstable vCPU, 4 GB RAM</td>
+                <td><strong>$0.07/hr</strong></td>
+                <td>$50/mo</td>
+              </tr>
+              <tr>
+                <td>c8g.large</td>
+                <td>50 GB</td>
                 <td>2 vCPU, 4 GB RAM</td>
                 <td><strong>$0.17/hr</strong></td>
                 <td>$122/mo</td>
               </tr>
               <tr>
                 <td>c8g.xlarge</td>
-                <td>50 GB</td>
+                <td>100 GB</td>
                 <td>4 vCPU, 8 GB RAM</td>
-                <td><strong>$0.34/hr</strong></td>
-                <td>$245/mo</td>
+                <td><strong>$0.35/hr</strong></td>
+                <td>$252/mo</td>
               </tr>
               <tr>
                 <td>c8g.2xlarge</td>
