@@ -190,7 +190,7 @@ const linkPanelsSectionSchema = defineType({
             title: "Panels",
             type: "array",
             of: [{ type: linkPanelSchemaName }],
-            validation: (rule) => rule.required().length(3),
+            validation: (rule) => rule.required().min(1),
         }),
         sectionWidthField,
         sectionTextAlignField,

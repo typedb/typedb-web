@@ -1,8 +1,8 @@
 import "./styles.css";
 
 import {
-    AddUserIcon, ArrowTopRightIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, ComposeIcon,
-    CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, MasterDetailIcon,
+    AddUserIcon, BlockElementIcon, BookIcon, ClipboardImageIcon, ComponentIcon, ComposeIcon,
+    CubeIcon, DiamondIcon, DocumentIcon, DocumentsIcon, LinkIcon, MasterDetailIcon,
     PresentationIcon, SparklesIcon, ThListIcon, ConfettiIcon, CodeIcon, ImageIcon,
 } from "@sanity/icons";
 import { defineConfig, isDev } from "sanity";
@@ -12,7 +12,7 @@ import { structureTool, StructureBuilder } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 
 import {
-    featuresPageSchemaName, homePageSchemaName, sectionIconSchemaName, linkSchemaName,
+    featuresPageSchemaName, homePageSchemaName, linkSchemaName,
     schemaTypes, topnavSchemaNames, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
@@ -29,6 +29,7 @@ import {
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
 import { UpdateLiveSiteBanner } from "./components/UpdateLiveSiteBanner";
+import { CloudIcon } from "./components/CloudIcon";
 
 const devOnlyPlugins = [getStartedPlugin()];
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
@@ -75,7 +76,7 @@ export default defineConfig({
                     s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
-                s.listItem().title("Pages - Cloud Platform").icon(DocumentsIcon).child(s.list().title("Pages - Cloud Platform").items([
+                s.listItem().title("TypeDB Cloud").icon(CloudIcon).child(s.list().title("TypeDB Cloud").items([
                     singletonListItem(s, cloudLoginPortalSchemaName, { title: "Login Portal", icon: AddUserIcon }),
                     singletonListItem(s, cloudOnboardingSchemaName, { title: "Onboarding", icon: DiamondIcon }),
                     s.documentTypeListItem(cloudProviderSchemaName).title("Provider & Region Info"),
@@ -108,12 +109,11 @@ export default defineConfig({
                     s.documentTypeListItem(testimonialSchemaName).title("Testimonials"),
                     s.documentTypeListItem(countrySchemaName).title("Countries"),
                     s.documentTypeListItem(continentSchemaName).title("Continents"),
+                    singletonListItem(s, communityResourcesSchemaName, { title: "External Platform URLs", icon: LinkIcon }),
                 ])),
                 s.divider(),
                 singletonListItem(s, formsSchemaName, { title: "Forms", icon: ClipboardImageIcon }),
                 s.documentTypeListItem(surveySchemaName).title("Surveys"),
-                singletonListItem(s, communityResourcesSchemaName, { title: "External Platforms", icon: ArrowTopRightIcon }),
-                s.documentTypeListItem(sectionIconSchemaName).title("Icons"),
                 s.documentTypeListItem(referenceMaterialSchemaName).title("CMS Reference Material"),
             ]),
         }),

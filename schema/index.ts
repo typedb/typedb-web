@@ -32,7 +32,8 @@ export { type CloudOnboarding, cloudOnboardingSchemaName } from "./cloud-platfor
 export { type CloudAnnouncement, cloudAnnouncementSchemaName, cloudAnnouncementQuery } from "./cloud-platform/announcement";
 export {
     type ProviderRegionData, type ProviderRegionInfo, type CloudRegion, type Country, type Continent,
-    providerRegionsQuery, cloudProviderSchemaName
+    providerRegionsQuery, cloudProviderSchemaName, type CloudProviderPricing, type CloudPricingTier, type CpuType,
+    cloudPricingTierSchemaName, cloudPricingQuery,
 } from "./cloud-platform/provider";
 export {
     languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
@@ -68,7 +69,6 @@ export {
     ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
     type SplitPaneIllustrationContent,
 } from "./illustration";
-export { sectionIconSchemaName } from "./image";
 export { KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
 export { type ContactMediaID, contactMedias, Footer, footerSchemaName, type SanityFooter } from "./navigation/footer";
