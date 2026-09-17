@@ -9,9 +9,15 @@
  *
  * Every ready-for-review PR is forwarded regardless of repository; the routine's own prompt
  * ignores repositories it does not have checked out.
+ *
+ * Only PRs authored by members or owners of the repository's organisation are forwarded. The
+ * routine runs with Joshua's GitHub identity and reads the PR's text, so an outsider's PR must
+ * not be able to start it.
  */
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
+
+const ORG_MEMBER_ASSOCIATIONS = ["OWNER", "MEMBER"];
 
 const timingSafeEqual = (a: string, b: string): boolean => {
     if (a.length !== b.length) return false;
@@ -90,6 +96,11 @@ export default async (request: Request) => {
         }
 
         const pr = payload.pull_request;
+        if (!ORG_MEMBER_ASSOCIATIONS.includes(pr.author_association)) {
+            console.log(`Ignoring PR #${pr.number} by ${pr.user?.login} (author_association: ${pr.author_association})`);
+            return new Response("Author ignored", { status: 200 });
+        }
+
         const repoFullName = payload.repository?.full_name ?? "unknown repository";
         const fireText =
             `PR #${pr.number} "${pr.title}" by ${pr.user?.login} in ${repoFullName} was just marked ready for review: ${pr.html_url}\n` +
