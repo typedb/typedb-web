@@ -1,14 +1,32 @@
 /* Receives GitHub's pull_request webhook for repos in the JoshBot review rotation, and fires the
  * "JoshBot PR Reviewer" Claude Code routine (via its API trigger) when a PR is marked ready for review.
  *
- * GitHub webhook config (Settings -> Webhooks on each subscribed repo):
+ * GitHub webhook config (Settings -> Webhooks, per repo or org-wide):
  *   Payload URL:  https://typedb.com/api/claude-code-joshbot-reviewer
  *   Content type: application/json
  *   Secret:       same value as the GITHUB_PR_WEBHOOK_SECRET env var below
- *   Events:       Pull requests only
+ *   Events:       Pull requests (anything else is ignored, so "send me everything" also works)
+ *
+ * Only PRs in REVIEWED_REPOSITORIES fire the routine. Keep this in sync with the routine's
+ * configured repositories, since the run can only check out what the routine has cloned.
  */
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
+
+const REVIEWED_REPOSITORIES = [
+    "typedb/typedb",
+    "typedb/typeql",
+    "typedb/typedb-benchmark",
+    "typedb/typedb-driver",
+    "typedb/typedb-web",
+    "typedb/typedb-studio",
+    "typedb/typedb-protocol",
+    "typedb/typedb-tools",
+    "typedb/typedb-skills",
+    "typedb/typedb-dependencies",
+    "typedb/typedb-behaviour",
+    "typedb/typedb-docs",
+];
 
 const timingSafeEqual = (a: string, b: string): boolean => {
     if (a.length !== b.length) return false;
@@ -88,8 +106,14 @@ export default async (request: Request) => {
 
         const pr = payload.pull_request;
         const repoFullName = payload.repository?.full_name ?? "unknown repository";
+        if (!REVIEWED_REPOSITORIES.includes(repoFullName)) {
+            console.log(`Ignoring PR #${pr.number} in unlisted repository '${repoFullName}'`);
+            return new Response("Repository ignored", { status: 200 });
+        }
+
         const fireText =
             `PR #${pr.number} "${pr.title}" by ${pr.user?.login} in ${repoFullName} was just marked ready for review: ${pr.html_url}\n` +
+            `Head: ${pr.head?.label} -> Base: ${pr.base?.ref}\n` +
             `Review this specific PR.`;
 
         console.log(`Firing JoshBot routine for ${repoFullName}#${pr.number}`);
