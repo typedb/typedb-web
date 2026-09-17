@@ -4,7 +4,7 @@
  * GitHub webhook config (Settings -> Webhooks on each subscribed repo):
  *   Payload URL:  https://typedb.com/api/claude-code-joshbot-reviewer
  *   Content type: application/json
- *   Secret:       same value as the GITHUB_WEBHOOK_SECRET env var below
+ *   Secret:       same value as the GITHUB_PR_WEBHOOK_SECRET env var below
  *   Events:       Pull requests only
  */
 
@@ -42,16 +42,16 @@ export default async (request: Request) => {
             return new Response("Method not allowed", { status: 405 });
         }
 
-        const webhookSecret = Netlify.env.get("GITHUB_WEBHOOK_SECRET");
+        const webhookSecret = Netlify.env.get("GITHUB_PR_WEBHOOK_SECRET");
         if (!webhookSecret) {
-            console.error("Environment variable 'GITHUB_WEBHOOK_SECRET' must be set");
-            return new Response("Environment variable 'GITHUB_WEBHOOK_SECRET' must be set", { status: 500 });
+            console.error("Environment variable 'GITHUB_PR_WEBHOOK_SECRET' must be set");
+            return new Response("Environment variable 'GITHUB_PR_WEBHOOK_SECRET' must be set", { status: 500 });
         }
-        const routineFireUrl = Netlify.env.get("ROUTINE_FIRE_URL");
-        const routineFireToken = Netlify.env.get("ROUTINE_FIRE_TOKEN");
+        const routineFireUrl = Netlify.env.get("JOSHBOT_CLAUDE_ROUTINE_URL");
+        const routineFireToken = Netlify.env.get("JOSHBOT_CLAUDE_ROUTINE_TOKEN");
         if (!routineFireUrl || !routineFireToken) {
-            console.error("Environment variables 'ROUTINE_FIRE_URL' and 'ROUTINE_FIRE_TOKEN' must be set");
-            return new Response("Environment variables 'ROUTINE_FIRE_URL' and 'ROUTINE_FIRE_TOKEN' must be set", { status: 500 });
+            console.error("Environment variables 'JOSHBOT_CLAUDE_ROUTINE_URL' and 'JOSHBOT_CLAUDE_ROUTINE_TOKEN' must be set");
+            return new Response("Environment variables 'JOSHBOT_CLAUDE_ROUTINE_URL' and 'JOSHBOT_CLAUDE_ROUTINE_TOKEN' must be set", { status: 500 });
         }
 
         const signature = request.headers.get("x-hub-signature-256");
