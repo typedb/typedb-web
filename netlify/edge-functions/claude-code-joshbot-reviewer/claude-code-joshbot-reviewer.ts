@@ -42,17 +42,18 @@ export default async (request: Request) => {
             return new Response("Method not allowed", { status: 405 });
         }
 
-        const webhookSecret = Netlify.env.get("GITHUB_PR_WEBHOOK_SECRET");
-        if (!webhookSecret) {
-            console.error("Environment variable 'GITHUB_PR_WEBHOOK_SECRET' must be set");
-            return new Response("Environment variable 'GITHUB_PR_WEBHOOK_SECRET' must be set", { status: 500 });
+        const env: Record<string, string> = {};
+        for (const name of ["GITHUB_PR_WEBHOOK_SECRET", "JOSHBOT_CLAUDE_ROUTINE_URL", "JOSHBOT_CLAUDE_ROUTINE_TOKEN"]) {
+            const value = Netlify.env.get(name);
+            if (!value) {
+                console.error(`Environment variable '${name}' must be set`);
+                return new Response(`Environment variable '${name}' must be set`, { status: 500 });
+            }
+            env[name] = value;
         }
-        const routineFireUrl = Netlify.env.get("JOSHBOT_CLAUDE_ROUTINE_URL");
-        const routineFireToken = Netlify.env.get("JOSHBOT_CLAUDE_ROUTINE_TOKEN");
-        if (!routineFireUrl || !routineFireToken) {
-            console.error("Environment variables 'JOSHBOT_CLAUDE_ROUTINE_URL' and 'JOSHBOT_CLAUDE_ROUTINE_TOKEN' must be set");
-            return new Response("Environment variables 'JOSHBOT_CLAUDE_ROUTINE_URL' and 'JOSHBOT_CLAUDE_ROUTINE_TOKEN' must be set", { status: 500 });
-        }
+        const webhookSecret = env.GITHUB_PR_WEBHOOK_SECRET;
+        const routineFireUrl = env.JOSHBOT_CLAUDE_ROUTINE_URL;
+        const routineFireToken = env.JOSHBOT_CLAUDE_ROUTINE_TOKEN;
 
         const signature = request.headers.get("x-hub-signature-256");
         if (!signature) {
