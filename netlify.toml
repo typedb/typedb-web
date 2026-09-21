@@ -51,6 +51,10 @@ path = "/api/send-deploy-notification-discord"
 function = "send-circleci-notification-discord"
 path = "/api/send-circleci-notification-discord"
 
+[[edge_functions]]
+function = "claude-code-joshbot-reviewer"
+path = "/api/claude-code-joshbot-reviewer"
+
 
 # REDIRECTS AND REWRITES
 
