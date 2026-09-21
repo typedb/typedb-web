@@ -47,6 +47,10 @@ path = "/api/calendar-link"
 function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
 
+[[edge_functions]]
+function = "claude-code-joshbot-reviewer"
+path = "/api/claude-code-joshbot-reviewer"
+
 
 # REDIRECTS AND REWRITES
 
