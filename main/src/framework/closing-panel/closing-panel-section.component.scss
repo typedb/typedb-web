@@ -24,6 +24,15 @@ td-closing-panel-section {
         max-width: 680px;
     }
 
+    // Frameless buttons are white on the tinted panel, where the default blue is hard to read
+    .button-frameless {
+        color: var(--color-white);
+
+        &:not(.td-button-disabled):hover {
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
     .cl-columns {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
