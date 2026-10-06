@@ -2,6 +2,13 @@ import { ComposeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { ConclusionSection, conclusionSectionSchemaName, SanityConclusionSection } from "../component/conclusion-panel";
 import { ContactFormSection, contactFormSectionSchemaName, SanityContactFormSection } from "../component/contact-form-section";
+import { OrganisationLogosSection, organisationLogosSectionSchemaName, SanityOrganisationLogosSection } from "../component/organisation-logos-section";
+import { SolutionCardsSection, solutionCardsSectionSchemaName, SanitySolutionCardsSection } from "../component/solution-cards-section";
+import { CardSwitcherSection, cardSwitcherSectionSchemaName, SanityCardSwitcherSection } from "../component/card-switcher-section";
+import { BenchmarkSection, benchmarkSectionSchemaName, SanityBenchmarkSection } from "../component/benchmark-section";
+import { NumberedListSection, numberedListSectionSchemaName, SanityNumberedListSection } from "../component/numbered-list-section";
+import { ClosingPanelSection, closingPanelSectionSchemaName, SanityClosingPanelSection } from "../component/closing-panel-section";
+import { FeatureGridSection, featureGridSectionSchemaName, SanityFeatureGridSection } from "../component/feature-grid";
 import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
 import {
     PricingPanelsSection, pricingPanelsSectionSchemaName, SanityPricingPanelsSection,
@@ -26,6 +33,9 @@ const reservedRoutes = [
     "legal", "papers", "pricing", "request-tech-talk", "startup-program", "support", "use-cases",
 ];
 
+/** The route of the composable page that serves the home page, typedb.com/ */
+export const composableHomeRoute = "/";
+
 interface SanityKeyed {
     _key: string;
 }
@@ -47,8 +57,15 @@ export type SanityComposableSection = SanityKeyed &
         | ({ _type: typeof conclusionSectionSchemaName } & SanityConclusionSection)
         | ({ _type: typeof hotTopicsSectionSchemaName } & SanityHotTopicsSection)
         | ({ _type: typeof contactFormSectionSchemaName } & SanityContactFormSection)
+        | ({ _type: typeof featureGridSectionSchemaName } & SanityFeatureGridSection)
         | ({ _type: typeof featureTableSectionSchemaName } & SanityFeatureTableSection)
         | ({ _type: typeof pricingPanelsSectionSchemaName } & SanityPricingPanelsSection)
+        | ({ _type: typeof organisationLogosSectionSchemaName } & SanityOrganisationLogosSection)
+        | ({ _type: typeof solutionCardsSectionSchemaName } & SanitySolutionCardsSection)
+        | ({ _type: typeof cardSwitcherSectionSchemaName } & SanityCardSwitcherSection)
+        | ({ _type: typeof benchmarkSectionSchemaName } & SanityBenchmarkSection)
+        | ({ _type: typeof numberedListSectionSchemaName } & SanityNumberedListSection)
+        | ({ _type: typeof closingPanelSectionSchemaName } & SanityClosingPanelSection)
     );
 
 export interface SanityComposablePage extends SanityPage {
@@ -67,8 +84,15 @@ export type ComposablePageSection =
     | { type: typeof conclusionSectionSchemaName; key: string; section: ConclusionSection }
     | { type: typeof hotTopicsSectionSchemaName; key: string; section: HotTopicsSection }
     | { type: typeof contactFormSectionSchemaName; key: string; section: ContactFormSection }
+    | { type: typeof featureGridSectionSchemaName; key: string; section: FeatureGridSection }
     | { type: typeof featureTableSectionSchemaName; key: string; section: FeatureTableSection }
-    | { type: typeof pricingPanelsSectionSchemaName; key: string; section: PricingPanelsSection };
+    | { type: typeof pricingPanelsSectionSchemaName; key: string; section: PricingPanelsSection }
+    | { type: typeof organisationLogosSectionSchemaName; key: string; section: OrganisationLogosSection }
+    | { type: typeof solutionCardsSectionSchemaName; key: string; section: SolutionCardsSection }
+    | { type: typeof cardSwitcherSectionSchemaName; key: string; section: CardSwitcherSection }
+    | { type: typeof benchmarkSectionSchemaName; key: string; section: BenchmarkSection }
+    | { type: typeof numberedListSectionSchemaName; key: string; section: NumberedListSection }
+    | { type: typeof closingPanelSectionSchemaName; key: string; section: ClosingPanelSection };
 
 function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): ComposablePageSection | undefined {
     switch (data._type) {
@@ -88,10 +112,24 @@ function sectionFromSanity(data: SanityComposableSection, db: SanityDataset): Co
             return { type: data._type, key: data._key, section: HotTopicsSection.fromSanity(data, db) };
         case contactFormSectionSchemaName:
             return { type: data._type, key: data._key, section: ContactFormSection.fromSanity(data, db) };
+        case featureGridSectionSchemaName:
+            return { type: data._type, key: data._key, section: FeatureGridSection.fromSanity(data, db) };
         case featureTableSectionSchemaName:
             return { type: data._type, key: data._key, section: FeatureTableSection.fromSanity(data, db) };
         case pricingPanelsSectionSchemaName:
             return { type: data._type, key: data._key, section: PricingPanelsSection.fromSanity(data, db) };
+        case organisationLogosSectionSchemaName:
+            return { type: data._type, key: data._key, section: OrganisationLogosSection.fromSanity(data, db) };
+        case solutionCardsSectionSchemaName:
+            return { type: data._type, key: data._key, section: SolutionCardsSection.fromSanity(data, db) };
+        case cardSwitcherSectionSchemaName:
+            return { type: data._type, key: data._key, section: CardSwitcherSection.fromSanity(data, db) };
+        case benchmarkSectionSchemaName:
+            return { type: data._type, key: data._key, section: BenchmarkSection.fromSanity(data, db) };
+        case numberedListSectionSchemaName:
+            return { type: data._type, key: data._key, section: NumberedListSection.fromSanity(data, db) };
+        case closingPanelSectionSchemaName:
+            return { type: data._type, key: data._key, section: ClosingPanelSection.fromSanity(data, db) };
         default:
             return undefined;
     }
@@ -132,16 +170,16 @@ const composablePageSchema = defineType({
         defineField({
             name: "route",
             type: "slug",
-            description: "URL path for this page - e.g. 'graph-database' publishes to typedb.com/graph-database",
+            description: "URL path for this page - e.g. 'graph-database' publishes to typedb.com/graph-database. Use '/' for the home page",
             options: { source: "title" },
             validation: (rule) => [
                 rule.required().error("Required to generate the page URL"),
                 rule.custom((value?: Slug) => {
                     const current = value?.current;
-                    if (!current) return true;
+                    if (!current || current === composableHomeRoute) return true;
                     if (reservedRoutes.includes(current)) return `'${current}' is already used by an existing page`;
                     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(current))
-                        return "Must contain only lowercase letters, numbers and hyphens, e.g. 'graph-database'";
+                        return "Must contain only lowercase letters, numbers and hyphens, e.g. 'graph-database', or be '/' for the home page";
                     return true;
                 }),
             ],
@@ -171,9 +209,16 @@ const composablePageSchema = defineType({
                 defineArrayMember({ type: simpleLinkPanelsSectionSchemaName }),
                 defineArrayMember({ type: conclusionSectionSchemaName }),
                 defineArrayMember({ type: hotTopicsSectionSchemaName }),
+                defineArrayMember({ type: featureGridSectionSchemaName }),
                 defineArrayMember({ type: featureTableSectionSchemaName }),
                 defineArrayMember({ type: pricingPanelsSectionSchemaName }),
                 defineArrayMember({ type: contactFormSectionSchemaName }),
+                defineArrayMember({ type: organisationLogosSectionSchemaName }),
+                defineArrayMember({ type: solutionCardsSectionSchemaName }),
+                defineArrayMember({ type: cardSwitcherSectionSchemaName }),
+                defineArrayMember({ type: benchmarkSectionSchemaName }),
+                defineArrayMember({ type: numberedListSectionSchemaName }),
+                defineArrayMember({ type: closingPanelSectionSchemaName }),
             ],
             options: {
                 insertMenu: {
@@ -184,7 +229,9 @@ const composablePageSchema = defineType({
                             title: "Content",
                             of: [
                                 illustrationSectionSchemaName, titleBodyPanelSectionSchemaName,
-                                keyPointsSectionSchemaName, featureTableSectionSchemaName,
+                                keyPointsSectionSchemaName, featureGridSectionSchemaName, featureTableSectionSchemaName,
+                                solutionCardsSectionSchemaName, cardSwitcherSectionSchemaName, numberedListSectionSchemaName,
+                                benchmarkSectionSchemaName, organisationLogosSectionSchemaName,
                             ],
                         },
                         {
@@ -196,7 +243,7 @@ const composablePageSchema = defineType({
                             name: "conversion",
                             title: "Conversion",
                             of: [
-                                pricingPanelsSectionSchemaName, conclusionSectionSchemaName,
+                                pricingPanelsSectionSchemaName, conclusionSectionSchemaName, closingPanelSectionSchemaName,
                                 contactFormSectionSchemaName,
                             ],
                         },
@@ -218,7 +265,7 @@ const composablePageSchema = defineType({
         select: { title: "title", route: "route.current" },
         prepare: ({ title, route }: { title?: string; route?: string }) => ({
             title: title || "Untitled page",
-            subtitle: route ? `/${route}` : "No route set",
+            subtitle: route === composableHomeRoute ? "/ (home page)" : route ? `/${route}` : "No route set",
         }),
     },
 });

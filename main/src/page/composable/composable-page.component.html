@@ -9,46 +9,84 @@
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst"
             [flexDirection]="flexDirectionOf(item.section, isFirst)"
             [textAlign]="textAlignOf(item.section)"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+            [class.wide-section]="item.section.width === 'wide'" />
         }
         @case ("titleBodyPanelSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
           <td-content-panel [panel]="item.section.panel" [panelId]="'section-' + idx" />
         }
         @case ("keyPointsSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
           <td-key-point-panels-2x2 [keyPoints]="item.section.keyPoints" />
         }
         @case ("linkPanelsSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
-          <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
+          <td-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" [appearance]="item.section.appearance"
+            [class.wide-section]="item.section.width === 'wide'" />
         }
         @case ("simpleLinkPanelsSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
           <td-simple-link-panels [panels]="item.section.panels" [sectionId]="item.section.sectionId" />
         }
         @case ("conclusionSection") {
-          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.narrow-section]="item.section.width === 'narrow'" />
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
           <td-conclusion-panel [panel]="item.section.panel" />
+        }
+        @case ("featureGridSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section) || 'left'" [class.wide-section]="item.section.width === 'wide'" />
+          @for (featureGrid of item.section.featureGrids; track featureGrid.name) {
+            <td-feature-grid class="section" [data]="featureGrid" [sectionId]="item.section.sectionId"
+              [appearance]="item.section.appearance" />
+          }
+          @if (item.section.outro; as outro) {
+            <div class="section feature-grid-outro">
+              @if (outro.title) {
+                <p class="text-h2">{{ outro.title }}</p>
+              }
+              @if (outro.link) {
+                <a class="link-tertiary" [tdLink]="outro.link" [id]="item.section.sectionId + '_outro'">{{ outro.link.text }}</a>
+              }
+            </div>
+          }
         }
         @case ("featureTableSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+            [class.wide-section]="item.section.width === 'wide'" />
           <td-feature-table [table]="item.section.featureTable" [sectionId]="item.section.sectionId"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+            [class.wide-section]="item.section.width === 'wide'" />
         }
         @case ("pricingPanelsSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst"
             [textAlign]="textAlignOf(item.section)"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+            [class.wide-section]="item.section.width === 'wide'" />
           <td-pricing-table [caption]="item.section.panelsCaption" [panels]="item.section.panels"
             [sectionId]="item.section.sectionId" />
         }
         @case ("contactFormSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)"
-            [class.narrow-section]="item.section.width === 'narrow'" />
+            [class.wide-section]="item.section.width === 'wide'" />
           <td-contact-form class="narrow-section card subsection-margin" [variant]="item.section.variant" [showPersonalDataNotice]="true" />
+        }
+        @case ("organisationLogosSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" textAlign="center" />
+          <td-organisation-logos [rows]="item.section.rows" />
+        }
+        @case ("solutionCardsSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section) || 'left'" [class.wide-section]="item.section.width === 'wide'" />
+          <td-solution-cards [cards]="item.section.cards" />
+        }
+        @case ("cardSwitcherSection") {
+          <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section) || 'left'" [class.wide-section]="item.section.width === 'wide'" />
+          <td-card-switcher [cards]="item.section.cards" [sectionId]="item.section.sectionId" />
+        }
+        @case ("benchmarkSection") {
+          <td-benchmark-section [section]="item.section" />
+        }
+        @case ("numberedListSection") {
+          <td-numbered-list-section [section]="item.section" />
+        }
+        @case ("closingPanelSection") {
+          <td-closing-panel-section [section]="item.section" />
         }
         @case ("hotTopicsSection") {
           <div class="hot-topics-section">

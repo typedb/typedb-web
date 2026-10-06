@@ -1,0 +1,23 @@
+@for (card of cards; track card.key) {
+  <article class="sc-card">
+    <div class="sc-header">
+      @if (card.iconName) {
+        <td-icon [icon]="iconName(card)" />
+      }
+      <div class="sc-progress-track" aria-hidden="true">
+        <div class="sc-progress-bar"></div>
+      </div>
+    </div>
+    <h3 class="sc-title">{{ card.title }}</h3>
+    <div class="sc-body">
+      @if (card.body) {
+        <td-rich-text [value]="card.body" />
+      }
+    </div>
+    <div class="sc-solution">
+      @if (card.solution) {
+        <td-p-with-highlights [value]="card.solution" themeColorHex="var(--color-secondary-blue)" level="p2" />
+      }
+    </div>
+  </article>
+}

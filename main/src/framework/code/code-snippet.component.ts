@@ -1,9 +1,10 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
 import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, signal, ViewEncapsulation } from "@angular/core";
 import { map, Observable, of } from "rxjs";
-import { CodeSnippet } from "typedb-web-schema";
+import { CodeAdmonition, CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
 import { IconComponent } from "../icon/icon.component";
+import { CodeAdmonitionComponent } from "./code-admonition.component";
 import { SyntaxHighlightDirective } from "./syntax-highlight.directive";
 
 const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
@@ -14,12 +15,13 @@ const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [AsyncPipe, IconComponent, SyntaxHighlightDirective]
+    imports: [AsyncPipe, CodeAdmonitionComponent, IconComponent, SyntaxHighlightDirective]
 })
 export class CodeSnippetComponent implements OnChanges {
     private readonly platformId = inject(PLATFORM_ID);
     @Input({ required: true }) language!: string;
     @Input({ required: true }) code!: string;
+    @Input() admonition?: CodeAdmonition;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
     copied = signal(false);
@@ -34,10 +36,11 @@ export class CodeSnippetComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         this.lineNumbers$ = this.mediaQuery.isMobile$.pipe(
             map((isMobile) => {
-                const lines = Math.max(
-                    (this.code.match(/\n/g) || []).length + 2,
-                    DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"],
-                );
+                const codeLines = (this.code.match(/\n/g) || []).length + 1;
+                // With an admonition below the code, number only the code lines so the numbers stop where the code does
+                const lines = this.admonition
+                    ? codeLines
+                    : Math.max(codeLines + 1, DEFAULT_MIN_LINES[isMobile ? "mobile" : "desktop"]);
                 return [...Array(lines).keys()].map((n) => n + 1);
             }),
         );

@@ -46,6 +46,8 @@
     --section-page-margin: #{$section-page-margin};
     --section-width: #{$section-width};
     --section-max-width: calc(100vw - 40px);
+    // Default width of a section's content on desktop; see .wide-section in main's styles.scss
+    --section-narrow-max-width: 1140px;
     --blog-post-width: #{$blog-post-width};
     --blog-post-max-width: calc(var(--section-max-width) - #{$blog-post-gap} - #{$blog-post-sidebar-width});
 
@@ -89,6 +91,8 @@
     --line-height-h4: #{typography.$height-h4};
     --font-size-h5: #{typography.$h5};
     --line-height-h5: #{typography.$height-h5};
+    --font-size-p0: #{typography.$p0};
+    --line-height-p0: #{typography.$height-p0};
     --font-size-p1: #{typography.$p1};
     --line-height-p1: #{typography.$height-p1};
     --font-size-p2: #{typography.$p2};
@@ -145,6 +149,8 @@
         --line-height-h4: #{typography.$height-h4-mobile};
         --font-size-h5: #{typography.$h5-mobile};
         --line-height-h5: #{typography.$height-h5-mobile};
+        --font-size-p0: #{typography.$p0-mobile};
+        --line-height-p0: #{typography.$height-p0-mobile};
         --font-size-p1: #{typography.$p1-mobile};
         --line-height-p1: #{typography.$height-p1-mobile};
         --font-size-p2: #{typography.$p2-mobile};

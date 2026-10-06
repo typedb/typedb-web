@@ -164,6 +164,56 @@ td-link-panels {
         }
     }
 
+    // Card appearance: each panel is a bordered card, with its icon in a small framed tile and its link at the foot
+    &.lp-cards {
+        gap: 16px;
+
+        .lc-card {
+            @include mixins.card-appearance;
+            padding: 28px;
+            gap: 16px;
+        }
+
+        .panel-content {
+            width: auto;
+            margin: 0;
+        }
+
+        td-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            border: shapes.$border;
+            border-radius: 10px;
+            font-size: 22px;
+            color: var(--color-secondary-blue);
+
+            svg {
+                stroke-width: 1.8;
+            }
+        }
+
+        .lc-flex-container {
+            gap: 16px;
+        }
+
+        .lc-cta-weak {
+            margin-top: auto;
+            color: var(--color-secondary-blue);
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 16px;
+
+            .lc-card.lc-icon-card {
+                flex-direction: column;
+            }
+        }
+    }
+
     @media (max-width: media.$max-width-mobile) {
         flex-direction: column;
         gap: 48px;

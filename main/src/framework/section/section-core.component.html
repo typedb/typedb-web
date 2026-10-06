@@ -1,5 +1,10 @@
 <div class="td-text">
-  <td-heading-with-highlights [value]="section.title" [level]="level" />
+  @if (section.eyebrow) {
+    <p class="td-eyebrow">{{ section.eyebrow }}</p>
+  }
+  @if (section.title.spans.length) {
+    <td-heading-with-highlights [value]="section.title" [level]="level" />
+  }
   @if (section.body && !noBody) {
     <td-rich-text [value]="section.body" class="subtitle-l" [class]="'text-' + bodyLevel" />
   }

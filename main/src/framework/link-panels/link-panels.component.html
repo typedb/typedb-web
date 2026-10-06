@@ -7,9 +7,11 @@
       <div class="panel-content">
         <td-icon [icon]="$any(panel.iconName)" />
         
-        <div class="custom-progress-track">
-          <div class="custom-progress-bar"></div>
-        </div>
+        @if (appearance !== "card") {
+          <div class="custom-progress-track">
+            <div class="custom-progress-bar"></div>
+          </div>
+        }
         
       </div>
     }

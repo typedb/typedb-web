@@ -1,0 +1,73 @@
+@use "media";
+@use "shapes";
+
+td-organisation-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
+
+    .ol-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 24px 56px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 20px 32px;
+        }
+    }
+
+    .ol-logo {
+        display: block;
+        height: 40px;
+        width: auto;
+        opacity: 0.7;
+
+        @media (max-width: media.$max-width-mobile) {
+            height: 30px;
+        }
+    }
+
+    // Text rows, for organisations shown by name rather than logo
+    .ol-names {
+        gap: 16px 48px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 26px;
+        color: var(--color-secondary-light-grey);
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 12px 28px;
+            font-size: 16px;
+        }
+    }
+
+    .ol-group-label {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 980px;
+        margin-top: 12px;
+
+        .td-eyebrow {
+            margin: 0;
+            white-space: nowrap;
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    .ol-rule {
+        flex: 1;
+        border-top: shapes.$border;
+    }
+}

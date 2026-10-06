@@ -36,7 +36,8 @@ export {
     cloudPricingTierSchemaName, cloudPricingQuery,
 } from "./cloud-platform/provider";
 export {
-    languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName,
+    languages, PolyglotSnippet, CodeSnippet, CodeSnippetShort, codeSnippetShortSchemaName, type CodeAdmonition,
+    type CodeAdmonitionVariant,
 } from "./code";
 export { codeSnippetSchemaName, polyglotSnippetSchemaName } from "./common-fields";
 export { type SanityConclusionPanel, ConclusionPanel, ConclusionSection } from "./component/conclusion-panel";
@@ -46,7 +47,8 @@ export {
 } from "./component/contact-form-section";
 export { ContentTextPanel, ContentTextTab } from "./component/content-text-panel";
 export {
-    FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName,
+    FeatureGrid, FeatureGridSection, FeatureGridRow, FeatureGridCell, featureGridSchemaName, type FeatureGridAppearance,
+    type FeatureGridOutro,
 } from "./component/feature-grid";
 export {
     FeatureTable, featureTableSchemaName, FeatureTableSection, featureTableSectionSchemaName,
@@ -81,9 +83,18 @@ export {
 } from "./navigation/topnav";
 export { Organisation, organisationSchemaName, type SanityOrganisation } from "./organisation";
 export { blogSchemaName, Blog, type SanityBlog, type BlogRow, BlogPostsRow, ResourcePanelsRow } from "./page/blog";
+export {
+    BenchmarkSection, type BenchmarkChart, type BenchmarkRow, type BenchmarkSegment, type BenchmarkSegmentTone,
+} from "./component/benchmark-section";
+export { CardSwitcherSection, type SwitcherCard } from "./component/card-switcher-section";
+export { ClosingPanelSection, type ClosingPanelColumn } from "./component/closing-panel-section";
+export { NumberedListSection, type NumberedListItem } from "./component/numbered-list-section";
+export { OrganisationLogosSection, type OrganisationRow } from "./component/organisation-logos-section";
+export { SolutionCardsSection, type SolutionCard } from "./component/solution-cards-section";
+export { type LinkPanelsAppearance } from "./component/section";
 export { Page, type SanityPage } from "./page/common";
 export {
-    ComposablePage, composablePageSchemaName, type ComposablePageSection, type SanityComposablePage,
+    ComposablePage, composableHomeRoute, composablePageSchemaName, type ComposablePageSection, type SanityComposablePage,
     type SanityComposableSection,
 } from "./page/composable";
 export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";

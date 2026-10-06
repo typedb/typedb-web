@@ -3,8 +3,8 @@ import { LinkButton, SanityOptionalActions } from "../button";
 import {
     isVisibleField, resourcesFieldOptional, SanityVisibleToggle, keywordFieldOptional,
     titleBodyActionsFields, collapsibleOptions, titleFieldWithHighlights, resourcesField,
-    actionsFieldOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionPreview, sectionTextAlignField,
-    SectionTextAlign, sectionWidthField, SectionWidth, titleWithHighlightsPreview,
+    actionsFieldOptional, titleFieldWithHighlightsOptional, sectionLayoutDirectionField, SectionLayoutDirection, sectionPreview, sectionTextAlignField,
+    SectionTextAlign, sectionWidthField, SectionWidth, SanitySectionWidth, titleWithHighlightsPreview,
 } from "../common-fields";
 import { Illustration, illustrationFieldOptional, illustrationFieldValueFromSanity, SanityIllustrationFieldValue } from "../illustration";
 import { SanityTextLink, TextLink, textLinkSchemaName } from "../link";
@@ -16,7 +16,8 @@ import { ContentTextPanel, contentTextPanelSchemaName, SanityContentTextPanel } 
 import { LinkPanel, linkPanelSchemaName, SanityLinkPanel } from "./link-panel";
 
 export interface SanitySectionCore extends SanityTitleAndBody, SanityOptionalActions, SanityVisibleToggle {
-    width?: SectionWidth;
+    eyebrow?: string;
+    width?: SanitySectionWidth;
     textAlign?: SectionTextAlign;
 }
 
@@ -24,8 +25,16 @@ export interface SanityTitleBodyPanelSection extends SanitySectionCore {
     panel: SanityContentTextPanel;
 }
 
+export const linkPanelsAppearances = [
+    { title: "Plain", value: "plain" },
+    { title: "Cards", value: "card" },
+] as const;
+
+export type LinkPanelsAppearance = (typeof linkPanelsAppearances)[number]["value"];
+
 export interface SanityLinkPanelsSection extends SanitySectionCore {
     panels: SanityLinkPanel[];
+    appearance?: LinkPanelsAppearance;
 }
 
 export interface SanitySimpleLinkPanelsSection extends SanitySectionCore {
@@ -42,6 +51,7 @@ export interface SanityHotTopicsSection extends SanitySectionCore {
 }
 
 export class SectionCore implements Partial<BodyTextField> {
+    readonly eyebrow?: string;
     readonly title: ParagraphWithHighlights;
     readonly body?: PortableText;
     readonly actions?: LinkButton[];
@@ -50,6 +60,7 @@ export class SectionCore implements Partial<BodyTextField> {
     readonly textAlign: SectionTextAlign;
 
     constructor(props: PropsOf<SectionCore>) {
+        this.eyebrow = props.eyebrow;
         this.title = props.title;
         this.body = props.body;
         this.actions = props.actions;
@@ -61,11 +72,13 @@ export class SectionCore implements Partial<BodyTextField> {
     static fromSanity(data: SanitySectionCore, db: SanityDataset) {
         const title = ParagraphWithHighlights.fromSanity(data.title);
         return new SectionCore({
+            eyebrow: data.eyebrow || undefined,
             title: title,
             body: data.body,
             actions: data.actions?.map((x) => LinkButton.fromSanity(x, db)),
-            sectionId: title.toSectionID(),
-            width: data.width || "default",
+            // Sections without a title (e.g. an eyebrow and a lead paragraph) take their ID from the eyebrow
+            sectionId: title.toSectionID() || ParagraphWithHighlights.fromPlainText(data.eyebrow || "").toSectionID(),
+            width: data.width === "wide" ? "wide" : "narrow",
             textAlign: data.textAlign || "auto",
         });
     }
@@ -89,16 +102,19 @@ export class TitleBodyPanelSection extends SectionCore {
 
 export class LinkPanelsSection extends SectionCore {
     readonly panels: LinkPanel[];
+    readonly appearance: LinkPanelsAppearance;
 
     constructor(props: PropsOf<LinkPanelsSection>) {
         super(props);
         this.panels = props.panels;
+        this.appearance = props.appearance;
     }
 
     static override fromSanity(data: SanityLinkPanelsSection, db: SanityDataset) {
         return new LinkPanelsSection({
             ...super.fromSanity(data, db),
             panels: data.panels.map((x) => LinkPanel.fromSanity(x, db)),
+            appearance: data.appearance || "plain",
         });
     }
 }
@@ -192,6 +208,14 @@ const linkPanelsSectionSchema = defineType({
             of: [{ type: linkPanelSchemaName }],
             validation: (rule) => rule.required().min(1),
         }),
+        defineField({
+            name: "appearance",
+            title: "Panel Style",
+            type: "string",
+            description: "Cards give each panel a border and background, with its icon in a framed tile",
+            options: { list: [...linkPanelsAppearances], layout: "radio", direction: "horizontal" },
+            initialValue: "plain",
+        }),
         sectionWidthField,
         sectionTextAlignField,
         isVisibleField,
@@ -229,7 +253,11 @@ const titleBodyIllustrationSectionSchema = defineType({
     title: 'Text & Optional Content',
     type: 'document',
     fields: [
-        ...titleBodyActionsFields,
+        ...titleBodyActionsFields.map((x) => x.name === "title"
+            ? Object.assign({}, titleFieldWithHighlightsOptional, {
+                description: "Optional when an eyebrow introduces the section. Text marked as 'bold' is highlighted",
+            })
+            : x),
         Object.assign({}, illustrationFieldOptional, { title: "Content (optional)" }),
         sectionLayoutDirectionField,
         sectionWidthField,
@@ -239,13 +267,13 @@ const titleBodyIllustrationSectionSchema = defineType({
         isVisibleField,
     ],
     preview: {
-        select: { title: "title", illustration: "illustration" },
-        prepare: (selection: { title?: any[]; illustration?: any }) => {
+        select: { title: "title", eyebrow: "eyebrow", illustration: "illustration" },
+        prepare: (selection: { title?: any[]; eyebrow?: string; illustration?: any }) => {
             const value = selection.illustration;
             const hasContent = !!value
                 && ("_ref" in value ? true : !!(value.kind && value.kind !== "none" && value[value.kind]));
             return {
-                title: titleWithHighlightsPreview(selection.title || []),
+                title: selection.title?.length ? titleWithHighlightsPreview(selection.title) : (selection.eyebrow || "Untitled"),
                 subtitle: hasContent ? "Text + Content" : "Text",
             };
         },

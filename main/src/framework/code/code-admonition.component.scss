@@ -1,0 +1,36 @@
+@use "colors";
+
+// Variant colours follow the docs admonitions in typedb-web-common's base.scss:
+// info = note (blue), warning = important (yellow), error = warning (red)
+td-code-admonition {
+    --ca-color: #{colors.$secondary-blue};
+    --ca-background: #{rgba(colors.$secondary-blue, 0.09)};
+
+    display: block;
+    // One blank code line between the last line of code and the admonition
+    margin-top: calc(var(--font-size-code) * var(--line-height-code));
+    padding: 12px 14px;
+    border: 1px solid color-mix(in srgb, var(--ca-color) 35%, transparent);
+    border-radius: 8px;
+    background: var(--ca-background);
+    color: var(--color-white);
+    font-family: var(--font-family-code);
+    font-size: var(--font-size-code);
+    line-height: var(--line-height-code);
+    white-space: normal;
+
+    &.ca-warning {
+        --ca-color: #{colors.$secondary-yellow};
+        --ca-background: #{rgba(colors.$secondary-yellow, 0.09)};
+    }
+
+    &.ca-error {
+        --ca-color: #{colors.$red};
+        --ca-background: #{rgba(colors.$red, 0.09)};
+    }
+
+    .ca-title {
+        color: var(--ca-color);
+        font-weight: var(--font-weight-medium);
+    }
+}

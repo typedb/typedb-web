@@ -1,4 +1,6 @@
-import { Route, Routes } from "@angular/router";
+import { inject } from "@angular/core";
+import { CanMatchFn, Route, Routes } from "@angular/router";
+import { map } from "rxjs";
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
@@ -18,7 +20,8 @@ import { StartupProgramPageComponent } from "./page/startup-program/startup-prog
 import { SupportPageComponent } from "./page/support/support-page.component";
 import { RequestTechTalkPageComponent } from "./page/tech-talk/request-tech-talk-page.component";
 import { UseCasePageComponent } from "./page/use-cases/use-case-page.component";
-import { blogCategories, blogCategoryList } from "typedb-web-schema";
+import { blogCategories, blogCategoryList, composableHomeRoute, SanityComposablePage } from "typedb-web-schema";
+import { ContentService } from "./service/content.service";
 
 export const staticPageSchemas = [
     { path: "", schemaName: "homePage" },
@@ -59,6 +62,14 @@ export const blogPaginationRoutes = [
 // The ":slug" route must stay ordered after every fixed route (including "404") so it only catches leftovers.
 // The same list is duplicated in schema/page/composable.ts (reservedRoutes) to validate routes in Sanity Studio.
 export const composablePageSchemaInfo = { schemaName: "composablePage", schemaSlugAccessor: "route.current" } as const;
+
+// The home page ("/") is served by the composablePage whose route is composableHomeRoute, when one exists.
+// Until then it falls back to the legacy fixed-schema homePage, so publishing that composable page is the cutover.
+const hasComposableHomePage: CanMatchFn = () =>
+    inject(ContentService).data.pipe(
+        map((db) => db.getDocumentsByType<SanityComposablePage>(composablePageSchemaInfo.schemaName)
+            .some((x) => x.route?.current === composableHomeRoute)),
+    );
 
 export const reservedTopLevelRoutes: readonly string[] = [
     ...staticPageSchemas.map((x) => x.path),
@@ -130,6 +141,7 @@ interface DynamicPagePredefined {
 type DynamicPage = DynamicPageWithSchema | DynamicPagePredefined;
 
 export const routes: Routes = [
+    { path: "", component: ComposablePageComponent, canMatch: [hasComposableHomePage], data: { composableRoute: composableHomeRoute } },
     ...staticPageSchemas.map(({ path }) => ({
         path,
         ...staticPages[path],

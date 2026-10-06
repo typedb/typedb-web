@@ -1,0 +1,139 @@
+@use "media";
+@use "mixins";
+@use "shapes";
+
+td-card-switcher {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.6fr);
+    gap: 24px;
+    align-items: start;
+
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
+
+    @media (max-width: media.$max-width-tablet) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cw-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        // On narrow screens the cards become a horizontally scrolling strip above the panel
+        @media (max-width: media.$max-width-tablet) {
+            flex-direction: row;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+    }
+
+    .cw-tab {
+        display: flex;
+        gap: 16px;
+        align-items: baseline;
+        width: 100%;
+        min-height: 56px;
+        padding: 16px 18px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--color-secondary-light-grey);
+        font: inherit;
+        font-size: var(--font-size-h5);
+        text-align: left;
+        cursor: pointer;
+        transition: color 100ms, background-color 100ms;
+
+        @media (max-width: media.$max-width-tablet) {
+            width: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        &:hover {
+            color: var(--color-white);
+        }
+
+        &.cw-tab-selected {
+            @include mixins.card-appearance;
+            border-radius: 12px;
+            color: var(--color-white);
+
+            .cw-tab-number {
+                color: var(--color-secondary-blue);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-secondary-blue);
+            outline-offset: 2px;
+        }
+    }
+
+    .cw-tab-number {
+        font-family: var(--font-family-code);
+        font-size: 13px;
+        color: var(--color-secondary-grey);
+    }
+
+    .cw-panel {
+        @include mixins.card-appearance;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-height: 480px;
+        padding: 36px;
+
+        &[hidden] {
+            display: none;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            min-height: 0;
+            padding: 24px;
+        }
+    }
+
+    .cw-panel-label {
+        margin: 0;
+    }
+
+    .cw-headline {
+        margin: 0;
+        color: var(--color-white);
+    }
+
+    .cw-points {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: flex;
+            gap: 12px;
+
+            &::before {
+                content: "→";
+                color: var(--color-secondary-blue);
+            }
+        }
+    }
+
+    .cw-code {
+        margin-top: auto;
+        padding: 18px 20px;
+        overflow-x: auto;
+        border: shapes.$border;
+        border-radius: 12px;
+        background: var(--body-background);
+
+        pre {
+            margin: 0;
+        }
+    }
+}
