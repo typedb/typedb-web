@@ -1,5 +1,5 @@
 @for (card of cards; track card.key) {
-  <article class="sc-card">
+  <div class="sc-card">
     <div class="sc-header">
       @if (card.iconName) {
         <td-icon [icon]="iconName(card)" />
@@ -19,5 +19,5 @@
         <td-p-with-highlights [value]="card.solution" themeColorHex="var(--color-secondary-blue)" level="p2" />
       }
     </div>
-  </article>
+  </div>
 }

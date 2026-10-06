@@ -7,7 +7,12 @@ td-link-panels {
     display: flex;
     justify-content: space-between;
     gap: 40px;
-    margin-top: 64px;
+
+    // Panels sit under their section heading. Scoped to .section so it wins over .section's full section margin,
+    // which otherwise overrode this and left a 180px gap between a section's text and its panels
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 32px;
