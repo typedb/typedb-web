@@ -1,0 +1,101 @@
+@use "colors";
+@use "media";
+@use "shapes";
+
+// Styled after the plain link panels used as key points on the use case pages: an icon over a thin track
+// that fills with blue on hover. The cards share grid rows (subgrid) so dividers and solutions align.
+td-solution-cards {
+    display: grid;
+    grid-template-columns: repeat(var(--sc-columns, 3), minmax(0, 1fr));
+    column-gap: 40px;
+    // Must equal the cards' own row-gap: each card spans four of these rows as a subgrid, and a mismatch
+    // is made up with extra space inside the grid, which can read as an oversized gap below the cards
+    row-gap: 20px;
+
+    // Sits under its section heading, so it overrides .section's full section margin
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
+
+    @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
+        column-gap: 32px;
+    }
+
+    @media (max-width: media.$max-width-mobile) {
+        grid-template-columns: minmax(0, 1fr);
+
+        // Stacked cards are separated by margin, as the row gap is reserved for spacing within a card
+        .sc-card + .sc-card {
+            margin-top: 28px;
+        }
+    }
+
+    .sc-card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 4;
+        row-gap: 20px;
+        align-content: start;
+    }
+
+    .sc-header {
+        td-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: var(--body-font-color);
+            transition: color 100ms;
+
+            svg {
+                stroke-width: 1.5;
+            }
+        }
+    }
+
+    .sc-progress-track {
+        width: 100%;
+        height: 2px;
+        margin-top: 4px;
+        overflow: hidden;
+        border-radius: 2px;
+        background-color: colors.$light-purple;
+    }
+
+    .sc-progress-bar {
+        width: 12.5%;
+        height: 100%;
+        border-radius: 2px;
+        background-color: colors.$secondary-blue;
+        transition: width 0.5s ease-out;
+    }
+
+    .sc-card:hover {
+        .sc-progress-bar {
+            width: 100%;
+        }
+
+        td-icon {
+            color: colors.$secondary-blue;
+        }
+    }
+
+    .sc-title {
+        margin: 0;
+        color: var(--color-white);
+    }
+
+    .sc-solution {
+        align-self: end;
+        padding-top: 16px;
+        border-top: shapes.$border;
+
+        p {
+            margin: 0;
+            color: var(--color-white);
+        }
+
+        // Highlighted words (bold in the CMS), e.g. "TypeDB:"
+        span[style] {
+            font-weight: var(--font-weight-semi-bold);
+        }
+    }
+}

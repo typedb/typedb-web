@@ -1,6 +1,43 @@
 @use "colors";
 
 td-composable-page {
+    // Frameless buttons in the opening section are white, as on the legacy home page's intro (.td-intro in styles.scss)
+    .page-intro-section .button-frameless {
+        color: var(--color-white);
+
+        &:hover {
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    // Feature grids sit directly under their section heading, like the panels of other section types
+    td-feature-grid.section {
+        margin-top: var(--subsection-margin);
+        margin-bottom: 0;
+    }
+
+    .feature-grid-outro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: 48px;
+        text-align: center;
+
+        p {
+            margin: 0;
+            color: var(--color-white);
+        }
+
+        .link-tertiary {
+            color: var(--color-secondary-blue);
+
+            &:hover {
+                color: var(--color-white);
+            }
+        }
+    }
+
     // Light band with subtle grid behind the hot topics cards - mirrors the use case pages
     .hot-topics-section {
         max-width: none;

@@ -1,0 +1,23 @@
+@for (row of rows; track row.key) {
+  @if (row.label) {
+    <div class="ol-group-label">
+      <span class="ol-rule"></span>
+      <p class="td-eyebrow">{{ row.label }}</p>
+      <span class="ol-rule"></span>
+    </div>
+  }
+  @if (row.display === "logos") {
+    <ul class="ol-row">
+      @for (organisation of row.organisations; track organisation.id) {
+        <li><img class="ol-logo" [src]="organisation.logoURL" [alt]="organisation.name" loading="lazy"
+                 [attr.height]="logoHeight(organisation)" [style.--ol-logo-height]="logoHeight(organisation)" /></li>
+      }
+    </ul>
+  } @else {
+    <ul class="ol-row ol-names">
+      @for (name of row.names; track $index) {
+        <li>{{ name }}</li>
+      }
+    </ul>
+  }
+}

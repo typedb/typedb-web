@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
 import {
-    CodeSnippet, CodeSnippetShort, FeatureGrid, FeatureGridCell, FeatureGridRow, GraphVisualisation, Illustration,
+    CodeSnippet, CodeSnippetShort, FeatureGrid, FeatureGridAppearance, FeatureGridCell, FeatureGridRow, GraphVisualisation, Illustration,
     ImageIllustration, PolyglotSnippet, SplitPaneIllustration, TextLink, VideoEmbed,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
+import { CodeAdmonitionComponent } from "../code/code-admonition.component";
 import { SyntaxHighlightDirective } from "../code/syntax-highlight.directive";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
@@ -21,7 +22,7 @@ import { HeadingWithHighlightsComponent } from "../text/text-with-highlights.com
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent, HeadingWithHighlightsComponent, SyntaxHighlightDirective]
+    imports: [CodeAdmonitionComponent, TagChipsComponent, RichTextComponent, LinkDirective, AspectRatioComponent, IllustrationComponent, HeadingWithHighlightsComponent, SyntaxHighlightDirective]
 })
 export class FeatureGridComponent {
     @Input() data!: FeatureGrid;
@@ -29,6 +30,12 @@ export class FeatureGridComponent {
     @Input() disableCardAppearance = false;
     @Input({ required: true }) sectionId!: string;
     @Input() gridId?: string;
+    // Bento: every feature is its own card; rows of two split 7/5, rows of three 4/4/4
+    @Input() appearance: FeatureGridAppearance = "standard";
+
+    @HostBinding("class.fg-bento") get isBento() {
+        return this.appearance === "bento";
+    }
 
     // @HostBinding("class") get classes() {
     //     return {

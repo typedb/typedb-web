@@ -7,7 +7,12 @@ td-link-panels {
     display: flex;
     justify-content: space-between;
     gap: 40px;
-    margin-top: 64px;
+
+    // Panels sit under their section heading. Scoped to .section so it wins over .section's full section margin,
+    // which otherwise overrode this and left a 180px gap between a section's text and its panels
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
 
     @media (min-width: media.$min-width-tablet) and (max-width: media.$max-width-tablet) {
         gap: 32px;
@@ -161,6 +166,56 @@ td-link-panels {
         .button-frameless {
             margin-top: 8px;
             width: unset;
+        }
+    }
+
+    // Card appearance: each panel is a bordered card, with its icon in a small framed tile and its link at the foot
+    &.lp-cards {
+        gap: 16px;
+
+        .lc-card {
+            @include mixins.card-appearance;
+            padding: 28px;
+            gap: 16px;
+        }
+
+        .panel-content {
+            width: auto;
+            margin: 0;
+        }
+
+        td-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            border: shapes.$border;
+            border-radius: 10px;
+            font-size: 22px;
+            color: var(--color-secondary-blue);
+
+            svg {
+                stroke-width: 1.8;
+            }
+        }
+
+        .lc-flex-container {
+            gap: 16px;
+        }
+
+        .lc-cta-weak {
+            margin-top: auto;
+            color: var(--color-secondary-blue);
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 16px;
+
+            .lc-card.lc-icon-card {
+                flex-direction: column;
+            }
         }
     }
 

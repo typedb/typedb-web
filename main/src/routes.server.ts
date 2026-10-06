@@ -1,7 +1,8 @@
 import { RenderMode, ServerRoute } from "@angular/ssr";
-import { blogCategoryList } from "typedb-web-schema";
+import { blogCategoryList, composableHomeRoute } from "typedb-web-schema";
 import {
-    composablePageSchemaInfo, dynamicPageSchemas, genericPageSchemas, reservedTopLevelRoutes, staticPageSchemas,
+    composablePageSchemaInfo, composableTakeoverRoutes, dynamicPageSchemas, genericPageSchemas, reservedTopLevelRoutes,
+    staticPageSchemas,
 } from "./routes.browser";
 import axios from "axios";
 
@@ -25,6 +26,25 @@ async function documentExists(schemaName: string, id?: string): Promise<boolean>
         console.error(`Error checking if ${schemaName} exists in Sanity:`, error);
         return false;
     }
+}
+
+async function composablePageExists(route: string): Promise<boolean> {
+    try {
+        const { schemaName, schemaSlugAccessor } = composablePageSchemaInfo;
+        const { data } = await axios.get<{ result: boolean }>(SANITY_URL, {
+            params: { query: `defined(*[_type == '${schemaName}' && ${schemaSlugAccessor} == $route][0])`, $route: JSON.stringify(route) },
+        });
+        return data.result;
+    } catch (error) {
+        console.error(`Error checking if a composable page exists at '${route}' in Sanity:`, error);
+        return false;
+    }
+}
+
+/** Whether a fixed path is taken over by a published composable page (see composableTakeoverRoutes) */
+async function takenOverByComposablePage(path: string): Promise<boolean> {
+    const takeover = composableTakeoverRoutes.find((x) => x.path === path);
+    return takeover ? composablePageExists(takeover.composableRoute) : false;
 }
 
 /**
@@ -116,8 +136,10 @@ async function fetchComposablePageSlugs(): Promise<Array<{ slug: string }>> {
         const { data } = await axios.get<{ result: Array<{ slug: string | null }> }>(SANITY_URL, {
             params: { query },
         });
+        // The composable home page is prerendered by the '' route, not ':slug'
         return (data.result || []).filter(
-            (x): x is { slug: string } => !!x.slug && !reservedTopLevelRoutes.includes(x.slug),
+            (x): x is { slug: string } =>
+                !!x.slug && x.slug !== composableHomeRoute && !reservedTopLevelRoutes.includes(x.slug),
         );
     } catch (error) {
         console.error("Error fetching composable page slugs from Sanity:", error);
@@ -216,7 +238,8 @@ async function getStaticRoutes(): Promise<ServerRoute[]> {
     
     // Add all static pages that exist in Sanity
     for (const { path, schemaName } of staticPageSchemas) {
-        const exists = await documentExists(schemaName);
+        // A path taken over by a composable page is served by either it or the fixed page
+        const exists = await takenOverByComposablePage(path) || await documentExists(schemaName);
         if (exists) {
             routes.push({
                 path: path || '',  // Handle home route
@@ -227,7 +250,7 @@ async function getStaticRoutes(): Promise<ServerRoute[]> {
     
     // Add all generic pages that exist in Sanity
     for (const { path, documentID } of genericPageSchemas) {
-        const exists = await documentExists('genericPage', documentID);
+        const exists = await takenOverByComposablePage(path) || await documentExists('genericPage', documentID);
         if (exists) {
             routes.push({
                 path,

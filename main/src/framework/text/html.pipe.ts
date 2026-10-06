@@ -13,7 +13,14 @@ export class HtmlPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer, private platformId: Object) {}
 
     transform(value: PortableText): SafeHtml {
-        const initialHtmlString = toHTML(value);
+        const initialHtmlString = toHTML(value, {
+            components: {
+                block: {
+                    // "lead" is the larger opening-paragraph style offered in rich text bodies
+                    lead: ({ children }) => `<p class="text-p0">${children}</p>`,
+                },
+            },
+        });
 
         if (!isPlatformBrowser(this.platformId)) {
             // Server-side: return sanitized HTML without DOM manipulation

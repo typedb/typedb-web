@@ -1,4 +1,4 @@
-import { CodeBlockIcon, CodeIcon } from "@sanity/icons";
+import { CodeBlockIcon, CodeIcon, WarningOutlineIcon } from "@sanity/icons";
 import { defineField, defineType, SanityDocument } from "@sanity/types";
 import { actionsFieldOptional, codeSnippetSchemaName, isVisibleField, polyglotSnippetSchemaName, requiredRule, titleAndBodyFields, titleBodyActionsFields, titleField } from "./common-fields";
 import { SanitySectionCore, SectionCore } from "./component/section";
@@ -37,11 +37,31 @@ export const languages = {
 
 export type Language = keyof typeof languages;
 
+export const codeAdmonitionVariants = [
+    { title: "Info", value: "info" },
+    { title: "Warning", value: "warning" },
+    { title: "Error", value: "error" },
+] as const;
+
+export type CodeAdmonitionVariant = (typeof codeAdmonitionVariants)[number]["value"];
+
+/** A note rendered directly beneath the code, e.g. the error a query produces */
+export interface CodeAdmonition {
+    variant: CodeAdmonitionVariant;
+    title?: string;
+    text: string;
+}
+
 export interface SanityCodeSnippet extends SanityDocument {
     tabText?: string;
     caption?: PortableText;
     language: Language;
     code: string;
+    admonition?: CodeAdmonition;
+}
+
+function codeAdmonitionFromSanity(data?: CodeAdmonition): CodeAdmonition | undefined {
+    return data?.text ? { variant: data.variant || "info", title: data.title || undefined, text: data.text } : undefined;
 }
 
 export interface SanityPolyglotSnippet extends SanityDocument {
@@ -53,6 +73,7 @@ export class CodeSnippet extends Document {
     readonly caption?: PortableText;
     readonly language: Language;
     readonly code: string;
+    readonly admonition?: CodeAdmonition;
 
     constructor(data: PropsOf<CodeSnippet>) {
         super({ _id: data.id });
@@ -60,6 +81,7 @@ export class CodeSnippet extends Document {
         this.caption = data.caption;
         this.language = data.language;
         this.code = data.code;
+        this.admonition = data.admonition;
     }
 
     static fromSanity(data: SanityCodeSnippet): CodeSnippet {
@@ -68,6 +90,7 @@ export class CodeSnippet extends Document {
             caption: data.caption,
             language: data.language,
             code: data.code,
+            admonition: codeAdmonitionFromSanity(data.admonition),
         }));
     }
 }
@@ -75,15 +98,19 @@ export class CodeSnippet extends Document {
 export class CodeSnippetShort extends Document {
     readonly language: Language;
     readonly code: string;
+    readonly admonition?: CodeAdmonition;
 
     constructor(data: PropsOf<CodeSnippetShort>) {
         super({ _id: data.id });
         this.language = data.language;
         this.code = data.code;
+        this.admonition = data.admonition;
     }
 
     static fromSanity(data: SanityCodeSnippet): CodeSnippetShort {
-        return new CodeSnippetShort(Object.assign(new Document(data), { language: data.language, code: data.code }));
+        return new CodeSnippetShort(Object.assign(new Document(data), {
+            language: data.language, code: data.code, admonition: codeAdmonitionFromSanity(data.admonition),
+        }));
     }
 }
 
@@ -143,6 +170,46 @@ const codeField = defineField({
     validation: requiredRule,
 });
 
+export const codeAdmonitionSchemaName = "codeAdmonition";
+
+const codeAdmonitionSchema = defineType({
+    name: codeAdmonitionSchemaName,
+    title: "Admonition",
+    type: "object",
+    icon: WarningOutlineIcon,
+    fields: [
+        defineField({
+            name: "variant",
+            type: "string",
+            options: { list: [...codeAdmonitionVariants], layout: "radio", direction: "horizontal" },
+            initialValue: "info",
+        }),
+        defineField({
+            name: "title",
+            type: "string",
+            description: "Optional bold first line, e.g. 'Error: type check failed'",
+        }),
+        defineField({
+            name: "text",
+            type: "text",
+            rows: 2,
+            validation: (rule) => rule.required().error("An admonition needs some text to display"),
+        }),
+    ],
+    preview: {
+        select: { variant: "variant", title: "title", text: "text" },
+        prepare: ({ variant, title, text }) => ({ title: title || text, subtitle: variant }),
+    },
+});
+
+const codeAdmonitionField = defineField({
+    name: "admonition",
+    title: "Admonition (optional)",
+    type: codeAdmonitionSchemaName,
+    description: "A note rendered directly beneath the code, e.g. the error the code produces",
+    options: { collapsible: true, collapsed: true },
+});
+
 const codeSnippetSchema = defineType({
     name: codeSnippetSchemaName,
     title: "Code Snippet",
@@ -164,6 +231,7 @@ const codeSnippetSchema = defineType({
         }),
         languageField,
         codeField,
+        codeAdmonitionField,
     ],
     preview: {
         select: { title: "title", language: "language", code: "code" },
@@ -184,6 +252,7 @@ const codeSnippetShortSchema = defineField({
         snippetTitleField,
         languageField,
         codeField,
+        codeAdmonitionField,
     ]
 });
 
@@ -233,5 +302,5 @@ const queryLanguageComparisonSectionSchema = defineType({
 });
 
 export const codeSchemas = [
-    codeSnippetShortSchema, codeSnippetSchema, polyglotSnippetSchema, queryLanguageComparisonSectionSchema
+    codeAdmonitionSchema, codeSnippetShortSchema, codeSnippetSchema, polyglotSnippetSchema, queryLanguageComparisonSectionSchema
 ];

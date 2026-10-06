@@ -86,7 +86,21 @@ export const bodyFieldRichText = defineField({
     name: bodyFieldName,
     type: "array",
     icon: BlockContentIcon,
-    of: [{ type: "block" }],
+    of: [{
+        type: "block",
+        // Sanity's default block styles, plus "lead": a larger, brighter opening paragraph
+        styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Lead", value: "lead" },
+            { title: "Heading 1", value: "h1" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Heading 4", value: "h4" },
+            { title: "Heading 5", value: "h5" },
+            { title: "Heading 6", value: "h6" },
+            { title: "Quote", value: "blockquote" },
+        ],
+    }],
 });
 
 export const titleAndBodyFields = [titleFieldWithHighlights, bodyFieldRichText];
@@ -137,7 +151,17 @@ export const actionsFieldOptional = defineField({
     icon: PlayIcon,
 });
 
-export const titleBodyActionsFields = [...titleAndBodyFields, actionsFieldOptional];
+export const eyebrowFieldName = "eyebrow";
+
+export const eyebrowFieldOptional = defineField({
+    name: eyebrowFieldName,
+    title: "Eyebrow (optional)",
+    type: "string",
+    description: "Short label shown above the title, e.g. 'What is TypeDB?'",
+    validation: (rule) => rule.max(40).warning("Eyebrows read best as a few words"),
+});
+
+export const titleBodyActionsFields = [eyebrowFieldOptional, ...titleAndBodyFields, actionsFieldOptional];
 
 export const routeFieldName = "route";
 
@@ -177,6 +201,7 @@ export const iconNameFieldOptional = defineField({
     name: "iconName",
     type: "string",
     title: "Icon Name",
+    description: "One of: sitemap, maximize, file-shield, structure-drift, many-sided-relation, guardrails-warning, mcp, vector, embedded",
 });
 
 export const iconVariantFieldOptional = defineField({
@@ -299,19 +324,25 @@ export const tagsField = defineField({
 });
 
 export const sectionWidths = [
-    { title: "Default", value: "default" },
     { title: "Narrow", value: "narrow" },
+    { title: "Wide", value: "wide" },
 ] as const;
 
 export type SectionWidth = (typeof sectionWidths)[number]["value"];
+
+/** Before narrow became the default, sections were wide unless set to "narrow"; old content may still say "default" */
+export type SanitySectionWidth = SectionWidth | "default";
 
 export const sectionWidthField = defineField({
     name: "width",
     title: "Width",
     type: "string",
-    description: "Horizontal width of this section's content",
+    description: "Sections are narrow unless set to wide, e.g. for a wide table",
     options: { layout: "radio", direction: "horizontal", list: [...sectionWidths] },
-    initialValue: "default",
+    initialValue: "narrow",
+    validation: (rule) => rule.custom((value?: string) => value === "default"
+        ? { message: "'Default' is no longer an option and now shows as Narrow. Choose Narrow or Wide", level: "warning" }
+        : true),
 });
 
 export const sectionTextAligns = [

@@ -20,7 +20,7 @@ import { FeatureTableCellComponent } from "./feature-table-cell.component";
 export class FeatureTableComponent {
     @Input() table!: FeatureTable;
     @Input({ required: true }) sectionId!: string;
-    @HostBinding("class") clazz = "section";
+    @HostBinding("class") clazz = "section wide-section";
 
     /** Compact headers when no column offers a call-to-action, e.g. on a product comparison table */
     @HostBinding("class.ft-no-buttons") get hasNoButtons(): boolean {

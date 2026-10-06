@@ -35,7 +35,7 @@ export class HotTopicsComponent {
 
     @HostBinding('class')
     get clazz() {
-        return `section section-margin ${this.appearance}`;
+        return `section wide-section section-margin ${this.appearance}`;
     }
 
     readonly trackByFn = ResourceLink.trackByFn;

@@ -1,7 +1,7 @@
 import { DashboardIcon } from "@sanity/icons";
 import { ArrayRule, defineField, defineType, SanityDocument } from "@sanity/types";
 import { CodeSnippetShort, codeSnippetShortSchemaName, isCodeSnippetShort } from "../code";
-import { bodyFieldRichText, isVisibleField, nameField, requiredRule, SanityVisibleToggle, tagsField, titleFieldOptional, titleFieldWithHighlights, titleFieldWithHighlightsOptional } from "../common-fields";
+import { actionsFieldOptional, bodyFieldRichText, eyebrowFieldOptional, isVisibleField, sectionPreview, textLinkFieldOptional, nameField, requiredRule, SanityVisibleToggle, tagsField, titleFieldOptional, titleFieldWithHighlights, titleFieldWithHighlightsOptional } from "../common-fields";
 import {
     Illustration, illustrationFieldOptional, illustrationFieldTargetTypes, illustrationFieldValueFromSanity,
     illustrationFromSanity, isLegacyIllustrationRef, SanityIllustration, SanityIllustrationFieldValue,
@@ -13,8 +13,28 @@ import { BodyTextField, ParagraphWithHighlights, PortableText, SanityTitleField 
 import { PropsOf } from "../util";
 import { SanitySectionCore, SectionCore } from "./section";
 
+export const featureGridAppearances = [
+    { title: "Standard", value: "standard" },
+    { title: "Bento", value: "bento" },
+] as const;
+
+export type FeatureGridAppearance = (typeof featureGridAppearances)[number]["value"];
+
+export interface SanityFeatureGridOutro {
+    title?: string;
+    link?: SanityTextLink;
+}
+
 export interface SanityFeatureGridSection extends SanitySectionCore {
     featureGrids: SanityReference<SanityFeatureGrid>[];
+    appearance?: FeatureGridAppearance;
+    outro?: SanityFeatureGridOutro;
+}
+
+/** A short closing line under the grids, e.g. "And more" with a link to further reading */
+export interface FeatureGridOutro {
+    title?: string;
+    link?: TextLink;
 }
 
 export interface SanityFeatureGridRow {
@@ -126,18 +146,28 @@ export class FeatureGrid { // not used in FeatureGridSection to flatten the stru
 export class FeatureGridSection extends SectionCore {
     readonly featureGrids: FeatureGrid[];
     readonly illustration?: Illustration;
+    readonly appearance: FeatureGridAppearance;
+    readonly outro?: FeatureGridOutro;
 
     constructor(props: PropsOf<FeatureGridSection>) {
         super(props);
         this.featureGrids = props.featureGrids;
         this.illustration = props.illustration;
+        this.appearance = props.appearance;
+        this.outro = props.outro;
     }
 
     static override fromSanity(data: SanityFeatureGridSection, db: SanityDataset) {
         const featureGrids = data.featureGrids.map(x => db.resolveRef(x));
+        const outro = data.outro && (data.outro.title || data.outro.link) ? {
+            title: data.outro.title || undefined,
+            link: data.outro.link ? TextLink.fromSanityTextLink(data.outro.link, db) : undefined,
+        } : undefined;
         return new FeatureGridSection(
             Object.assign(SectionCore.fromSanity(data, db), {
                 featureGrids: featureGrids.map(x => FeatureGrid.fromSanity(x, db)),
+                appearance: data.appearance || "standard",
+                outro,
             })
         );
     }
@@ -262,8 +292,11 @@ const featureGridSectionSchema = defineType({
     name: featureGridSectionSchemaName,
     title: "Feature Grid Section",
     type: "object",
+    icon: DashboardIcon,
     fields: [
+        eyebrowFieldOptional,
         titleFieldWithHighlights,
+        bodyFieldRichText,
         defineField({
             name: "featureGrids",
             title: "Feature Grids",
@@ -271,8 +304,28 @@ const featureGridSectionSchema = defineType({
             of: [{type: "reference", to: [{type: featureGridSchemaName}]}],
             validation: requiredRule,
         }),
+        actionsFieldOptional,
+        defineField({
+            name: "appearance",
+            type: "string",
+            description: "Bento shows each feature as its own card, with the first row split unevenly",
+            options: { list: [...featureGridAppearances], layout: "radio", direction: "horizontal" },
+            initialValue: "standard",
+        }),
+        defineField({
+            name: "outro",
+            title: "Outro (optional)",
+            type: "object",
+            description: "A closing line under the grids, e.g. 'And more' with a link to the features page",
+            options: { collapsible: true, collapsed: true },
+            fields: [
+                defineField({ name: "title", type: "string" }),
+                Object.assign({}, textLinkFieldOptional, { name: "link", title: "Link" }),
+            ],
+        }),
         isVisibleField,
     ],
+    preview: sectionPreview("Feature Grid"),
 });
 
 export const featureGridSchemas = [featureGridSchema, featureGridSectionSchema, featureGridRowSchema, featureGridCellSchema];

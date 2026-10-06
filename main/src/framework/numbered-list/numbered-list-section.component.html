@@ -1,0 +1,19 @@
+<td-section-core [section]="section" [noSectionClass]="true" [noBody]="true" textAlign="left" />
+<div class="nl-content">
+  @if (section.body) {
+    <td-rich-text class="text-p1 nl-body" [value]="section.body" />
+  }
+  <ol class="nl-items">
+    @for (item of section.items; track item.key; let i = $index) {
+      <li class="nl-item">
+        <span class="nl-number" aria-hidden="true">{{ number(i) }}</span>
+        <div class="nl-item-text">
+          <span class="nl-item-title">{{ item.title }}</span>
+          @if (item.description) {
+            <span class="nl-item-description">{{ item.description }}</span>
+          }
+        </div>
+      </li>
+    }
+  </ol>
+</div>

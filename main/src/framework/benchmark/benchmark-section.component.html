@@ -1,0 +1,50 @@
+<div class="bm-text">
+  <td-section-core [section]="section" [noSectionClass]="true" textAlign="left" />
+  @if (section.footnote) {
+    <p class="bm-footnote">{{ section.footnote }}</p>
+  }
+</div>
+<div class="bm-charts">
+  @for (chart of section.charts; track chart.key) {
+    <figure class="bm-chart">
+      <figcaption class="td-eyebrow bm-chart-title">{{ chart.title }}</figcaption>
+      @if (isStacked(chart)) {
+        <ul class="bm-legend">
+          @for (segment of chart.segments; track segment.key) {
+            <li><span class="bm-swatch" [class]="'bm-tone-' + segment.tone"></span>{{ segment.name }}</li>
+          }
+        </ul>
+        @for (row of chart.rows; track row.key) {
+          <div class="bm-stacked-row">
+            <div class="bm-row-header">
+              <span class="bm-row-label">{{ row.label }}</span>
+              <span class="bm-row-summary">
+                @for (item of summary(chart, row); track $index; let last = $last) {
+                  <span [class.bm-summary-accent]="item.tone === 'accent'">{{ item.text }}</span>@if (!last) {<span> · </span>}
+                }
+              </span>
+            </div>
+            <div class="bm-stack" role="img" [attr.aria-label]="describe(chart, row)">
+              @for (segment of chart.segments; track segment.key; let i = $index) {
+                <div class="bm-segment" [class]="'bm-tone-' + segment.tone" [style.width.%]="row.values[i] || 0"></div>
+              }
+            </div>
+          </div>
+        }
+      } @else {
+        <div class="bm-bars">
+          @for (row of chart.rows; track row.key) {
+            <span class="bm-row-label">{{ row.label }}</span>
+            <div class="bm-track" role="img" [attr.aria-label]="describe(chart, row)">
+              <div class="bm-bar" [class.bm-tone-accent]="row.isHighlighted" [style.width.%]="row.values[0] || 0"></div>
+            </div>
+            <span class="bm-value" [class.bm-value-highlighted]="row.isHighlighted">{{ format(row.values[0] || 0) }}</span>
+          }
+        </div>
+      }
+      @if (chart.caption) {
+        <p class="bm-caption">{{ chart.caption }}</p>
+      }
+    </figure>
+  }
+</div>

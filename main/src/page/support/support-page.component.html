@@ -1,8 +1,8 @@
 <article>
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core [section]="page.introSection"/>
-      <td-link-panels [panels]="page.introSection.panels" [sectionId]="page.introSection.sectionId"/>
+      <td-section-core [section]="page.introSection" class="wide-section"/>
+      <td-link-panels class="wide-section" [panels]="page.introSection.panels" [sectionId]="page.introSection.sectionId"/>
     }
     @if (page.featureTableSection) {
       <td-section-core [section]="page.featureTableSection"/>
