@@ -28,8 +28,9 @@ import { metaTagsField } from "./meta-tags";
 
 // Top-level URL segments owned by the fixed-schema pages and resource hubs in main/src/routes.browser.ts.
 // Keep in sync manually - the schema package cannot import from the Angular app.
+// Paths in composableTakeoverRoutes (e.g. "cloud") are deliberately absent: a composable page may take them over.
 const reservedRoutes = [
-    "404", "applications", "blog", "cloud", "deploy", "events", "features", "fundamentals", "learn", "lectures",
+    "404", "applications", "blog", "deploy", "events", "features", "fundamentals", "learn", "lectures",
     "legal", "papers", "pricing", "request-tech-talk", "startup-program", "support", "use-cases",
 ];
 

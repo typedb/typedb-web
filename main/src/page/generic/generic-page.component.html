@@ -2,8 +2,8 @@
   @if (page$ | async; as page) {
     <td-section-core sectionId="intro" [section]="page.introSection" />
     @for (section of page.coreSections; track section; let idx = $index) {
-      <td-section-core [section]="section" />
-      <td-content-panel [panel]="section.panel" [panelId]="'core-section-' + idx" />
+      <td-section-core [section]="section" [class.wide-section]="section.width === 'wide'" />
+      <td-content-panel [panel]="section.panel" [panelId]="'core-section-' + idx" [class.wide-section]="section.width === 'wide'" />
     }
     <td-section-core [section]="page.finalSection" />
     <td-conclusion-panel [panel]="page.finalSection.panel" />

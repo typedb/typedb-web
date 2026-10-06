@@ -63,15 +63,23 @@ export const blogPaginationRoutes = [
 // The same list is duplicated in schema/page/composable.ts (reservedRoutes) to validate routes in Sanity Studio.
 export const composablePageSchemaInfo = { schemaName: "composablePage", schemaSlugAccessor: "route.current" } as const;
 
-// The home page ("/") is served by the composablePage whose route is composableHomeRoute, when one exists.
-// Until then it falls back to the legacy fixed-schema homePage, so publishing that composable page is the cutover.
-const hasComposableHomePage: CanMatchFn = () =>
+// Fixed-schema pages being migrated to composable pages. Each path is served by the composablePage with the given
+// route when one exists, and falls back to its fixed-schema page until then, so publishing the composable page is
+// the cutover. Once a fixed page's document is retired, remove its fixed route and its entry here.
+export const composableTakeoverRoutes = [
+    { path: "", composableRoute: composableHomeRoute },
+    { path: "cloud", composableRoute: "cloud" },
+] as const;
+
+const hasComposablePageAt = (route: string): CanMatchFn => () =>
     inject(ContentService).data.pipe(
         map((db) => db.getDocumentsByType<SanityComposablePage>(composablePageSchemaInfo.schemaName)
-            .some((x) => x.route?.current === composableHomeRoute)),
+            .some((x) => x.route?.current === route)),
     );
 
+// Top-level paths the ":slug" route must not serve. Takeover paths are served by their own routes above.
 export const reservedTopLevelRoutes: readonly string[] = [
+    ...composableTakeoverRoutes.map((x) => x.path),
     ...staticPageSchemas.map((x) => x.path),
     ...genericPageSchemas.map((x) => x.path),
     ...dynamicPageSchemas.map((x) => x.path.split("/")[0]),
@@ -141,7 +149,12 @@ interface DynamicPagePredefined {
 type DynamicPage = DynamicPageWithSchema | DynamicPagePredefined;
 
 export const routes: Routes = [
-    { path: "", component: ComposablePageComponent, canMatch: [hasComposableHomePage], data: { composableRoute: composableHomeRoute } },
+    ...composableTakeoverRoutes.map(({ path, composableRoute }) => ({
+        path,
+        component: ComposablePageComponent,
+        canMatch: [hasComposablePageAt(composableRoute)],
+        data: { composableRoute },
+    })),
     ...staticPageSchemas.map(({ path }) => ({
         path,
         ...staticPages[path],

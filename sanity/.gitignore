@@ -27,3 +27,6 @@
 
 # Dotenv and similar local-only files
 *.local
+
+# Output of scripts/monochrome-logo.mjs
+/logo-output

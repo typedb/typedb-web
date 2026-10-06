@@ -13,7 +13,7 @@
         }
         @case ("titleBodyPanelSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />
-          <td-content-panel [panel]="item.section.panel" [panelId]="'section-' + idx" />
+          <td-content-panel [panel]="item.section.panel" [panelId]="'section-' + idx" [class.wide-section]="item.section.width === 'wide'" />
         }
         @case ("keyPointsSection") {
           <td-section-core [section]="item.section" [level]="isFirst ? 'h1' : 'h2'" [isIntroSection]="isFirst" [textAlign]="textAlignOf(item.section)" [class.wide-section]="item.section.width === 'wide'" />

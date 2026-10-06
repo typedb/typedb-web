@@ -9,7 +9,8 @@
   @if (row.display === "logos") {
     <ul class="ol-row">
       @for (organisation of row.organisations; track organisation.id) {
-        <li><img class="ol-logo" [src]="organisation.logoURL" [alt]="organisation.name" height="40" loading="lazy" /></li>
+        <li><img class="ol-logo" [src]="organisation.logoURL" [alt]="organisation.name" loading="lazy"
+                 [attr.height]="logoHeight(organisation)" [style.--ol-logo-height]="logoHeight(organisation)" /></li>
       }
     </ul>
   } @else {
