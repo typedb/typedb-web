@@ -1,5 +1,5 @@
-@use "colors";
 @use "media";
+@use "mixins";
 @use "shapes";
 
 td-closing-panel-section {
@@ -10,9 +10,9 @@ td-closing-panel-section {
         flex-direction: column;
         gap: 40px;
         padding: 64px 48px;
-        border: 1px solid #{rgba(colors.$secondary-blue, 0.2)};
+        // The same card appearance as the link panels and other cards, with a larger radius for the bigger panel
+        @include mixins.card-appearance;
         border-radius: 24px;
-        background: var(--color-secondary-purple);
 
         @media (max-width: media.$max-width-mobile) {
             gap: 28px;
@@ -24,22 +24,13 @@ td-closing-panel-section {
         max-width: 680px;
     }
 
-    // Frameless buttons are white on the tinted panel, where the default blue is hard to read
-    .button-frameless {
-        color: var(--color-white);
-
-        &:not(.td-button-disabled):hover {
-            color: var(--color-secondary-light-grey);
-        }
-    }
-
     .cl-columns {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 16px;
         margin: 0;
         padding: 32px 0 0;
-        border-top: 1px solid #{rgba(colors.$secondary-blue, 0.2)};
+        border-top: shapes.$border;
         list-style: none;
     }
 
