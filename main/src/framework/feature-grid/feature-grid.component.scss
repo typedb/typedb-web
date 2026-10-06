@@ -1,5 +1,6 @@
 @use "colors";
 @use "media";
+@use "mixins";
 @use "shapes";
 
 td-feature-grid {
@@ -261,6 +262,109 @@ td-feature-grid {
 
     .fg-code-short-container {
         position: relative;
+    }
+
+    // Bento appearance: each feature is a card on a 12-column grid, with its visual pinned to the card's foot
+    &.fg-bento {
+        overflow: visible;
+
+        .fg-grid-row {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 16px;
+
+            & + .fg-grid-row {
+                margin-top: 16px;
+            }
+
+            > .fg-grid-item {
+                grid-column: span 12;
+                width: auto;
+            }
+
+            &.grid-row-size-2 {
+                > .fg-grid-item:nth-child(1) { grid-column: span 7; }
+                > .fg-grid-item:nth-child(2) { grid-column: span 5; }
+            }
+
+            &.grid-row-size-3 > .fg-grid-item { grid-column: span 4; }
+            &.grid-row-size-4 > .fg-grid-item { grid-column: span 3; }
+
+            @media (max-width: media.$max-width-tablet) {
+                &.grid-row-size-2 > .fg-grid-item:nth-child(n),
+                &.grid-row-size-3 > .fg-grid-item,
+                &.grid-row-size-4 > .fg-grid-item {
+                    grid-column: span 12;
+                }
+            }
+        }
+
+        .fg-grid-item {
+            @include mixins.card-appearance;
+            padding: 32px;
+            gap: 22px;
+            min-height: 340px;
+
+            @media (max-width: media.$max-width-mobile) {
+                padding: 24px;
+                min-height: 0;
+            }
+
+            // A full-width feature puts its text and visual side by side, in equal columns
+            &.fg-layout-row {
+                align-items: center;
+                min-height: 0;
+
+                > .fg-grid-item-text,
+                > :not(.fg-grid-item-text) {
+                    flex: 1 1 0;
+                    min-width: 0;
+                }
+            }
+
+            &.fg-layout-column {
+                > .fg-code-short-container,
+                > td-illustration,
+                > td-aspect-ratio {
+                    margin-top: auto;
+                }
+            }
+        }
+
+        .fg-grid-item-text {
+            gap: 10px;
+        }
+
+        .fg-cell-eyebrow {
+            margin: 0 0 12px;
+            font-size: 12.5px;
+            color: var(--color-secondary-light-grey);
+        }
+
+        .fg-feature-title-section h4 {
+            margin: 0;
+        }
+
+        // Plain dark code panels, without the standard grid's gradient border and glow
+        .fg-code-short,
+        .fg-code-short.fg-typeql-snippet {
+            padding: 18px 20px;
+            border: shapes.$border;
+            border-radius: 12px;
+            background: var(--body-background);
+            box-shadow: none;
+        }
+
+        // Images sit directly on the card, without the frame every illustration gets by default
+        td-illustration.fg-media {
+            border: none;
+            border-radius: 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
     }
 
     .fg-copy-button {

@@ -1,0 +1,57 @@
+@use "media";
+@use "mixins";
+@use "shapes";
+
+td-closing-panel-section {
+    display: block;
+
+    .cl-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 64px 48px;
+        // The same card appearance as the link panels and other cards, with a larger radius for the bigger panel
+        @include mixins.card-appearance;
+        border-radius: 24px;
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 28px;
+            padding: 32px 24px;
+        }
+    }
+
+    td-section-core .td-text {
+        max-width: 680px;
+    }
+
+    .cl-columns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 0;
+        padding: 32px 0 0;
+        border-top: shapes.$border;
+        list-style: none;
+    }
+
+    .cl-column {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .cl-column-title {
+        color: var(--color-white);
+        font-size: var(--font-size-h5);
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    a.cl-column-title:hover {
+        color: var(--color-secondary-blue);
+    }
+
+    .cl-column-description {
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
+    }
+}

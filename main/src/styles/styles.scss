@@ -54,6 +54,8 @@ article {
     }
 }
 
+// Sections are narrow by default on desktop; .wide-section opts back into the full section width
+// (e.g. wide tables, related-article bands, layouts with a sidebar)
 section, .section {
     position: relative;
     z-index: 1;
@@ -62,6 +64,16 @@ section, .section {
     margin-top: var(--section-margin);
     border-radius: 20px;
     @include mixins.section-width($offset: 0px);
+
+    @media (min-width: media.$min-width-desktop) {
+        max-width: var(--section-narrow-max-width);
+    }
+}
+
+.wide-section {
+    @media (min-width: media.$min-width-desktop) {
+        max-width: var(--section-max-width);
+    }
 }
 
 article > section, article > .section {
@@ -76,7 +88,7 @@ td-section-core + td-key-point-panels-2x2 {
 
 .narrow-section {
     @media (min-width: media.$min-width-desktop) {
-        max-width: 1140px;
+        max-width: var(--section-narrow-max-width);
         margin-left: auto;
         margin-right: auto;
     }
@@ -215,6 +227,18 @@ table {
 
 .subsection-margin {
     margin-top: var(--subsection-margin);
+}
+
+// Short monospace label above a section title (e.g. "What's in the engine"), also used for card and chart labels
+.td-eyebrow {
+    margin: 0 0 16px;
+    font-family: var(--font-family-code);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-secondary-blue);
 }
 
 .subtitle-l {

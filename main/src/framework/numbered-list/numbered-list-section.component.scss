@@ -1,0 +1,65 @@
+@use "media";
+@use "shapes";
+
+td-numbered-list-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: start;
+
+    @media (max-width: media.$max-width-tablet) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .nl-content {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .nl-body p {
+        margin: 0;
+    }
+
+    .nl-items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .nl-item {
+        display: flex;
+        gap: 20px;
+        padding: 18px 0;
+        border-top: shapes.$border;
+
+        &:last-child {
+            border-bottom: shapes.$border;
+        }
+    }
+
+    .nl-number {
+        padding-top: 3px;
+        font-family: var(--font-family-code);
+        font-size: 13px;
+        color: var(--color-secondary-blue);
+    }
+
+    .nl-item-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .nl-item-title {
+        color: var(--color-white);
+        font-size: var(--font-size-h5);
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    .nl-item-description {
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
+    }
+}

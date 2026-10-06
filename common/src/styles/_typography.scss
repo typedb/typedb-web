@@ -10,8 +10,8 @@ $thin: 200;
 
 $letter-spacing: 0.02em;
 
-$h1: 64px;
-$height-h1: calc(76px / $h1);
+$h1: 52px;
+$height-h1: calc(62px / $h1);
 $h1-mobile: 30px;
 $height-h1-mobile: calc(40px / $h1-mobile);
 
@@ -34,6 +34,11 @@ $h5: 16px;
 $height-h5: calc(24px / $h5);
 $h5-mobile: 14px;
 $height-h5-mobile: calc(22px / $h5-mobile);
+
+$p0: 26px;
+$height-p0: calc(38px / $p0);
+$p0-mobile: 20px;
+$height-p0-mobile: calc(30px / $p0-mobile);
 
 $p1: 20px;
 $height-p1: calc(30px / $p1);

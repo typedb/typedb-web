@@ -3,7 +3,7 @@ import { NgOptimizedImage } from "@angular/common";
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { sanitiseHtmlID } from "typedb-web-common/lib";
 
-import { Lecture, LinkPanel, ResourceLink } from "typedb-web-schema";
+import { Lecture, LinkPanel, LinkPanelsAppearance, ResourceLink } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../button/button.component";
@@ -26,7 +26,11 @@ const DEFAULT_PROGRESS = 20;
 export class LinkPanelsComponent {
     @Input() panels!: LinkPanel[];
     @Input({ required: true }) sectionId!: string;
-    @HostBinding("class") clazz = "section";
+    @Input() appearance: LinkPanelsAppearance = "plain";
+
+    @HostBinding("class") get clazz() {
+        return this.appearance === "card" ? "section lp-cards" : "section";
+    }
 
     panelID(panel: LinkPanel) {
         return `${this.sectionId}_${sanitiseHtmlID(panel.title)}`;

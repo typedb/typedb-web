@@ -8,8 +8,8 @@
       </a>
     </section> -->
     <div class="section-background-solid bp-post-section">
-      <nav td-blog-navbar variant="postPage" class="section"></nav>
-      <section class="bp-intro-section">
+      <nav td-blog-navbar variant="postPage" class="section wide-section"></nav>
+      <section class="bp-intro-section wide-section">
         <div>
           <td-blog-category-chips [post]="post" />
           <td-heading-with-highlights level="h1" renderedLevel="h2" [value]="post.title" />
@@ -20,7 +20,7 @@
         <div class="bp-author-section"><td-blog-authorship-bar [post]="post" size="medium" variant="postPage" /></div>
         <hr class="bp-author-section-hr" />
       </section>
-      <section class="bp-content-section">
+      <section class="bp-content-section wide-section">
         <div class="bp-content">
           <figure class="bp-featured-image-wrapper">
             <img class="bp-featured-image" [ngSrc]="post.imageURL!" alt="" fill priority sizes="(max-width: 768px) 100vw, 50vw" />

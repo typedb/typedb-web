@@ -2,7 +2,7 @@
   <td-floating-dots-background />
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" [noWindowHeader]="true" flexDirection="row" [hasPeekingBot]="true" [isIntroSection]="true"/>
+      <td-section-core level="h1" [section]="page.introSection" [noWindowHeader]="true" flexDirection="row" [hasPeekingBot]="true" [isIntroSection]="true" class="wide-section"/>
     }
     @if (page.benefitsSection1) {
       <td-section-core [section]="page.benefitsSection1" class="narrow-section" textAlign="left"/>
@@ -14,13 +14,13 @@
       </div>
     }
     @if (page.benefitsSection2) {
-      <td-section-core [section]="page.benefitsSection2" flexDirection="row"/>
+      <td-section-core [section]="page.benefitsSection2" flexDirection="row" class="wide-section"/>
     }
     @if (page.benefitsSection3) {
-      <td-section-core [section]="page.benefitsSection3" flexDirection="row-reverse"/>
+      <td-section-core [section]="page.benefitsSection3" flexDirection="row-reverse" class="wide-section"/>
     }
     @if (page.queryLanguageComparisonSection) {
-      <section class="td-inverted-colors-section">
+      <section class="td-inverted-colors-section wide-section">
         <td-section-core [noSectionClass]="true" [section]="page.queryLanguageComparisonSection"/>
         <td-polyglot-comparison [snippet]="page.queryLanguageComparisonSection.content!" polyglotSnippetID="comparison"/>
       </section>

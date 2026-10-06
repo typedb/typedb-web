@@ -1,0 +1,162 @@
+@use "media";
+@use "mixins";
+@use "shapes";
+
+td-benchmark-section {
+    --bm-neutral: rgba(255, 255, 255, 0.18);
+    --bm-muted: rgba(255, 255, 255, 0.45);
+    --bm-accent: var(--color-secondary-blue);
+
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: center;
+
+    @media (max-width: media.$max-width-tablet) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .bm-footnote {
+        margin: 18px 0 0;
+        font-size: var(--font-size-aside);
+        line-height: var(--line-height-aside);
+        color: var(--color-secondary-grey);
+    }
+
+    .bm-charts {
+        @include mixins.card-appearance;
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 24px;
+        }
+    }
+
+    .bm-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin: 0;
+
+        & + .bm-chart {
+            margin-top: 26px;
+            padding-top: 24px;
+            border-top: shapes.$border;
+        }
+    }
+
+    .bm-chart-title {
+        margin: 0;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .bm-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: var(--font-size-aside);
+
+        li {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    .bm-swatch {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+    }
+
+    .bm-tone-neutral { background: var(--bm-neutral); }
+    .bm-tone-muted { background: var(--bm-muted); }
+    .bm-tone-accent { background: var(--bm-accent); }
+
+    .bm-stacked-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .bm-row-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .bm-row-label {
+        color: var(--color-white);
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    .bm-row-summary {
+        font-family: var(--font-family-code);
+        font-size: 13px;
+        text-align: right;
+    }
+
+    .bm-summary-accent {
+        color: var(--bm-accent);
+    }
+
+    .bm-stack {
+        display: flex;
+        gap: 2px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 6px;
+    }
+
+    // Segments shrink a little to absorb the 2px gaps, so a row's percentages always fill the bar exactly
+    .bm-segment {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .bm-bars {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr) max-content;
+        gap: 12px 16px;
+        align-items: center;
+    }
+
+    .bm-track {
+        height: 14px;
+        border-radius: 4px;
+        background: var(--color-secondary-purple, rgba(255, 255, 255, 0.06));
+    }
+
+    .bm-bar {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--bm-neutral);
+
+        &.bm-tone-accent {
+            background: var(--bm-accent);
+        }
+    }
+
+    .bm-value {
+        font-family: var(--font-family-code);
+        font-size: 14px;
+        text-align: right;
+
+        &.bm-value-highlighted {
+            color: var(--color-white);
+        }
+    }
+
+    .bm-caption {
+        margin: 0;
+        font-size: var(--font-size-aside);
+        line-height: var(--line-height-aside);
+        color: var(--color-secondary-grey);
+    }
+}

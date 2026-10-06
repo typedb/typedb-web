@@ -1,0 +1,19 @@
+<div class="cl-panel">
+  <td-section-core [section]="section" [noSectionClass]="true" textAlign="left" />
+  @if (section.columns.length) {
+    <ul class="cl-columns">
+      @for (column of section.columns; track column.key) {
+        <li class="cl-column">
+          @if (column.link) {
+            <a class="cl-column-title" [tdLink]="column.link">{{ column.title }}</a>
+          } @else {
+            <span class="cl-column-title">{{ column.title }}</span>
+          }
+          @if (column.description) {
+            <span class="cl-column-description">{{ column.description }}</span>
+          }
+        </li>
+      }
+    </ul>
+  }
+</div>

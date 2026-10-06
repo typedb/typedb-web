@@ -1,0 +1,99 @@
+@use "media";
+@use "shapes";
+
+td-organisation-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    &.section {
+        margin-top: var(--subsection-margin);
+    }
+
+    // Items are inline (not flex) so text-wrap: balance can even out the lines when a row wraps,
+    // e.g. 8 logos split 4 + 4 rather than 7 + 1. Browsers without balance support wrap normally.
+    // Spacing comes from item margins: 24px between lines, 56px between items (20px / 32px on mobile).
+    // The row's negative margins cancel the items' outer margins, so a line holds as much as a flex row would.
+    .ol-row {
+        display: block;
+        width: calc(100% + 56px);
+        margin: -12px -28px;
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        text-wrap: balance;
+
+        > li {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 12px 28px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            width: calc(100% + 32px);
+            margin: -10px -16px;
+
+            > li {
+                margin: 10px 16px;
+            }
+        }
+    }
+
+    // Heights come from each logo's shape (see logoHeight); logos are pre-coloured, so they aren't dimmed here
+    .ol-logo {
+        display: block;
+        height: calc(var(--ol-logo-height, 32) * 1px);
+        width: auto;
+
+        @media (max-width: media.$max-width-mobile) {
+            height: calc(var(--ol-logo-height, 32) * 0.75px);
+        }
+    }
+
+    // Text rows, for organisations shown by name rather than logo
+    .ol-names {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 26px;
+        color: var(--color-secondary-light-grey);
+        width: calc(100% + 48px);
+        margin: -8px -24px;
+
+        // Each name stays on one line; only the row wraps, between names
+        > li {
+            margin: 8px 24px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            font-size: 16px;
+            width: calc(100% + 28px);
+            margin: -6px -14px;
+
+            > li {
+                margin: 6px 14px;
+            }
+        }
+    }
+
+    .ol-group-label {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        max-width: 980px;
+        margin-top: 12px;
+
+        .td-eyebrow {
+            margin: 0;
+            white-space: nowrap;
+            color: var(--color-secondary-light-grey);
+        }
+    }
+
+    .ol-rule {
+        flex: 1;
+        border-top: shapes.$border;
+    }
+}

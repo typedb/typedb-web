@@ -3,7 +3,11 @@
 
 @use "actions/actions.component";
 @use "aspect-ratio/aspect-ratio.component";
+@use "benchmark/benchmark-section.component";
 @use "button/button.component";
+@use "card-switcher/card-switcher.component";
+@use "closing-panel/closing-panel-section.component";
+@use "code/code-admonition.component";
 @use "code/code-snippet.component";
 @use "conclusion-panel/conclusion-panel.component";
 @use "contact-form/contact-form.component";
@@ -33,6 +37,8 @@
 @use "link-panels/link-panels-cols-2.component";
 @use "link-panels/resource-panels.component";
 @use "link-panels/simple/simple-link-panels.component";
+@use "numbered-list/numbered-list-section.component";
+@use "organisation-logos/organisation-logos.component";
 @use "person/avatar.component";
 @use "person/person-card.component";
 @use "person/person-info.component";
@@ -42,6 +48,7 @@
 @use "scroll-pane/scroll-pane.component";
 @use "section/section-core.component";
 @use "snackbar/snackbar.component";
+@use "solution-cards/solution-cards.component";
 @use "social-media/social-media-panels.component";
 @use "spinner/spinner.component";
 @use "text/rich-text.component";

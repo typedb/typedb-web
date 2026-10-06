@@ -1,0 +1,30 @@
+<div class="cw-tabs" role="tablist" aria-orientation="vertical">
+  @for (card of cards; track card.key; let i = $index) {
+    <button type="button" role="tab" class="cw-tab" [class.cw-tab-selected]="selectedIndex() === i"
+            [id]="tabId(card)" [attr.aria-selected]="selectedIndex() === i" [attr.aria-controls]="panelId(card)"
+            [attr.tabindex]="selectedIndex() === i ? 0 : -1"
+            (click)="select(i)" (keydown)="onKeydown($event, i)">
+      <span class="cw-tab-number">{{ number(i) }}</span>
+      <span>{{ card.label }}</span>
+    </button>
+  }
+</div>
+@for (card of cards; track card.key; let i = $index) {
+  <div class="cw-panel" role="tabpanel" [id]="panelId(card)" [attr.aria-labelledby]="tabId(card)"
+       [hidden]="selectedIndex() !== i">
+    <p class="td-eyebrow cw-panel-label">{{ number(i) }} · {{ card.label }}</p>
+    <h3 class="cw-headline">{{ card.headline }}</h3>
+    @if (card.points.length) {
+      <ul class="cw-points">
+        @for (point of card.points; track $index) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+    }
+    @if (card.code) {
+      <div class="cw-code" tdSyntaxHighlight [code]="card.code" [language]="card.language">
+        <pre><code [class]="'language-' + card.language">{{ card.code }}</code></pre>
+      </div>
+    }
+  </div>
+}

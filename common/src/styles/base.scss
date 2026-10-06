@@ -47,6 +47,14 @@ p, .text-p2 {
     line-height: var(--line-height-p2);
 }
 
+// Lead paragraphs: the largest body size, in full white rather than the faded body colour.
+// Declared after p1/p2 at equal specificity so a lead paragraph inside a .text-p1 body still wins.
+.text-p0, .text-p0 p, p.text-p0 {
+    font-size: var(--font-size-p0);
+    line-height: var(--line-height-p0);
+    color: var(--color-white);
+}
+
 .text-blog, .text-blog p {
     font-size: var(--font-size-blog);
     line-height: var(--line-height-blog);
