@@ -97,7 +97,6 @@ export {
     ComposablePage, composableHomeRoute, composablePageSchemaName, type ComposablePageSection, type SanityComposablePage,
     type SanityComposableSection,
 } from "./page/composable";
-export { GenericPage, type SanityGenericPage, genericPageSchemaName } from "./page/generic";
 export { MetaTags, type SanityMetaTags } from "./page/meta-tags";
 export { EventsPage, type SanityEventsPage, eventsPageSchemaName } from "./page/events";
 export { FeaturesPage, featuresPageSchemaName, type SanityFeaturesPage } from "./page/features";
@@ -106,7 +105,6 @@ export {
 } from "./page/learn";
 export { LecturesPage, type SanityLecturesPage, lecturesPageSchemaName } from "./page/lectures";
 export { LegalDocument, type SanityLegalDocument, legalDocumentSchemaName } from "./page/legal";
-export { HomePage, homePageSchemaName, type SanityHomePage, SocialValidationSection, LatestPostsSection } from "./page/home";
 export { type SanityPapersPage, PapersPage, papersPageSchemaName } from "./page/papers";
 export { PricingPage, pricingPageSchemaName, type SanityPricingPage } from "./page/pricing";
 export {

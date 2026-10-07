@@ -3,8 +3,6 @@ import { basePageSchemas } from "./common";
 import { composablePageSchemas } from "./composable";
 import { eventsPageSchemas } from "./events";
 import { featuresPageSchemas } from "./features";
-import { genericPageSchemas } from "./generic";
-import { homePageSchemas } from "./home";
 import { learnPageSchemas } from "./learn";
 import { legalDocumentSchema } from "./legal";
 import { pricingPageSchemas } from "./pricing";
@@ -19,7 +17,7 @@ import { useCasePageSchemas } from "./use-case";
 
 export const pageSchemas: any[] = [
     ...basePageSchemas, ...blogSchemas, ...composablePageSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
-    ...genericPageSchemas, ...homePageSchemas, ...learnPageSchemas, ...lecturesPageSchemas, legalDocumentSchema,
+    ...learnPageSchemas, ...lecturesPageSchemas, legalDocumentSchema,
     ...metaTagsSchemas, papersPageSchema, ...pricingPageSchemas, requestTechTalkPageSchema,
     ...servicesPageSchemas, ...startupProgramPageSchemas, ...supportPageSchemas, ...useCasePageSchemas,
 ];

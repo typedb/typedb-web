@@ -6,8 +6,6 @@ import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
 import { ComposablePageComponent } from "./page/composable/composable-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
-import { GenericPageComponent } from "./page/generic/generic-page.component";
-import { HomePageComponent } from "./page/home/home-page.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
 import { LegalDocumentComponent } from "./page/legal/legal-document.component";
@@ -24,7 +22,6 @@ import { blogCategories, blogCategoryList, composableHomeRoute, SanityComposable
 import { ContentService } from "./service/content.service";
 
 export const staticPageSchemas = [
-    { path: "", schemaName: "homePage" },
     { path: "blog", schemaName: "blog" },
     { path: "pricing", schemaName: "pricingPage" },
     { path: "lectures", schemaName: "lecturesPage" },
@@ -36,10 +33,6 @@ export const staticPageSchemas = [
     { path: "startup-program", schemaName: "startupProgramPage" },
     { path: "papers", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
-
-export const genericPageSchemas = [
-    { path: "cloud", documentID: "cloudPage" },
-] as const satisfies readonly GenericPage[];
 
 export const dynamicPageSchemas = [
     { path: "applications/:slug", schemaName: "applicationArticle" },
@@ -66,10 +59,8 @@ export const composablePageSchemaInfo = { schemaName: "composablePage", schemaSl
 // Fixed-schema pages being migrated to composable pages. Each path is served by the composablePage with the given
 // route when one exists, and falls back to its fixed-schema page until then, so publishing the composable page is
 // the cutover. Once a fixed page's document is retired, remove its fixed route and its entry here.
-export const composableTakeoverRoutes = [
-    { path: "", composableRoute: composableHomeRoute },
-    { path: "cloud", composableRoute: "cloud" },
-] as const;
+// (The home page and the Cloud page were migrated this way in October 2026.)
+export const composableTakeoverRoutes: readonly { path: string; composableRoute: string }[] = [];
 
 const hasComposablePageAt = (route: string): CanMatchFn => () =>
     inject(ContentService).data.pipe(
@@ -81,13 +72,11 @@ const hasComposablePageAt = (route: string): CanMatchFn => () =>
 export const reservedTopLevelRoutes: readonly string[] = [
     ...composableTakeoverRoutes.map((x) => x.path),
     ...staticPageSchemas.map((x) => x.path),
-    ...genericPageSchemas.map((x) => x.path),
     ...dynamicPageSchemas.map((x) => x.path.split("/")[0]),
     "404",
 ];
 
 const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
-    "": { component: HomePageComponent },
     blog: { component: BlogComponent, title: "TypeDB Blog" },
     features: { component: FeaturesPageComponent, title: "TypeDB Features" },
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
@@ -98,10 +87,6 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
-};
-
-const genericPages: Record<(typeof genericPageSchemas)[number]["path"], Route> = {
-    cloud: { component: GenericPageComponent, title: "TypeDB Cloud" },
 };
 
 const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {
@@ -130,11 +115,6 @@ interface StaticPage {
     schemaName: string;
 }
 
-interface GenericPage {
-    path: string;
-    documentID: string;
-}
-
 interface DynamicPageWithSchema {
     path: `${string}:slug${string}`;
     schemaName: string;
@@ -149,6 +129,8 @@ interface DynamicPagePredefined {
 type DynamicPage = DynamicPageWithSchema | DynamicPagePredefined;
 
 export const routes: Routes = [
+    // The home page is the composable page whose route is "/"; the ":slug" route below can't match an empty path
+    { path: "", component: ComposablePageComponent, data: { composableRoute: composableHomeRoute } },
     ...composableTakeoverRoutes.map(({ path, composableRoute }) => ({
         path,
         component: ComposablePageComponent,
@@ -158,11 +140,6 @@ export const routes: Routes = [
     ...staticPageSchemas.map(({ path }) => ({
         path,
         ...staticPages[path],
-    })),
-    ...genericPageSchemas.map(({ documentID, path }) => ({
-        path,
-        data: { documentID },
-        ...genericPages[path],
     })),
     ...dynamicPageSchemas.map(({ path }) => ({
         path,
