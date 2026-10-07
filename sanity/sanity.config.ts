@@ -12,11 +12,11 @@ import { structureTool, StructureBuilder } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 
 import {
-    featuresPageSchemaName, homePageSchemaName, linkSchemaName,
+    featuresPageSchemaName, linkSchemaName,
     schemaTypes, topnavSchemaNames, lecturesPageSchemaName, footerSchemaName,
     communityResourcesSchemaName, formsSchemaName, videoEmbedSchemaName, organisationSchemaName,
     imageIllustrationSchemaName, codeSnippetSchemaName, polyglotSnippetSchemaName, graphVisualisationSchemaName,
-    splitPaneIllustrationSchemaName, referenceMaterialSchemaName, genericPageSchemaName,
+    splitPaneIllustrationSchemaName, referenceMaterialSchemaName,
     personSchemaName, lectureSchemaName, papersPageSchemaName, paperSchemaName, siteBannerSchemaName,
     requestTechTalkPageSchemaName, liveEventSchemaName, eventsPageSchemaName, supportPageSchemaName,
     servicesPageSchemaName, testimonialSchemaName, featureGridSchemaName, fundamentalArticleSchemaName,
@@ -54,10 +54,7 @@ export default defineConfig({
                 ])),
                 s.documentTypeListItem(composablePageSchemaName).title("Page Builder (new)").icon(ComposeIcon),
                 s.listItem().title("Pages - Main Site").icon(DocumentsIcon).child(s.list().title("Pages - Main Site").items([
-                    singletonListItem(s, homePageSchemaName, { title: "Home", icon: DocumentIcon }),
-                    s.divider(),
                     singletonListItem(s, featuresPageSchemaName, { title: "Features", icon: DocumentIcon }),
-                    singletonListItem(s, genericPageSchemaName, { title: "Cloud", icon: DocumentIcon, documentID: "cloudPage" }),
                     s.divider(),
                     singletonListItem(s, learningCenterSchemaName, { title: "Learning Center", icon: DocumentIcon }),
                     singletonListItem(s, fundamentalsPageSchemaName, { title: "Fundamentals", icon: DocumentIcon }),

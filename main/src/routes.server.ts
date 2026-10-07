@@ -1,8 +1,7 @@
 import { RenderMode, ServerRoute } from "@angular/ssr";
 import { blogCategoryList, composableHomeRoute } from "typedb-web-schema";
 import {
-    composablePageSchemaInfo, composableTakeoverRoutes, dynamicPageSchemas, genericPageSchemas, reservedTopLevelRoutes,
-    staticPageSchemas,
+    composablePageSchemaInfo, composableTakeoverRoutes, dynamicPageSchemas, reservedTopLevelRoutes, staticPageSchemas,
 } from "./routes.browser";
 import axios from "axios";
 
@@ -235,22 +234,16 @@ export const getDynamicRoutes = () => {
 // Helper function to get static routes that should be pre-rendered
 async function getStaticRoutes(): Promise<ServerRoute[]> {
     const routes: ServerRoute[] = [];
-    
+
+    // The home page: the composable page whose route is "/"
+    if (await composablePageExists(composableHomeRoute)) {
+        routes.push({ path: '', renderMode: RenderMode.Prerender });
+    }
+
     // Add all static pages that exist in Sanity
     for (const { path, schemaName } of staticPageSchemas) {
         // A path taken over by a composable page is served by either it or the fixed page
         const exists = await takenOverByComposablePage(path) || await documentExists(schemaName);
-        if (exists) {
-            routes.push({
-                path: path || '',  // Handle home route
-                renderMode: RenderMode.Prerender,
-            });
-        }
-    }
-    
-    // Add all generic pages that exist in Sanity
-    for (const { path, documentID } of genericPageSchemas) {
-        const exists = await takenOverByComposablePage(path) || await documentExists('genericPage', documentID);
         if (exists) {
             routes.push({
                 path,
@@ -258,7 +251,7 @@ async function getStaticRoutes(): Promise<ServerRoute[]> {
             });
         }
     }
-    
+
     return routes;
 }
 
