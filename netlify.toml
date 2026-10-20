@@ -167,6 +167,106 @@ to = "/blog/inside-typedb-studio-part-1-architecture"
 status = 301
 force = true
 
+# RETIRED 2.X DOCS PATHS
+# Keep indefinitely. Until TypeDB 3.x shipped, the 2.x docs were served unversioned at these
+# paths, so they are what old blog posts, forum threads, READMEs and LLM training data point at.
+# They have returned 404 since 3.x became the default version.
+# Scoped to the paths with at least 5 pageviews in the 90 days to 2026-10-20; the rest of the
+# retired tree 404s on purpose. Full traffic data: retired-docs-paths-90d.csv in the workspace.
+# These live here rather than in Antora page-aliases because their source components (the manual,
+# typeql and drivers archive stubs) go away when content/2.x is removed, which would take the
+# aliases with them. The renumbered Academy chapters are aliases instead, in typedb-docs.
+
+# 2.x Manual (was unversioned /docs/manual/* until 3.x launched)
+
+[[redirects]]
+from = "/docs/manual/studio"
+to = "/docs/tools/studio/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/manual/reading/infer"
+to = "/docs/typeql-reference/functions/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/manual/writing/insert"
+to = "/docs/typeql-reference/pipelines/insert/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/manual/writing/update"
+to = "/docs/typeql-reference/pipelines/update/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/manual/bulk-loading/optimizing-speed"
+to = "/docs/guides/typeql/optimizing-typeql/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/manual/bulk-loading/preventing-duplication"
+to = "/docs/typeql-reference/pipelines/put/"
+status = 301
+force = true
+
+# 2.x TypeQL reference
+
+[[redirects]]
+from = "/docs/typeql/queries/fetch"
+to = "/docs/typeql-reference/pipelines/fetch/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/modifiers/pagination"
+to = "/docs/typeql-reference/pipelines/limit/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/modifiers"
+to = "/docs/typeql-reference/pipelines/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/values/comparators"
+to = "/docs/typeql-reference/statements/comparisons/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/values/functions"
+to = "/docs/typeql-reference/expressions/builtin-functions/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/values/value-variables"
+to = "/docs/typeql-reference/statements/let-eq/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/docs/typeql/introduction"
+to = "/docs/typeql-reference/"
+status = 301
+force = true
+
+# 2.x Drivers
+
+[[redirects]]
+from = "/docs/drivers/c/api-reference"
+to = "/docs/reference/typedb-grpc-drivers/c/"
+status = 301
+force = true
+
 # DOCS SUBDOMAIN POSING AS A SUBDIRECTORY
 # Keep indefinitely. These rewrites power the typedb.com/docs subdirectory
 
