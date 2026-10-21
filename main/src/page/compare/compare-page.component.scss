@@ -1,0 +1,10 @@
+td-compare-page {
+    // Feature comparisons read as one sequence, so they sit closer together than unrelated sections
+    td-compare-feature-section + td-compare-feature-section {
+        margin-top: var(--subsection-margin);
+    }
+
+    .cp-glance-table {
+        margin-top: 28px;
+    }
+}

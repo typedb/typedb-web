@@ -4,6 +4,7 @@ import { cardSwitcherSectionSchemas } from "./card-switcher-section";
 import { benchmarkSectionSchemas } from "./benchmark-section";
 import { numberedListSectionSchemas } from "./numbered-list-section";
 import { closingPanelSectionSchemas } from "./closing-panel-section";
+import { compareSchemas } from "./compare";
 import { conclusionPanelSchemas } from "./conclusion-panel";
 import { contactFormSectionSchemas } from "./contact-form-section";
 import { contentTextPanelSchemas } from "./content-text-panel";
@@ -19,5 +20,5 @@ import { publicationSchemas } from "./publication-panel";
 export const componentSchemas: any[] = [
     ...conclusionPanelSchemas, ...contactFormSectionSchemas, ...contentTextPanelSchemas, ...featureGridSchemas, ...featureTableSchemas,
     ...integrationsGridSchemas, ...linkPanelSchemas, ...pageSectionSchemas, ...pricingPanelSchemas, ...pricingPanelsSectionSchemas,
-    ...publicationSchemas, ...organisationLogosSectionSchemas, ...solutionCardsSectionSchemas, ...cardSwitcherSectionSchemas, ...benchmarkSectionSchemas, ...numberedListSectionSchemas, ...closingPanelSectionSchemas,
+    ...publicationSchemas, ...organisationLogosSectionSchemas, ...solutionCardsSectionSchemas, ...cardSwitcherSectionSchemas, ...benchmarkSectionSchemas, ...numberedListSectionSchemas, ...closingPanelSectionSchemas, ...compareSchemas,
 ];

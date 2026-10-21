@@ -24,7 +24,8 @@ import {
     learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName,
     surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName,
     cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
-    useCasePageTemplateSchemaName, useCasePageSchemaName, composablePageSchemaName,
+    useCasePageTemplateSchemaName, useCasePageSchemaName, composablePageSchemaName, comparePageTemplateSchemaName,
+    comparePageSchemaName,
 } from "typedb-web-schema";
 import { config } from "./config";
 import { getStartedPlugin } from "./plugins/sanity-plugin-tutorial";
@@ -71,6 +72,8 @@ export default defineConfig({
                     s.divider(),
                     singletonListItem(s, useCasePageTemplateSchemaName, { title: "Use Cases: Template", icon: DocumentIcon }),
                     s.documentTypeListItem(useCasePageSchemaName).title("Use Cases").icon(DocumentsIcon),
+                    singletonListItem(s, comparePageTemplateSchemaName, { title: "Compare: Template", icon: DocumentIcon }),
+                    s.documentTypeListItem(comparePageSchemaName).title("Compare").icon(DocumentsIcon),
                     s.documentTypeListItem(legalDocumentSchemaName).title("Legal").icon(DocumentsIcon),
                 ])),
                 s.listItem().title("TypeDB Cloud").icon(CloudIcon).child(s.list().title("TypeDB Cloud").items([

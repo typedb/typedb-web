@@ -31,7 +31,7 @@ import { metaTagsField } from "./meta-tags";
 // Paths in composableTakeoverRoutes (e.g. "cloud") are deliberately absent: a composable page may take them over.
 const reservedRoutes = [
     "404", "applications", "blog", "deploy", "events", "features", "fundamentals", "learn", "lectures",
-    "legal", "papers", "pricing", "request-tech-talk", "startup-program", "support", "use-cases",
+    "compare", "legal", "papers", "pricing", "request-tech-talk", "startup-program", "support", "use-cases",
 ];
 
 /** The route of the composable page that serves the home page, typedb.com/ */

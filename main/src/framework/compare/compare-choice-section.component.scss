@@ -1,0 +1,79 @@
+@use "media";
+@use "mixins";
+@use "shapes";
+
+td-compare-choice-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .cc-choices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+
+        @media (max-width: media.$max-width-mobile) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .cc-choice {
+        display: block;
+        padding: 32px;
+        border: shapes.$border;
+        border-radius: 18px;
+
+        &.cc-typedb {
+            @include mixins.card-appearance;
+            border: 1.5px solid var(--color-green);
+            border-radius: 18px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 24px;
+        }
+
+        .subtitle-l {
+            margin-top: 18px;
+        }
+
+        // The reasons are a bulleted list in Sanity, shown as arrows
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            gap: 12px;
+
+            &::before {
+                content: "→";
+                color: var(--color-secondary-grey);
+            }
+        }
+
+        &.cc-typedb li {
+            color: var(--color-white);
+
+            &::before {
+                color: var(--color-green);
+            }
+        }
+    }
+
+    .cc-aside {
+        display: block;
+        max-width: 760px;
+        padding-top: 28px;
+        border-top: shapes.$border;
+
+        .subtitle-l {
+            margin-top: 8px;
+        }
+    }
+}

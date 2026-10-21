@@ -1,0 +1,22 @@
+<article>
+  @if (page$ | async; as page) {
+    @if (page.introSection) {
+      <td-section-core level="h1" [section]="page.introSection" [isIntroSection]="true" textAlign="left" class="narrow-section" />
+    }
+    @if (page.comparisonTableSection) {
+      <section>
+        <td-section-core [section]="page.comparisonTableSection" [noSectionClass]="true" textAlign="left" />
+        <td-compare-table class="cp-glance-table" [table]="page.comparisonTableSection.featureTable" [sectionId]="page.comparisonTableSection.sectionId" />
+      </section>
+    }
+    @for (section of page.featureSections; track section.sectionId) {
+      <td-compare-feature-section [section]="section" />
+    }
+    @if (page.choiceSection) {
+      <td-compare-choice-section [section]="page.choiceSection" />
+    }
+    @if (page.conclusionSection) {
+      <td-closing-panel-section [section]="page.conclusionSection" />
+    }
+  }
+</article>
