@@ -119,6 +119,11 @@ async function fetchFundamentalArticleSlugs(): Promise<Array<{ slug: string }>> 
     return allSlugs["fundamentalArticle"] || [];
 }
 
+async function fetchComparePageInstanceSlugs(): Promise<Array<{ slug: string }>> {
+    const allSlugs = await getCachedSlugs();
+    return allSlugs["comparePage"] || [];
+}
+
 async function fetchUseCasePageInstanceSlugs(): Promise<Array<{ slug: string }>> {
     const allSlugs = await getCachedSlugs();
     return allSlugs["useCasePage"] || [];
@@ -213,6 +218,8 @@ export const getDynamicRoutes = () => {
                                 return await fetchApplicationArticleSlugs();
                             case 'fundamentalArticle':
                                 return await fetchFundamentalArticleSlugs();
+                            case "comparePage":
+                                return await fetchComparePageInstanceSlugs();
                             case "useCasePage":
                                 return await fetchUseCasePageInstanceSlugs();
                             default:

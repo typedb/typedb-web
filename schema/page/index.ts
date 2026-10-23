@@ -13,10 +13,11 @@ import { supportPageSchemas } from "./support";
 import { lecturesPageSchemas } from "./lectures";
 import { papersPageSchema } from "./papers";
 import { metaTagsSchemas } from "./meta-tags";
+import { comparePageSchemas } from "./compare";
 import { useCasePageSchemas } from "./use-case";
 
 export const pageSchemas: any[] = [
-    ...basePageSchemas, ...blogSchemas, ...composablePageSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
+    ...basePageSchemas, ...blogSchemas, ...comparePageSchemas, ...composablePageSchemas, ...eventsPageSchemas, ...featuresPageSchemas,
     ...learnPageSchemas, ...lecturesPageSchemas, legalDocumentSchema,
     ...metaTagsSchemas, papersPageSchema, ...pricingPageSchemas, requestTechTalkPageSchema,
     ...servicesPageSchemas, ...startupProgramPageSchemas, ...supportPageSchemas, ...useCasePageSchemas,

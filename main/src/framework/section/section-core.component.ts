@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
-import { CodeSnippet, PolyglotSnippet, IllustrationSection, ImageIllustration, SectionCore } from "typedb-web-schema";
+import { CodeSnippet, PolyglotSnippet, IllustrationSection, SectionCore } from "typedb-web-schema";
 import { ActionsComponent } from "../actions/actions.component";
 import { IllustrationComponent } from "../illustration/illustration.component";
 import { RichTextComponent } from "../text/rich-text.component";
@@ -22,7 +22,6 @@ export class SectionCoreComponent {
     @Input("textAlign") _textAlign?: "left" | "center";
     @Input() flexDirection: "row" | "row-reverse" | "column" = "column";
     @Input() isIntroSection = false;
-    @Input() noWindowHeader = false;
     @Input() @HostBinding("class.has-peeking-bot") hasPeekingBot = false;
     themeColorHex = "#02DAC9";
 
@@ -41,11 +40,6 @@ export class SectionCoreComponent {
     @HostBinding("class.has-code-snippet-illustration")
     get hasCodeSnippetIllustration() {
         return this.hasIllustration && (this.illustration instanceof CodeSnippet || this.illustration instanceof PolyglotSnippet);
-    }
-
-    @HostBinding("class.has-window-header")
-    get hasWindowHeader() {
-        return this.hasIllustration && this.illustration instanceof ImageIllustration && !this.noWindowHeader;
     }
 
     get hasIllustration(): boolean {

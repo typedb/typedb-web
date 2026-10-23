@@ -1,0 +1,8 @@
+<td-section-core [section]="section" [noSectionClass]="true" textAlign="left" />
+<div class="cc-choices">
+  <td-section-core class="cc-choice" [section]="section.competitorChoice" [noSectionClass]="true" level="h3" bodyLevel="p2" textAlign="left" />
+  <td-section-core class="cc-choice cc-typedb" [section]="section.typedbChoice" [noSectionClass]="true" level="h3" bodyLevel="p2" textAlign="left" />
+</div>
+@if (section.aside) {
+  <td-section-core class="cc-aside" [section]="section.aside" [noSectionClass]="true" level="h3" bodyLevel="p2" textAlign="left" />
+}

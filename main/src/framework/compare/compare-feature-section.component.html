@@ -1,0 +1,57 @@
+<td-section-core [section]="section" [noSectionClass]="true" textAlign="left" bodyLevel="p2" />
+<div class="cf-content">
+  @for (item of section.content; track item.key) {
+    @switch (item.kind) {
+      @case ("cardPair") {
+        <div class="cf-pair">
+          @for (side of [{ card: item.competitor, isTypeDB: false }, { card: item.typedb, isTypeDB: true }]; track side.isTypeDB) {
+            <div class="cf-card" [class.cf-typedb]="side.isTypeDB">
+              <span class="cf-card-label">{{ side.card.label }}</span>
+              @for (block of side.card.content; track block.key) {
+                @switch (block.kind) {
+                  @case ("text") {
+                    <td-rich-text class="cf-card-text" [value]="block.body" />
+                  }
+                  @case ("illustration") {
+                    <td-illustration class="cf-card-illustration" [illustration]="block.illustration" />
+                  }
+                  @case ("stat") {
+                    <div class="cf-stat">
+                      <span class="cf-stat-value">{{ block.stat.value }}</span>
+                      @if (block.stat.label) {
+                        <span class="cf-stat-label">{{ block.stat.label }}</span>
+                      }
+                    </div>
+                  }
+                }
+              }
+            </div>
+          }
+        </div>
+      }
+      @case ("table") {
+        <td-compare-table [table]="item.table"[sectionId]="section.sectionId" size="compact" />
+      }
+      @case ("callout") {
+        <div class="cf-callout">
+          <div class="cf-callout-stats">
+            @for (stat of item.stats; track $index) {
+              <div class="cf-stat" [class.cf-typedb]="stat.subject === 'typedb'">
+                <span class="cf-stat-value">{{ stat.value }}</span>
+                @if (stat.label) {
+                  <span class="cf-stat-label">{{ stat.label }}</span>
+                }
+              </div>
+            }
+          </div>
+          @if (item.body) {
+            <td-rich-text class="cf-callout-text" [value]="item.body" />
+          }
+        </div>
+      }
+      @case ("note") {
+        <td-rich-text class="cf-note" [value]="item.body" />
+      }
+    }
+  }
+</div>

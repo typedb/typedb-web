@@ -36,7 +36,9 @@ export class HtmlPipe implements PipeTransform {
             const anchorEl = anchorEls[i];
             const href = anchorEl.getAttribute('href'); // Use getAttribute instead of .href
 
-            if (href && !href.startsWith(window.location.origin)) {
+            // Only links to other sites open in a new tab. Resolve first, so relative links
+            // (e.g. "/blog", "#contact") count as this site's.
+            if (href && new URL(href, window.location.href).origin !== window.location.origin) {
                 anchorEl.setAttribute('target', '_blank'); // Use setAttribute instead of .target
             }
         }
