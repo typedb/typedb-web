@@ -1,7 +1,9 @@
 <article>
   @if (page$ | async; as page) {
     @if (page.introSection) {
-      <td-section-core level="h1" [section]="page.introSection" [isIntroSection]="true" textAlign="left" class="narrow-section" />
+      <td-section-core level="h1" [section]="page.introSection" [isIntroSection]="true" textAlign="left"
+        [flexDirection]="page.introSection.layoutDirection === 'auto' ? 'row' : page.introSection.layoutDirection"
+        [class.wide-section]="page.introSection.width === 'wide'" />
     }
     @if (page.comparisonTableSection) {
       <section>
