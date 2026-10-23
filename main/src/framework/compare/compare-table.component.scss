@@ -52,7 +52,7 @@ td-compare-table {
     }
 
     thead .ct-typedb {
-        color: var(--color-green);
+        color: var(--color-secondary-blue);
     }
 
     td-feature-table-cell .ftc-root {
@@ -106,7 +106,7 @@ td-compare-table {
             }
 
             &.ct-typedb::before {
-                color: var(--color-green);
+                color: var(--color-secondary-blue);
             }
         }
     }

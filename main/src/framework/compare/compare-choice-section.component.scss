@@ -25,7 +25,7 @@ td-compare-choice-section {
 
         &.cc-typedb {
             @include mixins.card-appearance;
-            border: 1.5px solid var(--color-green);
+            border: 1.5px solid var(--color-secondary-blue);
             border-radius: 18px;
         }
 
@@ -61,7 +61,7 @@ td-compare-choice-section {
             color: var(--color-white);
 
             &::before {
-                color: var(--color-green);
+                color: var(--color-secondary-blue);
             }
         }
     }

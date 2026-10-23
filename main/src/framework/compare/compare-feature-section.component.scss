@@ -13,13 +13,6 @@ td-compare-feature-section {
         gap: 32px;
     }
 
-    // Unlike other eyebrows, these number the features, so they keep their case
-    .td-eyebrow {
-        letter-spacing: 0;
-        text-transform: none;
-        color: var(--color-green);
-    }
-
     .cf-content {
         display: flex;
         flex-direction: column;
@@ -64,7 +57,7 @@ td-compare-feature-section {
     }
 
     .cf-typedb .cf-card-label {
-        color: var(--color-green);
+        color: var(--color-secondary-blue);
     }
 
     .cf-card-text {
@@ -112,7 +105,7 @@ td-compare-feature-section {
     }
 
     .cf-typedb .cf-stat-value, .cf-stat.cf-typedb .cf-stat-value {
-        color: var(--color-green);
+        color: var(--color-secondary-blue);
     }
 
     .cf-stat-label {
