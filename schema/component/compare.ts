@@ -1,7 +1,8 @@
 import { BarChartIcon, BlockElementIcon, CheckmarkCircleIcon, InfoOutlineIcon, SplitVerticalIcon, ThListIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "@sanity/types";
 import {
-    bodyFieldRichText, isVisibleField, sectionPreview, titleBodyActionsFields, titleWithHighlightsPreview,
+    bodyFieldRichText, isVisibleField, SectionLayoutDirection, sectionLayoutDirectionField, sectionPreview,
+    titleBodyActionsFields, titleWithHighlightsPreview,
 } from "../common-fields";
 import { keyPointSchemaName } from "../key-point";
 import {
@@ -135,14 +136,17 @@ function compareFeatureContentItemFromSanity(item: SanityCompareFeatureContentIt
 
 export interface SanityCompareFeatureSection extends SanitySectionCore {
     content?: SanityCompareFeatureContentItem[];
+    layoutDirection?: SectionLayoutDirection;
 }
 
 export class CompareFeatureSection extends SectionCore {
     readonly content: CompareFeatureContentItem[];
+    readonly layoutDirection: SectionLayoutDirection;
 
     constructor(props: PropsOf<CompareFeatureSection>) {
         super(props);
         this.content = props.content;
+        this.layoutDirection = props.layoutDirection;
     }
 
     static override fromSanity(data: SanityCompareFeatureSection, db: SanityDataset) {
@@ -150,6 +154,7 @@ export class CompareFeatureSection extends SectionCore {
             ...SectionCore.fromSanity(data, db),
             content: (data.content || []).map((x) => compareFeatureContentItemFromSanity(x, db))
                 .filter((x): x is CompareFeatureContentItem => !!x),
+            layoutDirection: data.layoutDirection || "auto",
         });
     }
 }
@@ -348,6 +353,9 @@ const compareFeatureSectionSchema = defineType({
                 defineArrayMember({ type: compareNoteSchemaName }),
             ],
             validation: (rule) => rule.required().min(1).error("A feature comparison needs something to compare"),
+        }),
+        Object.assign({}, sectionLayoutDirectionField, {
+            description: "Auto places the content beside the text. Content Below suits wide content, such as a row of stats",
         }),
         isVisibleField,
     ],

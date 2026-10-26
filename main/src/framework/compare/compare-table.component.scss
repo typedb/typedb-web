@@ -1,5 +1,6 @@
 @use "media";
 @use "shapes";
+@use "compare";
 
 td-compare-table {
     display: block;
@@ -28,14 +29,26 @@ td-compare-table {
         line-height: 1.5;
     }
 
-    thead th {
+    thead th, thead td {
         border-top: none;
         background-color: var(--theme-deep-purple);
-        font-size: 14px;
+        font-size: 15px;
         font-weight: var(--font-weight-semi-bold);
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--color-secondary-light-grey);
+        color: var(--color-white);
+    }
+
+    .ct-product {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        &::before {
+            @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+        }
+    }
+
+    .ct-typedb .ct-product::before {
+        @include compare.subject-dot(var(--color-secondary-blue));
     }
 
     tbody th {
@@ -44,15 +57,7 @@ td-compare-table {
     }
 
     td {
-        color: var(--color-secondary-light-grey);
-    }
-
-    .ct-typedb {
-        color: var(--color-white);
-    }
-
-    thead .ct-typedb {
-        color: var(--color-secondary-blue);
+        color: var(--color-secondary-extra-light-grey);
     }
 
     td-feature-table-cell .ftc-root {
@@ -68,7 +73,6 @@ td-compare-table {
 
         thead th {
             padding: 14px 20px;
-            font-size: 13px;
         }
     }
 

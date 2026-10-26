@@ -67,6 +67,19 @@ export class IllustrationComponent {
     get splitPaneIllustration(): SplitPaneIllustration | undefined {
         return this.illustration instanceof SplitPaneIllustration ? this.illustration : undefined;
     }
+
+    @HostBinding("class.il-split")
+    get isSplitPane() {
+        return this.illustration instanceof SplitPaneIllustration;
+    }
+
+    isTypeQL(pane: Illustration) {
+        return pane instanceof CodeSnippet && pane.language === "typeql";
+    }
+
+    paneLabel(pane: Illustration) {
+        return pane instanceof CodeSnippet ? pane.tabText : undefined;
+    }
 }
 
 @Component({

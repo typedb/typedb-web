@@ -1,11 +1,15 @@
 import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
 import { map } from "rxjs";
-import { ComparePageInstance, comparePageSchemaName, SanityComparePageInstance, SanityDataset } from "typedb-web-schema";
+import {
+    CompareFeatureSection, ComparePageInstance, comparePageSchemaName, CompareSection, LinkPanelsSection, SanityComparePageInstance,
+    SanityDataset,
+} from "typedb-web-schema";
 import { ClosingPanelSectionComponent } from "../../framework/closing-panel/closing-panel-section.component";
 import { CompareChoiceSectionComponent } from "../../framework/compare/compare-choice-section.component";
 import { CompareFeatureSectionComponent } from "../../framework/compare/compare-feature-section.component";
 import { CompareTableComponent } from "../../framework/compare/compare-table.component";
+import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PageComponentBase } from "../page-component-base";
 import { portableTextToPlainText } from "src/service/portable-text-utils";
@@ -17,10 +21,18 @@ import { portableTextToPlainText } from "src/service/portable-text-utils";
     encapsulation: ViewEncapsulation.None,
     imports: [
         AsyncPipe, ClosingPanelSectionComponent, CompareChoiceSectionComponent, CompareFeatureSectionComponent,
-        CompareTableComponent, SectionCoreComponent,
+        CompareTableComponent, LinkPanelsComponent, SectionCoreComponent,
     ],
 })
 export class ComparePageComponent extends PageComponentBase<ComparePageInstance> {
+    asLinkPanels(section: CompareSection) {
+        return section instanceof LinkPanelsSection ? section : null;
+    }
+
+    asFeature(section: CompareSection) {
+        return section as CompareFeatureSection;
+    }
+
     protected override getPage(db: SanityDataset) {
         return this.activatedRoute.paramMap.pipe(
             map((params) => {

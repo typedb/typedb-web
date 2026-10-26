@@ -1,9 +1,8 @@
 import { AsyncPipe, isPlatformBrowser } from "@angular/common";
-import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, signal, ViewEncapsulation } from "@angular/core";
+import { AfterViewInit, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnChanges, PLATFORM_ID, SimpleChanges, ViewChild, inject, ViewEncapsulation } from "@angular/core";
 import { map, Observable, of } from "rxjs";
 import { CodeAdmonition, CodeSnippet } from "typedb-web-schema";
 import { MediaQueryService } from "../../service/media-query.service";
-import { IconComponent } from "../icon/icon.component";
 import { CodeAdmonitionComponent } from "./code-admonition.component";
 import { SyntaxHighlightDirective } from "./syntax-highlight.directive";
 
@@ -15,7 +14,7 @@ const DEFAULT_MIN_LINES = { desktop: 1, mobile: 13 };
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [AsyncPipe, CodeAdmonitionComponent, IconComponent, SyntaxHighlightDirective]
+    imports: [AsyncPipe, CodeAdmonitionComponent, SyntaxHighlightDirective]
 })
 export class CodeSnippetComponent implements OnChanges {
     private readonly platformId = inject(PLATFORM_ID);
@@ -24,7 +23,6 @@ export class CodeSnippetComponent implements OnChanges {
     @Input() admonition?: CodeAdmonition;
     @ViewChild("scrollbarX") scrollbarX!: ElementRef<HTMLElement>;
     @ViewChild("scrollbarY") scrollbarY!: ElementRef<HTMLElement>;
-    copied = signal(false);
 
     lineNumbers$: Observable<number[]> = of([]);
 
@@ -44,15 +42,5 @@ export class CodeSnippetComponent implements OnChanges {
                 return [...Array(lines).keys()].map((n) => n + 1);
             }),
         );
-    }
-
-    async copyCode() {
-        await navigator.clipboard.writeText(this.code);
-        this.copied.set(true);
-        
-        // Reset copied state after 3 seconds
-        setTimeout(() => {
-            this.copied.set(false);
-        }, 3000);
     }
 }

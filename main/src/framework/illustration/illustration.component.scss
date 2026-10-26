@@ -48,4 +48,52 @@ td-illustration {
     td-polyglot-snippet {
         height: 100%;
     }
+
+    // A split pane shows its two illustrations stacked, each in its own frame
+    &.il-split {
+        border: none;
+        overflow: visible;
+    }
+
+    .il-split-pane {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .il-pane {
+        border: shapes.$border;
+        border-radius: var(--border-radius);
+        background-color: var(--theme-deep-purple);
+        overflow: hidden;
+
+        td-illustration {
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        // The TypeQL glow and animated border go on the whole pane, so they follow its rounded corners
+        &.il-pane-typeql {
+            box-shadow: 0 0 6px 3px rgba(colors.$secondary-blue, 0.35);
+            @include colors.border-gradient(#AC79EE, #03D0BF, var(--theme-deep-purple));
+            animation-play-state: running;
+
+            td-illustration.is-typeql-snippet {
+                border: none;
+                background: none;
+                animation: none;
+            }
+        }
+    }
+
+    .il-pane-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border-bottom: shapes.$border;
+        font-size: 15px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+    }
 }

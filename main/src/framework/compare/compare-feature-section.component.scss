@@ -1,16 +1,41 @@
 @use "media";
-@use "mixins";
 @use "shapes";
+@use "compare";
 
 td-compare-feature-section {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     gap: 56px;
     align-items: start;
 
-    @media (max-width: media.$max-width-tablet) {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 32px;
+    &.cf-layout-row {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    }
+
+    &.cf-layout-row-reverse {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+
+        .cf-header {
+            order: 1;
+        }
+    }
+
+    &.cf-layout-column {
+        gap: 40px;
+
+        .cf-header .td-text {
+            max-width: 720px;
+        }
+    }
+
+    &.cf-layout-row, &.cf-layout-row-reverse {
+        @media (max-width: media.$max-width-tablet) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 36px;
+
+            .cf-header {
+                order: 0;
+            }
+        }
     }
 
     .cf-content {
@@ -20,28 +45,14 @@ td-compare-feature-section {
     }
 
     .cf-pair {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-
-        @media (max-width: media.$max-width-mobile) {
-            grid-template-columns: minmax(0, 1fr);
-        }
+        @include compare.split-panel;
     }
 
     .cf-card {
         display: flex;
         flex-direction: column;
         gap: 16px;
-        padding: 26px;
-        border: shapes.$border;
-        border-radius: shapes.$border-radius;
-        background-color: var(--theme-black-purple);
-
-        &.cf-typedb {
-            @include mixins.card-appearance;
-            border-radius: shapes.$border-radius;
-        }
+        padding: 28px;
 
         @media (max-width: media.$max-width-mobile) {
             padding: 20px;
@@ -49,15 +60,20 @@ td-compare-feature-section {
     }
 
     .cf-card-label {
-        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
         font-weight: var(--font-weight-semi-bold);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--color-secondary-light-grey);
+        color: var(--color-white);
+
+        &::before {
+            @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+        }
     }
 
-    .cf-typedb .cf-card-label {
-        color: var(--color-secondary-blue);
+    .cf-typedb .cf-card-label::before {
+        @include compare.subject-dot(var(--color-secondary-blue));
     }
 
     .cf-card-text {
@@ -69,16 +85,12 @@ td-compare-feature-section {
         }
 
         p + p, ul, ol {
-            margin-top: 10px;
+            margin-top: 16px;
         }
 
         strong {
             color: var(--color-white);
         }
-    }
-
-    .cf-typedb .cf-card-text {
-        color: var(--color-white);
     }
 
     .cf-card-illustration {
@@ -90,14 +102,22 @@ td-compare-feature-section {
         }
     }
 
+    .cf-callout {
+        @include compare.split-panel;
+    }
+
+    .cf-callout .cf-stat {
+        padding: 28px;
+    }
+
     .cf-stat {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 8px;
     }
 
     .cf-stat-value {
-        font-size: 40px;
+        font-size: 44px;
         line-height: 1.1;
         font-weight: var(--font-weight-semi-bold);
         letter-spacing: -0.03em;
@@ -109,44 +129,13 @@ td-compare-feature-section {
     }
 
     .cf-stat-label {
-        font-size: 13px;
-        color: var(--color-secondary-light-grey);
-    }
-
-    .cf-card .cf-stat-label {
         font-size: var(--font-size-p2);
         line-height: var(--line-height-p2);
-    }
-
-    .cf-callout {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 24px 32px;
-        padding: 24px;
-        border: shapes.$border;
-        border-radius: shapes.$border-radius;
-    }
-
-    .cf-callout-stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px 32px;
-    }
-
-    .cf-callout-text {
-        flex: 1 1 240px;
-        font-size: var(--font-size-p2);
-        line-height: var(--line-height-p2);
-
-        p {
-            margin: 0;
-        }
     }
 
     .cf-note {
         font-size: var(--font-size-aside);
-        color: var(--color-secondary-grey);
+        color: var(--color-secondary-light-grey);
 
         p {
             margin: 0;

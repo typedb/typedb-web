@@ -3,7 +3,7 @@
     <tr>
       <td></td>
       @for (product of table.products; track $index) {
-        <th scope="col" [class.ct-typedb]="isTypeDB($index)">{{ product.name }}</th>
+        <th scope="col" [class.ct-typedb]="isTypeDB($index)"><span class="ct-product">{{ product.name }}</span></th>
       }
     </tr>
   </thead>

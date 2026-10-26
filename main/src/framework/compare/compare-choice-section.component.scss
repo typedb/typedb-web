@@ -1,43 +1,54 @@
 @use "media";
-@use "mixins";
 @use "shapes";
+@use "compare";
 
 td-compare-choice-section {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 40px;
+
+    .td-text {
+        max-width: 720px;
+    }
 
     .cc-choices {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-
-        @media (max-width: media.$max-width-mobile) {
-            grid-template-columns: minmax(0, 1fr);
-        }
+        @include compare.split-panel;
     }
 
     .cc-choice {
         display: block;
         padding: 32px;
-        border: shapes.$border;
-        border-radius: 18px;
-
-        &.cc-typedb {
-            @include mixins.card-appearance;
-            border: 1.5px solid var(--color-secondary-blue);
-            border-radius: 18px;
-        }
 
         @media (max-width: media.$max-width-mobile) {
             padding: 24px;
         }
 
-        .subtitle-l {
-            margin-top: 18px;
+        .td-text {
+            max-width: none;
         }
 
-        // The reasons are a bulleted list in Sanity, shown as arrows
+        h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            line-height: 1.4;
+            font-weight: var(--font-weight-semi-bold);
+            color: var(--color-white);
+
+            &::before {
+                @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+            }
+        }
+
+        &.cc-typedb h3::before {
+            @include compare.subject-dot(var(--color-secondary-blue));
+        }
+
+        .subtitle-l {
+            margin-top: 16px;
+        }
+
         ul {
             display: flex;
             flex-direction: column;
@@ -50,25 +61,26 @@ td-compare-choice-section {
         li {
             display: flex;
             gap: 12px;
+            color: var(--color-secondary-extra-light-grey);
 
             &::before {
-                content: "→";
-                color: var(--color-secondary-grey);
+                content: "";
+                flex-shrink: 0;
+                width: 6px;
+                height: 6px;
+                margin-top: 0.65em;
+                border-radius: 50%;
+                background-color: var(--color-secondary-extra-light-grey);
             }
         }
 
-        &.cc-typedb li {
-            color: var(--color-white);
-
-            &::before {
-                color: var(--color-secondary-blue);
-            }
+        &.cc-typedb li::before {
+            background-color: var(--color-secondary-blue);
         }
     }
 
     .cc-aside {
         display: block;
-        max-width: 760px;
         padding-top: 28px;
         border-top: shapes.$border;
 

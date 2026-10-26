@@ -64,7 +64,7 @@ export {
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { SectionCore, IllustrationSection } from "./component/section";
+export { SectionCore, IllustrationSection, LinkPanelsSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -122,7 +122,7 @@ export {
     useCasePageSchemaName, useCasePageTemplateSchemaName
 } from "./page/use-case";
 export {
-    type SanityComparePageTemplate, type SanityComparePageInstance, ComparePageTemplate, ComparePageInstance,
+    type SanityComparePageTemplate, type SanityComparePageInstance, ComparePageTemplate, ComparePageInstance, type CompareSection,
     comparePageSchemaName, comparePageTemplateSchemaName
 } from "./page/compare";
 export { Person, type SanityPerson, personSchemaName } from "./person";

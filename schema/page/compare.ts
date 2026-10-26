@@ -7,13 +7,17 @@ import {
     SanityCompareChoiceSection, SanityCompareFeatureSection,
 } from "../component/compare";
 import { FeatureTableSection, featureTableSectionSchemaName, SanityFeatureTableSection } from "../component/feature-table";
-import { IllustrationSection, illustrationSectionSchemaName, SanityIllustrationSection } from "../component/section";
+import {
+    IllustrationSection, illustrationSectionSchemaName, LinkPanelsSection, linkPanelsSectionSchemaName, SanityIllustrationSection,
+    SanityLinkPanelsSection,
+} from "../component/section";
 import { SanityDataset } from "../sanity-core";
 import { Page, SanityPage } from "./common";
 import { metaTagsField } from "./meta-tags";
 
 const sections = {
     intro: { id: "introSection", title: "Intro" },
+    overview: { id: "overviewSection", title: "Overview" },
     comparisonTable: { id: "comparisonTableSection", title: "Comparison Table" },
     choice: { id: "choiceSection", title: "Making the Choice" },
     conclusion: { id: "conclusionSection", title: "Conclusion" },
@@ -22,10 +26,17 @@ const sections = {
 export const comparePageTemplateSchemaName = "comparePageTemplate";
 export const comparePageSchemaName = "comparePage";
 
+type SanityCompareSection =
+    | ({ _type: typeof compareFeatureSectionSchemaName } & SanityCompareFeatureSection)
+    | ({ _type: typeof linkPanelsSectionSchemaName } & SanityLinkPanelsSection);
+
+export type CompareSection = CompareFeatureSection | LinkPanelsSection;
+
 export interface SanityComparePageTemplate extends SanityPage {
     [sections.intro.id]?: SanityIllustrationSection;
+    [sections.overview.id]?: SanityLinkPanelsSection;
     [sections.comparisonTable.id]?: SanityFeatureTableSection;
-    featureSections?: SanityCompareFeatureSection[];
+    featureSections?: SanityCompareSection[];
     [sections.choice.id]?: SanityCompareChoiceSection;
     [sections.conclusion.id]?: SanityClosingPanelSection;
 }
@@ -37,8 +48,9 @@ export interface SanityComparePageInstance extends SanityComparePageTemplate {
 
 export class ComparePageTemplate extends Page {
     readonly [sections.intro.id]?: IllustrationSection;
+    readonly [sections.overview.id]?: LinkPanelsSection;
     readonly [sections.comparisonTable.id]?: FeatureTableSection;
-    readonly featureSections: CompareFeatureSection[];
+    readonly featureSections: CompareSection[];
     readonly [sections.choice.id]?: CompareChoiceSection;
     readonly [sections.conclusion.id]?: ClosingPanelSection;
 
@@ -47,11 +59,16 @@ export class ComparePageTemplate extends Page {
         this[sections.intro.id] = data[sections.intro.id]?.isVisible
             ? IllustrationSection.fromSanity(data[sections.intro.id]!, db)
             : undefined;
+        this[sections.overview.id] = data[sections.overview.id]?.isVisible
+            ? LinkPanelsSection.fromSanity(data[sections.overview.id]!, db)
+            : undefined;
         this[sections.comparisonTable.id] = data[sections.comparisonTable.id]?.isVisible
             ? FeatureTableSection.fromSanity(data[sections.comparisonTable.id]!, db)
             : undefined;
         this.featureSections = (data.featureSections || []).filter((x) => x.isVisible)
-            .map((x) => CompareFeatureSection.fromSanity(x, db));
+            .map((x) => x._type === linkPanelsSectionSchemaName
+                ? LinkPanelsSection.fromSanity(x, db)
+                : CompareFeatureSection.fromSanity(x, db));
         this[sections.choice.id] = data[sections.choice.id]?.isVisible
             ? CompareChoiceSection.fromSanity(data[sections.choice.id]!, db)
             : undefined;
@@ -73,6 +90,7 @@ export class ComparePageInstance extends ComparePageTemplate {
         // Feature sections are specific to each comparison, so they are never taken from the template.
         const merged: SanityComparePageInstance = Object.assign({}, instance, {
             introSection: Object.assign({}, template.introSection, instance.introSection),
+            overviewSection: Object.assign({}, template.overviewSection, instance.overviewSection),
             comparisonTableSection: Object.assign({}, template.comparisonTableSection, instance.comparisonTableSection),
             choiceSection: Object.assign({}, template.choiceSection, instance.choiceSection),
             conclusionSection: Object.assign({}, template.conclusionSection, instance.conclusionSection),
@@ -92,11 +110,19 @@ const introSectionField = defineField({
     options: collapsibleOptions,
 });
 
+const overviewSectionField = defineField({
+    name: sections.overview.id,
+    title: `${sections.overview.title} Section`,
+    type: linkPanelsSectionSchemaName,
+    description: "The main differences at a glance, as cards linking to the feature sections below",
+    options: collapsibleOptions,
+});
+
 const comparisonTableSectionField = defineField({
     name: sections.comparisonTable.id,
     title: `${sections.comparisonTable.title} Section`,
     type: featureTableSectionSchemaName,
-    description: "The 'At a glance' table. The column for the product named TypeDB is highlighted",
+    description: "The full comparison table, shown after the choice section. The column for the product named TypeDB is highlighted",
     options: collapsibleOptions,
 });
 
@@ -104,8 +130,8 @@ const featureSectionsField = defineField({
     name: "featureSections",
     title: "Feature Sections",
     type: "array",
-    description: "Each one compares a single feature, e.g. '01 · Structure'",
-    of: [defineArrayMember({ type: compareFeatureSectionSchemaName })],
+    description: "Each one compares a single feature. Link panels suit points that aren't a side-by-side comparison",
+    of: [defineArrayMember({ type: compareFeatureSectionSchemaName }), defineArrayMember({ type: linkPanelsSectionSchemaName })],
 });
 
 const choiceSectionField = defineField({
@@ -122,7 +148,7 @@ const conclusionSectionField = defineField({
     options: collapsibleOptions,
 });
 
-const templateSectionFields = [introSectionField, comparisonTableSectionField, choiceSectionField, conclusionSectionField];
+const templateSectionFields = [introSectionField, overviewSectionField, comparisonTableSectionField, choiceSectionField, conclusionSectionField];
 
 const comparePageTemplateSchema = defineType({
     name: comparePageTemplateSchemaName,
@@ -152,9 +178,10 @@ const comparePageSchema = defineType({
             description: "URL fragment for this compare page (e.g. typedb-vs-neo4j). Do not include 'compare', this is automatically prepended",
         }),
         introSectionField,
-        comparisonTableSectionField,
+        overviewSectionField,
         featureSectionsField,
         choiceSectionField,
+        comparisonTableSectionField,
         conclusionSectionField,
     ],
     preview: {

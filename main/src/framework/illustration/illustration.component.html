@@ -18,3 +18,15 @@
 @if (graphVisualisation && visible) {
   <td-graph-visualisation [graph]="graphVisualisation" />
 }
+@if (splitPaneIllustration; as split) {
+  <div class="il-split-pane">
+    @for (pane of [split.left, split.right]; track $index) {
+      <div class="il-pane" [class.il-pane-typeql]="isTypeQL(pane)">
+        @if (paneLabel(pane); as label) {
+          <div class="il-pane-header">{{ label }}</div>
+        }
+        <td-illustration class="sp-pane" [illustration]="pane" [priority]="priority" />
+      </div>
+    }
+  </div>
+}

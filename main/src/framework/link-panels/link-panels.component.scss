@@ -28,6 +28,10 @@ td-link-panels {
         transition: background 100ms ease, flex 300ms ease-in-out, transform 100ms ease;
         cursor: initial;
 
+        &[href] {
+            cursor: pointer;
+        }
+
         img {
             width: 48px;
             height: 48px;
