@@ -90,7 +90,7 @@ export { CardSwitcherSection, type SwitcherCard } from "./component/card-switche
 export { ClosingPanelSection, type ClosingPanelColumn } from "./component/closing-panel-section";
 export {
     CompareCard, type CompareCardContentItem, CompareChoiceSection, CompareFeatureSection, type CompareFeatureContentItem,
-    type CompareStat, type CompareSubject,
+    type CompareCardStat, type CompareStat, type CompareSubject,
 } from "./component/compare";
 export { NumberedListSection, type NumberedListItem } from "./component/numbered-list-section";
 export { OrganisationLogosSection, type OrganisationRow } from "./component/organisation-logos-section";

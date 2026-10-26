@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from "@a
 import { FeatureTable, FeatureTableCell } from "typedb-web-schema";
 import { FeatureTableCellComponent } from "../feature-table/feature-table-cell.component";
 
-/** A text-led comparison table: row headings on the left, one column per product, with TypeDB's column highlighted */
+/** A text-led comparison table: row headings on the left, one column per product, with TypeDB's (first) column highlighted */
 @Component({
     selector: "td-compare-table",
     templateUrl: "compare-table.component.html",
@@ -15,8 +15,9 @@ export class CompareTableComponent {
     @Input() sectionId = "";
     @Input() size: "default" | "compact" = "default";
 
+    // TypeDB always takes the first column, as it takes the first side of the compare cards
     isTypeDB(columnIndex: number): boolean {
-        return /^typedb\b/i.test(this.table.products[columnIndex]?.name || "");
+        return columnIndex === 0;
     }
 
     isText(cell: FeatureTableCell): cell is string {

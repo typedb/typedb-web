@@ -40,6 +40,12 @@ export interface CompareStat {
     subject: CompareSubject;
 }
 
+/** A stat inside a card, which takes its subject from the card's side */
+export interface CompareCardStat {
+    value: string;
+    label?: string;
+}
+
 function compareStatFromSanity(data: SanityCompareStat): CompareStat {
     return { value: data.value, label: data.label || undefined, subject: data.subject || "typedb" };
 }
@@ -47,13 +53,13 @@ function compareStatFromSanity(data: SanityCompareStat): CompareStat {
 type SanityCompareCardContentItem = SanityKeyed & (
     | ({ _type: "block" } & PortableText[number])
     | SanityIllustrationObject
-    | ({ _type: typeof compareStatSchemaName } & SanityCompareStat)
+    | ({ _type: typeof compareCardStatSchemaName } & CompareCardStat)
 );
 
 export type CompareCardContentItem =
     | { kind: "text"; key: string; body: PortableText }
     | { kind: "illustration"; key: string; illustration: Illustration }
-    | { kind: "stat"; key: string; stat: CompareStat };
+    | { kind: "stat"; key: string; stat: CompareCardStat };
 
 export interface SanityCompareCard {
     label: string;
@@ -80,8 +86,8 @@ export class CompareCard {
             } else if (item._type === illustrationObjectSchemaName) {
                 const illustration = illustrationFieldValueFromSanity(item, db);
                 if (illustration) content.push({ kind: "illustration", key: item._key, illustration });
-            } else if (item._type === compareStatSchemaName) {
-                content.push({ kind: "stat", key: item._key, stat: compareStatFromSanity(item) });
+            } else if (item._type === compareCardStatSchemaName) {
+                content.push({ kind: "stat", key: item._key, stat: { value: item.value, label: item.label || undefined } });
             }
         }
         return new CompareCard({ label: data.label, content });
@@ -188,6 +194,7 @@ export class CompareChoiceSection extends SectionCore {
 }
 
 export const compareStatSchemaName = "compareStat";
+export const compareCardStatSchemaName = "compareCardStat";
 export const compareCardSchemaName = "compareCard";
 export const compareCardPairSchemaName = "compareCardPair";
 export const compareCalloutSchemaName = "compareCallout";
@@ -221,7 +228,7 @@ const compareStatSchema = defineType({
         defineField({
             name: "subject",
             type: "string",
-            description: "Whose figure this is. TypeDB figures are highlighted. Inside a card, the card's side decides",
+            description: "Whose figure this is. TypeDB figures are highlighted",
             options: { list: [...compareSubjects], layout: "radio", direction: "horizontal" },
             initialValue: "typedb",
         }),
@@ -235,6 +242,19 @@ const compareStatSchema = defineType({
     },
 });
 
+const compareCardStatSchema = defineType({
+    name: compareCardStatSchemaName,
+    title: "Stat",
+    type: "object",
+    icon: BarChartIcon,
+    description: "Highlighted when it's on the TypeDB side",
+    fields: compareStatSchema.fields.filter((x) => x.name !== "subject"),
+    preview: {
+        select: { value: "value", label: "label" },
+        prepare: ({ value, label }) => ({ title: [value, label].filter(Boolean).join(" · "), subtitle: "Stat" }),
+    },
+});
+
 const compareCardSchema = defineType({
     name: compareCardSchemaName,
     title: "Card",
@@ -244,7 +264,7 @@ const compareCardSchema = defineType({
         defineField({
             name: "label",
             type: "string",
-            description: "Shown in capitals at the top of the card, e.g. 'Neo4j', or 'Smallest dataset'",
+            description: "Shown at the top of the card, e.g. 'Neo4j', or 'Smallest dataset'",
             validation: (rule) => rule.required().error("Each card needs a label so readers know which side it is"),
         }),
         defineField({
@@ -254,7 +274,7 @@ const compareCardSchema = defineType({
             of: [
                 defineArrayMember({ type: "block" }),
                 defineArrayMember({ type: illustrationObjectSchemaName }),
-                defineArrayMember({ type: compareStatSchemaName }),
+                defineArrayMember({ type: compareCardStatSchemaName }),
             ],
             validation: (rule) => rule.required().min(1).error("A card needs some content"),
         }),
@@ -345,7 +365,7 @@ const compareFeatureSectionSchema = defineType({
         defineField({
             name: "content",
             type: "array",
-            description: "Shown beside the title. Mix side-by-side cards, tables, stat callouts and notes",
+            description: "Mix side-by-side cards, tables, stat callouts and notes. Tables put TypeDB in the first column",
             of: [
                 defineArrayMember({ type: compareCardPairSchemaName }),
                 defineArrayMember({ type: featureTableSchemaName, title: "Table", icon: ThListIcon }),
@@ -402,6 +422,6 @@ const compareChoiceSectionSchema = defineType({
 });
 
 export const compareSchemas = [
-    compareStatSchema, compareCardSchema, compareCardPairSchema, compareCalloutSchema, compareNoteSchema,
+    compareStatSchema, compareCardStatSchema, compareCardSchema, compareCardPairSchema, compareCalloutSchema, compareNoteSchema,
     compareFeatureSectionSchema, compareChoiceSectionSchema,
 ];

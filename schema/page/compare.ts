@@ -36,7 +36,6 @@ export interface SanityComparePageTemplate extends SanityPage {
     [sections.intro.id]?: SanityIllustrationSection;
     [sections.overview.id]?: SanityLinkPanelsSection;
     [sections.comparisonTable.id]?: SanityFeatureTableSection;
-    featureSections?: SanityCompareSection[];
     [sections.choice.id]?: SanityCompareChoiceSection;
     [sections.conclusion.id]?: SanityClosingPanelSection;
 }
@@ -44,13 +43,13 @@ export interface SanityComparePageTemplate extends SanityPage {
 export interface SanityComparePageInstance extends SanityComparePageTemplate {
     title: string;
     route: Slug;
+    featureSections?: SanityCompareSection[];
 }
 
 export class ComparePageTemplate extends Page {
     readonly [sections.intro.id]?: IllustrationSection;
     readonly [sections.overview.id]?: LinkPanelsSection;
     readonly [sections.comparisonTable.id]?: FeatureTableSection;
-    readonly featureSections: CompareSection[];
     readonly [sections.choice.id]?: CompareChoiceSection;
     readonly [sections.conclusion.id]?: ClosingPanelSection;
 
@@ -65,10 +64,6 @@ export class ComparePageTemplate extends Page {
         this[sections.comparisonTable.id] = data[sections.comparisonTable.id]?.isVisible
             ? FeatureTableSection.fromSanity(data[sections.comparisonTable.id]!, db)
             : undefined;
-        this.featureSections = (data.featureSections || []).filter((x) => x.isVisible)
-            .map((x) => x._type === linkPanelsSectionSchemaName
-                ? LinkPanelsSection.fromSanity(x, db)
-                : CompareFeatureSection.fromSanity(x, db));
         this[sections.choice.id] = data[sections.choice.id]?.isVisible
             ? CompareChoiceSection.fromSanity(data[sections.choice.id]!, db)
             : undefined;
@@ -81,24 +76,29 @@ export class ComparePageTemplate extends Page {
 export class ComparePageInstance extends ComparePageTemplate {
     readonly title: string;
     readonly route: string;
+    readonly featureSections: CompareSection[];
 
     constructor(instance: SanityComparePageInstance, db: SanityDataset) {
         const template = db.getDocumentByID<SanityComparePageTemplate>(comparePageTemplateSchemaName);
         if (template == null) throw new Error(`Document not found: ${comparePageTemplateSchemaName}`);
         // Merge into a copy - `instance` lives inside the shared Sanity dataset, and mutating it
         // would leak the merged sections into this page's serialized TransferState.
-        // Feature sections are specific to each comparison, so they are never taken from the template.
         const merged: SanityComparePageInstance = Object.assign({}, instance, {
             introSection: Object.assign({}, template.introSection, instance.introSection),
             overviewSection: Object.assign({}, template.overviewSection, instance.overviewSection),
             comparisonTableSection: Object.assign({}, template.comparisonTableSection, instance.comparisonTableSection),
             choiceSection: Object.assign({}, template.choiceSection, instance.choiceSection),
             conclusionSection: Object.assign({}, template.conclusionSection, instance.conclusionSection),
-            metaTags: Object.assign({}, template.metaTags, instance.metaTags),
+            // Only the share image is a shared default; titles and descriptions fall back per page
+            metaTags: Object.assign({}, { ogImage: template.metaTags?.ogImage }, instance.metaTags),
         });
         super(merged, db);
         this.title = merged.title;
         this.route = merged.route.current;
+        this.featureSections = (merged.featureSections || []).filter((x) => x.isVisible)
+            .map((x) => x._type === linkPanelsSectionSchemaName
+                ? LinkPanelsSection.fromSanity(x, db)
+                : CompareFeatureSection.fromSanity(x, db));
     }
 }
 
@@ -122,7 +122,7 @@ const comparisonTableSectionField = defineField({
     name: sections.comparisonTable.id,
     title: `${sections.comparisonTable.title} Section`,
     type: featureTableSectionSchemaName,
-    description: "The full comparison table, shown after the choice section. The column for the product named TypeDB is highlighted",
+    description: "The full comparison table, shown after the choice section. Put TypeDB in the first column, which is highlighted",
     options: collapsibleOptions,
 });
 
@@ -157,7 +157,9 @@ const comparePageTemplateSchema = defineType({
     icon: DocumentIcon,
     description: "Defaults for every compare page. Fields left empty on a compare page fall back to these",
     fields: [
-        metaTagsField,
+        Object.assign({}, metaTagsField, {
+            description: "Only the share image is used as a default; each page gets its own title and description",
+        }),
         ...templateSectionFields,
     ],
     preview: {
