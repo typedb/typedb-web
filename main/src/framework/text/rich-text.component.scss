@@ -92,7 +92,7 @@ td-rich-text {
 
     blockquote {
         padding-left: 24px;
-        border-left: 2px solid var(--color-green);
+        border-left: 2px solid var(--color-secondary-blue);
 
         cite::before {
             content: "—";
@@ -106,7 +106,7 @@ td-rich-text {
     }
 
     a {
-        color: var(--color-green);
+        color: var(--color-secondary-blue);
 
         &:hover {
             text-decoration: underline;

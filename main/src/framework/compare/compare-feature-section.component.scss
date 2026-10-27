@@ -1,0 +1,144 @@
+@use "media";
+@use "shapes";
+@use "compare";
+
+td-compare-feature-section {
+    display: grid;
+    gap: 56px;
+    align-items: start;
+
+    &.cf-layout-row {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    }
+
+    &.cf-layout-row-reverse {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+
+        .cf-header {
+            order: 1;
+        }
+    }
+
+    &.cf-layout-column {
+        gap: 40px;
+
+        .cf-header .td-text {
+            max-width: 720px;
+        }
+    }
+
+    &.cf-layout-row, &.cf-layout-row-reverse {
+        @media (max-width: media.$max-width-tablet) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 36px;
+
+            .cf-header {
+                order: 0;
+            }
+        }
+    }
+
+    .cf-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .cf-pair {
+        @include compare.split-panel;
+    }
+
+    .cf-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 28px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 20px;
+        }
+    }
+
+    .cf-card-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+
+        &::before {
+            @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+        }
+    }
+
+    .cf-typedb .cf-card-label::before {
+        @include compare.subject-dot(var(--color-secondary-blue));
+    }
+
+    .cf-card-text {
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
+
+        p {
+            margin: 0;
+        }
+
+        p + p, ul, ol {
+            margin-top: 16px;
+        }
+
+        strong {
+            color: var(--color-white);
+        }
+    }
+
+    .cf-card-illustration {
+        display: block;
+
+        .il-image {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .cf-callout {
+        @include compare.split-panel;
+    }
+
+    .cf-callout .cf-stat {
+        padding: 28px;
+    }
+
+    .cf-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .cf-stat-value {
+        font-size: 44px;
+        line-height: 1.1;
+        font-weight: var(--font-weight-semi-bold);
+        letter-spacing: -0.03em;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .cf-typedb .cf-stat-value, .cf-stat.cf-typedb .cf-stat-value {
+        color: var(--color-secondary-blue);
+    }
+
+    .cf-stat-label {
+        font-size: var(--font-size-p2);
+        line-height: var(--line-height-p2);
+    }
+
+    .cf-note {
+        font-size: var(--font-size-aside);
+        color: var(--color-secondary-light-grey);
+
+        p {
+            margin: 0;
+        }
+    }
+}

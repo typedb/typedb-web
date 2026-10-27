@@ -1,0 +1,22 @@
+<figure class="sd-figure">
+  <div class="sd-panel">
+    @for (column of diagram.columns; track column.key) {
+      <div class="sd-column" [class.sd-typedb]="column.subject === 'typedb'">
+        <span class="sd-label">{{ column.label }}</span>
+        <div class="sd-layers">
+          @for (layer of column.layers; track layer.key) {
+            <div class="sd-layer" [class]="'sd-' + layer.emphasis">
+              <span class="sd-layer-title">{{ layer.title }}</span>
+              @if (layer.body) {
+                <span class="sd-layer-body">{{ layer.body }}</span>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  @if (diagram.caption) {
+    <figcaption class="sd-caption">{{ diagram.caption }}</figcaption>
+  }
+</figure>

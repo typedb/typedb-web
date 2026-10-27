@@ -1,0 +1,91 @@
+@use "media";
+@use "shapes";
+@use "../compare/compare";
+
+td-stack-diagram {
+    display: block;
+    width: 100%;
+
+    .sd-figure {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin: 0;
+    }
+
+    // The same bordered, column-divided panel as the compare page's side-by-side cards
+    .sd-panel {
+        @include compare.split-panel;
+    }
+
+    .sd-column {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 22px;
+
+        @media (max-width: media.$max-width-mobile) {
+            padding: 18px;
+        }
+    }
+
+    .sd-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+
+        &::before {
+            @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+        }
+    }
+
+    .sd-typedb .sd-label::before {
+        @include compare.subject-dot(var(--color-secondary-blue));
+    }
+
+    .sd-layers {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .sd-layer {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 18px;
+        border: shapes.$border;
+        border-radius: 12px;
+    }
+
+    // The layer the comparison turns on, on the side that does it well
+    .sd-highlighted {
+        border: 1.5px solid var(--color-secondary-blue);
+        background-color: var(--color-purple);
+    }
+
+    // A layer mapped on top rather than stored: outlined, not filled
+    .sd-notional {
+        border: 1.5px dashed var(--color-secondary-grey);
+    }
+
+    .sd-layer-title {
+        font-size: 15px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+    }
+
+    .sd-layer-body {
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: var(--color-secondary-extra-light-grey);
+    }
+
+    .sd-caption {
+        font-size: 14px;
+        color: var(--color-secondary-grey);
+    }
+}

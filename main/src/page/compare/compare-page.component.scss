@@ -1,0 +1,51 @@
+td-compare-page {
+    // The hero's eyebrow names the comparison, shown as a pill
+    .cp-intro .td-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border: 1px solid var(--color-light-purple);
+        border-radius: 999px;
+        font-family: inherit;
+        font-size: 14px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: var(--color-secondary-extra-light-grey);
+
+        &::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--color-secondary-blue);
+        }
+    }
+
+    // The hero's code panes: TypeDB first, then the competitor
+    .cp-intro .il-pane-header::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        background-color: var(--color-secondary-extra-light-grey);
+    }
+
+    .cp-intro .il-pane:first-child .il-pane-header::before {
+        background-color: var(--color-secondary-blue);
+    }
+
+    // Anchor targets clear the sticky top bar
+    [id] {
+        scroll-margin-top: 96px;
+    }
+
+    .cp-full-table {
+        margin-top: 40px;
+    }
+
+    // The closing title's second line is quieter than the first
+    .cp-closing td-heading-with-highlights br ~ span {
+        color: var(--color-secondary-light-grey);
+    }
+}

@@ -36,7 +36,7 @@ export class LinkDirective implements OnChanges {
     constructor(
         private el: ElementRef<HTMLAnchorElement>,
         private router: Router,
-        activatedRoute: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         changeDet: ChangeDetectorRef,
     ) {
         activatedRoute.url.subscribe(() => changeDet.markForCheck());
@@ -64,6 +64,8 @@ export class LinkDirective implements OnChanges {
         const navigationExtras: NavigationExtras = {
             queryParams: Object.fromEntries(new URLSearchParams(query).entries()),
             fragment,
+            // A bare "#anchor" or "?query" link stays on the current page
+            relativeTo: path ? undefined : this.activatedRoute,
         };
 
         this.el.nativeElement.href = this.router.createUrlTree(commands, navigationExtras).toString();

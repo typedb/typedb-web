@@ -18,7 +18,9 @@ export const appConfig: ApplicationConfig = {
             routes,
             withInMemoryScrolling({
                 scrollPositionRestoration: 'disabled',
-                anchorScrolling: 'enabled'
+                // Root component scrolls to anchors itself, smoothly and respecting scroll-margin; the router's
+                // own anchor scrolling would jump there first, so the two together read as a jump then a bounce
+                anchorScrolling: 'disabled'
             })
         ),
         provideHttpClient(withFetch()),
