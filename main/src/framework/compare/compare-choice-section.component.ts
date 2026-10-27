@@ -14,4 +14,9 @@ export class CompareChoiceSectionComponent {
     @Input({ required: true }) section!: CompareChoiceSection;
 
     @HostBinding("class") readonly clazz = "section";
+
+    // Lets overview panels link to this section, as the feature sections already allow
+    @HostBinding("attr.id") get id() {
+        return this.section.sectionId;
+    }
 }

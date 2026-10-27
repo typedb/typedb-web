@@ -50,7 +50,7 @@ td-illustration {
     }
 
     // A split pane shows its two illustrations stacked, each in its own frame
-    &.il-split {
+    &.il-split, &.il-stack {
         border: none;
         overflow: visible;
     }

@@ -5,7 +5,7 @@ import interact from "interactjs";
 import { map, Observable } from "rxjs";
 import {
     CodeSnippet, GraphVisualisation, Illustration, ImageIllustration, PolyglotSnippet, PortableText,
-    SplitPaneIllustration, VideoEmbed,
+    SplitPaneIllustration, StackDiagram, VideoEmbed,
 } from "typedb-web-schema";
 
 import { MediaQueryService } from "../../service/media-query.service";
@@ -13,6 +13,7 @@ import { AspectRatioComponent } from "../aspect-ratio/aspect-ratio.component";
 import { CodeSnippetComponent } from "../code/code-snippet.component";
 import { PolyglotSnippetComponent } from "../polyglot-snippet/polyglot-snippet.component";
 import { GraphVisualisationComponent } from "../graph-visualisation/graph-visualisation.component";
+import { StackDiagramComponent } from "../stack-diagram/stack-diagram.component";
 import { RichTextComponent } from "../text/rich-text.component";
 
 @Component({
@@ -22,7 +23,7 @@ import { RichTextComponent } from "../text/rich-text.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent, NgOptimizedImage,
+        CodeSnippetComponent, PolyglotSnippetComponent, GraphVisualisationComponent, NgOptimizedImage, StackDiagramComponent,
     ]
 })
 export class IllustrationComponent {
@@ -64,6 +65,10 @@ export class IllustrationComponent {
         return this.illustration instanceof GraphVisualisation ? this.illustration : undefined;
     }
 
+    get stackDiagram(): StackDiagram | undefined {
+        return this.illustration instanceof StackDiagram ? this.illustration : undefined;
+    }
+
     get splitPaneIllustration(): SplitPaneIllustration | undefined {
         return this.illustration instanceof SplitPaneIllustration ? this.illustration : undefined;
     }
@@ -71,6 +76,12 @@ export class IllustrationComponent {
     @HostBinding("class.il-split")
     get isSplitPane() {
         return this.illustration instanceof SplitPaneIllustration;
+    }
+
+    // The diagram draws its own bordered panel, so the host frame would double it up
+    @HostBinding("class.il-stack")
+    get isStackDiagram() {
+        return this.illustration instanceof StackDiagram;
     }
 
     isTypeQL(pane: Illustration) {

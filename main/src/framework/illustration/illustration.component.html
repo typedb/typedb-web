@@ -18,6 +18,9 @@
 @if (graphVisualisation && visible) {
   <td-graph-visualisation [graph]="graphVisualisation" />
 }
+@if (stackDiagram; as stack) {
+  <td-stack-diagram [diagram]="stack" />
+}
 @if (splitPaneIllustration; as split) {
   <div class="il-split-pane">
     @for (pane of [split.left, split.right]; track $index) {

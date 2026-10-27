@@ -69,7 +69,8 @@ export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
     ImageIllustration, VideoEmbed, GraphVisualisation, SplitPaneIllustration, type Illustration,
-    type SplitPaneIllustrationContent,
+    type SplitPaneIllustrationContent, stackDiagramSchemaName, StackDiagram, type StackDiagramColumn,
+    type StackDiagramLayer, type StackLayerEmphasis, type StackSubject,
 } from "./illustration";
 export { KeyPointWithIcon, ServicesKeyPoint } from "./key-point";
 export { linkSchemaName, Link, TextLink } from "./link";
