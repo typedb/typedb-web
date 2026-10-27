@@ -1,11 +1,11 @@
 import { AddUserIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { requiredRule, titleFieldWithHighlights } from "../common-fields";
+import { requiredRule, titleFieldWithHighlights, titleFieldWithHighlightsOptional } from "../common-fields";
 import { PortableText } from "../text";
 
 export interface CloudLoginPortal {
     title: PortableText;
-    subtitle: PortableText;
+    subtitle?: PortableText;
     keyPoints: string[];
 }
 
@@ -18,7 +18,7 @@ const loginPortalSchema = defineType({
     type: "document",
     fields: [
         titleFieldWithHighlights,
-        Object.assign({}, titleFieldWithHighlights, {
+        Object.assign({}, titleFieldWithHighlightsOptional, {
             name: "subtitle",
             title: "Subtitle",
         }),

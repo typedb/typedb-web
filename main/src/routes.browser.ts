@@ -4,6 +4,7 @@ import { map } from "rxjs";
 import { _404PageComponent } from "./page/404/404-page.component";
 import { BlogPostPageComponent } from "./page/blog/blog-post-page.component";
 import { BlogComponent } from "./page/blog/blog.component";
+import { ComparePageComponent } from "./page/compare/compare-page.component";
 import { ComposablePageComponent } from "./page/composable/composable-page.component";
 import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
@@ -42,6 +43,7 @@ export const dynamicPageSchemas = [
     { path: "lectures/:slug", schemaName: "lecture" },
     { path: "legal/:slug", schemaName: "legalDocument" },
     { path: "use-cases/:slug", schemaName: "useCasePage", schemaSlugAccessor: "route.current" },
+    { path: "compare/:slug", schemaName: "comparePage", schemaSlugAccessor: "route.current" },
     { path: "papers/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
@@ -96,6 +98,7 @@ const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> =
     "legal/:slug": { component: LegalDocumentComponent },
     "papers/:slug": { component: PaperDetailsPageComponent },
     "use-cases/:slug": { component: UseCasePageComponent },
+    "compare/:slug": { component: ComparePageComponent },
     "applications/:slug": { 
         component: LearningArticleComponent, 
         data: { 

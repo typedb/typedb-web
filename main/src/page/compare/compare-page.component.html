@@ -1,0 +1,38 @@
+<article>
+  @if (page$ | async; as page) {
+    @if (page.introSection) {
+      <td-section-core level="h1" [section]="page.introSection" [isIntroSection]="true" textAlign="left" class="cp-intro"
+        [flexDirection]="page.introSection.layoutDirection === 'auto' ? 'row' : page.introSection.layoutDirection"
+        [class.wide-section]="page.introSection.width === 'wide'" />
+    }
+    @if (page.overviewSection; as overview) {
+      <td-section-core [section]="overview" [attr.id]="overview.sectionId" textAlign="left" />
+      <td-link-panels [panels]="overview.panels" [sectionId]="overview.sectionId" [appearance]="overview.appearance" />
+    }
+    @for (section of page.featureSections; track section.sectionId) {
+      @if (asLinkPanels(section); as panels) {
+        <td-section-core [section]="panels" [attr.id]="panels.sectionId" textAlign="left" />
+        <td-link-panels [panels]="panels.panels" [sectionId]="panels.sectionId" [appearance]="panels.appearance" />
+      } @else {
+        <td-compare-feature-section [section]="asFeature(section)" />
+      }
+    }
+    @if (page.useCasesSection; as useCases) {
+      <td-section-core [section]="useCases" [attr.id]="useCases.sectionId" textAlign="left"
+        [class.wide-section]="useCases.width === 'wide'" />
+      <td-card-switcher [cards]="useCases.cards" [sectionId]="useCases.sectionId" />
+    }
+    @if (page.choiceSection) {
+      <td-compare-choice-section [section]="page.choiceSection" />
+    }
+    @if (page.comparisonTableSection; as table) {
+      <section [attr.id]="table.sectionId">
+        <td-section-core [section]="table" [noSectionClass]="true" textAlign="left" />
+        <td-compare-table class="cp-full-table" [table]="table.featureTable" [sectionId]="table.sectionId" />
+      </section>
+    }
+    @if (page.conclusionSection) {
+      <td-closing-panel-section [section]="page.conclusionSection" class="cp-closing" />
+    }
+  }
+</article>

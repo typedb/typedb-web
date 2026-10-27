@@ -1,5 +1,7 @@
-import { CodeBlockIcon, CodeIcon, DocumentVideoIcon, ImageIcon, SplitVerticalIcon, SunIcon } from "@sanity/icons";
-import { ArrayRule, defineField, defineType, ReferenceRule, SanityDocument, Slug, SlugRule, StringRule, TextRule } from "@sanity/types";
+import { CodeBlockIcon, CodeIcon, DocumentVideoIcon, ImageIcon, SplitVerticalIcon, StackCompactIcon, SunIcon } from "@sanity/icons";
+import {
+    ArrayRule, defineArrayMember, defineField, defineType, ReferenceRule, SanityDocument, Slug, SlugRule, StringRule, TextRule,
+} from "@sanity/types";
 import { CodeSnippet, isCodeSnippet, isPolyglotSnippet, PolyglotSnippet, SanityCodeSnippet, SanityPolyglotSnippet } from "./code";
 import { codeSnippetSchemaName, polyglotSnippetSchemaName, requiredRule, titleField } from "./common-fields";
 import { Document, SanityDataset, SanityImage, SanityReference } from "./sanity-core";
@@ -9,6 +11,9 @@ export const imageIllustrationSchemaName = "imageIllustration";
 export const videoEmbedSchemaName = "videoEmbed";
 export const graphVisualisationSchemaName = "graphVisualisation";
 export const splitPaneIllustrationSchemaName = "splitPaneIllustration";
+export const stackDiagramSchemaName = "stackDiagram";
+export const stackDiagramColumnSchemaName = "stackDiagramColumn";
+export const stackDiagramLayerSchemaName = "stackDiagramLayer";
 
 interface SanityImageIllustration extends SanityDocument {
     image: SanityImage;
@@ -29,11 +34,48 @@ export interface SanitySplitPaneIllustration extends SanityDocument {
     right: SanityReference<SanitySplitPaneIllustrationContent>;
 }
 
-export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | SanityCodeSnippet | SanityPolyglotSnippet | SanityGraphVisualisation | SanitySplitPaneIllustration;
+/** Which side of the comparison a column represents; decides the colour of its marker */
+export const stackSubjects = [
+    { title: "TypeDB", value: "typedb" },
+    { title: "Competitor", value: "competitor" },
+    { title: "Neutral", value: "neutral" },
+] as const;
+
+export type StackSubject = (typeof stackSubjects)[number]["value"];
+
+/** What a layer is in the stack, which decides how it is drawn */
+export const stackLayerEmphases = [
+    { title: "Normal", value: "none" },
+    { title: "Highlighted", value: "highlighted" },
+    { title: "Notional", value: "notional" },
+] as const;
+
+export type StackLayerEmphasis = (typeof stackLayerEmphases)[number]["value"];
+
+export interface SanityStackDiagramLayer {
+    _key: string;
+    title: string;
+    body?: string;
+    emphasis?: StackLayerEmphasis;
+}
+
+export interface SanityStackDiagramColumn {
+    _key: string;
+    label: string;
+    subject?: StackSubject;
+    layers?: SanityStackDiagramLayer[];
+}
+
+export interface SanityStackDiagram extends SanityDocument {
+    caption?: string;
+    columns?: SanityStackDiagramColumn[];
+}
+
+export type SanityIllustration = SanityImageIllustration | SanityVideoEmbed | SanityCodeSnippet | SanityPolyglotSnippet | SanityGraphVisualisation | SanitySplitPaneIllustration | SanityStackDiagram;
 
 export const illustrationObjectSchemaName = "illustration";
 
-export type IllustrationKind = "none" | "image" | "code" | "video" | "graph" | "splitPane";
+export type IllustrationKind = "none" | "image" | "code" | "video" | "graph" | "splitPane" | "stackDiagram";
 
 export interface SanityIllustrationObject {
     _type: typeof illustrationObjectSchemaName;
@@ -43,6 +85,7 @@ export interface SanityIllustrationObject {
     video?: SanityReference<SanityVideoEmbed>;
     graph?: SanityReference<SanityGraphVisualisation>;
     splitPane?: SanityReference<SanitySplitPaneIllustration>;
+    stackDiagram?: SanityReference<SanityStackDiagram>;
 }
 
 /** Documents published before the illustration migration still hold the legacy reference shape */
@@ -70,6 +113,10 @@ export function isGraphVisualisation(doc: SanityDocument): doc is SanityGraphVis
 
 export function isSplitPaneIllustration(doc: SanityDocument): doc is SanitySplitPaneIllustration {
     return doc._type === splitPaneIllustrationSchemaName;
+}
+
+export function isStackDiagram(doc: SanityDocument): doc is SanityStackDiagram {
+    return doc._type === stackDiagramSchemaName;
 }
 
 export class ImageIllustration extends Document {
@@ -187,10 +234,54 @@ export class SplitPaneIllustration extends Document {
     }
 }
 
-export type Illustration = ImageIllustration | VideoEmbed | CodeSnippet | PolyglotSnippet | GraphVisualisation | SplitPaneIllustration;
+export interface StackDiagramLayer {
+    key: string;
+    title: string;
+    body?: string;
+    emphasis: StackLayerEmphasis;
+}
+
+export interface StackDiagramColumn {
+    key: string;
+    label: string;
+    subject: StackSubject;
+    layers: StackDiagramLayer[];
+}
+
+/** Two or more stacks side by side, showing where something sits in each product's architecture */
+export class StackDiagram extends Document {
+    readonly caption?: string;
+    readonly columns: StackDiagramColumn[];
+
+    constructor(data: PropsOf<StackDiagram>) {
+        super({ _id: data.id });
+        this.caption = data.caption;
+        this.columns = data.columns;
+    }
+
+    static fromSanity(data: SanityStackDiagram): StackDiagram {
+        return new StackDiagram(Object.assign(new Document(data), {
+            caption: data.caption || undefined,
+            columns: (data.columns || []).map((column) => ({
+                key: column._key,
+                label: column.label,
+                subject: column.subject || "neutral",
+                layers: (column.layers || []).map((layer) => ({
+                    key: layer._key,
+                    title: layer.title,
+                    body: layer.body || undefined,
+                    emphasis: layer.emphasis || "none",
+                })),
+            })),
+        }));
+    }
+}
+
+export type Illustration = ImageIllustration | VideoEmbed | CodeSnippet | PolyglotSnippet | GraphVisualisation | SplitPaneIllustration | StackDiagram;
 
 export function illustrationFromSanity(data: SanityIllustration, db: SanityDataset): Illustration {
     if (isSplitPaneIllustration(data)) return SplitPaneIllustration.fromSanity(data, db);
+    else if (isStackDiagram(data)) return StackDiagram.fromSanity(data);
     else if (isImageIllustration(data)) return ImageIllustration.fromSanity(data, db);
     else if (isVideoEmbed(data)) return VideoEmbed.fromSanity(data);
     else if (isCodeSnippet(data)) return CodeSnippet.fromSanity(data);
@@ -222,6 +313,8 @@ export function illustrationFieldValueFromSanity(value: SanityIllustrationFieldV
             return value.graph ? GraphVisualisation.fromSanity(db.resolveRef(value.graph)) : undefined;
         case "splitPane":
             return value.splitPane ? SplitPaneIllustration.fromSanity(db.resolveRef(value.splitPane), db) : undefined;
+        case "stackDiagram":
+            return value.stackDiagram ? StackDiagram.fromSanity(db.resolveRef(value.stackDiagram)) : undefined;
         default:
             return undefined;
     }
@@ -345,6 +438,108 @@ export const illustrationFieldTargetTypes = [
     { type: codeSnippetSchemaName }, { type: polyglotSnippetSchemaName }, { type: graphVisualisationSchemaName }
 ];
 
+const stackDiagramLayerSchema = defineType({
+    name: stackDiagramLayerSchemaName,
+    title: "Layer",
+    icon: StackCompactIcon,
+    type: "object",
+    fields: [
+        defineField({
+            name: "title",
+            type: "string",
+            validation: (rule: StringRule) => rule.required().error("Every layer needs a name"),
+        }),
+        defineField({
+            name: "body",
+            title: "Description (optional)",
+            type: "string",
+            description: "One short line under the name, e.g. 'Where the data still lives'",
+            validation: (rule: StringRule) => rule.max(90).warning("Layers read best as a single line"),
+        }),
+        defineField({
+            name: "emphasis",
+            type: "string",
+            description: "Highlighted marks the layer the comparison turns on. Notional is a layer mapped on top rather than stored, and is outlined instead of filled",
+            options: { list: [...stackLayerEmphases], layout: "radio", direction: "horizontal" },
+            initialValue: "none",
+        }),
+    ],
+    preview: {
+        select: { title: "title", body: "body", emphasis: "emphasis" },
+        prepare: ({ title, body, emphasis }) => ({
+            title,
+            subtitle: [emphasis && emphasis !== "none" ? emphasis : null, body].filter(Boolean).join(" · "),
+        }),
+    },
+});
+
+const stackDiagramColumnSchema = defineType({
+    name: stackDiagramColumnSchemaName,
+    title: "Column",
+    icon: StackCompactIcon,
+    type: "object",
+    fields: [
+        defineField({
+            name: "label",
+            type: "string",
+            description: "The product this stack belongs to, e.g. 'TypeDB'",
+            validation: (rule: StringRule) => rule.required().error("Every column needs a label"),
+        }),
+        defineField({
+            name: "subject",
+            type: "string",
+            description: "Colours the square beside the label; TypeDB's is highlighted",
+            options: { list: [...stackSubjects], layout: "radio", direction: "horizontal" },
+            initialValue: "neutral",
+        }),
+        defineField({
+            name: "layers",
+            type: "array",
+            description: "Top of the stack first, e.g. the applications, then what they sit on",
+            of: [defineArrayMember({ type: stackDiagramLayerSchemaName })],
+            validation: (rule: ArrayRule<unknown[]>) => rule.required().min(1).error("A column needs at least one layer"),
+        }),
+    ],
+    preview: {
+        select: { label: "label", subject: "subject", layers: "layers" },
+        prepare: ({ label, subject, layers }) => ({
+            title: label,
+            subtitle: `${subject === "typedb" ? "TypeDB" : subject === "competitor" ? "Competitor" : "Neutral"} · ${(layers || []).length} layers`,
+        }),
+    },
+});
+
+const stackDiagramSchema = defineType({
+    name: stackDiagramSchemaName,
+    title: "Stack Diagram",
+    icon: StackCompactIcon,
+    type: "document",
+    description: "Two or more stacks side by side, showing where something sits in each product's architecture",
+    fields: [
+        Object.assign({}, titleField, { title: "Description" }),
+        defineField({
+            name: "columns",
+            type: "array",
+            of: [defineArrayMember({ type: stackDiagramColumnSchemaName })],
+            validation: (rule: ArrayRule<unknown[]>) => rule.required().min(2).error("A stack diagram compares at least two stacks"),
+        }),
+        defineField({
+            name: "caption",
+            title: "Caption (optional)",
+            type: "string",
+            description: "Shown under the diagram, e.g. 'Where the meaning lives in each'",
+            validation: (rule: StringRule) => rule.max(80).warning("Captions read best as a short line"),
+        }),
+    ],
+    preview: {
+        select: { title: "title", columns: "columns" },
+        prepare: ({ title, columns }) => ({
+            title,
+            subtitle: `Stack diagram · ${((columns || []) as { label?: string }[]).map((x) => x.label).filter(Boolean).join(" | ")}`,
+        }),
+    },
+});
+
 const illustrationKinds: { title: string; value: IllustrationKind }[] = [
     { title: "None", value: "none" },
     { title: "Image", value: "image" },
@@ -352,6 +547,7 @@ const illustrationKinds: { title: string; value: IllustrationKind }[] = [
     { title: "Video", value: "video" },
     { title: "Graph", value: "graph" },
     { title: "Split Pane", value: "splitPane" },
+    { title: "Stack Diagram", value: "stackDiagram" },
 ];
 
 const illustrationKindTitles = Object.fromEntries(illustrationKinds.map((x) => [x.value, x.title]));
@@ -407,6 +603,13 @@ const illustrationObjectSchema = defineType({
             to: [{ type: splitPaneIllustrationSchemaName }],
             hidden: hiddenUnlessKind("splitPane"),
         }),
+        defineField({
+            name: "stackDiagram",
+            title: "Stack Diagram",
+            type: "reference",
+            to: [{ type: stackDiagramSchemaName }],
+            hidden: hiddenUnlessKind("stackDiagram"),
+        }),
     ],
     validation: (rule) => rule.custom((value: any) => {
         // absence and an explicit "none" are both valid; field-level required() rules govern presence
@@ -444,4 +647,7 @@ export const illustrationFieldOptional = defineField({
     options: { collapsible: true, collapsed: false },
 });
 
-export const illustrationSchemas = [illustrationObjectSchema, imageIllustrationSchema, videoEmbedSchema, graphVisualisationSchema, splitPaneIllustrationSchema];
+export const illustrationSchemas = [
+    illustrationObjectSchema, imageIllustrationSchema, videoEmbedSchema, graphVisualisationSchema, splitPaneIllustrationSchema,
+    stackDiagramSchema, stackDiagramColumnSchema, stackDiagramLayerSchema,
+];

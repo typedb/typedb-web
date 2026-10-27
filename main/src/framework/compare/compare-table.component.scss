@@ -1,0 +1,117 @@
+@use "media";
+@use "shapes";
+@use "compare";
+
+td-compare-table {
+    display: block;
+
+    .ct-table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: shapes.$border;
+        border-radius: 18px;
+        overflow: hidden;
+        background: none;
+        box-shadow: none;
+        text-align: start;
+    }
+
+    th, td {
+        height: auto;
+        padding: 20px 24px;
+        border: none;
+        border-top: shapes.$border;
+        vertical-align: top;
+        text-align: start;
+        font-size: var(--font-size-p1);
+        line-height: 1.5;
+    }
+
+    thead th, thead td {
+        border-top: none;
+        background-color: var(--theme-deep-purple);
+        font-size: 15px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+    }
+
+    .ct-product {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        &::before {
+            @include compare.subject-dot(var(--color-secondary-extra-light-grey));
+        }
+    }
+
+    .ct-typedb .ct-product::before {
+        @include compare.subject-dot(var(--color-secondary-blue));
+    }
+
+    tbody th {
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-white);
+    }
+
+    td {
+        color: var(--color-secondary-extra-light-grey);
+    }
+
+    td-feature-table-cell .ftc-root {
+        justify-content: flex-start;
+        padding: 0;
+    }
+
+    .ct-compact {
+        th, td {
+            padding: 16px 20px;
+            font-size: var(--font-size-p2);
+        }
+
+        thead th {
+            padding: 14px 20px;
+        }
+    }
+
+    // Each row becomes a card of stacked cells, each labelled with its product
+    @media (max-width: media.$max-width-mobile) {
+        thead {
+            display: none;
+        }
+
+        tr, th, td {
+            display: block;
+        }
+
+        tbody tr:not(:first-child) {
+            border-top: shapes.$border;
+        }
+
+        tbody th {
+            padding-bottom: 4px;
+            border-top: none;
+        }
+
+        td {
+            padding-top: 8px;
+            border-top: none;
+
+            &::before {
+                content: attr(data-label);
+                display: block;
+                font-size: 12px;
+                font-weight: var(--font-weight-semi-bold);
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--color-secondary-grey);
+            }
+
+            &.ct-typedb::before {
+                color: var(--color-secondary-blue);
+            }
+        }
+    }
+}

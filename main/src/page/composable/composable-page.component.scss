@@ -1,15 +1,6 @@
 @use "colors";
 
 td-composable-page {
-    // Frameless buttons in the opening section are white, as on the legacy home page's intro (.td-intro in styles.scss)
-    .page-intro-section .button-frameless {
-        color: var(--color-white);
-
-        &:hover {
-            color: var(--color-secondary-light-grey);
-        }
-    }
-
     // Feature grids sit directly under their section heading, like the panels of other section types
     td-feature-grid.section {
         margin-top: var(--subsection-margin);
