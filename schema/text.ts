@@ -34,7 +34,9 @@ export class ParagraphWithHighlights {
                 .map((child) => ({
                     id: child._key,
                     text: child.text as string,
-                    highlight: (child.marks as string[]).includes("strong"),
+                    // `marks` is optional in Portable Text: Studio always writes it, but documents
+                    // created through the API can leave it out entirely
+                    highlight: ((child.marks as string[] | undefined) ?? []).includes("strong"),
                 }));
 
             spans.push(...blockSpans);
