@@ -320,14 +320,6 @@ table {
 }
 
 .td-intro {
-    .button-frameless {
-        color: var(--color-white);
-
-        &:hover {
-            color: var(--color-secondary-light-grey);
-        }
-    }
-
     .td-illustration-wrapper {
         @media (max-width: media.$max-width-mobile) {
             transform: scale(0.86);

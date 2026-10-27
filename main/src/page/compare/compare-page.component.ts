@@ -5,6 +5,7 @@ import {
     CompareFeatureSection, ComparePageInstance, comparePageSchemaName, CompareSection, LinkPanelsSection, SanityComparePageInstance,
     SanityDataset,
 } from "typedb-web-schema";
+import { CardSwitcherComponent } from "../../framework/card-switcher/card-switcher.component";
 import { ClosingPanelSectionComponent } from "../../framework/closing-panel/closing-panel-section.component";
 import { CompareChoiceSectionComponent } from "../../framework/compare/compare-choice-section.component";
 import { CompareFeatureSectionComponent } from "../../framework/compare/compare-feature-section.component";
@@ -20,7 +21,7 @@ import { portableTextToPlainText } from "src/service/portable-text-utils";
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        AsyncPipe, ClosingPanelSectionComponent, CompareChoiceSectionComponent, CompareFeatureSectionComponent,
+        AsyncPipe, CardSwitcherComponent, ClosingPanelSectionComponent, CompareChoiceSectionComponent, CompareFeatureSectionComponent,
         CompareTableComponent, LinkPanelsComponent, SectionCoreComponent,
     ],
 })

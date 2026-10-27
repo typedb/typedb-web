@@ -35,14 +35,6 @@ td-compare-page {
         background-color: var(--color-secondary-blue);
     }
 
-    .cp-intro .button-frameless {
-        color: var(--color-secondary-blue);
-
-        &:hover {
-            color: var(--color-white);
-        }
-    }
-
     // Anchor targets clear the sticky top bar
     [id] {
         scroll-margin-top: 96px;

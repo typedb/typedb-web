@@ -17,6 +17,11 @@
         <td-compare-feature-section [section]="asFeature(section)" />
       }
     }
+    @if (page.useCasesSection; as useCases) {
+      <td-section-core [section]="useCases" [attr.id]="useCases.sectionId" textAlign="left"
+        [class.wide-section]="useCases.width === 'wide'" />
+      <td-card-switcher [cards]="useCases.cards" [sectionId]="useCases.sectionId" />
+    }
     @if (page.choiceSection) {
       <td-compare-choice-section [section]="page.choiceSection" />
     }

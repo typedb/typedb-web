@@ -1,6 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType, Slug } from "@sanity/types";
 import { collapsibleOptions, routeField, titleField } from "../common-fields";
+import { CardSwitcherSection, cardSwitcherSectionSchemaName, SanityCardSwitcherSection } from "../component/card-switcher-section";
 import { ClosingPanelSection, closingPanelSectionSchemaName, SanityClosingPanelSection } from "../component/closing-panel-section";
 import {
     CompareChoiceSection, compareChoiceSectionSchemaName, CompareFeatureSection, compareFeatureSectionSchemaName,
@@ -19,6 +20,7 @@ const sections = {
     intro: { id: "introSection", title: "Intro" },
     overview: { id: "overviewSection", title: "Overview" },
     comparisonTable: { id: "comparisonTableSection", title: "Comparison Table" },
+    useCases: { id: "useCasesSection", title: "Use Cases" },
     choice: { id: "choiceSection", title: "Making the Choice" },
     conclusion: { id: "conclusionSection", title: "Conclusion" },
 } as const;
@@ -36,6 +38,7 @@ export interface SanityComparePageTemplate extends SanityPage {
     [sections.intro.id]?: SanityIllustrationSection;
     [sections.overview.id]?: SanityLinkPanelsSection;
     [sections.comparisonTable.id]?: SanityFeatureTableSection;
+    [sections.useCases.id]?: SanityCardSwitcherSection;
     [sections.choice.id]?: SanityCompareChoiceSection;
     [sections.conclusion.id]?: SanityClosingPanelSection;
 }
@@ -50,6 +53,7 @@ export class ComparePageTemplate extends Page {
     readonly [sections.intro.id]?: IllustrationSection;
     readonly [sections.overview.id]?: LinkPanelsSection;
     readonly [sections.comparisonTable.id]?: FeatureTableSection;
+    readonly [sections.useCases.id]?: CardSwitcherSection;
     readonly [sections.choice.id]?: CompareChoiceSection;
     readonly [sections.conclusion.id]?: ClosingPanelSection;
 
@@ -63,6 +67,9 @@ export class ComparePageTemplate extends Page {
             : undefined;
         this[sections.comparisonTable.id] = data[sections.comparisonTable.id]?.isVisible
             ? FeatureTableSection.fromSanity(data[sections.comparisonTable.id]!, db)
+            : undefined;
+        this[sections.useCases.id] = data[sections.useCases.id]?.isVisible
+            ? CardSwitcherSection.fromSanity(data[sections.useCases.id]!, db)
             : undefined;
         this[sections.choice.id] = data[sections.choice.id]?.isVisible
             ? CompareChoiceSection.fromSanity(data[sections.choice.id]!, db)
@@ -87,6 +94,7 @@ export class ComparePageInstance extends ComparePageTemplate {
             introSection: Object.assign({}, template.introSection, instance.introSection),
             overviewSection: Object.assign({}, template.overviewSection, instance.overviewSection),
             comparisonTableSection: Object.assign({}, template.comparisonTableSection, instance.comparisonTableSection),
+            useCasesSection: Object.assign({}, template.useCasesSection, instance.useCasesSection),
             choiceSection: Object.assign({}, template.choiceSection, instance.choiceSection),
             conclusionSection: Object.assign({}, template.conclusionSection, instance.conclusionSection),
             // Only the share image is a shared default; titles and descriptions fall back per page
@@ -134,6 +142,14 @@ const featureSectionsField = defineField({
     of: [defineArrayMember({ type: compareFeatureSectionSchemaName }), defineArrayMember({ type: linkPanelsSectionSchemaName })],
 });
 
+const useCasesSectionField = defineField({
+    name: sections.useCases.id,
+    title: `${sections.useCases.title} Section`,
+    type: cardSwitcherSectionSchemaName,
+    description: "Shared across every compare page: what teams build on TypeDB. Set on the template; untick 'Is Visible' to hide it on one page",
+    options: collapsibleOptions,
+});
+
 const choiceSectionField = defineField({
     name: sections.choice.id,
     title: `${sections.choice.title} Section`,
@@ -148,7 +164,9 @@ const conclusionSectionField = defineField({
     options: collapsibleOptions,
 });
 
-const templateSectionFields = [introSectionField, overviewSectionField, comparisonTableSectionField, choiceSectionField, conclusionSectionField];
+const templateSectionFields = [
+    introSectionField, overviewSectionField, comparisonTableSectionField, useCasesSectionField, choiceSectionField, conclusionSectionField,
+];
 
 const comparePageTemplateSchema = defineType({
     name: comparePageTemplateSchemaName,
@@ -182,6 +200,7 @@ const comparePageSchema = defineType({
         introSectionField,
         overviewSectionField,
         featureSectionsField,
+        useCasesSectionField,
         choiceSectionField,
         comparisonTableSectionField,
         conclusionSectionField,

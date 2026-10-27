@@ -17,7 +17,8 @@ export class CompareFeatureSectionComponent {
     @Input({ required: true }) section!: CompareFeatureSection;
 
     @HostBinding("class") get clazz() {
-        return `section cf-layout-${this.section.layoutDirection === "auto" ? "row" : this.section.layoutDirection}`;
+        const layout = this.section.layoutDirection === "auto" ? "row" : this.section.layoutDirection;
+        return `section cf-layout-${layout}${this.section.width === "wide" ? " wide-section" : ""}`;
     }
 
     @HostBinding("attr.id") get id() {

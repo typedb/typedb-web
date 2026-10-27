@@ -2,7 +2,7 @@ import { BarChartIcon, BlockElementIcon, CheckmarkCircleIcon, InfoOutlineIcon, S
 import { defineArrayMember, defineField, defineType } from "@sanity/types";
 import {
     bodyFieldRichText, isVisibleField, SectionLayoutDirection, sectionLayoutDirectionField, sectionPreview,
-    titleBodyActionsFields, titleWithHighlightsPreview,
+    sectionWidthField, titleBodyActionsFields, titleWithHighlightsPreview,
 } from "../common-fields";
 import { keyPointSchemaName } from "../key-point";
 import {
@@ -377,6 +377,7 @@ const compareFeatureSectionSchema = defineType({
         Object.assign({}, sectionLayoutDirectionField, {
             description: "Auto places the content beside the text. Content Below suits wide content, such as a row of stats",
         }),
+        sectionWidthField,
         isVisibleField,
     ],
     preview: {
