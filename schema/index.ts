@@ -64,7 +64,7 @@ export {
 export {
     PublicationSection, type PublicationPanelItem, PublicationContentRow, type PublicationContentRowItem,
 } from "./component/publication-panel";
-export { SectionCore, IllustrationSection } from "./component/section";
+export { SectionCore, IllustrationSection, LinkPanelsSection } from "./component/section";
 export { type FormID, type SanityCustomerIoForms, formsSchemaName } from "./form";
 export {
     imageIllustrationSchemaName, videoEmbedSchemaName, graphVisualisationSchemaName, splitPaneIllustrationSchemaName,
@@ -88,6 +88,10 @@ export {
 } from "./component/benchmark-section";
 export { CardSwitcherSection, type SwitcherCard } from "./component/card-switcher-section";
 export { ClosingPanelSection, type ClosingPanelColumn } from "./component/closing-panel-section";
+export {
+    CompareCard, type CompareCardContentItem, CompareChoiceSection, CompareFeatureSection, type CompareFeatureContentItem,
+    type CompareCardStat, type CompareStat, type CompareSubject,
+} from "./component/compare";
 export { NumberedListSection, type NumberedListItem } from "./component/numbered-list-section";
 export { OrganisationLogosSection, type OrganisationRow } from "./component/organisation-logos-section";
 export { SolutionCardsSection, type SolutionCard } from "./component/solution-cards-section";
@@ -117,6 +121,10 @@ export {
     type SanityUseCasePageTemplate, type SanityUseCasePageInstance, UseCasePageTemplate, UseCasePageInstance,
     useCasePageSchemaName, useCasePageTemplateSchemaName
 } from "./page/use-case";
+export {
+    type SanityComparePageTemplate, type SanityComparePageInstance, ComparePageTemplate, ComparePageInstance, type CompareSection,
+    comparePageSchemaName, comparePageTemplateSchemaName
+} from "./page/compare";
 export { Person, type SanityPerson, personSchemaName } from "./person";
 export { referenceMaterialSchemaName } from "./reference-material";
 export { resourceLinkOf, blogPostLinkOf } from "./resource";

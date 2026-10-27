@@ -1,0 +1,26 @@
+<table class="ct-table" [class.ct-compact]="size === 'compact'">
+  <thead>
+    <tr>
+      <td></td>
+      @for (product of table.products; track $index) {
+        <th scope="col" [class.ct-typedb]="isTypeDB($index)"><span class="ct-product">{{ product.name }}</span></th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of table.rows; track $index) {
+      <tr>
+        <th scope="row">{{ row.heading }}</th>
+        @for (cell of row.cells; track $index) {
+          <td [class.ct-typedb]="isTypeDB($index)" [attr.data-label]="table.products[$index].name">
+            @if (isText(cell)) {
+              {{ cell }}
+            } @else {
+              <td-feature-table-cell [table]="table" [columnIndex]="$index" [cell]="cell" [sectionId]="sectionId" />
+            }
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

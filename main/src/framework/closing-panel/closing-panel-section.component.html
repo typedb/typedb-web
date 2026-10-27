@@ -1,4 +1,7 @@
-<div class="cl-panel">
+<div class="cl-panel" [class.cl-has-illustration]="!!section.artwork">
+  @if (section.artwork) {
+    <td-illustration class="cl-illustration td-frameless" [illustration]="section.artwork" />
+  }
   <td-section-core [section]="section" [noSectionClass]="true" textAlign="left" />
   @if (section.columns.length) {
     <ul class="cl-columns">

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from "@angular/core";
 import { ClosingPanelSection } from "typedb-web-schema";
+import { IllustrationComponent } from "../illustration/illustration.component";
 import { LinkDirective } from "../link/link.directive";
 import { SectionCoreComponent } from "../section/section-core.component";
 
@@ -9,7 +10,7 @@ import { SectionCoreComponent } from "../section/section-core.component";
     templateUrl: "closing-panel-section.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    imports: [LinkDirective, SectionCoreComponent],
+    imports: [IllustrationComponent, LinkDirective, SectionCoreComponent],
 })
 export class ClosingPanelSectionComponent {
     @Input({ required: true }) section!: ClosingPanelSection;
