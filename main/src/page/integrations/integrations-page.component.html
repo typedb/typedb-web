@@ -1,0 +1,56 @@
+<article>
+  @if (page$ | async; as page) {
+    @if (page.introSection) {
+      <td-section-core level="h1" [section]="page.introSection" [isIntroSection]="true" textAlign="left" class="ip-intro" />
+    }
+    @let groups = filtered(page.groups);
+    <div class="section ip-layout">
+      <nav class="ip-side" aria-label="Integration categories">
+        <label for="ip-search" class="ip-search-label">Search</label>
+        <input id="ip-search" class="ip-search" type="search" placeholder="Filter integrations"
+          [value]="query()" (input)="query.set($any($event.target).value)" />
+        @for (group of groups; track group.id) {
+          <a class="ip-side-link" [href]="'#' + group.id" (click)="scrollTo($event, group.id)">
+            <span>{{ group.name }}</span>
+            <span class="ip-count">{{ group.integrations.length }}</span>
+          </a>
+        }
+      </nav>
+      <div class="ip-main">
+        @for (group of groups; track group.id) {
+          @if (group.integrations.length) {
+            <div class="ip-group" [id]="group.id">
+              <h2>{{ group.name }}</h2>
+              @if (group.description) {
+                <p class="ip-group-desc">{{ group.description }}</p>
+              }
+              <div class="ip-cards">
+                @for (item of group.integrations; track item.key) {
+                  <a class="card ip-card" [tdLink]="item.link">
+                    <div class="ip-card-head">
+                      @if (item.iconURL) {
+                        <img [src]="item.iconURL" alt="" width="24" height="24" />
+                      }
+                      <h3>{{ item.name }}</h3>
+                    </div>
+                    @if (item.description) {
+                      <p>{{ item.description }}</p>
+                    }
+                  </a>
+                }
+              </div>
+            </div>
+          }
+        }
+        @if (query() && !hasResults(groups)) {
+          <div class="ip-empty">
+            <h2>Nothing matches "{{ query().trim() }}"</h2>
+          </div>
+        }
+      </div>
+    </div>
+    @if (page.closingSection) {
+      <td-closing-panel-section [section]="page.closingSection" class="ip-closing" />
+    }
+  }
+</article>

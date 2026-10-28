@@ -54,7 +54,6 @@ export {
     FeatureTable, featureTableSchemaName, FeatureTableSection, featureTableSectionSchemaName,
     type FeatureTableCell, type SanityFeatureTableSection,
 } from "./component/feature-table";
-export { Integration, IntegrationsGridSection } from "./component/integrations-grid";
 export { LinkPanel } from "./component/link-panel";
 export { TitleBodyPanelSection } from "./component/section";
 export { PricingPanel, type SanityPricingPanel } from "./component/pricing-panel";
@@ -117,6 +116,9 @@ export {
 } from "./page/request-tech-talk";
 export { ServicesPage, servicesPageSchemaName, type SanityServicesPage } from "./page/services";
 export { type SanityStartupProgramPage, StartupProgramPage, startupProgramPageSchemaName } from "./page/startup-program";
+export {
+    type IntegrationEntry, type IntegrationGroup, IntegrationsPage, integrationsPageSchemaName, type SanityIntegrationsPage,
+} from "./page/integrations";
 export { SupportPage, supportPageSchemaName, type SanitySupportPage } from "./page/support";
 export {
     type SanityUseCasePageTemplate, type SanityUseCasePageInstance, UseCasePageTemplate, UseCasePageInstance,
