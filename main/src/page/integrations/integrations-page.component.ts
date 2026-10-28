@@ -26,6 +26,12 @@ export class IntegrationsPageComponent extends PageComponentBase<IntegrationsPag
         }));
     }
 
+    // The card chevron attaches to the last word, so it never wraps onto a line alone
+    splitLastWord(text: string) {
+        const i = text.lastIndexOf(" ") + 1;
+        return { head: text.slice(0, i), last: text.slice(i) };
+    }
+
     hasResults(groups: IntegrationGroup[]) {
         return groups.some((x) => x.integrations.length);
     }

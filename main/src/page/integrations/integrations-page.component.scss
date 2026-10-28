@@ -141,6 +141,20 @@ td-integrations-page {
             color: var(--color-white);
         }
 
+        .ip-last-word {
+            white-space: nowrap;
+        }
+
+        // Same angle-right chevron as .link-tertiary and buttons
+        &[href] .ip-last-word::after {
+            margin-left: 4px;
+            content: "\f105";
+            font-family: "Font Awesome 7 Pro";
+            font-size: 75%;
+            user-select: none;
+            display: inline-block;
+        }
+
         h3 {
             margin: 0;
             font-size: 16px;

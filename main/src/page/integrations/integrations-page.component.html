@@ -34,7 +34,8 @@
                       <h3>{{ item.name }}</h3>
                     </div>
                     @if (item.description) {
-                      <p>{{ item.description }}</p>
+                      @let split = splitLastWord(item.description);
+                      <p>{{ split.head }}<span class="ip-last-word">{{ split.last }}</span></p>
                     }
                   </a>
                 }
