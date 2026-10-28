@@ -19,7 +19,8 @@ jobs:
 
       - name: Install lychee
         run: |
-          curl -sfL "https://github.com/lycheeverse/lychee/releases/download/$LYCHEE_VERSION/lychee-x86_64-unknown-linux-gnu.tar.gz" | tar xz
+          curl -sfL "https://github.com/lycheeverse/lychee/releases/download/$LYCHEE_VERSION/lychee-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz --strip-components=1 lychee-x86_64-unknown-linux-gnu/lychee
           ./lychee --version
 
       # The docs have their own sitemaps under /docs; this repo only serves sitemap-main.xml
