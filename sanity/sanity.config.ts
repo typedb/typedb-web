@@ -23,7 +23,7 @@ import {
     applicationArticleSchemaName, blogPostSchemaName, genericResourceSchemaName, blogSchemaName,
     learningCenterSchemaName, legalDocumentSchemaName, fundamentalsPageSchemaName, cloudUiBannerSchemaName,
     surveySchemaName, cloudProviderSchemaName, countrySchemaName, continentSchemaName, cloudOnboardingSchemaName,
-    cloudLoginPortalSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
+    cloudLoginPortalSchemaName, integrationsPageSchemaName, pricingPageSchemaName, startupProgramPageSchemaName, cloudAnnouncementSchemaName,
     useCasePageTemplateSchemaName, useCasePageSchemaName, composablePageSchemaName, comparePageTemplateSchemaName,
     comparePageSchemaName,
 } from "typedb-web-schema";
@@ -64,6 +64,7 @@ export default defineConfig({
                     singletonListItem(s, blogSchemaName, { title: "Blog", icon: DocumentIcon }),
                     singletonListItem(s, eventsPageSchemaName, { title: "Events", icon: DocumentIcon }),
                     s.divider(),
+                    singletonListItem(s, integrationsPageSchemaName, { title: "Integrations", icon: DocumentIcon }),
                     singletonListItem(s, pricingPageSchemaName, { title: "Pricing", icon: DocumentIcon }),
                     singletonListItem(s, servicesPageSchemaName, { title: "Services", icon: DocumentIcon }),
                     singletonListItem(s, supportPageSchemaName, { title: "Support", icon: DocumentIcon }),

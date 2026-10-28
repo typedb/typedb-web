@@ -168,7 +168,7 @@ async function fetchBlogPostCount(): Promise<number> {
 
 async function fetchBlogPostCountByCategory(categorySlug: string): Promise<number> {
     try {
-        const query = `count(*[_type == 'blogPost' && '${categorySlug}' in categories[]->slug.current])`;
+        const query = `count(*[_type == 'blogPost' && '${categorySlug}' in categories])`;
         const { data } = await axios.get<{ result: number }>(SANITY_URL, {
             params: { query }
         });

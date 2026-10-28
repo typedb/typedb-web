@@ -1,0 +1,199 @@
+@use "media";
+
+td-integrations-page {
+    // Same pill eyebrow as the compare pages' hero
+    .ip-intro .td-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border: 1px solid var(--color-light-purple);
+        border-radius: 999px;
+        font-family: inherit;
+        font-size: 14px;
+        letter-spacing: 0;
+        text-transform: none;
+        color: var(--color-secondary-extra-light-grey);
+
+        &::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--color-secondary-blue);
+        }
+    }
+
+    .ip-layout {
+        display: flex;
+        gap: 56px;
+        align-items: flex-start;
+
+        @media (max-width: media.$max-width-tablet) {
+            flex-direction: column;
+            gap: 40px;
+        }
+    }
+
+    .ip-side {
+        flex: 0 0 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        position: sticky;
+        top: 96px;
+
+        @media (max-width: media.$max-width-tablet) {
+            position: static;
+            flex-basis: auto;
+            width: 100%;
+        }
+    }
+
+    .ip-search-label {
+        font-size: 13px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-secondary-light-grey);
+        margin-bottom: 8px;
+    }
+
+    .ip-search {
+        min-height: 44px;
+        margin-bottom: 20px;
+        padding: 0 12px;
+        border: 1px solid var(--color-light-purple);
+        border-radius: var(--border-radius);
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: 15px;
+    }
+
+    .ip-side-link {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: var(--color-secondary-extra-light-grey);
+
+        &:hover {
+            background: var(--color-light-purple);
+            color: var(--body-font-color);
+        }
+    }
+
+    .ip-count {
+        font-family: var(--code-font-family, monospace);
+        font-size: 13px;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .ip-main {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .ip-group {
+        scroll-margin-top: 96px;
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .ip-group-desc {
+        margin: 16px 0 0;
+        max-width: 620px;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .ip-cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+
+        @media (max-width: media.$max-width-tablet) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .ip-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        // Same hover as the Further Learning cards
+        &[href]:hover {
+            background: var(--color-light-purple);
+        }
+
+        &[href]:hover h3 {
+            color: var(--color-white);
+        }
+
+        .ip-last-word {
+            white-space: nowrap;
+        }
+
+        // Same angle-right chevron as .link-tertiary and buttons
+        &[href] .ip-last-word::after {
+            margin-left: 4px;
+            content: "\f105";
+            font-family: "Font Awesome 7 Pro";
+            font-size: 75%;
+            user-select: none;
+            display: inline-block;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--color-secondary-extra-light-grey);
+        }
+    }
+
+    .ip-card-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        img {
+            width: 24px;
+            height: 24px;
+            flex: none;
+        }
+    }
+
+    .ip-empty {
+        padding: 40px;
+        border: 1px dashed var(--color-light-purple);
+        border-radius: var(--border-radius);
+        text-align: center;
+
+        h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+    }
+
+    // The closing title's second line is quieter than the first
+    .ip-closing td-heading-with-highlights br ~ span {
+        color: var(--color-secondary-light-grey);
+    }
+}

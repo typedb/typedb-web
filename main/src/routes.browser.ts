@@ -13,6 +13,7 @@ import { LegalDocumentComponent } from "./page/legal/legal-document.component";
 import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
 import { PapersPageComponent } from "./page/papers/papers-page.component";
 import { PricingPageComponent } from "./page/pricing/pricing-page.component";
+import { IntegrationsPageComponent } from "./page/integrations/integrations-page.component";
 import { LearningArticleComponent } from "./page/resource-hub/learning-article.component";
 import { ResourceHubComponent } from "./page/resource-hub/resource-hub.component";
 import { StartupProgramPageComponent } from "./page/startup-program/startup-program-page.component";
@@ -31,6 +32,7 @@ export const staticPageSchemas = [
     { path: "fundamentals", schemaName: "fundamentalsPage" },
     { path: "request-tech-talk", schemaName: "requestTechTalkPage" },
     { path: "support", schemaName: "supportPage" },
+    { path: "integrations", schemaName: "integrationsPage" },
     { path: "startup-program", schemaName: "startupProgramPage" },
     { path: "papers", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
@@ -89,6 +91,7 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
     support: { component: SupportPageComponent, title: "TypeDB Support" },
+    integrations: { component: IntegrationsPageComponent, title: "TypeDB Integrations" },
 };
 
 const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> = {
