@@ -5,34 +5,43 @@ on:
     - cron: "0 6 * * 1" # Mondays 06:00 UTC
   workflow_dispatch:
 
+env:
+  LYCHEE_VERSION: lychee-v0.24.2
+
 jobs:
   lychee:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       issues: write
     steps:
       - uses: actions/checkout@v4
 
-      # The docs have their own sitemaps under /docs; this repo only serves sitemap-main.xml
-      - name: List site pages
+      - name: Install lychee
         run: |
-          urls=$(curl -sf https://typedb.com/sitemap-main.xml | grep -oE '<loc>[^<]+' | sed 's/<loc>//' | tr '\n' ' ')
-          echo "SITE_URLS=$urls" >> "$GITHUB_ENV"
+          curl -sfL "https://github.com/lycheeverse/lychee/releases/download/$LYCHEE_VERSION/lychee-x86_64-unknown-linux-gnu.tar.gz" | tar xz
+          ./lychee --version
 
+      # The docs have their own sitemaps under /docs; this repo only serves sitemap-main.xml
       - name: Check links
         id: lychee
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --max-concurrency 8
-            --accept 200..=299,403,429
-            ${{ env.SITE_URLS }}
-          fail: false
+        run: |
+          curl -sf https://typedb.com/sitemap-main.xml | grep -oE '<loc>[^<]+' | sed 's/<loc>//' > urls.txt
+          set +e
+          xargs ./lychee --no-progress --max-concurrency 8 --accept '200..=299,403,429' \
+            --format markdown --output report.md < urls.txt
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 
+      # Keeps one open issue up to date instead of opening a new one each week
       - name: Report broken links
-        if: steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: Broken links report
-          content-filepath: ./lychee/out.md
-          labels: broken-links
+        if: steps.lychee.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create broken-links --color d73a4a --force
+          issue=$(gh issue list --label broken-links --state open --json number --jq '.[0].number')
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file report.md
+          else
+            gh issue create --title "Broken links report" --label broken-links --body-file report.md
+          fi
