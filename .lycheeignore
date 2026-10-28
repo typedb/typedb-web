@@ -1,0 +1,3 @@
+# Sites that block automated checkers, so they always look broken
+^https?://(www\.)?linkedin\.com
+^https?://(www\.)?(twitter|x)\.com
