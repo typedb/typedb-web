@@ -132,8 +132,13 @@ td-integrations-page {
         flex-direction: column;
         gap: 12px;
 
+        // Same hover as the Further Learning cards
         &[href]:hover {
-            border-color: var(--color-secondary-light-grey);
+            background: var(--color-light-purple);
+        }
+
+        &[href]:hover h3 {
+            color: var(--color-white);
         }
 
         h3 {
