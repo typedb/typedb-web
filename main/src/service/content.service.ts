@@ -7,7 +7,14 @@ import { SanityDocument } from "@sanity/types";
 import {
     BehaviorSubject, combineLatest, filter, first, map, Observable, of, ReplaySubject, retry, shareReplay, timer,
 } from "rxjs";
-import { FooterData, footerQuery, SANITY_QUERY_URL, SANITY_TOKEN, TopnavData, topbarQuery } from "typedb-web-common/lib";
+import {
+    FooterData,
+    footerQuery,
+    SANITY_DRAFT_QUERY_URL,
+    SANITY_QUERY_URL,
+    TopnavData,
+    topbarQuery,
+} from "typedb-web-common/lib";
 import {
     ApplicationArticle, applicationArticleSchemaName, Article, articleFromApi, associateBy, BlogFilter,
     blogNullFilter, BlogPost, blogPostSchemaName, FundamentalArticle, fundamentalArticleSchemaName, groupBy,
@@ -172,11 +179,11 @@ export class ContentService {
         const STATE_KEY = makeStateKey<T>(key);
         return this.handleTransferState(
             STATE_KEY,
-            this.http.get<{ result: T }>(
-                SANITY_QUERY_URL,
-                ["production", "staging", "local"].includes(environment.env)
-                    ? { params: { query, perspective: "published" } }
-                    : { params: { query, perspective: "previewDrafts" }, headers: { Authorization: `Bearer ${SANITY_TOKEN}` } },
+            // Drafts are read through an edge function that adds the token, so no
+            // Sanity credential is ever shipped to the browser.
+            (["production", "staging", "local"].includes(environment.env)
+                ? this.http.get<{ result: T }>(SANITY_QUERY_URL, { params: { query, perspective: "published" } })
+                : this.http.get<{ result: T }>(SANITY_DRAFT_QUERY_URL, { params: { query } })
             ).pipe(
                 retry(RETRY_CONFIG),
                 // Transfer only the query result. The response envelope carries per-request

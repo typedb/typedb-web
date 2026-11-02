@@ -3,6 +3,6 @@ const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io`;
 export const SANITY_QUERY_URL = `${SANITY_URL}/v2021-10-21/data/query/production`;
 const SANITY_CDN_URL = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io`;
 export const SANITY_CDN_QUERY_URL = `${SANITY_CDN_URL}/v2021-10-21/data/query/production`;
-// Read-only API token that must be provided to read draft content
-export const SANITY_TOKEN =
-    "skIRNgnaiMLWn9XUwl20yvPaUODDE4P6kNWiRicQEthG2J4wvcCA1vRaCkTC9y4SChNzoq8BAw2vRuDEKvXRayMbVgUFsuER7otBti0zDzDk6mrEPze4oDfEPYyiw9eklL352jwFXVELvHNESrvkRiAm5IDxECjN3aYM3JjNH7bWbp5czrw3";
+// Edge function that holds the draft read token server-side; see
+// netlify/edge-functions/sanity-draft-query. Only enabled on dev deployments.
+export const SANITY_DRAFT_QUERY_URL = `/api/sanity-draft-query`;
