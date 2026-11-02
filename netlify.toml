@@ -44,6 +44,10 @@ function = "get-calendar-link"
 path = "/api/calendar-link"
 
 [[edge_functions]]
+function = "sanity-draft-query"
+path = "/api/sanity-draft-query"
+
+[[edge_functions]]
 function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
 
