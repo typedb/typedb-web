@@ -31,6 +31,9 @@ publish = "main/dist/main/browser"
 # request-filter declares its paths via in-source config
 # (netlify/edge-functions/request-filter/request-filter.ts)
 
+# support-agent (docs "Ask TypeDB AI" ChatKit backend) declares its path and rate limit
+# via in-source config (netlify/edge-functions/support-agent/support-agent.ts)
+
 [[edge_functions]]
 function = "docs-trailing-slash"
 path = "/docs/*"
