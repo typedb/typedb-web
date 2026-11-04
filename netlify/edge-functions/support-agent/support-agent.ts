@@ -10,8 +10,8 @@
 //   SUPPORT_AGENT_MODEL                 default "gpt-5.6-terra"
 //   SUPPORT_AGENT_REASONING_EFFORT      default "none"
 //   SUPPORT_AGENT_MAX_OUTPUT_TOKENS     default 4000
-//   SUPPORT_AGENT_INSTRUCTIONS          default is just today's date, so the model
-//                                       behaves like plain ChatGPT
+//   SUPPORT_AGENT_INSTRUCTIONS          overrides DEFAULT_INSTRUCTIONS; today's date is
+//                                       always appended
 
 import { getStore } from "@netlify/blobs";
 
@@ -35,6 +35,8 @@ const MAX_MESSAGE_CHARS = 8000;
 const MAX_TITLE_CHARS = 60;
 const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 const STREAMING_OPS = new Set(["threads.create", "threads.add_user_message", "threads.retry_after_item"]);
+const DEFAULT_INSTRUCTIONS =
+    "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise.";
 
 // ChatKit protocol types, trimmed to what this backend produces
 
@@ -219,7 +221,7 @@ async function* streamResponses(apiKey: string, input: ResponsesInputMessage[]):
     const today = new Date().toISOString().slice(0, 10);
     const body: Record<string, unknown> = {
         model: Netlify.env.get("SUPPORT_AGENT_MODEL") || "gpt-5.6-terra",
-        instructions: Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || `Today's date is ${today}.`,
+        instructions: `${Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || DEFAULT_INSTRUCTIONS}\nToday's date is ${today}.`,
         input,
         tools: [{ type: "web_search" }],
         max_output_tokens: Number(Netlify.env.get("SUPPORT_AGENT_MAX_OUTPUT_TOKENS")) || 4000,
