@@ -225,7 +225,7 @@ async function* streamResponses(apiKey: string, input: ResponsesInputMessage[]):
         max_output_tokens: Number(Netlify.env.get("SUPPORT_AGENT_MAX_OUTPUT_TOKENS")) || 4000,
         reasoning: { effort: Netlify.env.get("SUPPORT_AGENT_REASONING_EFFORT") || "none" },
         stream: true,
-        store: false,
+        store: true,
     };
     const response = await fetch(OPENAI_RESPONSES_URL, {
         method: "POST",
