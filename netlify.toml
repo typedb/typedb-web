@@ -34,9 +34,6 @@ publish = "main/dist/main/browser"
 # support-agent (docs "Ask TypeDB AI" ChatKit backend) declares its path and rate limit
 # via in-source config (netlify/edge-functions/support-agent/support-agent.ts)
 
-# diagnostics-report (crash report relay for Console/server, forwards to PostHog) declares its
-# path and rate limit via in-source config (netlify/edge-functions/diagnostics-report/diagnostics-report.ts)
-
 [[edge_functions]]
 function = "docs-trailing-slash"
 path = "/docs/*"
