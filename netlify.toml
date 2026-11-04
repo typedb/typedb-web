@@ -128,7 +128,57 @@ status = 301
 
 [[redirects]]
 from = "/fundamentals/symbolic-reasoning-engine"
-to = "/docs/typeql-reference/functions/functions-vs-rules/"
+to = "/docs/typeql-reference/functions/"
+status = 301
+force = true
+
+# FUNDAMENTALS: "-3-0" version suffixes dropped from article URLs (Nov 2026).
+
+[[redirects]]
+from = "/fundamentals/schema-and-data-migration-3-0"
+to = "/fundamentals/schema-and-data-migration"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/keywords-3-0"
+to = "/fundamentals/type-checking"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/lists-3-0"
+to = "/fundamentals/lists"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/pipelines-3-0"
+to = "/fundamentals/pipelines"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/optionality-3-0"
+to = "/fundamentals/optionality"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/constraints-3-0"
+to = "/fundamentals/constraints"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/structs-3-0"
+to = "/fundamentals/structs"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fundamentals/functions-3-0"
+to = "/fundamentals/functions"
 status = 301
 force = true
 
