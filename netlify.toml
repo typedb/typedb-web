@@ -58,6 +58,10 @@ function = "send-deploy-notification-discord"
 path = "/api/send-deploy-notification-discord"
 
 [[edge_functions]]
+function = "send-circleci-notification-discord"
+path = "/api/send-circleci-notification-discord"
+
+[[edge_functions]]
 function = "claude-code-joshbot-reviewer"
 path = "/api/claude-code-joshbot-reviewer"
 
@@ -228,14 +232,7 @@ status = 301
 force = true
 
 # RETIRED 2.X DOCS PATHS
-# Keep indefinitely. Until TypeDB 3.x shipped, the 2.x docs were served unversioned at these
-# paths, so they are what old blog posts, forum threads, READMEs and LLM training data point at.
-# They have returned 404 since 3.x became the default version.
-# Scoped to the paths with at least 5 pageviews in the 90 days to 2026-10-20; the rest of the
-# retired tree 404s on purpose. Full traffic data: retired-docs-paths-90d.csv in the workspace.
-# These live here rather than in Antora page-aliases because their source components (the manual,
-# typeql and drivers archive stubs) go away when content/2.x is removed, which would take the
-# aliases with them. The renumbered Academy chapters are aliases instead, in typedb-docs.
+# Keep until they are not getting any traffic hits
 
 # 2.x Manual (was unversioned /docs/manual/* until 3.x launched)
 
