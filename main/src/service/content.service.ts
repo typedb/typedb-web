@@ -180,8 +180,8 @@ export class ContentService {
         return this.handleTransferState(
             STATE_KEY,
             // Drafts are read through an edge function that adds the token, so no
-            // Sanity credential is ever shipped to the browser.
-            (["production", "staging", "local"].includes(environment.env)
+            // Sanity credential is ever shipped to the browser. Local builds read drafts too.
+            (["production", "staging"].includes(environment.env)
                 ? this.http.get<{ result: T }>(SANITY_QUERY_URL, { params: { query, perspective: "published" } })
                 : this.http.get<{ result: T }>(SANITY_DRAFT_QUERY_URL, { params: { query } })
             ).pipe(
