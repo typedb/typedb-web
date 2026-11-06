@@ -12,6 +12,10 @@
 //   SUPPORT_AGENT_MAX_OUTPUT_TOKENS     default 4000
 //   SUPPORT_AGENT_INSTRUCTIONS          overrides DEFAULT_INSTRUCTIONS; today's date is
 //                                       always appended
+//   SUPPORT_AGENT_OPENAI_DOMAIN_KEY     ChatKit domain key, served to cross-origin widgets
+//                                       (Studio) via GET; the docs widget gets it at build time
+//   SUPPORT_AGENT_ALLOWED_ORIGINS       extra comma-separated CORS origins beyond the built-in
+//                                       typedb.com / typedb.dev / Tauri / localhost set
 
 import { getStore } from "@netlify/blobs";
 
@@ -37,6 +41,15 @@ const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 const STREAMING_OPS = new Set(["threads.create", "threads.add_user_message", "threads.retry_after_item"]);
 const DEFAULT_INSTRUCTIONS =
     "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise.";
+// Browser origins allowed to call this endpoint cross-origin: our web properties, the Studio
+// desktop app (Tauri serves tauri://localhost on macOS/Linux and http://tauri.localhost on Windows),
+// and local development servers.
+const ALLOWED_ORIGIN_PATTERNS = [
+    /^https:\/\/([a-z0-9-]+\.)*typedb\.(com|dev)$/,
+    /^tauri:\/\/localhost$/,
+    /^http:\/\/tauri\.localhost$/,
+    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/,
+];
 
 // ChatKit protocol types, trimmed to what this backend produces
 
@@ -85,8 +98,26 @@ const now = () => new Date().toISOString();
 
 const generateId = (prefix: string) => `${prefix}_${crypto.randomUUID().replace(/-/g, "")}`;
 
-const json = (body: unknown, status = 200) =>
-    new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
+    new Response(JSON.stringify(body), {
+        status,
+        headers: { "Content-Type": "application/json", "Cache-Control": "no-store", ...headers },
+    });
+
+function corsHeaders(request: Request): Record<string, string> {
+    const origin = request.headers.get("origin");
+    if (!origin) return {};
+    const extra = (Netlify.env.get("SUPPORT_AGENT_ALLOWED_ORIGINS") ?? "").split(",").map((o) => o.trim());
+    const allowed = ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(origin)) || extra.includes(origin);
+    if (!allowed) return {};
+    return {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "content-type, x-support-agent-user",
+        "Access-Control-Max-Age": "86400",
+        Vary: "Origin",
+    };
+}
 
 // One blob per thread (metadata + items) and one index blob per visitor for the history list.
 class ThreadStore {
@@ -504,7 +535,7 @@ class SupportAgentServer {
     }
 }
 
-function sse(events: AsyncGenerator<StreamEvent>): Response {
+function sse(events: AsyncGenerator<StreamEvent>, headers: Record<string, string>): Response {
     const encoder = new TextEncoder();
     const body = new ReadableStream<Uint8Array>({
         async pull(controller) {
@@ -520,34 +551,44 @@ function sse(events: AsyncGenerator<StreamEvent>): Response {
         },
     });
     return new Response(body, {
-        headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-store", "X-Accel-Buffering": "no" },
+        headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-store", "X-Accel-Buffering": "no", ...headers },
     });
 }
 
 export default async (request: Request) => {
-    if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
+    const cors = corsHeaders(request);
+    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+
+    // Widget bootstrap config for cross-origin hosts that cannot bake the domain key in at build time.
+    if (request.method === "GET") {
+        const domainKey = Netlify.env.get("SUPPORT_AGENT_OPENAI_DOMAIN_KEY");
+        if (!domainKey) return json({ error: "The support agent is not configured for this deployment" }, 500, cors);
+        return json({ domainKey }, 200, cors);
+    }
+
+    if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, cors);
 
     const apiKey = Netlify.env.get("SUPPORT_AGENT_OPENAI_API_KEY");
-    if (!apiKey) return json({ error: "The support agent is not configured for this deployment" }, 500);
+    if (!apiKey) return json({ error: "The support agent is not configured for this deployment" }, 500, cors);
 
     const userId = request.headers.get("x-support-agent-user") ?? "";
-    if (!USER_ID_PATTERN.test(userId)) return json({ error: "Missing or invalid x-support-agent-user header" }, 400);
+    if (!USER_ID_PATTERN.test(userId)) return json({ error: "Missing or invalid x-support-agent-user header" }, 400, cors);
 
     let req: any;
     try {
         req = await request.json();
     } catch {
-        return json({ error: "Request body is not valid JSON" }, 400);
+        return json({ error: "Request body is not valid JSON" }, 400, cors);
     }
-    if (typeof req?.type !== "string") return json({ error: "Request is missing 'type'" }, 400);
+    if (typeof req?.type !== "string") return json({ error: "Request is missing 'type'" }, 400, cors);
 
     const server = new SupportAgentServer(new ThreadStore(userId), apiKey);
-    if (STREAMING_OPS.has(req.type)) return sse(server.stream(req));
+    if (STREAMING_OPS.has(req.type)) return sse(server.stream(req), cors);
     try {
-        return json(await server.handle(req));
+        return json(await server.handle(req), 200, cors);
     } catch (e) {
-        if (e instanceof RequestError) return json({ error: e.message }, e.status);
+        if (e instanceof RequestError) return json({ error: e.message }, e.status, cors);
         console.error(`support-agent: ${req.type} failed:`, e);
-        return json({ error: "Internal error" }, 500);
+        return json({ error: "Internal error" }, 500, cors);
     }
 };
