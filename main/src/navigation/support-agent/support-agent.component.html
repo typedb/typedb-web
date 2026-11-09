@@ -1,0 +1,28 @@
+@let open = supportAgent.open$ | async;
+
+@if (!open) {
+  <button type="button" class="support-agent-launcher" id="support-agent-launcher" aria-label="Ask a question"
+          aria-haspopup="dialog" aria-expanded="false" (click)="supportAgent.toggle()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 14v-3a8 8 0 0 1 16 0v3"/>
+      <path d="M4 14a2 2 0 0 1 2-2h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2v-2z"/>
+      <path d="M20 14a2 2 0 0 0-2-2h-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1a2 2 0 0 0 2-2v-2z"/>
+      <path d="M18 18v1a2 2 0 0 1-2 2h-3"/>
+      <path d="M11 20.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+    </svg>
+    <span class="support-agent-launcher-label">Ask a question</span>
+  </button>
+}
+
+<div class="support-agent-panel" [class.open]="open" role="dialog" aria-label="Ask TypeDB AI">
+  @if (error) {
+    <div class="error">
+      <header>
+        <span>Ask TypeDB AI</span>
+        <button type="button" aria-label="Close" (click)="supportAgent.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </header>
+      <p>{{ error }}</p>
+    </div>
+  }
+  <div #host class="chatkit-host"></div>
+</div>

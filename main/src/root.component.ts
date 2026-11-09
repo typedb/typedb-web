@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router, Event as RouterEvent, RouterOutl
 import { TopbarMenuComponent } from "./navigation/topbar/topbar-menu.component";
 import { FooterComponent } from "./navigation/footer/footer.component";
 import { FeedbackButtonComponent } from "./navigation/feedback/feedback-button.component";
+import { SupportAgentComponent } from "./navigation/support-agent/support-agent.component";
 import { ContentService } from "./service/content.service";
 import { DialogService } from "./service/dialog.service";
 import { SanitySiteBanner, siteBannerSchemaName } from "typedb-web-schema";
@@ -17,7 +18,7 @@ import { environment } from "./environment/environment";
     selector: "td-web-main",
     templateUrl: "./root.component.html",
     imports: [
-        RouterOutlet, TopbarMenuComponent, FooterComponent, FeedbackButtonComponent
+        RouterOutlet, TopbarMenuComponent, FooterComponent, FeedbackButtonComponent, SupportAgentComponent,
     ]
 })
 export class RootComponent {

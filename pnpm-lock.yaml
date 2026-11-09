@@ -173,6 +173,9 @@ importers:
       '@angular/compiler-cli':
         specifier: 20.0.6
         version: 20.0.6(@angular/compiler@20.0.6)(typescript@5.8.3)
+      '@openai/chatkit':
+        specifier: 1.9.0
+        version: 1.9.0
       '@sanity/icons':
         specifier: 3.4.0
         version: 3.4.0(react@18.3.1)
@@ -2601,6 +2604,9 @@ packages:
   '@oclif/plugin-not-found@3.3.0':
     resolution: {integrity: sha512-GbdWJOmmBO3xmrVjDXeWG7tXl4vzeGZ+af9ztCfAmhOPEkd/+eeAAadzQPeZoygedqCvsdux3QLq9/MAxusPKg==}
     engines: {node: '>=18.0.0'}
+
+  '@openai/chatkit@1.9.0':
+    resolution: {integrity: sha512-AbqNYaCkQfOauFIk/xL3LFmZ/zIBJuvV71EMUK1o1Tu3/qCG5qRjuDnTUVLkkX9Al2ZYQ6yB1oyWN0jNhoBRMQ==}
 
   '@oxc-project/types@0.155.0':
     resolution: {integrity: sha512-SeE8JPwW1xs1tHeNycjUtUBdhorRa8o4jlvjwk49R7/Z291i+4DQa7JJIgOm/TaYQZx+QrPQbVJ/9c8dMIZN8Q==}
@@ -11173,6 +11179,8 @@ snapshots:
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
       - '@types/node'
+
+  '@openai/chatkit@1.9.0': {}
 
   '@oxc-project/types@0.155.0': {}
 

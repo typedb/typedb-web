@@ -54,6 +54,7 @@
     "@angular/build": "20.0.5",
     "@angular/cli": "20.0.5",
     "@angular/compiler-cli": "20.0.6",
+    "@openai/chatkit": "1.9.0",
     "@sanity/icons": "3.4.0",
     "@sanity/types": "3.97.1",
     "@sanity/webhook": "4.0.4",
