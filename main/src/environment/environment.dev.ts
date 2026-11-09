@@ -5,7 +5,7 @@
 export const environment = {
     env: "development",
     /** ChatKit backend for "Ask TypeDB AI" (netlify/edge-functions/support-agent). */
-    supportAgentUrl: "/api/support-agent?source=web",
+    supportAgentUrl: "https://development.typedb.com/api/support-agent?source=web",
 };
 
 /*
