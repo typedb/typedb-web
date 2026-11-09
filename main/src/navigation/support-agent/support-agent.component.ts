@@ -82,11 +82,11 @@ export class SupportAgentComponent implements AfterViewInit, OnDestroy {
             startScreen: {
                 greeting: "What would you like to know about TypeDB?",
                 prompts: [
-                    { label: "What is TypeDB?", prompt: "What is TypeDB, and how does it differ from relational and graph databases?" },
-                    { label: "Install TypeDB", prompt: "How do I install and run TypeDB?" },
+                    { label: "What is TypeDB?", prompt: "What is TypeDB? Retrieve up to date information from typedb.com." },
+                    { label: "Compare TypeDB to Neo4j", prompt: "How does TypeDB compare to Neo4j? Retrieve up to date information from typedb.com." },
                     {
-                        label: "Design a schema",
-                        prompt: "Help me design a TypeDB schema. I'll describe the domain in a sentence or two. Make sensible assumptions and give me a first draft we can refine.",
+                        label: "Design schema / query data",
+                        prompt: "Explain how to connect from TypeDB Studio and access its Agent Mode for AI-assisted schema design and query writing.",
                     },
                     {
                         label: "What's new",

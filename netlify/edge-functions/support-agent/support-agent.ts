@@ -10,8 +10,8 @@
 //   SUPPORT_AGENT_MODEL                 default "gpt-5.6-terra"
 //   SUPPORT_AGENT_REASONING_EFFORT      default "none"
 //   SUPPORT_AGENT_MAX_OUTPUT_TOKENS     default 4000
-//   SUPPORT_AGENT_INSTRUCTIONS          overrides DEFAULT_INSTRUCTIONS; today's date is
-//                                       always appended
+//   SUPPORT_AGENT_INSTRUCTIONS          overrides the per-source INSTRUCTIONS for every client;
+//                                       today's date is always appended
 //   SUPPORT_AGENT_OPENAI_DOMAIN_KEY     ChatKit domain key, served to cross-origin widgets
 //                                       (Studio) via GET; the docs widget gets it at build time
 
@@ -37,8 +37,19 @@ const MAX_MESSAGE_CHARS = 8000;
 const MAX_TITLE_CHARS = 60;
 const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 const STREAMING_OPS = new Set(["threads.create", "threads.add_user_message", "threads.retry_after_item"]);
-const DEFAULT_INSTRUCTIONS =
+// Which client embeds the widget, from the `source` query parameter. Docs is the default so the docs
+// widget, which calls the bare path, needs no change.
+const SOURCES = ["docs", "web", "cloud", "studio"] as const;
+type Source = (typeof SOURCES)[number];
+const DEFAULT_SOURCE: Source = "docs";
+const WEBSITE_INSTRUCTIONS =
     "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise.";
+const INSTRUCTIONS: Record<Source, string> = {
+    docs: WEBSITE_INSTRUCTIONS,
+    web: WEBSITE_INSTRUCTIONS,
+    cloud: "You are the assistant on the TypeDB Cloud portal at cloud.typedb.com. Assume questions are about TypeDB or TypeDB Cloud unless clearly otherwise.",
+    studio: "You are the assistant in the TypeDB Studio app. Assume questions are about TypeDB or TypeDB Studio unless clearly otherwise.",
+};
 // ChatKit protocol types, trimmed to what this backend produces
 
 type Page<T> = { data: T[]; has_more: boolean; after?: string };
@@ -91,6 +102,11 @@ const json = (body: unknown, status = 200, headers: Record<string, string> = {})
         status,
         headers: { "Content-Type": "application/json", "Cache-Control": "no-store", ...headers },
     });
+
+function parseSource(request: Request): Source {
+    const source = new URL(request.url).searchParams.get("source");
+    return (SOURCES as readonly string[]).includes(source ?? "") ? (source as Source) : DEFAULT_SOURCE;
+}
 
 function corsHeaders(request: Request): Record<string, string> {
     if (!request.headers.get("origin")) return {};
@@ -231,11 +247,11 @@ function buildModelInput(items: ThreadItem[]): ResponsesInputMessage[] {
         .filter((message): message is ResponsesInputMessage => message !== null);
 }
 
-async function* streamResponses(apiKey: string, input: ResponsesInputMessage[]): AsyncGenerator<Record<string, any>> {
+async function* streamResponses(apiKey: string, source: Source, input: ResponsesInputMessage[]): AsyncGenerator<Record<string, any>> {
     const today = new Date().toISOString().slice(0, 10);
     const body: Record<string, unknown> = {
         model: Netlify.env.get("SUPPORT_AGENT_MODEL") || "gpt-5.6-terra",
-        instructions: `${Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || DEFAULT_INSTRUCTIONS}\nToday's date is ${today}.`,
+        instructions: `${Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || INSTRUCTIONS[source]}\nToday's date is ${today}.`,
         input,
         tools: [{ type: "web_search" }],
         max_output_tokens: Number(Netlify.env.get("SUPPORT_AGENT_MAX_OUTPUT_TOKENS")) || 4000,
@@ -308,6 +324,7 @@ class SupportAgentServer {
     constructor(
         private readonly store: ThreadStore,
         private readonly apiKey: string,
+        private readonly source: Source,
     ) {}
 
     async handle(req: any): Promise<unknown> {
@@ -425,7 +442,7 @@ class SupportAgentServer {
             return { type: "thread.item.done", item };
         };
 
-        for await (const event of streamResponses(this.apiKey, buildModelInput(record.items))) {
+        for await (const event of streamResponses(this.apiKey, this.source, buildModelInput(record.items))) {
             switch (event.type) {
                 case "response.output_item.added": {
                     if (event.item?.type === "web_search_call") {
@@ -565,7 +582,7 @@ export default async (request: Request) => {
     }
     if (typeof req?.type !== "string") return json({ error: "Request is missing 'type'" }, 400, cors);
 
-    const server = new SupportAgentServer(new ThreadStore(userId), apiKey);
+    const server = new SupportAgentServer(new ThreadStore(userId), apiKey, parseSource(request));
     if (STREAMING_OPS.has(req.type)) return sse(server.stream(req), cors);
     try {
         return json(await server.handle(req), 200, cors);
