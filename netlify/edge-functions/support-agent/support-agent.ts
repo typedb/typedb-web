@@ -14,8 +14,6 @@
 //                                       always appended
 //   SUPPORT_AGENT_OPENAI_DOMAIN_KEY     ChatKit domain key, served to cross-origin widgets
 //                                       (Studio) via GET; the docs widget gets it at build time
-//   SUPPORT_AGENT_ALLOWED_ORIGINS       extra comma-separated CORS origins beyond the built-in
-//                                       typedb.com / typedb.dev / Tauri / localhost set
 
 import { getStore } from "@netlify/blobs";
 
@@ -41,16 +39,6 @@ const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 const STREAMING_OPS = new Set(["threads.create", "threads.add_user_message", "threads.retry_after_item"]);
 const DEFAULT_INSTRUCTIONS =
     "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise.";
-// Browser origins allowed to call this endpoint cross-origin: our web properties, the Studio
-// desktop app (Tauri serves tauri://localhost on macOS/Linux and http://tauri.localhost on Windows),
-// and local development servers.
-const ALLOWED_ORIGIN_PATTERNS = [
-    /^https:\/\/([a-z0-9-]+\.)*typedb\.(com|dev)$/,
-    /^tauri:\/\/localhost$/,
-    /^http:\/\/tauri\.localhost$/,
-    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/,
-];
-
 // ChatKit protocol types, trimmed to what this backend produces
 
 type Page<T> = { data: T[]; has_more: boolean; after?: string };
@@ -105,17 +93,12 @@ const json = (body: unknown, status = 200, headers: Record<string, string> = {})
     });
 
 function corsHeaders(request: Request): Record<string, string> {
-    const origin = request.headers.get("origin");
-    if (!origin) return {};
-    const extra = (Netlify.env.get("SUPPORT_AGENT_ALLOWED_ORIGINS") ?? "").split(",").map((o) => o.trim());
-    const allowed = ALLOWED_ORIGIN_PATTERNS.some((pattern) => pattern.test(origin)) || extra.includes(origin);
-    if (!allowed) return {};
+    if (!request.headers.get("origin")) return {};
     return {
-        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "content-type, x-support-agent-user",
         "Access-Control-Max-Age": "86400",
-        Vary: "Origin",
     };
 }
 
