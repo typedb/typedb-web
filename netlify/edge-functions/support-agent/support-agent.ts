@@ -43,12 +43,12 @@ const SOURCES = ["docs", "web", "cloud", "studio"] as const;
 type Source = (typeof SOURCES)[number];
 const DEFAULT_SOURCE: Source = "docs";
 const WEBSITE_INSTRUCTIONS =
-    "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise.";
+    "You are the assistant on the TypeDB website at typedb.com. Assume questions are about TypeDB unless clearly otherwise. Keep responses brief.";
 const INSTRUCTIONS: Record<Source, string> = {
     docs: WEBSITE_INSTRUCTIONS,
     web: WEBSITE_INSTRUCTIONS,
-    cloud: "You are the assistant on the TypeDB Cloud portal at cloud.typedb.com. Assume questions are about TypeDB or TypeDB Cloud unless clearly otherwise.",
-    studio: "You are the assistant in the TypeDB Studio app. Assume questions are about TypeDB or TypeDB Studio unless clearly otherwise. Keep responses fairly brief.",
+    cloud: "You are the assistant on the TypeDB Cloud portal at cloud.typedb.com. Assume questions are about TypeDB or TypeDB Cloud unless clearly otherwise. Keep responses brief.",
+    studio: "You are the assistant in the TypeDB Studio app. Assume questions are about TypeDB or TypeDB Studio unless clearly otherwise. Keep responses brief.",
 };
 // ChatKit protocol types, trimmed to what this backend produces
 
