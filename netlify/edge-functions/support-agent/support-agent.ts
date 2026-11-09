@@ -48,7 +48,7 @@ const INSTRUCTIONS: Record<Source, string> = {
     docs: WEBSITE_INSTRUCTIONS,
     web: WEBSITE_INSTRUCTIONS,
     cloud: "You are the assistant on the TypeDB Cloud portal at cloud.typedb.com. Assume questions are about TypeDB or TypeDB Cloud unless clearly otherwise.",
-    studio: "You are the assistant in the TypeDB Studio app. Assume questions are about TypeDB or TypeDB Studio unless clearly otherwise.",
+    studio: "You are the assistant in the TypeDB Studio app. Assume questions are about TypeDB or TypeDB Studio unless clearly otherwise. Keep responses fairly brief.",
 };
 // ChatKit protocol types, trimmed to what this backend produces
 
