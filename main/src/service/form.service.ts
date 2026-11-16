@@ -36,7 +36,8 @@ export class FormService {
      */
     submit(formId: string, data: { email: string } & Record<string, unknown>): Observable<unknown> {
         if (isPlatformServer(this.platformId)) return of(null);
-        const props = Object.fromEntries(Object.entries(data).filter(([_, v]) => v != null && v.toString().trim().length).map(([k, v]) => [k, v!.toString()]));
+        const fields = { ...data, page_url: window.location.href.split("?")[0] };
+        const props = Object.fromEntries(Object.entries(fields).filter(([_, v]) => v != null && v.toString().trim().length).map(([k, v]) => [k, v!.toString()]));
         this.analytics.posthog.identify(data.email, props);
         this.analytics.cio.identify(data.email, props);
         return this.http.post(`${environment.formsUrl}/${formId}/submit`, { data: props });
