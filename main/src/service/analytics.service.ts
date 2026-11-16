@@ -12,7 +12,9 @@ export class AnalyticsService {
     private readonly platformId = inject(PLATFORM_ID);
     private document = inject(DOCUMENT);
     private _cio = AnalyticsBrowser.load({
-        writeKey: environment.env === "production" ? "13252ebf8d339959b5b9" : "5fed4032be64c59cf336",
+        writeKey: environment.env === "production"
+            ? "pk_us_CwgT7tzEDIIhjql6vrJROXK3l8FGpSN5_1q6jKh"
+            : "pk_us_AadB8oYD2MZDFxO1wg3q3IlYRraHxrOV_4esHxz",
         cdnURL: "https://typedb.com/platform",
     }, {
         integrations: {

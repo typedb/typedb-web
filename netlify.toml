@@ -39,6 +39,9 @@ publish = "main/dist/main/browser"
 # diagnostics-report (crash report relay for Console/server, forwards to PostHog) declares its
 # path and rate limit via in-source config (netlify/edge-functions/diagnostics-report/diagnostics-report.ts)
 
+# form-submit (website form relay, forwards to the Customer.io Forms API) declares its path and
+# rate limit via in-source config (netlify/edge-functions/form-submit/form-submit.ts)
+
 [[edge_functions]]
 function = "docs-trailing-slash"
 path = "/docs/*"
@@ -386,13 +389,6 @@ force = true
 from = "/platform/*"
 to = "https://cdp.customer.io/:splat"
 host = "cdp.customer.io"
-status = 200
-force = true
-
-[[redirects]]
-from = "/forms/*"
-to = "https://track.customer.io/api/v1/forms/:splat"
-host = "track.customer.io"
 status = 200
 force = true
 
