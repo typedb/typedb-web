@@ -1,9 +1,14 @@
 // /netlify/edge-functions/support-agent/support-agent.ts
 //
-// ChatKit custom backend for the docs "Ask TypeDB AI" widget (typedb-docs-web).
+// ChatKit custom backend for the "Ask TypeDB AI" widgets (docs, main site, Cloud, Studio).
 // Implements the ChatKit server protocol (modelled on openai/chatkit-python) with
 // threads persisted in Netlify Blobs, and answers via the OpenAI Responses API with
 // web search enabled so the model can look up live information.
+//
+// Each thread is backed by an OpenAI Conversation, which holds the model-side history: we send only
+// the new user message per turn, OpenAI appends the output, and the dashboard shows the whole thread
+// as one conversation with no 30-day expiry. The Blobs record remains the source of ChatKit's thread
+// list and item history for the visitor, since conversations cannot be listed via the API.
 //
 // Env vars (Netlify site settings):
 //   SUPPORT_AGENT_OPENAI_API_KEY                      required; the function 500s without it
@@ -28,11 +33,13 @@ export const config = {
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
-const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
+const OPENAI_API_URL = "https://api.openai.com/v1";
 const STORE_NAME = "support-agent";
+// How long a thread stays in the visitor's ChatKit history. The OpenAI conversation behind it is kept
+// until the visitor deletes the thread.
 const RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
 const DEFAULT_PAGE_SIZE = 20;
-const MAX_HISTORY_ITEMS = 30;
+const CONVERSATION_ITEMS_BATCH = 20;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_TITLE_CHARS = 60;
 const USER_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
@@ -83,7 +90,14 @@ type StreamEvent = { type: string } & Record<string, unknown>;
 
 // Storage records
 
-type ThreadRecord = { thread: ThreadMetadata; items: ThreadItem[] };
+type ThreadRecord = {
+    thread: ThreadMetadata;
+    items: ThreadItem[];
+    /** OpenAI Conversation holding the model-side history. Absent on threads created before conversations were introduced. */
+    conversation_id?: string;
+    /** Per user message id: the id of the last conversation item the model produced in reply. Marks where a retry prunes from. */
+    turn_ends?: Record<string, string>;
+};
 type ThreadSummary = ThreadMetadata & { updated_at: string };
 type UserIndex = { threads: ThreadSummary[] };
 
@@ -229,46 +243,83 @@ const errorEvent = (message: string, allowRetry: boolean): StreamEvent => ({
     allow_retry: allowRetry,
 });
 
-// OpenAI Responses API
+// OpenAI API
 
-type ResponsesInputMessage = { role: "user" | "assistant"; content: string };
+type ConversationMessage = { type: "message"; role: "user" | "assistant"; content: string };
 
-function buildModelInput(items: ThreadItem[]): ResponsesInputMessage[] {
-    return items
-        .slice(-MAX_HISTORY_ITEMS)
-        .map((item): ResponsesInputMessage | null => {
-            if (item.type === "user_message") {
-                const quoted = item.quoted_text ? `> ${item.quoted_text}\n\n` : "";
-                return { role: "user", content: quoted + messageText(item.content) };
-            }
-            const text = item.content.map((part) => part.text).join("\n\n");
-            return text ? { role: "assistant", content: text } : null;
-        })
-        .filter((message): message is ResponsesInputMessage => message !== null);
+function toConversationMessage(item: ThreadItem): ConversationMessage | null {
+    if (item.type === "user_message") {
+        const quoted = item.quoted_text ? `> ${item.quoted_text}\n\n` : "";
+        return { type: "message", role: "user", content: quoted + messageText(item.content) };
+    }
+    const text = item.content.map((part) => part.text).join("\n\n");
+    return text ? { type: "message", role: "assistant", content: text } : null;
 }
 
-async function* streamResponses(apiKey: string, source: Source, input: ResponsesInputMessage[]): AsyncGenerator<Record<string, any>> {
-    const today = new Date().toISOString().slice(0, 10);
-    const body: Record<string, unknown> = {
-        model: Netlify.env.get("SUPPORT_AGENT_MODEL") || "gpt-5.6-terra",
-        instructions: `${Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || INSTRUCTIONS[source]}\nToday's date is ${today}.`,
-        input,
-        tools: [{ type: "web_search" }],
-        max_output_tokens: Number(Netlify.env.get("SUPPORT_AGENT_MAX_OUTPUT_TOKENS")) || 4000,
-        reasoning: { effort: Netlify.env.get("SUPPORT_AGENT_REASONING_EFFORT") || "none" },
-        stream: true,
-        store: true,
-    };
-    const response = await fetch(OPENAI_RESPONSES_URL, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-    });
-    if (!response.ok || !response.body) {
-        console.error(`support-agent: OpenAI responded ${response.status}: ${await response.text().catch(() => "")}`);
-        throw new Error(`OpenAI responded ${response.status}`);
+class OpenAI {
+    constructor(private readonly apiKey: string) {}
+
+    async request(method: string, path: string, body?: unknown): Promise<Response> {
+        const response = await fetch(`${OPENAI_API_URL}${path}`, {
+            method,
+            headers: { Authorization: `Bearer ${this.apiKey}`, "Content-Type": "application/json" },
+            body: body === undefined ? undefined : JSON.stringify(body),
+        });
+        if (!response.ok) {
+            console.error(`support-agent: OpenAI ${method} ${path} responded ${response.status}: ${await response.text().catch(() => "")}`);
+            throw new Error(`OpenAI responded ${response.status}`);
+        }
+        return response;
     }
-    yield* parseSse(response.body);
+
+    async json<T = any>(method: string, path: string, body?: unknown): Promise<T> {
+        return (await this.request(method, path, body)).json();
+    }
+
+    /** Creates a conversation, seeded with the thread's existing items so threads that predate conversations keep their context. */
+    async createConversation(record: ThreadRecord, metadata: Record<string, string>): Promise<string> {
+        const seed = record.items.map(toConversationMessage).filter((m): m is ConversationMessage => m !== null);
+        const conversation = await this.json("POST", "/conversations", { metadata, items: seed.slice(0, CONVERSATION_ITEMS_BATCH) });
+        for (let i = CONVERSATION_ITEMS_BATCH; i < seed.length; i += CONVERSATION_ITEMS_BATCH) {
+            await this.json("POST", `/conversations/${conversation.id}/items`, { items: seed.slice(i, i + CONVERSATION_ITEMS_BATCH) });
+        }
+        return conversation.id;
+    }
+
+    async deleteConversation(conversationId: string): Promise<void> {
+        await this.request("DELETE", `/conversations/${conversationId}`);
+    }
+
+    /** Removes every conversation item after `afterItemId`, or all items when it is undefined. */
+    async pruneConversation(conversationId: string, afterItemId: string | undefined): Promise<void> {
+        const params = new URLSearchParams({ order: "asc", limit: "100" });
+        if (afterItemId) params.set("after", afterItemId);
+        while (true) {
+            const page = await this.json("GET", `/conversations/${conversationId}/items?${params}`);
+            for (const item of page.data ?? []) {
+                await this.request("DELETE", `/conversations/${conversationId}/items/${item.id}`);
+            }
+            if (!page.has_more || !page.last_id) break;
+            params.set("after", page.last_id);
+        }
+    }
+
+    async *streamResponse(source: Source, conversationId: string, input: ConversationMessage): AsyncGenerator<Record<string, any>> {
+        const today = new Date().toISOString().slice(0, 10);
+        const response = await this.request("POST", "/responses", {
+            model: Netlify.env.get("SUPPORT_AGENT_MODEL") || "gpt-5.6-terra",
+            instructions: `${Netlify.env.get("SUPPORT_AGENT_INSTRUCTIONS") || INSTRUCTIONS[source]}\nToday's date is ${today}.`,
+            conversation: conversationId,
+            input: [input],
+            tools: [{ type: "web_search" }],
+            truncation: "auto",
+            max_output_tokens: Number(Netlify.env.get("SUPPORT_AGENT_MAX_OUTPUT_TOKENS")) || 4000,
+            reasoning: { effort: Netlify.env.get("SUPPORT_AGENT_REASONING_EFFORT") || "none" },
+            stream: true,
+        });
+        if (!response.body) throw new Error("OpenAI response has no body");
+        yield* parseSse(response.body);
+    }
 }
 
 async function* parseSse(body: ReadableStream<Uint8Array>): AsyncGenerator<Record<string, any>> {
@@ -323,8 +374,9 @@ function toContent(raw: any): AssistantContent {
 class SupportAgentServer {
     constructor(
         private readonly store: ThreadStore,
-        private readonly apiKey: string,
+        private readonly openai: OpenAI,
         private readonly source: Source,
+        private readonly userId: string,
     ) {}
 
     async handle(req: any): Promise<unknown> {
@@ -350,7 +402,11 @@ class SupportAgentServer {
             }
             case "threads.delete": {
                 if (typeof req.params?.thread_id !== "string") throw new RequestError(400, "Thread id is missing");
+                const record = await this.store.loadThread(req.params.thread_id);
                 await this.store.deleteThread(req.params.thread_id);
+                if (record?.conversation_id) {
+                    await this.openai.deleteConversation(record.conversation_id).catch((e) => console.error("support-agent: conversation delete failed:", e));
+                }
                 return {};
             }
             case "items.feedback": {
@@ -389,12 +445,20 @@ class SupportAgentServer {
                 case "threads.retry_after_item": {
                     const record = await this.requireThread(req.params?.thread_id);
                     const index = record.items.findIndex((item) => item.id === req.params?.item_id);
-                    if (index === -1 || record.items[index].type !== "user_message") {
+                    const retried = record.items[index];
+                    if (!retried || retried.type !== "user_message") {
                         throw new RequestError(400, "Only user messages can be retried");
                     }
                     record.items.splice(index + 1);
+                    // The conversation already holds the retried message and whatever the failed turn produced.
+                    // Drop everything after the previous turn's reply so the resend starts clean.
+                    const previousUserMessage = record.items.slice(0, index).reverse().find((item) => item.type === "user_message");
+                    if (record.conversation_id) {
+                        await this.openai.pruneConversation(record.conversation_id, previousUserMessage && record.turn_ends?.[previousUserMessage.id]);
+                    }
+                    delete record.turn_ends?.[retried.id];
                     await this.store.saveThread(record);
-                    yield* this.respond(record);
+                    yield* this.respond(record, retried);
                     break;
                 }
                 default:
@@ -430,19 +494,32 @@ class SupportAgentServer {
         // Persist before answering so a failed model call still leaves a retryable message.
         await this.store.saveThread(record);
         yield { type: "thread.item.done", item: userMessage };
-        yield* this.respond(record);
+        yield* this.respond(record, userMessage);
     }
 
     // Translates the Responses stream into ChatKit thread events, mirroring chatkit-python's agents helper.
-    private async *respond(record: ThreadRecord): AsyncGenerator<StreamEvent> {
+    private async *respond(record: ThreadRecord, userMessage: UserMessageItem): AsyncGenerator<StreamEvent> {
+        if (!record.conversation_id) {
+            // Seed from every item except the message being answered, which goes in as this turn's input.
+            const seed = { ...record, items: record.items.filter((item) => item !== userMessage) };
+            record.conversation_id = await this.openai.createConversation(seed, {
+                thread_id: record.thread.id,
+                user_id: this.userId,
+                source: this.source,
+            });
+            await this.store.saveThread(record);
+        }
+
         const pending = new Map<string, AssistantMessageItem>();
+        let lastOutputItemId: string | undefined;
         const finish = (item: AssistantMessageItem): StreamEvent => {
             pending.delete(item.id);
             record.items.push(item);
             return { type: "thread.item.done", item };
         };
 
-        for await (const event of streamResponses(this.apiKey, this.source, buildModelInput(record.items))) {
+        const input = toConversationMessage(userMessage)!;
+        for await (const event of this.openai.streamResponse(this.source, record.conversation_id, input)) {
             switch (event.type) {
                 case "response.output_item.added": {
                     if (event.item?.type === "web_search_call") {
@@ -516,6 +593,7 @@ class SupportAgentServer {
                     break;
                 }
                 case "response.output_item.done": {
+                    if (typeof event.item?.id === "string") lastOutputItemId = event.item.id;
                     const item = pending.get(event.item?.id);
                     if (!item) break;
                     item.content = (event.item.content ?? []).map(toContent);
@@ -531,6 +609,7 @@ class SupportAgentServer {
 
         // An incomplete response (e.g. max_output_tokens hit) can end without output_item.done.
         for (const item of [...pending.values()]) yield finish(item);
+        if (lastOutputItemId) (record.turn_ends ??= {})[userMessage.id] = lastOutputItemId;
         await this.store.saveThread(record);
     }
 }
@@ -582,7 +661,7 @@ export default async (request: Request) => {
     }
     if (typeof req?.type !== "string") return json({ error: "Request is missing 'type'" }, 400, cors);
 
-    const server = new SupportAgentServer(new ThreadStore(userId), apiKey, parseSource(request));
+    const server = new SupportAgentServer(new ThreadStore(userId), new OpenAI(apiKey), parseSource(request), userId);
     if (STREAMING_OPS.has(req.type)) return sse(server.stream(req), cors);
     try {
         return json(await server.handle(req), 200, cors);
