@@ -324,7 +324,7 @@
         border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
-        @include colors.light-source-gradient(colors.$secondary-grey, colors.$light-purple, 50%, 0);
+        @include colors.light-source-gradient(colors.$secondary-mid-deep-grey, colors.$light-purple, 50%, 0);
         text-align: center;
 
         p {
