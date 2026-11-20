@@ -15,10 +15,18 @@ td-organisation-logos {
     // e.g. 8 logos split 4 + 4 rather than 7 + 1. Browsers without balance support wrap normally.
     // Spacing comes from item margins: 24px between lines, 56px between items (20px / 32px on mobile).
     // The row's negative margins cancel the items' outer margins, so a line holds as much as a flex row would.
+    // On desktops narrower than the full section width, logos and gaps shrink with the viewport (down to 75%),
+    // so a row that fills the full width stays on one line
+    --ol-unit: 1px;
+
+    @media (min-width: media.$min-width-desktop) {
+        --ol-unit: clamp(0.75px, calc((100vw - 80px) / 1420), 1px);
+    }
+
     .ol-row {
         display: block;
-        width: calc(100% + 56px);
-        margin: -12px -28px;
+        width: calc(100% + 56 * var(--ol-unit));
+        margin: calc(-12 * var(--ol-unit)) calc(-28 * var(--ol-unit));
         padding: 0;
         list-style: none;
         text-align: center;
@@ -27,7 +35,7 @@ td-organisation-logos {
         > li {
             display: inline-block;
             vertical-align: middle;
-            margin: 12px 28px;
+            margin: calc(12 * var(--ol-unit)) calc(28 * var(--ol-unit));
         }
 
         @media (max-width: media.$max-width-mobile) {
@@ -43,7 +51,7 @@ td-organisation-logos {
     // Heights come from each logo's shape (see logoHeight); logos are pre-coloured, so they aren't dimmed here
     .ol-logo {
         display: block;
-        height: calc(var(--ol-logo-height, 32) * 1px);
+        height: calc(var(--ol-logo-height, 32) * var(--ol-unit));
         width: auto;
 
         @media (max-width: media.$max-width-mobile) {
