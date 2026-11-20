@@ -6,6 +6,7 @@ export const forms = {
     contact: "Contact",
     newsletter: "Newsletter",
     feedback: "Feedback",
+    eventSignup: "Event Signup",
 } as const;
 
 export const formList = Object.entries(forms).map(([id, title]) => ({ value: id, title: title }));
@@ -16,6 +17,8 @@ export type SanityCustomerIoForms = SanityDocument & { [key in FormID]: string }
     contactDescription: PortableText;
     newsletterDescription: PortableText;
     feedbackDescription: PortableText,
+    eventSignupDescription: PortableText,
+    eventSignupTitle?: string,
 };
 
 export const formsSchemaName = "forms";
@@ -47,6 +50,13 @@ export const formsSchema = defineType({
                 of: [{type: "block"}],
             }),
         ),
+        defineField({
+            fieldset: "descriptions",
+            name: "eventSignupTitle",
+            title: "Event Signup Dialog Title",
+            description: "Heading of the signup dialog, e.g. 'Register for upcoming webinar'. The dialog opens from any link to #register",
+            type: "string",
+        }),
     ],
     preview: { prepare: (_selection) => ({ title: "Forms" }) },
 });

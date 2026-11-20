@@ -9,7 +9,8 @@ export const generateBanner = (banner: SiteBanner, urlPrefix: string = "") => {
     const spans = banner.spans
         .map(({ marks, text }) => {
             const tag = marks.includes("strong") ? "strong" : "span";
-            return `<${tag}>${escapeHtml(text)}</${tag}>`;
+            const content = marks.includes("em") ? `<em>${escapeHtml(text)}</em>` : escapeHtml(text);
+            return `<${tag}>${content}</${tag}>`;
         })
         .join("");
     const content = `<p>${spans}</p>`;

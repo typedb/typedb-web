@@ -5,11 +5,12 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dial
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { ContactDialogComponent } from "../framework/dialog/contact/contact-dialog.component";
+import { EventSignupDialogComponent } from "../framework/dialog/event-signup/event-signup-dialog.component";
 import { FeedbackDialogComponent } from "../framework/dialog/feedback/feedback-dialog.component";
 import { NewsletterDialogComponent } from "../framework/dialog/newsletter/newsletter-dialog.component";
 import { PricingDialogComponent } from "../framework/dialog/pricing/pricing-dialog.component";
 
-type DialogType = "newsletter" | "feedback" | "contact" | "pricing";
+type DialogType = "newsletter" | "feedback" | "contact" | "pricing" | "register";
 
 @Injectable({
     providedIn: "root",
@@ -44,6 +45,7 @@ export class DialogService {
             feedback: () => this.openFeedbackDialog(),
             contact: () => this.openContactDialog(),
             pricing: () => this.openPricingDialog(),
+            register: () => this.openEventSignupDialog(),
         };
 
         const opener = dialogOpeners[hash];
@@ -81,6 +83,10 @@ export class DialogService {
         this.open(ContactDialogComponent, {
             width: "560px", maxWidth: "100vw", maxHeight: "100vh", autoFocus: "input",
         });
+    }
+
+    openEventSignupDialog() {
+        this.open(EventSignupDialogComponent,{ width: "560px", maxWidth: "100vw", autoFocus: "input" });
     }
 
     openPricingDialog() {

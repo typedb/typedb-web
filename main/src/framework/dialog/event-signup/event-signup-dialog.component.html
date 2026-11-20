@@ -1,0 +1,10 @@
+<td-form-dialog
+  [isSubmitting]="isSubmitting$ | async"
+  [titleProp]="(title$ | async) ?? ''" [description]="description$ | async"
+>
+  <td-form [formGroup]="form" [isSubmitting$]="isSubmitting$" (doSubmit)="onSubmit()">
+    <td-form-input [form]="form" field="name" label="Name" autocomplete="name" [required]="true"/>
+    <td-form-input [form]="form" field="email" label="Email" autocomplete="email" [required]="true"/>
+    <td-form-actions buttonIdPrefix="registerForEvent" [isSubmitting]="isSubmitting$ | async" submitText="Register"/>
+  </td-form>
+</td-form-dialog>

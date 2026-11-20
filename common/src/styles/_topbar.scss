@@ -324,22 +324,21 @@
         border-bottom: 1px solid var(--content-border-color);
         box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 2px 2px 3px 0px rgba(0, 0, 0, 0.14),
             2px 1px 5px 0px rgba(0, 0, 0, 0.12);
-        background-color: var(--color-secondary-blue);
+        @include colors.light-source-gradient(colors.$secondary-grey, colors.$light-purple, 50%, 0);
         text-align: center;
 
         p {
-            font-size: 12px;
+            font-size: 14px;
             line-height: 18px;
-            color: var(--color-black);
-            font-family: var(--font-family-code);
+            color: var(--color-white);
 
             @media (max-width: media.$max-width-mobile) {
-                font-size: 10px;
+                font-size: 12px;
             }
         }
 
         strong {
-            font-weight: inherit;
+            font-weight: var(--font-weight-semi-bold);
         }
     }
 

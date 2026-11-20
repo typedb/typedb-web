@@ -24,7 +24,8 @@ export const linkHtml = ({ content, link, id, urlPrefix, attributes = {} }: {
 const href = (link: Link, urlPrefix: string) => {
     const dest = link.destination.current;
     if (dest.startsWith("#") || dest.startsWith("?")) {
-        return dest;
+        // dialog links like "#contact" only work on the main site, so other sites send them to its home page
+        return urlPrefix ? `${urlPrefix}/${dest}` : dest;
     }
     try {
         return new URL(dest, urlPrefix).toString();
