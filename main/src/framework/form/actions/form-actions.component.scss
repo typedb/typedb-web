@@ -1,0 +1,13 @@
+td-form-actions button[type="submit"] {
+    position: relative;
+
+    // the hidden label keeps the button at its normal size while the spinner shows
+    .fa-hidden {
+        visibility: hidden;
+    }
+
+    tp-spinner {
+        position: absolute;
+        inset: 0;
+    }
+}

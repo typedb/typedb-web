@@ -1,6 +1,11 @@
 td-contact-form {
     position: relative;
 
+    // in a dialog, the progress bar sits on the dialog's bottom edge
+    mat-dialog-container & {
+        position: static;
+    }
+
     .mat-mdc-progress-bar {
         position: absolute;
         bottom: 0;

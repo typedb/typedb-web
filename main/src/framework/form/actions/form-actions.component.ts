@@ -5,6 +5,7 @@ import { SpinnerComponent } from "../../spinner/spinner.component";
 @Component({
     selector: "td-form-actions",
     templateUrl: "form-actions.component.html",
+    styleUrls: ["form-actions.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [ButtonComponent, SpinnerComponent]

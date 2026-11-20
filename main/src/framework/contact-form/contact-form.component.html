@@ -13,3 +13,6 @@
   }
   <td-form-actions buttonIdPrefix="provideFeedback" [isSubmitting]="isSubmitting$ | async" submitText="Submit" [submitDisabled]="!form.dirty"/>
 </td-form>
+@if (isSubmitting$ | async) {
+  <mat-progress-bar mode="indeterminate" />
+}
