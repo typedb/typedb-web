@@ -26,6 +26,7 @@ export class EventSignupDialogComponent {
     readonly form = this.formBuilder.nonNullable.group({
         name: ["", [requiredValidator]],
         email: ["", [patternValidator(emailPattern, emailPatternErrorText), requiredValidator]],
+        company: ["", [requiredValidator]],
     });
 
     constructor(
@@ -46,10 +47,10 @@ export class EventSignupDialogComponent {
 
     onSubmit() {
         this.isSubmitting$.next(true);
-        const { name, email } = this.form.getRawValue();
+        const { name, email, company } = this.form.getRawValue();
         // Customer.io emails greet people by first_name
         const [first_name, ...rest] = name.trim().split(/\s+/);
-        this.formService.submit(this.formId, { name: name.trim(), first_name, last_name: rest.join(" "), email }).subscribe({
+        this.formService.submit(this.formId, { name: name.trim(), first_name, last_name: rest.join(" "), email, company }).subscribe({
             next: () => {
                 this.dialogRef.close();
                 this.popupNotificationService.success("You're registered! Check your inbox for a confirmation email.");
