@@ -1,7 +1,10 @@
 import { AsyncPipe } from "@angular/common";
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from "@angular/core";
-import { combineLatest, map } from "rxjs";
-import { ComposablePage, composablePageSchemaName, IllustrationSection, SanityComposablePage, SanityDataset, SectionCore } from "typedb-web-schema";
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
+import { combineLatest, map, Observable, shareReplay } from "rxjs";
+import {
+    blogPostLinkOf, ComposablePage, composablePageSchemaName, IllustrationSection, ResourceLink, SanityComposablePage,
+    SanityDataset, SectionCore,
+} from "typedb-web-schema";
 import { FloatingDotsBackgroundComponent } from "../../framework/background/floating-dots-background.component";
 import { ConclusionPanelComponent } from "../../framework/conclusion-panel/conclusion-panel.component";
 import { ContactFormComponent } from "../../framework/contact-form/contact-form.component";
@@ -21,6 +24,7 @@ import { LinkPanelsComponent } from "../../framework/link-panels/link-panels.com
 import { PricingTableComponent } from "../../framework/pricing-table/pricing-table.component";
 import { SimpleLinkPanelsComponent } from "../../framework/link-panels/simple/simple-link-panels.component";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
+import { ContentService } from "../../service/content.service";
 import { portableTextToPlainText } from "../../service/portable-text-utils";
 import { PageComponentBase } from "../page-component-base";
 
@@ -39,6 +43,14 @@ import { PageComponentBase } from "../page-component-base";
     ],
 })
 export class ComposablePageComponent extends PageComponentBase<ComposablePage> {
+    // Newest first, drawn from the same WordPress-joined feed as the blog index so only posts with a body are linked
+    readonly latestPosts$: Observable<ResourceLink[]> = inject(ContentService).blogPosts.pipe(
+        map((posts) => [...posts]
+            .sort((a, b) => b.date.getTime() - a.date.getTime())
+            .map((post) => blogPostLinkOf(post))),
+        shareReplay(1),
+    );
+
     protected override getPage(db: SanityDataset) {
         // The home page route has no :slug param and passes its fixed route ("/") as route data instead
         return combineLatest([this.activatedRoute.paramMap, this.activatedRoute.data]).pipe(
