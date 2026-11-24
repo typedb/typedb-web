@@ -1,7 +1,7 @@
 <article>
   @if (page$ | async; as page) {
     <section class="blog-landing-strip">
-      <a tdLink="/papers"><td-heading-with-highlights [value]="page.introSection.title" level="h1" renderedLevel="h2" /></a>
+      <a tdLink="/research"><td-heading-with-highlights [value]="page.introSection.title" level="h1" renderedLevel="h2" /></a>
       @if (page.introSection.body) {
         <td-rich-text class="wp-subtitle" [value]="page.introSection.body" />
       }

@@ -22,8 +22,8 @@ export const PAPERS_PAGE_SIZE = 9;
 const PAPERS_PER_ROW = 3;
 
 @Component({
-    selector: "td-papers-page",
-    templateUrl: "./papers-page.component.html",
+    selector: "td-research-landing-page",
+    templateUrl: "./research-landing-page.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
@@ -31,7 +31,7 @@ const PAPERS_PER_ROW = 3;
         LinkDirective, RouterLink, HeadingWithHighlightsComponent, IconComponent, NgTemplateOutlet,
     ]
 })
-export class PapersPageComponent extends PageComponentBase<PapersPage> {
+export class ResearchLandingPageComponent extends PageComponentBase<PapersPage> {
     private dialog = inject(DialogService);
     private canonicalLink = inject(CanonicalLinkService);
 
@@ -61,7 +61,7 @@ export class PapersPageComponent extends PageComponentBase<PapersPage> {
         combineLatest([this.currentPage$, of(this.totalPages(page.papersList))]).subscribe(([currentPage, totalPages]) => {
             const baseTitle = page.metaTags.title || "TypeDB Research";
             this.title.setTitle(currentPage > 1 ? `${baseTitle} - Page ${currentPage}` : baseTitle);
-            if (currentPage === 1) this.canonicalLink.setCanonical("https://typedb.com/papers");
+            if (currentPage === 1) this.canonicalLink.setCanonical("https://typedb.com/research");
             this.canonicalLink.setPaginationLinks(
                 currentPage > 1 ? this.pageUrl(currentPage - 1) : null,
                 currentPage < totalPages ? this.pageUrl(currentPage + 1) : null,
@@ -94,6 +94,6 @@ export class PapersPageComponent extends PageComponentBase<PapersPage> {
     }
 
     pageUrl(page: number): string {
-        return page === 1 ? "/papers" : `/papers/page/${page}`;
+        return page === 1 ? "/research" : `/research/page/${page}`;
     }
 }

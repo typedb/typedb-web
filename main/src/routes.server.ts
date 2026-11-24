@@ -317,7 +317,7 @@ export async function getServerRoutes(): Promise<ServerRoute[]> {
         // Blog pagination routes
         ...blogPaginationRoutes,
         {
-            path: "papers/page/:page",
+            path: "research/page/:page",
             renderMode: RenderMode.Prerender,
             getPrerenderParams: async () => generatePageNumbers(await fetchListedPaperCount(), PAPERS_PAGE_SIZE),
         },

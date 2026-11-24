@@ -10,8 +10,8 @@ import { FeaturesPageComponent } from "./page/features/features-page.component";
 import { LectureDetailsPageComponent } from "./page/lectures/lecture-details-page.component";
 import { LecturesPageComponent } from "./page/lectures/lectures-page.component";
 import { LegalDocumentComponent } from "./page/legal/legal-document.component";
-import { PaperDetailsPageComponent } from "./page/papers/paper-details-page.component";
-import { PapersPageComponent } from "./page/papers/papers-page.component";
+import { ResearchPaperPageComponent } from "./page/research/research-paper-page.component";
+import { ResearchLandingPageComponent } from "./page/research/research-landing-page.component";
 import { PricingPageComponent } from "./page/pricing/pricing-page.component";
 import { IntegrationsPageComponent } from "./page/integrations/integrations-page.component";
 import { LearningArticleComponent } from "./page/resource-hub/learning-article.component";
@@ -34,7 +34,7 @@ export const staticPageSchemas = [
     { path: "support", schemaName: "supportPage" },
     { path: "integrations", schemaName: "integrationsPage" },
     { path: "startup-program", schemaName: "startupProgramPage" },
-    { path: "papers", schemaName: "papersPage" },
+    { path: "research", schemaName: "papersPage" },
 ] as const satisfies readonly StaticPage[];
 
 export const dynamicPageSchemas = [
@@ -46,7 +46,7 @@ export const dynamicPageSchemas = [
     { path: "legal/:slug", schemaName: "legalDocument" },
     { path: "use-cases/:slug", schemaName: "useCasePage", schemaSlugAccessor: "route.current" },
     { path: "compare/:slug", schemaName: "comparePage", schemaSlugAccessor: "route.current" },
-    { path: "papers/:slug", schemaName: "paper" },
+    { path: "research/:slug", schemaName: "paper" },
 ] as const satisfies readonly DynamicPage[];
 
 // Blog pagination routes (separate from dynamicPageSchemas due to different path pattern)
@@ -86,7 +86,7 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
-    papers: { component: PapersPageComponent, title: "TypeDB Research" },
+    research: { component: ResearchLandingPageComponent, title: "TypeDB Research" },
     pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
@@ -99,7 +99,7 @@ const dynamicPages: Record<(typeof dynamicPageSchemas)[number]["path"], Route> =
     "blog/category/:slug": { component: BlogComponent },
     "lectures/:slug": { component: LectureDetailsPageComponent },
     "legal/:slug": { component: LegalDocumentComponent },
-    "papers/:slug": { component: PaperDetailsPageComponent },
+    "research/:slug": { component: ResearchPaperPageComponent },
     "use-cases/:slug": { component: UseCasePageComponent },
     "compare/:slug": { component: ComparePageComponent },
     "applications/:slug": { 
@@ -154,7 +154,7 @@ export const routes: Routes = [
     // Blog pagination routes
     { path: "blog/page/:page", component: BlogComponent, title: "TypeDB Blog" },
     { path: "blog/category/:slug/page/:page", component: BlogComponent },
-    { path: "papers/page/:page", component: PapersPageComponent, title: "TypeDB Research" },
+    { path: "research/page/:page", component: ResearchLandingPageComponent, title: "TypeDB Research" },
     { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
     { path: ":slug", component: ComposablePageComponent },
     { path: "**", component: _404PageComponent },

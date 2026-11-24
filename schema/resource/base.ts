@@ -97,7 +97,7 @@ function siteResourceUrl(data: SanitySiteResource): string {
     else if (isApplicationArticle(data)) return `/applications/${data.slug.current}`;
     else if (isBlogPost(data)) return `/blog/${data.slug.current}`;
     else if (isLecture(data)) return `/lectures/${data.slug.current}`;
-    else if (isPaper(data)) return `/papers/${data.slug.current}`;
+    else if (isPaper(data)) return `/research/${data.slug.current}`;
     else if (isLiveEvent(data)) return `/events/${data.slug.current}`;
     else return "";
 }

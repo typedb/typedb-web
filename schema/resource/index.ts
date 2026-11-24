@@ -37,7 +37,7 @@ function resourceUrl(resource: Resource): string {
     else if (resource instanceof ApplicationArticle) return `/applications/${resource.slug}`;
     else if (resource instanceof BlogPost) return `/blog/${resource.slug}`;
     else if (resource instanceof Lecture) return `/lectures/${resource.slug}`;
-    else if (resource instanceof Paper) return `/papers/${resource.slug}`;
+    else if (resource instanceof Paper) return `/research/${resource.slug}`;
     else if (resource instanceof LiveEvent) return `/events/${resource.slug}`;
     else if (resource instanceof GenericResource) return resource.link.destination;
     else return "";

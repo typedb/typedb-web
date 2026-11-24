@@ -25,8 +25,8 @@ import { D } from "@angular/cdk/bidi-module.d-IN1Vp56w";
 import { DialogService } from "src/service/dialog.service";
 
 @Component({
-    selector: "td-paper-details-page",
-    templateUrl: "./paper-details-page.component.html",
+    selector: "td-research-paper-page",
+    templateUrl: "./research-paper-page.component.html",
     
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
@@ -36,7 +36,7 @@ import { DialogService } from "src/service/dialog.service";
         NgOptimizedImage, PlainTextPipe
     ]
 })
-export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
+export class ResearchPaperPageComponent extends PageComponentBase<Paper> {
     private document = inject(DOCUMENT);
     dialog = inject(DialogService);
     readonly isSubmitting$: Observable<boolean>;
@@ -103,7 +103,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     }
 
     protected override onPageNotFound(): void {
-        this.router.navigate(["papers"], { replaceUrl: true });
+        this.router.navigate(["research"], { replaceUrl: true });
     }
 
     private download(paper: Paper) {

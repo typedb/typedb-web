@@ -128,8 +128,20 @@ status = 301
 
 [[redirects]]
 from = "/white-papers/*"
-to = "/papers"
+to = "/research"
 status = 301
+
+[[redirects]]
+from = "/papers"
+to = "/research"
+status = 301
+force = true
+
+[[redirects]]
+from = "/papers/*"
+to = "/research/:splat"
+status = 301
+force = true
 
 [[redirects]]
 from = "/docs/reference/typeql/*"

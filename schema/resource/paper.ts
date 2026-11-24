@@ -46,7 +46,7 @@ export class Paper extends SiteResource {
     detailsPageLink(): Link {
         return new Link({
             type: "route",
-            destination: `papers/${this.slug}`,
+            destination: `research/${this.slug}`,
             opensNewTab: false,
         });
     }
