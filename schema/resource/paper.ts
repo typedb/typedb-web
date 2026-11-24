@@ -1,6 +1,6 @@
 import { DocumentPdfIcon } from "@sanity/icons";
 import { defineField, defineType } from "@sanity/types";
-import { heroImageWarnings, requiredRule, slugField } from "../common-fields";
+import { heroImageWarnings, slugField } from "../common-fields";
 import { cioFormIDField } from "../form";
 import { Link } from "../link";
 import { SanityDataset } from "../sanity-core";
@@ -9,16 +9,18 @@ import { SiteResource, resourceCommonFields, resourcePropsFromSanity } from "./b
 import { SanityPaper, paperSchemaName } from "./sanity";
 
 export class Paper extends SiteResource {
-    readonly fileURL: string;
+    readonly fileURL?: string;
     readonly fileName?: string;
+    readonly externalURL?: string;
     readonly tags: string[];
-    readonly portraitImageURL: string;
-    readonly landscapeImageURL: string;
+    readonly portraitImageURL?: string;
+    readonly landscapeImageURL?: string;
 
     constructor(props: PropsOf<Paper>) {
         super(props);
         this.fileURL = props.fileURL;
         this.fileName = props.fileName;
+        this.externalURL = props.externalURL;
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
@@ -26,11 +28,12 @@ export class Paper extends SiteResource {
 
     static fromSanity(data: SanityPaper, db: SanityDataset): Paper {
         return new Paper(Object.assign(resourcePropsFromSanity(data, db), {
-            fileURL: db.resolveRef(data.file.asset).url,
-            fileName: db.resolveRef(data.file.asset).originalFilename,
+            fileURL: data.file && db.resolveRef(data.file.asset).url,
+            fileName: data.file && db.resolveRef(data.file.asset).originalFilename,
+            externalURL: data.externalUrl,
             tags: data.tags,
-            portraitImageURL: db.resolveRef(data.portraitImage.asset).url,
-            landscapeImageURL: db.resolveRef(data.landscapeImage.asset).url,
+            portraitImageURL: data.portraitImage && db.resolveRef(data.portraitImage.asset).url,
+            landscapeImageURL: data.landscapeImage && db.resolveRef(data.landscapeImage.asset).url,
         }));
     }
 
@@ -54,20 +57,29 @@ export const paperSchema = defineType({
         defineField({
             name: "file",
             title: "File",
+            description: "Hosted PDF. Leave empty for papers we can only link to.",
             type: "file",
-            validation: requiredRule,
+            validation: (rule) => rule.custom((value, context) => {
+                if (value || (context.document as any)?.externalUrl) return true;
+                return "Provide a file or an external URL";
+            }),
+        }),
+        defineField({
+            name: "externalUrl",
+            title: "External URL",
+            description: "Publisher or DOI link, used when there is no file",
+            type: "url",
         }),
         defineField({
             name: "portraitImage",
             title: "Portrait Image",
             type: "image",
-            validation: requiredRule,
         }),
         defineField({
             name: "landscapeImage",
             title: "Landscape Image",
             type: "image",
-            validation: (rule) => [rule.required(), ...heroImageWarnings(rule)],
+            validation: heroImageWarnings,
         }),
     ],
 });

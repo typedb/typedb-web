@@ -7,7 +7,7 @@ export const topbarQuery = `
     primaryItems[]{
       title,
       panel{
-        columns[]{ itemGroups[]{ title, items[]{ title, description, iconName, iconVariant, link->${linkProps}}}},
+        columns[]{ itemGroups[]{ title, items[]{ title, description, iconName, iconVariant, customIcon, link->${linkProps}}}},
         bottomLinks[]{ title, description, link->${linkProps} },
         ctas[]{ title, description, link{text, link->${linkProps}}}
       },
@@ -67,6 +67,7 @@ interface NavProduct {
     link: Link;
     iconName?: string;
     iconVariant?: string;
+    customIcon?: string;
 }
 
 export interface NavPanelCta {

@@ -87,10 +87,11 @@ export interface SanityLecture extends SanityEventBase {
 
 export interface SanityPaper extends SanitySiteResource {
     _type: typeof paperSchemaName;
-    file: SanityFile;
+    file?: SanityFile;
+    externalUrl?: string;
     tags: string[];
-    portraitImage: SanityImage;
-    landscapeImage: SanityImage;
+    portraitImage?: SanityImage;
+    landscapeImage?: SanityImage;
     furtherLearning?: SanityResourceSection;
     metaTags?: SanityMetaTags;
 }

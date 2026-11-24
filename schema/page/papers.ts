@@ -53,12 +53,7 @@ export const papersPageSchema = defineType({
             description: "Displayed as a tiled grid with 2 columns",
             type: "array",
             of: [{ type: "reference", to: [{ type: paperSchemaName }] }],
-            validation: (rule: ArrayRule<any>) =>
-                rule.custom((value: any[] | undefined) => {
-                    if (!value) return "Required";
-                    if (value.length % 2 === 1) return "Must contain an even number of items";
-                    else return true;
-                }),
+            validation: (rule: ArrayRule<any>) => rule.required(),
         }),
     ],
     preview: {

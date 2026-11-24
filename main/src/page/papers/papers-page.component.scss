@@ -47,6 +47,11 @@ td-papers-page {
         }
     }
 
+    .wp-grid-item.wp-primary-paper {
+        grid-column: 1 / -1;
+        display: block;
+    }
+
     .wp-paper-title {
         font-weight: var(--font-weight-regular);
     }
@@ -61,29 +66,54 @@ td-papers-page {
         font-weight: var(--font-weight-light);
     }
 
+    .wp-img-link {
+        display: block;
+        position: absolute;
+        inset: 0;
+    }
+
     .wp-img {
         border: shapes.$border;
         border-radius: var(--border-radius);
+        object-fit: cover;
     }
 
     .wp-grid {
-        display: flex;
-        flex-flow: row wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @media (max-width: media.$max-width-mobile) {
+            grid-template-columns: 1fr;
+        }
     }
 
     .wp-grid-item {
-        flex: 1 1 400px;
         padding: 32px;
         display: flex;
         flex-direction: column;
         gap: 8px;
-        border: solid var(--content-border-color);
-        border-width: 1px 0 0 1px;
-        margin: -1px 0 0 -1px;
+
+        &:not(.wp-primary-paper) {
+            border-top: 1px solid var(--content-border-color);
+        }
+
+        &:nth-child(even) {
+            border-right: 1px solid var(--content-border-color);
+
+            @media (max-width: media.$max-width-mobile) {
+                border-right: none;
+            }
+        }
 
         @media (max-width: media.$max-width-mobile) {
             padding: 12px;
             gap: 12px;
+        }
+    }
+
+    .wp-grid-filler {
+        @media (max-width: media.$max-width-mobile) {
+            display: none;
         }
     }
 
@@ -105,6 +135,10 @@ td-papers-page {
             width: 100px;
             flex-shrink: 0;
         }
+    }
+
+    .wp-grid-item-title {
+        @include mixins.line-clamp(3);
     }
 
     .wp-grid-item-description {

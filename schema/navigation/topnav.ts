@@ -60,6 +60,7 @@ interface SanityNavProduct {
     link: SanityReference<SanityLink>;
     iconName?: string;
     iconVariant?: string;
+    customIcon?: string;
 }
 
 interface SanityNavPanelCta {
@@ -242,6 +243,11 @@ const panelItemSchema = defineType({
         linkFieldOptional,
         iconNameFieldOptional,
         iconVariantFieldOptional,
+        defineField({
+            name: "customIcon",
+            type: "string",
+            description: "A multicolour icon drawn for the site, shown in place of the icon above. One of: labs",
+        }),
     ],
     preview: {
         select: { title: "title", description: "description", link: "link.title" },

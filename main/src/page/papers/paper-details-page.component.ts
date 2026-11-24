@@ -5,7 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { BehaviorSubject, filter, map, Observable } from "rxjs";
-import { ParagraphWithHighlights, SanityDataset, SanityPaper, Paper, paperSchemaName, LinkButton, Link, ActionButton } from "typedb-web-schema";
+import { SanityDataset, SanityPaper, Paper, paperSchemaName, LinkButton, Link, ActionButton } from "typedb-web-schema";
 
 import { MetaTagsService } from "src/service/meta-tags.service";
 import { portableTextToPlainText } from "src/service/portable-text-utils";
@@ -33,18 +33,12 @@ import { DialogService } from "src/service/dialog.service";
     imports: [
         LinkDirective, HeadingWithHighlightsComponent, AspectRatioComponent,
         MatProgressBarModule, RichTextComponent, FurtherLearningComponent, AsyncPipe, ActionsComponent,
-        NgOptimizedImage
+        NgOptimizedImage, PlainTextPipe
     ]
 })
 export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     private document = inject(DOCUMENT);
     dialog = inject(DialogService);
-    readonly allPapersHeading = new ParagraphWithHighlights({
-        spans: [
-            { id: "typeDB", text: "TypeDB ", highlight: false },
-            { id: "papers", text: "Papers", highlight: true },
-        ],
-    });
     readonly isSubmitting$: Observable<boolean>;
     private readonly _isSubmitting$ = new BehaviorSubject(false);
     readonly subscribeButton = new ActionButton({
@@ -57,11 +51,17 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
     private readonly downloadButton$ = this.page$.pipe(
         filter(paper => !!paper),
         map(paper => paper!),
-        map(paper => new ActionButton({
+        map(paper => paper.fileURL ? new ActionButton({
             id: "download-paper",
             style: "greenHollow",
             text: "Download paper",
             onClick: () => this.download(paper),
+            comingSoon: false,
+        }) : new LinkButton({
+            id: "read-paper",
+            style: "greenHollow",
+            text: "Read paper",
+            link: paper.externalURL ? Link.fromAddress(paper.externalURL) : undefined,
             comingSoon: false,
         })),
     );
@@ -91,7 +91,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
         const description = portableTextToPlainText(page.description);
 
         return {
-            title: `TypeDB Paper: ${this.plainTextPipe.transform(page.title)}`,
+            title: `TypeDB Research: ${this.plainTextPipe.transform(page.title)}`,
             description: description || page.shortDescription || `Read the TypeDB paper on ${this.plainTextPipe.transform(page.title)}`,
             ogImage: page.landscapeImageURL || page.portraitImageURL || page.imageURL,
         };
@@ -99,7 +99,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
 
     protected override onPageReady(page: Paper): void {
         super.onPageReady(page);
-        this.title.setTitle(`TypeDB Paper: ${this.plainTextPipe.transform(page.title)}`);
+        this.title.setTitle(`TypeDB Research: ${this.plainTextPipe.transform(page.title)}`);
     }
 
     protected override onPageNotFound(): void {
@@ -110,7 +110,7 @@ export class PaperDetailsPageComponent extends PageComponentBase<Paper> {
         this.analytics.google.reportAdConversion("downloadPaper");
 
         this.popupNotificationService.success("Your file will be downloaded shortly.");
-        fetch(paper.fileURL)
+        fetch(paper.fileURL!)
             .then((resp) => resp.blob())
             .then((blob) => {
                 const url = window.URL.createObjectURL(blob);

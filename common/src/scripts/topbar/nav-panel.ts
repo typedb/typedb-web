@@ -1,4 +1,5 @@
 import { escapeHtml, linkHtml, sanitiseHtmlID } from "../shared";
+import { customIcons } from "./custom-icons";
 import { NavPanel, NavPanelCta, NavItemGroup, NavResource, NavPanelColumn } from "./schema";
 
 export const navPanel = (panel: NavPanel, urlPrefix: string) => {
@@ -31,8 +32,9 @@ const column = (column: NavPanelColumn, urlPrefix: string) => {
 
 const productGroup = (productGroup: NavItemGroup, urlPrefix: string) => {
     const items = productGroup.items
-        .map(({ title, description, link: link_, iconName, iconVariant }) => {
-            const icon = iconName ? `<i class="fa-${iconVariant} fa-${iconName}"></i>` : null;
+        .map(({ title, description, link: link_, iconName, iconVariant, customIcon }) => {
+            const icon = (customIcon && customIcons[customIcon])
+                || (iconName ? `<i class="fa-${iconVariant} fa-${iconName}"></i>` : null);
             const itemLabel = `<dt>${escapeHtml(title)}</dt>`;
             const itemDescription = description ? `<dd class="text-aside">${escapeHtml(description)}</dd>` : "";
             const content = icon ? `<div class="td-icon-container">${icon}</div><div>${itemLabel}${itemDescription}</div>` : `<div>${itemLabel}${itemDescription}</div>`;

@@ -9,6 +9,7 @@ import {
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
+import { LinkDirective } from "../../framework/link/link.directive";
 import { SectionCoreComponent } from "../../framework/section/section-core.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
@@ -22,7 +23,7 @@ import { PageComponentBase } from "../page-component-base";
     encapsulation: ViewEncapsulation.None,
     imports: [
         AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, PlainTextPipe, SectionCoreComponent,
-        NgOptimizedImage
+        NgOptimizedImage, LinkDirective
     ]
 })
 export class PapersPageComponent extends PageComponentBase<PapersPage> {

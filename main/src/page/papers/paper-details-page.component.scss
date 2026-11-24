@@ -3,15 +3,45 @@
 
 td-paper-details-page {
     .resource-section {
-        padding-top: 64px;
+        border-top: none;
+        padding-top: 32px;
 
         @media (max-width: media.$max-width-mobile) {
-            padding-top: 24px;
+            padding-top: 16px;
         }
 
         td-heading-with-highlights {
             text-align: center;
         }
+    }
+
+    .wd-breadcrumb {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 56px;
+        color: var(--color-secondary-light-grey);
+        font-size: 16px;
+        line-height: 24px;
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-bottom: 24px;
+        }
+
+        a {
+            color: var(--color-white);
+            text-decoration: none;
+
+            &:hover, &:focus-visible {
+                color: var(--color-green);
+            }
+        }
+    }
+
+    .wd-breadcrumb-current {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .wd-actions {
