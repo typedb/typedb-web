@@ -1,11 +1,72 @@
 @use "media";
 @use "shapes";
 @use "mixins";
+@use "colors";
 
+// Mirrors the blog index layout (blog.component.scss, blog-row.component.scss)
 td-papers-page {
-    .wp-primary-paper-details {
+    .wp-subtitle {
+        display: block;
+        margin-top: 8px;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .wp-paper-list a:hover {
+        h1, h2, h3 {
+            color: var(--color-green);
+            text-decoration: underline;
+        }
+    }
+
+    .newsletter-section {
+        margin-top: 0;
+        margin-bottom: 32px;
+
+        .newsletter-card {
+            padding: 12px 28px;
+            border-radius: shapes.$border-radius;
+            border: shapes.$border;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+
+            td-icon {
+                font-size: 40px;
+
+                svg {
+                    stroke-width: 1;
+                }
+            }
+
+            h4 {
+                font-weight: var(--font-weight-semi-bold);
+                margin-bottom: 4px;
+            }
+
+            @media (max-width: media.$max-width-mobile) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px;
+
+                td-icon {
+                    font-size: 32px;
+                }
+            }
+        }
+    }
+
+    .wp-papers {
+        margin-top: 0;
+    }
+
+    .wp-papers-row {
+        padding: 40px 0;
+    }
+
+    .wp-primary-paper {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         align-items: flex-start;
         gap: 40px;
 
@@ -14,146 +75,154 @@ td-papers-page {
         }
 
         @media (max-width: media.$max-width-mobile) {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 12px;
+            display: block;
         }
 
-        td-aspect-ratio {
+        .wp-primary-img-link {
             flex: 0 0 50%;
 
             @media (max-width: media.$max-width-mobile) {
                 flex-basis: auto;
             }
         }
+
+        .wp-paper-title {
+            @include mixins.line-clamp(3);
+        }
+
+        .wp-paper-description {
+            @include mixins.line-clamp(4);
+        }
     }
 
     .wp-primary-paper-summary {
-        display: flex;
-        flex-direction: column;
-        align-self: stretch;
-
-        td-button {
-            display: block;
-            margin-top: 40px;
-
-            @media (max-width: media.$max-width-tablet) {
-                margin-top: 32px;
-            }
-
-            @media (max-width: media.$max-width-mobile) {
-                margin-top: 12px;
-            }
-        }
-    }
-
-    .wp-grid-item.wp-primary-paper {
-        grid-column: 1 / -1;
-        display: block;
+        min-width: 0;
     }
 
     .wp-paper-title {
-        font-weight: var(--font-weight-regular);
+        font-weight: var(--font-weight-semi-bold);
+        margin-top: 12px;
     }
 
-    .wp-primary-paper-title {
-        margin-top: 8px;
-        margin-bottom: 40px;
-        text-align: center;
+    .wp-paper-byline {
+        margin-top: 16px;
     }
 
-    .wp-primary-paper-description {
+    .wp-paper-description {
         font-weight: var(--font-weight-light);
+        margin-top: 16px;
+
+        @media (max-width: media.$max-width-tablet) {
+            margin-top: 8px;
+        }
     }
 
-    .wp-img-link {
-        display: block;
-        position: absolute;
-        inset: 0;
+    td-aspect-ratio {
+        transition: border-color 250ms ease;
+        border: shapes.$border;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+
+        &:hover {
+            border-color: colors.$secondary-grey;
+        }
     }
 
     .wp-img {
-        border: shapes.$border;
-        border-radius: var(--border-radius);
         object-fit: cover;
-    }
+        transition: transform 250ms ease;
 
-    .wp-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        @media (max-width: media.$max-width-mobile) {
-            grid-template-columns: 1fr;
+        &:hover {
+            transform: scale(1.015);
         }
     }
 
-    .wp-grid-item {
-        padding: 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        &:not(.wp-primary-paper) {
-            border-top: 1px solid var(--content-border-color);
-        }
-
-        &:nth-child(even) {
-            border-right: 1px solid var(--content-border-color);
-
-            @media (max-width: media.$max-width-mobile) {
-                border-right: none;
-            }
-        }
-
-        @media (max-width: media.$max-width-mobile) {
-            padding: 12px;
-            gap: 12px;
+    .wp-secondary-papers {
+        @media (min-width: media.$min-width-tablet) {
+            display: flex;
+            gap: 40px;
         }
     }
 
-    .wp-grid-filler {
-        @media (max-width: media.$max-width-mobile) {
-            display: none;
-        }
-    }
-
-    .wp-img-and-text {
+    .wp-secondary-paper {
+        flex: 0 0 calc(33% - 24px);
+        min-width: 0;
         display: flex;
         flex-direction: column;
         gap: 24px;
-        margin-bottom: auto;
 
         @media (max-width: media.$max-width-mobile) {
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 12px;
-        }
-    }
+            display: block;
 
-    .wp-img-secondary-container {
-        @media (max-width: media.$max-width-mobile) {
-            width: 100px;
-            flex-shrink: 0;
-        }
-    }
-
-    .wp-grid-item-title {
-        @include mixins.line-clamp(3);
-    }
-
-    .wp-grid-item-description {
-        margin-bottom: 8px;
-        @include mixins.line-clamp(2);
-        max-height: 28px * 2;
-
-        @media (max-width: media.$max-width-tablet) {
-            max-height: 24px * 2;
+            & + .wp-secondary-paper {
+                margin-top: 40px;
+            }
         }
 
-        @media (max-width: media.$max-width-mobile) {
-            margin-bottom: 0;
+        .wp-paper-title {
+            @include mixins.line-clamp(2);
+
+            @media (min-width: media.$min-width-tablet) {
+                min-height: 2lh;
+            }
+        }
+
+        .wp-paper-description {
             @include mixins.line-clamp(3);
-            max-height: 21px * 3;
+        }
+    }
+
+    .wp-secondary-paper-summary {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wp-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 40px 0;
+        border-top: shapes.$border;
+        margin-top: 40px;
+
+        .pagination-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: shapes.$border;
+            border-radius: var(--border-radius);
+            font-weight: var(--font-weight-semi-bold);
+            transition: background-color 200ms ease, border-color 200ms ease;
+
+            &:hover {
+                background-color: var(--color-green);
+                border-color: var(--color-green);
+                color: var(--body-background);
+            }
+
+            td-icon {
+                font-size: 12px;
+
+                svg {
+                    stroke-width: 3;
+                }
+            }
+        }
+
+        .pagination-info {
+            font-weight: var(--font-weight-light);
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            gap: 12px;
+
+            .pagination-link {
+                padding: 10px 16px;
+            }
         }
     }
 }

@@ -86,7 +86,7 @@ const staticPages: Record<(typeof staticPageSchemas)[number]["path"], Route> = {
     fundamentals: { component: ResourceHubComponent, title: "TypeDB Fundamentals", data: { documentID: "fundamentalsPage" } },
     learn: { component: ResourceHubComponent, title: "TypeDB Learning Center", data: { documentID: "learningCenter" } },
     lectures: { component: LecturesPageComponent, title: "TypeDB Lectures" },
-    papers: { component: PapersPageComponent, title: "TypeDB Papers" },
+    papers: { component: PapersPageComponent, title: "TypeDB Research" },
     pricing: { component: PricingPageComponent, title: "TypeDB Pricing" },
     "request-tech-talk": { component: RequestTechTalkPageComponent, title: "TypeDB Tech Talk" },
     "startup-program": { component: StartupProgramPageComponent, title: "TypeDB Startup Program" },
@@ -154,6 +154,7 @@ export const routes: Routes = [
     // Blog pagination routes
     { path: "blog/page/:page", component: BlogComponent, title: "TypeDB Blog" },
     { path: "blog/category/:slug/page/:page", component: BlogComponent },
+    { path: "papers/page/:page", component: PapersPageComponent, title: "TypeDB Research" },
     { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
     { path: ":slug", component: ComposablePageComponent },
     { path: "**", component: _404PageComponent },

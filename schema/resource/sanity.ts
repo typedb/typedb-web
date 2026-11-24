@@ -89,6 +89,8 @@ export interface SanityPaper extends SanitySiteResource {
     _type: typeof paperSchemaName;
     file?: SanityFile;
     externalUrl?: string;
+    publicationDate?: string;
+    authors?: string[];
     tags: string[];
     portraitImage?: SanityImage;
     landscapeImage?: SanityImage;

@@ -1,54 +1,110 @@
 <article>
   @if (page$ | async; as page) {
-    <td-section-core [section]="page.introSection"/>
-    <div class="subsection-margin card-appearance narrow-section wp-grid">
-      <div class="wp-grid-item wp-primary-paper">
-        <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
-        <div class="wp-primary-paper-details">
-          <td-aspect-ratio ratio="16:9" class="hide-gt-mobile">
-            <a [tdLink]="page.featuredPaper.detailsPageLink()" class="wp-img-link" [attr.aria-label]="page.featuredPaper.title | plainText">
-              <img [ngSrc]="page.featuredPaper.landscapeImageURL!" class="wp-img" alt="" fill />
-            </a>
-          </td-aspect-ratio>
-          <td-aspect-ratio ratio="17:22" class="hide-mobile">
-            <a [tdLink]="page.featuredPaper.detailsPageLink()" class="wp-img-link" [attr.aria-label]="page.featuredPaper.title | plainText">
-              <img [ngSrc]="page.featuredPaper.portraitImageURL!" class="wp-img" alt="" fill />
-            </a>
-          </td-aspect-ratio>
+    <section class="blog-landing-strip">
+      <a tdLink="/papers"><td-heading-with-highlights [value]="page.introSection.title" level="h1" renderedLevel="h2" /></a>
+      @if (page.introSection.body) {
+        <td-rich-text class="wp-subtitle" [value]="page.introSection.body" />
+      }
+    </section>
+
+    <div class="section-background-solid wp-paper-list">
+      <section class="narrow-section wp-papers">
+        <div class="wp-papers-row wp-primary-paper">
+          <a class="wp-primary-img-link" [tdLink]="page.featuredPaper.detailsPageLink()">
+            <td-aspect-ratio ratio="16:9">
+              <img
+                [ngSrc]="page.featuredPaper.landscapeImageURL!" [alt]="page.featuredPaper.title | plainText"
+                fill priority class="wp-img"
+              />
+            </td-aspect-ratio>
+          </a>
           <div class="wp-primary-paper-summary">
-            <td-rich-text class="wp-primary-paper-description" [value]="page.featuredPaper.description" />
-            <div class="flex"></div>
-            <td-button
-              [button]="accessResourceButton(page.featuredPaper, 'greenHollow', 'Read')"
-              [linkId]="downloadButtonId(page.featuredPaper)"
-            />
-          </div>
-        </div>
-      </div>
-      @for (paper of page.papersList; track paper) {
-        <div class="wp-grid-item">
-          <div class="wp-img-and-text">
-            @if (paper.landscapeImageURL) {
-              <td-aspect-ratio ratio="16:9" class="wp-img-secondary-container">
-                <a [tdLink]="paper.detailsPageLink()" class="wp-img-link" [attr.aria-label]="paper.title | plainText">
-                  <img [ngSrc]="paper.landscapeImageURL" class="wp-img" alt="" fill />
-                </a>
-              </td-aspect-ratio>
+            <a [tdLink]="page.featuredPaper.detailsPageLink()">
+              <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
+            </a>
+            <ng-container *ngTemplateOutlet="byline; context: { $implicit: page.featuredPaper }" />
+            @if (page.featuredPaper.shortDescription) {
+              <p class="wp-paper-description">{{ page.featuredPaper.shortDescription }}</p>
             }
-            <div>
-              <h3 class="wp-paper-title wp-grid-item-title">{{ paper.title | plainText }}</h3>
-            </div>
           </div>
-          <td-rich-text class="wp-grid-item-description" [value]="paper.description" />
-          <td-button
-            [button]="accessResourceButton(paper, 'greenHollow', 'Read')"
-            size="small" buttonWidth="100%" [linkId]="downloadButtonId(paper)"
-          />
         </div>
-      }
-      @if (page.papersList.length % 2) {
-        <div class="wp-grid-item wp-grid-filler"></div>
-      }
+      </section>
+
+      <section class="newsletter-section narrow-section">
+        <div class="newsletter-card">
+          <div>
+            <td-icon icon="envelope" />
+          </div>
+          <div>
+            <h4>Subscribe to the TypeDB newsletter</h4>
+            <p>Receive occasional emails about company news, releases, events and more.</p>
+          </div>
+          <div class="flex"></div>
+          <td-button [button]="subscribeToNewsletterButton" linkId="subscribe" />
+        </div>
+      </section>
+
+      <section class="narrow-section wp-papers">
+        @if (currentPage$ | async; as currentPage) {
+          @for (row of rows(page.papersList, currentPage); track $index) {
+            <div class="wp-papers-row wp-secondary-papers">
+              @for (paper of row; track paper) {
+                <div class="wp-secondary-paper">
+                  @if (paper.landscapeImageURL) {
+                    <a [tdLink]="paper.detailsPageLink()">
+                      <td-aspect-ratio ratio="16:9">
+                        <img [ngSrc]="paper.landscapeImageURL" [alt]="paper.title | plainText" fill class="wp-img" />
+                      </td-aspect-ratio>
+                    </a>
+                  }
+                  <div class="wp-secondary-paper-summary">
+                    <a [tdLink]="paper.detailsPageLink()">
+                      <h2 class="wp-paper-title text-h5">{{ paper.title | plainText }}</h2>
+                    </a>
+                    <ng-container *ngTemplateOutlet="byline; context: { $implicit: paper }" />
+                    @if (paper.shortDescription) {
+                      <p class="wp-paper-description">{{ paper.shortDescription }}</p>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+          @if (totalPages(page.papersList); as totalPages) {
+            @if (totalPages > 1) {
+              <nav class="wp-pagination" aria-label="Papers pagination">
+                @if (currentPage > 1) {
+                  <a [routerLink]="pageUrl(currentPage - 1)" class="pagination-link pagination-prev">
+                    <td-icon icon="chevron-left" /> Previous
+                  </a>
+                }
+                <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
+                @if (currentPage < totalPages) {
+                  <a [routerLink]="pageUrl(currentPage + 1)" class="pagination-link pagination-next">
+                    Next <td-icon icon="chevron-right" />
+                  </a>
+                }
+              </nav>
+            }
+          }
+        }
+      </section>
     </div>
   }
 </article>
+
+<ng-template #byline let-paper>
+  @if (paper.authors.length || paper.publicationDate) {
+    <aside class="wp-paper-byline">
+      @if (paper.authors.length) {
+        {{ formatAuthors(paper.authors) }}
+      }
+      @if (paper.authors.length && paper.publicationDate) {
+        <span aria-hidden="true"> · </span>
+      }
+      @if (paper.publicationDate) {
+        <time [dateTime]="paper.publicationDate">{{ formatDate(paper.publicationDate) }}</time>
+      }
+    </aside>
+  }
+</ng-template>

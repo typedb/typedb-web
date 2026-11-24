@@ -152,6 +152,20 @@ async function fetchComposablePageSlugs(): Promise<Array<{ slug: string }>> {
 }
 
 const BLOG_PAGE_SIZE = 9;
+const PAPERS_PAGE_SIZE = 9;
+
+async function fetchListedPaperCount(): Promise<number> {
+    try {
+        const query = `count(*[_id == "papersPage"][0].papersList)`;
+        const { data } = await axios.get<{ result: number }>(SANITY_URL, {
+            params: { query }
+        });
+        return data.result || 0;
+    } catch (error) {
+        console.error("Error fetching paper count:", error);
+        return 0;
+    }
+}
 
 async function fetchBlogPostCount(): Promise<number> {
     try {
@@ -302,6 +316,11 @@ export async function getServerRoutes(): Promise<ServerRoute[]> {
         ...dynamicRoutes,
         // Blog pagination routes
         ...blogPaginationRoutes,
+        {
+            path: "papers/page/:page",
+            renderMode: RenderMode.Prerender,
+            getPrerenderParams: async () => generatePageNumbers(await fetchListedPaperCount(), PAPERS_PAGE_SIZE),
+        },
         // 404 route and fallback route - when wired up with Netlify, this will handle all unrecognized routes
         {
             path: '404',

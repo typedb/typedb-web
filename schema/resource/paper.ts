@@ -12,6 +12,8 @@ export class Paper extends SiteResource {
     readonly fileURL?: string;
     readonly fileName?: string;
     readonly externalURL?: string;
+    readonly publicationDate?: string;
+    readonly authors: string[];
     readonly tags: string[];
     readonly portraitImageURL?: string;
     readonly landscapeImageURL?: string;
@@ -21,6 +23,8 @@ export class Paper extends SiteResource {
         this.fileURL = props.fileURL;
         this.fileName = props.fileName;
         this.externalURL = props.externalURL;
+        this.publicationDate = props.publicationDate;
+        this.authors = props.authors;
         this.tags = props.tags;
         this.portraitImageURL = props.portraitImageURL;
         this.landscapeImageURL = props.landscapeImageURL;
@@ -31,6 +35,8 @@ export class Paper extends SiteResource {
             fileURL: data.file && db.resolveRef(data.file.asset).url,
             fileName: data.file && db.resolveRef(data.file.asset).originalFilename,
             externalURL: data.externalUrl,
+            publicationDate: data.publicationDate,
+            authors: data.authors || [],
             tags: data.tags,
             portraitImageURL: data.portraitImage && db.resolveRef(data.portraitImage.asset).url,
             landscapeImageURL: data.landscapeImage && db.resolveRef(data.landscapeImage.asset).url,
@@ -69,6 +75,20 @@ export const paperSchema = defineType({
             title: "External URL",
             description: "Publisher or DOI link, used when there is no file",
             type: "url",
+        }),
+        defineField({
+            name: "authors",
+            title: "Authors",
+            description: "One name per item, in the order they appear on the paper",
+            type: "array",
+            of: [{ type: "string" }],
+        }),
+        defineField({
+            name: "publicationDate",
+            title: "Publication Date",
+            description: "As precise as is known: 2025, 2025-05 or 2025-05-20",
+            type: "string",
+            validation: (rule) => rule.regex(/^d{4}(-d{2}(-d{2})?)?$/, { name: "date" }),
         }),
         defineField({
             name: "portraitImage",
