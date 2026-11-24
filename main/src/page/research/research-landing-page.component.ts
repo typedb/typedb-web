@@ -18,7 +18,7 @@ import { CanonicalLinkService } from "../../service/canonical-link.service";
 import { DialogService } from "../../service/dialog.service";
 import { PageComponentBase } from "../page-component-base";
 
-export const PAPERS_PAGE_SIZE = 9;
+export const PAPERS_PAGE_SIZE = 99;
 const PAPERS_PER_ROW = 3;
 
 @Component({

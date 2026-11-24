@@ -152,7 +152,7 @@ async function fetchComposablePageSlugs(): Promise<Array<{ slug: string }>> {
 }
 
 const BLOG_PAGE_SIZE = 9;
-const PAPERS_PAGE_SIZE = 9;
+const PAPERS_PAGE_SIZE = 99;
 
 async function fetchListedPaperCount(): Promise<number> {
     try {
