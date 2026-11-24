@@ -46,8 +46,17 @@ export interface SanityIllustrationSection extends SanitySectionCore {
     layoutDirection?: SectionLayoutDirection;
 }
 
+export const hotTopicsSources = [
+    { title: "Manually chosen", value: "manual" },
+    { title: "Most recent blog posts", value: "latestBlogPosts" },
+] as const;
+
+export type HotTopicsSource = (typeof hotTopicsSources)[number]["value"];
+
 export interface SanityHotTopicsSection extends SanitySectionCore {
-    hotTopics: SanityReference<SanityResource>[];
+    source?: HotTopicsSource;
+    hotTopics?: SanityReference<SanityResource>[];
+    latestCount?: number;
 }
 
 export class SectionCore implements Partial<BodyTextField> {
@@ -288,11 +297,42 @@ export const hotTopicsSectionSchema = defineType({
     type: "object",
     fields: [
         titleFieldWithHighlights,
-        Object.assign({}, resourcesField, { name: "hotTopics", title: "Hot Topics" }),
+        defineField({
+            name: "source",
+            title: "Source",
+            type: "string",
+            description: "Pick the cards by hand, or always show the newest blog posts",
+            options: { layout: "radio", direction: "horizontal", list: [...hotTopicsSources] },
+            initialValue: "manual",
+        }),
+        Object.assign({}, resourcesFieldOptional, {
+            name: "hotTopics",
+            title: "Hot Topics",
+            hidden: (ctx: { parent?: { source?: HotTopicsSource } }) => ctx.parent?.source === "latestBlogPosts",
+            validation: (rule: any) => rule.custom((value: unknown[] | undefined, ctx: { parent?: { source?: HotTopicsSource } }) =>
+                ctx.parent?.source === "latestBlogPosts" || !!value?.length || "Choose at least one resource"),
+        }),
+        defineField({
+            name: "latestCount",
+            title: "Number of posts",
+            type: "number",
+            description: "How many of the most recent blog posts to show",
+            initialValue: 5,
+            hidden: (ctx) => ctx.parent?.source !== "latestBlogPosts",
+            validation: (rule) => rule.integer().min(1).max(12).error("Use a whole number between 1 and 12"),
+        }),
         actionsFieldOptional,
         isVisibleField,
     ],
-    preview: sectionPreview("Hot Topics / Related Articles"),
+    preview: {
+        select: { title: "title", source: "source", latestCount: "latestCount" },
+        prepare: (selection: { title?: any[]; source?: HotTopicsSource; latestCount?: number }) => ({
+            title: titleWithHighlightsPreview(selection.title || []),
+            subtitle: selection.source === "latestBlogPosts"
+                ? `Hot Topics: ${selection.latestCount || 5} most recent blog posts`
+                : "Hot Topics / Related Articles",
+        }),
+    },
 });
 
 export const pageSectionSchemas = [

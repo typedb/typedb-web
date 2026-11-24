@@ -90,7 +90,11 @@
         }
         @case ("hotTopicsSection") {
           <div class="hot-topics-section">
-            <td-hot-topics [title]="item.section.title" [resources]="item.section.hotTopics" [actions]="item.section.actions" />
+            @if (item.section.source === "latestBlogPosts") {
+              <td-hot-topics [title]="item.section.title" [resources]="((latestPosts$ | async) || []).slice(0, item.section.latestCount)" [actions]="item.section.actions" />
+            } @else {
+              <td-hot-topics [title]="item.section.title" [resources]="item.section.hotTopics" [actions]="item.section.actions" />
+            }
           </div>
         }
       }
