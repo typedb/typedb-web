@@ -121,7 +121,7 @@ export const paperSchema = defineType({
             title: "Publication Date",
             description: "As precise as is known: 2025, 2025-05 or 2025-05-20",
             type: "string",
-            validation: (rule) => rule.regex(/^d{4}(-d{2}(-d{2})?)?$/, { name: "date" }),
+            validation: (rule) => rule.regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, { name: "date" }),
         }),
         defineField({
             name: "portraitImage",
