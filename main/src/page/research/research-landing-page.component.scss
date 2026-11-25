@@ -20,6 +20,14 @@ td-research-landing-page {
             margin-top: 32px;
             margin-bottom: 24px;
         }
+
+        .ol-logo {
+            height: calc(var(--ol-logo-height, 32) * var(--ol-unit) * 0.85);
+
+            @media (max-width: media.$max-width-mobile) {
+                height: calc(var(--ol-logo-height, 32) * 0.64px);
+            }
+        }
     }
 
     .wp-paper-list a:hover {
