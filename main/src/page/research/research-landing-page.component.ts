@@ -15,6 +15,7 @@ import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
 import { DialogService } from "../../service/dialog.service";
+import { portableTextToPlainText } from "../../service/portable-text-utils";
 import { PageComponentBase } from "../page-component-base";
 
 interface PaperGroup {
@@ -51,6 +52,10 @@ export class ResearchLandingPageComponent extends PageComponentBase<PapersPage> 
     protected override getPage(data: SanityDataset) {
         const page = data.getDocumentByID<SanityPapersPage>(papersPageSchemaName);
         return of(page ? new PapersPage(page, data) : null);
+    }
+
+    protected override getMetaTagFallbacks(page: PapersPage) {
+        return { description: portableTextToPlainText(page.introSection.body) };
     }
 
     /** Papers grouped by category in the categories' set order, narrowed to those matching the search */
