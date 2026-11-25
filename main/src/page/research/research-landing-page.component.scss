@@ -22,10 +22,10 @@ td-research-landing-page {
         }
 
         .ol-logo {
-            height: calc(var(--ol-logo-height, 32) * var(--ol-unit) * 0.85);
+            height: calc(var(--ol-logo-height, 32) * var(--ol-unit) * 0.75);
 
             @media (max-width: media.$max-width-mobile) {
-                height: calc(var(--ol-logo-height, 32) * 0.64px);
+                height: calc(var(--ol-logo-height, 32) * 0.56px);
             }
         }
     }
