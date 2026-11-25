@@ -154,7 +154,6 @@ export const routes: Routes = [
     // Blog pagination routes
     { path: "blog/page/:page", component: BlogComponent, title: "TypeDB Blog" },
     { path: "blog/category/:slug/page/:page", component: BlogComponent },
-    { path: "research/page/:page", component: ResearchLandingPageComponent, title: "TypeDB Research" },
     { path: "404", component: _404PageComponent }, /* Generates a 404.html page for Netlify to use */
     { path: ":slug", component: ComposablePageComponent },
     { path: "**", component: _404PageComponent },

@@ -91,6 +91,8 @@ export interface SanityPaper extends SanitySiteResource {
     externalUrl?: string;
     publicationDate?: string;
     authors?: string[];
+    category?: string;
+    focus?: string;
     tags: string[];
     portraitImage?: SanityImage;
     landscapeImage?: SanityImage;

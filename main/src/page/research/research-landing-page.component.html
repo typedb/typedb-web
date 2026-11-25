@@ -7,6 +7,10 @@
       }
     </section>
 
+    @if (page.organisationRows.length) {
+      <td-organisation-logos [rows]="page.organisationRows" />
+    }
+
     <div class="section-background-solid wp-paper-list">
       <section class="narrow-section wp-papers">
         <div class="wp-papers-row wp-primary-paper">
@@ -19,13 +23,7 @@
             </td-aspect-ratio>
           </a>
           <div class="wp-primary-paper-summary">
-            <a [tdLink]="page.featuredPaper.detailsPageLink()">
-              <h2 class="wp-paper-title wp-primary-paper-title">{{ page.featuredPaper.title | plainText }}</h2>
-            </a>
-            <ng-container *ngTemplateOutlet="byline; context: { $implicit: page.featuredPaper }" />
-            @if (page.featuredPaper.shortDescription) {
-              <p class="wp-paper-description">{{ page.featuredPaper.shortDescription }}</p>
-            }
+            <ng-container *ngTemplateOutlet="summary; context: { $implicit: page.featuredPaper, titleClass: 'wp-primary-paper-title' }" />
           </div>
         </div>
       </section>
@@ -44,56 +42,61 @@
         </div>
       </section>
 
-      <section class="narrow-section wp-papers">
-        @if (currentPage$ | async; as currentPage) {
-          @for (row of rows(page.papersList, currentPage); track $index) {
-            <div class="wp-papers-row wp-secondary-papers">
-              @for (paper of row; track paper) {
-                <div class="wp-secondary-paper">
-                  @if (paper.landscapeImageURL) {
-                    <a [tdLink]="paper.detailsPageLink()">
-                      <td-aspect-ratio ratio="16:9">
-                        <img [ngSrc]="paper.landscapeImageURL" [alt]="paper.title | plainText" fill class="wp-img" />
-                      </td-aspect-ratio>
-                    </a>
-                  }
-                  <div class="wp-secondary-paper-summary">
-                    <a [tdLink]="paper.detailsPageLink()">
-                      <h2 class="wp-paper-title text-h5">{{ paper.title | plainText }}</h2>
-                    </a>
-                    <ng-container *ngTemplateOutlet="byline; context: { $implicit: paper }" />
-                    @if (paper.shortDescription) {
-                      <p class="wp-paper-description">{{ paper.shortDescription }}</p>
-                    }
-                  </div>
-                </div>
-              }
-            </div>
+      @let groups = filtered(page.papersList);
+      <div class="section wp-layout">
+        <nav class="wp-side" aria-label="Research categories">
+          <label for="wp-search" class="wp-search-label">Search</label>
+          <input id="wp-search" class="wp-search" type="search" placeholder="Filter papers"
+            [value]="query()" (input)="query.set($any($event.target).value)" />
+          @for (group of groups; track group.id) {
+            <a class="wp-side-link" [href]="'#' + group.id" (click)="scrollTo($event, group.id)">
+              <span>{{ group.name }}</span>
+              <span class="wp-count">{{ group.papers.length }}</span>
+            </a>
           }
-          @if (totalPages(page.papersList); as totalPages) {
-            @if (totalPages > 1) {
-              <nav class="wp-pagination" aria-label="Papers pagination">
-                @if (currentPage > 1) {
-                  <a [routerLink]="pageUrl(currentPage - 1)" class="pagination-link pagination-prev">
-                    <td-icon icon="chevron-left" /> Previous
-                  </a>
-                }
-                <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
-                @if (currentPage < totalPages) {
-                  <a [routerLink]="pageUrl(currentPage + 1)" class="pagination-link pagination-next">
-                    Next <td-icon icon="chevron-right" />
-                  </a>
-                }
-              </nav>
+        </nav>
+        <div class="wp-main">
+          @for (group of groups; track group.id) {
+            @if (group.papers.length) {
+              <div class="wp-group" [id]="group.id">
+                <h2>{{ group.name }}</h2>
+                <div class="wp-cards">
+                  @for (paper of group.papers; track paper) {
+                    <div class="wp-secondary-paper">
+                      @if (paper.landscapeImageURL) {
+                        <a [tdLink]="paper.detailsPageLink()">
+                          <td-aspect-ratio ratio="16:9">
+                            <img [ngSrc]="paper.landscapeImageURL" [alt]="paper.title | plainText" fill class="wp-img" />
+                          </td-aspect-ratio>
+                        </a>
+                      }
+                      <div class="wp-secondary-paper-summary">
+                        <ng-container *ngTemplateOutlet="summary; context: { $implicit: paper, titleClass: 'text-h5' }" />
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
             }
           }
-        }
-      </section>
+          @if (query() && !hasResults(groups)) {
+            <div class="wp-empty">
+              <h2>Nothing matches "{{ query().trim() }}"</h2>
+            </div>
+          }
+        </div>
+      </div>
     </div>
   }
 </article>
 
-<ng-template #byline let-paper>
+<ng-template #summary let-paper let-titleClass="titleClass">
+  @if (paper.focus) {
+    <aside class="wp-chips"><span class="chip">{{ paper.focus }}</span></aside>
+  }
+  <a [tdLink]="paper.detailsPageLink()">
+    <h2 class="wp-paper-title {{ titleClass }}">{{ paper.title | plainText }}</h2>
+  </a>
   @if (paper.authors.length || paper.publicationDate) {
     <aside class="wp-paper-byline">
       @if (paper.authors.length) {
@@ -106,5 +109,8 @@
         <time [dateTime]="paper.publicationDate">{{ formatDate(paper.publicationDate) }}</time>
       }
     </aside>
+  }
+  @if (paper.shortDescription) {
+    <p class="wp-paper-description">{{ paper.shortDescription }}</p>
   }
 </ng-template>

@@ -149,7 +149,7 @@ export {
 } from "./resource/sanity";
 export { Lecture } from "./resource/lecture";
 export { ResourceSection } from "./resource/section";
-export { Paper } from "./resource/paper";
+export { Paper, researchCategories, type ResearchCategoryID } from "./resource/paper";
 export { Document, SanityDataset } from "./sanity-core";
 export {
     type SanityCommunityResources, communityResourcesSchemaName, type SocialMediaID, SocialMediaLink,

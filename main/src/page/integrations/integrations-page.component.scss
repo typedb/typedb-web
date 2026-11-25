@@ -67,6 +67,12 @@ td-integrations-page {
         color: inherit;
         font: inherit;
         font-size: 15px;
+        transition: border-color 150ms ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-secondary-grey);
+        }
     }
 
     .ip-side-link {

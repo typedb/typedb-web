@@ -11,6 +11,17 @@ td-research-landing-page {
         color: var(--color-secondary-light-grey);
     }
 
+    td-organisation-logos,
+    td-organisation-logos.section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 32px;
+            margin-bottom: 24px;
+        }
+    }
+
     .wp-paper-list a:hover {
         h1, h2, h3 {
             color: var(--color-green);
@@ -137,27 +148,132 @@ td-research-landing-page {
         }
     }
 
-    .wp-secondary-papers {
-        @media (min-width: media.$min-width-tablet) {
-            display: flex;
+    .wp-chips {
+        font-weight: var(--font-weight-regular);
+        display: flex;
+        gap: 8px;
+        margin-bottom: 4px;
+
+        .chip {
+            padding: 2px 8px;
+            background: var(--color-purple);
+            border: shapes.$border;
+            border-radius: var(--border-radius);
+            color: var(--color-secondary-pink);
+            font-size: 14px;
+        }
+
+        @media (max-width: media.$max-width-mobile) {
+            margin-top: 16px;
+        }
+    }
+
+    // Search and category sidebar, mirroring the integrations page
+    .wp-layout {
+        display: flex;
+        gap: 56px;
+        align-items: flex-start;
+        margin-top: 40px;
+
+        @media (max-width: media.$max-width-tablet) {
+            flex-direction: column;
             gap: 40px;
         }
     }
 
+    .wp-side {
+        flex: 0 0 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        position: sticky;
+        top: 96px;
+
+        @media (max-width: media.$max-width-tablet) {
+            position: static;
+            flex-basis: auto;
+            width: 100%;
+        }
+    }
+
+    .wp-search-label {
+        font-size: 13px;
+        font-weight: var(--font-weight-semi-bold);
+        color: var(--color-secondary-light-grey);
+        margin-bottom: 8px;
+    }
+
+    .wp-search {
+        min-height: 44px;
+        margin-bottom: 20px;
+        padding: 0 12px;
+        border: 1px solid var(--color-light-purple);
+        border-radius: var(--border-radius);
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: 15px;
+        transition: border-color 150ms ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-secondary-grey);
+        }
+    }
+
+    .wp-side-link {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: var(--color-secondary-extra-light-grey);
+
+        &:hover {
+            background: var(--color-light-purple);
+            color: var(--body-font-color);
+        }
+    }
+
+    .wp-count {
+        font-family: var(--code-font-family, monospace);
+        font-size: 13px;
+        color: var(--color-secondary-light-grey);
+    }
+
+    .wp-main {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .wp-group {
+        scroll-margin-top: 96px;
+
+        > h2 {
+            margin: 0;
+        }
+    }
+
+    .wp-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 40px 32px;
+        margin-top: 32px;
+
+        @media (max-width: media.$max-width-mobile) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
     .wp-secondary-paper {
-        flex: 0 0 calc(33% - 24px);
         min-width: 0;
         display: flex;
         flex-direction: column;
         gap: 24px;
-
-        @media (max-width: media.$max-width-mobile) {
-            display: block;
-
-            & + .wp-secondary-paper {
-                margin-top: 40px;
-            }
-        }
 
         .wp-paper-title {
             @include mixins.line-clamp(2);
@@ -178,51 +294,15 @@ td-research-landing-page {
         flex-direction: column;
     }
 
-    .wp-pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 24px;
-        padding: 40px 0;
-        border-top: shapes.$border;
-        margin-top: 40px;
+    .wp-empty {
+        padding: 40px;
+        border: 1px dashed var(--color-light-purple);
+        border-radius: var(--border-radius);
+        text-align: center;
 
-        .pagination-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border: shapes.$border;
-            border-radius: var(--border-radius);
-            font-weight: var(--font-weight-semi-bold);
-            transition: background-color 200ms ease, border-color 200ms ease;
-
-            &:hover {
-                background-color: var(--color-green);
-                border-color: var(--color-green);
-                color: var(--body-background);
-            }
-
-            td-icon {
-                font-size: 12px;
-
-                svg {
-                    stroke-width: 3;
-                }
-            }
-        }
-
-        .pagination-info {
-            font-weight: var(--font-weight-light);
-            color: var(--color-text-secondary);
-        }
-
-        @media (max-width: media.$max-width-mobile) {
-            gap: 12px;
-
-            .pagination-link {
-                padding: 10px 16px;
-            }
+        h2 {
+            margin: 0;
+            font-size: 20px;
         }
     }
 }

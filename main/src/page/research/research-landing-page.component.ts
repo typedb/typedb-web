@@ -1,25 +1,29 @@
 import { AsyncPipe, NgOptimizedImage, NgTemplateOutlet } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from "@angular/core";
 
-import { combineLatest, map, Observable, of, shareReplay } from "rxjs";
+import { of } from "rxjs";
 import {
-    ActionButton, SanityDataset, SanityPapersPage, Paper, PapersPage, papersPageSchemaName,
+    ActionButton, SanityDataset, SanityPapersPage, Paper, PapersPage, papersPageSchemaName, researchCategories,
 } from "typedb-web-schema";
 
 import { AspectRatioComponent } from "../../framework/aspect-ratio/aspect-ratio.component";
 import { ButtonComponent } from "../../framework/button/button.component";
 import { IconComponent } from "../../framework/icon/icon.component";
 import { LinkDirective } from "../../framework/link/link.directive";
+import { OrganisationLogosComponent } from "../../framework/organisation-logos/organisation-logos.component";
 import { PlainTextPipe } from "../../framework/text/plain-text.pipe";
 import { RichTextComponent } from "../../framework/text/rich-text.component";
 import { HeadingWithHighlightsComponent } from "../../framework/text/text-with-highlights.component";
-import { CanonicalLinkService } from "../../service/canonical-link.service";
 import { DialogService } from "../../service/dialog.service";
 import { PageComponentBase } from "../page-component-base";
 
-export const PAPERS_PAGE_SIZE = 99;
-const PAPERS_PER_ROW = 3;
+interface PaperGroup {
+    id: string;
+    name: string;
+    papers: Paper[];
+}
+
+const OTHER_CATEGORY = { value: "other", title: "Other" };
 
 @Component({
     selector: "td-research-landing-page",
@@ -28,20 +32,13 @@ const PAPERS_PER_ROW = 3;
     encapsulation: ViewEncapsulation.None,
     imports: [
         AspectRatioComponent, RichTextComponent, ButtonComponent, AsyncPipe, PlainTextPipe, NgOptimizedImage,
-        LinkDirective, RouterLink, HeadingWithHighlightsComponent, IconComponent, NgTemplateOutlet,
+        LinkDirective, HeadingWithHighlightsComponent, IconComponent, NgTemplateOutlet, OrganisationLogosComponent,
     ]
 })
 export class ResearchLandingPageComponent extends PageComponentBase<PapersPage> {
     private dialog = inject(DialogService);
-    private canonicalLink = inject(CanonicalLinkService);
 
-    readonly currentPage$: Observable<number> = this.activatedRoute.paramMap.pipe(
-        map((params) => {
-            const page = parseInt(params.get("page") || "1", 10);
-            return isNaN(page) || page < 1 ? 1 : page;
-        }),
-        shareReplay(1),
-    );
+    readonly query = signal("");
 
     readonly subscribeToNewsletterButton = new ActionButton({
         id: "subscribe-to-newsletter",
@@ -56,28 +53,34 @@ export class ResearchLandingPageComponent extends PageComponentBase<PapersPage> 
         return of(page ? new PapersPage(page, data) : null);
     }
 
-    protected override onPageReady(page: PapersPage): void {
-        super.onPageReady(page);
-        combineLatest([this.currentPage$, of(this.totalPages(page.papersList))]).subscribe(([currentPage, totalPages]) => {
-            const baseTitle = page.metaTags.title || "TypeDB Research";
-            this.title.setTitle(currentPage > 1 ? `${baseTitle} - Page ${currentPage}` : baseTitle);
-            if (currentPage === 1) this.canonicalLink.setCanonical("https://typedb.com/research");
-            this.canonicalLink.setPaginationLinks(
-                currentPage > 1 ? this.pageUrl(currentPage - 1) : null,
-                currentPage < totalPages ? this.pageUrl(currentPage + 1) : null,
-            );
-        });
+    /** Papers grouped by category in the categories' set order, narrowed to those matching the search */
+    filtered(papers: Paper[]): PaperGroup[] {
+        const needle = this.query().trim().toLowerCase();
+        return [...researchCategories, OTHER_CATEGORY]
+            .map(({ value, title }) => ({
+                id: value,
+                name: title,
+                papers: papers.filter((paper) =>
+                    (paper.category || OTHER_CATEGORY.value) === value
+                    && (!needle || this.searchText(paper, title).includes(needle))),
+            }))
+            .filter((group) => group.id !== OTHER_CATEGORY.value || group.papers.length);
     }
 
-    totalPages(papers: Paper[]): number {
-        return Math.max(1, Math.ceil(papers.length / PAPERS_PAGE_SIZE));
+    private searchText(paper: Paper, categoryName: string): string {
+        return [
+            paper.title.toPlainText(), paper.authors.join(" "), paper.shortDescription, paper.focus, categoryName,
+        ].join(" ").toLowerCase();
     }
 
-    rows(papers: Paper[], page: number): Paper[][] {
-        const pagePapers = papers.slice((page - 1) * PAPERS_PAGE_SIZE, page * PAPERS_PAGE_SIZE);
-        const rows: Paper[][] = [];
-        for (let i = 0; i < pagePapers.length; i += PAPERS_PER_ROW) rows.push(pagePapers.slice(i, i + PAPERS_PER_ROW));
-        return rows;
+    hasResults(groups: PaperGroup[]) {
+        return groups.some((x) => x.papers.length);
+    }
+
+    // The page has a <base href>, so a bare "#id" link would leave the page
+    scrollTo(event: Event, id: string) {
+        event.preventDefault();
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
 
     formatAuthors(authors: string[]): string {
@@ -91,9 +94,5 @@ export class ResearchLandingPageComponent extends PageComponentBase<PapersPage> 
         if (!month) return String(year);
         const monthName = new Date(Date.UTC(year, month - 1, 1)).toLocaleString("en-US", { month: "short", timeZone: "UTC" });
         return `${monthName} ${year}`;
-    }
-
-    pageUrl(page: number): string {
-        return page === 1 ? "/research" : `/research/page/${page}`;
     }
 }

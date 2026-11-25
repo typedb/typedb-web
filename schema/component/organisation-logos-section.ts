@@ -45,6 +45,12 @@ function rowFromSanity(data: SanityOrganisationRow, db: SanityDataset): Organisa
         : { key: data._key, label, display: "logos", organisations: organisationsFromSanity(data.organisationLogos, db) };
 }
 
+export function organisationRowsFromSanity(rows: SanityOrganisationRow[] | undefined, db: SanityDataset): OrganisationRow[] {
+    return (rows || [])
+        .map((x) => rowFromSanity(x, db))
+        .filter((x) => (x.display === "names" ? x.names.length : x.organisations.length) > 0);
+}
+
 export class OrganisationLogosSection extends SectionCore {
     readonly rows: OrganisationRow[];
 
@@ -56,9 +62,7 @@ export class OrganisationLogosSection extends SectionCore {
     static override fromSanity(data: SanityOrganisationLogosSection, db: SanityDataset) {
         return new OrganisationLogosSection({
             ...SectionCore.fromSanity(data, db),
-            rows: (data.rows || [])
-                .map((x) => rowFromSanity(x, db))
-                .filter((x) => (x.display === "names" ? x.names.length : x.organisations.length) > 0),
+            rows: organisationRowsFromSanity(data.rows, db),
         });
     }
 }
