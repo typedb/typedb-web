@@ -23,7 +23,7 @@
             </td-aspect-ratio>
           </a>
           <div class="wp-primary-paper-summary">
-            <ng-container *ngTemplateOutlet="summary; context: { $implicit: page.featuredPaper, titleClass: 'wp-primary-paper-title' }" />
+            <ng-container *ngTemplateOutlet="summary; context: { $implicit: page.featuredPaper, titleClass: 'wp-primary-paper-title', showDescription: true }" />
           </div>
         </div>
       </section>
@@ -90,7 +90,7 @@
   }
 </article>
 
-<ng-template #summary let-paper let-titleClass="titleClass">
+<ng-template #summary let-paper let-titleClass="titleClass" let-showDescription="showDescription">
   @if (paper.focus) {
     <aside class="wp-chips"><span class="chip">{{ paper.focus }}</span></aside>
   }
@@ -110,7 +110,7 @@
       }
     </aside>
   }
-  @if (paper.shortDescription) {
+  @if (showDescription && paper.shortDescription) {
     <p class="wp-paper-description">{{ paper.shortDescription }}</p>
   }
 </ng-template>
